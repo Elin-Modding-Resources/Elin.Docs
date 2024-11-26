@@ -1,0 +1,335 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Colors
+ *
+ * Each colors have exact same color scale system with 3 levels of solid
+ * colors with different brightness, and 1 soft color.
+ * 
+ * - `XXX-1`: The most solid color used mainly for colored text. It must
+ *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ *
+ * - `XXX-2`: The color used mainly for hover state of the button.
+ *
+ * - `XXX-3`: The color for solid background, such as bg color of the button.
+ *   It must satisfy the contrast ratio with pure white (#ffffff) text on
+ *   top of it.
+ *
+ * - `XXX-soft`: The color used for subtle background such as custom container
+ *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
+ *   on top of it.
+ *
+ *   The soft color must be semi transparent alpha channel. This is crucial
+ *   because it allows adding multiple "soft" colors on top of each other
+ *   to create a accent, such as when having inline code block inside
+ *   custom containers.
+ *
+ * - `default`: The color used purely for subtle indication without any
+ *   special meanings attached to it such as bg color for menu hover state.
+ *
+ * - `brand`: Used for primary brand colors, such as link text, button with
+ *   brand theme, etc.
+ *
+ * - `tip`: Used to indicate useful information. The default theme uses the
+ *   brand color for this by default.
+ *
+ * - `warning`: Used to indicate warning to the users. Used in custom
+ *   container, badges, etc.
+ *
+ * - `danger`: Used to show error, or dangerous message to the users. Used
+ *   in custom container, badges, etc.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-default-1: var(--vp-c-gray-1);
+  --vp-c-default-2: var(--vp-c-gray-2);
+  --vp-c-default-3: var(--vp-c-gray-3);
+  --vp-c-default-soft: var(--vp-c-gray-soft);
+
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: var(--vp-c-brand-soft);
+
+  --vp-c-warning-1: var(--vp-c-yellow-1);
+  --vp-c-warning-2: var(--vp-c-yellow-2);
+  --vp-c-warning-3: var(--vp-c-yellow-3);
+  --vp-c-warning-soft: var(--vp-c-yellow-soft);
+
+  --vp-c-danger-1: var(--vp-c-red-1);
+  --vp-c-danger-2: var(--vp-c-red-2);
+  --vp-c-danger-3: var(--vp-c-red-3);
+  --vp-c-danger-soft: var(--vp-c-red-soft);
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7f78e3 30%,
+    #47caff
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #3691af 50%,
+    #7f78e3 50%
+  );
+  --vp-home-hero-image-filter: blur(80px);
+
+  --vp-button-brand-bg: rgb(56, 189, 248);
+  --vp-button-brand-hover-bg: rgb(14, 165, 233);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: var(--vp-c-text-1);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
+
+:root {
+  --emr-text-indigo: #3a5ccc;
+  --emr-text-indigo-plus: #3451b2;
+  --emr-text-indigo-light: #241f1f6e;
+  --emr-border-indigo: #3e63dd;
+  --emr-bg-indigo: #f0f4ff;
+}
+
+.dark {
+  --emr-text-indigo: #99a2ff;
+  --emr-text-indigo-plus: #dddffe;
+  --emr-text-indigo-light: #71b6b66e;
+  --emr-border-indigo: #99a2ff;
+  --emr-bg-indigo: #1a2242;
+}
+
+.VPContent.has-sidebar {
+  background-position: 50%;
+  background-size: 20px 20px;
+  background-image: linear-gradient(
+      90deg,
+      rgba(60, 10, 30, 0.04) 3%,
+      transparent 0
+    ),
+    linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  color: var(--emr-text-indigo);
+  letter-spacing: 0.1em;
+  @apply line-clamp-1;
+}
+
+.vp-doc h5 {
+  color: var(--emr-text-indigo-light);
+}
+
+.vp-doc h1 {
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--emr-border-indigo);
+  width: fit-content;
+  @apply transition-all duration-300;
+}
+
+.vp-doc h1:hover {
+  padding-right: 1.75rem;
+}
+
+.vp-doc h2 {
+  margin-top: 10px;
+  border-bottom: 3px solid var(--emr-border-indigo);
+  width: fit-content;
+  padding-bottom: 4px;
+  border-top: 0px solid var(--emr-border-indigo);
+}
+
+.vp-doc blockquote {
+  margin: 2em 0;
+  padding: 24px 32px;
+  background: var(--emr-bg-indigo);
+  border-left: 2px solid var(--emr-border-indigo);
+  position: relative;
+}
+
+.vp-doc blockquote::before {
+  content: "❝";
+  top: 8px;
+  left: 8px;
+  color: var(--emr-text-indigo-plus);
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 700;
+  position: absolute;
+  opacity: 0.7;
+}
+
+.vp-doc blockquote::after {
+  content: "❞";
+  font-size: 30px;
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+  color: var(--emr-text-indigo-plus);
+  opacity: 0.7;
+}
+
+.vp-doc blockquote > p {
+  color: var(--emr-text-indigo-plus);
+}
+
+.vp-doc li::marker {
+  color: var(--emr-text-indigo);
+}
+
+.vp-doc table {
+  display: inline-block !important;
+  font-size: 12px;
+  width: auto;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.vp-doc thead {
+  background: var(--emr-bg-indigo);
+  color: var(--emr-text-indigo);
+  text-align: left;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: var(--emr-bg-indigo);
+}
+
+.vp-doc th {
+  color: var(--emr-text-indigo);
+  background: var(--emr-bg-indigo);
+}
+
+.vp-doc th,
+.vp-doc td {
+  padding: 12px 7px;
+  line-height: 24px;
+}
+
+.vp-doc td {
+  min-width: 120px;
+}
+
+.VPDocAsideOutline .outline-marker {
+  @apply w-1;
+}
+.VPDocAsideOutline .content .root li .active {
+  color: var(--emr-text-indigo);
+}
+
+.VPDocFooter .prev-next .pager-link {
+  @apply bg-zinc-50/70 dark:bg-zinc-900;
+}
+
+.vp-doc hr {
+  border-color: var(--emr-border-indigo);
+}
+
+.bg-stripe:hover {
+  background-image: repeating-linear-gradient(
+    45deg,
+    hsl(0 0% 100%),
+    hsl(0 0% 100%) 13px,
+    hsl(0 0% 95%) 13px,
+    hsl(0 0% 95%) 14px
+  );
+}
+
+.dark .bg-stripe:hover {
+  background-image: repeating-linear-gradient(
+    45deg,
+    hsl(202, 80%, 24%),
+    hsl(202, 80%, 24%) 13px,
+    hsl(200, 80%, 20%) 13px,
+    hsl(200, 80%, 20%) 14px
+  );
+}
+
+.VPSidebar::-webkit-scrollbar {
+  @apply hidden;
+}
+
+@media (min-width: 960px) {
+  .main .name {
+    background-position: initial;
+  }
+}
+
+.vp-doc a {
+  @apply hover:text-blue-500 after:hover:opacity-100 dark:hover:text-blue-400;
+}
+
+.medium-zoom-overlay {
+  background-color: var(--vp-c-bg) !important;
+  z-index: 100;
+}
+
+.medium-zoom-overlay ~ img {
+  z-index: 101;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+  opacity: 0.9 !important;
+}
