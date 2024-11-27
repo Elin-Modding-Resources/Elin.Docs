@@ -20,6 +20,8 @@ When you build your plugin, it gets compiled into IL instructions instead of C# 
 
 This is where **`Transpiler`** applies the patch, it manipulates the IL instructions before they are transpiled, allowing you to completely alter the behaviour of a method.
 
+**`Transpiler`** patches happen when you call `Harmony.PatchAll()`. 
+
 ## But...why?
 
 Sometimes you may need to modify a method's behaviour that happens in the middle of the method body, and a conventional **`Prefix`**/**`Postfix`** won't be able to achieve that. Or there's no method at all, just a line of code.
@@ -56,7 +58,11 @@ IL instructions use the **stack** to store local variables, and there's no regis
 
 When calling a method, the arguments are pushed onto the stack from left to right in order. For class methods(that are not static and are bound to the instance), a hidden **`this`** class instance will be passed as the 1st argument, extending index of the rest of arguments by `1`. After calling a method, all arguments will be popped and the return value(if any), will be left on the stack.
 
-A common mistake people make is not keeping the stack balanced, even if the code logic seems correct.
+## Stack Balance
+
+A common mistake people make is not keeping the stack balanced, even if the code logic seems correct, and this will result confusing IL exceptions thrown by Harmony.
+
+For example, you replaced a stack-manipulating instruction with an unconditional branch to the end of the method, which effectively skips the entire execution. Harmony does a single pass test for stack balance before it transpiles, and the line we replaced will cause the instruction region that we branched over to unbalance the stack - even if these instructions will never be executed. 
 
 ## Code Matcher
 
