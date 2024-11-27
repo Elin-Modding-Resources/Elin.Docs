@@ -32,7 +32,7 @@ You may also use `Advance(n)` to move the cursor position with an offset.
 
 ## CodeMatch
 
-A series of `CodeMatch` will describe the IL instructions we want to match, you read about the usage linked above. Here's a simple rundown:
+A series of `CodeMatch` will describe the IL instructions we want to match, you can refer to the usage linked above. Here's a simple rundown:
 ```cs
 // match opcode only
 new CodeMatch(OpCodes.Call);
@@ -106,4 +106,4 @@ brfalse.s
 br.s
 ```
 
-These branching instructions are shwon in short form. However, MSIL optimizations will replace them with `brtrue`, `brfalse`, and `br` at runtime. So if you cannot qualify a match for a branch instruction, replace your `CodeMatch` with the long form instead.
+These branching instructions are shown in short form. However, MSIL optimizations will replace them with `brtrue`, `brfalse`, and `br` at runtime. So if you cannot qualify a match for a branch instruction, replace your `CodeMatch` with the long form instead.

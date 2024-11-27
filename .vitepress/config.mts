@@ -34,6 +34,12 @@ export default defineConfig({
       provider: "local",
     },
 
+    editLink: {
+      pattern:
+        "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+      text: "Edit Page",
+    },
+
     socialLinks: [
       { icon: "github", link: "https://github.com/Elin-Modding-Resources" },
       { icon: "discord", link: "https://discord.gg/elona" },
