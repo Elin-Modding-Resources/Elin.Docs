@@ -18,7 +18,7 @@ The wiki is built with [vitepress](https://github.com/vuejs/vitepress) and curre
 
 ## Setup Wiki Dev Environment
 
-If you have worked with vitepress/static sites before, you can skip to [Wiki Layout](#wiki-layout).
+If you do not need to live preview your page locally before commiting, or have worked with vitepress/static sites before, you can skip to [Wiki Layout](#wiki-layout).
 
 ### Install Tools
 

@@ -1,5 +1,9 @@
-export function makeNavBar() {
+export function makeNavBar(lastUpdated: string) {
   return [
+    {
+      text: lastUpdated,
+      link: "https://github.com/Elin-Modding-Resources/Elin.Docs/commits/master/",
+    },
     {
       text: "📖 Archive",
       link: "/articles/archive",

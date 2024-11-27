@@ -21,3 +21,13 @@ tags: Guide/External
 + [Trying Out a Simple Script Mod](https://docs.google.com/document/d/e/2PACX-1vSu2UfqCJl5095uOlem2Y3al20JotndDJcB3wjh82O2nQJ4yx8fC__IfUF6M_QRoWbb0Di9mdDnM3_Q/pub)
 + [Adding Characters or Items by Importing Excel Data](https://docs.google.com/document/d/e/2PACX-1vR3GPx71Xnjfme6PtdqNnS5GnxlOFr2A8KdzH8bYTEwEOCgeVYROi3YaMQ2_h4qsySU_BORHKXPUi9i/pub)
 + [Various Experiments with Mods](https://docs.google.com/document/d/e/2PACX-1vQarTe5F0AfMXSlEPkpDpncci-pDI5U6p2VYGhOoR0ZZfalic6FBBwCrd3KbIY_l7Nlt7Rv01XE4yk7/pub)
+
+## Plugin Repositories
+
+<LinkCard t="kuronekotei/ElinMod" u="https://github.com/kuronekotei/ElinMOD"/>
+<LinkCard t="gottyduke/Elin.Plugins" u="https://github.com/gottyduke/Elin.Plugins"/>
+<LinkCard t="Drakeny/Elin.FarmDoctor" u="https://github.com/Drakeny/Elin.FarmDoctor"/>
+<LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
+<LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin"/>
+
+Feel free to add yours here!

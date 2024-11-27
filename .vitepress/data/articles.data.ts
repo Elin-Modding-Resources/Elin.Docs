@@ -21,7 +21,7 @@ export default createContentLoader("articles/**/*.md", {
         link: url,
         frontmatter: frontmatter,
       }))
-      .reverse();
+      .sort((a, b) => b.date.time - a.date.time);
   },
 });
 

@@ -2,6 +2,15 @@ import { defineConfig } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 
+const commit = await (
+  await fetch(
+    "https://api.github.com/repos/Elin-Modding-Resources/Elin.Docs/commits/master"
+  )
+).json();
+const lastUpdate = new Date(commit.commit.author.date)
+  .toISOString()
+  .slice(0, 10);
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Elin Modding Wiki",
@@ -19,7 +28,7 @@ export default defineConfig({
     logo: "/community-icon.png",
 
     sidebar: makeSidebar(),
-    nav: makeNavBar(),
+    nav: makeNavBar(lastUpdate),
 
     search: {
       provider: "local",
