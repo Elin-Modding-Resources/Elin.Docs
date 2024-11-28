@@ -78,7 +78,7 @@
 <script setup lang="ts">
 import { useRouter } from "vitepress";
 
-const { title, date, desc, tags, link } = defineProps([
+const { title, author, date, desc, tags, link } = defineProps([
   "title",
   "author",
   "date",

@@ -1,6 +1,9 @@
 import { defineConfig } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
+import { generateDiff } from "./data/diff";
+
+await generateDiff();
 
 const commit = await (
   await fetch(
@@ -27,7 +30,7 @@ export default defineConfig({
   themeConfig: {
     logo: "/community-icon.png",
 
-    sidebar: makeSidebar(),
+    sidebar: await makeSidebar(),
     nav: makeNavBar(lastUpdate),
 
     search: {

@@ -14,6 +14,9 @@ importers:
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
+      parse-diff:
+        specifier: ^0.11.1
+        version: 0.11.1
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
@@ -925,6 +928,9 @@ packages:
 
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
+
+  parse-diff@0.11.1:
+    resolution: {integrity: sha512-Oq4j8LAOPOcssanQkIjxosjATBIEJhCxMCxPhMu+Ci4wdNmAEdx0O+a7gzbR2PyKXgKPvRLIN5g224+dJAsKHA==}
 
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -2109,6 +2115,8 @@ snapshots:
       regex-recursion: 4.2.1
 
   package-json-from-dist@1.0.1: {}
+
+  parse-diff@0.11.1: {}
 
   path-key@3.1.1: {}
 

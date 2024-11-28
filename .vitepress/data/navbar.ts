@@ -5,6 +5,10 @@ export function makeNavBar(lastUpdated: string) {
       link: "https://github.com/Elin-Modding-Resources/Elin.Docs/commits/master/",
     },
     {
+      text: "🛠️ Elin Diff",
+      link: "/diff/diffview",
+    },
+    {
       text: "📖 Archive",
       link: "/articles/archive",
     },
