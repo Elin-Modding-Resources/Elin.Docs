@@ -1,7 +1,6 @@
 import parse from "parse-diff";
 import { readdirSync, writeFileSync } from "fs";
 import path from "path";
-import matter from "gray-matter";
 
 export async function generateDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
@@ -17,7 +16,7 @@ export async function generateDiff() {
     )
   ).json();
 
-  for (var commit of commits) {
+  for (const commit of commits) {
     const message = commit.commit.message;
     if (!message.startsWith("EA")) {
       continue;

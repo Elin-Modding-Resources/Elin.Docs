@@ -29,6 +29,10 @@ export function makeNavBar(lastUpdated: string) {
           link: "https://elindocs.onrender.com",
         },
         {
+          text: "Drakeny's Elin Decompiled",
+          link: "https://github.com/Elin-Modding-Resources/Elin-Decompiled",
+        },
+        {
           text: "Weasel's Doc",
           link: "https://weaselofdeath.github.io/ElinModdingDocumentation",
         },
