@@ -29,5 +29,10 @@ tags: Guide/External
 <LinkCard t="Drakeny/Elin.FarmDoctor" u="https://github.com/Drakeny/Elin.FarmDoctor"/>
 <LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
 <LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin"/>
+<LinkCard t="Redgeioz/ElinAutoAct" u="https://github.com/Redgeioz/ElinAutoAct"/>
+<LinkCard t="Cercain/Elin-GeneRecombinator" u="https://github.com/Cercain/Elin-GeneRecombinator"/>
+<LinkCard t="hirmiura/elin-mods" u="https://github.com/hirmiura?tab=repositories&q=Elin"/>
+<LinkCard t="Tatakinov/elin_mods" u="https://github.com/Tatakinov?tab=repositories&q=elin"/>
+<LinkCard t="swarmdog/ElinMods" u="https://github.com/swarmdog/ElinMods"/>
 
-Feel free to add yours here!
+List is not updated regularly, feel free to add yours here!
