@@ -9,6 +9,27 @@ export function makeNavBar(lastUpdated: string) {
       link: "/diff/diffview",
     },
     {
+      text: "📗 Elin Sources",
+      items: [
+        {
+          text: "SourceBlock",
+          link: "https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v",
+        },
+        {
+          text: "SourceCard",
+          link: "https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z",
+        },
+        {
+          text: "SourceChara",
+          link: "https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn",
+        },
+        {
+          text: "SourceGame",
+          link: "https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_",
+        },
+      ],
+    },
+    {
       text: "📖 Archive",
       link: "/articles/archive",
     },
