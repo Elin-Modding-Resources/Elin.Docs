@@ -3,7 +3,7 @@
 on:
   push:
     branches: [master]
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -38,6 +38,11 @@ jobs:
         run: pnpm i
       - name: Build vitepress
         run: pnpm docs:build
+      - name: Update diff
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "ci: update diff"
+          default_author: github_actions
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

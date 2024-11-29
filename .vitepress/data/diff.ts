@@ -52,7 +52,7 @@ export async function generateDiff() {
           tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
         }
         for (const change of chunk.changes) {
-          let line = change.content.slice(1).replace("\t".repeat(tabs), "");
+          let line = change.content.slice(1).replace("\t".repeat(tabs + 1), "");
           if (change.del === true) {
             line += " // [!code --]";
           } else if (change.add === true) {

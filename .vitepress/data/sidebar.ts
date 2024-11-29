@@ -73,7 +73,7 @@ function getDiff() {
 
     let items: Array<{}> = [];
     for (const file of files) {
-      const normalized = (file as string).toLowerCase().replace(/[\s_]/g, "-");
+      const normalized = (file as string).toLowerCase().replace(/[\s_.]/g, "-");
       items.push({
         text: file,
         link: `/diff/${diff}#${normalized}`,
@@ -87,8 +87,6 @@ function getDiff() {
     });
   }
   sidebar.sort((a, b) => (b as any).text.localeCompare((a as any).text));
-
-  sidebar.reverse();
   (sidebar[0] as any).collapsed = false;
 
   return sidebar;
