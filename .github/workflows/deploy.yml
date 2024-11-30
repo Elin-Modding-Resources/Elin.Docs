@@ -1,61 +1,61 @@
 ﻿name: Deploy GH Pages
 
 on:
-  push:
-    branches: [master]
-  workflow_dispatch:
+    push:
+        branches: [master]
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: write
+    pages: write
+    id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+    group: pages
+    cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node.JS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "pnpm"
-      - name: Configure pages
-        uses: actions/configure-pages@v5
-      - name: Setup deps
-        run: pnpm i
-      - name: Build vitepress
-        run: pnpm docs:build
-      - name: Update diff
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "ci: update diff"
-          default_author: github_actions
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .vitepress/dist
+    build:
+        runs-on: ubuntu-latest
+        name: Build
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+            - name: Setup Node.JS
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: "pnpm"
+            - name: Configure pages
+              uses: actions/configure-pages@v5
+            - name: Setup deps
+              run: pnpm i
+            - name: Build vitepress
+              run: pnpm docs:build
+            - name: Update diff
+              uses: EndBug/add-and-commit@v9
+              with:
+                  message: "ci: update diff"
+                  default_author: github_actions
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: .vitepress/dist
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        needs: build
+        runs-on: ubuntu-latest
+        name: Deploy
+        steps:
+            - name: Deploy Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
