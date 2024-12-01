@@ -1,3 +1,11 @@
+---
+title: "Understanding Source Files: Intro and Common Issues."
+author: VHS
+desc: Things about source files
+date: 2024/12/1 00:00
+tags: Guide/VHS/C#
+---
+
 # Overview
 
 Want to know how to manipulate those weird Excel files everyone keeps putting in their mods? What they do? What each field represents? Don't worry, I'll put together what I've learned here so that you can figure it out, too.

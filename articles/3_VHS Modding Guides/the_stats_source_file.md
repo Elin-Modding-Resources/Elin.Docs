@@ -1,3 +1,11 @@
+---
+title: The Stats Source File
+author: VHS
+desc: The stats sheet contains information for status conditions. 
+date: 2024/12/1 00:01
+tags: Guide/VHS/C#
+---
+
 # Stats
 
 ![The base game Stats sheet.](https://media.discordapp.net/attachments/1309635210052243487/1312520628120715366/image.png?ex=674ccb97&is=674b7a17&hm=350249aa263326a68f53b465c6e501fa984aa2dbf01850d32a3c3ebf66a75204&=&format=webp&quality=lossless&width=1920&height=180)
