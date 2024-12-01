@@ -323,11 +323,11 @@
 
 .medium-zoom-overlay {
   background-color: var(--vp-c-bg) !important;
-  z-index: 100;
+  z-index: 2147483646;
 }
 
 .medium-zoom-overlay ~ img {
-  z-index: 101;
+  z-index: 2147483647;
 }
 
 .medium-zoom--opened .medium-zoom-overlay {
