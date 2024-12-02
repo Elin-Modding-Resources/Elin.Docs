@@ -56,7 +56,7 @@ You can also name it simply as `Transpiler()` and omit the attribute `[HarmonyTr
 
 IL instructions use the **stack** to store local variables, and there's no register like assembly. 
 
-When calling a method, the arguments are pushed onto the stack from left to right in order. For class methods(that are not static and are bound to the instance), a hidden **`this`** class instance will be passed as the 1st argument, extending index of the rest of arguments by `1`. After calling a method, all arguments will be popped and the return value(if any), will be left on the stack.
+When calling a method, the parameters are pushed onto the stack from left to right in order. For class methods(that are not static and are bound to the instance), a hidden **`this`** class instance will be passed as the 1st argument, extending index of the rest of parameters by `1`. After calling a method, all parameters will be popped and the return value(if any), will be left on the stack.
 
 ## Stack Balance
 

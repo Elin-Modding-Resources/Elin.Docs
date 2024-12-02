@@ -5,7 +5,7 @@
   >
     <header class="font-bold">{{ i || "" }} {{ t }}</header>
     <footer
-      class="mt-1 transition-all duration-300 line-clamp-1 text-slate-500 dark:text-slate-400 dark:group-hover:text-sky-400"
+      class="mt-1 transition-all duration-300 line-clamp-1 hover:line-clamp-none text-slate-500 dark:text-slate-400 dark:group-hover:text-sky-400"
     >
       {{ u }}
     </footer>

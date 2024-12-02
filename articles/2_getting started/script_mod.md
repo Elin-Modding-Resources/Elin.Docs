@@ -6,7 +6,7 @@ date: 2024/11/26 12:01
 tags: Guide/Script/C#
 ---
 
-# Script Mods and You
+# Script Mods
 
 Script mods are class libraries written in C# and loaded into game by BepInEx loader. To make a script mod, you'd need the follow tools:
 
