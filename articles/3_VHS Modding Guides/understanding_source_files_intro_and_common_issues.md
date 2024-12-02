@@ -1,7 +1,7 @@
 ---
-title: "Understanding Source Files: Intro and Common Issues."
+title: Understanding Source Files
 author: VHS
-desc: Things about source files
+desc: Things about source files, intro and common issues.
 date: 2024/12/1 00:00
 tags: Guide/VHS/C#
 ---

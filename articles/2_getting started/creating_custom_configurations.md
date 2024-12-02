@@ -6,11 +6,11 @@ date: 2024/12/1 01:00
 tags: Guide/C#
 ---
 
-## Overview
+# Overview
 
 Mods will often require user input in order to change its behavior. 
 
-<LinkCard t="Based on" u="https://docs.bepinex.dev/v5.4.11/articles/dev_guide/plugin_tutorial/3_configuration.html"/>
+<LinkCard t="BepInEx Using Configuration Files" u="https://docs.bepinex.dev/v6.0.0-pre.1/articles/dev_guide/plugin_tutorial/4_configuration.html"/>
 
 ## BaseUnityPlugin
 
