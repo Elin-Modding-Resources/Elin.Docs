@@ -64,6 +64,14 @@ export async function generateDiff() {
       }
     }
 
+    const commitTime = new Date(
+      commit.commit.committer.date
+    ).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
     const header: string[] = [
       "---",
       "exclude: true",
@@ -75,7 +83,8 @@ export async function generateDiff() {
       `changes: ${changes.join("/")}`,
       "---\n",
       `# ${message}\n`,
-      `${diffs.length} files modified.\n`,
+      commitTime,
+      `\n${diffs.length - 1} files modified.\n`,
     ];
 
     content = header.concat(content);
