@@ -96,6 +96,7 @@ Fill it with the standard mod package content, replace the information with your
   <builtin>false</builtin>
   <loadPriority>100</loadPriority>
   <version>0.23.40</version>
+  <tags>[Insert Tags]</tags>
   <description>
   </description>
 </Meta>
@@ -103,6 +104,10 @@ Fill it with the standard mod package content, replace the information with your
 
 ::: info Load Priority
 If you are making a framework/API mod, you might want to change your mod's `loadPriority`. The lesser the earlier it gets loaded.
+:::
+
+::: info Tags
+See [Setting Tags](https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub) for officially supported tags.
 :::
 
 ::: danger Mod ID
