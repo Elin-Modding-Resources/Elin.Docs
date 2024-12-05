@@ -73,7 +73,10 @@ function getDiff() {
 
     let items: Array<{}> = [];
     for (const file of files) {
-      const normalized = (file as string).toLowerCase().replace(/[\s_.]/g, "-");
+      const normalized = (file as string)
+        .toLowerCase()
+        .replace(/[+-]/g, "")
+        .replace(/[\s_.]/g, "-");
       items.push({
         text: file,
         link: `/diff/${diff}#${normalized}`,
