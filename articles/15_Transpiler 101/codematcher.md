@@ -106,4 +106,4 @@ brfalse.s
 br.s
 ```
 
-These branching instructions are shown in short form. However, MSIL optimizations will replace them with `brtrue`, `brfalse`, and `br` at runtime. So if you cannot qualify a match for a branch instruction, replace your `CodeMatch` with the long form instead.
+These branching instructions are shown in short form. However, when you use Harmony Transpilers, they're replace them with `brtrue`, `brfalse`, and `br` at runtime. So if you cannot qualify a match for a branch instruction, replace your `CodeMatch` with the long form instead.
