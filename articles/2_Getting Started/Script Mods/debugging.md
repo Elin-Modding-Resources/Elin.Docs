@@ -8,6 +8,8 @@ tags: Guide/Debugging/C#
 
 # Debug Your Plugin
 
+It's important in development phase to see what's happening and where it's happening. You might want to debug the execution of code, watch the values of variables, inspect the data...etc.
+
 ## Manual Logging
 
 One of the most common ways of debugging. It's like driving a bumper car.
@@ -33,7 +35,7 @@ By using Unity Explorer, you can inspect/modify all C# instances(including Unity
 
 You'll need a debug build of MonoBleedingEdge runtime to replace the Elin's packaged release version.
 
-<a href="../assets/mono-2.0-bdwgc.dll" download>mono-2.0-bdwgc.dll</a>
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/2_Getting%20Started/assets/mono-2.0-bdwgc.dll" download>mono-2.0-bdwgc.dll</a>
 
 ::: warning Backup First
 Before replacing `Elin\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll`.
