@@ -44,7 +44,7 @@ export function makeNavBar(lastUpdated: string) {
       items: [
         {
           text: "External Guides",
-          link: "/articles/1_about wiki/external_guides",
+          link: "/articles/1_About Wiki/external_guides",
         },
         {
           text: "Ylvapedia Wiki",
