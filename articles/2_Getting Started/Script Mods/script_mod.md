@@ -22,14 +22,14 @@ Pick your poison and make sure you have .NET development package installed for V
 
 To modify game code, you'd need to know what to modify first. You'll want a .NET decompiler to browse the game source code. 
 
-No, do not soley rely on your IDE's auto decompiling, use an actual decompiler from the following:
+No, do not solely rely on your IDE's auto decompiling, use an actual decompiler from the following:
 + [ILSpy](https://github.com/icsharpcode/ILSpy/releases)
 + [dnSpyEx](https://github.com/dnSpyEx/dnSpy)
 + [dotPeek](https://www.jetbrains.com/decompiler/)
 
 If you are using dnSpyEx, don't forget to turn off metadata tokens and RVA display, you won't need those info.
 
-Simply open the `Elin/Elin_Data/Managed/Elin.dll` in the decompiler and load its dependencies, now you can freely browse game source code.
+Simply open the `Elin/Elin_Data/Managed/Elin.dll` in the decompiler and load its dependencies, now you can freely browse game source code, search for constants, and analyze usages.
 
 ## C# Project
 
@@ -37,12 +37,16 @@ If you want to use MinusGix's template mod, you can skip to [Debugging](./debugg
 
 <LinkCard t="MinusGix Elin Mod Template" u="https://github.com/MinusGix/ElinExampleMod"/>
 
+::: warning Note
+MinusGix's template targets `netstandard 2.1` with `.NET SDK`, you might encounter `mscorlib` dependency problem if you want to use `CodeMatcher/Transpilers`.
+:::
+
 ### Target framework
 
 Example with Rider, create a new class library project with target `.NET framework 4.7.2`:
 ![rider new](../assets/rider_new_project.png)
 
-You could target `netstandard 2.0/2.1` too, but since noa suggests mod authors to target `.NET framework`, we'll stay on that path. Besides there's really not much differences because you get to use C# 12/13 features with both anyway.
+You could theoretically target `netstandard 2.0/2.1` too, but since noa suggests mod authors to target `.NET framework`, we'll stay on that path. Besides there's really not much differences because you get to use C# 12/13 features with both anyway.
 
 ### Dependencies
 
@@ -73,7 +77,7 @@ For Rider users, you need to manually edit the project file and add `<Private>Fa
 
 ### Project Setup
 
-In the properties setting, you can set C# language version to **12/13/preview**:
+In the properties setting, you can set C# language version to **12/13/preview**, which simplifies a lot of syntaxes:
 ![cs ver](../assets/cs_ver.png)
 
 For the **output dir**, you should use `ElinGamePath\Package\Mod_$(AssemblyName)\` so that you always build into mod folder and ready to test. 

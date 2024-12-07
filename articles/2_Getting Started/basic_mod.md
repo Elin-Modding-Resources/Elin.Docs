@@ -137,7 +137,7 @@ Example: `<visibility>Unlisted</visibility>`
 
 ## Upload & Update
 
-That's it, a basic empty mod that does nothing has been created. Launch Elin and open the Mod Viewer page, find your mod, it should be loaded as `<Private>` because it's a local mod placed in `Package` folder.
+That's it, a basic empty mod that does nothing has been created. Launch Elin and open the Mod Viewer page, find your mod, it should be loaded as `[Local]` because it's a local mod in the `Package` folder.
 
 Click your mod and you should see `Publish` button. If this mod hasn't been published to the workshop yet, it will be **published**. Otherwise the mod will be **updated**.
 ![publish](./assets/publish.png)

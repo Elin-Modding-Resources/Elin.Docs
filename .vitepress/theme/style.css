@@ -163,6 +163,13 @@
     linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
 }
 
+.dark .VPContent.has-sidebar {
+  background-position: 50%;
+  background-size: 20px 20px;
+  background-image: linear-gradient(90deg, #93b1c108 3%, transparent 0),
+    linear-gradient(1turn, #93b1c108 3%, transparent 0);
+}
+
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3,
