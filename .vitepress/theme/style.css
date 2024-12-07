@@ -105,8 +105,8 @@
   );
   --vp-home-hero-image-filter: blur(80px);
 
-  --vp-button-brand-bg: rgb(56, 189, 248);
-  --vp-button-brand-hover-bg: rgb(14, 165, 233);
+  --vp-button-brand-bg: #38bdf8;
+  --vp-button-brand-hover-bg: #0ea5e9;
 }
 
 @media (min-width: 640px) {
@@ -153,18 +153,14 @@
   --emr-text-indigo-plus: #dddffe;
   --emr-text-indigo-light: #71b6b66e;
   --emr-border-indigo: #99a2ff;
-  --emr-bg-indigo: #1a2242;
+  --emr-bg-indigo: #5e637863;
 }
 
 .VPContent.has-sidebar {
   background-position: 50%;
   background-size: 20px 20px;
-  background-image: linear-gradient(
-      90deg,
-      rgba(60, 10, 30, 0.04) 3%,
-      transparent 0
-    ),
-    linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
+  background-image: linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
+    linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
 }
 
 .vp-doc h1,
@@ -280,6 +276,10 @@
 
 .VPDocFooter .prev-next .pager-link {
   @apply bg-zinc-50/70 dark:bg-zinc-900;
+}
+
+.dark .VPDocFooter .prev-next .pager-link {
+  @apply bg-zinc-50/20 dark:bg-zinc-900;
 }
 
 .vp-doc hr {
