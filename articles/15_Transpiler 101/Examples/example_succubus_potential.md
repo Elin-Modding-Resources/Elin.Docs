@@ -41,7 +41,7 @@ So how do we multiply this value by an arbitrary amount? One may think to comple
 ## IL with C#
 
 Let's take a peek at this method's decompiled IL instructions, example with ILSpy:
-![il](./assets/il.png)
+![il](../assets/il.png)
 
 Now you see a whole bunch of random things, don't worry, follow the comments and locate the following:
 ```cs:no-line-numbers
@@ -58,7 +58,7 @@ As you can see, this is the call to `c.elements.ModTempPotential(int ele, int v,
 
 We've found out where to the patch, now let's figure out the how.
 
-For more information about the calling convention, checkout the [Transpiler Walkthrough](./transpiler_walkthrough).
+For more information about the calling convention, checkout the [Transpiler Walkthrough](../transpiler_walkthrough).
 
 In this case, when the call to `ModTempPotential(int ele, int v, int threshMsg = 0)` happens, there are 4 arguments on the stack:
 

@@ -40,14 +40,14 @@ If you want to use MinusGix's template mod, you can skip to [Debugging](./debugg
 ### Target framework
 
 Example with Rider, create a new class library project with target `.NET framework 4.7.2`:
-![rider new](./assets/rider_new_project.png)
+![rider new](../assets/rider_new_project.png)
 
 You could target `netstandard 2.0/2.1` too, but since noa suggests mod authors to target `.NET framework`, we'll stay on that path. Besides there's really not much differences because you get to use C# 12/13 features with both anyway.
 
 ### Dependencies
 
 An Elin script mod will of course depend on Elin's libraries. Let's first add the dependencies to the project:
-![deps](./assets/deps.png)
+![deps](../assets/deps.png)
 
 Then add the following basic libraries from game folder, you can multi-select:
 + `Elin_Data\Managed\Elin.dll`
@@ -63,7 +63,7 @@ You should always reference from game folder, so that you get the updated librar
 After adding dependences, for each reference, set `Copy Local` to false so they won't be copied to your output folder. 
 
 For Rider users, you need to manually edit the project file and add `<Private>False</Private>` to each reference, like so:
-![edit csproj](./assets/edit_csproj.png)
+![edit csproj](../assets/edit_csproj.png)
 ```xml
 <Reference Include="Plugins.BaseCore">
     <HintPath>$(ElinGamePath)\Elin_Data\Managed\Plugins.BaseCore.dll</HintPath>
@@ -74,7 +74,7 @@ For Rider users, you need to manually edit the project file and add `<Private>Fa
 ### Project Setup
 
 In the properties setting, you can set C# language version to **12/13/preview**:
-![cs ver](./assets/cs_ver.png)
+![cs ver](../assets/cs_ver.png)
 
 For the **output dir**, you should use `ElinGamePath\Package\Mod_$(AssemblyName)\` so that you always build into mod folder and ready to test. 
 
