@@ -1,7 +1,7 @@
 ---
 title: Contributing Guidelines
 author: DK
-desc: Thank you for being a part of the modding community!
+description: Thank you for being a part of the modding community!
 date: 2024/11/26 11:00
 tags: Wiki
 ---
@@ -92,7 +92,7 @@ You should always write frontmatter at the beginning, it contains the metadata a
 ---
 title: Contributing Guidelines
 author: DK
-desc: Thanks for being a part of the modding community!
+description: Thanks for being a part of the modding community!
 date: 2024/11/26
 tags: Wiki
 ---
@@ -109,19 +109,9 @@ tags: Hello/Just a Thought/Okay
 ```
 
 And it would look like this:  
-<span class="tag" v-for="(tag, index) in ['Hello', 'Just a Thought', 'Okay']" :key="index">
+<span class="border border-indigo-300 px-2 py-1 text-xs rounded-lg inline-block bg-indigo-100 cursor-pointer" v-for="(tag, index) in ['Hello', 'Just a Thought', 'Okay']" :key="index">
 <b>{{ tag }}</b>
 </span>
-<style scoped>
-.tag {
-  border: 1px solid var(--emr-border-indigo);
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  border-radius: 12px;
-  display: inline-block;
-  background-color: transparent;
-}
-</style>
 
 ### Formatting & Snippets
 

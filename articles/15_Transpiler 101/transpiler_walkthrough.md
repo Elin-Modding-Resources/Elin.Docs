@@ -1,7 +1,7 @@
 ---
 title: Transpiler Walkthrough
 author: DK
-desc: Let's talk about transpilers.
+description: Let's talk about transpilers.
 date: 2024/11/27 01:00
 tags: Guide/Transpiler
 ---

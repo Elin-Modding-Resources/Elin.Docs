@@ -1,7 +1,7 @@
 ---
 title: Setup Script Mod Project
 author: DK
-desc: How to setup a basic C# script project with Elin.
+description: How to setup a basic C# script project with Elin.
 date: 2024/11/26 12:01
 tags: Guide/Script
 ---

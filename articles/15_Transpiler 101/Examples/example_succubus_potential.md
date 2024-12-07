@@ -1,7 +1,7 @@
 ---
 title: "Example: Succubus EXP"
 author: DK
-desc: "Transpiler example: how to modify succubus exp gained from fucking."
+description: "Transpiler example: how to modify succubus exp gained from fucking."
 date: 2024/11/27 02:01
 tags: Guide/Transpiler
 ---

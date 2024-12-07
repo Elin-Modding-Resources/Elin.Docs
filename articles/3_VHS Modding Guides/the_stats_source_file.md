@@ -1,7 +1,7 @@
 ---
 title: The Stats Source File
 author: VHS
-desc: The stats sheet contains information for status conditions. 
+description: The stats sheet contains information for status conditions. 
 date: 2024/12/1 00:01
 tags: Guide/VHS/C#
 ---

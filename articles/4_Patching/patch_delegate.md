@@ -1,7 +1,7 @@
 ---
 title: Patching Edge Cases
 author: DK
-desc: Some useful patching techniques.
+description: Some useful patching techniques.
 date: 2024/11/27 04:00
 tags: Guide/Patch/C#
 ---

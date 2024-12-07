@@ -1,7 +1,7 @@
 ---
 title: Creating Custom Actions
 author: VHS
-desc: Adding Custom Actions to Elin
+description: Adding Custom Actions to Elin
 date: 2024/11/27 00:00
 tags: Guide/VHS/C#
 ---

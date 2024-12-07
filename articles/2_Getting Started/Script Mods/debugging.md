@@ -1,7 +1,7 @@
 ---
 title: Debug Your Plugin
 author: DK
-desc: Some methods to debug your plugin at runtime.
+description: Some methods to debug your plugin at runtime.
 date: 2024/11/26 12:02
 tags: Guide/Debugging/C#
 ---

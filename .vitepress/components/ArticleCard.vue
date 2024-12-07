@@ -1,79 +1,29 @@
 <template>
-  <div class="article-card w-full" @click="goto(link)">
-    <div class="card-content">
-      <h1 class="title">{{ title }}</h1>
+  <div
+    class="w-full border border-gray-300 rounded-lg shadow-md my-4 transition-transform duration-200 overflow-hidden cursor-pointer hover:transform hover:-translate-y-1 hover:border-indigo-300 bg-white"
+    @click="goto(link)"
+  >
+    <div class="p-6">
+      <h1 class="text-xl mb-2">{{ title }}</h1>
       <h5>{{ author }}</h5>
-      <p class="description">{{ desc }}</p>
+      <p class="text-base mb-4">{{ desc }}</p>
 
-      <div class="info">
-        <span class="date">{{ date }}</span>
+      <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-600">{{ date }}</span>
 
-        <div class="tags">
-          <span class="tag" v-for="(tag, index) in tags" :key="index">
-            <b>{{ tag }}</b>
+        <div class="flex flex-wrap gap-2">
+          <span
+            class="border border-indigo-300 hover:bg-yellow-100 px-2 py-1 text-xs rounded-lg inline-block bg-indigo-100 cursor-pointer"
+            v-for="(tag, index) in tags"
+            :key="index"
+          >
+            <b class="select-none">{{ tag }}</b>
           </span>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.article-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 16px 0;
-  transition: transform 0.2s;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.card-content {
-  padding: 24px;
-}
-
-.title {
-  font-size: 1.25rem;
-  margin: 0 0 8px 0;
-}
-
-.description {
-  font-size: 1rem;
-  margin-bottom: 16px;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.date {
-  font-size: 0.85rem;
-  color: #999;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
-  border: 1px solid var(--emr-border-indigo);
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  border-radius: 12px;
-  display: inline-block;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.article-card:hover {
-  transform: translateY(-5px);
-}
-</style>
 
 <script setup lang="ts">
 import { useRouter } from "vitepress";

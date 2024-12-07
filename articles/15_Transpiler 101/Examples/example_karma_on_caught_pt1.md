@@ -1,7 +1,7 @@
 ---
 title: "Example: Karma On Caught pt.1"
 author: DK
-desc: "Transpiler example: how to not lose karma on crime actions."
+description: "Transpiler example: how to not lose karma on crime actions."
 date: 2024/12/2 06:00
 tags: Guide/Transpiler
 ---

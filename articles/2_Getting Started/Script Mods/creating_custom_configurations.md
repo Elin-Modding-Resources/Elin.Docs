@@ -1,7 +1,7 @@
 ---
 title: Custom Configurations
 author: Discoded
-desc: Creating Custom Configs
+description: Creating Custom Configs
 date: 2024/12/1 01:00
 tags: Guide/Script/Config
 ---

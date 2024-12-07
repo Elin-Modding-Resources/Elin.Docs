@@ -1,7 +1,7 @@
 ---
 title: "Example: Karma On Caught pt.2"
 author: DK
-desc: "Transpiler example: how to add additional check on caught."
+description: "Transpiler example: how to add additional check on caught."
 date: 2024/12/5 22:00
 tags: Guide/Transpiler
 ---

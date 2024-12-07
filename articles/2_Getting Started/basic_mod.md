@@ -1,7 +1,7 @@
 ---
 title: Basic Elin Mod Package
 author: DK
-desc: How does mod work in Elin and how to make one.
+description: How does mod work in Elin and how to make one.
 date: 2024/11/6 12:00
 tags: Guide/Mod
 ---
@@ -12,7 +12,7 @@ Elin supports a variety of mod types, let's walk through the steps of creating a
 
 ## Mod Folder
 
-Your locally developed mods should be placed under `<ElinGamePath>/Package/<ModName>` folder.
+Your locally developed mod should be placed under `<ElinGamePath>/Package/<ModName>` folder.
 
 If you are not sure where that is, right click Elin in your steam library, go to `Properties`>`Installed Files`:
 ![browse local](./assets/browse.png)
@@ -139,5 +139,5 @@ Example: `<visibility>Unlisted</visibility>`
 
 That's it, a basic empty mod that does nothing has been created. Launch Elin and open the Mod Viewer page, find your mod, it should be loaded as `<Private>` because it's a local mod placed in `Package` folder.
 
-Click your mod and you should see `Publish` button. If this mod hasn't been published to the workshop yet, it will be published. Otherwise the mod will be **updated**.
+Click your mod and you should see `Publish` button. If this mod hasn't been published to the workshop yet, it will be **published**. Otherwise the mod will be **updated**.
 ![publish](./assets/publish.png)

@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, HeadConfig, TransformContext } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";

@@ -1,7 +1,7 @@
 ---
 title: External Guides
 author: Various Authors
-desc: Available guides and templates about setting up a mod project.
+description: Available guides and templates about setting up a mod project.
 date: 2024/11/26 13:00
 tags: Guide/External
 ---

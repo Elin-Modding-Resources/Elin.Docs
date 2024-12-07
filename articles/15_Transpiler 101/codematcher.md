@@ -1,7 +1,7 @@
 ---
 title: Code Matcher and You
 author: DK
-desc: Basic usage of CodeMatcher to make your transpiling life easier.
+description: Basic usage of CodeMatcher to make your transpiling life easier.
 date: 2024/11/27 01:01
 tags: Guide/Transpiler
 ---
