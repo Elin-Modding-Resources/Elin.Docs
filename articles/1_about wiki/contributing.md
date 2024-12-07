@@ -65,6 +65,7 @@ You should now see the wiki site served on your localhost. The site content **re
 + `.github`
 + `.vitepress`
 + `articles`
++ `diff`
 + `public`
 + `<other files>`
 
@@ -76,7 +77,11 @@ Upon opening the `articles` folder, you'll notice folders with names prefixed by
 
 Articles should be placed within the appropriate category folder. If an existing category doesn't fit your article, feel free to create a new folder. The `uncategorized` folder should only be used temporarily and is not intended for actual storage.
 
-### Articles and You
+You can also create sub categories, by creating a sub folder under a category folder and place articles inside, note that sub categories do not use numeric prefix for sorting.
+
+![category](./assets/category.png)
+
+### Article
 
 Each article is a **Markdown** file (`.md`), but you can freely use **HTML** syntax in there too. To write a new article, create a file in the category folder and change its extension to `.md`.
 
@@ -142,5 +147,7 @@ There are more useful formattings, you can always check them out later:
 ## Upload the Article
 
 🥳 Congrats! Now you have finished the write up and are satisfied with the result in your local dev site, you can use Git or GitHub desktop application to push the changes onto upstream. Once committed, the Wiki will automatically build itself and serve the latest content.
+
+Should any problem regarding the wiki occur, please reach me @freshcloth on Elona discord or via GitHub.
 
 **Thank you for being a part of the modding community!**

@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Getting Started
-      link: /articles/2_getting started/script_mod
+      link: /articles/2_getting started/basic_mod
       
     - theme: alt
       text: GitHub

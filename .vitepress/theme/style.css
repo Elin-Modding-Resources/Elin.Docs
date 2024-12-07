@@ -322,6 +322,7 @@
 }
 
 .medium-zoom-overlay {
+  backdrop-filter: blur(5rem);
   background-color: var(--vp-c-bg) !important;
   z-index: 2147483646;
 }

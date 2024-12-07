@@ -14,7 +14,7 @@ Examples are taken from mod `Lose Karma On Caught` with modifications.
 The literal meaning of word `karma` is not the same as `crime/bounty/notoriety`, it's a self inspected, self reflected, state of consequences from ones' actions. However, Elin simply used the word `karma` for its crime level system, so we'll take it that way.
 :::
 
-# Manipulating Method Calls
+# Additional Skill Check
 
 Sometimes you want a method call to be skipped inside another method, and sometimes you want to add your own call at certain places...It has been said in the previous [pt.1](./example_karma_on_caught_pt1). 
 

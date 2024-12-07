@@ -10,6 +10,7 @@ tags: Guide/External
 
 ## English
 
++ [Writing package.xml](https://docs.google.com/document/d/e/2PACX-1vQSITB8aYTycrnn3PxxGnPjNZ2_y1G3LDfXjC_PM5S_mTPCh6fv1vcj1bkfPbbUZ88WVb5_7T-62zYc/pub)
 + [Setting Workshop Tags](https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub)
 + [Elin Localization Guide](https://docs.google.com/document/d/e/2PACX-1vSj8lHcRFhFU_332eYCAlft9u1hkTlb5efUqVPsLQTtOPA79Tgh3FvNfJz9edvy0jI616BdiLidyxdz/pub)
 + [Discode's getting started guide](https://ylvapedia.wiki/wiki/User:Discode/Modding_Getting_Started)  

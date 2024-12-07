@@ -1,7 +1,6 @@
-import { readdirSync, readFileSync } from "fs";
+import { readdirSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
-import parse from "parse-diff";
 
 export async function makeSidebar() {
   return {
@@ -25,22 +24,18 @@ function getArticles() {
     const group = dir.split("_")[1];
 
     const fullDir = path.join(articleDir, dir);
-    const articles = readdirSync(fullDir, { withFileTypes: true })
-      .filter((f) => f.isFile())
-      .filter((f) => f.name.endsWith(".md"))
+    let items = generateItems(fullDir, dir);
+
+    const subDirs = readdirSync(fullDir, { withFileTypes: true })
+      .filter((f) => f.isDirectory())
+      .filter((f) => f.name != "assets")
       .map((f) => f.name);
 
-    let items: Array<{}> = [];
-    for (var article of articles) {
-      const { data } = matter.read(path.join(fullDir, article));
-      if (data.exclude === true) {
-        continue;
-      }
-
+    for (const subDir of subDirs) {
       items.push({
-        text: data.title,
-        link: `/articles/${dir}/${article}`,
-        time: +new Date(data.date).getTime(),
+        text: subDir.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
+        items: generateItems(path.join(fullDir, subDir), `${dir}/${subDir}`),
+        collapsed: true,
       });
     }
 
@@ -48,7 +43,6 @@ function getArticles() {
       continue;
     }
 
-    items.sort((a, b) => (a as any).time - (b as any).time);
     sidebar.push({
       text: group.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
       items: items,
@@ -56,6 +50,30 @@ function getArticles() {
   }
 
   return sidebar;
+}
+
+function generateItems(fullDir: string, dir: string) {
+  const articles = readdirSync(fullDir, { withFileTypes: true })
+    .filter((f) => f.isFile())
+    .filter((f) => f.name.endsWith(".md"))
+    .map((f) => f.name);
+
+  let items: Array<{}> = [];
+  for (var article of articles) {
+    const { data } = matter.read(path.join(fullDir, article));
+    if (data.exclude === true) {
+      continue;
+    }
+
+    items.push({
+      text: data.title,
+      link: `/articles/${dir}/${article}`,
+      time: +new Date(data.date).getTime(),
+    });
+  }
+
+  items.sort((a, b) => (a as any).time - (b as any).time);
+  return items;
 }
 
 function getDiff() {

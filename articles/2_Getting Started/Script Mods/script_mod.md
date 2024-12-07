@@ -3,7 +3,7 @@ title: Setup Script Mod Project
 author: DK
 desc: How to setup a basic C# script project with Elin.
 date: 2024/11/26 12:01
-tags: Guide/Script/C#
+tags: Guide/Script
 ---
 
 # Script Mods
@@ -83,49 +83,15 @@ Again, for Rider users, you need to manually edit the project file again and cha
 <OutputPath>$(ElinGamePath)\Package\Mod_$(AssemblyName)\</OutputPath>
 ```
 
-Finally, add a `package.xml` file at your project root and set it to **copy always**.
-![package xml](./assets/package.png)
-
-Fill it with the standard mod package content, replace the information with your own accordingly:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Meta>
-  <title>My Elin Mod</title>
-  <id>dk.elinplugins.myelinmod</id>
-  <author>DK</author>
-  <builtin>false</builtin>
-  <loadPriority>100</loadPriority>
-  <version>0.23.40</version>
-  <tags>[Insert Tags]</tags>
-  <description>
-  </description>
-</Meta>
-```
-
-::: info Load Priority
-If you are making a framework/API mod, you might want to change your mod's `loadPriority`. The lesser the earlier it gets loaded.
-:::
-
-::: info Tags
-See [Setting Tags](https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub) for officially supported tags.
-:::
-
-::: danger Mod ID
-Do not change the **`id`** of the mod once you publish it. Otherwise it will be treated as a new mod.
-:::
-
 ## Basic Plugin
 
 We are making a BepInEx plugin, so it's all the same stuff. Create file `MyElinMod.cs` at the project root:
 
-<<< ./assets/mod_entry.cs
+<<< ../assets/mod_entry.cs#plugin_snippet
 
 Here we chose the same Guid as mod ID in `package.xml`. This needs to be an unique identifier for your mod, so make it very unique.
 
-Simple logging helper that allows you to log anywhere in the project, which will write to BepInEx console and `Player.Log`.
-```cs
-MyElinMod.Log($"This is {114}th attempts!");
-```
+After building the project and launching the game, you should see the message in the log output, either via BepInEx console or `Player.log` at `%localappdata%low\Lafrontier\Elin\Player.log`.
 
 ::: details Enable BepInEx Console
 Open the BepInEx config file at `Elin\BepInEx\config\BepInEx.cfg` and change the following:
@@ -138,5 +104,3 @@ Open the BepInEx config file at `Elin\BepInEx\config\BepInEx.cfg` and change the
 Enabled = true
 ```
 :::
-
-After building the project and launching the game, you should see the message in the log output.

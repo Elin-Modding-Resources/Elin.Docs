@@ -1,6 +1,6 @@
-import parse from "parse-diff";
 import { readdirSync, writeFileSync } from "fs";
 import path from "path";
+import parse from "parse-diff";
 
 export async function generateDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
