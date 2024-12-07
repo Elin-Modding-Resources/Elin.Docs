@@ -5,7 +5,7 @@
       :title="article.frontmatter.title"
       :author="article.frontmatter.author"
       :date="article.date.string"
-      :desc="article.frontmatter.desc"
+      :desc="article.frontmatter.description"
       :tags="formatTags(article.frontmatter.tags)"
       :link="article.link"
     >

@@ -175,7 +175,6 @@
 .vp-doc h6 {
   color: var(--emr-text-indigo);
   letter-spacing: 0.1em;
-  @apply line-clamp-1;
 }
 
 .vp-doc h5 {

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="w-full border border-gray-300 rounded-lg shadow-md my-4 transition-transform duration-200 overflow-hidden cursor-pointer hover:transform hover:-translate-y-1 hover:border-indigo-300 bg-white"
+    class="w-full border border-gray-300 rounded-lg shadow-md my-4 transition-transform duration-200 overflow-hidden cursor-pointer hover:transform hover:-translate-y-1 hover:border-indigo-300"
     @click="goto(link)"
   >
     <div class="p-6">
-      <h1 class="text-xl mb-2">{{ title }}</h1>
+      <h1 class="title">{{ title }}</h1>
       <h5>{{ author }}</h5>
       <p class="text-base mb-4">{{ desc }}</p>
 
@@ -13,7 +13,7 @@
 
         <div class="flex flex-wrap gap-2">
           <span
-            class="border border-indigo-300 hover:bg-yellow-100 px-2 py-1 text-xs rounded-lg inline-block bg-indigo-100 cursor-pointer"
+            class="border border-indigo-300 hover:border-cyan-300 px-2 py-1 text-xs rounded-lg inline-block cursor-pointer"
             v-for="(tag, index) in tags"
             :key="index"
           >
@@ -24,6 +24,13 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.title {
+  font-size: 1.25rem;
+  margin: 0 0 8px 0;
+}
+</style>
 
 <script setup lang="ts">
 import { useRouter } from "vitepress";
