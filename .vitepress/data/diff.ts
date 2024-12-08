@@ -100,6 +100,19 @@ export async function generateDiff() {
     });
 
     const totalModified = diffs.length - 1 - totalAdded - totalRemoved;
+    let description = `${totalModified} file${
+      totalModified > 1 ? "s" : ""
+    } modified.`;
+    if (totalAdded != 0) {
+      description += ` ${totalAdded} new file${
+        totalAdded > 1 ? "s" : ""
+      } created.`;
+    }
+    if (totalRemoved != 0) {
+      description += ` ${totalRemoved} file${
+        totalRemoved > 1 ? "s" : ""
+      } removed.`;
+    }
     const header: string[] = [
       "---",
       "exclude: true",
@@ -107,19 +120,14 @@ export async function generateDiff() {
       "footer: false",
       "editLink: false",
       "lastUpdated: false",
+      `description: ${description}`,
       `version: ${message}`,
       `changes: ${changes.join("/")}`,
       "---\n",
       `# ${message}\n`,
-      commitTime,
-      `\n${totalModified} files modified.\n`,
+      `${commitTime}\n`,
+      description,
     ];
-    if (totalAdded != 0) {
-      header.push(`\n${totalAdded} new files created.\n`);
-    }
-    if (totalRemoved != 0) {
-      header.push(`\n${totalRemoved} files removed.\n`);
-    }
 
     content = header.concat(content);
 
