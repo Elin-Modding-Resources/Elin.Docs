@@ -2,7 +2,7 @@
 title: Modding Cheatsheet
 author: Drakeny
 description: Quick and easy recurring knowledge for modders.
-date: 2024/11/6 12:00
+date: 2024/12/8 2:53
 tags: Cheatsheet
 ---
 
@@ -18,17 +18,18 @@ Need to know where a specific data from the game is? Here are your answers:
 
 #### PCC related
 
-> [!Important] (SteamPath)/Elin/Package/\_Elona/Actor
+> [!Important] (SteamPath)/Elin/Package/_Elona/Actor
 
 #### Object/Character/Blocks/etc Sprites {#sprites}
 
-> [!Important] (SteamPath)/Elin/Package/\_Elona/Textures
-> ::: info _Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`._ > _You can also check their tile number in there_
+> [!Important] (SteamPath)/Elin/Package/_Elona/Textures
+> ::: info Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`.
+> You can also check their tile number in there
 > :::
 
 #### Portraits {#portrait}
 
-> [!Important] (SteamPath)/Elin/Package/\_Elona/Portraits
+> [!Important] (SteamPath)/Elin/Package/_Elona/Portraits
 
 ### Game Data
 
