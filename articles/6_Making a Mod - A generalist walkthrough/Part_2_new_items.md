@@ -56,6 +56,7 @@ You might have noticed that we have some columns with the \_JP suffix, if you'd 
 
 Awesome, our new little item is now defined, you may notice that I've put `genetic_table` on the factory column, that just in anticipation for our next item, for now we can test out our item using the console. Moving on, before we proceed to import our sheet into the game let's go over the `_idRenderData` and `tiles`, the way i have them filled now (obj_S EQ 1030) translates to `objS_1030` on the spreadsheet(Let's ignore the EQ fow now, i'll explain in it in a bit), and it is obviously the sprite of a gun, but how did i found that you may be asking, well that's simple enough, let's go into the game, load any save and follow this steps:
 <br> `Esc > tools > Texture Viewer`
+
 ![](./assets/textureviewer.png)
 
 You are now seeing a window with a ton of sprites, this is most likely the blocks spritesheet, a look at the top of the window you will see listed all other existing spritesheets:
