@@ -56,15 +56,18 @@ You might have noticed that we have some columns with the \_JP suffix, if you'd 
 
 Awesome, our new little item is now defined, you may notice that I've put `genetic_table` on the factory column, that just in anticipation for our next item, for now we can test out our item using the console. Moving on, before we proceed to import our sheet into the game let's go over the `_idRenderData` and `tiles`, the way i have them filled now (obj_S EQ 1030) translates to `objS_1030` on the spreadsheet(Let's ignore the EQ fow now, i'll explain in it in a bit), and it is obviously the sprite of a gun, but how did i found that you may be asking, well that's simple enough, let's go into the game, load any save and follow this steps:
 <br> `Esc > tools > Texture Viewer`
-![](./assets/textureviewer.png)
+
+![](./Assets/textureviewer.png)
 
 You are now seeing a window with a ton of sprites, this is most likely the blocks spritesheet, a look at the top of the window you will see listed all other existing spritesheets:
-![](./assets/spritesheets.png)
+
+![](./Assets/spritesheets.png)
+
 We are looking for the sprite of a gun, which is an equipment and considerably a "small object" or a `objS`, get it? Ok, time to find our gun, if you hover over any sprite you see that their name matches the translation I've exemplified earlier, and we can even break it down further as `objS_(row)(column)`. Now you know how to find sprites and identify their tile so you can fill your sheet data, the only detail left is that little `EQ` we have on our `_idRenderData`, if you look at the original sheet you'll notice several items have these suffixes, `EQ` not being the only suffix, for example we've got `flat`, `tall` and a few others, they are there to further define what kind of sprite is being selected or what is its purpose and in doing so the game will "offset" the sprite position when rendering it, our `EQ` stands for Equipment, so it offsets our sprite to be closer our character hands when holding it. Here are a few examples of how our gun looks using different suffixes:
 
 | Nothing                      | EQ                         | flat                         | tall                         |
 | ---------------------------- | -------------------------- | ---------------------------- | ---------------------------- |
-| ![](./assets/offsetnone.png) | ![](./assets/offsetEQ.png) | ![](./assets/offsetflat.png) | ![](./assets/offsettall.png) |
+| ![](./Assets/offsetnone.png) | ![](./Assets/offsetEQ.png) | ![](./Assets/offsetflat.png) | ![](./Assets/offsettall.png) |
 
 Neat right? Now its finally time, lets import our sheet and test if our gun is working!
 
@@ -103,7 +106,7 @@ For a quick overview:
 > At least two cases have been reported on the discord of the import process erroring out for no apparent reason, with a little bit of testing with a file that was causing an error, just by re-saving the file using 'LibreOffice Calc' seemed to fix the problem, so we believe that there is a chance that googlesheets exports to .xlsx can possibly cause some sort of incompatibility, if that happens to you try re-exporting or re-saving the file with another software.
 
 And... Voilà!
-![alt text](./assets/console.png)
+![](./Assets/console.png)
 
 ## Adding a new crafting table
 
@@ -123,11 +126,11 @@ One small thing, we've change our factory to be workbench2, so we can craft our 
 
 All done, time to go in game again, this time we don't need the console if you already have a drafting table near your testing character, the moment you click craft on the table, you will automatically learn the recipe for our new crafting table because we set its recipe to be always known.
 
-![](./assets/learntable.png) ![](./assets/table.png)
+![](./Assets/learntable.png) ![](./Assets/table.png)
 
 And there it is! Now, I've lied about the console, go back there and spawn our new table, and plop it down, you'll see we can already interact with it, and when we do so:
 
-![](./assets/learngun.png)
-![](./assets/gun.png)
+![](./Assets/learngun.png)
+![](./Assets/gun.png)
 
 We are not done yet, but thats two steps done, on part 3 we're are going to over functionality.
