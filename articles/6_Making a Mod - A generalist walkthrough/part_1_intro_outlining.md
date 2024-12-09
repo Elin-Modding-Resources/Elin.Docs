@@ -1,7 +1,7 @@
 ---
 title: Part 1 - Intro and Outlining
 author: Drakeny
-desc: A Generalist guide on making mods - part 1
+description: A Generalist guide on making mods - part 1
 date: 2024/12/06 01:01
 tags: Guide/General
 ---

@@ -1,7 +1,7 @@
 ---
 title: Part 2 - Making new items
 author: Drakeny
-desc: A Generalist guide on making mods - part 2
+description: A Generalist guide on making mods - part 2
 date: 2024/12/09 02:13
 tags: Guide/General
 ---
