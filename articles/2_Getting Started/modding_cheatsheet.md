@@ -18,10 +18,12 @@ Need to know where a specific data from the game is? Here are your answers:
 
 #### PCC related
 
+<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Actor
 
 #### Object/Character/Blocks/etc Sprites {#sprites}
 
+<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Textures
 > ::: info Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`.
 > You can also check their tile number in there
@@ -29,6 +31,7 @@ Need to know where a specific data from the game is? Here are your answers:
 
 #### Portraits {#portrait}
 
+<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Portraits
 
 ### Game Data
