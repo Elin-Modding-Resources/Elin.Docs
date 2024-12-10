@@ -58,7 +58,7 @@ As you can see, this is the call to `c.elements.ModTempPotential(int ele, int v,
 
 We've found out where to the patch, now let's figure out the how.
 
-For more information about the calling convention, checkout the [Transpiler Walkthrough](../transpiler_walkthrough).
+For more information about the calling convention, checkout the [Transpiler Walkthrough](../Transpiler%20101/transpiler_walkthrough).
 
 In this case, when the call to `ModTempPotential(int ele, int v, int threshMsg = 0)` happens, there are 4 arguments on the stack:
 
