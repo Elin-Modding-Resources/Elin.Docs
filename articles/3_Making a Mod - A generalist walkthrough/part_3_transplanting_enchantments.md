@@ -24,7 +24,7 @@ Nothing? Oh well, unfortunately, my suspicion about restrictions was right, not 
 
 In there, if we quickly go through its functions and properties, you'll find this:
 
-[IsFoodTrait](https://elin-modding-resources.github.io/Elin-Decompiled/classElement.html#a4a285c3ae82445a9c479a5c77a7d2129).
+[IsFoodTrait](https://elin-modding-resources.github.io/Elin-Decompiled/classElement.html#a4a285c3ae82445a9c479a5c77a7d2129)
 
 Specific, isn't it? I won't make you do that, but if you read around things that reference it, it quickly becomes apparent that "foodTrait" elements only show up in foods (surprise, surprise).
 
@@ -32,7 +32,7 @@ In any case, we would've found this out pretty quickly, and this knowledge alone
 
 ## Finding our target method
 
-We know exactly what possibly calls the crafting functions: the "Craft" button on the crafting window. To easily find UI element classes, you can just search for classes or files that have "Layer" in their name. Fortunately, searching for [`LayerCraft`]() lands us exactly where we wanted. Now it's a reading game—let's find out what our little button is calling.
+We know exactly what possibly calls the crafting functions: the "Craft" button on the crafting window. To easily find UI element classes, you can just search for classes or files that have "Layer" in their name. Fortunately, searching for [`LayerCraft`](https://elin-modding-resources.github.io/Elin-Decompiled/classLayerCraft.html) lands us exactly where we wanted. Now it's a reading game—let's find out what our little button is calling.
 
 After a bit of reading we can safely assume its [OnClickCraft](https://elin-modding-resources.github.io/Elin-Decompiled/classLayerCraft.html#a209d122805d09c7b140dccc89c9d047f), quickly reading through it doesn't seems it directly calls any methods related to crafting, for now, let's keep going. Our next stop will be [RefreshProduct](https://elin-modding-resources.github.io/Elin-Decompiled/classLayerCraft.html#a2c6414e8cab7664c6aef5a050e70fff1), while following simple logic it doesn't seem to make sense but this method actually calls `recipe.Craft()`
 
