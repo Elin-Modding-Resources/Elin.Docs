@@ -28,7 +28,7 @@ function getArticles() {
 
     const subDirs = readdirSync(fullDir, { withFileTypes: true })
       .filter((f) => f.isDirectory())
-      .filter((f) => f.name != "assets")
+      .filter((f) => f.name.toLowerCase() != "assets")
       .map((f) => f.name);
 
     for (const subDir of subDirs) {

@@ -68,7 +68,7 @@ export async function generateDiff() {
           content.push("```\n", ":::");
         } else {
           const first = chunk.changes[0];
-          const ln = first.ln1;
+          const ln = first.ln1 ?? 1;
           content.push(`\`${chunk.content}\``, "```cs" + `:line-numbers=${ln}`);
 
           // replace tabs
