@@ -170,6 +170,22 @@
     linear-gradient(1turn, #93b1c108 3%, transparent 0);
 }
 
+:root {
+  --vp-layout-max-width: 1536px;
+}
+
+.VPDoc:not(.has-sidebar) .container {
+  max-width: 1267.2px !important;
+}
+
+.VPDoc:not(.has-sidebar) .content {
+  max-width: 1011.2px !important;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 934.2px !important;
+}
+
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3,
