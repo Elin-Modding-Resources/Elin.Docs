@@ -121,13 +121,34 @@ As you can see, we didn't use `[HarmonyPatch]` attribute - that's because the me
 ## Generics
 
 Patching generic methods require you to specialize the template type, otherwise it overwrites all of them or none of them:
+
+Given a target generic method:
 ```cs
-// in a patch class
+class Layer
+{
+    public static Layer Create<T>(string, string);
+}
+```
+
+To patch the method `Layer.Create<T>(string, string)` when `T` is of type `int`, we need to specialize the generic template, as shown below:
+```cs
+// In the patch class
 internal static MethodInfo TargetMethod()
 {
     return AccessTools.Method(
-        typeof(SomeClass), 
-        nameof(SomeClass.GenericMethod))
+            typeof(Layer), 
+            nameof(Layer.Create),
+            [
+                typeof(string), 
+                typeof(string),
+            ])
         .MakeGenericMethod(typeof(int));
 }
+
+[HarmonyPrefix]
+internal static void OnLayerCreateInt();
 ```
+
+This code ensures the patch applies exclusively to the `Layer.Create<int>(string, string)`.
+
+Note: Using `TargetMethod()` or `[HarmonyTargetMethod]` means you do not need to (and cannot) use `[HarmonyPatch(typeof, nameof...)]` for specifying the target method info.
