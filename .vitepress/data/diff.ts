@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      break;
+      //break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
@@ -52,6 +52,7 @@ export async function generateDiff() {
 
       changes.push(filename);
       content.push(`## ${filename}\n`);
+      const sourceLink = `https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/${commit.sha}/Elin/${filename}.cs`;
 
       for (const chunk of diff.chunks) {
         if (diff.new === true) {
@@ -69,7 +70,11 @@ export async function generateDiff() {
         } else {
           const first = chunk.changes[0];
           const ln = first.ln1 ?? 1;
-          content.push(`\`${chunk.content}\``, "```cs" + `:line-numbers=${ln}`);
+          const chunkLink = `${sourceLink}#L${ln}`;
+          content.push(
+            `[\`${chunk.content}\`](${chunkLink})`,
+            "```cs" + `:line-numbers=${ln}`
+          );
 
           // replace tabs
           let tabs = (first.content.match(/\t/) || []).length;
