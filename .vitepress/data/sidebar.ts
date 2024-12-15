@@ -66,7 +66,7 @@ function generateItems(fullDir: string, dir: string) {
     }
 
     items.push({
-      text: data.title,
+      text: data.title.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
       link: `/articles/${dir}/${article}`,
       time: +new Date(data.date).getTime(),
     });
