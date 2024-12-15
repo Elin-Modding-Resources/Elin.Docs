@@ -16,7 +16,7 @@ That very much sounds like what we're looking for, while we're here, take a look
 
 > Referenced by `ElementContainer.AddNote()` and `Thing.WriteNote()`.
 
-Hey, looks like we're already almost there, considering both of these are used in "Note" related methods, they could very well be what is locking our Enchantment from showing up, for now let's move from the top. We need to patch the UI tooltip for our item, so considering `ElementContainer` are stored on `Card` and `Thing` is derived of `Card`, we'll start checking out [`Thing.WriteNote()`](https://elin-modding-resources.github.io/Elin-Decompiled/interfaceIInspect.html#a53694e39c0b8ee3f771896555166a20c)
+Hey, looks like we're already almost there, considering both of these are used in "Note" related methods, they could very well be what is locking our Enchantment from showing up, for now let's move from the top. We need to patch the UI tooltip for our item, so considering `ElementContainer` is stored on `Card` and `Thing` is derived of `Card`, we'll start checking out [`Thing.WriteNote()`](https://elin-modding-resources.github.io/Elin-Decompiled/interfaceIInspect.html#a53694e39c0b8ee3f771896555166a20c)
 
 Very much like before, we'll begin by deploying our "probe" to check if we are at the right place:
 
@@ -76,7 +76,7 @@ if (mode == IInspect.NoteMode.Product && HasTag(CTAG.dish_bonus))
 
 :::
 
-Okay, both are the inside the same big if statement, and the second occurrence happens inside an if that checks for `HasTag(CTAG.dish_bonus)`. Going in game and testing we'll see our probe triggers when hovering any item in our inventory and when we open the crafting window, this seems a good enough place for us to patch. We do have other options, but this time we're going with the "brute force-ish" solution. ~~GoAwayFreshClothI'mNotDoingTranspilerPatches~~
+Okay, both are the inside the same big if statement, and the second occurrence happens inside another if that checks for `HasTag(CTAG.dish_bonus)`. Going in game and testing we'll see our probe triggers when hovering any item in our inventory and when we open the crafting window, this seems a good enough place for us to patch. We do have other options, but this time we're going with the "brute force-ish" solution. ~~GoAwayFreshClothI'mNotDoingTranspilerPatches~~
 
 ::: details A Little context
 Hey, I'm writing most of this guide out of memory, it has been several days since I've actually completed the code (Even though I haven't released it yet), so there might be some discrepancies between how I am presenting the steps here to what actually happened, as I'm noticing now, I don't really remember much of this part, but i feel it took longer than it should've...

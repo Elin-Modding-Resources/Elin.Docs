@@ -12,7 +12,7 @@ tags: Guide/General
 This article is based on the process of adding the Gene transfer feature for [FarmDoctor](https://steamcommunity.com/sharedfiles/filedetails/?id=3366547733).
 :::
 
-This is a walkthough of the steps that I've taken while developing a new feature, from the beginning to the end, including aspects as defining what I need to patch and what is needed for it to work in general.
+This is a walkthough of the steps that I've taken while developing a new feature, from the beginning to the end, including aspects such as defining what is needed to be patched and what is needed for it to work in general.
 
 ::: warning
 
@@ -28,7 +28,7 @@ First things first, lets take note of what we want to achieve. In this specific 
 -   Store said enchantment somewhere.
 -   Reapply the enchantment using the storage we've used.
 
-Simple enough, now, how you would do that in-game will come from your own creativity and designs, for me, as I'd like to keep balance in play when designing my changes and addition to mechanics, I've decided that instead of removing the enchantments directly from plants, I'm going to take them from the seeds, this way i can add a cost of multiple seeds in a destructive way (meaning that the player HAS to spend a resource). For storing the enchantments, well, Genetic Guns are an actual thing so why not go with that, that makes our last step even easier, we just need to shoot to apply the enchantments to a target. Additionally, I want for the weapon to be craftable using a brand crafting station. (Why? Future proofing and wanted to do it.)
+Simple enough, now, how you would do that in-game will come from your own creativity and designs, for me, as I'd like to keep balance in play when designing my changes and addition to mechanics, I've decided that instead of removing the enchantments directly from plants, I'm going to take them from the seeds, this way i can add a cost of multiple seeds in a destructive way (meaning that the player HAS to spend a resource). For storing the enchantments, well, Genetic Guns are an actual thing so why not go with that, that makes our last step even easier, we just need to shoot to apply the enchantments to a target. Additionally, I want for the weapon to be craftable using a brand new crafting station. (Why? Future proofing and wanted to do it.)
 
 ::: tip Enchantment
 For clarity, going forward in this article you'll notice that the word `Enchantment` does not appear at all in code blocks, that is because an `Enchantment` is actually an Element and Elements casts a wide net over several things they can be such as feats, skills, attributes and others so bear this in mind.

@@ -54,7 +54,7 @@ You might have noticed that we have some columns with the \_JP suffix, if you'd 
 
 ## Choosing a sprite
 
-Awesome, our new little item is now defined, you may notice that I've put `genetic_table` on the factory column, that just in anticipation for our next item, for now we can test out our item using the console. Moving on, before we proceed to import our sheet into the game let's go over the `_idRenderData` and `tiles`, the way i have them filled now (obj_S EQ 1030) translates to `objS_1030` on the spreadsheet(Let's ignore the EQ fow now, i'll explain in it in a bit), and it is obviously the sprite of a gun, but how did i found that you may be asking, well that's simple enough, let's go into the game, load any save and follow this steps:
+Awesome, our new little item is now defined, you may notice that I've put `genetic_table` on the factory column, that just in anticipation for our next item, for now we can test out our item using the console. Moving on, before we proceed to import our sheet into the game let's go over the `_idRenderData` and `tiles`, the way i have them filled now (obj_S EQ 1030) translates to `objS_1030` on the spritesheet(Let's ignore the EQ fow now, i'll explain in it in a bit), and it is obviously the sprite of a gun, but how did i found that you may be asking, well that's simple enough, let's go into the game, load any save and follow this steps:
 <br> `Esc > tools > Texture Viewer`
 
 ![](./Assets/textureviewer.png)
@@ -87,7 +87,7 @@ This is fairly easy as well. First, we need to save our spreadsheet as `.xlsx`, 
 
 For a quick overview:
 
--   `dir` holds the path to our mod, considering your are working on a unreleased mod this path will be `(steamapp)/Elin/Package/YourModName`
+-   `dir` holds the path to our mod, considering you are working on a unreleased mod this path will be `(steamapp)/Elin/Package/YourModName`
 -   `excel` adds our spreadsheet to the path, make sure the name matches the _FILE_ name and don't forget to add any sub folders if you've put your sheet in there. E.g.:`MySubfolder/SourceCard.xlsx`
 -   `sources` is simply acquiring a reference to the SourceManager, no need to bother with this, just leave it be.
 -   Last but not least is our call to `ModUtil.ImportExcel` and as you can see, it expects:
@@ -119,7 +119,7 @@ Now that we have our gun, let's make our new crafting table, fill everything up 
 One small thing, we've change our factory to be workbench2, so we can craft our crafting table at the draft table, now to the bigger changes:
 
 -   `_tileType`: To be honest, I'm not entirely sure what other uses the column has, but with `ObjBig` we prevent movement on top of it, and I prefer it like this, if you don't you can leave it empty.
--   `recipeKey`: For convienience we're setting this to "\*", that means that recipe is always known. We can add it to our gene_gun as well.
+-   `recipeKey`: For convenience we're setting this to "\*", that means this recipe is always known. We can add it to our gene_gun as well.
 -   `components`: Noticed something different with our recipe? For this one we are using `#table` and `#chair` to designate that any item categorized as table and chair can be used as an ingredient.
 -   `LV`: We've left this empty on our Gene gun, but now you can go back and fix it, because LV defines the crafting skill level of our item. But level of what skill you might be asking, for our new crafting table it will the `Crafting` skill because its factory is the `workbench2`, for our gene gun we will define it on the next important column change;
 -   `trait`: In this column we are giving our crafting table the `Workbench` Trait so the game will recognize it as an actual crafting table, but not only that, we are also defining the skill that governs crafting in this table, since this is mainly a farming item we are assigning it the `farming` skill. `Workbench,farming`. There are other crafting related traits if you check source data but we are not going over those, and as for traits we are not diving deeper on them yet, but I encourage you go over the source data and see how they are assigned to different things.
@@ -128,9 +128,9 @@ All done, time to go in game again, this time we don't need the console if you a
 
 ![](./Assets/learntable.png) ![](./Assets/table.png)
 
-And there it is! Now, I've lied about the console, go back there and spawn our new table, and plop it down, you'll see we can already interact with it, and when we do so:
+And there it is! Now, I've lied about the console, go back there, spawn our new table and place it down, you'll see we can already interact with it, and when we do so:
 
 ![](./Assets/learngun.png)
 ![](./Assets/gun.png)
 
-We are not done yet, but thats two steps done, on part 3 we're are going to over functionality.
+We are not done yet, but that's two steps done, on part 3 we're are going to transfer the Enchantments on our seed ingredient to the gun.

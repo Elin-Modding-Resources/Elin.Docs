@@ -28,7 +28,7 @@ In there, if we quickly go through its functions and properties, you'll find thi
 
 Specific, isn't it? I won't make you do that, but if you read around things that reference it, it quickly becomes apparent that "foodTrait" elements only show up in foods (surprise, surprise).
 
-In any case, we would've found this out pretty quickly, and this knowledge alone does nothing for us right now (but it will in the future). What we need to do is find where and how items are crafted and understand it so we can patch it.
+In any case, we would've found this out pretty quickly, and this knowledge alone does nothing for us right now (but it will in the future). What we need to do now is find where and how items are crafted and understand it so we can patch it.
 
 ## Finding our target method
 
@@ -120,7 +120,7 @@ public static void Craft(Thing __result, List<Thing> ings)
 Right, that's the right ingredient, the right element and no errors. But...
 
 ![NoEnchant](./Assets/uinoenc.png)
-Our crafter gun still doesn't show its enchantment... But, inspecting our gun with Unity Explorer we can see that element 447 is there.
+Our crafted gun still doesn't show its enchantment... But, inspecting our gun with Unity Explorer we can see that element 447 is there.
 ![inspecting gun](./Assets/ueinspect.png)
 
 Well that's good news, we can call our transplant a success, but that comes with bad news, we'll have to patch UI so that the enchantment shows up. Onto a bit of UI next.
