@@ -27,10 +27,11 @@ tags: Guide/External
 ## Plugin Repositories
 
 <LinkCard t="kuronekotei/ElinMod" u="https://github.com/kuronekotei/ElinMOD"/>
+<LinkCard t="Ykey/ElinMod" u="https://github.com/ykeyjp/ElinMod" i="https://avatars.githubusercontent.com/u/15781024?s=48&v=4"/>
 <LinkCard t="gottyduke/Elin.Plugins" u="https://github.com/gottyduke/Elin.Plugins"/>
-<LinkCard t="Drakeny/Elin.FarmDoctor" u="https://github.com/Drakeny/Elin.FarmDoctor"/>
-<LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
 <LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin"/>
+<LinkCard t="Drakeny/ElinMods" u="https://github.com/Drakeny?tab=repositories&q=Elin"/>
+<LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
 <LinkCard t="Redgeioz/ElinAutoAct" u="https://github.com/Redgeioz/ElinAutoAct"/>
 <LinkCard t="Cercain/Elin-GeneRecombinator" u="https://github.com/Cercain/Elin-GeneRecombinator"/>
 <LinkCard t="hirmiura/elin-mods" u="https://github.com/hirmiura?tab=repositories&q=Elin"/>

@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      //break;
+      break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
