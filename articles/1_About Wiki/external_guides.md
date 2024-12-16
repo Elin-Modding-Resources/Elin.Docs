@@ -26,11 +26,11 @@ tags: Guide/External
 
 ## Plugin Repositories
 
-<LinkCard t="kuronekotei/ElinMod" u="https://github.com/kuronekotei/ElinMOD"/>
-<LinkCard t="Ykey/ElinMod" u="https://github.com/ykeyjp/ElinMod" i="https://avatars.githubusercontent.com/u/15781024?s=48&v=4"/>
+<LinkCard t="kuronekotei/ElinMod" u="https://github.com/kuronekotei/ElinMOD" i="https://avatars.githubusercontent.com/u/24914893?v=4"/>
+<LinkCard t="Ykey/ElinMod" u="https://github.com/ykeyjp/ElinMod" i="https://avatars.githubusercontent.com/u/15781024?v=4"/>
 <LinkCard t="gottyduke/Elin.Plugins" u="https://github.com/gottyduke/Elin.Plugins"/>
-<LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/670440409251708952/7427d076fea6f2f1c92ef31c730f7f27.webp?size=128"/>
-<LinkCard t="Drakeny/ElinMods" u="https://github.com/Drakeny?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/84674625396551680/eee81f9e1d929095fcd79a2ae45fc049.webp?size=80"/>
+<LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/670440409251708952/7427d076fea6f2f1c92ef31c730f7f27.webp"/>
+<LinkCard t="Drakeny/ElinMods" u="https://github.com/Drakeny?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/84674625396551680/eee81f9e1d929095fcd79a2ae45fc049.webp"/>
 <LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
 <LinkCard t="Redgeioz/ElinAutoAct" u="https://github.com/Redgeioz/ElinAutoAct"/>
 <LinkCard t="Cercain/Elin-GeneRecombinator" u="https://github.com/Cercain/Elin-GeneRecombinator"/>
