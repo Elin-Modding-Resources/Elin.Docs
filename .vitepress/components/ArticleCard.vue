@@ -4,7 +4,7 @@
     @click="goto(link)"
   >
     <div class="p-6">
-      <h1 class="title">{{ title }}</h1>
+      <h1 class="title capitalize">{{ title }}</h1>
       <h5>{{ author }}</h5>
       <p class="text-base mb-4">{{ desc }}</p>
 

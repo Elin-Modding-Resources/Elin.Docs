@@ -194,6 +194,7 @@
 .vp-doc h6 {
   color: var(--emr-text-indigo);
   letter-spacing: 0.1em;
+  text-transform: capitalize;
 }
 
 .vp-doc h5 {
