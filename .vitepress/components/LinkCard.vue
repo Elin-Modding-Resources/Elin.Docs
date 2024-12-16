@@ -8,7 +8,6 @@
       <div v-if="i" class="flex-shrink-0 mr-4">
         <img
           :src="i"
-          :alt="avatar"
           class="h-14 w-14 rounded-full sm:h-[70px] sm:w-[70px] overflow-hidden"
         />
       </div>
