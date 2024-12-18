@@ -10,7 +10,7 @@ tags: Texture/Color
 
 A great piece of reference if you want to make alt-colors/material based tiles for Elin.
 
-[download the complete blocktest package](./assets//sam_blocktest/sam_blocktest.zip)
+[download the complete blocktest package](https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/5_Texture%20Mods/assets/sam_blocktest/sam_blocktest.zip)
 
 ![color_ref_01](./assets/sam_blocktest/color_ref_01.png)
 
