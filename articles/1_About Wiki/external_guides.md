@@ -17,6 +17,7 @@ tags: Guide/External
 
 ## Japanese
 
++ [YK Elin Mod Docs](https://ykeyjp.github.io/ElinMod.Doc/)
 + [Guide on the Introduction of Custom Npcs](https://docs.google.com/document/d/1jsF_msxUsSTDiukgzgfnnERZCNNz9iP_CZk8Xv9sW74)
 + [Simple Guide to Elin Mods and the Steam Workshop](https://docs.google.com/document/d/e/2PACX-1vQQ35ofQBT5yILPeZ4c5uMkmGOPMrT12f1vTvfi2dFgrt1T70lr8yMOpRAwZ_3cMvUNRsVR0Cf3qabh/pub)
 + [Simple Mod Creation Guide using Unity](https://docs.google.com/document/d/e/2PACX-1vSTUbE4WqcTODq-lFCX_hMK1Mqb5cTlrdY2E94PlqGQvtDcxwMEtfYteRhkZrpZreGAFV-JgOB-qs6b/pub)

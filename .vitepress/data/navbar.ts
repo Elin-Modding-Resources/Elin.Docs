@@ -51,6 +51,10 @@ export function makeNavBar(lastUpdated: string) {
           link: "https://ylvapedia.wiki/wiki/Main_Page",
         },
         {
+          text: "YK Elin Mod Docs",
+          link: "https://ykeyjp.github.io/ElinMod.Doc/",
+        },
+        {
           text: "Ylvania Dev Room",
           link: "https://ylvania.org/elin_dev_e.html",
         },
