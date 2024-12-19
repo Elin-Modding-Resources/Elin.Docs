@@ -34,6 +34,7 @@ tags: Guide/External
 <LinkCard t="Drakeny/ElinMods" u="https://github.com/Drakeny?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/84674625396551680/eee81f9e1d929095fcd79a2ae45fc049.webp"/>
 <LinkCard t="yuzutuki/ElinMod" u="https://github.com/yuzutuki/ElinMod" i="https://cdn.discordapp.com/avatars/250953554414534657/66b2e879677f392b250eb3c81f7ac241.webp"/>
 <LinkCard t="Seacolor/ElinMOD" u="https://github.com/Seacolor/ElinMOD" i="https://cdn.discordapp.com/avatars/414045627400454144/b5f7f32a00b8653bd28ac58f9b85a2b8.webp"/>
+<LinkCard t="yuu1111/ElinMod" u="https://github.com/yuu1111?tab=repositories&q=elin" i="https://avatars.githubusercontent.com/u/33060270?v=4"/>
 <LinkCard t="weaselofdeath/ElinMod_MagicTips" u="https://github.com/weaselofdeath/ElinMod_MagicTips"/>
 <LinkCard t="Redgeioz/ElinAutoAct" u="https://github.com/Redgeioz/ElinAutoAct"/>
 <LinkCard t="Cercain/Elin-GeneRecombinator" u="https://github.com/Cercain/Elin-GeneRecombinator"/>
