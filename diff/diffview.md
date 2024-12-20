@@ -1,6 +1,7 @@
 ---
 exclude: true
 aside: false
+description: Drakeny's tracked changes from Elin updates.
 ---
 
 # Elin Diff
