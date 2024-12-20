@@ -1,14 +1,13 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from "vue";
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
-import mediumZoom from "medium-zoom";
 import "./style.css";
 import "./tailwind.css";
 
 import ArticleCard from "../components/ArticleCard.vue";
 import CardContainer from "../components/CardContainer.vue";
 import LinkCard from "../components/LinkCard.vue";
+import ZoomImage from "../components/ZoomImage.vue";
 import Layout from "../components/Layout.vue";
 
 export default {
@@ -18,5 +17,6 @@ export default {
     app.component("ArticleCard", ArticleCard);
     app.component("CardContainer", CardContainer);
     app.component("LinkCard", LinkCard);
+    app.component("zimg", ZoomImage);
   },
 } satisfies Theme;
