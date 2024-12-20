@@ -42,21 +42,15 @@ This is one of the most commonly used settings, so understanding it is important
 
 ![r-door](https://i.postimg.cc/66YYG50F/r-door.gif)
 
-_**Regular:**_ Obj drops down slightly from the focus cell, aligns the obj center with the focus center.
-
-**Clips on Row 1.**
-
 |door-regular|notes|
 |-|-|
 |![](https://i.postimg.cc/Dwsr52rv/r-door-regular.png)|![](https://i.postimg.cc/HLgQhfzQ/r-door-regular-notes.png)|
-
-_**Alternate:**_ Obj raises up a bit, aligns obj center with the column to the right of the focus.
-
-**Clips on Row 1.**
+|Obj drops down slightly from the focus cell, aligns the obj center with the focus center|**Clips on Row 1**|
 
 |door-alternate|notes|
 |-|-|
 |![](https://i.postimg.cc/mrfwGcL1/r-door-alternate.png)|![](https://i.postimg.cc/Dzrcf20j/r-door-alternate-notes.png)|
+|Obj raises up a bit, aligns obj center with the column to the right of the focus|**Clips on Row 1**|
 
 Overview:
 
@@ -64,13 +58,10 @@ Overview:
 
 ## @obj doorcurtain
 
-Obj drops down slightly, aligns the obj center with the focus.
-
-**Clips on Row 2.**
-
 |doorcurtain|notes|
 |-|-|
 |![](https://i.postimg.cc/fyL7vmKp/r-doorcurtain.png)|![](https://i.postimg.cc/D0Mrp0pZ/r-doorcurtain-notes.png)|
+|Obj drops down slightly, aligns the obj center with the focus|**Clips on Row 2**|
 
 ## @obj doorframe
 
@@ -78,85 +69,62 @@ This placement gave me the most nightmares and inspired this whole endeavor. I s
 
 ![r-doorframe](https://i.postimg.cc/sf64gHfr/r-doorframe.gif)
 
-Obj drops by 1 row and moves left by 1 column. The alternate is the same placement but slightly raised up.
-
-**Both clips on Row 1.**
-
-|doorframe|doorframe-alt|
+|doorframe|doorframe-alternate|
 |-|-|
 |![](https://i.postimg.cc/CLRHBCdf/r-doorframe.png)|![](https://i.postimg.cc/7Yj1gCTt/r-doorframe-alt.png)|
+|Obj drops by 1 row and moves left by 1 column|Same placement but slightly raised up|
+|**Both clip on Row 1**|**Both clip on Row 1**|
 
 ## @obj eq
 
 This is designed to be handheld items so it sets up nicely on the sprite, so not really used for objects unless you have interesting use cases.
 
-![r-EQ](https://i.postimg.cc/PqQms2V0/r-EQ.gif)
-
-Obj shifts to the left by 16px and up a little bit.
-
-**Both clip on Row 1.**
-
-![r-eq-regular](https://i.postimg.cc/Twkghh69/r-eq-regular.png)
+|eq-regular|eq|
+|-|-|
+|![](https://i.postimg.cc/Twkghh69/r-eq-regular.png)|![](https://i.postimg.cc/PqQms2V0/r-EQ.gif)|
+|Obj shifts to the left by 16px and up a little bit|**Both clip on Row 1**|
 
 ## @obj flat
 
 |flat|notes|
 |-|-|
 |![](https://i.postimg.cc/4ymtcZ4T/r-flat.png)|![](https://i.postimg.cc/MZF1SctZ/r-flat-notes.png)|
-
-Obj drops down to the middle of the focus on both horizontal and vertical.
-
-**Clips on Row 1.**
+|Obj drops down to the middle of the focus on both horizontal and vertical|**Clips on Row 1**|
 
 ## @obj hangboard
 
 I wasn't expecting this one to be as interesting as it is, and has a lot of potential, but be aware of where the clipping happens.
 
-![r-hangboard](https://i.postimg.cc/m21C2b6Y/r-hangboard.gif)
-
-_**Regular:**_ Obj shifts to the left by 16px, drops down to be 'on' Row 2.
-
-**Clips on Row 3.**
-
-|hangboard-placement|hangboard-regular|
+|hangboard|hangboard-placement|
 |-|-|
-|![](https://i.postimg.cc/8CN6HLk4/r-hangboard-placement.png)|![](https://i.postimg.cc/0NnJHrbs/r-hangboard-regular.png)|
+|![](https://i.postimg.cc/m21C2b6Y/r-hangboard.gif)|![](https://i.postimg.cc/8CN6HLk4/r-hangboard-placement.png)|
 
-_**Alternate:**_ Obj shifts up slightly but keeps the center the same as regular.
-
-**Clips on Row 1.**
-
-![r-hangboard-alternate](https://i.postimg.cc/Z5k3W111/r-hangboard-alternate.png)
+|hangboard-regular|hangboard-alternate|
+|-|-|
+|![](https://i.postimg.cc/0NnJHrbs/r-hangboard-regular.png)|![](https://i.postimg.cc/Z5k3W111/r-hangboard-alternate.png)|
+|Obj shifts to the left by 16px, drops down to be 'on' Row 2|Obj shifts up slightly but keeps the center the same as regular|
+|**Clips on Row 3**|**Clips on Row 1**|
 
 ## @obj hangroof
 
+|hangroof-placement|hangrood-notes|
+|-|-|
+|![](https://i.postimg.cc/j2ww5Xvx/r-hangroof-placement.png)|![](https://i.postimg.cc/FF8k6Ms7/r-hangroof-notes.png)|
+
 ![r-hangroof](https://i.postimg.cc/TwPW8GDW/r-hangroof.gif)
 
-_**Regular:**_ Obj shifts to the left by 1 column, down by 2 rows.
-
-**Clips on Row 3.**
-
-|hangroof-placement|hangroof-regular|
+|hangroof-regular|hangroof-alternate|
 |-|-|
-|![](https://i.postimg.cc/j2ww5Xvx/r-hangroof-placement.png)|![](https://i.postimg.cc/mkvcFH6Q/r-hangroof-regular.png)|
-
-_**Alternate:**_ Obj shifts to the left by 16px, down by 1 row.
-
-**Clips on Row 2.**
-
-|hangroof-alternative|notes|
-|-|-|
-|![](https://i.postimg.cc/d1SZwX2N/r-hangroof-alternative.png)|![](https://i.postimg.cc/FF8k6Ms7/r-hangroof-notes.png)|
+|![](https://i.postimg.cc/mkvcFH6Q/r-hangroof-regular.png)|![](https://i.postimg.cc/d1SZwX2N/r-hangroof-alternative.png)|
+|Obj shifts to the left by 1 column, down by 2 rows|Obj shifts to the left by 16px, down by 1 row|
+|**Clips on Row 3**|**Clips on Row 2**|
 
 ## @obj tall
 
 |tall|notes|
 |-|-|
 |![](https://i.postimg.cc/zXhHYxVp/r-tall.png)|![](https://i.postimg.cc/RZz6Swtm/r-tal-notesl.png)|
-
-Obj shifts up by 6px or so.
-
-**Clips on Row 1.**
+|Obj shifts up by 6px or so|**Clips on Row 1**|
 
 ## @obj vine
 
@@ -164,17 +132,11 @@ Obj shifts up by 6px or so.
 |-|-|
 |![vine](https://i.postimg.cc/GmJBH9Py/r-vine.gif)|![](https://i.postimg.cc/XJhqT5WT/r-vine-regular-notes.png)|
 
-_**Regular:**_ Obj shifts right by 8px or so, and up by 8px or so.
-
-**Clips on Row 1.**
-
-_**Alternate:**_ Obj shifts left by 8px or so, down by 8px or so.
-
-**Clips on Row 2.**
-
-|vine-regular|vine-alternative|
+|vine-regular|vine-alternate|
 |-|-|
 |![](https://i.postimg.cc/PqSPQcRf/r-vine-regular.png)|![](https://i.postimg.cc/FKrYcmGn/r-vine-alternate.png)|
+|Obj shifts right by 8px or so, and up by 8px or so|Obj shifts left by 8px or so, down by 8px or so|
+|**Clips on Row 1**|**Clips on Row 2**|
 
 ## One final note:
 
