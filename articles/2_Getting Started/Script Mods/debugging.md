@@ -42,10 +42,10 @@ Before replacing `Elin\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll`.
 :::
 
 Now you can attach a debugger to Elin at `127.0.0.1:55555`, example with Rider:
-![port](../assets/port.png)
+![port](./assets/port.png)
 
-After attaching, you may set breakpoints on your plugin code and step into/over each line.
-![bp](../assets/breakpoint.png)
+You may set breakpoints on your plugin code and step into/over each line. It's recommended to start the debugger before launching Elin so you can hit the early breakpoints(if any).
+![bp](./assets/breakpoint.png)
 
 ::: info Build Configuration
 Your plugin needs to be built with Debug configuration and with full PDB(by default).
