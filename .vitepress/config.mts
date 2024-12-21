@@ -38,7 +38,12 @@ export default defineConfig({
     nav: makeNavBar(lastUpdate),
 
     search: {
-      provider: "local",
+      provider: "algolia",
+      options: {
+        appId: "E8886VC68U",
+        apiKey: "411a331d698a1a4bd856c0960fc06ee2",
+        indexName: "elin-modding-resourcesio",
+      },
     },
 
     editLink: {
