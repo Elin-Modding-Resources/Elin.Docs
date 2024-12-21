@@ -6,7 +6,7 @@ date: 2024/12/20 22:00
 tags: Texture/Color
 ---
 
-# _idRenderData
+# obj _idRenderData
 
 When building custom objects, using the _idRenderData strings after the obj is essential for controlling the placement of items in game.
 
