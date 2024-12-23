@@ -1,10 +1,11 @@
 ---
 exclude: true
 aside: false
+pageClass: diff-single-page
 footer: false
 editLink: false
 lastUpdated: false
-description: 26 files modified. 1 new file created.
+description: 27 files modified. 1 new file created.
 version: EA 23.61 hotfix 1
 changes: AI_Fuck/AI_Sleep/AI_UseCrafter/ActEffect/AttackProcess/BaseTileMap/Card/Chara/DNA/FactionBranch/GoalGraze/GoalSleep/Hobby/ListPeopleBed/Region/SpawnSetting/ThingContainer/TraitBed/TraitCrafter/+TraitFortuneBall/TraitMoongateEx/TraitObj/TraitRollingFortune/Widget/WidgetDate/Zone/ZonePreEnterEncounter
 ---
@@ -13,11 +14,11 @@ changes: AI_Fuck/AI_Sleep/AI_UseCrafter/ActEffect/AttackProcess/BaseTileMap/Card
 
 December 19, 2024
 
-26 files modified. 1 new file created.
+27 files modified. 1 new file created.
 
-## Breaking Changes
+## Important Changes
 
-Click the file name to view the chunk.
+Possible breaking changes. Click the filename to view the chunk.
 ### [AI_Fuck (2)](#ai_fuck)
 ```cs:no-line-numbers
 public override void OnCancel() // [!code --]
@@ -34,7 +35,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 ```
 ## AI_Fuck
 
-[`@@ -279,14 +279,4 @@ static void SuccubusExp(Chara c, Chara tg)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_Fuck.cs#L279)
+[`@@ -279,14 +279,4 @@ static void SuccubusExp(Chara c, Chara tg)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_Fuck.cs#L279-L292)
 ```cs:line-numbers=279
 			}
 		}
@@ -54,7 +55,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## AI_Sleep
 
-[`@@ -7,10 +7,12 @@ public override void OnProgressComplete()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_Sleep.cs#L7)
+[`@@ -7,10 +7,12 @@ public override void OnProgressComplete()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_Sleep.cs#L7-L16)
 ```cs:line-numbers=7
 		if (!owner.CanSleep())
 		{
@@ -74,7 +75,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## AI_UseCrafter
 
-[`@@ -69,6 +69,7 @@ public void OnEnd()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_UseCrafter.cs#L69)
+[`@@ -69,6 +69,7 @@ public void OnEnd()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_UseCrafter.cs#L69-L74)
 ```cs:line-numbers=69
 		{
 			layer.OnEndCraft();
@@ -87,7 +88,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## ActEffect
 
-[`@@ -998,6 +998,7 @@ public static bool DamageEle(Card CC, EffectId id, int power, Element e, List<Po`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ActEffect.cs#L998)
+[`@@ -998,6 +998,7 @@ public static bool DamageEle(Card CC, EffectId id, int power, Element e, List<Po`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ActEffect.cs#L998-L1003)
 ```cs:line-numbers=998
 			if (num4 < 0 || num4 > 10000000)
 			{
@@ -100,7 +101,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## AttackProcess
 
-[`@@ -405,7 +405,7 @@ public bool Perform(int count, bool hasHit, float dmgMulti = 1f, bool maxRoll =`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L405)
+[`@@ -405,7 +405,7 @@ public bool Perform(int count, bool hasHit, float dmgMulti = 1f, bool maxRoll =`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L405-L411)
 ```cs:line-numbers=405
 		num = Dice.RollMax(dNum, dDim, dBonus);
 		if (ammo != null && !flag)
@@ -112,7 +113,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		{
 ```
 
-[`@@ -458,6 +458,10 @@ public bool Perform(int count, bool hasHit, float dmgMulti = 1f, bool maxRoll =`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L458)
+[`@@ -458,6 +458,10 @@ public bool Perform(int count, bool hasHit, float dmgMulti = 1f, bool maxRoll =`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L458-L463)
 ```cs:line-numbers=458
 	{
 		SourceRace.Row race = TC.Chara.race;
@@ -126,7 +127,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		AddBane(race.IsHuman, 464);
 ```
 
-[`@@ -683,6 +687,10 @@ void AddBane(bool valid, int idEle)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L683)
+[`@@ -683,6 +687,10 @@ void AddBane(bool valid, int idEle)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AttackProcess.cs#L683-L688)
 ```cs:line-numbers=683
 	{
 		if (valid)
@@ -142,7 +143,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## BaseTileMap
 
-[`@@ -2591,7 +2591,7 @@ public virtual void DrawTile()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/BaseTileMap.cs#L2591)
+[`@@ -2591,7 +2591,7 @@ public virtual void DrawTile()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/BaseTileMap.cs#L2591-L2597)
 ```cs:line-numbers=2591
 							liquidLv = 0;
 						}
@@ -156,7 +157,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## Card
 
-[`@@ -3647,13 +3647,16 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3647)
+[`@@ -3647,13 +3647,16 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3647-L3659)
 ```cs:line-numbers=3647
 	int num5 = Mathf.Clamp(dmg * 6 / MaxHP, 0, 4) + ((dmg > 0) ? 1 : 0);
 	if (Evalue(1421) > 0)
@@ -178,7 +179,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		}
 ```
 
-[`@@ -3661,19 +3664,22 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3661)
+[`@@ -3661,19 +3664,22 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3661-L3679)
 ```cs:line-numbers=3661
 		{
 			if (Evalue(1421) >= 2)
@@ -208,7 +209,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	{
 ```
 
-[`@@ -3693,9 +3699,9 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3693)
+[`@@ -3693,9 +3699,9 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3693-L3701)
 ```cs:line-numbers=3693
 				if (e != Element.Void)
 				{
@@ -224,7 +225,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 			}
 ```
 
-[`@@ -3763,7 +3769,7 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3763)
+[`@@ -3763,7 +3769,7 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3763-L3769)
 ```cs:line-numbers=3763
 					if (EClass.player.invlunerable)
 					{
@@ -236,7 +237,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 				if (IsPC && Evalue(1220) > 0 && Chara.stamina.value >= Chara.stamina.max / 2)
 ```
 
-[`@@ -3775,8 +3781,8 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3775)
+[`@@ -3775,8 +3781,8 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3775-L3782)
 ```cs:line-numbers=3775
 			}
 		}
@@ -250,7 +251,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		renderer.PlayAnime(AnimeID.HitObj);
 ```
 
-[`@@ -3906,8 +3912,8 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3906)
+[`@@ -3906,8 +3912,8 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3906-L3913)
 ```cs:line-numbers=3906
 	}
 	else if (isChara)
@@ -264,7 +265,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 			{
 ```
 
-[`@@ -3946,29 +3952,29 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3946)
+[`@@ -3946,29 +3952,29 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3946-L3974)
 ```cs:line-numbers=3946
 		}
 		if (origin.HasElement(662) && attackSource == AttackSource.Melee && origin.isChara && Chara.IsHostile(origin as Chara))
@@ -306,7 +307,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	}
 ```
 
-[`@@ -3986,15 +3992,15 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3986)
+[`@@ -3986,15 +3992,15 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L3986-L4000)
 ```cs:line-numbers=3986
 			elements.ModExp(123, a3);
 		}
@@ -329,7 +330,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	switch (e.id)
 ```
 
-[`@@ -4150,14 +4156,14 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L4150)
+[`@@ -4150,14 +4156,14 @@ public void DamageHP(int dmg, int ele, int eleP = 100, AttackSource attackSource`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Card.cs#L4150-L4163)
 ```cs:line-numbers=4150
 	}
 	if (IsPC)
@@ -353,7 +354,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## Chara
 
-[`@@ -1338,7 +1338,7 @@ public override void OnCreate(int genLv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L1338)
+[`@@ -1338,7 +1338,7 @@ public override void OnCreate(int genLv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L1338-L1344)
 ```cs:line-numbers=1338
 			string[] array = mainElement[i].Split('/');
 			SourceElement.Row row = EClass.sources.elements.alias["ele" + array[0]];
@@ -365,7 +366,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 			}
 ```
 
-[`@@ -1346,7 +1346,7 @@ public override void OnCreate(int genLv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L1346)
+[`@@ -1346,7 +1346,7 @@ public override void OnCreate(int genLv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L1346-L1352)
 ```cs:line-numbers=1346
 		Tuple<string, int, int> tuple = list.RandomItemWeighted((Tuple<string, int, int> a) => 10000 / (100 + (genLv - a.Item3) * 25));
 		if (!bp.idEle.IsEmpty())
@@ -377,7 +378,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		if (list.Count >= 2)
 ```
 
-[`@@ -5852,7 +5852,7 @@ public override void SetRenderParam(RenderParam p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L5852)
+[`@@ -5852,7 +5852,7 @@ public override void SetRenderParam(RenderParam p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L5852-L5858)
 ```cs:line-numbers=5852
 	else if (sourceCard._tiles.Length > 1)
 	{
@@ -389,7 +390,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	{
 ```
 
-[`@@ -6347,7 +6347,7 @@ public TraitBed FindBed()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L6347)
+[`@@ -6347,7 +6347,7 @@ public TraitBed FindBed()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L6347-L6353)
 ```cs:line-numbers=6347
 
 	public TraitBed TryAssignBed()
@@ -401,7 +402,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		}
 ```
 
-[`@@ -8385,10 +8385,6 @@ public void Cure(CureType type, int p = 100, BlessedState state = BlessedState.N`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L8385)
+[`@@ -8385,10 +8385,6 @@ public void Cure(CureType type, int p = 100, BlessedState state = BlessedState.N`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Chara.cs#L8385-L8394)
 ```cs:line-numbers=8385
 		}
 		CureCondition<ConWait>();
@@ -417,7 +418,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## DNA
 
-[`@@ -244,6 +244,7 @@ public void Generate(Type _type, Chara model = null)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/DNA.cs#L244)
+[`@@ -244,6 +244,7 @@ public void Generate(Type _type, Chara model = null)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/DNA.cs#L244-L249)
 ```cs:line-numbers=244
 	int body = 0;
 	int action = 0;
@@ -428,7 +429,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	List<Element> listFeat = model.elements.ListGeneFeats();
 ```
 
-[`@@ -336,7 +337,14 @@ void AddFeat()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/DNA.cs#L336)
+[`@@ -336,7 +337,14 @@ void AddFeat()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/DNA.cs#L336-L342)
 ```cs:line-numbers=336
 		{
 			feat++;
@@ -449,7 +450,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## FactionBranch
 
-[`@@ -287,7 +287,7 @@ public void OnAfterSimulate()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/FactionBranch.cs#L287)
+[`@@ -287,7 +287,7 @@ public void OnAfterSimulate()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/FactionBranch.cs#L287-L293)
 ```cs:line-numbers=287
 	}
 	foreach (Chara chara in EClass._map.charas)
@@ -463,7 +464,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## GoalGraze
 
-[`@@ -14,7 +14,6 @@ public override IEnumerable<Status> Run()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/GoalGraze.cs#L14)
+[`@@ -14,7 +14,6 @@ public override IEnumerable<Status> Run()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/GoalGraze.cs#L14-L20)
 ```cs:line-numbers=14
 
 	public Point GetPos()
@@ -476,7 +477,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## GoalSleep
 
-[`@@ -54,7 +54,7 @@ public override void OnSimulatePosition()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/GoalSleep.cs#L54)
+[`@@ -54,7 +54,7 @@ public override void OnSimulatePosition()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/GoalSleep.cs#L54-L60)
 ```cs:line-numbers=54
 	{
 		owner.TryAssignBed();
@@ -490,7 +491,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## Hobby
 
-[`@@ -44,10 +44,13 @@ public int GetEfficiency(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Hobby.cs#L44)
+[`@@ -44,10 +44,13 @@ public int GetEfficiency(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Hobby.cs#L44-L53)
 ```cs:line-numbers=44
 		{
 			return 0;
@@ -512,7 +513,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## ListPeopleBed
 
-[`@@ -2,6 +2,8 @@ public class ListPeopleBed : ListPeople`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ListPeopleBed.cs#L2)
+[`@@ -2,6 +2,8 @@ public class ListPeopleBed : ListPeople`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ListPeopleBed.cs#L2-L7)
 ```cs:line-numbers=2
 {
 	public TraitBed bed;
@@ -524,7 +525,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 		UIButton uIButton = i.AddSubButton(EClass.core.refs.icons.bed, delegate
 ```
 
-[`@@ -37,12 +39,23 @@ public override void OnList()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ListPeopleBed.cs#L37)
+[`@@ -37,12 +39,23 @@ public override void OnList()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ListPeopleBed.cs#L37-L48)
 ```cs:line-numbers=37
 {
 	foreach (Chara chara in EClass._map.charas)
@@ -554,7 +555,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## Region
 
-[`@@ -308,7 +308,7 @@ public override void OnAdvanceHour()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Region.cs#L308)
+[`@@ -308,7 +308,7 @@ public override void OnAdvanceHour()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Region.cs#L308-L314)
 ```cs:line-numbers=308
 			}
 		}
@@ -568,7 +569,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## SpawnSetting
 
-[`@@ -16,6 +16,8 @@ public class SpawnSetting`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/SpawnSetting.cs#L16)
+[`@@ -16,6 +16,8 @@ public class SpawnSetting`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/SpawnSetting.cs#L16-L21)
 ```cs:line-numbers=16
 
 	public string id;
@@ -580,7 +581,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 	public SpawnHostility hostility = SpawnHostility.Enemy;
 ```
 
-[`@@ -63,11 +65,12 @@ public static SpawnSetting Encounter(int lv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/SpawnSetting.cs#L63)
+[`@@ -63,11 +65,12 @@ public static SpawnSetting Encounter(int lv)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/SpawnSetting.cs#L63-L73)
 ```cs:line-numbers=63
 		};
 	}
@@ -599,7 +600,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## ThingContainer
 
-[`@@ -790,17 +790,18 @@ public List<Thing> List(Func<Thing, bool> func, bool onlyAccessible = false)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ThingContainer.cs#L790)
+[`@@ -790,17 +790,18 @@ public List<Thing> List(Func<Thing, bool> func, bool onlyAccessible = false)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ThingContainer.cs#L790-L806)
 ```cs:line-numbers=790
 
 	public void _List(Func<Thing, bool> func, bool onlyAccessible = false)
@@ -629,7 +630,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## TraitBed
 
-[`@@ -54,7 +54,7 @@ public override void TrySetAct(ActPlan p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitBed.cs#L54)
+[`@@ -54,7 +54,7 @@ public override void TrySetAct(ActPlan p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitBed.cs#L54-L60)
 ```cs:line-numbers=54
 				SE.Play("jingle_embark");
 			});
@@ -641,7 +642,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 			{
 ```
 
-[`@@ -65,17 +65,15 @@ public override void TrySetAct(ActPlan p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitBed.cs#L65)
+[`@@ -65,17 +65,15 @@ public override void TrySetAct(ActPlan p)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitBed.cs#L65-L81)
 ```cs:line-numbers=65
 		{
 			BedType.resident,
@@ -669,7 +670,7 @@ public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1)
 
 ## TraitCrafter
 
-[`@@ -461,4 +461,8 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitCrafter.cs#L461)
+[`@@ -461,4 +461,8 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitCrafter.cs#L461-L464)
 ```cs:line-numbers=461
 		LayerDragGrid.CreateCraft(this);
 		return false;
@@ -693,7 +694,7 @@ public class TraitFortuneBall : Trait
 :::
 ## TraitMoongateEx
 
-[`@@ -19,6 +19,7 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitMoongateEx.cs#L19)
+[`@@ -19,6 +19,7 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitMoongateEx.cs#L19-L24)
 ```cs:line-numbers=19
 			MapMetaData metaData = Map.GetMetaData(item.FullName);
 			if (metaData != null && metaData.IsValidVersion())
@@ -704,7 +705,7 @@ public class TraitFortuneBall : Trait
 		}
 ```
 
-[`@@ -28,13 +29,45 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitMoongateEx.cs#L28)
+[`@@ -28,13 +29,45 @@ public override bool OnUse(Chara c)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitMoongateEx.cs#L28-L40)
 ```cs:line-numbers=28
 			EClass.pc.SayNothingHappans();
 			return false;
@@ -758,7 +759,7 @@ public class TraitFortuneBall : Trait
 
 ## TraitObj
 
-[`@@ -1,6 +1,4 @@`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitObj.cs#L1)
+[`@@ -1,6 +1,4 @@`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitObj.cs#L1-L6)
 ```cs:line-numbers=1
 public class TraitObj : TraitTile
 {
@@ -770,7 +771,7 @@ public class TraitObj : TraitTile
 
 ## TraitRollingFortune
 
-[`@@ -14,4 +14,16 @@ public override int GetDuration(AI_UseCrafter ai, int costSp)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitRollingFortune.cs#L14)
+[`@@ -14,4 +14,16 @@ public override int GetDuration(AI_UseCrafter ai, int costSp)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/TraitRollingFortune.cs#L14-L17)
 ```cs:line-numbers=14
 	{
 		return GetSource(ai).time;
@@ -792,7 +793,7 @@ public class TraitObj : TraitTile
 
 ## Widget
 
-[`@@ -332,11 +332,14 @@ public virtual void OnManagerActivate()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Widget.cs#L332)
+[`@@ -332,11 +332,14 @@ public virtual void OnManagerActivate()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Widget.cs#L332-L342)
 ```cs:line-numbers=332
 	goCover = Util.Instantiate("UI/Widget/CoverWidget", base.transform).gameObject;
 	RectTransform rectTransform = goCover.transform.Rect();
@@ -817,7 +818,7 @@ public class TraitObj : TraitTile
 
 ## WidgetDate
 
-[`@@ -117,6 +117,10 @@ public void _Refresh()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/WidgetDate.cs#L117)
+[`@@ -117,6 +117,10 @@ public void _Refresh()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/WidgetDate.cs#L117-L122)
 ```cs:line-numbers=117
 	{
 		text += item2.TextWidgetDate;
@@ -833,7 +834,7 @@ public class TraitObj : TraitTile
 
 ## Zone
 
-[`@@ -2511,7 +2511,8 @@ public Chara SpawnMob(Point pos = null, SpawnSetting setting = null)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Zone.cs#L2511)
+[`@@ -2511,7 +2511,8 @@ public Chara SpawnMob(Point pos = null, SpawnSetting setting = null)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/Zone.cs#L2511-L2517)
 ```cs:line-numbers=2511
 	int dangerLv = DangerLv;
 	CardBlueprint cardBlueprint = new CardBlueprint
@@ -848,7 +849,7 @@ public class TraitObj : TraitTile
 
 ## ZonePreEnterEncounter
 
-[`@@ -24,7 +24,7 @@ public override void Execute()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ZonePreEnterEncounter.cs#L24)
+[`@@ -24,7 +24,7 @@ public override void Execute()`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/ZonePreEnterEncounter.cs#L24-L30)
 ```cs:line-numbers=24
 			Point randomPointInRadius = EClass.pc.pos.GetRandomPointInRadius(2, 5, requireLos: false, allowChara: false);
 			if (randomPointInRadius != null)
@@ -859,5 +860,3 @@ public class TraitObj : TraitTile
 				chara.hostility = hostility2;
 				chara.enemy = EClass.pc.party.members.RandomItem();
 ```
-
-<style scoped>.vp-doc h1,.vp-doc h2,.vp-doc h3,.vp-doc h4,.vp-doc h5,.vp-doc h6 {text-transform: none;} .h3 {}</style>
