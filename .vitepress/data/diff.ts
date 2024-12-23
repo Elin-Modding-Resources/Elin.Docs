@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      //break;
+      break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
@@ -88,7 +88,8 @@ export async function generateDiff() {
             tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
           }
 
-          const methodSig = /^(?!.*=>.*).*public\b.*\(.*\).*/;
+          const methodSig =
+            /^(?!.*=>.*).*(public|internal|private)\b.*\(.*\).*/;
           let lastDeletion = "";
           for (const change of chunk.changes) {
             let line = change.content.slice(1).replace("\t".repeat(tabs), "");
@@ -103,7 +104,9 @@ export async function generateDiff() {
               line += " // [!code ++]";
               if (
                 lastDeletion !== "" &&
-                line.startsWith(lastDeletion.match(".*public.*\\(")![0])
+                line.startsWith(
+                  lastDeletion.match(/.*(public|internal|private)\b.*\(/)![0]
+                )
               ) {
                 breaking.at(-1).changes.push({
                   original: lastDeletion.trim(),
@@ -178,9 +181,9 @@ export async function generateDiff() {
       });
 
     if (foundBreaking.length > 0) {
-      header.push(`Click file name to view the chunk.\n`, ...foundBreaking);
+      header.push("Click the file name to view the chunk.", ...foundBreaking);
     } else {
-      header.push("None.");
+      header.push("**None.**");
     }
 
     content = header.concat(content);
@@ -188,6 +191,6 @@ export async function generateDiff() {
     const diffFile = path.join(diffDir, `${commit.sha}.md`);
     writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
 
-    //break;
+    break;
   }
 }
