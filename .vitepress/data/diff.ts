@@ -148,6 +148,7 @@ export async function generateDiff() {
       "---",
       "exclude: true",
       "aside: false",
+      "pageClass: diff-single-page",
       "footer: false",
       "editLink: false",
       "lastUpdated: false",
@@ -188,9 +189,7 @@ export async function generateDiff() {
     }
 
     content = header.concat(content);
-    content.push(
-      "<style scoped>.vp-doc h1,.vp-doc h2,.vp-doc h3,.vp-doc h4,.vp-doc h5,.vp-doc h6 {text-transform: none;} .h3 {}</style>"
-    );
+    content.push("<style scoped></style>");
 
     const diffFile = path.join(diffDir, `${commit.sha}.md`);
     writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
