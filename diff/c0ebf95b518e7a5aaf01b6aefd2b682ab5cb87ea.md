@@ -15,7 +15,7 @@ December 19, 2024
 
 26 files modified. 1 new file created.
 
-## Breaking changes
+## Breaking Changes
 
 Click the file name to view the chunk.
 ### [AI_Fuck (2)](#ai_fuck)
