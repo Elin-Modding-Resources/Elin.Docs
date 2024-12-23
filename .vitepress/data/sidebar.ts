@@ -89,7 +89,12 @@ function getDiff() {
     const { data } = matter.read(path.join(diffDir, diff));
     const files = data.changes.split("/");
 
-    let items: Array<{}> = [];
+    let items: Array<{}> = [
+      {
+        text: "Breaking Changes",
+        link: `/diff/${diff}#breaking-changes`,
+      },
+    ];
     for (const file of files) {
       const normalized = (file as string)
         .toLowerCase()

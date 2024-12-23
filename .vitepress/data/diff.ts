@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      break;
+      //break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
@@ -30,6 +30,7 @@ export async function generateDiff() {
 
     let content: string[] = [];
     let changes: string[] = [];
+    let breaking: any[] = [];
 
     let totalAdded = 0;
     let totalRemoved = 0;
@@ -53,6 +54,11 @@ export async function generateDiff() {
       changes.push(filename);
       content.push(`## ${filename}\n`);
       const sourceLink = `https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/${commit.sha}/Elin/${filename}.cs`;
+
+      breaking.push({
+        file: filename,
+        changes: [],
+      });
 
       for (const chunk of diff.chunks) {
         if (diff.new === true) {
@@ -82,12 +88,28 @@ export async function generateDiff() {
             tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
           }
 
+          const methodSig = /^(?!.*=>.*).*public\b.*\(.*\).*/;
+          let lastDeletion = "";
           for (const change of chunk.changes) {
             let line = change.content.slice(1).replace("\t".repeat(tabs), "");
             if (change.del === true) {
               line += " // [!code --]";
+              if (methodSig.test(line)) {
+                lastDeletion = line;
+              } else {
+                lastDeletion = "";
+              }
             } else if (change.add === true) {
               line += " // [!code ++]";
+              if (
+                lastDeletion !== "" &&
+                line.startsWith(lastDeletion.match(".*public.*\\(")![0])
+              ) {
+                breaking.at(-1).changes.push({
+                  original: lastDeletion.trim(),
+                  modified: line.trim(),
+                });
+              }
             }
             content.push(line);
           }
@@ -132,13 +154,40 @@ export async function generateDiff() {
       `# ${message}\n`,
       `${commitTime}\n`,
       description,
+      "\n## Breaking Changes\n",
     ];
+
+    const foundBreaking = breaking
+      .filter((change) => change.changes.length !== 0)
+      .map((change) => {
+        return (
+          `### [${change.file} (${
+            change.changes.length
+          })](#${change.file.toLowerCase()})\n` +
+          change.changes
+            .map((detail) => {
+              return [
+                "```cs:no-line-numbers",
+                detail.original,
+                detail.modified,
+                "```",
+              ].join("\n");
+            })
+            .join("\n")
+        );
+      });
+
+    if (foundBreaking.length > 0) {
+      header.push(`Click file name to view the chunk.\n`, ...foundBreaking);
+    } else {
+      header.push("None.");
+    }
 
     content = header.concat(content);
 
     const diffFile = path.join(diffDir, `${commit.sha}.md`);
     writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
 
-    break;
+    //break;
   }
 }
