@@ -202,10 +202,6 @@
   text-transform: capitalize;
 }
 
-.vp-doc h5 {
-  color: var(--emr-text-indigo-light);
-}
-
 .vp-doc h1 {
   padding-bottom: 0.5rem;
   border-bottom: 3px solid var(--emr-border-indigo);
@@ -223,6 +219,14 @@
   width: fit-content;
   padding-bottom: 4px;
   border-top: 0px solid var(--emr-border-indigo);
+}
+
+.vp-doc h3 a {
+  text-decoration: none;
+}
+
+.vp-doc h5 {
+  color: var(--emr-text-indigo-light);
 }
 
 .vp-doc blockquote {

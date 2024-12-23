@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      break;
+      //break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
@@ -97,6 +97,10 @@ export async function generateDiff() {
               line += " // [!code --]";
               if (methodSig.test(line)) {
                 lastDeletion = line;
+                breaking.at(-1).changes.push({
+                  original: lastDeletion.trim(),
+                  modified: "",
+                });
               } else {
                 lastDeletion = "";
               }
@@ -108,10 +112,7 @@ export async function generateDiff() {
                   lastDeletion.match(/.*(public|internal|private)\b.*\(/)![0]
                 )
               ) {
-                breaking.at(-1).changes.push({
-                  original: lastDeletion.trim(),
-                  modified: line.trim(),
-                });
+                breaking.at(-1).changes.at(-1).modified = line.trim();
               }
             }
             content.push(line);
@@ -157,7 +158,7 @@ export async function generateDiff() {
       `# ${message}\n`,
       `${commitTime}\n`,
       description,
-      "\n## Breaking Changes\n",
+      "\n## Breaking changes\n",
     ];
 
     const foundBreaking = breaking
@@ -187,10 +188,13 @@ export async function generateDiff() {
     }
 
     content = header.concat(content);
+    content.push(
+      "<style scoped>.vp-doc h1,.vp-doc h2,.vp-doc h3,.vp-doc h4,.vp-doc h5,.vp-doc h6 {text-transform: none;} .h3 {}</style>"
+    );
 
     const diffFile = path.join(diffDir, `${commit.sha}.md`);
     writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
 
-    break;
+    //break;
   }
 }
