@@ -15,10 +15,18 @@ December 19, 2024
 
 26 files modified. 1 new file created.
 
-## Breaking Changes
+## Breaking changes
 
-Click file name to view the chunk.
+Click the file name to view the chunk.
+### [AI_Fuck (2)](#ai_fuck)
+```cs:no-line-numbers
+public override void OnCancel() // [!code --]
 
+```
+```cs:no-line-numbers
+public override void OnSuccess() // [!code --]
+
+```
 ### [SpawnSetting (1)](#spawnsetting)
 ```cs:no-line-numbers
 public static SpawnSetting Mob(string id, int fixedLv = -1) // [!code --]
@@ -851,3 +859,5 @@ public class TraitObj : TraitTile
 				chara.hostility = hostility2;
 				chara.enemy = EClass.pc.party.members.RandomItem();
 ```
+
+<style scoped>.vp-doc h1,.vp-doc h2,.vp-doc h3,.vp-doc h4,.vp-doc h5,.vp-doc h6 {text-transform: none;} .h3 {}</style>
