@@ -14,6 +14,16 @@ changes: AI_Fuck/AI_Sleep/AI_UseCrafter/ActEffect/AttackProcess/BaseTileMap/Card
 December 19, 2024
 
 26 files modified. 1 new file created.
+
+## Breaking Changes
+
+Click file name to view the chunk.
+
+### [SpawnSetting (1)](#spawnsetting)
+```cs:no-line-numbers
+public static SpawnSetting Mob(string id, int fixedLv = -1) // [!code --]
+public static SpawnSetting Mob(string id, string idEle = null, int fixedLv = -1) // [!code ++]
+```
 ## AI_Fuck
 
 [`@@ -279,14 +279,4 @@ static void SuccubusExp(Chara c, Chara tg)`](https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/c0ebf95b518e7a5aaf01b6aefd2b682ab5cb87ea/Elin/AI_Fuck.cs#L279)
