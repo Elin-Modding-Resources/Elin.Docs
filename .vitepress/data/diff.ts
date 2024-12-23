@@ -158,7 +158,7 @@ export async function generateDiff() {
       `# ${message}\n`,
       `${commitTime}\n`,
       description,
-      "\n## Breaking changes\n",
+      "\n## Breaking Changes\n",
     ];
 
     const foundBreaking = breaking
