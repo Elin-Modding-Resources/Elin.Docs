@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      //break;
+      break;
     }
 
     const rawDiff = await fetch(`${commit.html_url}.diff`);
@@ -195,6 +195,6 @@ export async function generateDiff() {
     const diffFile = path.join(diffDir, `${commit.sha}.md`);
     writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
 
-    //break;
+    break;
   }
 }
