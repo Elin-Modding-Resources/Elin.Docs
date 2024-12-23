@@ -18,7 +18,7 @@ function getArticles() {
     .sort((a, b) => Number(a.name.split("_")[0]) - Number(b.name.split("_")[0]))
     .map((f) => f.name);
 
-  let sidebar: Array<{}> = [];
+  let sidebar: {}[] = [];
 
   for (const dir of dirs) {
     const group = dir.split("_")[1];
@@ -58,7 +58,7 @@ function generateItems(fullDir: string, dir: string) {
     .filter((f) => f.name.endsWith(".md"))
     .map((f) => f.name);
 
-  let items: Array<{}> = [];
+  let items: any[] = [];
   for (var article of articles) {
     const { data } = matter.read(path.join(fullDir, article));
     if (data.exclude === true) {
@@ -84,15 +84,15 @@ function getDiff() {
     .filter((d) => d.name != "diffview.md")
     .map((f) => f.name);
 
-  let sidebar: Array<{}> = [];
+  let sidebar: any[] = [];
   for (const diff of diffs) {
     const { data } = matter.read(path.join(diffDir, diff));
     const files = data.changes.split("/");
 
-    let items: Array<{}> = [
+    let items: any[] = [
       {
-        text: "Breaking Changes",
-        link: `/diff/${diff}#breaking-changes`,
+        text: "Important Changes",
+        link: `/diff/${diff}#important-changes`,
       },
     ];
     for (const file of files) {
@@ -113,7 +113,30 @@ function getDiff() {
     });
   }
   sidebar.sort((a, b) => (b as any).text.localeCompare((a as any).text));
-  (sidebar[0] as any).collapsed = false;
 
-  return sidebar;
+  // merge children changes
+  let grouped = sidebar.filter((version) => !version.text.startsWith("+"));
+  for (const change of sidebar) {
+    const parentVersion = change.text.match(/\+(.+?)(?= -)/);
+    if (!parentVersion) {
+      continue;
+    }
+
+    const parent = grouped.filter(
+      (version) => version.text === parentVersion[1]
+    );
+    if (parent.length == 0) {
+      continue;
+    }
+
+    parent[0].items.splice(0, 0, {
+      text: change.text.split(" ").at(-1),
+      items: change.items,
+      collapsed: true,
+    });
+  }
+
+  (grouped[0] as any).collapsed = false;
+
+  return grouped;
 }
