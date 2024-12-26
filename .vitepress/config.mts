@@ -15,6 +15,8 @@ const lastUpdate = new Date(commit.commit.author.date)
   .toISOString()
   .slice(0, 10);
 
+const { sidebar, latest } = await makeSidebar();
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Elin Modding Wiki",
@@ -34,8 +36,8 @@ export default defineConfig({
   themeConfig: {
     logo: "/community-icon.png",
 
-    sidebar: await makeSidebar(),
-    nav: makeNavBar(lastUpdate),
+    sidebar: sidebar,
+    nav: makeNavBar(lastUpdate, latest),
 
     search: {
       provider: "algolia",

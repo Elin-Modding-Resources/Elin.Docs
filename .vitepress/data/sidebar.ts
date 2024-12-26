@@ -3,9 +3,13 @@ import path from "path";
 import matter from "gray-matter";
 
 export async function makeSidebar() {
+  const { diff, latest } = getDiff();
   return {
-    "/articles/": getArticles(),
-    "/diff/": getDiff(),
+    sidebar: {
+      "/articles/": getArticles(),
+      "/diff/": diff,
+    },
+    latest: latest,
   };
 }
 
@@ -138,5 +142,5 @@ function getDiff() {
 
   (grouped[0] as any).collapsed = false;
 
-  return grouped;
+  return { diff: grouped, latest: grouped[0].text };
 }

@@ -1,4 +1,4 @@
-export function makeNavBar(lastUpdated: string) {
+export function makeNavBar(lastUpdated: string, diffVer: string) {
   return [
     {
       text: lastUpdated,
@@ -10,7 +10,7 @@ export function makeNavBar(lastUpdated: string) {
       activeMatch: "/articles/",
     },
     {
-      text: "🛠️ Elin Diff",
+      text: `🛠️ ${diffVer}`,
       link: "/diff/diffview",
       activeMatch: "/diff/",
     },
