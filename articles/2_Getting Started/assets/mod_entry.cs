@@ -16,8 +16,6 @@ internal class MyElinMod : BaseUnityPlugin
 {
     private void Awake()
     {
-        Instance = this;
-
         Logger.LogInfo("My mod...loaded?!")
     }
 }
