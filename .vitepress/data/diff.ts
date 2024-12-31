@@ -182,9 +182,10 @@ async function generateDiffForCommit(commit: {
     .filter((change) => change.changes.length !== 0)
     .map((change) => {
       return (
-        `### [${change.file} (${
-          change.changes.length
-        })](#${change.file.toLowerCase()})\n` +
+        `### [${change.file} (${change.changes.length})](#${change.file
+          .toLowerCase()
+          .replace(/[+-]/g, "")
+          .replace(/[\s_.]/g, "-")})\n` +
         change.changes
           .map((detail) => {
             return [
