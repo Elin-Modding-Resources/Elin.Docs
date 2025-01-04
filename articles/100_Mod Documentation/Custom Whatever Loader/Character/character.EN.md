@@ -133,7 +133,7 @@ Within the bio file, it's simply as follows:
     "Birthplace_JP": "Earth",
     "Birthlocation": "Nihon",
     "Birthlocation_JP": "Nihon",
-    "Mom": "Best Mom",
+    "Mom": "Best Mom@Mommy",
     "Mom_JP": "Best Mom",
     "Dad": "Best Dad",
     "Dad_JP": "Best Dad",
@@ -141,5 +141,7 @@ Within the bio file, it's simply as follows:
     "Background_JP": "An absolutely normal living been\nBut on ylva..."
 }
 ```
+
+The entries for `Mom` and `Dad` can be overwritten with the `@` alias, for example, the mother will be displayed as `Mommy Best Mom`.
 
 The `_JP` entries are for Japanese localization, so that you don't have to prepare a `LangMod/JP/` folder and resources.

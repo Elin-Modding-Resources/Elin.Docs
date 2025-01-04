@@ -128,7 +128,7 @@ addAdvZone_Palmia,addThing_padoru_gift#10,addThing_1174#5
     "Birthplace_JP": "地球",
     "Birthlocation": "咩咩村",
     "Birthlocation_JP": "咩咩村",
-    "Mom": "最棒的母亲",
+    "Mom": "最棒的母亲@母上大人",
     "Mom_JP": "最棒的母亲",
     "Dad": "最棒的爹地",
     "Dad_JP": "最棒的爹地",
@@ -136,5 +136,7 @@ addAdvZone_Palmia,addThing_padoru_gift#10,addThing_1174#5
     "Background_JP": "在这普通的一天\n我穿着普通的鞋\n很普通地走在这普通的街\n掏出普通的耳机\n找点普通的感觉\n来一首我最爱的普通音乐\n普通的disco我们普通的摇"
 }
 ```
+
+`Mom` 和 `Dad` 对应的母亲和父亲条目可以用`@`符号覆写掉，比如母亲将会显示为`母上大人 最棒的母亲`。
 
 带有 `_JP` 的条目用于日语本地化，这样就不用单独准备一份 `LangMod/JP/` 资源了。
