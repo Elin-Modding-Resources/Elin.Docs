@@ -30,19 +30,6 @@ function getArticles() {
     const fullDir = path.join(articleDir, dir);
     let items = generateItems(fullDir, dir);
 
-    const subDirs = readdirSync(fullDir, { withFileTypes: true })
-      .filter((f) => f.isDirectory())
-      .filter((f) => f.name.toLowerCase() != "assets")
-      .map((f) => f.name);
-
-    for (const subDir of subDirs) {
-      items.push({
-        text: subDir.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
-        items: generateItems(path.join(fullDir, subDir), `${dir}/${subDir}`),
-        collapsed: true,
-      });
-    }
-
     if (items.length == 0) {
       continue;
     }
@@ -57,23 +44,31 @@ function getArticles() {
 }
 
 function generateItems(fullDir: string, dir: string) {
-  const articles = readdirSync(fullDir, { withFileTypes: true })
-    .filter((f) => f.isFile())
-    .filter((f) => f.name.endsWith(".md"))
-    .map((f) => f.name);
+  const articles = readdirSync(fullDir, { withFileTypes: true });
 
   let items: any[] = [];
   for (var article of articles) {
-    const { data } = matter.read(path.join(fullDir, article));
-    if (data.exclude === true) {
-      continue;
+    const currentPath = path.join(fullDir, article.name);
+    if (article.isDirectory() && article.name.toLowerCase() != "assets") {
+      items.push({
+        text: article.name.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
+        items: generateItems(currentPath, `${dir}/${article.name}`),
+        collapsed: true,
+      });
     }
 
-    items.push({
-      text: data.title.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
-      link: `/articles/${dir}/${article}`,
-      time: +new Date(data.date).getTime(),
-    });
+    if (article.isFile() && article.name.endsWith(".md")) {
+      const { data } = matter.read(currentPath);
+      if (data.exclude === true) {
+        continue;
+      }
+
+      items.push({
+        text: data.title.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
+        link: `/articles/${dir}/${article.name}`,
+        time: +new Date(data.date).getTime(),
+      });
+    }
   }
 
   items.sort((a, b) => (a as any).time - (b as any).time);

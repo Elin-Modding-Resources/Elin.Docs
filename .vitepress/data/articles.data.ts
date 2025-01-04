@@ -15,7 +15,10 @@ export { data };
 export default createContentLoader("articles/**/*.md", {
   transform(raw): Article[] {
     return raw
-      .filter(({ frontmatter }) => frontmatter.exclude !== true)
+      .filter(
+        ({ frontmatter }) =>
+          frontmatter.exclude !== true && frontmatter.hide !== true
+      )
       .map(({ url, frontmatter }) => ({
         date: formatDate(frontmatter.date),
         link: url,

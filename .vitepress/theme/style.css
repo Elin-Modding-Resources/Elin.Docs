@@ -191,6 +191,10 @@
   max-width: 95% !important;
 }
 
+.aside {
+  text-transform: capitalize;
+}
+
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3,
