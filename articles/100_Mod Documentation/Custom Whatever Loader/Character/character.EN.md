@@ -142,6 +142,6 @@ Within the bio file, it's simply as follows:
 }
 ```
 
-The entries for `Mom` and `Dad` can be overwritten with the `@` alias, for example, the mother will be displayed as `Mommy Best Mom`.
+The entries for `Mom` and `Dad` can be overwritten with the `@` alias, for example, the `Mom Best Mom` will be displayed as `Mommy Best Mom`.
 
 The `_JP` entries are for Japanese localization, so that you don't have to prepare a `LangMod/JP/` folder and resources.

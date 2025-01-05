@@ -8,7 +8,7 @@ hide: true
 
 [Namespace: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
 
-Event raised when game saves, loads, and starts new game. Offers both pre-process and post-process events.
+Event raised when game saves, loads, and starts new game. Offers both pre-process and post-process events and a helper to serializie/deserialize data.
 
 ## `GameIOProcess`
 

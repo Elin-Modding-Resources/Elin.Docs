@@ -8,7 +8,7 @@ hide: true
 
 [Namespace: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
 
-Event raised when game creates a `Trait`. You may use this event to mutate the trait.
+Event raised when game creates a `Trait`. You may use this event to mutate the trait or check if certain trait is instantiated.
 
 ## `TraitTransform`
 
