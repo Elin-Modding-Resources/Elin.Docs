@@ -95,6 +95,18 @@ var sprite = filePath.LoadSprite(name: "SpriteNewName", resizeWidth: 900, resize
 
 By default, the pivot will be at center (`0.5, 0.5`) and sprite name will be an internal cache name. If `resizeWidth` and/or `resizeHeight` is not `0`, then sprite will be resized.
 
+# `ChildrenIterator`
+
+Helper to find a nested child of a gameobject with name. Say you want to find the text object of an element of a list of a panel of a layout group of a composite page, you can do:
+```cs:no-line-numbers
+var text = page.transform
+    .GetFirstNestedChildWithName("Content View/Scroll View/Viewport/Content/Profile List/Entry (1)/text");
+```
+
+For non nested access, use `GetFirstChildWithName`.
+
+Returns `null` if not found.
+
 # Other Stuff
 
 Some helpers and random stuff that you won't need:
@@ -102,5 +114,4 @@ Some helpers and random stuff that you won't need:
 + PixelRaycast
 + ColorParser
 + TextureResizer
-+ ChildrenIterator
 + ComponentFetch
