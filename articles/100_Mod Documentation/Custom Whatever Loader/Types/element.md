@@ -40,7 +40,9 @@ The class must derive from **Element**, common ones are **Act**, **AIAct`**, **A
 
 You can declare your class in any namespace, CWL will qualify the type name for you, so the element type only needs to be the class name itself.
 
-Your ability icon needs to be placed within **Texture** folder, using the same alias as the file name, such as **ActLionDance.png**. If the texture size is not 48x48, CWL will resize it for you.
+Your element icon needs to be placed within **Texture** folder, using the same alias as the file name, such as **ActLionDance.png**. You may also use pattern matching to assign a single icon to multiple elements, such as for all elements that have **alias** starting with `my_ele`, the file name should be `@my_ele.png`, and it will match `my_ele_1`, `my_ele_2`, `my_ele_fire`, `my_ele_cold`, `my_ele_error`, `my_ele_xxx` etc. Full name matching happens before pattern matching.
+
+If the texture size is not 48x48, CWL will resize it for you.
 
 With the tag **addEleOnLoad**, player will gain this ability automatically upon loading.
 
@@ -64,7 +66,7 @@ If you do not need to utilize CWL API, then no need to reference CustomWhateverL
 
 ![img](https://i.postimg.cc/XY6Nv31Z/image.png)
 
-**alias**和**type**不需要相同，但是，能力图标的纹理将参照**alias**，而元素对象示例将链接到**type**。
+**alias**和**type**不需要相同，但是，能力图标的纹理将参照**alias**，而元素对象实例将链接到**type**。
 
 在您的脚本dll中，您应该有以下代码：
 ```cs
@@ -82,7 +84,9 @@ internal class ActLionDance : Act
 
 您可以在任何命名空间中声明您的类，CWL会自动为您限定类型名称，因此**type**只需要是类名本身。
 
-您的能力图标需要放置在**Texture**文件夹中，使用与**alias**相同的文件名，例如**ActLionDance.png**。如果纹理大小不是48x48，CWL会将其调整为48x48。
+您的元素图标需要放置在**Texture**文件夹中，使用与**alias**相同的文件名，例如**ActLionDance.png**。也可以使用模式匹配为多个元素分配同一个图标，例如为所有**alias**以`my_ele`开头的元素分配同一个图标，该文件名应为`@my_ele.png`，此图标会匹配至`my_ele_1`, `my_ele_2`, `my_ele_fire`, `my_ele_cold`, `my_ele_error`, `my_ele_xxx`等元素。全名匹配会优先于模式匹配。
+
+如果纹理大小不是48x48，CWL会将其调整为48x48。
 
 使用标签**addEleOnLoad**，玩家角色将自动获得此能力。
 
@@ -124,7 +128,9 @@ internal class ActLionDance : Act
 
 あなたのクラスは任意の名前空間で宣言できます。CWLは自動的にタイプ名を制限するため、**type**はクラス名そのものだけで構いません。
 
-あなたの能力アイコンは**Texture**フォルダに配置する必要があり、**alias**と同じファイル名を使用します。たとえば、**ActLionDance.png**です。テクスチャサイズが48x48でない場合、CWLはそれを48x48に調整します。
+あなたの要素アイコンは**Texture**フォルダーに配置する必要があり、**alias**と同じファイル名を使用してください。例えば**ActLionDance.png**のように。また、パターンマッチングを使用して複数の要素に同じアイコンを割り当てることもできます。例えば、すべての**alias**が`my_ele`で始まる要素に同じアイコンを割り当てる場合、そのファイル名は`@my_ele.png`である必要があります。このアイコンは`my_ele_1`、`my_ele_2`、`my_ele_fire`、`my_ele_cold`、`my_ele_error`、`my_ele_xxx`などの要素にマッチします。フルネームマッチはパターンマッチよりも優先されます。
+
+もしテクスチャサイズが48x48でない場合、CWLはそれを48x48に調整します。
 
 **addEleOnLoad**タグを使用すると、プレイヤーキャラクターはこの能力を自動的に獲得します。
 
