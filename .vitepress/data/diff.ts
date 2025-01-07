@@ -104,9 +104,13 @@ async function generateDiffForCommit(commit: {
           tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
         }
 
-        const methodSig = /^(?!.*=>.*).*(public|internal|private)\b.*\(.*\).*/;
+        const methodSig =
+          /^(?!.*=>.*).*(public|protected|internal|private)\b.*\(.*\).*/;
+        const partialSig = /.*(public|protected|internal|private)\b.*\(/;
         let lastDeletion = "";
-        for (const change of chunk.changes) {
+        for (let i = 0; i < chunk.changes.length; ++i) {
+          const change = chunk.changes[i];
+
           let line = change.content.slice(1).replace("\t".repeat(tabs), "");
           if (change.del === true) {
             line += " // [!code --]";
@@ -115,23 +119,26 @@ async function generateDiffForCommit(commit: {
               breaking.at(-1).changes.push({
                 original: lastDeletion.trim(),
                 modified: "",
+                pos: i,
               });
             } else {
               lastDeletion = "";
             }
           } else if (change.add === true) {
             line += " // [!code ++]";
+
             if (
               lastDeletion !== "" &&
-              line.startsWith(
-                lastDeletion.match(/.*(public|internal|private)\b.*\(/)![0]
-              )
+              (line.startsWith(lastDeletion.match(partialSig)![0]) ||
+                (partialSig.test(line) &&
+                  i === breaking.at(-1).changes.at(-1).pos + 1))
             ) {
               breaking.at(-1).changes.at(-1).modified = line.trim();
             }
           }
           content.push(line);
         }
+
         content.push("```\n");
       }
     }
