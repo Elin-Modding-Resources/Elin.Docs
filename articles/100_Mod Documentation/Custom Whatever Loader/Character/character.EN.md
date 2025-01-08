@@ -28,16 +28,12 @@ When CWL spawns your character, you may also define the starting equipments and 
 To assign specific equipment to the character, use tag `addEq_ItemID#Rarity`, where `ItemID` is replaced by the item's ID, and `Rarity` being one of the following: **Random, Crude, Normal, Superior, Legendary, Mythical, Artifact**. If `#Rarity` is omitted, the default rarity `#Random` will be used. 
 
 For example, to set a legendary `BS_Flydragonsword` and a random `axe_machine` as the main weapons for the character:
-```:no-line-numbers
-addZone_Palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine
-```
+**addZone_Palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine**
 
 To add starting items to the character, use tag `addThing_ItemID#Count`. If `#Count` is omitted, a default of `1` item will be generated. 
 
 For example, to add `padoru_gift` x10 and `scroll of ally` x5 to the character:
-```:no-line-numbers
-addAdvZone_Palmia,addThing_padoru_gift#10,addThing_1174#5
-```
+**addZone_Palmia,addThing_padoru_gift#10,addThing_1174#5**
 
 ## make an adventurer
 

@@ -26,16 +26,12 @@ CWLがキャラクターを生成する際、初期装備とアイテムも定�
 特定の装備をキャラクターに割り当てるには、タグ `addEq_ItemID#Rarity` を使用し、`ItemID`をアイテムのIDに置き換え、Rarityは次のいずれかを指定してください：ランダム（Random）、粗悪（Crude）、普通（Normal）、優良（Superior）、伝説（Legendary）、神話（Mythical）、神器（Artifact）。`#Rarity`を省略した場合、デフォルトのレアリティ`#Random`が使用されます。
 
 例えば、伝説の`BS_Flydragonsword`とランダムの`axe_machine`をキャラクターのメイン武器に設定する場合：
-```:no-line-numbers
-addZone_Palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine
-```
+**addZone_Palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine**
 
 キャラクターに初期アイテムを追加するには、タグ `addThing_ItemID#Count` を使用します。`#Count`を省略した場合、デフォルトで1つのアイテムが生成されます。
 
 例えば、キャラクターに`padoru_gift`を10個、`援軍巻軸`を5つ追加する場合：
-```:no-line-numbers
-addAdvZone_Palmia,addThing_padoru_gift#10,addThing_1174#5
-```
+**addZone_Palmia,addThing_padoru_gift#10,addThing_1174#5**
 
 ## 冒険者の作成
 
