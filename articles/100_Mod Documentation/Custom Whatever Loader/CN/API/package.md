@@ -6,57 +6,57 @@ hide: true
 
 # `PackageIterator`
 
-[Namespace: `Cwl.Helper.FileUtil;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/Helper/FileUtil)
+[命名空间: `Cwl.Helper.FileUtil;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/Helper/FileUtil)
 
-The core functionality used internally by CWL, to relocate files based on current lang code.
+CWL内部使用的核心功能，根据当前语言代码重定位文件。
 
-Provides utilities for iterating through package resources such as language files, sound files, and relocated files in each active mod's directory.
+提供用于检索Mod资源的工具，例如语言资源、音频资源和每个启用Mod目录中的文件。
 
-All methods are static withing class `PackageIterator`.
+所有方法都是`PackageIterator`类中的静态方法。
 
-## Mod Folder
+## Mod
 ```cs:no-line-numbers
 IEnumerable<DirectoryInfo> GetLoadedPackages(string? modGuid = null)
 ```
 
-Get the root directory of the specified mod package guid, or all loaded packages with `null`.
+获取指定GUID的Mod根目录，或指定所有启用的Mod（使用`null`）。
 
 ## LangMod/**/
 ```cs:no-line-numbers
 IEnumerable<DirectoryInfo> GetLangModFilesFromPackage(string? modGuid = null)
 ```
 
-Get current language mapped folder of `LangMod/**/` from the specified mod package guid, or all loaded packages with `null`.
+从指定GUID的Mod获取当前语言映射的`LangMod/**/`文件夹，或指定所有启用的Mod（使用`null`）。
 
 ## Sound
 ```cs:no-line-numbers
 IEnumerable<DirectoryInfo> GetSoundFilesFromPackage(string? modGuid = null)
 ```
 
-Get the `Sound` folder of the specified mod package guid, or all loaded packages with `null`.
+从指定GUID的Mod获取`Sound`文件夹，或指定所有启用的Mod（使用`null`）。
 
 ## Relocation
 ```cs:no-line-numbers
 IEnumerable<FileInfo> GetRelocatedFilesFromPackage(string relativePath)
 ```
 
-Get all relocated files from current language mapped folder using relative path from all loaded packages. For example, to get all `LangMod/**/Data/custom_data.json` from all active mods, use `GetRelocatedFilesFromPackage("Data/custom_data.json")`. Files returned are guaranteed to exist.
+使用相对路径从所有启用的Mod中获取当前语言映射文件夹中的所有重定位的文件。例如，要获取所有`LangMod/**/Data/custom_data.json`，使用`GetRelocatedFilesFromPackage("Data/custom_data.json")`。只有存在的文件会被返回。
 
 ```cs:no-line-numbers
 FileInfo? GetRelocatedFileFromPackage(string relativePath, string modGuid)
 ```
 
-Get a relocated file from specified mod package guid, it might not exist.
+使用相对路径从指定GUID的Mod获取一个重定位的文件，可能不存在。
 
 ## Excels
 ```cs:no-line-numbers
 IEnumerable<ExcelData> GetRelocatedExcelsFromPackage(string relativePath, int startIndex = 5)
 ```
 
-Get all relocated excel sheets akin to `GetRelocatedFilesFromPackage` but also instantiate them as `ExcelData` with `startIndex`.
+获取所有重定位的Excel表格，类似于`GetRelocatedFilesFromPackage`，但它们将实例化为使用`startIndex`的`ExcelData`。
 
 ```cs:no-line-numbers
 ExcelData? GetRelocatedExcelFromPackage(string relativePath, string modGuid, int startIndex = 5)
 ```
 
-Get a reloacted excel sheet from specified mod package guid, it might not exist.
+从指定GUID的Mod获取一个重定位的Excel表格，可能不存在。

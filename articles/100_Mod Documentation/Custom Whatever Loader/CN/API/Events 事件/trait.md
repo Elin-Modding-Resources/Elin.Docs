@@ -6,9 +6,9 @@ hide: true
 
 # `TraitTransformer`
 
-[Namespace: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
+[命名空间: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
 
-Event raised when game creates a `Trait`. You may use this event to mutate the trait or check if certain trait is instantiated.
+游戏创建一个 `Trait` 时触发的事件。您可以使用此事件来改变 `Trait` 或检查某个 `Trait` 是否已实例化。
 
 ## `TraitTransform`
 
@@ -23,9 +23,9 @@ static void MyTraitTransformer(ref string traitName, Card traitOwner)
 }
 ```
 
-You may mutate the `traitName` to the type name of target `Trait` class. It doesn't need to be qualified, CWL will qualify it for you.
+您可以将 `traitName` 修改为目标 `Trait` 类的类型名称。它只需要是类名称，CWL 将会自动限定全名。
 
-## Register
+## 注册
 
 ```cs:no-line-numbers
 TraitTransformer.Add(MyTraitTransformer);

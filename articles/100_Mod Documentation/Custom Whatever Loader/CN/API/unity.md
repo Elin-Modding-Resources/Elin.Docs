@@ -6,11 +6,11 @@ hide: true
 
 ## `CoroutineHelper`
 
-[Namespace: `Cwl.Helper.Unity;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/Helper/Unity)
+[命名空间: `Cwl.Helper.Unity;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/Helper/Unity)
 
-A convenient way to invoke a delegate or a coroutine, in any scope or context, regardless of being a `MonoBehaviour` instance or not.
+一种方便的方式来调用委托或协程，在任何上下文中，无论是否为 `MonoBehaviour` 实例。
 
-### Immediate
+### 立即
 ```cs:no-line-numbers
 static void MyTask();
 
@@ -21,7 +21,7 @@ CoroutineHelper.Immediate(() => {
 });
 ```
 
-Invoke the delegate after the next immediate Unity `Update` event.
+在下一个 Unity `Update` 事件后立即调用委托。
 
 ```cs:no-line-numbers
 static IEnumerator MyCoroutineTask();
@@ -29,11 +29,11 @@ static IEnumerator MyCoroutineTask();
 CoroutineHelper.Immediate(MyCoroutineTask());
 ```
 
-Invoke the coroutine after the next immediate Unity `Update` event.
+在下一个 Unity `Update` 事件后立即调用协程。
 
-### Condition Defer
+### 条件延迟
 
-The bread and butter of conditional triggers.
+条件触发的核心。
 ```cs:no-line-numbers
 static void CleanupTask();
 
@@ -46,11 +46,11 @@ CoroutineHelper.Deferred(
     () => EMono.core.IsGameStarted);
 ```
 
-Invoke the delegate when the condition is true.
+当条件为真时调用委托。
 
-### Frame Defer
+### 帧延迟
 
-Sometimes you want to delay your action by certain frames. For example, in UI related code, you may want to let UI refresh first then draw your own stuff 1 frame afterwards to accomodate the new position/data etc.
+有时你想延迟某些帧再执行你的动作。例如，在与 UI 相关的代码中，你可能希望先让 UI 刷新，然后在 1 帧后绘制你自己的内容，以适应新的位置/数据等。
 ```cs:no-line-numbers
 static void AdjustPosition();
 
@@ -67,9 +67,9 @@ CoroutineHelper.Deferred(
     5);
 ```
 
-### Time Defer
+### 时间延迟
 
-Sometimes you want an effect to linger for a certain amount of time, then do actions afterwards.
+有时你希望某个效果持续一段时间，然后再进行后续操作。
 ```cs:no-line-numbers
 static void ClearEffects();
 
@@ -85,7 +85,7 @@ CoroutineHelper.Deferred(
 
 ## `SpriteCreator`
 
-Helper to load a png as a sprite with caching and resizer option.
+帮助加载 PNG 作为 Sprite，带有缓存和调整大小选项。
 ```cs:no-line-numbers
 Sprite? LoadSprite(this string path, Vector2? pivot = null, string? name = null, int resizeWidth = 0, int resizeHeight = 0);
 
@@ -93,22 +93,22 @@ var filePath = "X:/someimage.png";
 var sprite = filePath.LoadSprite(name: "SpriteNewName", resizeWidth: 900, resizeHeight: 600);
 ```
 
-By default, the pivot will be at center (`0.5, 0.5`) and sprite name will be an internal cache name. If `resizeWidth` and/or `resizeHeight` is not `0`, then sprite will be resized.
+默认情况下，轴心位于中心（`0.5, 0.5`），Sprite 名称将是内部缓存名称。如果 `resizeWidth` 和/或 `resizeHeight` 不为 `0`，则 Sprite 将被调整至指定大小。
 
 ## `ChildrenIterator`
 
-Helper to find a nested child of a gameobject with name. Say you want to find the text object of an element of a list of a panel of a layout group of a composite page, you can do:
+帮助查找具有名称的 GameObject 的嵌套子对象。假设你想找到复合页面的布局组面板中列表元素的文本对象，你可以这样做：
 ```cs:no-line-numbers
 var text = page.transform.GetFirstNestedChildWithName("Content View/Scroll View/Viewport/Content/Profile List/Entry (1)/text");
 ```
 
-For non nested access, use `GetFirstChildWithName`.
+对于非嵌套访问，使用 `GetFirstChildWithName`。
 
-Returns `null` if not found.
+如果未找到，则返回 `null`。
 
-## Other Stuff
+## 其他内容
 
-Some helpers and random stuff that you won't need:
+一些你可能不需要的内容：
 
 + PixelRaycast
 + ColorParser

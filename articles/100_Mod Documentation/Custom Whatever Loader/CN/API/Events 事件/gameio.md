@@ -1,18 +1,18 @@
 ---
-title: GameIO
+title: GameIO 序列化
 date: 2025/1/3 01:00
 hide: true
 ---
 
 # `GameIOProcessor`
 
-[Namespace: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
+[命名空间: `Cwl.API.Processors;`](https://github.com/gottyduke/Elin.Plugins/tree/master/CustomWhateverLoader/API/Processors)
 
-Event raised when game saves, loads, and starts new game. Offers both pre-process and post-process events and a helper to serializie/deserialize data.
+游戏保存/加载/新建时的事件，可注册预/后处理，并提供一个序列化工具类。
 
 ## `GameIOProcess`
 
-GameIOProcessor expects a handler as such:
+事件定义如下：
 ```cs:no-line-numbers
 delegate void GameIOProcess(GameIOContext context);
 // ->
@@ -21,7 +21,7 @@ static void MySaveHandler(GameIOContext context);
 
 ## `GameIOContext`
 
-A helper class to save and load data chunks within current save.
+一个帮助序列化/反序列化数据到当前存档的工具类。
 ```cs:no-line-numbers
 static void MySaveHandler(GameIOProcessor.GameIOContext context)
 {
@@ -40,13 +40,13 @@ static void MyLoadHandler(GameIOProcessor.GameIOContext context)
 }
 ```
 
-The string parameter `chunkName` is a unique identifier for the chunk data, if omitted, the data type's full qualified name will be used. If you have multiple data of the same type, you may consider using an index-based or hash-based chunk name.
+`string`参数 `chunkName` 是这块数据的唯一标识符，如果省略，将使用数据类型的全名。如果您有多个相同类型的数据，可以考虑使用基于索引或基于哈希值的块名称。
 
-## Register
+## 注册
 
 ```cs:no-line-numbers
 GameIOProcessor.AddSave(MySaveHandler, post: true);
 GameIOProcessor.AddLoad(MyLoadHandler, post: true);
 ```
 
-The bool parameter `post` determines whether this is a post-process event or a pre-process event.
+`bool`参数 `post` 决定这是一个后处理事件还是一个预处理事件。
