@@ -34,9 +34,11 @@ function getArticles() {
       continue;
     }
 
+    const name = group.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
     sidebar.push({
-      text: group.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
+      text: name,
       items: items,
+      collapsed: name != "Getting Started",
     });
   }
 
