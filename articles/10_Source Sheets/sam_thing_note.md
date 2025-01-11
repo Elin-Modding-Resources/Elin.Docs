@@ -155,7 +155,7 @@ The one most used. How should the object "sit" on the ground and where the clipp
 
 For replacement textures, what tile is it replacing in the texture sheet. This is also the number used for replacement naming. If there are more than one, the order goes:
 
-image >> reversed >> image2 >> image2 >> reversed
+image >> image reversed >> image2 >> image2 reversed
 
 For example, if there is a front and back version of something, it would be:
 
