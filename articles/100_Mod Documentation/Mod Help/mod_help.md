@@ -1,3 +1,9 @@
+---
+title: "Mod Help" Usage Guide
+date: 2025/1/12 01:00
+hide: true
+---
+
 # Mod Help Usage Guide
 
 ## Introduction
