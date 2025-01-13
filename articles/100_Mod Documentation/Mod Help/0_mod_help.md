@@ -1,5 +1,5 @@
 ---
-title: Mod Help Usage Guide
+title: "[EN] Mod Help Usage Guide"
 date: 2025/1/12 01:00
 hide: true
 ---
