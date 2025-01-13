@@ -39,6 +39,11 @@ CWL 要求Mod放置在**LangMod**文件夹下，而不是**Lang**；否则，游
 
 当 CWL 导入资源时，它将优先从当前语言文件夹导入，有效解决了当前Elin xlsx的翻译问题，因为大部分工作表通常只包含JP和EN条目。
 
+`JP` 文件夹可以省略，只要填入其他语言资源的`_JP`条目即可。 
+![](../assets/shared_jp.png)
+
+`ZHTW` 将使用 `CN` 作为后备隐藏能源，而 `EN` 则是第二选择。CWL 将使用找到的第一个语言文件夹作为最后最后的选项。
+
 ## 自定义源表
 
 您可以将 xlsx 文件简单地放置在每个语言文件夹中，而不必手动为每个 xlsx 工作表调用 **ModUtil.ImportExcel**。CWL 将根据与 SourceData 或 SourceLang 匹配的表名导入所有本地化的源。

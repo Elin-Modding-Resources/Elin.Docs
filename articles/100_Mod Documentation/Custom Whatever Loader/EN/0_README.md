@@ -39,6 +39,11 @@ CWL requires your resources to be placed under the **LangMod** folder instead of
 
 When CWL imports the resources, it will import from the current language folder first, effectively addressing the translation issue with the current Elin xlsx implementation, which generally only has JP and EN entries.
 
+`JP` folder can be omitted, as long as the `_JP` entries in other lang folders are filled in. 
+![](../assets/shared_jp.png)
+
+`ZHTW` will use `CN` as fallback, while `EN` being the last fallback. CWL will use whatever is found as the last resort.
+
 ## Custom Sources
 
 Instead of calling **ModUtil.ImportExcel** on each xlsx worksheet manually, modders can now simply place the xlsx files within each language folder. CWL will import all the localized sources according to the sheet name that matches a SourceData or SourceLang.
