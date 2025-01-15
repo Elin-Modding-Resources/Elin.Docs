@@ -19,7 +19,7 @@ To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*
 
 For example, to spawn the chara in little garden, use `addZone_LittleGarden`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) and reference the type column for a list of valid zone names.
 
-If your game already has the character present, then CWL will skip it.
+For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_Lumiest,addZone_LittleGarden,addZone_Specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
 
 ## add equipment/thing
 

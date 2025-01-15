@@ -17,7 +17,7 @@ CWLがキャラクターを特定のエリアに生成するには、タグ `add
 
 たとえば、小さな庭にキャラクターを生成したい場合は、`addZone_LittleGarden` を使用します。[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) を確認し、正しいエリア名についてはtype列を参考にしてください。
 
-ゲーム内にすでにそのキャラクターが存在する場合、CWLはスキップします。
+各 `addZone` タグは、そのエリアにキャラクターを生成することを保証します。例えば、`addZone_Lumiest, addZone_LittleGarden, addZone_Specwing, addZone_*` は、選択された3つのエリアとランダムな1つのエリアにキャラクターを生成します。
 
 ## 初期装備/アイテムの追加
 

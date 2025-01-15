@@ -17,7 +17,7 @@ CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签�
 
 例如，要在小小花园中生成角色，请使用 `addZone_LittleGarden`。请查看 [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=2115280503#gid=2115280503) 并参考 type 列以获取正确的区域名称。
 
-CWL 将跳过游戏中已经存在的角色。
+每一个 `addZone` 标签都会确保在该区域生成一个角色。例如，`addZone_Lumiest,addZone_LittleGarden,addZone_Specwing,addZone_*` 将会在所选的三个区域以及随机一个区域中生成一个角色。
 
 ## 添加初始装备/物品
 
