@@ -61,7 +61,7 @@ GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
 支持的 `SourceLang：`
-```
+```:no-line-numbers
 General, Game, List, Word, Note
 ```
 

@@ -50,3 +50,12 @@ GameIOProcessor.AddLoad(MyLoadHandler, post: true);
 ```
 
 The bool parameter `post` determines whether this is a post-process event or a pre-process event.
+
+Or register via Reflection:
+```cs:no-line-numbers
+[CwlPostSave] // [CwlPreSave]
+static void MySaveHandler(GameIOProcessor.GameIOContext context);
+
+[CwlPostLoad] // [CwlPreLoad]
+static void MyLoadHandler(GameIOProcessor.GameIOContext context);
+```

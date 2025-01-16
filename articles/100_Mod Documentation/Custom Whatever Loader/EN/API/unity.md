@@ -83,6 +83,49 @@ CoroutineHelper.Deferred(
     1.5f);
 ```
 
+## `ProgressIndicator`
+
+Helper to display a progress tracker for async operations on screen top right corner.
+```cs:no-line-numbers
+static string currentLoading = "";
+static bool shouldClose;
+
+IEnumerator MyAsyncTask()
+{
+    var progress = ProgressIndicator.CreateProgress(
+        onUpdate: () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null),
+        shouldKill: () => shouldClose
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "finished loading";
+    shouldClose = true;
+}
+```
+
+You may also use the scope-exit overload which closes when disposed:
+```cs:no-line-numbers
+static string currentLoading = "";
+
+IEnumerator MyAsyncTask()
+{
+    using var progress = ProgressIndicator.CreateProgress(
+        () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null)
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "finished loading";
+}
+```
+
 ## `SpriteCreator`
 
 Helper to load a png as a sprite with caching and resizer option.

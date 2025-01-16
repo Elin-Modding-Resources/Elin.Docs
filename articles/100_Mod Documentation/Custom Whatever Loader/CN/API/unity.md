@@ -83,6 +83,49 @@ CoroutineHelper.Deferred(
     1.5f);
 ```
 
+## `ProgressIndicator`
+
+为异步方法提供在屏幕右上角显示状态文本的帮助类。
+```cs:no-line-numbers
+static string currentLoading = "";
+static bool shouldClose;
+
+IEnumerator MyAsyncTask()
+{
+    var progress = ProgressIndicator.CreateProgress(
+        onUpdate: () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null),
+        shouldKill: () => shouldClose
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "finished loading";
+    shouldClose = true;
+}
+```
+
+也可使用只在当前作用域显示并自动关闭的便捷重载:
+```cs:no-line-numbers
+static string currentLoading = "";
+
+IEnumerator MyAsyncTask()
+{
+    using var progress = ProgressIndicator.CreateProgress(
+        () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null)
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "finished loading";
+}
+```
+
 ## `SpriteCreator`
 
 帮助加载 PNG 作为 Sprite，带有缓存和调整大小选项。
