@@ -13,3 +13,9 @@ By setting **"type"**: **"BGM"** in the metadata, the sound file will be instant
 Subdirectories in the **Sound** folder will serve as ID prefixes. For example, `AI_PlayMusic` will use **Instrument/sound_id**, so you should place the sound file in the `Instrument` folder if you plan to replace instrument sounds.
 
 Sounds loaded by CWL will be available to use anywhere in the game via sound id.
+
+E.g.
+```cs
+pc.PlaySound(sound_id) // <- Card.PlaySound
+SE.PlaySound(sound_id)
+```

@@ -13,3 +13,9 @@ hide: true
 **Sound** 文件夹中的子目录将作为音频ID前缀。例如，`AI_PlayMusic`将使用`Instrument/sound_id`，因此如果您打算替换乐器音乐，应该将同名音频文件放在`Instrument`文件夹中。
 
 通过 CWL 自动加载的音频会作为可用游戏资源，任何使用音频的地方都可以通过ID播放自定义音频。
+
+例如：
+```cs
+pc.PlaySound(sound_id) // <- Card.PlaySound
+SE.PlaySound(sound_id)
+```

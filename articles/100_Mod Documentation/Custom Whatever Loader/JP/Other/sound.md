@@ -11,3 +11,9 @@ hide: true
 メタデータで"type": "BGM"を設定すると、オーディオは**BGMData**としてではなく**SoundData**としてインスタンス化されます。また、メタデータ内でBGMの小節部分をカスタマイズすることもできます。
 
 **Sound**フォルダー内のサブディレクトリはオーディオIDのプレフィックスとして使用されます。たとえば、`AI_PlayMusic`は`Instrument/sound_id`を使用するため、楽器音楽を置き換える場合は、同名のオーディオファイルを`Instrument`フォルダーに配置してください。
+
+例：
+```cs
+pc.PlaySound(sound_id) // <- Card.PlaySound
+SE.PlaySound(sound_id)
+```
