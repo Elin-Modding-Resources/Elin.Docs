@@ -6,7 +6,9 @@ hide: true
 
 ## custom bio
 
-To add more flavor to your character, you may use tag `addBio_CharaId` to define a custom biography. The bio file is (yet another) json file placed in your `LangMod/**/Data/` folder, with name `bio_CharaId.json`, for example, you have a custom character with id `example_chara`, you should have a file `bio_example_chara.json` in `LangMod/EN/Data/`, `LangMod/CN/Data/`, ...and other language sub folders.
+To add more flavor to your character, you may use tag `addBio_ID` to define a custom biography. The bio file is (yet another) json file placed in your `LangMod/**/Data/` folder, with name `bio_ID.json`, the ID is the unique ID for this biography file, such as `bio_my_chara.json`.
+
+You may reuse the same biography file for multiple characters by specifying the same ID.
 
 Within the bio file, it's simply as follows:
 ```json

@@ -22,6 +22,14 @@ Cache paths relocated by CWL instead of iterating new paths
 Cache sprites created by CWL instead of creating new from textures  
 缓存CWL生成的贴图而不是每次重新构建  
 
+### Dialog.ExpandedActions = true
+Expand the actions table for drama sheets for mod authors to utilize
+为剧情表启用action拓展，Mod作者能够利用更多功能设计剧情表
+
+### Dialog.ExpandedActionsAllowExternal = true
+Allow invoking external methods from other assemblies within the drama sheet, this may be unstable
+为剧情表启用action拓展时同时允许调用外部程序集的方法，这可能不稳定
+
 ### Dialog.NoOverlappingSounds = true
 During dialogs, prevent sound actions from overlapping with each other by stopping previous sound first  
 对话中的sound动作不会彼此重叠 - 上一个音源会先被停止  

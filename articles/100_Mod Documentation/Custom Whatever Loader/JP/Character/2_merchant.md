@@ -10,38 +10,52 @@ hide: true
 
 ![img](https://i.postimg.cc/59gzM54K/image.png)
 
-在庫ファイルはシンプルなJSONファイルで、`LangMod/**/Data/`フォルダーに配置します。名前は`stock_merchantID.json`にします。例えば、カスタムキャラクターのIDが`example_merchant`である場合は、`LangMod/EN/Data/`、`LangMod/CN/Data/`などの言語サブフォルダーに`stock_example_merchant.json`というファイルを持つ必要があります。
+在庫ファイルは、あなたの `LangMod/**/Data/` フォルダーに置かれたシンプルな JSON ファイルで、名前は `stock_ID.json` です。このIDは在庫ファイルのユニークIDまたはあなたのキャラクターIDです。
+
+`addStock` タグを使用すると、そのキャラクターIDに該当する在庫がデフォルトで使用されます。また、複数の `addStock_ID` タグを使用して特定の在庫を組み合わせることもできます。例えば、`addStock_shared,addStock_armor,addStock_weapon` のように。
+
 ```json
 {
-  "Owner": "example_merchant",
   "Items": [
     {
       "Id": "example_item",
       "Material": "",
       "Num": 1,
       "Restock": true,
-      "Type": "Item"
+      "Type": "Item",
+      "Rarity": "Random"
     },
     {
       "Id": "example_item_limited",
       "Material": "granite",
       "Num": 1,
       "Restock": false,
-      "Type": "Item"
+      "Type": "Item",
+      "Rarity": "Artifact"
     },
     {
       "Id": "example_item_craftable",
       "Material": "",
       "Num": 1,
       "Restock": false,
-      "Type": "Recipe"
+      "Type": "Recipe",
+      "Rarity": "Random"
     }
   ]
 }
 ```
 
-`Owner`の値は商人キャラクターIDと同じです。`Items`は在庫中のアイテムの配列です。
+`Items` は在庫内のアイテムのリストです。
 
-`Id`はアイテムのIDです。`Material`は希望する材料で、アイテム行で定義されたデフォルトの材料を使用するには空白のままにします。`Num`はスタック内のアイテムの数です。`Restock`はそれが期間限定品かどうかを定義します。`false`に設定すると、一度しか購入できません。`Type`は`Item`、`Recipe`、`Spell`のいずれかです。
++ `Id` はアイテムのIDです。
++ `Material` はそのアイテムとして希望する材料で、空白にするとアイテム行で定義されたデフォルトの材料が使用されます。
++ `Num` はスタック内のアイテムの数量です。
++ `Restock` はそれが期間限定アイテムかどうかを定義し、`false` に設定すると一度だけ購入可能です。
++ `Type` は `Item`（アイテム）、`Recipe`（レシピ）、または `Spell`（呪文書）です。
++ `Rarity` はアイテムのレアリティで、`Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact` があります。
 
-コードエディタを使用していない場合は、[JSONLint](https://jsonlint.com/)を使用してJSONを検証するべきです。
+コードエディターを使用しない場合は、[JSONLint](https://jsonlint.com/) を使用してあなたのJSONを検証するべきです。
+
+::: warning フォーマット変更
+CWL 1.18.13 バージョン以降、`Owner` エントリが削除され、`Rarity` エントリが追加され、在庫ファイル名を在庫IDとしてインデックスする方式に変更されました。この変更は旧バージョンのフォーマットと互換性があります。
+:::

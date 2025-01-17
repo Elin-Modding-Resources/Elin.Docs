@@ -6,7 +6,8 @@ hide: true
 
 ## カスタムバイオグラフィー
 
-キャラクターにもっと表現を加えるために、`addBio_CharaId`タグを使用してカスタムバイオグラフィーを指定できます。バイオグラフィーファイルはJSONファイルで、`LangMod/**/Data/`フォルダーに配置し、名前は`bio_CharaId.json`にします。例えば、カスタムキャラのIDが`example_chara`である場合、`LangMod/EN/Data/`、`LangMod/CN/Data/`などの他の言語サブフォルダーに`bio_example_chara.json`というファイルを持つ必要があります。
+あなたのキャラクターにもっと風味を加えるために、`addBio_ID` タグを使用してカスタム伝記を指定できます。伝記ファイルは JSON ファイルで、あなたの `LangMod/**/Data/` フォルダーに保存されており、名前は `bio_ID.json` です。このIDは伝記ファイルのユニークIDです。
+
 ```json
 {
     "Birthday": 11,

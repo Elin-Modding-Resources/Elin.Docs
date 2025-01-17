@@ -10,13 +10,13 @@ Sometimes you want to customize some data for your ranged weapon. The guns data 
 ```json
 {
     "biubiu_gun": {
-        "num": 1,
-        "delay": 0.1,
-        "idEffect": "gunfire",
-        "idSound": "attack_gun",
-        "spriteId": "ranged_gun",
-        "eject": true,
-        "firePos": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun",
+        "SpriteId": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
             "x": 0.23,
             "y": 0.04
         }
@@ -26,7 +26,13 @@ Sometimes you want to customize some data for your ranged weapon. The guns data 
 
 This will import a gun data named `biubiu_gun`, which should match your ranged weapon ID; otherwise, the game will load the default data of that type for your ranged weapon. You can also use an existing weapon ID in the game to override it.
 
-`num` is the number of shots in a burst, `delay` is the animation frame delay, `idEffect` is the ID of the firing effect, `spriteId` is the name of the projectile texture, which needs to be an existing texture name in the game or a texture name you placed in the **Texture** folder (without .png). `eject` determines whether there is a shell eject animation, and `firePos` is the position of the firing effect relative to the center of the weapon.
++ `Num` is the number of shots in a burst. 
++ `Delay` is the animation frame delay. 
++ `IdEffect` is the ID of the firing effect. 
++ `IdSound` is the ID of the firing sound. If using custom sound, it needs to be put in **Sound** folder.
++ `SpriteId` is the name of the projectile texture, which needs to be an existing texture name in the game or a texture name you placed in the **Texture** folder (without .png). 
++ `Eject` determines whether there is a shell eject animation.
++ `FirePos` is the position of the firing effect relative to the center of the weapon.
 
 You may add as many gun data as you want in this file, simply separate them by `,` comma, such as:
 ```json

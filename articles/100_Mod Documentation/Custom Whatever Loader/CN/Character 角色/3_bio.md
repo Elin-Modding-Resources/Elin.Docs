@@ -6,7 +6,8 @@ hide: true
 
 ## 自定义传记
 
-为了为你的角色增添更多风味，你可以使用标签 `addBio_CharaId` 来指定自定义传记。传记文件是一份 JSON 文件，存放在你的 `LangMod/**/Data/` 文件夹中，名称为 `bio_CharaId.json`，例如，如果你有一个自定义角色，其 ID 为 `example_chara`，那么你应该在 `LangMod/EN/Data/`、`LangMod/CN/Data/` 等其他语言子文件夹中有一个文件 `bio_example_chara.json`。
+为了为你的角色增添更多风味，你可以使用标签 `addBio_ID` 来指定自定义传记。传记文件是一份 JSON 文件，存放在你的 `LangMod/**/Data/` 文件夹中，名称为 `bio_ID.json`，此ID是传记文件的独特ID。
+
 ```json
 {
     "Birthday": 11,
