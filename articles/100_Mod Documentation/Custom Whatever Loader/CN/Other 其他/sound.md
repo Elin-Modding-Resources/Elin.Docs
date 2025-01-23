@@ -12,7 +12,7 @@ hide: true
 
 **Sound** 文件夹中的子目录将作为音频ID前缀。例如，**AI_PlayMusic** 将使用 **Instrument/sound_id**，因此如果您打算替换乐器音乐，应该将同名音频文件放在 **Instrument** 文件夹中。
 
-**您可以使用相同的ID覆盖现有的游戏内音频**。例如，小鸡的叫声使用ID **Animal/Chicken/chicken**，那么你可以在 **Sound/Animal/Chicken/** 文件夹中准备一个名为 **chicken** 的音频文件来覆盖它。
+**您可以使用相同的ID覆盖现有的游戏内音频**。例如，小鸡的叫声使用ID **Animal/Chicken/chicken**，那么您可以在 **Sound/Animal/Chicken/** 文件夹中准备一个名为 **chicken** 的音频文件来覆盖它。
 
 通过 CWL 自动加载的音频会作为可用游戏资源，任何使用音频的地方都可以通过ID播放自定义音频。
 
@@ -170,7 +170,7 @@ CWL 建议您使用 **ogg** 或者 **wav** 格式，因为Elin的Unity版本(202
 
 ### 添加播放列表
 
-你的播放列表文件放置在 **Sound/BGM/Playlist** 子文件夹，它们是格式简单的JSON文件。 
+您的播放列表文件放置在 **Sound/BGM/Playlist** 子文件夹，它们是格式简单的JSON文件。 
 ```json
 {
     "shuffle": true,
@@ -186,11 +186,28 @@ CWL 建议您使用 **ogg** 或者 **wav** 格式，因为Elin的Unity版本(202
 
 `list` 中的音频ID（**不是BGM ID**）将合并到播放列表中，而 `remove` 将从播放列表中移除条目（如果存在）。您也可以使用现有的游戏音频ID。`shuffle` 设置该列表是否随机排列。
 
+您也可以在 `list` 和 `remove` 列表中使用通配符，目前提供两种模式：
+```json
+"remove": [
+	"**"
+]
+```
+会在合并前清空所有曲目。
+
+```json
+"remove": [
+	"<dir>/*"
+]
+```
+会在合并前清空所有来自 **`Sound/BGM/<dir>/`** 文件夹的曲目。
+
+### 播放列表类型
+
 播放列表的JSON文件名应与以下之一匹配：
 
-+ 一个现有的播放列表名称，除了 `Blank`
-+ 一个区域类型名称
 + `"Global"`
++ 一个现有的播放列表名称
++ 一个区域类型名称
 
 这里是游戏内已有的播放列表：
 ::: details 播放列表
@@ -248,7 +265,11 @@ CWL 建议您使用 **ogg** 或者 **wav** 格式，因为Elin的Unity版本(202
 
 ![](../../assets/zone_type.png)
 
-### 播放列表合并
+### 全局覆盖
+
+您可以准备一个名为 `Global` 的特殊播放列表，它会合并到所有播放列表中。
+
+### 指定播放列表
 
 例如，所有地城区域（`Zone_RandomDungeon`，`Zone_RandomDungeonFactory`，`Zone_Mine` 等）共享一个名为 `Dungeon` 的播放列表。如果您想添加/删除此播放列表中的歌曲，您应该在 **Sound/BGM/Playlist/** 文件夹中准备一个 `Dungeon.json`。
 
@@ -262,13 +283,11 @@ CWL 建议您使用 **ogg** 或者 **wav** 格式，因为Elin的Unity版本(202
 
 除了播放列表合并，您还可以为每个区域类型指定区域覆盖。这些播放列表将使用区域类型名称，其内容将合并到区域的默认播放列表中（如果在表中未指定，则为 `Blank`）。
 
-因此，您也可以通过 `Region.json` 而不是 `EloMap.json` 向外大地图播放列表添加歌曲。
+因此，您也可以通过 `Region.json` 而不是 `EloMap.json` 向大地图播放列表添加歌曲。
 
-### 全局覆盖
+### Merge Order
 
-您也可以准备一个名为 `Global` 的特殊播放列表，它会合并到所有播放列表中。
-
-三种播放列表可以同时存在，它们会依次按照全局覆盖，播放列表合并，区域覆盖的顺序生效。重复的曲目会被移除。播放列表生效顺序也受Mod加载顺序影响。
+三种播放列表可以同时存在，它们会依次按照全局覆盖，指定播放列表，区域覆盖的顺序合并。重复的曲目会被移除。播放列表合并顺序也受Mod加载顺序影响。在 `remove` 列表中使用通配符时请在牢记播放列表的合并顺序也会影响你的曲目。
 
 ### 热加载/BGM 查看
 
@@ -281,18 +300,17 @@ CWL 提供了一组游戏内的控制台命令，以便您更轻松地编辑播�
 当您在游戏运行时编辑播放列表 JSON 后，您可以使用 `cwl.bgm.rebuild` 热重载所有播放列表。尽管 CWL 有用于热重载新增音频的命令，但由于可能出现索引问题，不建议使用。
 
 ### 最后一个示例
+
 假设您想移除大地图探索的所有默认曲目，并添加您的新增曲目，使用 `Sound/BGM/Playlist/EloMap.json` 或 `Sound/BGM/Playlist/Region.json`:
 ```json
 {
     "shuffle": true,
     "list": [
-        "我的新增BGM的音频ID",
-        "我的新增BGM的另一个音频ID"
+        "my new BGM sound id1",
+        "my new BGM sound id2"
     ],
     "remove": [
-        "006 elomap2",
-        "007 elomap3",
-        "059 tyris4"
+        "**"
     ]
 }
 ```

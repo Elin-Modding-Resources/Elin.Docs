@@ -179,19 +179,36 @@ Your playlists are placed in the **Sound/BGM/Playlist** folder, and they are sim
     ],
     "remove": [
         "024 PSML514",
-        "023 mysterious-forest"
+        "023 mysterious-forest",
+		"MySomeOtherBGM/*"
     ]
 }
 ```
 
 The sound id (**not BGM id**) in `list` will be merged into the playlist, and `remove` will remove the entries (if present) from the playlist. You can also use existing game sound ids.
 
+You may also use wildcards as the `list` and `remove` entry, currently 2 patterns are provided:
+```json
+"remove": [
+	"**"
+]
+```
+Which will remove all entries prior to merging.
+
+```json
+"remove": [
+	"<dir>/*"
+]
+```
+Which will remove all entries from **`Sound/BGM/<dir>/`** folder prior to merging.
+
+### Playlist Type
+
 The playlist JSON file name should match one of the following:
 
-+ An existing playlist name, excluding `Blank`
-+ A zone type name
 + `"Global"`
-
++ An existing playlist name
++ A zone type name
 
 Here are some of the game playlists:
 ::: details Playlists
@@ -249,6 +266,10 @@ To view the zone type names and their playlists (if any):
 
 ![](../../assets/zone_type.png)
 
+### Global Override
+
+A special playlist named `Global` can be provided and it will be merged into all playlists.
+
 ### Playlist Merge
 
 For example. All nefia zones (`Zone_RandomDungeon`, `Zone_RandomDungeonFactory`, `Zone_Mine`...etc) share a playlist called `Dungeon`. If you want to add/remove songs into this playlist, you should have `Dungeon.json` in your **Sound/BGM/Playlist/** folder.
@@ -265,11 +286,9 @@ In addition to the playlist merge, you can also specifiy zone overrides for each
 
 So, you could add songs to the overworld map playlist via `Region.json` instead of `EloMap.json` too.
 
-### Global Override
+### Merge Order
 
-A special playlist named `Global` can be provided to be merged into all playlists.
-
-The three types of playlists will be applied in the order of `Global`, Playlist Merge, Zone Override. They are also affected by the your mod load order.
+The three types of playlists will be applied in the order of `Global`, Playlist Merge, Zone Override. They are also affected by your mod load order. Keep that in mind when you do nested `remove`, especially with `**` or `<dir>/*` pattern matching.
 
 ### Hot Reload/BGM View
 
@@ -281,7 +300,7 @@ You may also use `cwl.bgm.next`, `cwl.bgm.last`, `cwl.bgm.shuffle` to test your 
 
 When you edit your playlist JSONs while game is running, you can also hot reload all playlists with `cwl.bgm.rebuild`. Although CWL has commands for hot reloading new sounds, it's not recommended for BGM editing because of the possible indexing problem.
 
-### Last Example
+### Examples
 
 To remove all songs in overworld exploration playlist and add your new songs, define these in `Sound/BGM/Playlist/EloMap.json` or `Sound/BGM/Playlist/Region.json`:
 ```json
@@ -292,9 +311,7 @@ To remove all songs in overworld exploration playlist and add your new songs, de
         "my new BGM sound id2"
     ],
     "remove": [
-        "006 elomap2",
-        "007 elomap3",
-        "059 tyris4"
+        "**"
     ]
 }
 ```
