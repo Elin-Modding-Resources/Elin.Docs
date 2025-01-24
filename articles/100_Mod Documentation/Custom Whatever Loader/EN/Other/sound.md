@@ -162,7 +162,7 @@ CWL suggests using **wav** or **ogg** formats, this is because the Unity codec w
 
 The `id` is an arbitrary number, set it to larger than what game uses at last (`117`) and make it less likely to collide with other BGM's id. 
 
-**Important to note,** this `id` is purely for the BGM. Your sound id is still the file name without extension.
+**Important to note,** this `id` is purely for the BGM. Your sound id is still the file name without extension, e.g. **`BGM/My Sound File`**
 
 When you assign an existing id to your BGM, then it becomes a global BGM replacement. E.g. Assigning id `56` to the song metadata `Adventure-YOASOBI.json`, will replace in game BGM `056 orc01` with sound `Adventure-YOASOBI`. This is why you want your new BGM (non-replacement ones) to use a unique id, otherwise the next BGM with the same id will replace yours.
 
@@ -272,7 +272,7 @@ A special playlist named `Global` can be provided and it will be merged into all
 
 ### Playlist Merge
 
-For example. All nefia zones (`Zone_RandomDungeon`, `Zone_RandomDungeonFactory`, `Zone_Mine`...etc) share a playlist called `Dungeon`. If you want to add/remove songs into this playlist, you should have `Dungeon.json` in your **Sound/BGM/Playlist/** folder.
+For example, all nefia zones (`Zone_RandomDungeon`, `Zone_RandomDungeonFactory`, `Zone_Mine`...etc) share a playlist called `Dungeon`. If you want to add or remove songs for this playlist, you should use `Dungeon.json` in your **Sound/BGM/Playlist/** folder.
 
 ![](../../assets/playlists.png)
 
