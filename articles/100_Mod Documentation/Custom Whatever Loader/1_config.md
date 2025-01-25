@@ -14,6 +14,10 @@ Debug用的信息输出
 Measure the extra loading time added by CWL, this is displayed in Player.log  
 记录CWL运行时间  
 
+### BGM.SeamlessStreaming = true
+When switching to a new playlist, if current playing BGM is included in the new playlist, seamlessly stream it  
+当切换播放列表时，如果当前播放的曲目在新播放列表中，则尝试无缝衔接  
+
 ### Caching.Paths = true
 Cache paths relocated by CWL instead of iterating new paths  
 缓存CWL重定向的路径而不是每次重新搜索  
