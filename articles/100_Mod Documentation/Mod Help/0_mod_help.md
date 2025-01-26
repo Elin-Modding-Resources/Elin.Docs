@@ -30,9 +30,9 @@ hide: true
 ### **Help File**
 
 To provide a Help page for your own mod is simple, all you have to do is create a `help.txt` file in the following folder:
-`\LangMod\EN\Data\Text\Help`  
+`\LangMod\EN\Text\Help`  
 **ModHelp** utilizes the **CWL** folder structure to load its help files, meaning you can easily localize your help file without adding CWL as a dependency for your mod. All you need to do is replicate the folder structure and simply swap the language code.  
-`\LangMod\**\Data\Text\Help` → _`**` can be any existing Lang code, including mods. (e.g.: EN/JP/CN)_
+`\LangMod\**\Text\Help` → _`**` can be any existing Lang code, including mods. (e.g.: EN/JP/CN)_
 
 ### Pages
 
