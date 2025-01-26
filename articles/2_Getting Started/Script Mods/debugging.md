@@ -35,7 +35,7 @@ By using Unity Explorer, you can inspect/modify all C# instances(including Unity
 
 You'll need a debug build of MonoBleedingEdge runtime to replace the Elin's packaged release version.
 
-<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/2_Getting%20Started/assets/mono-2.0-bdwgc.dll" download>mono-2.0-bdwgc.dll</a>
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/2_Getting%20Started/Script%20Mods/assets/mono-2.0-bdwgc.dll" download>mono-2.0-bdwgc.dll</a>
 
 ::: warning Backup First
 Before replacing `Elin\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll`.

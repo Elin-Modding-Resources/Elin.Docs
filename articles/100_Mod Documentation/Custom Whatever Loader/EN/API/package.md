@@ -12,7 +12,7 @@ The core functionality used internally by CWL, to relocate files based on curren
 
 Provides utilities for iterating through package resources such as language files, sound files, and relocated files in each active mod's directory.
 
-All methods are static withing class `PackageIterator`.
+All methods are static within class `PackageIterator`.
 
 ## Mod Folder
 ```cs:no-line-numbers

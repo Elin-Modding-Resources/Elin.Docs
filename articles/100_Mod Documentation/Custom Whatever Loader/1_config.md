@@ -27,12 +27,12 @@ Cache sprites created by CWL instead of creating new from textures
 缓存CWL生成的贴图而不是每次重新构建  
 
 ### Dialog.ExpandedActions = true
-Expand the actions table for drama sheets for mod authors to utilize
-为剧情表启用action拓展，Mod作者能够利用更多功能设计剧情表
+Expand the actions table for drama sheets for mod authors to utilize  
+为剧情表启用action拓展，Mod作者能够利用更多功能设计剧情表  
 
 ### Dialog.ExpandedActionsAllowExternal = true
-Allow invoking external methods from other assemblies within the drama sheet, this may be unstable
-为剧情表启用action拓展时同时允许调用外部程序集的方法，这可能不稳定
+Allow invoking external methods from other assemblies within the drama sheet, this may be unstable  
+为剧情表启用action拓展时同时允许调用外部程序集的方法，这可能不稳定  
 
 ### Dialog.NoOverlappingSounds = true
 During dialogs, prevent sound actions from overlapping with each other by stopping previous sound first  
@@ -43,7 +43,7 @@ For talk texts, allow both JP quote `「」` and EN quote `""` with current lang
 对话文本允许日语引号和英语引号以及当前语言的引号同时作为Talk颜色检测词  
 
 ### Patches.FixBaseGameAvatar = true
-When repositioning custom character icon positions, let CWL fix base game characters too  
+When repositioning custom character icons, let CWL fix base game characters too  
 E.g. fairy icons are usually clipping through upper border  
 在重新定位自定义角色头像位置时，让CWL也修复游戏本体角色头像位置。例如，妖精角色的头像通常会超出边界  
 
