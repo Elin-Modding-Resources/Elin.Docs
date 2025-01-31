@@ -22,6 +22,10 @@ export function makeNavBar(lastUpdated: string, diffVer: string) {
       text: "📗 Elin Sources",
       items: [
         {
+          text: "Lang",
+          link: "https://docs.google.com/spreadsheets/d/1cje2GHiKwjBd_YLYWqWlddm2YLsYnRiB",
+        },
+        {
           text: "SourceBlock",
           link: "https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v",
         },
