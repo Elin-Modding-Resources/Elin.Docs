@@ -52,4 +52,4 @@ internal class ActLionDance : Act
 
 ## 信仰能力
 
-如果您的自定义能力是一个自定义信仰的能力，请使用标签 **godAbilit,信仰 ID**，例如将您的能力设为 **cwl_spaghettigod** 信仰的能力，标签应为 **godAbility,cwl_spaghettigod**。信仰能力在使用时会触发该信仰的神的对话。
+如果您的自定义能力是一个自定义信仰的能力，请使用标签 **godAbility,信仰 ID**，例如将您的能力设为 **cwl_spaghettigod** 信仰的能力，标签应为 **godAbility,cwl_spaghettigod**。信仰能力在使用时会触发该信仰的神的对话。
