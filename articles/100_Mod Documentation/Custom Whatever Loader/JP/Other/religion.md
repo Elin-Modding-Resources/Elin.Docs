@@ -14,7 +14,7 @@ hide: true
 
 例えば：**cwl_spaghettigod#minor#cannot** は、弱神の信仰として設定され、参加できなくなります。しかし、あなたの信仰の実際のIDは依然として **cwl_spaghettigod** であり、インポート時にタグは削除されます。
 
-カスタムの何でもローダーは、あなたのカスタム **god_talk.xlsx** を基本ゲームに統合します。これは信仰が機能するために必要です。基本ゲームのシートは **Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx** で参照できます。
+信仰のためのオプションのカスタムポートレートを作成するには、**Texture** フォルダーに **.png** 画像を入れ、信仰 ID と同じファイル名を使用してください。例えば、**cwl_spaghettigod.png** のように。
 
 ## 信仰会話
 
