@@ -57,7 +57,7 @@ Within the stock file, it's simply as follows:
 + `Num` is the count of the items in the stack. Default value is `1`.
 + `Restock` defines whether it's a limited time item that can only be bought once when set to `false`. Default value is `true`.
 + `Type` can be `Item`, `Recipe`, or `Spell`. Default value is `Item`.
-+ `Rarity` can be `Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`. Default value is `Random`.
++ `Rarity` can be `Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`. Default value is `Normal`.
 + `Identified` determines the initial identification state of the item. Default value is `true`.
 
 You can omit any fields that you wish to use the default value for. For example, this is a valid stock item:

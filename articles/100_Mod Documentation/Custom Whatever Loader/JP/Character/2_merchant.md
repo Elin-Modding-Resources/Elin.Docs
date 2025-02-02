@@ -62,7 +62,7 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
 + `Num` はスタック内のアイテムの数量です。デフォルト値は `1` です。
 + `Restock` はそれが限定アイテムかどうかを定義します。`false` に設定すると、一度だけ購入可能です。デフォルト値は `true` です。
 + `Type` は `Item`（アイテム）、`Recipe`（レシピ）、または `Spell`（呪文書）です。デフォルト値は `Item` です。
-+ `Rarity` はアイテムのレアリティで、`Random`、`Crude`、`Normal`、`Superior`、`Legendary`、`Mythical`、`Artifact` のいずれかです。デフォルト値は `Random` です。
++ `Rarity` はアイテムのレアリティで、`Random`、`Crude`、`Normal`、`Superior`、`Legendary`、`Mythical`、`Artifact` のいずれかです。デフォルト値は `Normal` です。
 + `Identified` は購入時にアイテムが鑑定済みかどうかを定義します。デフォルト値は `true` です。
 
 デフォルト値を使用したいフィールドは省略できます。例えば、これは合法な在庫アイテムです：
