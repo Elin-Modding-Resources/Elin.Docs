@@ -30,7 +30,7 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
       "Restock": true,
       "Type": "Item",
       "Rarity": "Random",
-      "Identified": true,
+      "Identified": true
     },
     {
       "Id": "example_item_limited",
@@ -39,7 +39,7 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
       "Restock": false,
       "Type": "Item",
       "Rarity": "Artifact",
-      "Identified": true,
+      "Identified": true
     },
     {
       "Id": "example_item_craftable",
@@ -48,7 +48,7 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
       "Restock": false,
       "Type": "Recipe",
       "Rarity": "Random",
-      "Identified": true,
+      "Identified": true
     }
   ]
 }
@@ -64,7 +64,7 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
 + `Rarity` 是物品的稀有度，`Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`。默认值为 `Normal`。
 + `Identified` 定义它购买时是否已鉴定。默认值为 `true`。
 
-任何您希望使用默认值的字段，都可以省略，例如，这是一个合法的库存物品：
+**任何您希望使用默认值的字段，都可以省略**。例如，这是一个合法的库存物品：
 ```json
 {
   "Id": "example_item"

@@ -30,7 +30,7 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
       "Restock": true,
       "Type": "Item",
       "Rarity": "Random",
-      "Identified": true,
+      "Identified": true
     },
     {
       "Id": "example_item_limited",
@@ -39,7 +39,7 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
       "Restock": false,
       "Type": "Item",
       "Rarity": "Artifact",
-      "Identified": true,
+      "Identified": true
     },
     {
       "Id": "example_item_craftable",
@@ -48,7 +48,7 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
       "Restock": false,
       "Type": "Recipe",
       "Rarity": "Random",
-      "Identified": true,
+      "Identified": true
     }
   ]
 }
@@ -65,7 +65,7 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
 + `Rarity` はアイテムのレアリティで、`Random`、`Crude`、`Normal`、`Superior`、`Legendary`、`Mythical`、`Artifact` のいずれかです。デフォルト値は `Normal` です。
 + `Identified` は購入時にアイテムが鑑定済みかどうかを定義します。デフォルト値は `true` です。
 
-デフォルト値を使用したいフィールドは省略できます。例えば、これは合法な在庫アイテムです：
+**デフォルト値を使用したいフィールドは省略できます**。例えば、これは合法な在庫アイテムです：
 ```json
 {
   "Id": "example_item"

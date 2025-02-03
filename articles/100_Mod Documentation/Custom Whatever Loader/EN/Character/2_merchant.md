@@ -28,7 +28,8 @@ Within the stock file, it's simply as follows:
       "Num": 1,
       "Restock": true,
       "Type": "Item",
-      "Rarity": "Random"
+      "Rarity": "Random",
+      "Identified": true
     },
     {
       "Id": "example_item_limited",
@@ -36,7 +37,8 @@ Within the stock file, it's simply as follows:
       "Num": 1,
       "Restock": false,
       "Type": "Item",
-      "Rarity": "Artifact"
+      "Rarity": "Artifact",
+      "Identified": true
     },
     {
       "Id": "example_item_craftable",
@@ -44,7 +46,8 @@ Within the stock file, it's simply as follows:
       "Num": 1,
       "Restock": false,
       "Type": "Recipe",
-      "Rarity": "Random"
+      "Rarity": "Random",
+      "Identified": true
     }
   ]
 }
@@ -60,7 +63,7 @@ Within the stock file, it's simply as follows:
 + `Rarity` can be `Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`. Default value is `Normal`.
 + `Identified` determines the initial identification state of the item. Default value is `true`.
 
-You can omit any fields that you wish to use the default value for. For example, this is a valid stock item:
+**You can omit any fields that you wish to use the default value for**. For example, this is a valid stock item:
 ```json
 {
   "Id": "example_item"
