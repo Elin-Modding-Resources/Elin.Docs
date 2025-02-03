@@ -18,7 +18,7 @@ The `trait` cell has 5 parameters, `CustomConverter`, `width`, `height`, `invent
 
 ## Define Conversion Rules
 
-The conversion rule is a simple JSON file located in your `LangMod/**/Data/` folder, named `converter_ID.json`.
+The conversion rule is a simple JSON file located in your `LangMod/**/Data/` folder, named `converter_ID.json`，the ID is the unique ID for this conversion rule, such as `converter_fruit_barrel.json`.
 ```json
 {
     "DecaySpeed": 500,
@@ -35,7 +35,7 @@ The conversion rule is a simple JSON file located in your `LangMod/**/Data/` fol
             {
                 "Id": "raisin",
                 "Num": 5,
-                "PriceAdd": "base * 0.06"
+                "PriceAdd": "base * 0.06 + 5"
             }
         ],
         "tomato": [
@@ -57,7 +57,7 @@ The conversion rule is a simple JSON file located in your `LangMod/**/Data/` fol
 
 `Conversions` is a set of conversion rules, each entry should match the initial item's ID, or using `origin:originID` to include all variations with the same `_origin`. You can also overwrite specific item from previously included entries, such as `grape` from `origin:fruit`.
 
-Each conversion entry has an array of products, each product includes the same fields from [`StockItem`](../Character/2_merchant.md), default fields can be omitted. The `PriceAdd` field is an expression to calculate the extra price added to the product, and `base` is the price of the initial item.
+Each conversion entry has an array of products, each product includes the same fields from [`StockItem`](../Character/2_merchant.md), default fields can be omitted. The `PriceAdd` field is a mathmatical expression to calculate the extra price added to the product, where `base` is the price of the initial item.
 
 ## Test Conversion Rules 
 

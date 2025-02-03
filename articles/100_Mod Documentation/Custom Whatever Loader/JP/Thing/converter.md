@@ -18,7 +18,7 @@ hide: true
 
 ## 変換ルールを定義する
 
-変換ルールはシンプルなJSONファイルで、`LangMod/**/Data/` フォルダーにあり、ファイル名は `converter_ID.json` です。
+変換ルールはシンプルなJSONファイルで、`LangMod/**/Data/` フォルダーにあり、ファイル名は `converter_ID.json` です。このIDは変換ルールのユニークなIDであり、例えば `converter_fruit_barrel.json` のようなものです。
 ```json
 {
     "DecaySpeed": 500,
@@ -35,7 +35,7 @@ hide: true
             {
                 "Id": "raisin",
                 "Num": 5,
-                "PriceAdd": "base * 0.06"
+                "PriceAdd": "base * 0.06 + 5"
             }
         ],
         "tomato": [
