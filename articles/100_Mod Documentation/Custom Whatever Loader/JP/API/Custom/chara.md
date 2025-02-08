@@ -16,13 +16,18 @@ Custom API for processing `Chara`.
 void CustomChara.AddChara(SourceChara.Row r);
 ```
 
-Process a row as custom character and let CWL manage it internally.
+Process a row as custom character and let CWL manage it internally. This will generate `CharaImport` profile.  
 
 ## `CreateTaggedChara`
 
 ```cs
-bool CustomChara.CreateTaggedChara(string id, out Chara? chara, string[]? equips = null, string[]? things = null)
+bool CustomChara.CreateTaggedChara(string id, out Chara? chara)
 ```
 
-Akin to `CharaGen.Create` but can also define the starting equipments and/or things. The equip entry is `ID#Rarity`, or omit `#Rarity` for random gen. The thing entry is `ID#Count`, or omit `#Count` for a default of `1`.
- 
+Akin to `CharaGen.Create` and also uses the CWL tags from Chara row. You can also pass explicit equipments and things tags:
+
+```cs
+bool CustomChara.CreateTaggedChara(string id, out Chara? chara, string[]? equips, string[]? things)
+```
+
+The equip entry is `ID#Rarity`, or omit `#Rarity` for random gen. The thing entry is `ID#Count`, or omit `#Count` for a default of `1`.
