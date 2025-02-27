@@ -83,6 +83,20 @@ CoroutineHelper.Deferred(
     1.5f);
 ```
 
+## `CwlContextMenu`
+
+Quick attribute to register a method to system context menu.
+```cs:no-line-numbers
+
+[CwlContextMenu("SubmenuA/SubmenuB/Btn C", "LangGeneral_id_or_text_or_omit")]
+private static void MyTestMethod()
+{
+    // ...
+}
+```
+
+The registered method's return value will be displayed on screen, if any.
+
 ## `ProgressIndicator`
 
 Helper to display a progress tracker for async operations on screen top right corner.

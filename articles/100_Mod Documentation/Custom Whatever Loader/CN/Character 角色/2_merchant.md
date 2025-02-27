@@ -71,7 +71,9 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
 }
 ```
 
-如果您不使用代码编辑器，您应该使用 [JSONLint](https://jsonlint.com/) 来验证您的 JSON。
+如果您不使用代码编辑器，您应该使用 [JSONLint](https://jsonlint.com/) 来验证您的 JSON。  
+
+代码API相关，请查看[Custom Merchant API](../API/Custom/merchant)。  
 
 ::: warning 格式变动
 + CWL 1.19.21 版本后新增了 `Identified` 字段，可以定义物品鉴定状态。这项改动兼容旧版本格式。

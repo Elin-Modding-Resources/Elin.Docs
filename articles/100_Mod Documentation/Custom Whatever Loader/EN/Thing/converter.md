@@ -57,7 +57,7 @@ The conversion rule is a simple JSON file located in your `LangMod/**/Data/` fol
 
 `Conversions` is a set of conversion rules, each entry should match the initial item's ID, or using `origin:originID` to include all variations with the same `_origin`. You can also overwrite specific item from previously included entries, such as `grape` from `origin:fruit`.
 
-Each conversion entry has an array of products, each product includes the same fields from [`StockItem`](../Character/2_merchant.md), default fields can be omitted. The `PriceAdd` field is a mathmatical expression to calculate the extra price added to the product, where `base` is the price of the initial item.
+Each conversion entry has an array of products, each product includes the same fields from [`StockItem`](../Character/2_merchant), default fields can be omitted. The `PriceAdd` field is a mathmatical expression to calculate the extra price added to the product, where `base` is the price of the initial item.
 
 ## Test Conversion Rules 
 

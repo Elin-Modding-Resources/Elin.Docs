@@ -70,7 +70,9 @@ Within the stock file, it's simply as follows:
 }
 ```
 
-If you are not using a code editor, you should use [JSONLint](https://jsonlint.com/) to validate your json.
+If you are not using a code editor, you should use [JSONLint](https://jsonlint.com/) to validate your json.  
+
+For API related usages, see [Custom Merchant API](../API/Custom/merchant).  
 
 ::: warning Spec Change
 + CWL 1.19.21 added `Identified` entry, to allow unidentified items to be sold. This change is backwards compatible.

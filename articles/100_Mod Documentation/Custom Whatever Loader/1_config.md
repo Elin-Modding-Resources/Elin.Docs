@@ -64,6 +64,10 @@ Allow CWL to run pre/post processors for workbook, sheet, and cells.
 When importing incompatible source sheets, try importing via column name instead of order  
 当导入可能不兼容的源表时，允许CWL使用列名代替列序导入  
 
+### Source.OverrideSameId 
+When importing rows with an existing ID, replace it instead of adding duplicate rows  
+当导入重复ID的单元行时，覆盖旧行而不是添加新行  
+
 ### Source.RethrowException = true
 Rethrow the excel exception as SourceParseException with more details attached  
 当捕获Excel解析异常时，生成当前单元格详细信息并重抛为SourceParseException  

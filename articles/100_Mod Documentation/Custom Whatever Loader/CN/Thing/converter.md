@@ -57,7 +57,7 @@ hide: true
 
 `Conversions` 是一组转换规则，每个条目应与初始物品的ID匹配，或者使用 `origin:originID` 来包含所有具有相同 `_origin` 的变体。您还可以覆盖之前包含的特定物品，例如在 `origin:fruit` 中覆盖 `grape` 条目。
 
-每个转换条目都有一个产品数组，而每个产品包含来自 [`StockItem`](../Character%20角色/2_merchant.md) 的相同字段，默认字段可以省略。`PriceAdd` 字段是一个数学表达式，用于计算添加到产品上的额外价格，其中 `base` 是初始物品的价格。
+每个转换条目都有一个产品数组，而每个产品包含来自 [`StockItem`](../Character%20角色/2_merchant) 的相同字段，默认字段可以省略。`PriceAdd` 字段是一个数学表达式，用于计算添加到产品上的额外价格，其中 `base` 是初始物品的价格。
 
 ## 测试转换规则
 
