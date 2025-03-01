@@ -62,3 +62,7 @@ Each conversion entry has an array of products, each product includes the same f
 ## Test Conversion Rules 
 
 You can edit your conversion rules when game is running. After saving your changes, use console command `cwl.converter.reload` to reload all conversion rules.
+
+## API
+
+[CustomConverter](../API/Custom/converter)

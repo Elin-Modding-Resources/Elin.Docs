@@ -62,3 +62,7 @@ hide: true
 ## テスト変換ルール
 
 ゲームが実行中に変換ルールを編集することができます。変更を保存した後、コンソールコマンド `cwl.converter.reload` を使用してすべての変換ルールを再読み込みし、テストを行ってください。
+
+## API
+
+[CustomConverter](../API/Custom/converter)

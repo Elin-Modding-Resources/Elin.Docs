@@ -20,7 +20,7 @@ namespace WhateverYourNamespaceIs;
 // corresponds to MyCustomThingy in source sheet
 internal class TraitMyCustomThingy : TraitBrewery
 {
-    private void _OnProduce(Card card)
+    private void _OnProduce(Thing ingredient, Thing product)
     {
         // do stuff to the product
     }

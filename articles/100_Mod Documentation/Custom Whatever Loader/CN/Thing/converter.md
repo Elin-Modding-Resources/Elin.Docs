@@ -62,3 +62,7 @@ hide: true
 ## 测试转换规则
 
 您可以在游戏运行时编辑转换规则。保存更改后，使用控制台命令 `cwl.converter.reload` 重新加载所有转换规则以便测试。
+
+## API
+
+[CustomConverter](../API/Custom/converter)
