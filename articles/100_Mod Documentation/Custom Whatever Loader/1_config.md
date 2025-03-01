@@ -42,6 +42,14 @@ During dialogs, prevent sound actions from overlapping with each other by stoppi
 For talk texts, allow both JP quote `「」` and EN quote `""` with current language quote to be used as `Msg.colors.Talk` identifier  
 对话文本允许日语引号和英语引号以及当前语言的引号同时作为Talk颜色检测词  
 
+### Exceptions.Analyze = true
+Analyze the unhandled exception during gameplay and log the results  
+分析游戏运行时抛出的异常  
+
+### Exceptions.Popup = true
+Display a popup for the analyzed unhandled exception  
+在游戏中显示运行时抛出的异常  
+
 ### Patches.FixBaseGameAvatar = true
 When repositioning custom character icons, let CWL fix base game characters too  
 E.g. fairy icons are usually clipping through upper border  
