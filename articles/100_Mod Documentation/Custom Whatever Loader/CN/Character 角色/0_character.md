@@ -43,3 +43,9 @@ CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签�
 从 CWL 1.15.0 开始，以前的标签 `addAdvZone`/`addAdvEq`/`addAdvThing` 已被上述普通标签`addZone`/`addEq`/`addThing`取代，但仍然可以使用。  
 ![img](https://i.postimg.cc/SN93258B/image.png)
 :::
+
+## 禁用随机移动
+
+全局角色如果不在玩家的阵营中，会随机拜访其他城镇。您可以使用标签 `addFlag_StayHomeZone` 让他们留在起始区域。
+
+该 flag 可以在剧情表中通过 `invoke*` 动作和 `flag_mod(StayHomeZone, 0)` 方法进行更改，`actor` 单元填写目标角色的 ID（或者 `tg` 指定剧情对象）。

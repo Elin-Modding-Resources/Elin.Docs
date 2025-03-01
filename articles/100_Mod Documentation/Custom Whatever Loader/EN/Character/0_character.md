@@ -45,3 +45,9 @@ If your character has trait **`Adventurer`** or **`AdventurerBacker`**, CWL will
 Starting from CWL 1.15.0, previous tags `addAdvZone`/`addAdvEq`/`addAdvThing` are now deprecated by the normal tags shown above, but still accepted.  
 ![img](https://i.postimg.cc/SN93258B/image.png)
 :::
+
+## prevent random visiting
+
+Global characters randomly visit other towns if they are not in player's faction. You can use tag `addFlag_StayHomeZone` to make them stay in the home zone.  
+
+This flag can be changed in drama sheet using `invoke*` action and `flag_mod(StayHomeZone, 0)` method, with `actor` cell filled in target character's ID (or `tg` for drama target).  

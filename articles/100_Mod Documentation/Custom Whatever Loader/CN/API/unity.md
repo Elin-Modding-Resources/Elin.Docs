@@ -126,6 +126,62 @@ IEnumerator MyAsyncTask()
 }
 ```
 
+## `CwlContextMenu`
+
+便捷属性用于将方法注册到系统菜单。
+```cs:no-line-numbers
+[CwlContextMenu("菜单A/菜单B/按钮 C", "LangGeneral_ID_或者文本_或者省略")]
+private static void MyTestMethod()
+{
+    // ...
+}
+```
+
+注册的方法返回值将显示在屏幕上（如果有的话）。
+
+## `ProgressIndicator`
+
+用于在屏幕右上角显示异步操作的进度跟踪器。
+```cs:no-line-numbers
+static string currentLoading = "";
+static bool shouldClose;
+
+IEnumerator MyAsyncTask()
+{
+    var progress = ProgressIndicator.CreateProgress(
+        onUpdate: () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null),
+        shouldKill: () => shouldClose
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "加载完成";
+    shouldClose = true;
+}
+```
+
+您还可以使用作用域重载，它会在方法退出时自动关闭：
+```cs:no-line-numbers
+static string currentLoading = "";
+
+IEnumerator MyAsyncTask()
+{
+    using var progress = ProgressIndicator.CreateProgressScoped(
+        () => new UpdateInfo(currentLoading)
+    );
+
+    foreach (var file in BunchOfFiles) {
+        currentLoading = file.Name;
+        yield return new SomeTask();
+    }
+
+    currentLoading = "加载完成";
+}
+```
+
 ## `SpriteCreator`
 
 帮助加载 PNG 作为 Sprite，带有缓存和调整大小选项。

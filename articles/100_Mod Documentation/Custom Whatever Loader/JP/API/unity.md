@@ -113,7 +113,7 @@ static string currentLoading = "";
 
 IEnumerator MyAsyncTask()
 {
-    using var progress = ProgressIndicator.CreateProgress(
+    using var progress = ProgressIndicator.CreateProgressScoped(
         () => new UpdateInfo(Text: currentLoading, Sprite: null, Color: null)
     );
 
