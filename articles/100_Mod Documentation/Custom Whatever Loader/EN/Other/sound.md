@@ -292,13 +292,13 @@ The three types of playlists will be applied in the order of `Global`, Playlist 
 
 ### Hot Reload/BGM View
 
-CWL provides a set of helper commands in game so you can develop your playlist easier. After loading in, open up console and use `cwl.bgm.view` to view current playlist and items.
+After loading the save file in the game, you can view and control the current playlist using the CWL panel:
 
-![](../../assets/cwl_bgm_view.png)
+![](./assets/cwl_bgm_panel.png)
 
-You may also use `cwl.bgm.next`, `cwl.bgm.last`, `cwl.bgm.shuffle` to test your playlist. After you are satisfied with your work, use `cwl.bgm.hide` to kill the popup.
+![](./assets/cwl_bgm_view.png)
 
-When you edit your playlist JSONs while game is running, you can also hot reload all playlists with `cwl.bgm.rebuild`. Although CWL has commands for hot reloading new sounds, it's not recommended for BGM editing because of the possible indexing problem.
+Once you have edited the playlist JSON while the game is running, you can hot-reload all playlists. Although the CWL has console commands for hot-reloading newly added audio files, it is not recommended due to potential indexing issues.
 
 ### Examples
 
