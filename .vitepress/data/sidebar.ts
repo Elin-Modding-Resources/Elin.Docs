@@ -113,7 +113,32 @@ function getDiff() {
       collapsed: true,
     });
   }
-  sidebar.sort((a, b) => (b as any).text.localeCompare((a as any).text));
+
+  sidebar.sort((a, b) => {
+    const parseEAVersion = (text: string) => {
+      const afterEA = (text.split("EA ")[1] || "").trim();
+      const versions = afterEA.match(/\d+/g) || [];
+      return [
+        parseInt(versions[0], 10) || 0,
+        parseInt(versions[1], 10) || 0,
+        parseInt(versions[2], 10) || 0,
+      ];
+    };
+
+    const versionA = parseEAVersion(a.text);
+    const versionB = parseEAVersion(b.text);
+
+    for (let i = 0; i < 3; i++) {
+      if (versionA[i] > versionB[i]) {
+        return -1;
+      }
+      if (versionA[i] < versionB[i]) {
+        return 1;
+      }
+    }
+
+    return b.text.localeCompare(a.text);
+  });
 
   // merge children changes
   let grouped = sidebar.filter((version) => !version.text.startsWith("+"));
