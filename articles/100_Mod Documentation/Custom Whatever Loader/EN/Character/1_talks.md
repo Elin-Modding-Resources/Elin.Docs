@@ -157,9 +157,9 @@ In the drama sheet, you can use the CWL special action `invoke*` to call expansi
 
 Parameters are separated by commas `,` and written within the parentheses of the expansion method, similar to code syntax:
 
-|action|param|
-|-|-|
-|`invoke*`|honk_honk(arg1, arg2)|
+|action|param|actor|
+|-|-|-|
+|`invoke*`|honk_honk(arg1, arg2)|`pc`|
 
 Most of the methods also take `actor` cell as the target character to execute the method on, such as `pc` or `tg`(the drama owner character), or any valid [character id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657).
 
@@ -199,7 +199,7 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |-|-|-|-|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|if satisfies|
 |`if_flag`|value expression|Check `actor` flag value with expression or set it, such as `=5`, `1`, `!=0`|if satisfies|
-|`if_condition`|condition alias|Check if `actor` has active condition with alias|if active|
+|`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|if active|
 |`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
 |`if_location`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752),level(optional)|Check if `actor` is in certain zone and optionally check level|if present|
 
