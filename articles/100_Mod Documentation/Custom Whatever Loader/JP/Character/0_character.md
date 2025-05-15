@@ -11,13 +11,27 @@ Charaテーブルでカスタムキャラクターを定義したと仮定しま
 
 CWLはタグセルを使用して機能を追加します。任意の数のタグを追加できます。タグは `,`（カンマ）で区切り、間にスペースを入れないように注意してください。
 
-## エリアへの自動生成/追加
 
-CWLがキャラクターを特定のエリアに生成するには、タグ `addZone_*` を使用し、`*`（アスタリスク）をエリアのタイプ名で置き換えるか、ランダムエリアに生成するためにアスタリスクをそのままにします。
+## 自動生成/エリアへの追加
 
-たとえば、小さな庭にキャラクターを生成したい場合は、`addZone_LittleGarden` を使用します。[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) を確認し、正しいエリア名についてはtype列を参考にしてください。
+CWLでキャラクターを特定のエリアに生成させるには、`addZone_*`タグを使用します。`*`（アスタリスク）をゾーンの**alias**に置き換えるか、アスタリスクを残すとランダムなエリアに生成されます。
+ 
+- startSite（野原）に生成する場合 → `addZone_startSite`  
+- ダルフィ地下1階に生成する場合 → `addZone_derphy/-1`  
+[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=2115280503#gid=2115280503)の**alias**列を参照してください。
 
-各 `addZone` タグは、そのエリアにキャラクターを生成することを保証します。例えば、`addZone_Lumiest, addZone_LittleGarden, addZone_Specwing, addZone_*` は、選択された3つのエリアとランダムな1つのエリアにキャラクターを生成します。
+各`addZone`タグは、そのエリアに必ず1体のキャラクターを生成します。  
+例：  
+```
+addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*
+```
+
+→ 選択した3エリア＋ランダム1エリアにそれぞれ1体ずつ生成（合計4体）
+
+::: warning 注意
+CWL 1.20.11 から、以前のタグ `addZone_Type` は上記の一般的なタグ `addZone_alias` に置き換えられましたが、引き続き使用可能です。
+![img](./assets/spawn_chara.png)
+:::
 
 ## 初期装備/アイテムの追加
 
@@ -48,4 +62,4 @@ CWL 1.15.0以降、以前のタグ`addAdvZone`/`addAdvEq`/`addAdvThing`は上記
 
 グローバルキャラクターがプレイヤーの陣営にいない場合、他の町をランダムに訪れます。`addFlag_StayHomeZone` タグを使用すると、彼らを初期エリアに留まらせることができます。
 
-このフラグは、ストーリーテーブルで `invoke*` アクションと `flag_mod(StayHomeZone, 0)` メソッドを使用して変更できます。`actor` セクションには対象キャラクターの ID（または `tg` でストーリーオブジェクトを指定）を記入します。
+このフラグは、ストーリーテーブルで `invoke*` アクションと `mod_flag(StayHomeZone, 0)` メソッドを使用して変更できます。`actor` セクションには対象キャラクターの ID（または `tg` でストーリーオブジェクトを指定）を記入します。

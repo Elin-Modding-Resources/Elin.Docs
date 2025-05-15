@@ -15,11 +15,16 @@ If you need additional features, don't hesitate to ask!
 
 ## spawn on game load
 
-To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with zone **type name** or keep the asterisk for a random zone. 
+To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with zone **alias** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
 
-For example, to spawn the chara in little garden, use `addZone_LittleGarden`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) and reference the type column for a list of valid zone names.
+For example, to spawn the chara in meadow, use `addZone_little_garden`. To also spawn in derphy underground, use `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) and reference the **alias** column.
 
-For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_Lumiest,addZone_LittleGarden,addZone_Specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
+For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
+
+::: warning  
+Starting from CWL 1.20.11, previous tags `addAdvZone_TypeName` are now deprecated by the `addZone_alias` tags shown above, but still accepted.  
+![spawn_ex](./assets/spawn_chara.png)
+:::
 
 ## add equipment/thing
 
@@ -50,4 +55,4 @@ Starting from CWL 1.15.0, previous tags `addAdvZone`/`addAdvEq`/`addAdvThing` ar
 
 Global characters randomly visit other towns if they are not in player's faction. You can use tag `addFlag_StayHomeZone` to make them stay in the home zone.  
 
-This flag can be changed in drama sheet using `invoke*` action and `flag_mod(StayHomeZone, 0)` method, with `actor` cell filled in target character's ID (or `tg` for drama target).  
+This flag can be changed in drama sheet using `invoke*` action and `mod_flag(StayHomeZone, 0)` method, with `actor` cell filled in target character's ID (or `tg` as the drama target).  
