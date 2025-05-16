@@ -199,10 +199,11 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |method|param|description|jump|
 |-|-|-|-|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|if satisfies|
-|`if_flag`|value expression|Check `actor` flag value with expression or set it, such as `=5`, `1`, `!=0`|if satisfies|
 |`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|if active|
-|`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
+|`if_faith`|[religion ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), gift rank(optional)|Check if `actor` is certain religion and above gift rank(default 0)|if satisfies|
+|`if_flag`|value expression|Check `actor` flag value with expression or set it, such as `=5`, `1`, `!=0`|if satisfies|
 |`if_location`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752),level(optional)|Check if `actor` is in certain zone and optionally check level|if present|
+|`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
 
 ### Implementing Custom Method
 
