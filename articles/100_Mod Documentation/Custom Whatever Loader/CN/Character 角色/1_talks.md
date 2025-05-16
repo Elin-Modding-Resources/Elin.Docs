@@ -79,7 +79,7 @@ hide: true
 |`choice/bye`||插入默认告别选项|
 |`cancel`||设置右键/ESC键行为(需配合`jump`, 通常是`end`)|
 |`setFlag`|flag, 值(可选)|设置flag值(默认1)|
-|`reload`||重新加载剧情，以便应用当前剧情中所做的任何flag更改。需配合`jump`，通常是`main`|
+|`reload`||重新加载剧情，以便应用当前剧情中所做的任何flag更改。需配合`jump`，通常是`main`。**这并不是指热重载，开发时热重载只需要你保存文件更改并再次打开对话即可**|
 |`enableTone`||启用对话语气转换|
 |`addActor`||添加角色标识(`actor`列填写新ID时自动触发)|
 |`invoke`|方法名|调用方法|

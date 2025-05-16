@@ -79,7 +79,7 @@ Common actions:
 |`choice/bye`||Insert a default bye choice|
 |`cancel`||Set right click / escape key behavior. Requires `jump`, usually set to `end`|
 |`setFlag`|flag name,value(optional)|Set a flag with value or default 1 if not provided|
-|`reload`||Reload the drama so any flag changes made in the current drama can be applied. Requires `jump`, usually set to `main`|
+|`reload`||Reload the drama so any flag changes made in the current drama can be applied. Requires `jump`, usually set to `main`. Don't confuse this with hot reload during development - for that you only need to save the changes and it will be reloaded next time you start the drama|
 |`enableTone`||Enable tone transformation for the drama|
 |`addActor`||Add a drama actor to use later, `text` can be used to set a name override. This is done automatically when you fill in new id in `actor` cell. Requires [character id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657) in `actor`|
 |`invoke`|method name|Call a method. All of them are hardcoded for specific use. Check CWL Expansion below|
