@@ -192,13 +192,13 @@ CWLの組み込み拡張メソッドは[こちら](https://github.com/gottyduke/
 
 これらも拡張メソッド（`invoke*`アクションを通じて呼び出す）ですが、これらの値はジャンプを実行するために使用できます。
 
-| メソッド | パラメータ | 説明 | ジャンプ条件 |
-| - | - | - | - |
-| `if_affinity` | 数値式 | `actor`の好感度をチェック | 満たされた場合 |
-| `if_flag` | 数値式 | `actor`のフラグ値をチェック | 満たされた場合 |
-| `if_condition` | [状態エイリアス](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246) | `actor`が状態を持っているかチェック | 満たされた場合 |
-| `if_tag` | タグ | `actor`がタグを持っているかチェック | 満たされた場合 |
-| `if_location` | [エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層数（オプション） | `actor`のいるエリアをチェック | 満たされた場合 |
+|メソッド|パラメータ|説明|ジャンプ条件|
+|-|-|-|-|
+|`if_affinity`|数値式|`actor`の好感度をチェック|満たされた場合|
+|`if_flag`|数値式|`actor`のフラグ値をチェック|満たされた場合|
+|`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`が状態を持っているかチェック|満たされた場合|
+|`if_tag`|tag|`actor`がタグを持っているかチェック|満たされた場合|
+|`if_location`|[エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層数（オプション）|`actor`のいるエリアをチェック|満たされた場合|
 
 ### カスタムメソッド実装
 
