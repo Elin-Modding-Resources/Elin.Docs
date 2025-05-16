@@ -58,7 +58,7 @@ A drama sheet is executed from top to bottom, and composed of drama lines. A dra
 - `id`: unique id for this line, this is only and mandatory for `text` lines.
 - `text` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_JP` and `text_EN` is self explanatory, `text` is for other languages(**CWL switches sheet by the LandMod/ subfolder**, so you should fill in the localized texts in the `text` cell).
 
-The basic flow of the drama execution connected by drama steps, each drama step contains one or many drama lines, line can be pure dialog, action, and/or conditional at the same time.
+The flow of the drama is connected by drama steps, each drama step contains one or many drama lines, line can be pure dialog, action, and/or conditional at the same time.
 
 `main` is the default drama step that gets executed first, `end` is the default step that exits the drama.
 
@@ -66,9 +66,9 @@ When writing your own drama sheet, avoid using step names starting with undersco
 
 ### Drama Actions
 
-Text lines require an input to advance to the next line in game, such as clicking or pressing key. 
+Text lines are the most common lines, they only have `text` cell filled in and optionally `if` condition. They require an input in game to advance to the next line in game, such as clicking or pressing key. 
 
-Action lines(except `choice`) do not require input and cannot be used with `text` on the same line, if both are filled in, `text` will be ignored.
+Action lines(except `choice`) do not require input and will keep executing. If both `action` and `text` are provided, `text` will be ignored.
 
 Common actions:
 
@@ -79,7 +79,8 @@ Common actions:
 |`choice/bye`||Insert a default bye choice|
 |`cancel`||Set right click / escape key behavior. Requires `jump`, usually set to `end`|
 |`setFlag`|flag name,value(optional)|Set a flag with value or default 1 if not provided|
-|`enableTone`||Enable tone transformation for the dialog|
+|`reload`||Reload the drama so any flag changes made in the current drama can be applied. Requires `jump`, usually set to `main`|
+|`enableTone`||Enable tone transformation for the drama|
 |`addActor`||Add a drama actor to use later, `text` can be used to set a name override. This is done automatically when you fill in new id in `actor` cell. Requires [character id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657) in `actor`|
 |`invoke`|method name|Call a method. All of them are hardcoded for specific use. Check CWL Expansion below|
 |`setBG`|image name(optional)|Set an image as background or use empty to clear it. CWL allows you to supply your own png image in **Texture** folder|

@@ -79,6 +79,7 @@ hide: true
 |`choice/bye`||デフォルトの別れオプションを追加|
 |`cancel`||右クリック/ESCキーの動作を設定（通常は`end`に`jump`）|
 |`setFlag`|flag, 値（省略可）|flagを設定（デフォルト値1）|
+|`reload`||ストーリーを再読み込みして、現在のストーリーで行ったフラグの変更を適用します。通常は`jump`と組み合わせて使用し、通常は`main`です|
 |`enableTone`||会話のトーン切り替えを有効化|
 |`addActor`||キャラクター識別子を追加（`actor`列に新ID入力時自動発動）|
 |`invoke`|メソッド名|メソッドを呼び出し|
@@ -189,15 +190,15 @@ CWLの組み込み拡張メソッドは[こちら](https://github.com/gottyduke/
 
 ### カスタム条件
 
-`invoke*` で呼び出す拡張メソッドを用いた条件判定：
+これらも拡張メソッド（`invoke*`アクションを通じて呼び出す）ですが、これらの値はジャンプを実行するために使用できます。
 
-|メソッド|パラメータ|説明|ジャンプ条件|
-|-|-|-|-|
-|`if_affinity`|数値式|`actor`の好感度をチェック|条件満たす時|
-|`if_flag`|数値式|`actor`のflag値をチェック|条件満たす|
-|`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|状態の有無をチェック|条件満たす時|
-|`if_tag`|tag|tagの有無をチェック|条件満たす時|
-|`if_location`|[エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層（省略可）|所在エリアをチェック|条件満たす時|
+| メソッド | パラメータ | 説明 | ジャンプ条件 |
+| - | - | - | - |
+| `if_affinity` | 数値式 | `actor`の好感度をチェック | 満たされた場合 |
+| `if_flag` | 数値式 | `actor`のフラグ値をチェック | 満たされた場合 |
+| `if_condition` | [状態エイリアス](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246) | `actor`が状態を持っているかチェック | 満たされた場合 |
+| `if_tag` | タグ | `actor`がタグを持っているかチェック | 満たされた場合 |
+| `if_location` | [エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層数（オプション） | `actor`のいるエリアをチェック | 満たされた場合 |
 
 ### カスタムメソッド実装
 
