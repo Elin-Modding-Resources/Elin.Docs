@@ -133,9 +133,10 @@ hide: true
 条件フォーマットは `条件, パラメータ`。拡張式も可能：
 
 ```
-=,test_flag, 1
-,counter, 20
-!,flag, 69
+=,test_flag,1
+>,flag,5
+,counter,20
+!,flag,69
 ```
 
 基本的に `if` 列のみ使用。複雑な条件は `if2` 列を追加。

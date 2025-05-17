@@ -130,8 +130,6 @@ You can attach condition checks to any line by filling in `if` and/or `if2` cell
 
 The format for a condition is `condition,param`. Since `hasFlag` is used most often, it can be simplified with value check too:
 ```
-hasFlag,example_flag
-=>
 =,example_flag,1
 >,example_counter,20
 !,exmaple_not_equal_flag,69
