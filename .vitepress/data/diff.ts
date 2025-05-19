@@ -18,7 +18,7 @@ export async function generateDiff() {
 
   for (const commit of commits) {
     const message = commit.commit.message;
-    if (/^(?!EA|\+EA)/.test(message)) {
+    if (/^(?!EA|\+EA)/.test(message.trim())) {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
