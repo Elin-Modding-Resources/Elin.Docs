@@ -49,7 +49,7 @@ internal static bool honk_honk(DramaManager dm, Dictionary<string, string> line,
     parameters.Requires(out var soundId, out var arg2); // up to arg4
     dm.RequiresActor(out var actor);
 
-    pc.PlaySound(soundId);
+    actor.PlaySound(soundId);
 
     return true;
 }
@@ -65,7 +65,7 @@ internal static bool honk_honk(DramaManager dm, Dictionary<string, string> line,
     dm.RequiresActor(out var actor);
 
     if (soundId.Provided) {
-        pc.PlaySound(soundId.Value);
+        actor.PlaySound(soundId.Value);
     }
 
     var arg2WithFallback = arg2.Get("fallbackValue");
