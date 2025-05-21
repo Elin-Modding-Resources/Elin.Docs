@@ -22,7 +22,7 @@ For example, to spawn the chara in meadow, use `addZone_little_garden`. To also 
 For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
 
 ::: warning  
-Starting from CWL 1.20.11, previous tags `addAdvZone_TypeName` are now deprecated by the `addZone_alias` tags shown above, but still accepted.  
+Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_alias` tags shown above, but still accepted.  
 ![spawn_ex](./assets/spawn_chara.png)
 :::
 

@@ -14,12 +14,14 @@ hide: true
         "Delay": 0.1,
         "IdEffect": "gunfire",
         "IdSound": "attack_gun",
-        "SpriteId": "ranged_gun",
+        "IdSprite": "ranged_gun",
         "Eject": true,
         "FirePos": {
             "x": 0.23,
             "y": 0.04
-        }
+        },
+        "CaneColor": "03fcdf",
+        "CaneColorBlend": false
     }
 }
 ```
@@ -30,9 +32,11 @@ hide: true
 + `Delay` 是动画帧延迟。
 + `IdEffect` 是击发特效的ID。
 + `IdSound` 是击发音效的ID。如果使用自定义音频，需要将其放置于 **Sound** 文件夹中。
-+ `SpriteId` 是发射物的贴图名称，这需要是游戏中存在的纹贴图名称或者你放置于 **Texture** 文件夹中的贴图名称（去除.png）。
++ `IdSprite` 是发射物的贴图名称，这需要是游戏中存在的纹贴图名称或者你放置于 **Texture** 文件夹中的贴图名称（去除.png）。
 + `Eject` 决定是否附有抛出弹壳动画。
 + `FirePos` 则是击发特效相对于武器中心的位置。
++ `CaneColor` 是可选的杖类武器色调覆盖，留空则使用武器默认元素的颜色。
++ `CaneColorBlend` 决定是否在杖类武器色调覆盖时与原颜色混合。
 
 您可以在此文件中添加任意数量的gun数据，只需用 `,` 逗号分隔它们，例如：
 ```json
@@ -45,3 +49,7 @@ hide: true
     }
 }
 ```
+
+::: warning 格式变动
+从 CWL 1.20.14 开始，以前的字段 `SpriteId` 已被新字段 `IdSprite` 取代，但仍然可以使用。  
+:::
