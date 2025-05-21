@@ -100,7 +100,7 @@ hide: true
 |`end`||シナリオを終了|
 |`addKeyItem`|[キーアイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)|キーアイテムを付与|
 |`drop`|[アイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|プレイヤー位置にアイテム生成|
-|`addResource`|資源タイプ, 数量|ホーム資源追加（`food` `money`等）|
+|`addResource`|[資源タイプ](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md), 数量|ホーム資源追加|
 |`shake`||画面振動|
 |`slap`||シナリオ所有者を平手打ち|
 |`destroyItem`|[アイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|指定アイテムを削除|

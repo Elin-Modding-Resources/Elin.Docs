@@ -56,7 +56,7 @@ A drama sheet is executed from top to bottom, and composed of drama lines. A dra
 - `param`: the parameters for the action.
 - `actor`: The current line speaker. Only fill this when you want to introduce multiple character conversation.
 - `id`: unique id for this line, this is only and mandatory for `text` lines.
-- `text` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_JP` and `text_EN` is self explanatory, `text` is for other languages(**CWL switches sheet by the LandMod/ subfolder**, so you should fill in the localized texts in the `text` cell).
+- `text` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_JP` and `text_EN` is self explanatory, `text` is for other languages(**CWL switches sheet by the LandMod/ subfolder**, so you should put the localized texts in the `text` cell).
 
 The flow of the drama is connected by drama steps, each drama step contains one or many drama lines, line can be pure dialog, action, and/or conditional at the same time.
 
@@ -66,7 +66,7 @@ When writing your own drama sheet, avoid using step names starting with undersco
 
 ### Drama Actions
 
-Text lines are the most common lines, they only have `text` cell filled in and optionally `if` condition. They require an input in game to advance to the next line in game, such as clicking or pressing key. 
+Text lines are the most common lines, they only have `text` and `id` cell filled in and optionally `if` condition. They require an input in game to advance to the next line in game, such as clicking or pressing key. 
 
 Action lines(except `choice`) do not require input and will keep executing. If both `action` and `text` are provided, `text` will be ignored.
 
@@ -98,7 +98,7 @@ Common actions:
 |`end`||Explicitly end the drama. Same as `jump` to drama step `end`|
 |`addKeyItem`|[key item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)|Add key item by id to the player|
 |`drop`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|Drop an item as reward at player's position|
-|`addResource`|resource name,count|Add home resource by count. `food` `money` `knowledge` `influence` `fun` `safety` `nature` `education` `culture` `industry` `medicine` `worth` `karma` `reknown`|
+|`addResource`|[resource name](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md),count|Add home resource by count|
 |`shake`||Shake the screen|
 |`slap`||Slap the drama owner character|
 |`destroyItem`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|Find and destroy the item with id from player's inventory|
@@ -126,7 +126,7 @@ You can attach condition checks to any line by filling in `if` and/or `if2` cell
 |`thief`||Player is at Thief Guild|
 |`mage`||Player is at Mage Guild|
 |`hasItem`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|Player has item with id in inventory|
-|`isCompleted`|[quest id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=785701697#gid=785701697)|Player completed quest with id|
+|`isCompleted`|[quest id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=785701697#gid=785701697)|Player has completed quest with id|
 
 The format for a condition is `condition,param`. Since `hasFlag` is used most often, it can be simplified with value check too:
 ```
@@ -143,18 +143,18 @@ Most of the time you only need `if` column in your sheet. If you think you need 
 This part of documentation is a partially written stub, and API usages may change at any time.
 :::
 
-Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama extension methods in the DLL and call them in the drama sheet.
+Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.
 
 CWL comes with a small set of built-in drama expansion methods, which you can [checkout code here](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/API/Drama/Expansions).
 
-This feature requires the CWL configuration value `Dialog.ExpandedActions` to be set to `true`, which is enabled by default.
+This feature requires the CWL configuration value `Dialog.ExpandedActions` set to `true`, which is enabled by default.
 
 In the drama sheet, you can use the CWL special action `invoke*` to call expansion method:
 ![](./assets/dramae_invoke.png)
 
 ### Parameter Passing
 
-Parameters are separated by commas `,` and written within the parentheses of the expansion method, similar to code syntax:
+Parameters are separated by comma `,` and written within the parentheses of the expansion method, similar to code syntax:
 
 |action|param|actor|
 |-|-|-|
@@ -199,7 +199,7 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|if satisfies|
 |`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|if active|
 |`if_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727),value expression|Check `actor` element with expression|if satisfies|
-|`if_faith`|[religion ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), gift rank(optional)|Check if `actor` is certain religion and above gift rank(default 0)|if satisfies|
+|`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), gift rank(optional)|Check if `actor` is certain religion and above gift rank(default 0)|if satisfies|
 |`if_flag`|value expression|Check `actor` flag value with expression or set it, such as `=5`, `1`, `!=0`|if satisfies|
 |`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
 |`if_zone`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752),level(optional)|Check if `actor` is in certain zone and optionally check level|if present|

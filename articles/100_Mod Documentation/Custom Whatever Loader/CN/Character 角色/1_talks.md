@@ -100,7 +100,7 @@ hide: true
 |`end`||直接结束剧情|
 |`addKeyItem`|[关键物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)|给予玩家关键物品|
 |`drop`|[物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|在玩家位置生成物品|
-|`addResource`|资源类型, 数量|添加家园资源, `food` `money` `knowledge` `influence` `fun` `safety` `nature` `education` `culture` `industry` `medicine` `worth` `karma` `reknown`|
+|`addResource`|[资源类型](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md), 数量|添加家园资源|
 |`shake`||屏幕震动|
 |`slap`||扇剧情所有者角色|
 |`destroyItem`|[物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|从背包移除指定物品|
