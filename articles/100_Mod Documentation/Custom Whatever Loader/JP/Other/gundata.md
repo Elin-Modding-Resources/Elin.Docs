@@ -30,7 +30,7 @@ hide: true
 
 + `Num` は連発回数です。  
 + `Delay` はアニメーションフレームの遅延です。  
-+ `IdEffect` は発動エフェクトのIDです。  
++ `IdEffect` は発動[エフェクトのIDです](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。  
 + `IdSound` は発動音のIDです。カスタムオーディオを使用する場合は、**Sound** フォルダーに配置する必要があります。  
 + `IdSprite` は発射物のテクスチャ名で、ゲーム内に存在するテクスチャ名または**Texture** フォルダーに配置したテクスチャ名（.pngを除く）である必要があります。  
 + `Eject` は弾殻を投げ出すアニメーションが付随するかどうかを決定します。  
