@@ -197,10 +197,11 @@ CWLの組み込み拡張メソッドは[こちら](https://github.com/gottyduke/
 |-|-|-|-|
 |`if_affinity`|数値式|`actor`の好感度をチェック|満たされた場合|
 |`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`が状態を持っているかチェック|満たされた場合|
-|`if_faith`|[信仰ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), レベル（省略可）|`actor`が特定の信仰に加入しており、特定のレベル（デフォルトは0レベル）以上であるかを確認|満たす場合|
+|`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数値式|`actor`が条件に合った元素を持っているか確認|満たされた場合|
+|`if_faith`|[信仰ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), レベル（省略可）|`actor`が特定の信仰に加入しており、特定のレベル（デフォルトは0レベル）以上であるかを確認|満たされた場合|
 |`if_flag`|数値式|`actor`のフラグ値をチェック|満たされた場合|
-|`if_location`|[エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層数（省略可）|`actor`のいるエリアをチェック|満たされた場合|
 |`if_tag`|tag|`actor`がタグを持っているかチェック|満たされた場合|
+|`if_zone`|[エリアID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 階層数（省略可）|`actor`のいるエリアをチェック|満たされた場合|
 
 ### カスタムメソッド実装
 

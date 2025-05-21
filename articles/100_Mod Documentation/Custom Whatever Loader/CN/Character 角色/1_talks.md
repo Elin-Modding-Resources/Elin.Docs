@@ -199,10 +199,11 @@ CWL 附带了一小组内置的剧本扩展方法, 您可以在这里[查看代�
 |-|-|-|-|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
 |`if_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|检查`actor`是否拥有状态|满足时|
+|`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数值表达式|检查`actor`是否拥有符合的元素|满足时|
 |`if_faith`|[信仰ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), 等级(可选)|检查`actor`是否加入特定信仰且不少于特定等级(默认0级)|满足时|
 |`if_flag`|数值表达式|检查`actor`flag值|满足时|
-|`if_location`|[区域ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 层数(可选)|检查`actor`所在区域|满足时|
 |`if_tag`|标签|检查`actor`是否拥有标签|满足时|
+|`if_zone`|[区域ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 层数(可选)|检查`actor`所在区域|满足时|
 
 ### 实现自定义方法
 
