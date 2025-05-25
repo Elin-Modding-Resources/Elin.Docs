@@ -53,7 +53,12 @@ Display a popup for the analyzed unhandled exception
 ### Patches.FixBaseGameAvatar = true
 When repositioning custom character icons, let CWL fix base game characters too  
 E.g. fairy icons are usually clipping through upper border  
-在重新定位自定义角色头像位置时，让CWL也修复游戏本体角色头像位置。例如，妖精角色的头像通常会超出边界  
+在重新调整自定义角色头像位置时，让CWL也修复游戏本体角色头像位置。例如，妖精角色的头像通常会超出边界  
+
+### Patches.FixBaseGamePopup = true
+When repositioning custom character pop ups, let CWL fix base game characters too  
+E.g. using custom skins will result the speech bubble and emote icons shown way above their heads  
+在重新调整自定义角色气泡位置时，让CWL也修复游戏本体角色气泡位置。例如，更改贴图皮肤的角色的气泡框会显示的很高  
 
 ### Patches.QualifyTypeName = true
 When importing custom classes for class cache, let CWL qualify its type name  

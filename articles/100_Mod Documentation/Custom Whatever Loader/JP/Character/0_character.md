@@ -14,11 +14,11 @@ CWLはタグセルを使用して機能を追加します。任意の数のタ�
 
 ## 自動生成/エリアへの追加
 
-CWLでキャラクターを特定のエリアに生成させるには、`addZone_*`タグを使用します。`*`（アスタリスク）をゾーンの**alias**に置き換えるか、アスタリスクを残すとランダムなエリアに生成されます。
+CWLでキャラクターを特定のエリアに生成させるには、`addZone_*`タグを使用します。`*`（アスタリスク）をゾーンの**id**に置き換えるか、アスタリスクを残すとランダムなエリアに生成されます。
  
 - startSite（野原）に生成する場合 → `addZone_startSite`  
 - ダルフィ地下1階に生成する場合 → `addZone_derphy/-1`  
-[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=2115280503#gid=2115280503)の**alias**列を参照してください。
+[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752)の**id**列を参照してください。
 
 各`addZone`タグは、そのエリアに必ず1体のキャラクターを生成します。  
 例：  
@@ -29,7 +29,7 @@ addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*
 → 選択した3エリア＋ランダム1エリアにそれぞれ1体ずつ生成（合計4体）
 
 ::: warning 注意
-CWL 1.20.11 から、以前のタグ `addZone_Type` は上記の一般的なタグ `addZone_alias` に置き換えられましたが、引き続き使用可能です。
+CWL 1.20.11 から、以前のタグ `addZone_Type` は上記の一般的なタグ `addZone_id` に置き換えられましたが、引き続き使用可能です。
 ![img](./assets/spawn_chara.png)
 :::
 

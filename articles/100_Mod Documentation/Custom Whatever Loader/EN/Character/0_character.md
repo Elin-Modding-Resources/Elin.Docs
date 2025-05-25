@@ -15,14 +15,14 @@ If you need additional features, don't hesitate to ask!
 
 ## spawn on game load
 
-To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with zone **alias** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
+To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with zone **id** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
 
-For example, to spawn the chara in meadow, use `addZone_little_garden`. To also spawn in derphy underground, use `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_) and reference the **alias** column.
+For example, to spawn the chara in meadow, use `addZone_little_garden`. To also spawn in derphy underground, use `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) and reference the **id** column.
 
 For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
 
 ::: warning  
-Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_alias` tags shown above, but still accepted.  
+Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_id` tags shown above, but still accepted.  
 ![spawn_ex](./assets/spawn_chara.png)
 :::
 

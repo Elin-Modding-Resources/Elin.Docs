@@ -13,14 +13,14 @@ CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签�
 
 ## 自动生成/添加到区域
 
-要让 CWL 将角色生成到某个区域，请使用标签 `addZone_*`，并用区域 **alias** 替换 `*`（星号），或者保留星号以生成到随机区域。
+要让 CWL 将角色生成到某个区域，请使用标签 `addZone_*`，并用区域 **id** 替换 `*`（星号），或者保留星号以生成到随机区域。
 
-例如，要在起始原野中生成角色，请使用 `addZone_startSite`。要在特尔斐地下一层生成角色，请使用 `addZone_derphy/-1`。请查看 [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=2115280503#gid=2115280503) 并参考 **alias** 列。
+例如，要在起始原野中生成角色，请使用 `addZone_startSite`。要在特尔斐地下一层生成角色，请使用 `addZone_derphy/-1`。请查看 [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) 并参考 **id** 列。
 
 每一个 `addZone` 标签都会确保在该区域生成一个角色。例如，`addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` 将会在所选的三个区域以及随机一个区域中生成一个角色（同时存在）。
 
 ::: warning 注意
-从 CWL 1.20.11 开始，以前的标签 `addZone_类型` 已被上述普通标签 `addZone_alias` 取代，但仍然可以使用。  
+从 CWL 1.20.11 开始，以前的标签 `addZone_类型` 已被上述普通标签 `addZone_id` 取代，但仍然可以使用。  
 ![img](./assets/spawn_chara.png)
 :::
 
