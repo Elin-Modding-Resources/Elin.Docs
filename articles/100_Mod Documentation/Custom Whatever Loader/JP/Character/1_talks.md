@@ -150,3 +150,9 @@ hide: true
 スクリプトテーブル内蔵の `action` を使用して期待した効果が得られませんでしたか？追加の条件チェックが必要ですか？CWL は、DLL にカスタム拡張メソッドを追加し、スクリプトテーブル内でそれらを呼び出すことを許可します。
 
 [CWL ストーリー拡張ページを表示](./4_drama)
+
+## Mod Help集成
+
+有时、プレイヤーにいくつかのヒントを提供して、あなたの素晴らしいストーリーをより良く体験してもらいたいと思うことがあります。CWLを使用してモジュールを作成することで、Mod Helpを利用してカスタマイズされたヘルプページを提供できます。
+
+<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/1_mod_help_jp" />

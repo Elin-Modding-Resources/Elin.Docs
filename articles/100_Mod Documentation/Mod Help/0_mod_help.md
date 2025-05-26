@@ -57,21 +57,21 @@ I highly recommend that if you are adding multiple pages to your mod, at least o
 ### **Text Styling**
 
 -   **Sizing**:\
-    `<size=24>Large Text</size>` → _Large Text_  
-    `<size=12>Small Text</size>` → _Small Text_
+    `<size=24>Large Text</size>` → <span class="text-lg">Large Text</span>  
+    `<size=12>Small Text</size>` → <span class="text-sm">Small Text</span>
 
 -   **Bold Text**:\
-    `<b>Bold Text</b>` → **Bold Text**
+    `<b>Bold Text</b>` → <b>Bold Text</b>
 
 -   **Italic Text**:\
-    `<i>Italic Text</i>` → _Italic Text_
+    `<i>Italic Text</i>` → <i>Italic Text</i>
 
 -   **Coloring**:\
-    `<color=#FF0000>Red Text</color>` → **Red Text**
+    `<color=#FF0000>Red Text</color>` → <span class="text-red-500">Red Text</span>
 
 -   **Combinations**:\
-    `<color=#FF0000><b>Bold Red Text</b></color>` → **Bold Red Text**
-    `<size=20><i>Large Italic Text</i></size>` → _Large Italic Text_
+    `<color=#FF0000><b>Bold Red Text</b></color>` → <b class="text-red-500">Bold Red Text</b>  
+    `<size=20><i>Large Italic Text</i></size>` → <i class="text-lg">Large Italic Text</i>
 
 -   **Centering**
     `{center}` → Everything below this tag will be centered. (This is currently un-reversable)

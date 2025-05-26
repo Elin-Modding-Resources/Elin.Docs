@@ -149,3 +149,9 @@ hide: true
 在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。
 
 [查看CWL剧情拓展页面](./4_drama)
+
+## Mod Help集成
+
+有时您可能想为玩家提供一些提示，以便他们更好地体验您精彩的剧情故事。通过使用CWL制作模组，您可以使用Mod Help 来提供定制的帮助页面。
+
+<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/2_mod_help_cn" />

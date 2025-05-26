@@ -146,3 +146,9 @@ The `if` column is evaluated **only once on drama load**, that means you cannot 
 Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.
 
 [Checkout CWL Drama Expansion Page](./4_drama)
+
+## Mod Help Integration
+
+Sometimes you may want to provide a bit of hint for players, so they can better experience your awesome drama story. By making mods with CWL, you already gain access to Mod Help, check it out to deliver custom made help pages!
+
+<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/0_mod_help" />
