@@ -41,7 +41,21 @@ internal static bool honk_honk(DramaManager dm, Dictionary<string, string> line,
 }
 ```
 
-If you add CWL's assembly reference to your project, you can then use:
+### Exception Handling
+
+In your expansion method code, any errors that should prevent further execution (such as invalid parameters, invalid IDs, etc.) can be thrown as exceptions, CWL will default the return value to `false` and prompt a drama warning in the game.
+
+### Reference CWL
+
+If you reference CWL's assembly in your project, you can then derive your class directly from CWL's `DramaExpansion`:
+
+```cs
+internal class MyDramaExpansion : DramaExpansion
+{
+}
+```
+
+Which you gain access to better parameter handling:
 
 ```cs
 internal static bool honk_honk(DramaManager dm, Dictionary<string, string> line, params string[] parameters)
@@ -60,7 +74,7 @@ You can also assert for optional parameters:
 ```cs
 internal static bool honk_honk(DramaManager dm, Dictionary<string, string> line, params string[] parameters)
 {
-    parameters.RequiresAtleast(1);
+    parameters.RequiresAtLeast(1);
     parameters.RequiresOpt(out var soundId, out var arg2);
     dm.RequiresActor(out var actor);
 
@@ -82,6 +96,13 @@ var floatParam = arg1.AsFloat(1f); // fallback 1f
 var boolParam = arg1.AsBool(true); // fallback true
 ```
 
-### Exception Handling
+And you can use CWL style value expressions as parameters:
 
-In your expansion method code, any errors that should prevent further execution (such as invalid parameters, invalid IDs, etc.) can be thrown as exceptions, CWL will default the return value to `false` and prompt a drama warning in the game.
+```cs
+var isGreater = Compare(100, argExpr.Get(">=99"));
+var toAdd = ArithmeticModOrSet(originalValue, argExpr.Get("+50")) - originalValue;
+
+if (isGreater) {
+    ModOriginal(toAdd);
+}
+```

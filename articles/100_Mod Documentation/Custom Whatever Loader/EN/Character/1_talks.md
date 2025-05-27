@@ -54,7 +54,7 @@ A drama sheet is executed from top to bottom, and composed of drama lines. A dra
 - `if` / `if2`: the condition to check before executing this line. If `if2` column is also present, then both `if` and `if2` need to be satisfied.
 - `action`: the action to execute.
 - `param`: the parameters for the action.
-- `actor`: The current line speaker. Only fill this when you want to introduce multiple character conversation. Defaults to `tg`.
+- `actor`: The current line speaker. Only fill this when you want to introduce multiple character conversation. Defaults to `tg`. Append `?` to show as `???`.
 - `id`: unique id for this line, this is only and mandatory for `text` lines.
 - `text` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_JP` and `text_EN` is self explanatory, `text` is for other languages(**CWL switches sheet by the LandMod/ subfolder**, so you should put the localized texts in the `text` cell).
 
@@ -145,7 +145,7 @@ The `if` column is evaluated **only once on drama load**, that means you cannot 
 
 Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.
 
-[Checkout CWL Drama Expansion Page](./4_drama)
+<LinkCard t="CWL Drama Expansion" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/EN/Character/4_drama"/>
 
 ## Mod Help Integration
 

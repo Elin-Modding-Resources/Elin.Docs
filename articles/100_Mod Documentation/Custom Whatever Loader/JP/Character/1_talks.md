@@ -58,7 +58,7 @@ hide: true
 - `if`/`if2`：実行条件。`if2`列が存在する場合は両条件を満たす必要あり
 - `action`：実行するアクション
 - `param`：アクションのパラメータ
-- `actor`：発言キャラクターID（複数キャラ会話用）。デフォルト `tg`
+- `actor`：発言キャラクターID（複数キャラ会話用）。デフォルト `tg`。接尾辞 `?` は名前 `???` を表示します
 - `id`：テキスト行の一意識別子（テキスト行のみ必須）
 - `text`/`text_JP`/`text_EN`：実際の会話内容。`text`列はLangModのサブフォルダに応じて言語切り替え
 
@@ -149,7 +149,7 @@ hide: true
 
 スクリプトテーブル内蔵の `action` を使用して期待した効果が得られませんでしたか？追加の条件チェックが必要ですか？CWL は、DLL にカスタム拡張メソッドを追加し、スクリプトテーブル内でそれらを呼び出すことを許可します。
 
-[CWL ストーリー拡張ページを表示](./4_drama)
+<LinkCard t="CWL シナリオの拡張" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/JP/Character/4_drama"/>
 
 ## Mod Help集成
 

@@ -58,7 +58,7 @@ hide: true
 - `if`/`if2`：执行条件。若同时存在`if2`列, 则需同时满足两个条件
 - `action`：执行的动作
 - `param`：动作参数
-- `actor`：当前说话角色 ID, 用于多人对话场景。默认 `tg`
+- `actor`：当前说话角色 ID, 用于多人对话场景。默认 `tg`。后缀 `?` 以显示名称为 `???`
 - `id`：文本行唯一标识(仅文本行必需)
 - `text`/`text_JP`/`text_EN`：实际对话内容。`text`列根据LangMod子文件夹自动切换语言版本
 
@@ -148,7 +148,7 @@ hide: true
 
 在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。
 
-[查看CWL剧情拓展页面](./4_drama)
+<LinkCard t="CWL剧情拓展" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama" />
 
 ## Mod Help集成
 

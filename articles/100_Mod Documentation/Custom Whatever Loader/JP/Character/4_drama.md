@@ -58,16 +58,18 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`play_emote`|[感情ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|`actor`に感情を表示させる|常時|
 |`play_screen_effect`|[画面エフェクトID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|画面エフェクトを再生する|常時|
 |`pop_text`|テキスト|`actor`に叫びのテキスト(吹き出し)を発声させる|常時|
-|`portrait_set`|立ち絵ID(省略可)|`actor`の対話立ち絵を設定する。空の場合はリセットされ、**Portait**フォルダーのカスタムファイルをサポートする。例: `UN_doodoo2`|常時|
+|`portrait_set`|立ち絵ID(省略可)|`actor`の対話立ち絵を設定します。空の場合はリセットされます。**Portrait**フォルダーのカスタム立ち絵をサポートしています。例えば、`UN_myChara_happy.png`は`happy`または`UN_myChara_happy`として使用できます。|常時|
 |`show_book`|書籍ID, カテゴリー(`Book` または `Scroll`)|本を開く。**LangMod/_*_*/Text**フォルダーをサポートする。例えば `Text/Book/ok.txt` ならば `(ok, Book)` を使用|成功時|
 
-### その他
+### 値を変更する
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|--|
 |`mod_affinity`|数値式(例: `+5`)|`actor`の好感度を調整|成功時|
+|`mod_currency`|通貨の種類, 数値式|指定された通貨を`actor`に変更します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|常時|
 |`mod_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 強度(省略可)|`actor`の指定された要素(特性/抵抗/スキルなど)を変更し, デフォルトの強度は`1`であり, 異なるタイプの要素には異なる強度が使用される|常時|
 |`mod_element_exp`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数値式|`actor`の指定された要素の経験値を変更する|成功時|
+|`mod_fame`|数値式|プレイヤーの名声を変更します|常時|
 |`mod_flag`|flag, 数値式|`actor`のflag値を変更|常時|
 |`mod_keyitem`|[キーアイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 値式(省略可)|プレイヤーの重要アイテムの値を変更します。デフォルトは `+1`|成功時|
 |`build_ext`|アセンブリ名|指定されたアセンブリ内のメソッドを可能な限りストーリー拡張テーブルに追加する|成功時|
@@ -85,8 +87,10 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |-|-|-|-|
 |`if_affinity`|数値式|`actor`の好感度をチェック|条件が満たされた時|
 |`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`が状態を持っているかチェック|条件が満たされた時|
+|`if_currency`|通貨の種類, 数値式|`actor`が該当する通貨を所有しているか確認します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|条件が満たされた時|
 |`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数値式|`actor`が条件に合った元素を持っているか確認|条件が満たされた時|
 |`if_faith`|[信仰ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), レベル(省略可)|`actor`が特定の信仰に加入しており, 特定のレベル(デフォルトは0レベル)以上であるかを確認|条件が満たされた時|
+|`if_fame`|数値式|プレイヤーの名声を確認します|条件が満たされた時|
 |`if_flag`|flag, 数値式|`actor`のフラグ値をチェック|条件が満たされた時|
 |`if_keyitem`|[キーアイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数値式(省略可)|プレイヤーが表現に合ったキーアイテムの値を持っているかを確認する, デフォルトは `>0`|条件が満たされた時|
 |`if_race`|[種族ID](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|`actor`が対応する種族であるかを確認|条件が満たされた時|

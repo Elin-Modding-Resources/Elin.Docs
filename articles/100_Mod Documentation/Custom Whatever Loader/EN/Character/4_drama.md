@@ -56,16 +56,18 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`play_emote`|[emote id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|Play emote on `actor`|always|
 |`play_screen_effect`|[screen effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|Play screen effect|always|
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
-|`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, you can supply your portraits in **Portrait** folder, such as `UN_doodoo2`|always|
+|`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
 |`show_book`|book id, category(`Book` or `Scroll`)|Open a book, supports **LangMod/_*_*/Text** folder, for example `Text/Book/ok.txt` would use `(ok, Book)`|If success|
 
-### Other
+### Modifications
 
 |method|param|description|jump|
 |-|-|-|-|
-|`mod_affinity`|value expression|Modify `actor` affinity with value expression`|if success|
+|`mod_affinity`|value expression|Modify `actor` affinity with value expression|if success|
+|`mod_currency`|currency type, value expression|Modify `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|always|
 |`mod_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), power(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default power `1`. Different types of elements use varying strengths|always|
 |`mod_element_exp`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Modifies the exp of a specified element for the `actor`|If success|
+|`mod_fame`|value expression|Modify player fame with value expression|always|
 |`mod_flag`|flag, value expression|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`. This supports non player character|always|
 |`mod_keyitem`|[keyitem id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `+1`|if success|
 |`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|if success|
@@ -83,8 +85,10 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |-|-|-|-|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|if satisfies|
 |`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|if active|
+|`if_currency`|currency type, value expression|Check `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|if satisfies|
 |`if_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Check `actor` element with expression|if satisfies|
-|`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), gift rank(optional)|Check if `actor` is certain religion and above gift rank, default `>0`|if satisfies|
+|`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
+|`if_fame`|value expression|Check player's fame with value expression|if satisfies|
 |`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
 |`if_keyitem`|[key item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has key item with expression, default `>0`|if satisfies|
 |`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|if satisfies|
