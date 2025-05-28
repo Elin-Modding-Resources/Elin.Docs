@@ -41,6 +41,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`apply_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), 強度|`actor`に状態を適用します|常時|
 |`cure_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`の状態を治癒します|成功時|
 |`remove_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`から状態を削除します|常時|
+|`build_ext`|アセンブリ名|指定されたアセンブリ内のメソッドを可能な限りストーリー拡張テーブルに追加する|成功時|
+|`emit_call`|ext.メソッド名|外部の静的メソッドを呼び出す|常時|
 
 `build_ext` と `emit_call` を通じて外部アセンブリメソッドを呼び出すには,  `Dialog.ExpandedActionsAllowExternal` 設定を有効にする必要があります。デフォルトでは有効になっています。
 
@@ -72,12 +74,6 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`mod_fame`|数値式|プレイヤーの名声を変更します|常時|
 |`mod_flag`|flag, 数値式|`actor`のflag値を変更|常時|
 |`mod_keyitem`|[キーアイテムID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 値式(省略可)|プレイヤーの重要アイテムの値を変更します。デフォルトは `+1`|成功時|
-|`build_ext`|アセンブリ名|指定されたアセンブリ内のメソッドを可能な限りストーリー拡張テーブルに追加する|成功時|
-|`emit_call`|ext.メソッド名|外部の静的メソッドを呼び出す|常時|
-
-外部アセンブリメソッドを呼び出すには, `build_ext` と `emit_call` を使用し, `Dialog.ExpandedActionsAllowExternal` 設定を有効にする必要があります。デフォルトで有効になっています。
-
-![](./assets/dramae_ext.png)
 
 ### 条件
 

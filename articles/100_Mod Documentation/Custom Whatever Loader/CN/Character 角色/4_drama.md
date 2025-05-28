@@ -43,6 +43,12 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`apply_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)，强度|为`actor`施加状态|总是|
 |`cure_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`治愈状态|成功时|
 |`remove_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`移除状态|总是|
+|`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
+|`emit_call`|ext.方法名|调用一个外部静态方法|总是|
+
+通过 `build_ext` 和 `emit_call` 调用外部程序集方法，需启用 `Dialog.ExpandedActionsAllowExternal` 配置。默认启用。
+
+![](./assets/dramae_ext.png)
 
 ### 演出
 
@@ -70,12 +76,6 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`mod_fame`|数值表达式|修改玩家的名声|总是|
 |`mod_flag`|flag, 数值表达式|修改`actor`的flag值|总是|
 |`mod_keyitem`|[关键物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)，数值表达式(可选)|修改玩家的关键物品值，默认 `+1`|成功时|
-|`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
-|`emit_call`|ext.方法名|调用一个外部静态方法|总是|
-
-通过 `build_ext` 和 `emit_call` 调用外部程序集方法，需启用 `Dialog.ExpandedActionsAllowExternal` 配置。默认启用。
-
-![](./assets/dramae_ext.png)
 
 ### 条件
 

@@ -43,6 +43,12 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`apply_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), power|Apply a condition with id to `actor`, default power `100`|always|
 |`cure_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Cure the condition on `actor`|if cured|
 |`remove_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Remove the condition on `actor`|always|
+|`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|if success|
+|`emit_call`|ext.method|Invoke an external static method|always|
+
+`build_ext` and `emit_call` requires the CWL configuration value `Dialog.ExpandedActionsAllowExternal` set to `true`, enabled by default.
+
+![](./assets/dramae_ext.png)
 
 ### Scene Play
 
@@ -70,12 +76,6 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`mod_fame`|value expression|Modify player fame with value expression|always|
 |`mod_flag`|flag, value expression|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`. This supports non player character|always|
 |`mod_keyitem`|[keyitem id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `+1`|if success|
-|`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|if success|
-|`emit_call`|ext.method|Invoke an external static method|always|
-
-`build_ext` and `emit_call` requires the CWL configuration value `Dialog.ExpandedActionsAllowExternal` set to `true`, enabled by default.
-
-![](./assets/dramae_ext.png)
 
 ### Conditions
 
