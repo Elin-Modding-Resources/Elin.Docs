@@ -31,9 +31,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 
 **Value Expression**: `+5`, `*10`, `=69`, `!=114` etc, used to evaluate or assign values.
 
-## CWL Methods
-
-### Actions
+## Actions
 
 |method|param|description|jump|
 |-|-|-|-|
@@ -50,7 +48,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 
 ![](./assets/dramae_ext.png)
 
-### Scene Play
+## Scene Play
 
 |method|param|description|jump|
 |-|-|-|-|
@@ -65,7 +63,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
 |`show_book`|book id, category(`Book` or `Scroll`)|Open a book, supports **LangMod/_*_*/Text** folder, for example `Text/Book/ok.txt` would use `(ok, Book)`|If success|
 
-### Modifications
+## Modifications
 
 |method|param|description|jump|
 |-|-|-|-|
@@ -75,9 +73,9 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`mod_element_exp`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Modifies the exp of a specified element for the `actor`|If success|
 |`mod_fame`|value expression|Modify player fame with value expression|always|
 |`mod_flag`|flag, value expression|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`. This supports non player character|always|
-|`mod_keyitem`|[keyitem id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `+1`|if success|
+|`mod_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `=1`|if success|
 
-### Conditions
+## Conditions
 
 These are still expansion methods that uses `invoke*` action same as above, but their return value is important.
 
@@ -90,7 +88,7 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
 |`if_fame`|value expression|Check player's fame with value expression|if satisfies|
 |`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
-|`if_keyitem`|[key item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has key item with expression, default `>0`|if satisfies|
+|`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|if satisfies|
 |`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|if satisfies|
 |`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
 |`if_zone`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), level(optional)|Check if `actor` is in certain zone and optionally check level|if present|
