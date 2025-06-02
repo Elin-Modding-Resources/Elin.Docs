@@ -14,7 +14,7 @@ CWL comes with a small set of built-in drama expansion methods, which you can [c
 
 This feature requires the CWL configuration value `Dialog.ExpandedActions` set to `true`, enabled by default.
 
-In the drama sheet, you can use the CWL special action `invoke*` to call expansion method:
+In the drama sheet, you can use the CWL special action `invoke*` or `i*` for short to call expansion method:
 ![](./assets/dramae_invoke.png)
 
 ## Parameter Passing
@@ -23,7 +23,7 @@ Parameters are separated by comma `, ` and written within the parentheses of the
 
 |action|param|actor|
 |-|-|-|
-|`invoke*`|honk_honk(arg1, arg2)|`pc`|
+|`invoke*`/`i*`|honk_honk(arg1, arg2)|`pc`|
 
 Most of the methods also take `actor` cell as the target character to execute the method on, such as `pc` or `tg`(the drama owner character), or any valid [character id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657). Default is `tg`.
 

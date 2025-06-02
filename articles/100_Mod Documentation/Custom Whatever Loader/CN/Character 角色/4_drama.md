@@ -14,7 +14,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 
 需启用 `Dialog.ExpandedActions` 配置。默认启用。
 
-在剧情表中，你可以使用 CWL 特殊动作 `invoke*` 来调用拓展方法：
+在剧情表中，你可以使用 CWL 特殊动作 `invoke*` 或者 `i*` 来调用拓展方法：
 ![](./assets/dramae_invoke.png)
 
 ## 参数传递
@@ -23,7 +23,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 
 |action|param|actor|
 |-|-|-|
-|`invoke*`|honk_honk(arg1, arg2)|`pc`|
+|`invoke*`/`i*`|honk_honk(arg1, arg2)|`pc`|
 
 大多数方法还会将 `actor` 单元格作为目标角色来执行该方法，例如 `pc` 或 `tg`（剧情绑定角色），或任何有效的[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)。为空时默认指定 `tg`。
 

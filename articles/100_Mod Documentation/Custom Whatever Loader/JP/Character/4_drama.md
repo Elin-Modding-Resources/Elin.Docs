@@ -12,7 +12,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 
 `Dialog.ExpandedActions` 設定を有効にする必要があります。デフォルトで有効になっています。
 
-ストーリーテーブルでは, CWLの特別なアクション `invoke*` を使用して拡張メソッドを呼び出すことができます：
+ストーリーテーブルでは, CWLの特別なアクション `invoke*` / `i*`を使用して拡張メソッドを呼び出すことができます：
 ![](./assets/dramae_invoke.png)
 
 ### パラメータ渡し
@@ -21,7 +21,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 
 |action|param|actor|
 |-|-|-|
-|`invoke*`|honk_honk(arg1, arg2)|`pc`|
+|`invoke*`/`i*`|honk_honk(arg1, arg2)|`pc`|
 
 `actor` 列はターゲットキャラ(`pc` `tg` または任意の[キャラid](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657))を示します。
 
