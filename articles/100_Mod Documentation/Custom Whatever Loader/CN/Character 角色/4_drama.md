@@ -38,6 +38,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
 |`add_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [材质alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(可选), 等级(可选), 数量(可选)|为`actor`添加指定物品，默认随机材质，自动等级，数量 `1`|总是|
+|`equip_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [材质alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(可选), 等级(可选)|为`actor`装备指定物品，默认随机材质，自动等级|总是|
 |`join_party`||使`actor`加入队伍|总是|
 |`join_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(可选)|使`actor`加入信仰，为空时则退出当前信仰|成功时|
 |`apply_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)，强度|为`actor`施加状态|总是|

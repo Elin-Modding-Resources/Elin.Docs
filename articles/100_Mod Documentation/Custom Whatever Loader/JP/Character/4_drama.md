@@ -34,6 +34,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
 |`add_item`|[アイテムid](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [素材エイリアス(省略可)](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(省略可), レベル(省略可), 数量(省略可)|`actor`に指定されたアイテムを追加します。デフォルトはランダムな素材, 自動レベル, 数量は `1`|常時|
+|`equip_item`|[アイテムid](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [材質エイリアス](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(省略可), レベル(省略可)|`actor`に指定された物品を装備させる。デフォルトはランダムな材質、レベルは自動|常時|
 |`join_party`||`actor`をパーティに参加させます|常時|
 |`join_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(省略可)|`actor`を信仰に参加させます。空の場合は現在の信仰から退出します|成功時|
 |`apply_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), 強度|`actor`に状態を適用します|常時|

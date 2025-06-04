@@ -36,6 +36,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 |method|param|description|jump|
 |-|-|-|-|
 |`add_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [material alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(optional), level(optional), count(optional)|Add the item with id to `actor`, default random material, auto level, and count of `1`|always|
+|`equip_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [material alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(optional), level(optional)|Equip the item with id on `actor`, default random material, auto level|always|
 |`join_party`||Make `actor` join player party|always|
 |`join_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(optional)|Make `actor` join the specific religion with id or leave the current religion with empty value|if success|
 |`apply_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), power|Apply a condition with id to `actor`, default power `100`|always|
