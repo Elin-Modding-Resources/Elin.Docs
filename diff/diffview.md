@@ -15,3 +15,11 @@ E.g.
 + Patch 1
 
 <LinkCard t="Drakeny's Elin Decompiled" u="https://github.com/Elin-Modding-Resources/Elin-Decompiled"/>
+
+
+## Archived Diffs
+
+### EA 23.42 - EA 23.133  
+Nov 28, 2024 - May 5, 2025
+
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_42_23_133.tar" download>23_42_23_133.tar</a>
