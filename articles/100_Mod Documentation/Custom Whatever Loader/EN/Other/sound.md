@@ -5,7 +5,7 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
-## Custom Sound
+# Custom Sound
 
 Sound files should be in one of **acc**, **mp3**, **ogg**, **wav** formats, with the filename serving as the sound ID. A default metadata JSON is generated upon **using the sound**, allowing you to edit and apply sound file metadata on the next game launch.
 
@@ -152,7 +152,7 @@ Game comes with 100+ BGMs, they are defined by a numeric id and sound file id. Y
 |117|117 atonement|Shokuzai No Mori|
 :::
 
-### Add New BGM
+## Add New BGM
 
 Custom BGMs are placed in the **Sound/BGM** sub folder, unlike custom sounds, you need to manually edit the `id` field in the metadata JSON. Be sure to launch game once to let CWL generate the files for you first.
 
@@ -168,7 +168,7 @@ When you assign an existing id to your BGM, then it becomes a global BGM replace
 
 > `056 orc01` is the title menu BGM.
 
-### Add Playlist
+## Add Playlist
 
 Your playlists are placed in the **Sound/BGM/Playlist** folder, and they are simple JSON files. It contains 2 lists and a single bool value `shuffle`.
 ```json
@@ -209,6 +209,7 @@ The playlist JSON file name should match one of the following:
 + `"Global"`
 + An existing playlist name
 + A zone type name
++ A zone id with/without level
 
 Here are some of the game playlists:
 ::: details Playlists
@@ -270,7 +271,7 @@ To view the zone type names and their playlists (if any):
 
 A special playlist named `Global` can be provided and it will be merged into all playlists.
 
-### Playlist Merge
+### Specific Playlist
 
 For example, all nefia zones (`Zone_RandomDungeon`, `Zone_RandomDungeonFactory`, `Zone_Mine`...etc) share a playlist called `Dungeon`. If you want to add or remove songs for this playlist, you should use `Dungeon.json` in your **Sound/BGM/Playlist/** folder.
 
@@ -280,15 +281,25 @@ Your changes in `Dungeon.json` will be merged into game's `Dungeon` playlist, be
 
 Another common use case is to add songs when you are in overworld map. The overworld map is a zone type `Region` and it has a playlist `EloMap`. 
 
-### Zone Override
+### Specific Zone Type
 
 In addition to the playlist merge, you can also specifiy zone overrides for each zone type. These playlists will be using the zone type name, and its contents will be merged on top of the zone's default playlist (`Blank` if none specified in the sheet).
 
-So, you could add songs to the overworld map playlist via `Region.json` instead of `EloMap.json` too.
+E.g. `Zone_Vernis.json` will merge into zone with type `Zone_Vernis`.
+
+So, you could add songs to the overworld map playlist via `Region.json` instead of `EloMap.json` too, because overworld uses zone type `Region`.
+
+### Specific Zone ID
+
+Sometimes, a zone type may have multiple different zones, and you can individually specify them using the zone ID. 
+
+For example, `Zone_dungeon` for Cave and `Zone_dungeon_ruin` for Ruin are both types of `Zone_RandomDungeon`, and you can specify them individually using their IDs. 
+
+When using the area ID, you can also append `@N` to indicate a specific level `N`, such as the lower level of Derphy being `Zone_derphy@-1.json`.
 
 ### Merge Order
 
-The three types of playlists will be applied in the order of `Global`, Playlist Merge, Zone Override. They are also affected by your mod load order. Keep that in mind when you do nested `remove`, especially with `**` or `<dir>/*` pattern matching.
+Multiple types of playlists will be applied in the order of `Global`, Specific Playlist, Specific Zone Type, and Specific Zone ID. They are also affected by your mod load order. Keep that in mind when you do nested `remove`, especially with `**` or `<dir>/*` pattern matching.
 
 ### Hot Reload/BGM View
 
