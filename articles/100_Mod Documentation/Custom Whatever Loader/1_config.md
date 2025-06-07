@@ -24,6 +24,16 @@ When switching to a new playlist, if current playing BGM is included in the new 
 当切换播放列表时，如果当前播放的曲目在新播放列表中，则尝试无缝衔接  
 再生リスト切り替え時に、現在再生中の曲が新しいリストに含まれる場合、シームレスな継続再生を試行  
 
+### Caching.Talks = true
+Cache GetDialog/HasTopic talks instead of loading & building map everytime  
+缓存GetDialog/HasTopic构建的对话文本表而不是每次都重新加载+构建  
+GetDialog/HasTopicを使用して構築された対話テキスト表を毎回再読み込みして構築するのではなく、キャッシュを利用する  
+
+### Caching.Types = true
+Cache ClassCache types early instead of roundtrip lookup & querying all assemblies  
+提前ClassCache的类缓存优先级而不是每次重新搜索  
+クラスキャッシュ（ClassCache）のクラスキャッシュの優先度を前もって設定し、毎回再検索するのではなくします  
+
 ### Caching.Paths = true
 Cache paths relocated by CWL instead of iterating new paths  
 缓存CWL重定向的路径而不是每次重新搜索  
