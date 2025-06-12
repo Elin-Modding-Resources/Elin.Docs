@@ -46,11 +46,6 @@ Credits to 105gun.
 
 If your character has trait **`Adventurer`** or **`AdventurerBacker`**, CWL will import the character as an adventurer, which will appear on the adventurer ranking list.
 
-::: warning  
-Starting from CWL 1.15.0, previous tags `addAdvZone`/`addAdvEq`/`addAdvThing` are now deprecated by the normal tags shown above, but still accepted.  
-![img](https://i.postimg.cc/SN93258B/image.png)
-:::
-
 ## prevent random visiting
 
 Global characters randomly visit other towns if they are not in player's faction. You can use tag `addFlag_StayHomeZone` to make them stay in the home zone.  

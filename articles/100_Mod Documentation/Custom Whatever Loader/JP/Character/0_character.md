@@ -53,11 +53,6 @@ CWLがキャラクターを生成する際、初期装備とアイテムも定�
 
 キャラクターの trait が`Adventurer`または`AdventurerBacker`に設定されている場合、CWLはそのキャラクターを冒険者としてインポートし、冒険者ランキングリストに表示されます。
 
-::: warning 注意
-CWL 1.15.0以降、以前のタグ`addAdvZone`/`addAdvEq`/`addAdvThing`は上記の通常のタグに置き換えられましたが、まだ使用可能です。
-![img](https://i.postimg.cc/SN93258B/image.png)
-:::
-
 ## ランダム移動を無効にする
 
 グローバルキャラクターがプレイヤーの陣営にいない場合、他の町をランダムに訪れます。`addFlag_StayHomeZone` タグを使用すると、彼らを初期エリアに留まらせることができます。

@@ -18,9 +18,11 @@ hide: true
 |-|-|-|-|-|-|
 |触发|冷静|视线|激怒|亡语|击杀|
 
+您还可以在每个条目中插入 [自定义音频](../Other%20其他/sound) 标签，使其成为有声音的喊叫，例如，`"你不能通过！！<sound=gandalf,0.8>"` 在触发此喊叫时，有80%的概率播放ID为 `gandalf` 的音频。
+
 ## 对话
 
-想添加一些和角色聊一聊的对话, 可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
+想添加一些角色**来聊天吧**时的对话, 可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
 
 ![img](./assets/dialog.png)
 

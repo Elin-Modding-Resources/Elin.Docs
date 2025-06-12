@@ -31,23 +31,18 @@ CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签�
 要为角色分配特定装备，使用标签 `addEq_ItemID#Rarity`，其中 `ItemID` 替换为物品的ID，`Rarity` 为以下之一：**随机（Random）、粗糙（Crude）、普通（Normal）、优质（Superior）、传奇（Legendary）、神话（Mythical）、神器（Artifact）**。如果省略 `#Rarity`，将使用默认稀有度 `#Random`。
 
 例如，要将传奇的 `BS_Flydragonsword` 和随机的 `axe_machine` 设置为角色的主要武器：
-**addZone_Palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine**
+**addZone_palmia,addEq_BS_Flydragonsword#Legendary,addEq_axe_machine**
 
 要为角色添加起始物品，使用标签 `addThing_ItemID#Count`。如果省略 `#Count`，将生成默认的 `1` 件物品。
 
 例如，要为角色添加 `padoru_gift` x10 和 `援军卷轴` x5：
-**addZone_Palmia,addThing_padoru_gift#10,addThing_1174#5**
+**addZone_palmia,addThing_padoru_gift#10,addThing_1174#5**
 
 ## 创建冒险者
 
 感谢 105gun。
 
 如果您的角色 trait 设定为 **`Adventurer`** 或 **`AdventurerBacker`**，CWL 将登录该角色为冒险者，并将出现在冒险者排名列表中。
-
-::: warning 注意
-从 CWL 1.15.0 开始，以前的标签 `addAdvZone`/`addAdvEq`/`addAdvThing` 已被上述普通标签 `addZone`/`addEq`/`addThing` 取代，但仍然可以使用。  
-![img](https://i.postimg.cc/SN93258B/image.png)
-:::
 
 ## 禁用随机移动
 

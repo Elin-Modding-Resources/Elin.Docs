@@ -18,9 +18,11 @@ These barks are written in **CharaText** sheet, and your Chara sheet uses **idTe
 |-|-|-|-|-|-|
 |Condition|Random default|On sight|In combat|Death rattle|Kill confirmed|
 
+You can also insert [custom sound](../Other/sound) tags in each entry to make it an audible bark, e.g.  `"You shall not pass!!<sound=gandalf,0.8>"` will have a 80% chance to play sound with ID `gandalf` when this bark triggers.
+
 ## Dialog
 
-To add some chatty chat texts to the character for the `Let's Talk` option, you'll need to have a `dialog.xlsx` sheet in your `LangMod/**/Dialog/` folder.
+To add some chatty texts to the character for the `**Let's Talk**` option, you'll need to have a `dialog.xlsx` sheet in your `LangMod/**/Dialog/` folder.
 
 ![img](./assets/dialog.png)
 
