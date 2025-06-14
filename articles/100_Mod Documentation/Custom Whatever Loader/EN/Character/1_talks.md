@@ -38,7 +38,9 @@ To define a custom drama for the character, use tag `addDrama_DramaSheetName` an
 
 Your custom drama sheet must be placed in your `LangMod/**/Dialog/Drama/` folder, and the name must match the tag. For example, use `addDrama_MyCharaDrama` with `Dialog/Drama/MyCharaDrama.xlsx`.
 
-You should reference the game drama sheets at **Elin/Package/_Elona/Lang/_Dialog/Drama** while making your own , or the Tiny Mita example which has a template drama sheet:
+**<span class="text-amber-300">Important</span>**: you only need to provide **1** copy of the drama sheet, it can be placed in any of language sub folders. CWL supports in-file localization for multiple languages within the same sheet.
+
+You should reference the game drama sheets at **Elin/Package/_Elona/Lang/_Dialog/Drama** while making your own, or the Tiny Mita example which has a template drama sheet:
 <LinkCard t="CWL Example: Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" />
 
 ![img](./assets/drama.png)
@@ -58,7 +60,7 @@ A drama sheet is executed from top to bottom, and composed of drama lines. A dra
 - `param`: the parameters for the action.
 - `actor`: The current line speaker. Only fill this when you want to introduce multiple character conversation. Defaults to `tg`. Append `?` to show as `???`.
 - `id`: unique id for this line, this is only and mandatory for `text` lines.
-- `text` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_JP` and `text_EN` is self explanatory, `text` is for other languages(**CWL switches sheet by the LandMod/ subfolder**, so you should put the localized texts in the `text` cell).
+- `text_XX` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_XX` is for other languages where `XX` is the lang code, such as `text_CN`, `text_RU`.
 
 The flow of the drama is connected by drama steps, each drama step contains one or many drama lines, line can be pure dialog, action, and/or conditional at the same time.
 

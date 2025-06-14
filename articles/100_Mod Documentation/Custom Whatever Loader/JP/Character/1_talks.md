@@ -42,6 +42,8 @@ hide: true
 
 カスタムシナリオテーブルは `LangMod/**/Dialog/Drama/` フォルダに配置し、ファイル名はタグと一致させる必要があります。例：`addDrama_drama_example` には `Dialog/Drama/drama_example.xlsx` を対応させます。
 
+**<span class="text-amber-300">重要</span>**: あなたは **1** つのシナリオ表を提供するだけでよく、それは任意の言語のサブフォルダーに配置できます。CWLは、同じ表内で多言語のローカライズをサポートしています。
+
 作成時はゲーム内蔵のシナリオテーブル **Elin/Package/_Elona/Lang/_Dialog/Drama** や、テンプレートを含む「Tiny Mita」サンプルを参考にしてください：
 <LinkCard t="CWLサンプル：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" />
 
@@ -62,7 +64,7 @@ hide: true
 - `param`：アクションのパラメータ
 - `actor`：発言キャラクターID（複数キャラ会話用）。デフォルト `tg`。接尾辞 `?` は名前 `???` を表示します
 - `id`：テキスト行の一意識別子（テキスト行のみ必須）
-- `text`/`text_JP`/`text_EN`：実際の会話内容。`text`列はLangModのサブフォルダに応じて言語切り替え
+- `text_XX`/`text_JP`/`text_EN`：実際の対話内容。`XX` は言語コード、例えば `text_CN`, `text_ZHTW`, `text_RU`
 
 シナリオはステップで実行され、各ステップ内で会話/アクション/条件分岐を組み合わせられます。
 

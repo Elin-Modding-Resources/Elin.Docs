@@ -6,7 +6,7 @@ hide: true
 
 ## 喊叫
 
-在某些情况下, 角色会触发特定的对话并显示在其头顶。
+在某些情况下, 角色会触发特定的对话并作为气泡显示在其头顶。
 
 ![](./assets/bark.png)
 
@@ -26,7 +26,7 @@ hide: true
 
 ![img](./assets/dialog.png)
 
-这个表格的格式与游戏的对话表格 **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx** 相同, 但你只需 `unique` 表格和包含你角色 ID 的那一行。
+此表格的格式与游戏的对话表格 **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx** 相同, 但你只需 `unique` 表格和包含你角色 ID 的那一行。
 
 ![](./assets/unique.png)
 
@@ -41,6 +41,8 @@ hide: true
 要为角色定义自定义剧情, 请使用 `addDrama_剧情表名称` 标签, CWL将自动定向该剧情。
 
 自定义剧情表必须放置在 `LangMod/**/Dialog/Drama/` 文件夹下, 且名称需与标签匹配。例如：使用 `addDrama_drama_example` 时需对应`Dialog/Drama/drama_example.xlsx`文件。
+
+**<span class="text-amber-300">重要</span>**: 您只需提供 **1** 份剧情表，它可以放置在任何语言子文件夹中。CWL支持在同一表格内提供多语言的本地化。
 
 制作时可参考游戏内置剧情表 **Elin/Package/_Elona/Lang/_Dialog/Drama**, 或含有模板的Tiny Mita范例：
 <LinkCard t="CWL范例：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" />
@@ -62,7 +64,7 @@ hide: true
 - `param`：动作参数
 - `actor`：当前说话角色 ID, 用于多人对话场景。默认 `tg`。后缀 `?` 以显示名称为 `???`
 - `id`：文本行唯一标识(仅文本行必需)
-- `text`/`text_JP`/`text_EN`：实际对话内容。`text`列根据LangMod子文件夹自动切换语言版本
+- `text_XX`/`text_JP`/`text_EN`：实际对话内容。`XX` 为语言代码，例如 `text_CN`, `text_ZHTW`
 
 剧情通过步骤串联执行, 每个步骤包含若干行剧情单元, 可混合对话/动作/条件判断。
 
