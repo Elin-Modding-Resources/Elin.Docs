@@ -6,11 +6,11 @@ hide: true
 
 ## Barks
 
-Sometimes you want the character to banter/bark at certain conditions. They barks pop up above character's head.
+Sometimes you want the character to banter/bark at certain conditions. The barks pop up above character's head in a speech bubble.
 
 ![](./assets/bark.png)
 
-These barks are written in **CharaText** sheet, and your Chara sheet uses **idText** to link their IDs together.
+These barks are written in **CharaText** sheet, and your Chara sheet uses **idText** cell to link their IDs together.
 
 ![](./assets/charatext.png)
 
