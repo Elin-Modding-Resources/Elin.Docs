@@ -108,7 +108,7 @@ function getDiff() {
     }
 
     sidebar.push({
-      text: data.version,
+      text: data.version.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()).trim(),
       items: items,
       collapsed: true,
     });
@@ -160,6 +160,21 @@ function getDiff() {
       items: change.items,
       collapsed: true,
     });
+  }
+
+  const versionIcons = [
+    { pattern: /nyaightly/i, icon: " 🐱" },
+    { pattern: /nightly/i, icon: " 🌙" },
+    { pattern: /stable/i, icon: " ⭐" },
+  ];
+
+  for (const version of grouped) {
+    const match = versionIcons.find((mapping) =>
+      mapping.pattern.test(version.text)
+    );
+    if (match) {
+      version.text += match.icon;
+    }
   }
 
   (grouped[0] as any).collapsed = false;
