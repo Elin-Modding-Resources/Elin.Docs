@@ -60,7 +60,7 @@ A drama sheet is executed from top to bottom, and composed of drama lines. A dra
 - `param`: the parameters for the action.
 - `actor`: The current line speaker. Only fill this when you want to introduce multiple character conversation. Defaults to `tg`. Append `?` to show as `???`.
 - `id`: unique id for this line, this is only and mandatory for `text` lines.
-- `text_XX` / `text_JP` / `text_EN`: the actual dialog content in this line. `text_XX` is for other languages where `XX` is the lang code, such as `text_CN`, `text_RU`.
+- `text_XX` / `text_JP` / `text_EN` / `text`: the actual dialog content in this line. `text_XX` is for other languages where `XX` is the lang code, such as `text_CN`, `text_RU`. `text` column will be used as the last fallback for language code that's missing.
 
 The flow of the drama is connected by drama steps, each drama step contains one or many drama lines, line can be pure dialog, action, and/or conditional at the same time.
 

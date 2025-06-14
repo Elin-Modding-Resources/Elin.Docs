@@ -64,7 +64,7 @@ hide: true
 - `param`：动作参数
 - `actor`：当前说话角色 ID, 用于多人对话场景。默认 `tg`。后缀 `?` 以显示名称为 `???`
 - `id`：文本行唯一标识(仅文本行必需)
-- `text_XX`/`text_JP`/`text_EN`：实际对话内容。`XX` 为语言代码，例如 `text_CN`, `text_ZHTW`
+- `text_XX`/`text_JP`/`text_EN`：实际对话内容。`XX` 为语言代码，例如 `text_CN`, `text_ZHTW`。`text` 列将作为缺失语言代码的备选。
 
 剧情通过步骤串联执行, 每个步骤包含若干行剧情单元, 可混合对话/动作/条件判断。
 
