@@ -45,7 +45,7 @@ hide: true
 **<span class="text-amber-300">重要</span>**: あなたは **1** つのシナリオ表を提供するだけでよく、それは任意の言語のサブフォルダーに配置できます。CWLは、同じ表内で多言語のローカライズをサポートしています。
 
 作成時はゲーム内蔵のシナリオテーブル **Elin/Package/_Elona/Lang/_Dialog/Drama** や、テンプレートを含む「Tiny Mita」サンプルを参考にしてください：
-<LinkCard t="CWLサンプル：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" />
+<LinkCard t="CWLサンプル：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />
 
 ![img](./assets/drama.png)
 
@@ -159,4 +159,4 @@ hide: true
 
 有时、プレイヤーにいくつかのヒントを提供して、あなたの素晴らしいストーリーをより良く体験してもらいたいと思うことがあります。CWLを使用してモジュールを作成することで、Mod Helpを利用してカスタマイズされたヘルプページを提供できます。
 
-<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/1_mod_help_jp" />
+<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/1_mod_help_jp" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />

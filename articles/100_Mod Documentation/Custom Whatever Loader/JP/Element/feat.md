@@ -38,3 +38,6 @@ internal class FeatMyExample : Feat
 テクスチャのサイズが32x32でない場合、CWLはそれを32x32に調整します。
 
 タグ **addEleOnLoad** を使用すると、プレイヤーはロード時に自動的にこのFeatを取得します。
+
+<LinkCard t="CWL Example: Donakoko" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />
+<LinkCard t="Donakoko Source Code" u="https://github.com/gottyduke/Elin.Plugins/tree/master/CwlExamples/Donakoko" />

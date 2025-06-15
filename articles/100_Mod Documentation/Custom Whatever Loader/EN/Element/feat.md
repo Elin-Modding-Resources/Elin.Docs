@@ -38,3 +38,6 @@ internal class FeatMyExample : Feat
 If the texture size is not 32x32, CWL will resize it for you.
 
 With the tag **addEleOnLoad**, player will gain this feat automatically upon loading.
+
+<LinkCard t="CWL Example: Donakoko" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />
+<LinkCard t="Donakoko Source Code" u="https://github.com/gottyduke/Elin.Plugins/tree/master/CwlExamples/Donakoko" />

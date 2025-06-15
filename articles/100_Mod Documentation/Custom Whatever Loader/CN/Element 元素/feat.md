@@ -38,3 +38,6 @@ internal class FeatMyExample : Feat
 如果纹理大小不是32x32，CWL会将其调整为32x32。
 
 使用标签 **addEleOnLoad**，玩家在加载时将自动获得这个专长。
+
+<LinkCard t="CWL 范例: 多娜可可" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />
+<LinkCard t="多娜可可 源码" u="https://github.com/gottyduke/Elin.Plugins/tree/master/CwlExamples/Donakoko" />

@@ -41,7 +41,7 @@ Your custom drama sheet must be placed in your `LangMod/**/Dialog/Drama/` folder
 **<span class="text-amber-300">Important</span>**: you only need to provide **1** copy of the drama sheet, it can be placed in any of language sub folders. CWL supports in-file localization for multiple languages within the same sheet.
 
 You should reference the game drama sheets at **Elin/Package/_Elona/Lang/_Dialog/Drama** while making your own, or the Tiny Mita example which has a template drama sheet:
-<LinkCard t="CWL Example: Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" />
+<LinkCard t="CWL Example: Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />
 
 ![img](./assets/drama.png)
 
@@ -155,4 +155,4 @@ Struggling with the built-in `action` of the drama sheet not achieving the desir
 
 Sometimes you may want to provide a bit of hint for players, so they can better experience your awesome drama story. By making mods with CWL, you already gain access to Mod Help, check it out to deliver custom made help pages!
 
-<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/0_mod_help" />
+<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/0_mod_help"  i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />
