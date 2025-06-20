@@ -128,7 +128,7 @@ IEnumerator MyAsyncTask()
 
 ## `SpriteCreator`
 
-Helper to load a png as a sprite with caching and resizer option.
+Helper to load a png as a sprite with caching and optional resizer option.
 ```cs:no-line-numbers
 Sprite? LoadSprite(this string path, Vector2? pivot = null, string? name = null, int resizeWidth = 0, int resizeHeight = 0);
 
@@ -137,6 +137,16 @@ var sprite = filePath.LoadSprite(name: "SpriteNewName", resizeWidth: 900, resize
 ```
 
 By default, the pivot will be at center (`0.5, 0.5`) and sprite name will be an internal cache name. If `resizeWidth` and/or `resizeHeight` is not `0`, then sprite will be resized.
+
+## `SpriteReplacerHelper`
+
+Helper to quickly add a tile into `SpriteSheet` with optional resizer option.
+```cs:no-line-numbers
+// file at "X:/someimage_alt.png"
+SpriteReplacerHelper.AppendSpriteSheet("someimage_alt", 32, 32);
+```
+
+You should only call this for each additional tiles once globally in your plugin, and note that some source data's tiles are added by CWL automatically.
 
 ## `ChildrenIterator`
 
@@ -153,7 +163,5 @@ Returns `null` if not found.
 
 Some helpers and random stuff that you won't need:
 
-+ PixelRaycast
-+ ColorParser
-+ TextureResizer
-+ ComponentFetch
++ [PixelRaycast](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Helper/Unity/PixelRaycast.cs)
++ [TextureResizer](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Helper/Unity/TextureResizer.cs)

@@ -11,7 +11,7 @@ hide: true
 internal class FeatMyExample: Feat
 ```
 
-由于 Elin 将所有专长效果都写在 `Feat.Apply` 这个方法中，CWL 提供了一个事件 `OnApply`，通过在你的专长类中定义一个可选的事件处理 `_OnApply` 以便应用你自己的专长效果：
+由于 Elin 将所有专长效果都写在 `Feat.Apply` 这个方法中，CWL 提供了一个事件 `_OnApply`，通过在你的专长类中定义一个可选的事件处理 `_OnApply` 以便应用你自己的专长效果：
 ```cs
 internal class FeatMyExample : Feat
 {

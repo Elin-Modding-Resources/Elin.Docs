@@ -11,7 +11,7 @@ hide: true
 internal class FeatMyExample: Feat
 ```
 
-Elin はすべてのFeat効果を `Feat.Apply` メソッドに記述しているため、CWL はイベント `OnApply` を提供しています。これは、Featクラス内でオプションのイベントハンドラー `_OnApply` を定義することで、自分のFeat効果を適用することができます：
+Elin はすべてのFeat効果を `Feat.Apply` メソッドに記述しているため、CWL はイベント `_OnApply` を提供しています。これは、Featクラス内でオプションのイベントハンドラー `_OnApply` を定義することで、自分のFeat効果を適用することができます：
 ```cs
 internal class FeatMyExample : Feat
 {

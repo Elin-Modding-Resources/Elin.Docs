@@ -126,19 +126,6 @@ IEnumerator MyAsyncTask()
 }
 ```
 
-## `CwlContextMenu`
-
-便捷属性用于将方法注册到系统菜单。
-```cs:no-line-numbers
-[CwlContextMenu("菜单A/菜单B/按钮 C", "LangGeneral_ID_或者文本_或者省略")]
-private static void MyTestMethod()
-{
-    // ...
-}
-```
-
-注册的方法返回值将显示在屏幕上（如果有的话）。
-
 ## `ProgressIndicator`
 
 用于在屏幕右上角显示异步操作的进度跟踪器。
@@ -184,7 +171,7 @@ IEnumerator MyAsyncTask()
 
 ## `SpriteCreator`
 
-帮助加载 PNG 作为 Sprite，带有缓存和调整大小选项。
+帮助加载 PNG 作为 Sprite，带有缓存和可选调整大小选项。
 ```cs:no-line-numbers
 Sprite? LoadSprite(this string path, Vector2? pivot = null, string? name = null, int resizeWidth = 0, int resizeHeight = 0);
 
@@ -192,7 +179,17 @@ var filePath = "X:/someimage.png";
 var sprite = filePath.LoadSprite(name: "SpriteNewName", resizeWidth: 900, resizeHeight: 600);
 ```
 
-默认情况下，轴心位于中心（`0.5, 0.5`），Sprite 名称将是内部缓存名称。如果 `resizeWidth` 和/或 `resizeHeight` 不为 `0`，则 Sprite 将被调整至指定大小。
+默认情况下，轴心位于中心（`0.5, 0.5`），不提供 `name` 参数时，Sprite 名称将使用内部缓存名称。如果 `resizeWidth` 和/或 `resizeHeight` 不为 `0`，则 Sprite 将被调整至指定大小。
+
+## `SpriteReplacerHelper`
+
+用于快速向游戏内 `SpriteSheet` 添加贴图块，并带有可选调整大小选项。
+```cs:no-line-numbers
+// file at "X:/someimage_alt.png"
+SpriteReplacerHelper.AppendSpriteSheet("someimage_alt", 32, 32);
+```
+
+全局中您应当为各贴图只调用该方法一次，且部分源表的贴图由 CWL 自动添加。
 
 ## `ChildrenIterator`
 
@@ -209,7 +206,5 @@ var text = page.transform.GetFirstNestedChildWithName("Content View/Scroll View/
 
 一些你可能不需要的内容：
 
-+ PixelRaycast
-+ ColorParser
-+ TextureResizer
-+ ComponentFetch
++ [PixelRaycast](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Helper/Unity/PixelRaycast.cs)
++ [TextureResizer](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Helper/Unity/TextureResizer.cs)

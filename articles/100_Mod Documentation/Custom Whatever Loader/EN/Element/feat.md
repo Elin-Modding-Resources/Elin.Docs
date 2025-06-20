@@ -6,12 +6,12 @@ hide: true
 
 ## Feat
 
-A custom feat is kinda similiar, but your custom feat class must derive from **Feat**. 
+A custom feat is kinda similiar to `Element`, but your custom feat class must derive from **Feat**. 
 ```cs
 internal class FeatMyExample: Feat
 ```
 
-Since Elin hardcodes its feat effects in the big ol `Feat.Apply` non-virtual method, CWL offers you an event `OnApply` to apply your own feat effects when that happens, by defining an optional event handler `_OnApply` in the feat class:
+Since Elin hardcodes its feat effects in the big ol `Feat.Apply` non-virtual method, CWL offers you an event `_OnApply` to apply your own feat effects when that happens, by defining an optional event handler `_OnApply` in the feat class:
 ```cs
 internal class FeatMyExample : Feat
 {
