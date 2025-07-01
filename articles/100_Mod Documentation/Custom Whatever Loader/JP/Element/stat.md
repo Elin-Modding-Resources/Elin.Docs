@@ -6,6 +6,14 @@ hide: true
 
 ## カスタム状態
 
+CWLは、あなたのカスタムステータス表（表名: Stat）をインポートし、ゲームに追加することができます。ただし、あなたのカスタムステータスには以下の点に注意が必要です：
+
+**id**：ユニークな数字で、これはステータスのIDです。  
+**alias**：ステータスのエイリアス、文字列IDです。  
+**type**：このステータスに対応するC#タイプ名です。  
+
+残りはあなたが定義します。あなたは[Elin Modding Wiki](https://elin-modding-resources.github.io/Elin.Docs/)やElin Sourcesを参照することができます。
+
 カスタム状態クラスは **Condition** から派生する必要があり、一般的なクラスには **Condition**、**BadCondition**、**BaseDebuff** などがあります。
 ```cs
 internal class ConCarbonated: ConDrunk;

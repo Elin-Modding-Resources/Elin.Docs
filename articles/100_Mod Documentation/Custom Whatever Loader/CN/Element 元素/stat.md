@@ -6,6 +6,14 @@ hide: true
 
 ## 自定义状态
 
+CWL 可以导入您的自定义状态表（表名: Stat）并将其添加到游戏中。然而，您的自定义状态有以下几项需要注意：
+
+**id**：一个唯一的数字，这是状态的ID。  
+**alias**：状态的别名，字符串ID。  
+**type**：与此状态对应的C#类型名称。  
+
+其余的由您定义。您可以参考[Elin Modding Wiki](https://elin-modding-resources.github.io/Elin.Docs/)或Elin Sources。
+
 自定义状态类必须从 **Condition** 派生，常见的类有 **Condition**，**BadCondition**，**BaseDebuff** 等。
 ```cs
 internal class ConCarbonated: ConDrunk;
