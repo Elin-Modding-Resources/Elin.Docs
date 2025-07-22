@@ -42,14 +42,14 @@ internal class ActLionDance : Act
 
 あなたのクラスは任意の名前空間で宣言できます。CWLは自動的にタイプ名を制限するため、**type**はクラス名そのものだけで構いません。
 
-あなたの要素アイコンは**Texture**フォルダーに配置する必要があり、**alias**と同じファイル名を使用してください。例えば**ActLionDance.png**のように。また、パターンマッチングを使用して複数の要素に同じアイコンを割り当てることもできます。例えば、すべての**alias**が`my_ele`で始まる要素に同じアイコンを割り当てる場合、そのファイル名は`@my_ele.png`である必要があります。このアイコンは`my_ele_1`、`my_ele_2`、`my_ele_fire`、`my_ele_cold`、`my_ele_error`、`my_ele_xxx`などの要素にマッチします。フルネームマッチはパターンマッチよりも優先されます。
+## アイコン
+Elementのアイコンは**Texture**フォルダ内に、ファイル名と同じエイリアスで配置する必要があります（例: **ActLionDance.png**）。また、パターンマッチングを使用して、複数のElementに1つのアイコンを割り当てることも可能です。例えば、エイリアスがmy_eleで始まるすべてのElementには、`alias@my_ele.png`とすることで、`my_ele_1`、`my_ele_2`、`my_ele_fire`、`my_ele_cold`、`my_ele_error`、`my_ele_xxx`などと一致します。完全一致はパターンマッチングよりも優先されます。
 
-もしテクスチャサイズが48x48でない場合、CWLはそれを48x48に調整します。
+テクスチャサイズが48x48でない場合、CWLが自動的にリサイズします。
 
-**addEleOnLoad**タグを使用すると、プレイヤーキャラクターはこの能力を自動的に獲得します。
+## タグ
+**addEleOnLoad**: プレイヤーはロード時にこのアビリティを自動的に獲得します。
+**addDice**: Elementのaliasと同じidを持つCalcシートのダイスを使用します。
+**godAbility,religion_id**: カスタムの宗教のために、このアビリティを使用すると神の会話がトリガーされるようにします。例: 宗教が`cwl_spaghettigod`の場合、タグは`godAbility,cwl_spaghettigod`を使用します。
 
-CWLのAPIを使用しない場合は、CustomWhateverLoader.dllを参照する必要はありません。
-
-## 信仰能力
-
-もしあなたのカスタム能力がカスタム信仰の能力である場合、**godAbility,信仰 ID**というタグを使用してください。例えば、あなたの能力を**cwl_spaghettigod**という信仰の能力に設定する場合、タグは**godAbility,cwl_spaghettigod**となります。信仰能力を使用すると、その信仰の神の対話がトリガーされます。
+CWL APIを利用する必要がない場合、CustomWhateverLoader.dllを参照する必要はありません。

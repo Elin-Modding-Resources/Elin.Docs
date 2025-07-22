@@ -42,14 +42,15 @@ The class must derive from **Element**, common ones are **Act**, **AIAct`**, **A
 
 You can declare your class in any namespace, CWL will qualify the type name, so the element type only needs to be the class name itself.
 
+## Icon
+
 Your element icon needs to be placed within **Texture** folder, using the same alias as the file name, such as **ActLionDance.png**. You may also use pattern matching to assign a single icon to multiple elements, such as for all elements that have **alias** starting with `my_ele`, the file name should be `@my_ele.png`, and it will match `my_ele_1`, `my_ele_2`, `my_ele_fire`, `my_ele_cold`, `my_ele_error`, `my_ele_xxx` etc. Full name matching happens before pattern matching.
 
 If the texture size is not 48x48, CWL will resize it for you.
 
-With the tag **addEleOnLoad**, player will gain this ability automatically upon loading.
+## Tags
+**`addEleOnLoad`**: player will gain this ability automatically upon loading.
+**`addDice`**: use the dice from Calc sheet with the same id as element's alias.
+**`godAbility,religion_id`**: make your ability trigger god talks upon using for custom religion. Example religion **cwl_spaghettigod**, use tag **godAbility,cwl_spaghettigod**.
 
-If you do not need to utilize CWL API, then no need to reference CustomWhateverLoader.dll.
-
-## God Ability
-
-To make an ability as god ability of your custom religion, add tag **godAbility,religion_id**. For example, to make your ability trigger god talks upon using for custom religion **cwl_spaghettigod**, use tag **godAbility,cwl_spaghettigod**.
+If you do not need to utilize CWL API, then you don't need to reference CustomWhateverLoader.dll.

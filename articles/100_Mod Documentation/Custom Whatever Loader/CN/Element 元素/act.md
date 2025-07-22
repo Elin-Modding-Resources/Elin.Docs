@@ -42,14 +42,15 @@ internal class ActLionDance : Act
 
 您可以在任何命名空间中声明您的类，CWL 会自动为您限定类型名称，因此 **type** 只需要是类名本身。
 
-您的元素图标需要放置在 **Texture** 文件夹中，使用与 **alias** 相同的文件名，例如 **ActLionDance.png**。也可以使用模式匹配为多个元素分配同一个图标，例如为所有 **alias** 以`my_ele`开头的元素分配同一个图标，该文件名应为`@my_ele.png`，此图标会匹配至`my_ele_1`, `my_ele_2`, `my_ele_fire`, `my_ele_cold`, `my_ele_error`, `my_ele_xxx`等元素。全名匹配会优先于模式匹配。
+## 图标
 
-如果纹理大小不是48x48，CWL会将其调整为48x48。
+您的元素图标需要放置在 **Texture** 文件夹中，使用与别名相同的文件名，例如 **ActLionDance.png**。您还可以使用模式匹配为多个元素分配一个图标，例如对于所有alias以 `my_ele` 开头的元素，文件名应为 `@my_ele.png`，它将匹配 `my_ele_1`、`my_ele_2`、`my_ele_fire`、`my_ele_cold`、`my_ele_error`、`my_ele_xxx` 等。全名匹配在模式匹配之前进行。
 
-使用标签 **addEleOnLoad**，玩家角色将自动获得此能力。
+如果纹理大小不是 48x48，CWL 将为您调整至该大小。
 
-如果不需要使用CWL的API，那么无需引用CustomWhateverLoader.dll。
+## 标签
+**`addEleOnLoad`**：玩家在加载时将自动获得此能力。  
+**`addDice`**：使用来自 Calc 表的骰子，其 ID 与元素的别名相同。  
+**`godAbility,religion_id`**：使您的能力在触发自定义信仰的神对话。例如信仰 **cwl_spaghettigod**，使用标签 **godAbility,cwl_spaghettigod**。
 
-## 信仰能力
-
-如果您的自定义能力是一个自定义信仰的能力，请使用标签 **godAbility,信仰 ID**，例如将您的能力设为 **cwl_spaghettigod** 信仰的能力，标签应为 **godAbility,cwl_spaghettigod**。信仰能力在使用时会触发该信仰的神的对话。
+如果您不需要使用 CWL API，则无需引用 CustomWhateverLoader.dll。
