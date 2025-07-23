@@ -14,7 +14,7 @@ hide: true
 CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。如果您不使用 CWL API，您的角色还是需要 `Merchant` 或者 `MerchantXXX` Trait 使其可以交易。
 :::
 
-库存文件是一个简单的 JSON 文件，放置在您的 `LangMod/**/Data/` 文件夹中，名称为 `stock_ID.json`，此ID是库存文件的独特ID或者您的角色ID。
+库存文件是一个简单的 JSON 文件，放置在您的 `LangMod/**/Data/` 文件夹中，名称为 `stock_ID.json`，此ID是库存文件的独特ID或者您的角色ID。例如: `stock_my_cnpc.json` 或 `stock_unique_armor.json`。
 
 使用 `addStock` 标签时，CWL 会默认使用与该角色ID相同的库存ID。您也可以使用 `addStock_ID` 标签来指定特定库存，省去为多个角色定义重复库存的麻烦。
 

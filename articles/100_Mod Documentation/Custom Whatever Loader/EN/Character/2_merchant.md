@@ -14,9 +14,9 @@ You can define a custom merchant stock using tag `addStock` and a stock file.
 CWL 1.19.21 has removed the `Merchant` trait requirement for adding custom stocks, this is mainly an API change. If you are not using CWL API, you should still give your chara a `Merchant` or `MerchantXXX` trait so you can trade with them.
 :::
 
-The stock file is a simple json file placed in your `LangMod/**/Data/` folder, with name `stock_ID.json`, the ID is the unique ID for this stock file or character ID.
+The stock file is a simple json file placed in your `LangMod/**/Data/` folder, with name `stock_ID.json`, the ID is the unique ID for this stock file or character ID. For example, `stock_my_cnpc.json` or `stock_unique_armor.json`.
 
-When using tag `addStock`, the stock ID will default to the character ID. You may also specify and/or combine stock files with multiple `addStock` tag, such as `addStock,addStock_uniqueItems,addStock_Armor`.
+When using tag `addStock`, the stock ID will default to the character ID. You may also specify and/or combine stock files with multiple `addStock` tag, such as `addStock,addStock_unique_items,addStock_unique_armor`.
 
 Within the stock file, it's simply as follows:
 ```json

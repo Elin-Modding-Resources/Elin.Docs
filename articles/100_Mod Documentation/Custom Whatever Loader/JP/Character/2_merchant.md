@@ -14,7 +14,7 @@ hide: true
 CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは主に API の変更です。CWL API を使用しない場合でも、キャラクターは取引を行うために `Merchant` または `MerchantXXX` Trait が必要です。
 :::
 
-在庫ファイルはシンプルな JSON ファイルで、`LangMod/**/Data/` フォルダー内に配置し、名前は `stock_ID.json` とします。この ID は在庫ファイルのユニーク ID またはキャラクター ID です。
+在庫ファイルはシンプルな JSON ファイルで、`LangMod/**/Data/` フォルダー内に配置し、名前は `stock_ID.json` とします。この ID は在庫ファイルのユニーク ID またはキャラクター ID です。例えば: `stock_my_cnpc.json` または `stock_unique_armor.json`。
 
 `addStock` タグを使用する際、CWL はデフォルトでそのキャラクター ID と同じ在庫 ID を使用します。また、特定の在庫を指定するために `addStock_ID` タグを使用することもでき、複数のキャラクターに対して重複した在庫を定義する手間を省けます。
 
