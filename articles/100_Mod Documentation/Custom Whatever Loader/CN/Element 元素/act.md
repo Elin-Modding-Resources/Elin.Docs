@@ -51,6 +51,6 @@ internal class ActLionDance : Act
 ## 标签
 **`addEleOnLoad`**：玩家在加载时将自动获得此能力。  
 **`addDice`**：使用来自 Calc 表的骰子，其 ID 与元素的别名相同。  
-**`godAbility,religion_id`**：使您的能力在触发自定义信仰的神对话。例如信仰 **cwl_spaghettigod**，使用标签 **godAbility,cwl_spaghettigod**。
+**`godAbility,religion_id`**：使您的能力在触发自定义信仰的神对话。例如信仰 **cwl_spaghettigod**，使用标签 **godAbility,cwl_spaghettigod**。  
 
 如果您不需要使用 CWL API，则无需引用 CustomWhateverLoader.dll。

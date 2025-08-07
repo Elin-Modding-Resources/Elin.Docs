@@ -48,8 +48,8 @@ Elementのアイコンは**Texture**フォルダ内に、ファイル名と同�
 テクスチャサイズが48x48でない場合、CWLが自動的にリサイズします。
 
 ## タグ
-**addEleOnLoad**: プレイヤーはロード時にこのアビリティを自動的に獲得します。
-**addDice**: Elementのaliasと同じidを持つCalcシートのダイスを使用します。
-**godAbility,religion_id**: カスタムの宗教のために、このアビリティを使用すると神の会話がトリガーされるようにします。例: 宗教が`cwl_spaghettigod`の場合、タグは`godAbility,cwl_spaghettigod`を使用します。
+**addEleOnLoad**: プレイヤーはロード時にこのアビリティを自動的に獲得します。  
+**addDice**: Elementのaliasと同じidを持つCalcシートのダイスを使用します。  
+**godAbility,religion_id**: カスタムの宗教のために、このアビリティを使用すると神の会話がトリガーされるようにします。例: 宗教が`cwl_spaghettigod`の場合、タグは`godAbility,cwl_spaghettigod`を使用します。  
 
 CWL APIを利用する必要がない場合、CustomWhateverLoader.dllを参照する必要はありません。

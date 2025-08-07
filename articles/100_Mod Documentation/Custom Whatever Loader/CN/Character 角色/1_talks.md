@@ -91,7 +91,7 @@ hide: true
 |`BGM`|BGM ID|切换背景音乐, 详见[Sound 音频/BGM](../Other%20其他/sound)|
 |`stopBGM`||停止BGM|
 |`lastBGM`||停止并恢复之前BGM|
-|`sound`|音效ID|播放音效, 详见[Sound 音频/BGM](../Other%20其他/sound)|
+|`sound`|音频ID|播放音频, 详见[Sound 音频/BGM](../Other%20其他/sound)|
 |`wait`|时长|暂停执行(秒), 通常用于等待动画效果|
 |`alphaIn`|持续时间|淡入效果(秒)|
 |`alphaOut`|持续时间|淡出效果|
