@@ -83,7 +83,7 @@ async function generateDiffForCommit(commit: {
 
     changes.push(filename);
     content.push(`## ${filename}\n`);
-    const sourceLink = `https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/${commit.sha}/${diff.to}`;
+    const sourceLink = `https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/${commit.sha}/${entry}`;
 
     breaking.push({
       file: filename,
@@ -125,7 +125,7 @@ async function generateDiffForCommit(commit: {
             chunk.changes.at(-1)
           )}`;
           content.push(
-            `[\`${chunk.context}\`](${chunkLink})`,
+            `[\`${chunk.context ?? chunk.changes[0].content}\`](${chunkLink})`,
             "```cs" + `:line-numbers=${ln}`
           );
 
@@ -142,7 +142,7 @@ async function generateDiffForCommit(commit: {
           for (let i = 0; i < chunk.changes.length; ++i) {
             const change = chunk.changes[i];
 
-            let line = change.content.slice(1).replace("\t".repeat(tabs), "");
+            let line = change.content.replace("\t".repeat(tabs), "");
             if (change.type === "DeletedLine") {
               line += " // [!code --]";
               if (methodSig.test(line)) {
