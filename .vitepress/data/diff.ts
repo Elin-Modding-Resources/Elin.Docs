@@ -99,21 +99,21 @@ async function generateDiffForCommit(commit: {
         case "AddedFile":
           content.push("::: details File Created", "```cs");
           for (const change of chunk.changes) {
-            content.push(change.content.slice(1));
+            content.push(change.content);
           }
           content.push("```\n", ":::");
           break;
         case "DeletedFile":
           content.push("::: details File Removed", "```cs");
           for (const change of chunk.changes) {
-            content.push(change.content.slice(1));
+            content.push(change.content);
           }
           content.push("```\n", ":::");
           break;
         case "RenamedFile":
           content.push("::: details File Renamed", "```cs");
           for (const change of chunk.changes) {
-            content.push(change.content.slice(1));
+            content.push(change.content);
           }
           content.push("```\n", ":::");
           break;
