@@ -1,6 +1,6 @@
 import { readdirSync, writeFileSync } from "fs";
 import path from "path";
-import parse from "parse-diff";
+import parseGitDiff, { AnyLineChange } from "parse-git-diff";
 
 export async function generateDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
@@ -16,7 +16,7 @@ export async function generateDiff() {
     )
   ).json();
 
-  for (const commit of commits.slice(0, 10)) {
+  for (const commit of commits.slice(0, 3)) {
     const message = commit.commit.message;
     if (/^(?!EA|\+EA)/.test(message.trim())) {
       continue;
@@ -40,7 +40,7 @@ async function generateDiffForCommit(commit: {
   commit: { committer: { date: string }; message: string };
 }) {
   const rawDiff = await fetch(`${commit.html_url}.diff`);
-  const diffs = parse(await rawDiff.text());
+  const diffs = parseGitDiff(await rawDiff.text());
 
   let content: string[] = [];
   let changes: string[] = [];
@@ -48,21 +48,37 @@ async function generateDiffForCommit(commit: {
 
   let totalAdded = 0;
   let totalRemoved = 0;
+  let totalRenamed = 0;
 
-  for (const diff of diffs) {
-    if (!diff.to?.startsWith("Elin/")) {
+  for (const diff of diffs.files) {
+    let entry = "";
+    if ("path" in diff) {
+      entry = diff.path;
+    } else if ("pathBefore" in diff) {
+      entry = diff.pathBefore;
+    }
+
+    if (!entry.startsWith("Elin/")) {
       continue;
     }
-    const changeFile = diff.to?.match(/[^/]+$/);
+    const changeFile = entry?.match(/[^/]+$/);
     let filename = changeFile?.[0].replace(/\.[^/.]+$/, "") ?? "Unknown File";
 
-    if (diff.new === true) {
-      totalAdded++;
-      filename = `+${filename}`;
-    }
-    if (diff.deleted === true) {
-      totalRemoved++;
-      filename = `-${filename}`;
+    switch (diff.type) {
+      case "AddedFile":
+        totalAdded++;
+        filename = `+${filename}`;
+        break;
+      case "DeletedFile":
+        totalRemoved++;
+        filename = `-${filename}`;
+        break;
+      case "RenamedFile":
+        totalRemoved++;
+        filename = `~${filename}`;
+        break;
+      default:
+        break;
     }
 
     changes.push(filename);
@@ -75,71 +91,88 @@ async function generateDiffForCommit(commit: {
     });
 
     for (const chunk of diff.chunks) {
-      if (diff.new === true) {
-        content.push("::: details File Created", "```cs");
-        for (const change of chunk.changes) {
-          content.push(change.content.slice(1));
-        }
-        content.push("```\n", ":::");
-      } else if (diff.deleted === true) {
-        content.push("::: details File Removed", "```cs");
-        for (const change of chunk.changes) {
-          content.push(change.content.slice(1));
-        }
-        content.push("```\n", ":::");
-      } else {
-        const first = chunk.changes[0];
-        const ln = first.ln1 ?? 1;
-        const chunkLink = `${sourceLink}#L${ln}-L${
-          chunk.changes.at(-1)?.ln1 ?? ln + 1
-        }`;
-        content.push(
-          `[\`${chunk.content}\`](${chunkLink})`,
-          "```cs" + `:line-numbers=${ln}`
-        );
+      if (!("changes" in chunk)) {
+        continue;
+      }
 
-        // replace tabs
-        let tabs = (first.content.match(/\t/) || []).length;
-        for (const change of chunk.changes) {
-          tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
-        }
-
-        const methodSig =
-          /^(?!.*=>.*).*(public|protected|internal|private)\b.*\(.*\).*/;
-        const partialSig = /.*(public|protected|internal|private)\b.*\(/;
-        let lastDeletion = "";
-        for (let i = 0; i < chunk.changes.length; ++i) {
-          const change = chunk.changes[i];
-
-          let line = change.content.slice(1).replace("\t".repeat(tabs), "");
-          if (change.del === true) {
-            line += " // [!code --]";
-            if (methodSig.test(line)) {
-              lastDeletion = line;
-              breaking.at(-1).changes.push({
-                original: lastDeletion.trim(),
-                modified: "",
-                pos: i,
-              });
-            } else {
-              lastDeletion = "";
-            }
-          } else if (change.add === true) {
-            line += " // [!code ++]";
-
-            if (
-              lastDeletion !== "" &&
-              (line.startsWith(lastDeletion.match(partialSig)![0]) ||
-                (partialSig.test(line) &&
-                  i === breaking.at(-1).changes.at(-1).pos + 1))
-            ) {
-              breaking.at(-1).changes.at(-1).modified = line.trim();
-            }
+      switch (diff.type) {
+        case "AddedFile":
+          content.push("::: details File Created", "```cs");
+          for (const change of chunk.changes) {
+            content.push(change.content.slice(1));
           }
-          content.push(line);
-        }
+          content.push("```\n", ":::");
+          break;
+        case "DeletedFile":
+          content.push("::: details File Removed", "```cs");
+          for (const change of chunk.changes) {
+            content.push(change.content.slice(1));
+          }
+          content.push("```\n", ":::");
+          break;
+        case "RenamedFile":
+          content.push("::: details File Renamed", "```cs");
+          for (const change of chunk.changes) {
+            content.push(change.content.slice(1));
+          }
+          content.push("```\n", ":::");
+          break;
+        case "ChangedFile":
+          const first = chunk.changes[0];
+          const ln = getLine(first);
 
-        content.push("```\n");
+          const chunkLink = `${sourceLink}#L${ln}-L${getLine(
+            chunk.changes.at(-1)
+          )}`;
+          content.push(
+            `[\`${chunk.context}\`](${chunkLink})`,
+            "```cs" + `:line-numbers=${ln}`
+          );
+
+          // replace tabs
+          let tabs = (first.content.match(/\t/) || []).length;
+          for (const change of chunk.changes) {
+            tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
+          }
+
+          const methodSig =
+            /^(?!.*=>.*).*(public|protected|internal|private)\b.*\(.*\).*/;
+          const partialSig = /.*(public|protected|internal|private)\b.*\(/;
+          let lastDeletion = "";
+          for (let i = 0; i < chunk.changes.length; ++i) {
+            const change = chunk.changes[i];
+
+            let line = change.content.slice(1).replace("\t".repeat(tabs), "");
+            if (change.type === "DeletedLine") {
+              line += " // [!code --]";
+              if (methodSig.test(line)) {
+                lastDeletion = line;
+                breaking.at(-1).changes.push({
+                  original: lastDeletion.trim(),
+                  modified: "",
+                  pos: i,
+                });
+              } else {
+                lastDeletion = "";
+              }
+            } else if (change.type === "AddedLine") {
+              line += " // [!code ++]";
+
+              if (
+                lastDeletion !== "" &&
+                (line.startsWith(lastDeletion.match(partialSig)![0]) ||
+                  (partialSig.test(line) &&
+                    i === breaking.at(-1).changes.at(-1).pos + 1))
+              ) {
+                breaking.at(-1).changes.at(-1).modified = line.trim();
+              }
+            }
+            content.push(line);
+          }
+
+          content.push("```\n");
+        default:
+          break;
       }
     }
   }
@@ -153,7 +186,7 @@ async function generateDiffForCommit(commit: {
     }
   );
 
-  const totalModified = diffs.length - totalAdded - totalRemoved;
+  const totalModified = diffs.files.length - totalAdded - totalRemoved;
   let description = `${totalModified} file${
     totalModified > 1 ? "s" : ""
   } modified.`;
@@ -166,6 +199,11 @@ async function generateDiffForCommit(commit: {
     description += ` ${totalRemoved} file${
       totalRemoved > 1 ? "s" : ""
     } removed.`;
+  }
+  if (totalRenamed != 0) {
+    description += ` ${totalRenamed} file${
+      totalRenamed > 1 ? "s" : ""
+    } renamed.`;
   }
   const header: string[] = [
     "---",
@@ -216,4 +254,20 @@ async function generateDiffForCommit(commit: {
   }
 
   return header.concat(content);
+}
+
+function getLine(line: AnyLineChange | undefined) {
+  if (line === undefined) {
+    return 1;
+  }
+  switch (line.type) {
+    case "AddedLine":
+      return line.lineAfter;
+    case "DeletedLine":
+      return line.lineBefore;
+    case "UnchangedLine":
+      return line.lineBefore;
+    default:
+      return 1;
+  }
 }
