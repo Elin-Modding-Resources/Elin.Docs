@@ -5,7 +5,7 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
-# Custom Sound
+## Custom Sound
 
 Sound files should be in one of **acc**, **mp3**, **ogg**, **wav** formats, with the filename serving as the sound ID. A default metadata JSON is generated upon **using the sound**, allowing you to edit and apply sound file metadata on the next game launch.
 
