@@ -6,18 +6,18 @@ hide: true
 
 ## Import Custom Character
 
-Assumes you already have your custom character defined in a Chara sheet. You may take reference from existing mods or Elin Sources.
+Assumes you already have your custom character defined in a Chara sheet. You can take reference from existing mods or Elin Sources.
 <LinkCard t="SourceChara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn" />
 
-CWL utilizes the tag cell of the Chara row to add features, you may add as many tags as you want. **Remember, tags are separated by `,` (comma) with no spaces in between**. 
+CWL utilizes the tag cell of the Chara row to add features, you can add as many tags as you want. **Remember, tags are separated by `,` (comma) with no spaces in between**. 
 
 If you need additional features, don't hesitate to ask!
 
 ## spawn on game load
 
-To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with zone **id** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
+To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with **zone id** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
 
-For example, to spawn the chara in meadow, use `addZone_little_garden`. To also spawn in derphy underground, use `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) and reference the **id** column.
+For example, to spawn the chara in little garden, use `addZone_little_garden`. To also spawn in derphy underground, use another tag `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) and reference the **id** column.
 
 For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
 

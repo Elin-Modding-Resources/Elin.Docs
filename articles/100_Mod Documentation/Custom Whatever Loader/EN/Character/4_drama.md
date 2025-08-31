@@ -89,6 +89,9 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
 |`if_fame`|value expression|Check player's fame with value expression|if satisfies|
 |`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
+|`if_hostility`|hostility value expression|Checks if the `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|if satisfies|
+| :--- | :--- | :--- | :--- |
+| **The faction values from smallest to largest are `Enemy`, `Neutral`, `Friend`, `Ally`.** | | | |
 |`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|if satisfies|
 |`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|if satisfies|
 |`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|

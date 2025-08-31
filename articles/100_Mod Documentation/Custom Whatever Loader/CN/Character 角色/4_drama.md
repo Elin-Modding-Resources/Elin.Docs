@@ -91,6 +91,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`if_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), 奉献等级(可选)|检查`actor`是否加入特定信仰且不少于特定等级，默认 `0` 级|满足时|
 |`if_fame`|数值表达式|检查玩家名声|满足时|
 |`if_flag`|flag, 数值表达式|检查`actor`的flag值|满足时|
+|`if_hostility`|阵营数值表达式|检查`actor`的阵营是否符合特定条件，例如 `=Ally`，`>Enemy`。阵营值从小到大依次为 `Enemy`, `Neutral`, `Friend`, `Ally`|满足时|
 |`if_keyitem`|[关键物品alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数值表达式(可选)|检查玩家是否拥有符合表达式的关键物品值，默认 `>0`|满足时|
 |`if_race`|[种族id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|检查`actor`是否为对应种族|满足时|
 |`if_tag`|标签|检查`actor`是否拥有标签|满足时|

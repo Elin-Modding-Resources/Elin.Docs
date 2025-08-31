@@ -87,6 +87,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`if_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), レベル(省略可)|`actor`が特定の信仰に加入しており, 特定のレベル(デフォルトは0レベル)以上であるかを確認|条件が満たされた時|
 |`if_fame`|数値式|プレイヤーの名声を確認します|条件が満たされた時|
 |`if_flag`|flag, 数値式|`actor`のフラグ値をチェック|条件が満たされた時|
+|`if_hostility`|陣営の数値式|`actor`の陣営が特定の条件に合致するかをチェックします。例えば `=Ally`、`>Enemy`など。陣営の値は小さい順に `Enemy`、`Neutral`、`Friend`、`Ally`となっています|条件が満たされた時|
 |`if_keyitem`|[キーアイテムalias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数値式(省略可)|プレイヤーが表現に合ったキーアイテムの値を持っているかを確認する, デフォルトは `>0`|条件が満たされた時|
 |`if_race`|[種族id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|`actor`が対応する種族であるかを確認|条件が満たされた時|
 |`if_tag`|tag|`actor`がタグを持っているかチェック|条件が満たされた時|
