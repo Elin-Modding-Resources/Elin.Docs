@@ -10,7 +10,7 @@ tags: SourceSheet/Thing
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
 
-## ID
+## id
 `string`
 
 An unique identifier for the item.
