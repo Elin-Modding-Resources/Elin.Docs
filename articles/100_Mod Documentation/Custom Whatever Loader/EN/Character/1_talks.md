@@ -28,6 +28,10 @@ To add some chatty texts to the character for the `**Let's Talk**` option, you'l
 
 The sheet format is the same as game's dialog sheet at **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx**, but you only need the `unique` sheet and the row with your character's ID.
 
+::: warn Format
+Dialog data starts at 5th row.
+:::
+
 ## Drama
 
 A drama is the rich dialog that usually has options and additional actions. 

@@ -55,6 +55,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 |-|-|-|-|
 |`move_next_to`|[character id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|Move `actor` next to character with id **on the same map**|always|
 |`move_tile`|x, y|Move `actor` with **relative** tile offset, such as `1, 1` or `2, -1`|always|
+|`move_to`|x, y|Move `actor` to **absolute** tile offset, such as `1, 1` or `2, -1`|always|
 |`move_zone`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), level(optional)|Move `actor` to a specific zone with id, and specific level, default `0`|always|
 |`play_anime`|[anime id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|Play animation on `actor`|always|
 |`play_effect`|[effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|Play effect on `actor`|always|
@@ -68,6 +69,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 
 |method|param|description|jump|
 |-|-|-|-|
+|`console_command`|cmd param1 param2...|Run console command|always|
 |`mod_affinity`|value expression|Modify `actor` affinity with value expression|if success|
 |`mod_currency`|currency type, value expression|Modify `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|always|
 |`mod_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), power(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default power `1`. Different types of elements use different power scaling|always|
@@ -89,9 +91,8 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
 |`if_fame`|value expression|Check player's fame with value expression|if satisfies|
 |`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
-|`if_hostility`|hostility value expression|Checks if the `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|if satisfies|
-| :--- | :--- | :--- | :--- |
-| **The faction values from smallest to largest are `Enemy`, `Neutral`, `Friend`, `Ally`.** | | | |
+|`if_hostility`|hostility value expression|Checks if `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|if satisfies|
+|`if_in_party`||Check if `actor` is in player's party|if satisfies|
 |`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|if satisfies|
 |`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|if satisfies|
 |`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|

@@ -53,6 +53,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |-|-|-|-|
 |`move_next_to`|[キャラid](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|`actor`を**同じマップのキャラクター**の隣に移動させる|常時|
 |`move_tile`|X, Yオフセット|`actor`を**相対座標**で移動させる。例えば `1,1`|常時|
+|`move_to`|x, y|`actor`を**絶対座標**に移動させる。例えば `1,1`|常時|
 |`move_zone`|[ゾーンid](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752)，階層(省略可)|`actor`を指定されたゾーンに転送する。デフォルトは `0` 階層|常時|
 |`play_anime`|[アニメーションid](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|`actor`にアニメーションを実行させる|常時|
 |`play_effect`|[エフェクトid](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|`actor`にエフェクトを再生させる|常時|
@@ -66,6 +67,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|--|
+|`console_command`|コンソールコマンド 引数1 引数2...|コンソールコマンドを実行する|常時|
 |`mod_affinity`|数値式(例: `+5`)|`actor`の好感度を調整|成功時|
 |`mod_currency`|通貨の種類, 数値式|指定された通貨を`actor`に変更します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|常時|
 |`mod_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 強度(省略可)|`actor`の指定された要素(特性/抵抗/スキルなど)を変更し, デフォルトの強度は`1`であり, 異なるタイプの要素には異なる強度が使用される|常時|
@@ -88,6 +90,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`if_fame`|数値式|プレイヤーの名声を確認します|条件が満たされた時|
 |`if_flag`|flag, 数値式|`actor`のフラグ値をチェック|条件が満たされた時|
 |`if_hostility`|陣営の数値式|`actor`の陣営が特定の条件に合致するかをチェックします。例えば `=Ally`、`>Enemy`など。陣営の値は小さい順に `Enemy`、`Neutral`、`Friend`、`Ally`となっています|条件が満たされた時|
+|`if_in_party`||`actor`がプレイヤーのパーティにいるか確認する|条件が満たされた時|
 |`if_keyitem`|[キーアイテムalias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数値式(省略可)|プレイヤーが表現に合ったキーアイテムの値を持っているかを確認する, デフォルトは `>0`|条件が満たされた時|
 |`if_race`|[種族id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|`actor`が対応する種族であるかを確認|条件が満たされた時|
 |`if_tag`|tag|`actor`がタグを持っているかチェック|条件が満たされた時|
