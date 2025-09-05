@@ -14,15 +14,15 @@ While Rider is the recomended IDE, some might prefer VSCode. To get Elin develop
 
 The following extensions aid in developing mods for Elin on VSCode:
 
-1. https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp - basic C# support
-1. https://marketplace.visualstudio.com/items?itemName=VisualStudioToolsForUnity.vstuc - Enables debugging running code
+1. [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) - basic C# support
+2. [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=VisualStudioToolsForUnity.vstuc) - Enables debugging running code
 
 
 ## Debugging
 
 Instructions for debugging differ slightly compared to Rider. Upstram documentation is available [here](https://code.visualstudio.com/docs/other/unity).
 
-Follow the instructions in [debugging.md] to replace the mono dll with the debug version. Then create the following `.vscode/launch.json` file:
+Follow the instructions in [debugging](./debugging) to replace the mono dll with the debug version. Then create the following `.vscode/launch.json` file:
 
 ```json
 {
