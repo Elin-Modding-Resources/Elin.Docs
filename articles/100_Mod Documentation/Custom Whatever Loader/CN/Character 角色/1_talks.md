@@ -32,7 +32,7 @@ hide: true
 
 此处 ID 和角色 ID 相同。
 
-::: warn 格式
+::: warning 格式
 数据从表格第5行开始。
 :::
 
