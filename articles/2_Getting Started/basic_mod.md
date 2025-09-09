@@ -97,7 +97,9 @@ Example: `<loadPriority>100</loadPriority>`
 
 Write the version of the Elin main game that your mod was last confirmed to work with. Currently, it’s okay to skip frequent updates to this value unless necessary. If the Elin main game introduces significant changes to mods, mods with versions older than the main game’s update will no longer be loaded.
 
-**This is not your mod's version!**
+::: warning
+This is not your mod's version! Set this version to your game's version. E.g. `0.23.196`.
+:::
 
 Example: `<version>0.23.50</version>`
 
