@@ -18,3 +18,31 @@ Elinには、`PlayEffect`や`Effect.Get`と一緒に使用できる一連の[プ
 4. **エフェクトID**：**ファイル名**（拡張子なし）が、エフェクトのユニークIDとして使用されます。
 
 例えば、`magic_burst`という名前のエフェクトを作成するには、`magic_burst.png`という名前のファイルを作成し、`Texture`フォルダに配置します。次に、ゲーム内で`PlayEffect("magic_burst")`を呼び出すことで再生するか、`Effect.Get("magic_burst")`を使用してカスタマイズできます。
+
+## ホットリロードテスト
+
+ゲーム実行中にエフェクトファイルを変更し、コンソールコマンド cwl.data.clear_effect_cache を使用してエフェクトキャッシュをクリアすることで、ホットリロードテストを実行できます。
+
+## エフェクトテンプレートの変更
+
+コード内でカスタムエフェクトテンプレートを変更すると、それ以降に生成されるすべてのアニメーションにその変更が適用されます。
+
+::: code-group
+
+```cs [CWL]
+using Cwl.Helper.Unity;
+
+var myEffectTemplate = EffectHelper.GetEffectTemplate("magic_burst");
+```
+
+```cs [No CWL]
+var manager = Effect.manager;
+if (manager.effects.map is null) {
+    var rod = Effect.Get("rod");
+    Object.Destroy(rod);
+}
+
+var myEffectTemplate = manager.effects.map.GetValueOrDefault(id);
+```
+
+:::

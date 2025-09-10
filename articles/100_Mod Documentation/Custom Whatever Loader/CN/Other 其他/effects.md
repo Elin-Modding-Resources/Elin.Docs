@@ -18,3 +18,31 @@ hide: true
 4. **效果 ID**：**文件名**（不带扩展名）将用作您特效的独特 ID。
 
 例如，要创建一个名为 `magic_burst` 的特效，您需要创建一个名为 `magic_burst.png` 的文件，并将其放置在 `Texture` 文件夹中。然后，您可以通过调用 `PlayEffect("magic_burst")` 在游戏中播放它，或者使用 `Effect.Get("magic_burst")` 进行自定义。
+
+## 热加载测试
+
+在游戏运行时，您可以修改特效文件并使用控制台命令 `cwl.data.clear_effect_cache` 来清空特效缓存进行热加载测试。
+
+## 修改特效模板
+
+在代码中您可以修改您的自定义特效模板使后续生成的所有该特效都应用改动:
+
+::: code-group
+
+```cs [引用CWL]
+using Cwl.Helper.Unity;
+
+var myEffectTemplate = EffectHelper.GetEffectTemplate("magic_burst");
+```
+
+```cs [不引用CWL]
+var manager = Effect.manager;
+if (manager.effects.map is null) {
+    var rod = Effect.Get("rod");
+    Object.Destroy(rod);
+}
+
+var myEffectTemplate = manager.effects.map.GetValueOrDefault(id);
+```
+
+:::
