@@ -4,8 +4,6 @@ date: 2025/5/46 01:00
 hide: true
 ---
 
-# 命令列表中英文对照
-
 ## General / 常规
 
 | Command | English | Chinese |
@@ -41,7 +39,7 @@ hide: true
 | `cwl.bgm.next` | Play next BGM in playlist | 播放播放列表中下一首BGM |
 | `cwl.bgm.last` | Play last BGM in playlist | 播放播放列表中上一首BGM |
 | `cwl.bgm.shuffle` | Shuffle BGM playlist | 随机打乱BGM播放列表 |
-| `cwl.bgm.addKnown` | Set BGM from current playlist as known | 将当前播放列表中的BGM设为已知 |
+| `cwl.bgm.add_known` | Set BGM from current playlist as known | 将当前播放列表中的BGM设为已知 |
 | `cwl.bgm.dump` | Export all bundled playlists from Elin | 导出Elin中所有捆绑的播放列表 |
 
 ## Merchant / 商人系统
