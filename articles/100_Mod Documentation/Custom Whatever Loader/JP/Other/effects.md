@@ -21,7 +21,7 @@ Elinには、`PlayEffect`や`Effect.Get`と一緒に使用できる一連の[プ
 
 ## ホットリロードテスト
 
-ゲーム実行中にエフェクトファイルを変更し、コンソールコマンド cwl.data.clear_effect_cache を使用してエフェクトキャッシュをクリアすることで、ホットリロードテストを実行できます。
+ゲーム実行中にエフェクトファイルを変更し、コンソールコマンド `cwl.data.clear_effect_cache` を使用してエフェクトキャッシュをクリアすることで、ホットリロードテストを実行できます。
 
 ## エフェクトテンプレートの変更
 
@@ -36,6 +36,8 @@ var myEffectTemplate = EffectHelper.GetEffectTemplate("magic_burst");
 ```
 
 ```cs [No CWL]
+using UnityEngine;
+
 var manager = Effect.manager;
 if (manager.effects.map is null) {
     var rod = Effect.Get("rod");

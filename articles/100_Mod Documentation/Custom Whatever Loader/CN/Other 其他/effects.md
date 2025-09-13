@@ -36,6 +36,8 @@ var myEffectTemplate = EffectHelper.GetEffectTemplate("magic_burst");
 ```
 
 ```cs [不引用CWL]
+using UnityEngine;
+
 var manager = Effect.manager;
 if (manager.effects.map is null) {
     var rod = Effect.Get("rod");
