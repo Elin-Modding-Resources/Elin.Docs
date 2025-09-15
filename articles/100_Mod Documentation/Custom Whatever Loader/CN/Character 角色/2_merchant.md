@@ -49,6 +49,11 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
       "Type": "Recipe",
       "Rarity": "Random",
       "Identified": true
+    },
+    {
+      "Id": "SpShutterHex",
+      "Num": "5",
+      "Type": "Spell"
     }
   ]
 }

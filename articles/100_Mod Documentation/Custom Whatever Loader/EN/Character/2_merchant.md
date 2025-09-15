@@ -48,6 +48,11 @@ Within the stock file, it's simply as follows:
       "Type": "Recipe",
       "Rarity": "Random",
       "Identified": true
+    },
+    {
+      "Id": "SpShutterHex",
+      "Num": "5",
+      "Type": "Spell"
     }
   ]
 }

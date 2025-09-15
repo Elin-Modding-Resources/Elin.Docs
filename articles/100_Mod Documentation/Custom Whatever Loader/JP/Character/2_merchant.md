@@ -49,6 +49,11 @@ CWL 1.19.21 では `Merchant` Trait 要求が削除されました。これは�
       "Type": "Recipe",
       "Rarity": "Random",
       "Identified": true
+    },
+    {
+      "Id": "SpShutterHex",
+      "Num": "5",
+      "Type": "Spell"
     }
   ]
 }

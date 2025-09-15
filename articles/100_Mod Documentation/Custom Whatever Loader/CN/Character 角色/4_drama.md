@@ -71,7 +71,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`console_command`|控制台命令 参数1 参数2...|执行控制台命令|总是|
+|`console_cmd`|控制台命令 参数1 参数2...|执行控制台命令|总是|
 |`mod_affinity`|数值表达式|调整`actor`好感度|成功时|
 |`mod_currency`|货币种类, 数值表达式|为`actor`修改指定的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|总是|
 |`mod_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 强度(可选)|为`actor`修改指定元素(特质/抗性/技能等)，默认强度 `1`，不同类型的元素使用的强度不同|总是|

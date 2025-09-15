@@ -69,7 +69,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 
 |method|param|description|jump|
 |-|-|-|-|
-|`console_command`|cmd param1 param2...|Run console command|always|
+|`console_cmd`|cmd param1 param2...|Run console command|always|
 |`mod_affinity`|value expression|Modify `actor` affinity with value expression|if success|
 |`mod_currency`|currency type, value expression|Modify `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|always|
 |`mod_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), power(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default power `1`. Different types of elements use different power scaling|always|
