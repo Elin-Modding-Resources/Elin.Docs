@@ -106,17 +106,17 @@ hide: true
 |`hideUI`|过渡时间|隐藏界面(结束剧情时恢复)|
 |`hideDialog`||隐藏对话框(需配合`wait`使用)|
 |`end`||直接结束剧情|
-|`addKeyItem`|[关键物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)|给予玩家关键物品|
-|`drop`|[物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|在玩家位置生成物品|
+|`addKeyItem`|[关键物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)|给予玩家关键物品|
+|`drop`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|在玩家位置生成物品|
 |`addResource`|[资源类型](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md), 数量|添加家园资源|
 |`shake`||屏幕震动|
 |`slap`||扇剧情所有者角色|
-|`destroyItem`|[物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|从背包移除指定物品|
+|`destroyItem`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|从背包移除指定物品|
 |`focus`||立即聚焦镜头到剧情所有者|
-|`focusChara`|[角色ID](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657), 速度(可选)|移动镜头到**同地图角色**|
+|`focusChara`|[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657), 速度(可选)|移动镜头到**同地图角色**|
 |`focusPC`|速度(可选)|聚焦玩家角色|
 |`unfocus`||重置镜头|
-|`destroy`|[角色ID](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|移除**同地图角色**|
+|`destroy`|[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|移除**同地图角色**|
 |`save`||存档|
 |`setHour`|小时数|设置游戏时间|
 
@@ -135,8 +135,8 @@ hide: true
 |`fighter`||玩家在战士公会|
 |`thief`||玩家在盗贼公会|
 |`mage`||玩家在法师公会|
-|`hasItem`|[物品ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|玩家持有指定物品|
-|`isCompleted`|[任务ID](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=785701697#gid=785701697)|玩家已完成指定任务|
+|`hasItem`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)|玩家持有指定物品|
+|`isCompleted`|[任务id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=785701697#gid=785701697)|玩家已完成指定任务|
 
 条件格式为 `条件,参数`, 支持扩展表达式：
 ```

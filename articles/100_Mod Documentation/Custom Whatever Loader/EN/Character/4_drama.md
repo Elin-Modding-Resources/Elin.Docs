@@ -91,6 +91,7 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
 |`if_fame`|value expression|Check player's fame with value expression|if satisfies|
 |`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
+|`if_has_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), value expression(optional)|Checks if `actor` possesses a quantity of the item that meets the expression, default `>=1`|if satisfies|
 |`if_hostility`|hostility value expression|Checks if `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|if satisfies|
 |`if_in_party`||Check if `actor` is in player's party|if satisfies|
 |`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|if satisfies|

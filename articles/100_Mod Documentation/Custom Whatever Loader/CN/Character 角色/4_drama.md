@@ -57,7 +57,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |-|-|-|-|
 |`move_next_to`|[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|使`actor`移动到**同地图角色**身旁|总是|
 |`move_tile`|X, Y偏移|使`actor`进行**相对坐标**移动，例如 `1,1`|总是|
-|`move_to`|x, y|使`actor`进行**绝对坐标**移动，例如 `1,1`|总是|
+|`move_to`|X, Y|使`actor`进行**绝对坐标**移动，例如 `1,1`|总是|
 |`move_zone`|[区域id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752)，层数(可选)|传送`actor`到指定区域，默认 `0` 层|总是|
 |`play_anime`|[动画id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|使`actor`执行动画|总是|
 |`play_effect`|[特效id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|使`actor`播放特效|总是|
@@ -93,6 +93,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`if_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), 奉献等级(可选)|检查`actor`是否加入特定信仰且不少于特定等级，默认 `0` 级|满足时|
 |`if_fame`|数值表达式|检查玩家名声|满足时|
 |`if_flag`|flag, 数值表达式|检查`actor`的flag值|满足时|
+|`if_has_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), 数值表达式(可选)|检查`actor`是否拥有符合表达式的物品数量，默认 `>=1`|满足时|
 |`if_hostility`|阵营数值表达式|检查`actor`的阵营是否符合特定条件，例如 `=Ally`，`>Enemy`。阵营值从小到大依次为 `Enemy`, `Neutral`, `Friend`, `Ally`|满足时|
 |`if_in_party`||检查`actor`是否在玩家队伍中|满足时|
 |`if_keyitem`|[关键物品alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数值表达式(可选)|检查玩家是否拥有符合表达式的关键物品值，默认 `>0`|满足时|
