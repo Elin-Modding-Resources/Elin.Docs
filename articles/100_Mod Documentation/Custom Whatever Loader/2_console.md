@@ -12,6 +12,7 @@ hide: true
 | `cwl.enable_debug` | Enable debug mode for Elin | 为Elin启用调试模式 |
 | `cwl.remove_every` | Remove every chara with ID from global chara list | 根据ID从全局角色列表中移除所有对应角色 |
 | `cwl.add_figures` | Add figure and card of chara with ID | 添加指定ID角色的立绘和卡片 |
+| `cwl.spawn_altar` | Spawn an altar of a custom religion | 生成指定自定义信仰的祭坛 |
 
 ## Data Loader / 数据加载器
 
@@ -22,6 +23,7 @@ hide: true
 | `cwl.data.load_effect_setting` | Reload all Data/EffectSetting.guns.json | 重新加载所有Data/EffectSetting.guns.json |
 | `cwl.data.load_god_talk` | Reload all Data/god_talk.xlsx | 重新加载所有Data/god_talk.xlsx |
 | `cwl.data.load_religion_elements` | Reload all Data/religion_elements.json | 重新加载所有Data/religion_elements.json |
+| `cwl.data.load_religion_offerings` | Reload all Data/religion_offerings.json | 重新加载所有Data/religion_offerings.json |
 | `cwl.data.load_sound` | Preload all sound data from Sound/ folder | 预加载Sound/文件夹内所有音频数据 |
 | `cwl.data.clear_effect_cache` | Clear all cached Effects | 清除所有缓存的特效 |
 | `cwl.data.clear_sound_cache` | Clear all preloaded sound data | 清除所有预加载的音频数据 |

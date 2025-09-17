@@ -16,13 +16,17 @@ hide: true
 
 信仰のためのオプションのカスタムポートレートを作成するには、**Texture** フォルダーに **.png** 画像を入れ、信仰 ID と同じファイル名を使用してください。例えば、**cwl_spaghettigod.png** のように。
 
+コマンドコンソールの `cwl.spawn_altar` を使用して、指定したカスタム信仰祭壇を生成することができます。
+
 ## 信仰会話
 
 随便ロードは、あなたのカスタム **god_talk.xlsx** をゲームに統合します。このファイルは必須です。ゲームの表を参照できます。パスは **Elin/Package/_Elona/Lang/JP/Data/god_talk.xlsx** です。
 
 ![img](https://i.postimg.cc/P5V71tTq/image.png)
 
-あなたのカスタム **god_talk.xlsx** には、自分の信仰IDの対話のみを含めるべきです，**LangMod/*/Data** フォルダーに置いてください。
+あなたのカスタム **god_talk.xlsx** には、自分の信仰IDの対話のみを含めるべきです，`LangMod/**/Data` フォルダーに置いてください。
+
+コンソールコマンド `cwl.data.load_god_talk` を使用して、すべての神の会話を再読み込みできます。
 
 ## 信仰能力
 
@@ -50,3 +54,23 @@ hide: true
 ```
 
 カスタム信仰のためにファクションElementが定義されると、カスタム神のアーティファクトアイテムの一致するElementはファクションElementに変わり、カスタム信仰がアクティブなときにのみ有効になります。
+
+コンソールコマンド `cwl.data.load_religion_elements` を使用して、すべての信仰ファクションElementを再読み込みできます。
+
+## 信仰奉納
+
+信仰奉納の倍数はカテゴリごとに表で定義されていますが、`LangMod/**/Data/` フォルダ内に `religion_offerings.json` というシンプルなJSONファイルを置くことで、特定のアイテムに対してカスタム倍数を設定することも可能です。
+```json
+{
+    "cwl_spaghettigod": {
+        "spaghetti": 5
+    },
+    "cwl_religion2": {
+        "random_item": 2
+    }
+}
+```
+
+例えば、信仰 `cwl_spaghettigod` に対してアイテム `spaghetti` を供えると、その奉納価値は5倍になります。
+
+すべての信仰奉納倍数を再読み込みするには、コンソールコマンド `cwl.data.load_religion_offerings` を使用してください。

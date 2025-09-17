@@ -16,13 +16,17 @@ CWL 可以导入您的自定义信仰表（表名: Religion）并将其添加到
 
 要为您的信仰创建一个可选的自定义肖像，请将 **.png** 图像放入 **Texture** 文件夹，使用与信仰 ID 相同的文件名，例如 **cwl_spaghettigod.png**。
 
+你可以使用控制台命令 `cwl.spawn_altar` 来生成指定的自定义信仰祭坛。
+
 ## 信仰对话
 
 CWL 会把您的自定义 **god_talk.xlsx** 合并到游戏中，此文件是**必需的**。您可以参考游戏的中文表格，路径为 **Elin/Packag/_Lang_Chinese/Lang/CN/Data/got_talk.xlsx**。
 
 ![img](https://i.postimg.cc/P5V71tTq/image.png)
 
-您的自定义 **god_talk.xlsx** 应仅包含您自己信仰 ID 的对话，并放置在 **LangMod/*/Data** 文件夹下。
+您的自定义 **god_talk.xlsx** 应仅包含您自己信仰 ID 的对话，并放置在 `LangMod/**/Data` 文件夹下。
+
+你可以使用控制台命令 `cwl.data.load_god_talk` 来重新加载所有信仰对话。
 
 ## 信仰能力
 
@@ -32,7 +36,7 @@ CWL 会把您的自定义 **god_talk.xlsx** 合并到游戏中，此文件是**�
 
 要将您的自定义物品设为信仰神器，请使用标签 **godArtifact,信仰 ID**，不提供您的自定义信仰 ID 的话，您的自定义神器将无法许愿获得。
 
-## 势力元素
+## 派系元素
 
 您还可以定义一个仅在您的自定义信仰激活时应用的派系元素列表。这是通过提供一个位于您的 `LangMod/**/Data/` 文件夹中的简单 JSON 文件来完成的，文件名为 `religion_elements.json`。
 ```json
@@ -50,3 +54,23 @@ CWL 会把您的自定义 **god_talk.xlsx** 合并到游戏中，此文件是**�
 ```
 
 当为您的自定义信仰定义派系元素时，您的自定义神器中符合的元素将变成派系元素，并仅在自定义信仰激活时生效。
+
+你可以使用控制台命令 `cwl.data.load_religion_elements` 来重新加载所有信仰派系元素。
+
+## 信仰供奉倍数
+
+信仰供奉的倍数在表格中按类别定义，但你也可以通过在 `LangMod/**/Data/` 文件夹中提供一个名为 `religion_offerings.json` 的简单 JSON 文件，为特定物品定义自定义倍数。
+```json
+{
+    "cwl_spaghettigod": {
+        "spaghetti": 5
+    },
+    "cwl_religion2": {
+        "random_item": 2
+    }
+}
+```
+
+当向信仰 `cwl_spaghettigod` 供奉物品 `spaghetti` 时，其供奉价值将乘以5。
+
+你可以使用控制台命令 `cwl.data.load_religion_offerings` 来重新加载所有信仰供奉倍数。

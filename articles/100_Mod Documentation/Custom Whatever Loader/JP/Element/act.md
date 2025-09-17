@@ -43,13 +43,21 @@ internal class ActLionDance : Act
 あなたのクラスは任意の名前空間で宣言できます。CWLは自動的にタイプ名を制限するため、**type**はクラス名そのものだけで構いません。
 
 ## アイコン
+
 Elementのアイコンは**Texture**フォルダ内に、ファイル名と同じエイリアスで配置する必要があります（例: **ActLionDance.png**）。また、パターンマッチングを使用して、複数のElementに1つのアイコンを割り当てることも可能です。例えば、エイリアスがmy_eleで始まるすべてのElementには、`alias@my_ele.png`とすることで、`my_ele_1`、`my_ele_2`、`my_ele_fire`、`my_ele_cold`、`my_ele_error`、`my_ele_xxx`などと一致します。完全一致はパターンマッチングよりも優先されます。
 
 テクスチャサイズが48x48でない場合、CWLが自動的にリサイズします。
 
+オプションとして、`GetSprite` メソッドをオーバーライドして独自のアイコンスプライトを提供することもできます。
+
 ## タグ
+
 **addEleOnLoad**: プレイヤーはロード時にこのアビリティを自動的に獲得します。  
 **addDice**: Elementのaliasと同じidを持つCalcシートのダイスを使用します。  
 **godAbility,religion_id**: カスタムの宗教のために、このアビリティを使用すると神の会話がトリガーされるようにします。例: 宗教が`cwl_spaghettigod`の場合、タグは`godAbility,cwl_spaghettigod`を使用します。  
 
 CWL APIを利用する必要がない場合、CustomWhateverLoader.dllを参照する必要はありません。
+
+## フレーズ
+
+能力発動フレーズは、**_Elona/Lang/JP/Data/chara_talk.xlsx** と同様に、`LangMod/**/Data/chara_talk.xlsx` ファイル内の `phrase_ActAlias` テキストを指定することで定義できます。

@@ -48,9 +48,16 @@ internal class ActLionDance : Act
 
 如果纹理大小不是 48x48，CWL 将为您调整至该大小。
 
+您也可以选择重写 `GetSprite` 方法，提供您自己的图标。
+
 ## 标签
+
 **`addEleOnLoad`**：玩家在加载时将自动获得此能力。  
 **`addDice`**：使用来自 Calc 表的骰子，其 ID 与元素的别名相同。  
 **`godAbility,religion_id`**：使您的能力在触发自定义信仰的神对话。例如信仰 **cwl_spaghettigod**，使用标签 **godAbility,cwl_spaghettigod**。  
 
 如果您不需要使用 CWL API，则无需引用 CustomWhateverLoader.dll。
+
+## 短语
+
+您可以通过在 `LangMod/**/Data/chara_talk.xlsx` 文件中提供 `phrase_ActAlias` 文本来定义能力触发短语，方法与 **_Lang_Chinese/Lang/CN/Data/chara_talk.xlsx** 中的做法类似。
