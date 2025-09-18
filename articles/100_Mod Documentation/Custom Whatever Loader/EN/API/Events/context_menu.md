@@ -11,11 +11,13 @@ hide: true
 Qol attribute to register a method to system context menu.
 ```cs:no-line-numbers
 
-[CwlContextMenu("SubmenuA/SubmenuB/Btn C", "LangGeneral_id_or_text_or_omit")]
+[CwlContextMenu("LangGeneral_ID_or_SubmenuA/SubmenuB/ButtonC")]
 private static void MyTestMethod()
 {
     // ...
 }
 ```
 
-The registered method's return value will be displayed as string on screen, if any provided.
+When using a `LangGeneral` entry to localize the button, use the English slash `/` as the submenu separator.
+
+If the registered method has a return value, it will be displayed on the screen as a string.

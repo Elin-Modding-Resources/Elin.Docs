@@ -51,7 +51,7 @@ GameIOProcessor.AddLoad(MyLoadHandler, post: true);
 
 `bool`参数 `post` 决定这是一个后处理事件还是一个预处理事件。
 
-或者通过属性注册:
+或者通过特性注册:
 ```cs:no-line-numbers
 [CwlPostSave] // [CwlPreSave]
 static void MySaveHandler(GameIOProcessor.GameIOContext context);

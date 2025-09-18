@@ -8,7 +8,7 @@ hide: true
 
 [命名空间: `Cwl.Patches.Sources;`](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Patches/Sources/CardOnCreateEvent.cs)
 
-游戏创建一个 `Card` 时触发的事件。您需要使用派生属性 `CwlCharaOnCreateEvent` 和 `CwlThingOnCreateEvent` 来分别注册游戏实例化 `Chara` 和 `Thing` 时触发的事件。
+游戏创建一个 `Card` 时触发的事件。您需要使用派生特性 `CwlCharaOnCreateEvent` 和 `CwlThingOnCreateEvent` 来分别注册游戏实例化 `Chara` 和 `Thing` 时触发的事件。
 
 ## `CwlThingOnCreateEvent`
 

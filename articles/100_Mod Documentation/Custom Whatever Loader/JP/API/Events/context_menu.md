@@ -8,14 +8,16 @@ hide: true
 
 [Namespace: `Cwl.Helper.Unity;`](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/Helper/Unity/ContextMenuHelper.cs)
 
-Qol attribute to register a method to system context menu.
-```cs:no-line-numbers
+便捷機能は、メソッドをEscシステムメニューに登録するために使用されます。
 
-[CwlContextMenu("SubmenuA/SubmenuB/Btn C", "LangGeneral_id_or_text_or_omit")]
+```cs:no-line-numbers
+[CwlContextMenu("LangGeneral_ID_または_サブメニューA/サブメニューB/ボタンC")]
 private static void MyTestMethod()
 {
-    // ...
+    // ...
 }
 ```
 
-The registered method's return value will be displayed as string on screen, if any provided.
+`LangGeneral`エントリをボタンのローカライズに使用する場合、サブメニューの区切りには英語のスラッシュ `/` を使用してください。
+
+登録されたメソッドに戻り値がある場合、その値は文字列として画面に表示されます。
