@@ -95,7 +95,7 @@ Self explanatory, base attribute parameters.
 
 ## ratio
 '???'
-No idea. Keep blank?
+Macro to approximate the race strength, unused in game but must be present in the sheet. Leave Blank.
 
 ## INT
 'int'
@@ -104,11 +104,11 @@ Less than 10 makes them too dumb to do so.
 
 ## martial
 'int'
-No idea.
+Game usage unknown. Leave as 3 (Same for Yerles)
 
 ## pen
 'int'
-No idea. Leave blank.
+Game usage unknown. Leave as 0.
 
 ## elements
 'elements'
@@ -117,7 +117,7 @@ format is <element alias>/<value> as <string>/<int>
 
 ## skill
 'string'
-Leave blank, use elements.
+Game usage unknown. Leave blank.
 
 ## figure
 'string[]'
@@ -168,9 +168,9 @@ The effect of the casting from this race. Mostly used for flavor text.
 
 ## EQ
 'string[]'
-Determines when a new character of this race spawns, what kind of equipment they get spawned with.
-all = All their equipment slots gets stuff.
-blank = They get nothing.
+Determines when a new character of this race spawns what kind of equipment they get spawned with.
+EQ is an alternate way to enable equipments assignment when creating characters, in this case you can fill in anything.
+Two usual options are "all" and blank.
 
 ## sex
 `int`
