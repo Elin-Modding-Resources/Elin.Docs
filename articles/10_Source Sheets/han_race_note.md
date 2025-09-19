@@ -8,7 +8,8 @@ tags: SourceSheet/Race
 
 # Race Sheet
 
-<LinkCard t="SourceCard/Chara/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+<LinkCard t="SourceCard/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+The Race Sheet is stored inside the Chara sheet, change the tile at the bottom.
 
 ## id
 'string'
