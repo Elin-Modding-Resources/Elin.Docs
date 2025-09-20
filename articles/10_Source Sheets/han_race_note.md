@@ -114,7 +114,7 @@ Game usage unknown. Leave as 0.
 ## elements
 'elements'
 Inherent elements added onto this race. Used to add racial feats, base skill bonuses (which will also add base potential)
-format is <element alias>/<value> as <string>/<int>
+format is `element alias/value` as `string/int`
 
 ## skill
 'string'
