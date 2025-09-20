@@ -30,7 +30,7 @@ hide: true
 
 + `Num` 是连发次数。
 + `Delay` 是动画帧延迟。
-+ `IdEffect` 是击发[特效的ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。
++ `IdEffect` 是击发[特效的ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。您也可以提供[自定义特效](../Other%20其他/effects)。
 + `IdSound` 是击发音效的ID。如果使用自定义音频，需要将其放置于 **Sound** 文件夹中。
 + `IdSprite` 是发射物的贴图名称，这需要是游戏中存在的纹贴图名称或者你放置于 **Texture** 文件夹中的贴图名称（去除.png）。
 + `Eject` 决定是否附有抛出弹壳动画。
@@ -48,7 +48,9 @@ hide: true
         data
     }
 }
+
 ```
+您可以使用控制台命令 `cwl.data.load_effect_setting` 重新加载所有枪支数据。
 
 ::: warning 格式变动
 从 CWL 1.20.14 开始，以前的字段 `SpriteId` 已被新字段 `IdSprite` 取代，但仍然可以使用。  

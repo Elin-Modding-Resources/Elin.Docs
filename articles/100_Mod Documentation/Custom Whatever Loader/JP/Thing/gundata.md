@@ -30,7 +30,7 @@ hide: true
 
 + `Num` は連発回数です。  
 + `Delay` はアニメーションフレームの遅延です。  
-+ `IdEffect` は発動[エフェクトのIDです](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。  
++ `IdEffect` は発動[エフェクトのIDです](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。[カスタムエフェクト](../Other/effects)も提供できます。  
 + `IdSound` は発動音のIDです。カスタムオーディオを使用する場合は、**Sound** フォルダーに配置する必要があります。  
 + `IdSprite` は発射物のテクスチャ名で、ゲーム内に存在するテクスチャ名または**Texture** フォルダーに配置したテクスチャ名（.pngを除く）である必要があります。  
 + `Eject` は弾殻を投げ出すアニメーションが付随するかどうかを決定します。  
@@ -49,6 +49,8 @@ hide: true
     }
 }
 ```
+
+コンソール コマンド `cwl.data.load_effect_setting` を使用して、すべての銃のデータを再ロードできます。
 
 ::: warning フォーマットの変更
 CWL 1.20.14から、以前のエントリ`SpriteId`は上記の`IdSprite`によって非推奨となりましたが、引き続き受け入れられます。  

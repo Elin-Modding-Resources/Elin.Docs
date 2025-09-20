@@ -30,7 +30,7 @@ This will import a gun data named `biubiu_gun`, which should match your ranged w
 
 + `Num` is the number of shots in a burst. 
 + `Delay` is the animation frame delay. 
-+ `IdEffect` is the [ID of the firing effect](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md). 
++ `IdEffect` is the [ID of the firing effect](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md). You may also use [Custom Effect](../Other/effects).
 + `IdSound` is the ID of the firing sound. If using custom sound, it needs to be put in **Sound** folder.
 + `IdSprite` is the name of the projectile texture, which needs to be an existing texture name in the game or a texture name you placed in the **Texture** folder (without .png). 
 + `Eject` determines whether there is a shell eject animation.
@@ -49,6 +49,8 @@ You may add as many gun data as you want in this file, simply separate them by `
     }
 }
 ```
+
+You can use console command `cwl.data.load_effect_setting` to reload all gun data.
 
 ::: warning Spec Change
 Starting from CWL 1.20.14, previous entry `SpriteId` is now deprecated by the `IdSprite` shown above, but still accepted.  
