@@ -24,6 +24,26 @@ When switching to a new playlist, if current playing BGM is included in the new 
 当切换播放列表时，如果当前播放的曲目在新播放列表中，则尝试无缝衔接  
 再生リスト切り替え時に、現在再生中の曲が新しいリストに含まれる場合、シームレスな継続再生を試行  
 
+### Caching.Paths = true
+Cache paths relocated by CWL instead of iterating new paths  
+缓存CWL重定向的路径而不是每次重新搜索  
+CWL リダイレクトのパスを毎回再検索するのではなくキャッシュします  
+
+### Caching.SourceSheets = true
+Cache source sheets imported by CWL in persistent data storage  
+缓存CWL导入的源表而不是每次重新导入  
+毎回再インポートするのではなく、CWL インポートのソース テーブルをキャッシュします  
+
+### Caching.SourceSheetsRetention = 7
+Retention period in days before automatically regenerating source sheets cache 
+源表缓存有效期(日)  
+ソーステーブルキャッシュの有効期間（日数）  
+
+### Caching.Sprites = true
+Cache sprites created by CWL instead of creating new from textures  
+缓存CWL生成的贴图而不是每次重新构建  
+CWLで生成した画像を毎回再構築せずキャッシュ  
+
 ### Caching.Talks = true
 Cache GetDialog/HasTopic talks instead of loading & building map everytime  
 缓存GetDialog/HasTopic构建的对话文本表而不是每次都重新加载+构建  
@@ -33,16 +53,6 @@ GetDialog/HasTopicを使用して構築された対話テキスト表を毎回�
 Cache ClassCache types early instead of roundtrip lookup & querying all assemblies  
 提前ClassCache的类缓存优先级而不是每次重新搜索  
 クラスキャッシュ（ClassCache）のクラスキャッシュの優先度を前もって設定し、毎回再検索するのではなくします  
-
-### Caching.Paths = true
-Cache paths relocated by CWL instead of iterating new paths  
-缓存CWL重定向的路径而不是每次重新搜索  
-CWLで再配置されたパスをキャッシュし、毎回の再検索を省略  
-
-### Caching.Sprites = true
-Cache sprites created by CWL instead of creating new from textures  
-缓存CWL生成的贴图而不是每次重新构建  
-CWLで生成した画像を毎回再構築せずキャッシュ  
 
 ### Dialog.ExpandedActions = true
 Expand the actions table for drama sheets for mod authors to utilize  

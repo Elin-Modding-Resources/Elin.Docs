@@ -27,6 +27,7 @@ hide: true
 | `cwl.data.load_sound` | Preload all sound data from Sound/ folder | 预加载Sound/文件夹内所有音频数据 |
 | `cwl.data.clear_effect_cache` | Clear all cached Effects | 清除所有缓存的特效 |
 | `cwl.data.clear_sound_cache` | Clear all preloaded sound data | 清除所有预加载的音频数据 |
+| `cwl.data.clear_source_cache` | Clear all generated source cache blobs | 清除所有生成的源表缓存 |
 | `cwl.data.clear_path_cache` | Clear all cached package path relocations | 清除所有缓存的包路径重定位 |
 
 ## BGM Playlist / BGM播放列表
