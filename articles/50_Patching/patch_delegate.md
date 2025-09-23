@@ -1,5 +1,5 @@
 ---
-title: Patching Edge Cases
+title: Edge Cases
 author: DK
 description: Some useful patching techniques.
 date: 2024/11/27 04:00

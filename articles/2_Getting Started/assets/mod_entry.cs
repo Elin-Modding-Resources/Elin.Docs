@@ -6,9 +6,9 @@ namespace MyMod;
 
 internal static class ModInfo
 {
-    internal const string Guid = "dk.elinplugins.myelinmod";
+    internal const string Guid = "your.unique.modguid";
     internal const string Name = "My Elin Mod";
-    internal const string Version = "1.0";
+    internal const string Version = "1.0.0";
 }
 
 [BepInPlugin(ModInfo.Guid, ModInfo.Name, ModInfo.Version)]
@@ -39,7 +39,4 @@ internal class MyElinMod : BaseUnityPlugin
         Instance!.Logger.LogInfo(payload);
     }
 }
-
-// somewhere else
-MyElinMod.Log("something happened");
 // #endregion logger_snippet

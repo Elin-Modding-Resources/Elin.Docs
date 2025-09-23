@@ -33,7 +33,7 @@ CWL is made with community effort and feedback, new features are added upon requ
 
 ## Example Mod Setup
 
-CWL requires your resources to be placed under the **LangMod** folder instead of **Lang**; otherwise, the game will duplicate the entire translation tree into your mod folder. Within the **LangMod** folder, you can add as many supported languages as you want by naming the subfolders with the language code, for example:
+CWL requires mod resources to be placed under the **LangMod** folder, you can add as many supported languages as you want by naming the subfolders with the language code, for example:
 
 ![img](https://i.postimg.cc/tJypn1Ys/image.png)
 
@@ -44,9 +44,13 @@ When CWL imports the resources, it will import from the current language folder 
 
 `ZHTW` will use `CN` as fallback, while `EN` being the last fallback. CWL will use whatever is found as the last resort.
 
+## Shared Data
+
+Some data files do not require localization, so you only need to prepare one copy of that data file and place it in any language subfolder. For example, custom merchant stock files and custom religion offering multiplier files only need to be added once.
+
 ## Custom Sources
 
-Instead of calling **ModUtil.ImportExcel** on each xlsx worksheet manually, modders can now simply place the xlsx files within each language folder. CWL will import all the localized sources according to the sheet name that matches a SourceData or SourceLang.
+Modders can now simply place the xlsx files within each language folder. CWL will import all the localized sources according to the sheet name that matches a SourceData or SourceLang.
 
 Note that it's the **sheet name**, not the file name! For example, this will import **SourceThing**, **SourceChara**, **LangGeneral** accordingly.
 
@@ -73,12 +77,12 @@ If you want to browse the IDs for in game things/charas/various sources, checkou
 
 ## Usage Examples
 
-To see some CWL usage examples, checkout the following mods (and more):
+To see some CWL usage examples, checkout the following mods (and more on steam workshop):
 
 <LinkCard t="Mods Using CWL" u="https://steamcommunity.com/workshop/filedetails/discussion/3370512305/501685815345180661/" />
 
 ## Code Localization
 
-You may export the string entries to a `General` sheet and let CWL import it to `LangGeneral`, then you can use **`"my_lang_str".lang()`** to localize in code at runtime.
+You may export the string entries to a `General` sheet and let CWL import it to `LangGeneral`, then you can use **`"my_lang_id".lang()`** to localize in code at runtime.
 
 ![img](https://i.postimg.cc/76HS3t8M/image.png)

@@ -8,13 +8,13 @@ tags: Guide/Script
 
 # Script Mods
 
-Script mods are class libraries written in C# and loaded into game by BepInEx loader. To make a script mod, you'd need the follow tools:
+Script mods are class libraries written in C# and loaded into game by BepInEx loader. To make a script mod, you'd need the following tools:
 
 ## Code Editor/IDE
 
 + [Visual Studio Code](https://code.visualstudio.com/)
 + [Visual Studio](https://visualstudio.microsoft.com/)
-+ [JetBrain Rider](https://www.jetbrains.com/rider/)
++ [JetBrain Rider(free now!)](https://www.jetbrains.com/rider/)
 
 Pick your poison and make sure you have .NET development package installed for Visual Studio families.
 
@@ -39,11 +39,11 @@ If you are already familiar with C# and bepinex modding/Unity, you can skip to [
 
 ## Basic Plugin
 
-We are making a BepInEx plugin, so it's all the same stuff. Create file `MyElinMod.cs` at the project root:
+We are making a BepInEx plugin, the mod entry is as follows:
 
 <<< ../assets/mod_entry.cs#plugin_snippet
 
-Here we chose the same Guid as mod ID in `package.xml`. This needs to be an unique identifier for your mod, so make it very unique.
+Here we chose the same Guid as mod ID in `package.xml`. This needs to be a unique identifier for your mod, so make it very unique.
 
 After building the project and launching the game, you should see the message in the log output, either via BepInEx console or `Player.log` at `%localappdata%low\Lafrontier\Elin\Player.log`.
 
@@ -58,3 +58,11 @@ Open the BepInEx config file at `Elin\BepInEx\config\BepInEx.cfg` and change the
 Enabled = true
 ```
 :::
+
+## Script Events
+
+You can use the following methods to execute your code:
+
++ `void Awake()`: Unity event, called immediately when the plugin is loaded. Most of the operations can be done here without any problem. 
++ `void OnStartCore()`: Elin event, called when **all** plugins are loaded. This happens after `Awake`. Use this if you have any codes that may depend on other plugins/data.
++ `void Start()` or `IEnumerator Start()`: Unity event, called after all data are loaded. This happens after `OnStartCore`. **Do not** load source sheets here and afterwards. 

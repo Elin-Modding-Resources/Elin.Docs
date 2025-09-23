@@ -33,20 +33,24 @@ CWL 由社区需求和反馈而添加新功能。
 
 ## 示例模组设置
 
-CWL 要求Mod放置在**LangMod**文件夹下，而不是**Lang**；否则，游戏将把整个翻译树复制到您的模组文件夹中。在**LangMod**文件夹中，您可以通过使用语言代码命名子文件夹来添加任意数量的支持语言，例如：
+CWL 要求Mod将各种数据资源放置在**LangMod**文件夹中，您可以通过使用语言代码命名子文件夹来添加任意数量的支持语言，例如：
 
 ![img](https://i.postimg.cc/tJypn1Ys/image.png)
-
-当 CWL 导入资源时，它将优先从当前语言文件夹导入，有效解决了当前Elin xlsx的翻译问题，因为大部分工作表通常只包含JP和EN条目。
+ 
+当 CWL 导入资源时，它将优先从当前语言文件夹导入，有效解决了当前Elin xlsx的翻译问题，因为大部分工作表通常只包含JP和EN条目。   
 
 `JP` 文件夹可以省略，只要填入其他语言资源的`_JP`条目即可。 
 ![](../assets/shared_jp.png)
 
-`ZHTW` 将使用 `CN` 作为后备隐藏能源，而 `EN` 则是第二选择。CWL 将使用找到的第一个语言文件夹作为最后最后的选项。
+`ZHTW` 将使用 `CN` 作为后备隐藏能源，而 `EN` 则是第二选择。CWL 将使用找到的第一个语言文件夹作为最后的选项。  
+
+## 公用数据
+
+一些数据文件不需要本地化，因此您可以只准备一份该类型的数据并放置在任意语言子文件夹中。例如，自定义商人库存文件和自定义信仰供奉倍率文件只需要准备一份。  
 
 ## 自定义源表
 
-您可以将 xlsx 文件简单地放置在每个语言文件夹中，而不必手动为每个 xlsx 工作表调用 **ModUtil.ImportExcel**。CWL 将根据与 SourceData 或 SourceLang 匹配的表名导入所有本地化的源。
+您可以将 xlsx 文件简单地放置在每个语言文件夹中，CWL 将根据与 SourceData 或 SourceLang 匹配的表名导入所有本地化的源。
 
 请注意是 **表名**，而不是文件名！例如，这将相应地导入 **SourceThing**, **SourceChara**, **LangGeneral**。
 
@@ -73,12 +77,12 @@ General, Game, List, Word, Note
 
 ## 使用示例
 
-要查看一些 CWL 使用示例，请查看以下模组（以及更多）：
+要查看一些 CWL 使用示例，请查看创意工房上使用 CWL 的模组：
 
 <LinkCard t="Mods Using CWL" u="https://steamcommunity.com/workshop/filedetails/discussion/3370512305/501685815345180661/" />
 
 ## 代码本地化
 
-您可以将文本条目导出到一个`General`表，并让CWL将其导入到`LangGeneral`中，然后在运行时使用 **`"my_lang_str".lang()`** 进行代码本地化。
+您可以将文本条目导出到一个`General`表，并让CWL将其导入到`LangGeneral`中，然后在运行时使用 **`"my_lang_id".lang()`** 进行代码本地化。
 
 ![img](https://i.postimg.cc/76HS3t8M/image.png)
