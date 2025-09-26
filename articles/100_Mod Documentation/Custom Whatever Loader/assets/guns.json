@@ -1,0 +1,91 @@
+{
+    "gun": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        }
+    },
+    "gun_assault": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_assault",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.48,
+            "y": 0.04
+        }
+    },
+    "bow": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_bow",
+        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "gun_rail": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_rail",
+        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "cane": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_cane",
+        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "windbow": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_windbow",
+        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "gun_mani": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_shotgun",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        }
+    },
+    "gun_laser": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_laser",
+        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    }
+}

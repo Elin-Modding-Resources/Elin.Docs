@@ -1,57 +1,75 @@
 ---
-title: EffectData/Gun
+title: Custom Guns
+author: DK
+description: Add custom guns with custom effects.
 date: 2025/1/16 01:00
-hide: true
+tags: Mod/CWL/Guns
 ---
 
-## 遠隔武器データのインポート
+## ソケット数の指定
 
-時には、遠隔武器にカスタムデータを設定したいと思うことがあります。gunsデータはJSONファイルで、あなたの`LangMod/**/Data/`フォルダーに保存されており、名前は`EffectSetting.guns.json`です。
+遠距離武器のThing テーブル内でタグ `addSocket_N` を使用することで、`N` 個のソケットの数を指定できます。なお、ソケットによってはエンチャントがすでに付いている場合があることに注意してください。
+
+## 遠距離武器データのインポート
+
+遠距離武器のデータをカスタマイズしたい場合があります。ガンのデータは、`LangMod/**/Data/`フォルダー内にある`EffectSetting.guns.json`という名前の**JSONファイル**です。
+
 ```json
 {
-    "biubiu_gun": {
-        "Num": 1,
-        "Delay": 0.1,
-        "IdEffect": "gunfire",
-        "IdSound": "attack_gun",
-        "IdSprite": "ranged_gun",
-        "Eject": true,
-        "FirePos": {
-            "x": 0.23,
-            "y": 0.04
-        },
-        "CaneColor": "03fcdf",
-        "CaneColorBlend": false
-    }
+    "biubiu_gun": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        },
+        "FireFromMuzzle": false,
+        "CaneColor": "",
+        "CaneColorBlend": false,
+        "ForceLaser": false,
+        "ForceRail": false,
+    }
 }
 ```
 
-これは`biubiu_gun`という名前のgunデータをインポートします。これはあなたの遠隔武器IDと同じである必要があります。そうでない場合、ゲームはあなたの遠隔武器にそのタイプのデフォルトデータをロードします。また、ゲーム内に既存の武器IDを使用して上書きすることもできます。
+これは、遠距離武器のIDと一致するはずの`biubiu_gun`という名前のガンデータをインポートします。ゲーム内の既存の武器IDを使用して、それを**上書き**することもできます。
 
-+ `Num` は連発回数です。  
-+ `Delay` はアニメーションフレームの遅延です。  
-+ `IdEffect` は発動[エフェクトのIDです](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)。[カスタムエフェクト](../Other/effects)も提供できます。  
-+ `IdSound` は発動音のIDです。カスタムオーディオを使用する場合は、**Sound** フォルダーに配置する必要があります。  
-+ `IdSprite` は発射物のテクスチャ名で、ゲーム内に存在するテクスチャ名または**Texture** フォルダーに配置したテクスチャ名（.pngを除く）である必要があります。  
-+ `Eject` は弾殻を投げ出すアニメーションが付随するかどうかを決定します。  
-+ `FirePos` は武器の中心に対する発動エフェクトの位置です。  
-+ `CaneColor` はオプションの杖類武器の色調オーバーレイで、空白の場合は武器のデフォルト要素の色が使用されます。
-+ `CaneColorBlend` は、杖類武器の色調オーバーレイ時に元の色と混合するかどうかを決定します。
-+ 
-このファイルに好きなだけ銃のデータを追加できます。単に `,` カンマで区切ってください。
-```json
-{
-    "biubiu_gun": { 
-        data 
-    },
-    "rainbow_wand": {
-        data
-    }
-}
-```
+ゲーム内の既存のガンデータは次のとおりです。
 
-コンソール コマンド `cwl.data.load_effect_setting` を使用して、すべての銃のデータを再ロードできます。
-
-::: warning フォーマットの変更
-CWL 1.20.14から、以前のエントリ`SpriteId`は上記の`IdSprite`によって非推奨となりましたが、引き続き受け入れられます。  
+::: details ガンデータ
+<<< ../../assets/guns.json
 :::
+
++ `Num` は、バースト（連射）内の**ショット数**です。
++ `Delay` は、**アニメーションの遅延時間**を秒単位で指定します。
++ `IdEffect` は、[マズルフラッシュエフェクトのID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)です。[カスタムエフェクト](../Other/effects)を使用できます。デフォルト値は`gunfire`です。レーザーやケイン（杖）タイプの武器ではこの値は使用されません。
++ `IdSprite` は、**弾丸のテクスチャ名**です。ゲーム内の既存のテクスチャ、または**Texture**フォルダーに配置したテクスチャである必要があります。レーザーではこの値は使用されません。
++ `IdSound` は、**発射音のID**です。[カスタムサウンド](../Other/sound)を使用できます。これはすべての種類のガンに設定できます。
++ `IdSoundEject` は、**排弾丸音のID**です。[カスタムサウンド](../Other/sound)を使用できます。これはすべての種類のガンに設定できます。
++ `Eject` は、**弾丸排出アニメーション**があるかどうかを決定します。これはすべての種類のガンに設定できます。
++ `FirePos` は、**武器の中心を基準としたマズルフラッシュエフェクトのオフセット位置**です。これはすべての種類のガンに設定できます。
++ `FireFromMuzzle`（**new!**）は、**弾丸が銃口から発射されるか、デフォルトでプレイヤーの体から発射されるか**を決定します。これはすべての種類のガンに設定できます。
++ `CaneColor` は、**ケイン（杖）タイプ**の武器用のオプションの**色合いのオーバーライド**です。空白のままにすると、武器のデフォルトの元素の色が使用されます。形式は `RRGGBB` 16 進文字列です。特性`ToolRangeCane`を持つガンのみがこの値を使用できます。
++ `CaneColorBlend` は、ケインタイプ武器の**デフォルトカラーとオーバーライドカラーのブレンド**を有効にします。特性`ToolRangeCane`を持つガンのみがこの値を使用できます。
++ `ForceLaser` は、ガンに**レーザーアニメーション**の使用を強制します（23.206 Nightlyで追加）。ガンが特性`ToolRangeGunEnergy`を持っている場合、これは**不要**です。
++ `ForceRail` は、ガンに**レールガンアニメーション**の使用を強制します。**これは、特性`ToolRangeGunEnergy`を持つガンのデフォルトの動作ではなくなりました。**
+
+このファイルには、必要な数のガンデータを追加できます。単純に`,`コンマで区切ってください。例：
+
+```json
+{
+    "biubiu_gun": { 
+        data 
+    },
+    "rainbow_wand": {
+        data
+    }
+}
+```
+
+コンソールコマンド `cwl.data.load_effect_setting` を使用して、すべてのガンデータを**リロード**できます。
