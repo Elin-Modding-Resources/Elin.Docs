@@ -1,5 +1,5 @@
 ---
-title: Custom Guns
+title: 遠距離武器
 author: DK
 description: Add custom guns with custom effects.
 date: 2025/1/16 01:00
