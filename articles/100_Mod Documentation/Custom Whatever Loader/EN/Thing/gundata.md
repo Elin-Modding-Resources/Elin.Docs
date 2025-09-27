@@ -8,7 +8,9 @@ tags: Mod/CWL/Guns
 
 ## Specifying Sockets
 
-You can specify N number of sockets by using the tag `addSocket_N` in the gun's Thing sheet. Note that some sockets might not be empty.
+You can specify gun sockets by using the tag `addSocket` and `addSocket(enchant_alias)` in the Thing sheet. For example, `addSocket,addSocket,addSocket(bane_god)` will ensure 2 empty sockets and 1 socket with enchant `God Bane` will be added.
+
+You can also use `noRandomSocket` tag to remove all random generated sockets before applying your own.
 
 ## Import Ranged Weapon Data
 

@@ -6,9 +6,11 @@ date: 2025/1/16 01:00
 tags: Mod/CWL/Guns
 ---
 
-## 指定插槽数量
+## 指定插槽
 
-通过在远程武器的 Thing 表中使用标签 `addSocket_N` 即可指定 `N` 数量的插槽。注意，有些插槽可能会已经自带附魔。
+您可以通过在物品表 Thing 中使用标签 `addSocket` 和 `addSocket(附魔alias)` 来指定枪械插槽。例如，`addSocket,addSocket,addSocket(bane_god)` 将确保添加两个空插槽和一个带有附魔 `God Bane` 的插槽。
+
+您还可以使用 `noRandomSocket` 标签，在应用自定义插槽之前移除所有随机生成的插槽。
 
 ## 导入远程武器数据
 
