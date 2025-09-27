@@ -8,7 +8,7 @@ tags: Mod/CWL/Guns
 
 ## 指定スロット
 
-アイテム表（Thing）で `addSocket` および `addSocket(附魔alias)` タグを使用することで、銃器のスロットを指定できます。例えば、`addSocket,addSocket,addSocket(bane_god)` と記述すると、空のスロットが2つと、附魔「God Bane」が付いたスロットが1つ追加されることが保証されます。
+アイテム表（Thing）で `addSocket` および `addSocket(エンチャントalias)` タグを使用することで、銃器のスロットを指定できます。例えば、`addSocket,addSocket,addSocket(bane_god)` と記述すると、空のスロットが2つと、エンチャント「God Bane」が付いたスロットが1つ追加されることが保証されます。
 
 また、`noRandomSocket` タグを使用すると、カスタムスロットを適用する前にすべてのランダム生成スロットを削除できます。
 
