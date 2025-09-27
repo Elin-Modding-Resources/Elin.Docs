@@ -11,9 +11,7 @@ Assumes you already have your custom character defined in a Chara sheet. You can
 
 CWL utilizes the tag cell of the Chara row to add features, you can add as many tags as you want. **Remember, tags are separated by `,` (comma) with no spaces in between**. 
 
-If you need additional features, don't hesitate to ask!
-
-## spawn on game load
+## Spawn on game load
 
 To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with **zone id** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
 
@@ -22,11 +20,11 @@ For example, to spawn the chara in little garden, use `addZone_little_garden`. T
 For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
 
 ::: warning  
-Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_id` tags shown above, but still accepted.  
+Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_id` tags shown above, but still accepted for compatibility.  
 ![spawn_ex](./assets/spawn_chara.png)
 :::
 
-## add equipment/thing
+## Add equipment/thing
 
 When CWL spawns your character, you may also define the starting equipments and things for this character, using tag `addEq_ItemID#Rarity` and/or `addThing_ItemID#Count`.
 
@@ -40,14 +38,32 @@ To add starting items to the character, use tag `addThing_ItemID#Count`. If `#Co
 For example, to add `padoru_gift` x10 and `scroll of ally` x5 to the character:
 **addZone_Palmia,addThing_padoru_gift#10,addThing_1174#5**
 
-## make an adventurer
+## Make an adventurer
 
 Credits to 105gun.
 
 If your character has trait **`Adventurer`** or **`AdventurerBacker`**, CWL will import the character as an adventurer, which will appear on the adventurer ranking list.
 
-## prevent random visiting
+## Prevent random visiting
 
 Global characters randomly visit other towns if they are not in player's faction. You can use tag `addFlag_StayHomeZone` to make them stay in the home zone.  
 
 This flag can be changed in drama sheet using `invoke*` action and `mod_flag(StayHomeZone, 0)` method, with `actor` cell filled in target character's ID (or `tg` as the drama target).  
+
+## Allow human speak
+
+Instead of adding `human` or `humanSpeak` tag in the Race sheet, you can also use `humanSpeak` tag in Chara sheet to allow your character talk without parentheses.
+
+## Override Gender
+
+You can use `?` instead of `m` or `f` in `bio` column to set character as `???` gender.  
+
+CWL also provides a comprehensive [biography override](./3_bio) which includes background edits.
+
+## Define custom merchant stock
+
+Use custom merchant stock data defined here: [Custom Merchant](./2_merchant).
+
+## Add Talks/Dialog
+
+3 types of talks can be added here: [Dialog & Drama](./1_talks).

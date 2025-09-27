@@ -12,7 +12,7 @@ Assumes you have setup your stats in an Stat sheet already, the following entrie
 **alias**: the actual string id of your stat.  
 **type**: this C# type name corresponding to this stat.  
 
-The rest are up to you to define. You may take references from [Elin Modding Wiki](https://elin-modding-resources.github.io/Elin.Docs/) or Elin Sources.
+You may take references from [Elin Sources](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=879991296#gid=879991296)
 
 A custom condition must derive from **Condition**, common ones are **BadCondition**, **BaseDebuff**, **BaseStance**.
 ```cs
