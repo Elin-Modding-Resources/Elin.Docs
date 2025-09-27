@@ -6,11 +6,12 @@ hide: true
 
 ## カスタムキャラクターのインポート
 
+<LinkCard t="トウミィの MOD 作成講座" u="https://note.com/seacolor/n/n4118acf824fa?sub_rt=share_pw" i="https://cdn.discordapp.com/avatars/414045627400454144/b5f7f32a00b8653bd28ac58f9b85a2b8.webp" />
+
 Charaテーブルでカスタムキャラクターを定義したと仮定します。既存のモジュールやElin Sourcesを参考にしてください。
 <LinkCard t="SourceChara" u="https://elin-modding-resources.github.io/Elin.Docs/articles/10_Source%20Sheets/puddles_chara_note" />
 
 CWLはタグセルを使用して機能を追加します。任意の数のタグを追加できます。タグは `,`（カンマ）で区切り、間にスペースを入れないように注意してください。
-
 
 ## 自動生成/エリアへの追加
 
