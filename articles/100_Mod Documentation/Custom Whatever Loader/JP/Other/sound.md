@@ -20,6 +20,72 @@ hide: true
 pc.PlaySound("clown_horn"); // <- Card.PlaySound
 SE.PlaySound("clown_horn");
 ```
+---
+
+## カスタム楽器音楽
+
+**[Custom Instrument Track](https://steamcommunity.com/sharedfiles/filedetails/?id=3374708172)** モジュール（mod）が現在メンテナンスされていないため、以下に **CWL** を使用して楽器のオーディオトラックを手動で置き換える方法を説明します。
+
+まず、**Sound/Instrument** フォルダー内にオーディオファイルを用意します。ファイル名には、以下のいずれかの**オーディオID**を使用してください。
+
+**新しい**楽器を作成する場合は、その楽器の **ID**（Thing ID）をオーディオIDとして使用してください。
+
+::: details ゲーム内楽器のオーディオID
+|乐器 ID|音频 ID|CN|EN|JP|
+|-|-|-|-|-|
+|trumpet|trumpet_practice|喇叭|trumpet|トランペット|
+|piano|piano_kanon|三角钢琴|grand piano|グランドピアノ|
+|piano2|piano_neko|钢琴|piano|ピアノ|
+|piano_killkill|piano_neko|杀杀钢琴|kill kill piano|キルキルピアノ|
+|piano_gould|piano_gould|古尔德钢琴|Gould's piano|グールドのピアノノ|
+|harpsichord|harpsichord_goldberg|大键琴|harpsichord|チェンバロ|
+|guitar_ash|guitar_caccini|阿什的吉他|Ash's guitar|アッシュのギター|
+|guitar_efrond|guitar_dusk|埃夫隆德的吉他|Efrond's guitar|エフロンドのギター|
+|guitar|guitar_air|吉他|guitar|ギター|
+|harp|harp_komori|竖琴|harp|ハープ|
+|panty|violin_chaconne|内裤|panty|パンティー|
+|lute|guitar_sad|鲁特琴|lute|リュート|
+|shield_lute|guitar_sad|乌德琴|Al'ud|アル・ウード|
+|recorder|recorder|竖笛|recorder|リコーダー|
+|flute|flute|长笛|flute|フルート|
+|taiko|taiko|太鼓|taiko|太鼓|
+|mokugyo|mokugyo|木鱼|wooden gong|木魚|
+|tambourine|tambourine|铃鼓|tambourine|タンバリン|
+|mic|mic_rachmaninoff|麦克风|mic|マイク|
+|cello|cello_prelude|大提琴|cello|チェロ|
+|instrument_violin|violin_chaconne|小提琴|violin|ヴァイオリン|
+|panty|violin_chaconne|小提琴|panty|パンティー|
+|stradivarius|violin_furusato|斯特拉迪瓦里|stradivarius|ストラディバリウス|
+:::
+
+ゲームを一度起動して、新しく追加したオーディオファイルの**メタデータ json ファイル**を生成し、その後ゲームを終了します。このメタデータ json ファイルを編集し、**type** を **BGM** に設定し、楽器演奏用にいくつかの **parts**（断片）を追加します。
+
+```json
+"parts": [
+    {
+        "start": 0.0,
+        "duration": 4.0
+    },
+    {
+        "start": 4.0,
+        "duration": 4.0
+    },
+    {
+        "start": 8.0,
+        "duration": 4.0
+    },
+    {
+        "start": 12.0,
+        "duration": 4.0
+    },
+    {
+        "start": 16.0,
+        "duration": 4.0
+    }
+]
+```
+
+各 **part** には、**秒単位**の開始時間（**start**）と継続時間（**duration**）があります。楽器が演奏されている間、システムはこれらの断片をランダムに選択して再生します。
 
 ## カスタムBGM/プレイリスト
 

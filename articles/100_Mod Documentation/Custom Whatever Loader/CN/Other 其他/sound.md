@@ -23,6 +23,71 @@ pc.PlaySound("clown_horn"); // <- Card.PlaySound
 SE.PlaySound("clown_horn");
 ```
 
+## 自定义乐器音乐
+
+由于 **[Custom Instrument Track](https://steamcommunity.com/sharedfiles/filedetails/?id=3374708172)** 这个模组目前未维护，以下是如何使用 CWL 手动替换乐器音轨的方法：
+
+首先，在 **Sound/Instrument** 文件夹中准备一个音效文件，文件名请使用以下音频ID之一：
+
+如果您要制作一个**新的**乐器，请使用该乐器的ID（Thing ID）作为音频ID。
+
+::: details 游戏内乐器音频ID
+|乐器 ID|音频 ID|CN|EN|JP|
+|-|-|-|-|-|
+|trumpet|trumpet_practice|喇叭|trumpet|トランペット|
+|piano|piano_kanon|三角钢琴|grand piano|グランドピアノ|
+|piano2|piano_neko|钢琴|piano|ピアノ|
+|piano_killkill|piano_neko|杀杀钢琴|kill kill piano|キルキルピアノ|
+|piano_gould|piano_gould|古尔德钢琴|Gould's piano|グールドのピアノノ|
+|harpsichord|harpsichord_goldberg|大键琴|harpsichord|チェンバロ|
+|guitar_ash|guitar_caccini|阿什的吉他|Ash's guitar|アッシュのギター|
+|guitar_efrond|guitar_dusk|埃夫隆德的吉他|Efrond's guitar|エフロンドのギター|
+|guitar|guitar_air|吉他|guitar|ギター|
+|harp|harp_komori|竖琴|harp|ハープ|
+|panty|violin_chaconne|内裤|panty|パンティー|
+|lute|guitar_sad|鲁特琴|lute|リュート|
+|shield_lute|guitar_sad|乌德琴|Al'ud|アル・ウード|
+|recorder|recorder|竖笛|recorder|リコーダー|
+|flute|flute|长笛|flute|フルート|
+|taiko|taiko|太鼓|taiko|太鼓|
+|mokugyo|mokugyo|木鱼|wooden gong|木魚|
+|tambourine|tambourine|铃鼓|tambourine|タンバリン|
+|mic|mic_rachmaninoff|麦克风|mic|マイク|
+|cello|cello_prelude|大提琴|cello|チェロ|
+|instrument_violin|violin_chaconne|小提琴|violin|ヴァイオリン|
+|panty|violin_chaconne|小提琴|panty|パンティー|
+|stradivarius|violin_furusato|斯特拉迪瓦里|stradivarius|ストラディバリウス|
+:::
+
+启动游戏一次，为新添加的音效生成一个元数据 **json** 文件，然后退出游戏，编辑该元数据 json 文件，将 **type** 设置为 **BGM**，并为乐器演奏添加一些 **parts**（片段）：
+
+```json
+"parts": [
+    {
+        "start": 0.0,
+        "duration": 4.0
+    },
+    {
+        "start": 4.0,
+        "duration": 4.0
+    },
+    {
+        "start": 8.0,
+        "duration": 4.0
+    },
+    {
+        "start": 12.0,
+        "duration": 4.0
+    },
+    {
+        "start": 16.0,
+        "duration": 4.0
+    }
+]
+```
+
+每个 **part** 都有一个以秒为单位的起始时间（**start**）和持续时间（**duration**）。在乐器演奏期间，系统将随机选择这些片段进行播放。
+
 ## 自定义BGM/播放列表
 
 ::: tip 版本需求
@@ -152,7 +217,7 @@ SE.PlaySound("clown_horn");
 |117|117 atonement|Shokuzai No Mori|
 :::
 
-## 添加新BGM
+### 添加新BGM
 
 自定义BGM放置在 **Sound/BGM** 子文件夹中，与自定义音效不同，您需要手动编辑元数据 JSON 中的 `id` 字段。确保先启动游戏一次，以便让 CWL 为您生成文件。
 
@@ -168,7 +233,7 @@ CWL 建议您使用 **ogg** 或者 **wav** 格式，因为Elin的Unity版本(202
 
 > `056 orc01` 是标题菜单的BGM。
 
-## 添加播放列表
+### 添加播放列表
 
 您的播放列表文件放置在 **Sound/BGM/Playlist** 子文件夹，它们是格式简单的JSON文件。 
 ```json

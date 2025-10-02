@@ -13,9 +13,9 @@ By setting **"type"**: **"BGM"** in the metadata, the sound file will be instant
 
 Subdirectories in the **Sound** folder will serve as ID prefixes. For example, **AI_PlayMusic** will use **Instrument/sound_id**, so you should place the sound file in the `Instrument` folder if you plan to replace instrument sounds.
 
-**You can override existing in-game sounds using the same ID**. For example, chicken uses sound id **Animal/Chicken/chicken**, if you want to replace this sound, you should put your sound file named **chicken** with one of the supported formats, in **Sound/Animal/Chicken/** folder.
+**You can override existing in-game sounds using the same ID**. For example, chicken uses sound ID **Animal/Chicken/chicken**, if you want to replace this sound, you should put your sound file named **chicken** with one of the supported formats, in **Sound/Animal/Chicken/** folder.
 
-Sounds loaded by CWL will be available to use anywhere in the game via sound id.
+Sounds loaded by CWL will be available to use anywhere in the game via sound ID.
 
 ![](../../assets/clown_horn.png)
 ```cs
@@ -23,15 +23,79 @@ pc.PlaySound("clown_horn"); // <- Card.PlaySound
 SE.PlaySound("clown_horn");
 ```
 
+## Custom Instrument Tracks
+
+Since the mod [Custom Instrument Track](https://steamcommunity.com/sharedfiles/filedetails/?id=3374708172) is currently unmaintained and broken, here's how to replace instrument tracks manually with CWL:
+
+First, prepare a sound file in the **Sound/Instrument** folder, with filename using one of the following Sound ID:
+
+If you are making a **new** instrument, use instrument's ID (Thing ID) as Sound ID.
+
+::: details In Game Instruments Sound ID
+|Instrument ID|Sound ID|CN|EN|JP|
+|-|-|-|-|-|
+|trumpet|trumpet_practice|喇叭|trumpet|トランペット|
+|piano|piano_kanon|三角钢琴|grand piano|グランドピアノ|
+|piano2|piano_neko|钢琴|piano|ピアノ|
+|piano_killkill|piano_neko|杀杀钢琴|kill kill piano|キルキルピアノ|
+|piano_gould|piano_gould|古尔德钢琴|Gould's piano|グールドのピアノノ|
+|harpsichord|harpsichord_goldberg|大键琴|harpsichord|チェンバロ|
+|guitar_ash|guitar_caccini|阿什的吉他|Ash's guitar|アッシュのギター|
+|guitar_efrond|guitar_dusk|埃夫隆德的吉他|Efrond's guitar|エフロンドのギター|
+|guitar|guitar_air|吉他|guitar|ギター|
+|harp|harp_komori|竖琴|harp|ハープ|
+|panty|violin_chaconne|内裤|panty|パンティー|
+|lute|guitar_sad|鲁特琴|lute|リュート|
+|shield_lute|guitar_sad|乌德琴|Al'ud|アル・ウード|
+|recorder|recorder|竖笛|recorder|リコーダー|
+|flute|flute|长笛|flute|フルート|
+|taiko|taiko|太鼓|taiko|太鼓|
+|mokugyo|mokugyo|木鱼|wooden gong|木魚|
+|tambourine|tambourine|铃鼓|tambourine|タンバリン|
+|mic|mic_rachmaninoff|麦克风|mic|マイク|
+|cello|cello_prelude|大提琴|cello|チェロ|
+|instrument_violin|violin_chaconne|小提琴|violin|ヴァイオリン|
+|panty|violin_chaconne|小提琴|panty|パンティー|
+|stradivarius|violin_furusato|斯特拉迪瓦里|stradivarius|ストラディバリウス|
+:::
+
+Launch the game once to generate a metadata json file for the newly added sound, exit game, edit the metadata json to use **type: BGM**, and add some parts for the instrument play:
+```json
+"parts": [
+	{
+		"start": 0.0,
+		"duration": 4.0
+	},
+	{
+		"start": 4.0,
+		"duration": 4.0
+	},
+	{
+		"start": 8.0,
+		"duration": 4.0
+	},
+	{
+		"start": 12.0,
+		"duration": 4.0
+	},
+	{
+		"start": 16.0,
+		"duration": 4.0
+	}
+]
+```
+
+Each part has a start timestamp and a duration in seconds. Parts will be randomly selected during instrument play.
+
 ## Custom BGM & Playlist
 
 ::: tip Version Notice
 Custom BGM & Playlist feature is added in CWL **`1.19.0`**.
 :::
 
-Game comes with 100+ BGMs, they are defined by a numeric id and sound file id. You may check them out here:
+Game comes with 100+ BGMs, they are defined by a numeric ID and sound file ID. You may check them out here:
 ::: details BGM Items
-|bgm id|sound id|bgm name|
+|bgm ID|sound ID|bgm name|
 |-|-|-|
 |1|001 no bgm|No BGM|
 |2|002 pop01|Pop01|
@@ -152,7 +216,7 @@ Game comes with 100+ BGMs, they are defined by a numeric id and sound file id. Y
 |117|117 atonement|Shokuzai No Mori|
 :::
 
-## Add New BGM
+### Add New BGM
 
 Custom BGMs are placed in the **Sound/BGM** sub folder, unlike custom sounds, you need to manually edit the `id` field in the metadata JSON. Be sure to launch game once to let CWL generate the files for you first.
 
@@ -160,15 +224,15 @@ CWL suggests using **wav** or **ogg** formats, this is because the Unity codec w
 
 ![](../../assets/new_bgm.png)
 
-The `id` is an arbitrary number, set it to larger than what game uses at last (`117`) and make it less likely to collide with other BGM's id. 
+The `id` is an arbitrary number, set it to larger than what game uses at last (`117`) and make it less likely to collide with other BGM's ID. 
 
-**Important to note,** this `id` is purely for the BGM. Your sound id is still the file name without extension, e.g. **`BGM/My Sound File`**
+**Important to note,** this `id` is purely for the BGM. Your sound ID is still the file name without extension, e.g. **`BGM/My Sound File`**
 
-When you assign an existing id to your BGM, then it becomes a global BGM replacement. E.g. Assigning id `56` to the song metadata `Adventure-YOASOBI.json`, will replace in game BGM `056 orc01` with sound `Adventure-YOASOBI`. This is why you want your new BGM (non-replacement ones) to use a unique id, otherwise the next BGM with the same id will replace yours.
+When you assign an existing ID to your BGM, then it becomes a global BGM replacement. E.g. Assigning ID `56` to the song metadata `Adventure-YOASOBI.json`, will replace in game BGM `056 orc01` with sound `Adventure-YOASOBI`. This is why you want your new BGM (non-replacement ones) to use a unique ID, otherwise the next BGM with the same ID will replace yours.
 
 > `056 orc01` is the title menu BGM.
 
-## Add Playlist
+### Add Playlist
 
 Your playlists are placed in the **Sound/BGM/Playlist** folder, and they are simple JSON files. It contains 2 lists and a single bool value `shuffle`.
 ```json
@@ -185,7 +249,7 @@ Your playlists are placed in the **Sound/BGM/Playlist** folder, and they are sim
 }
 ```
 
-The sound id (**not BGM id**) in `list` will be merged into the playlist, and `remove` will remove the entries (if present) from the playlist. You can also use existing game sound ids.
+The sound ID (**not BGM ID**) in `list` will be merged into the playlist, and `remove` will remove the entries (if present) from the playlist. You can also use existing game sound IDs.
 
 You may also use wildcards as the `list` and `remove` entry, currently 2 patterns are provided:
 ```json
@@ -209,7 +273,7 @@ The playlist JSON file name should match one of the following:
 + `"Global"`
 + An existing playlist name
 + A zone type name
-+ A zone id with/without level
++ A zone ID with/without level
 
 Here are some of the game playlists:
 ::: details Playlists
@@ -318,8 +382,8 @@ To remove all songs in overworld exploration playlist and add your new songs, de
 {
     "shuffle": true,
     "list": [
-        "my new BGM sound id1",
-        "my new BGM sound id2"
+        "my new BGM sound ID1",
+        "my new BGM sound ID2"
     ],
     "remove": [
         "**"
