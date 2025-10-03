@@ -31,7 +31,7 @@ SE.PlaySound("clown_horn");
 **新しい**楽器を作成する場合は、その楽器の **ID**（Thing ID）をオーディオIDとして使用してください。
 
 ::: details ゲーム内楽器のオーディオID
-|乐器 ID|音频 ID|CN|EN|JP|
+|楽器ID|オーディオID|CN|EN|JP|
 |-|-|-|-|-|
 |trumpet|trumpet_practice|喇叭|trumpet|トランペット|
 |piano|piano_kanon|三角钢琴|grand piano|グランドピアノ|
