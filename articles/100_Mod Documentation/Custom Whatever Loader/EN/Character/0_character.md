@@ -11,17 +11,30 @@ Assumes you already have your custom character defined in a Chara sheet. You can
 
 CWL utilizes the tag cell of the Chara row to add features, you can add as many tags as you want. **Remember, tags are separated by `,` (comma) with no spaces in between**. 
 
+## Test Your Changes
+
+After loading a save and checked your character's data, you can make changes to the excel sheet while the game is running. After saving the changes, use the following console command:
+```
+cwl.remove_all charaId
+cwl.data.load_sources true
+```
+
+Replace the `charaId` with your Chara's ID. After reloading sources, you can load the same save again and see the new changes applied.
+
 ## Spawn on game load
 
 To let CWL spawn the character to a zone, use tag `addZone_*` and replace the `*` (asterisk) with **zone id** or keep the asterisk for a random zone. You may also specify zone level with `/n`.
 
 For example, to spawn the chara in little garden, use `addZone_little_garden`. To also spawn in derphy underground, use another tag `addZone_derphy/-1`. Check the [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) and reference the **id** column.
 
+![spawn_ex](./assets/spawn_chara.png)
+
 For each `addZone` tag used, an instance of the Chara will be spawned there. For example, `addZone_lumiest,addZone_little_garden,addZone_specwing,addZone_*` will make sure all three selected zones plus a random zone will have this character spawned (as duplicates).
+
+Note that spawning characters in player's current zone (such as meadow when creating new game), characters will not appear until re-entering zone or reloading game.
 
 ::: warning  
 Starting from CWL 1.20.11, previous tags `addZone_TypeName` are now deprecated by the `addZone_id` tags shown above, but still accepted for compatibility.  
-![spawn_ex](./assets/spawn_chara.png)
 :::
 
 ## Add equipment/thing

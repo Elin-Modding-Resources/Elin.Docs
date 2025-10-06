@@ -10,6 +10,18 @@ hide: true
 <LinkCard t="Chara表粗略解释" u="https://elin-modding-resources.github.io/Elin.Docs/articles/10_Source%20Sheets/puddles_chara_note" />
  
 CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签。**请记住，标签之间用 `,`（逗号）分隔，中间不要有空格**。
+Here are the translations:
+
+## 测试更改
+
+在加载存档并检查了角色数据后，您可以在游戏运行的同时对 Excel 表格进行修改。保存修改后，使用以下控制台命令：
+
+```
+cwl.remove_all charaId
+cwl.data.load_sources true
+```
+
+将 `charaId` 替换为您角色的 **ID**。之后，您可以再次加载相同的存档并查看新应用的更改。
 
 ## 自动生成/添加到区域
 
@@ -49,3 +61,21 @@ CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签�
 全局角色如果不在玩家的阵营中，会随机拜访其他城镇。您可以使用标签 `addFlag_StayHomeZone` 让他们留在起始区域。
 
 该 flag 可以在剧情表中通过 `invoke*` 动作和 `mod_flag(StayHomeZone, 0)` 方法进行更改，`actor` 单元填写目标角色的 ID（或者 `tg` 指定剧情对象）。
+
+## 使用人类对话
+
+除了在种族 Race 表中添加 `human` 或 `humanSpeak` 标签外，你还可以在角色 Chara 表中使用 `humanSpeak` 标签，让你的角色在对话中不使用括号。
+
+## 覆盖性别设置
+
+你可以在 `bio` 列中使用 `?` 替代 `m` 或 `f`，将角色性别设置为 `???`。
+
+CWL 还提供了一个全面的[传记覆盖](./3_bio)功能，包括背景信息的编辑。
+
+## 定义自定义商人库存
+
+使用此处定义的自定义商人库存数据：[Custom Merchant](./2_merchant)。
+
+## 添加对话/剧情
+
+这里可以添加三种类型的对话：[Dialog & Drama](./1_talks)。
