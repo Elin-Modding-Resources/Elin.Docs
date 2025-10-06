@@ -13,12 +13,14 @@ tags: SourceSheet/Chara
 ## id
 `string`
 
-The most important cell of an entry that distinguishes it from everything else on the SourceChara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override all the others. This value cannot have any spaces or special characters in it.
+The most important cell of an entry that distinguishes it from everything else on the Chara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override the others. 
+
+This value cannot have any spaces in it, consider using snake_case style if needed, e.g. `mymod_chara_yajyuu_senpai`.
 
 ## _id
 `int`
 
-Used for sorting purposes in creature codex, can be any numeric value.
+Used for sorting purposes in creature codex, can be any numeric value. This does not have to be unique.
 
 ## name_JP
 `string`
@@ -28,7 +30,7 @@ The Chara's in-name display name in Japanese.
 ## name
 `string`
 
-The Chara's in-game display name in non-Japanese.
+The Chara's in-game display name in non-Japanese. 
 
 ## AKA_JP
 `string`
@@ -61,8 +63,8 @@ Ex. 2,2 will make a Chara occupy 2x2 tiles, and prevent them from being shoved.
 `string`
 
 Determines whether or not the Chara will reference a sprite sheet.
-- `chara`/`chara_L`...etc -> use the tile ID in `tiles` column as sprite. The texture is placed in **Texture Replace** folder.
-- `@chara` -> use the same ID texture in **Texture** folder.
+- `chara`/`chara_L`...etc -> use the tile ID in `tiles` column as sprite. The texture is placed in **Texture Replace** folder. Empty tiles are limited supplies and can be overriden by other mods or game itself.
+- `@chara` -> use the same ID texture in **Texture** folder. This is the recommended way for modded Chara.
 
 ## tiles
 `int`
@@ -224,7 +226,20 @@ Ex. buffMage makes the Chara periodically cast a spell like spResElement or spHe
 
 ## lightData
 ## idExtra
+
 ## bio
+`string`
+
+One or multiple values in order, separated by forward slash `/` with no spaces in between:
++ `gender`: `m`, `f`, or `?`, this is mandatory.
++ `birthyear`: a number. Optional.
++ `height`: a number. Optional.
++ `weight`: a number. Optional.
++ `tone`: an entry from game or mod's chara_tone.xlsx. Optional.
++ `talk`: an entry from game or mod's chara_talk.xlsx. Optional.
+
+Example: `f/51044/152/46/friendly|私|あなた`.
+
 ## faith
 ## works
 ## hobbies

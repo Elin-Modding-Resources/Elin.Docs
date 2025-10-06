@@ -98,14 +98,14 @@ Example: `<loadPriority>100</loadPriority>`
 Write the version of the Elin main game that your mod was last confirmed to work with. Currently, it’s okay to skip frequent updates to this value unless necessary. If the Elin main game introduces significant changes to mods, mods with versions older than the main game’s update will no longer be loaded.
 
 ::: warning
-This is not your mod's version! Set this version to your game's version. E.g. `0.23.196`.
+This is **not** your mod's version! Set this version to your game's version. 
 :::
 
-Example: `<version>0.23.50</version>`
+Example: `<version>0.23.212</version>`
 
 ### tags
 
-Specify tags for the Workshop, separated by commas if multiple tags are used. You may register any tags you like. Using official tags will make your mod visible in the Workshop categories. 
+Specify tags for the Workshop, separated by commas(`,`) if multiple tags are used. You may register any tags you like. Using official tags will make your mod visible in the Workshop categories. 
 
 <LinkCard t="Official Tags" u="https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub"/>
 
@@ -117,7 +117,7 @@ Provide a description of your mod. This text will be displayed as the mod's desc
 
 When updating your mod, this text will be ignored. If you need to change the description, do so in the Workshop.
 
-Example: you should do this in workshop page.
+Example: `<description />` you should do this in workshop page.
 
 ### builtin
 
