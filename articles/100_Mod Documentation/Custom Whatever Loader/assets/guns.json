@@ -29,9 +29,8 @@
         "Num": 1,
         "Delay": 0.1,
         "IdEffect": "",
-        "IdSprite": "ranged_gun",
+        "IdSprite": "ranged_arrow",
         "IdSound": "attack_bow",
-        "IdSoundEject": "bullet_drop",
         "Eject": false,
         "FirePos": {}
     },
@@ -39,9 +38,8 @@
         "Num": 1,
         "Delay": 0.1,
         "IdEffect": "",
-        "IdSprite": "ranged_gun",
+        "IdSprite": "",
         "IdSound": "attack_gun_rail",
-        "IdSoundEject": "bullet_drop",
         "Eject": false,
         "FirePos": {}
     },
@@ -49,9 +47,8 @@
         "Num": 1,
         "Delay": 0.1,
         "IdEffect": "",
-        "IdSprite": "ranged_gun",
+        "IdSprite": "ranged_cane",
         "IdSound": "attack_cane",
-        "IdSoundEject": "bullet_drop",
         "Eject": false,
         "FirePos": {}
     },
@@ -59,9 +56,8 @@
         "Num": 1,
         "Delay": 0.1,
         "IdEffect": "",
-        "IdSprite": "ranged_gun",
+        "IdSprite": "ranged_arrow_wind",
         "IdSound": "attack_windbow",
-        "IdSoundEject": "bullet_drop",
         "Eject": false,
         "FirePos": {}
     },
@@ -82,9 +78,17 @@
         "Num": 1,
         "Delay": 0.1,
         "IdEffect": "",
-        "IdSprite": "ranged_gun",
+        "IdSprite": "",
         "IdSound": "attack_gun_laser",
-        "IdSoundEject": "bullet_drop",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "panzerfaust": {
+        "Num": 1,
+        "Delay": 0.01,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun_rocket",
+        "IdSound": "attack_gun_rocket",
         "Eject": false,
         "FirePos": {}
     }

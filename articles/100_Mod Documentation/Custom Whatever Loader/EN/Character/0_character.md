@@ -55,7 +55,7 @@ For example, to add `padoru_gift` x10 and `scroll of ally` x5 to the character:
 
 Credits to 105gun.
 
-If your character has trait **`Adventurer`** or **`AdventurerBacker`**, CWL will import the character as an adventurer, which will appear on the adventurer ranking list.
+If your character has trait **`AdventurerBacker`**, CWL will import the character as an adventurer, which will appear on the adventurer ranking list.
 
 ## Prevent random visiting
 
@@ -69,9 +69,13 @@ Instead of adding `human` or `humanSpeak` tag in the Race sheet, you can also us
 
 ## Override Gender
 
-You can use `?` instead of `m` or `f` in `bio` column to set character as `???` gender.  
+You can use `n` instead of `m` or `f` in `bio` column to set character as `???` gender.  
 
 CWL also provides a comprehensive [biography override](./3_bio) which includes background edits.
+
+::: warning
+CWL used to provide a `?` gender to represent `???` in `bio` column, Elin has added a `n` gender which does the same thing after 23.214 Nightly.
+:::
 
 ## Define custom merchant stock
 

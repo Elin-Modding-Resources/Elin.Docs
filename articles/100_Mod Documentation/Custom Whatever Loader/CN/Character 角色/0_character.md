@@ -54,7 +54,7 @@ cwl.data.load_sources true
 
 感谢 105gun。
 
-如果您的角色 trait 设定为 **`Adventurer`** 或 **`AdventurerBacker`**，CWL 将登录该角色为冒险者，并将出现在冒险者排名列表中。
+如果您的角色 trait 设定为 **`AdventurerBacker`**，CWL 将登录该角色为冒险者，并将出现在冒险者排名列表中。
 
 ## 禁用随机移动
 
@@ -68,9 +68,13 @@ cwl.data.load_sources true
 
 ## 覆盖性别设置
 
-你可以在 `bio` 列中使用 `?` 替代 `m` 或 `f`，将角色性别设置为 `???`。
+你可以在 `bio` 列中使用 `n` 替代 `m` 或 `f`，将角色性别设置为 `???`。
 
 CWL 还提供了一个全面的[传记覆盖](./3_bio)功能，包括背景信息的编辑。
+
+::: warning  
+CWL 之前在 `bio` 列中使用 `?` 性别来表示 `???`，Elin 在 23.214 Nightly 版本之后新增了一个 `n` 性别，用于实现相同的功能。  
+:::
 
 ## 定义自定义商人库存
 
