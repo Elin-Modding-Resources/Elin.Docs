@@ -4,15 +4,22 @@ date: 2025/5/46 01:00
 hide: true
 ---
 
+## External Console
+
+CWL supports receiving and executing console commands from external tools using named pipes. After game launch, a console pipe server will be opened at `\\.\pipe\Elin\Console`. Writing console commands to this pipe will execute them in game.
+
 ## General / 常规
 
 | Command | English | Chinese |
 |---------|---------|---------|
 | `cwl.spawn` | Test spawn a CWL loaded chara | 测试生成一个已加载CWL角色 |
 | `cwl.enable_debug` | Enable debug mode for Elin | 为Elin启用调试模式 |
-| `cwl.remove_every` | Remove every chara with ID from global chara list | 根据ID从全局角色列表中移除所有对应角色 |
+| `cwl.remove_all` | Remove every chara with ID from global chara list | 根据ID从全局角色列表中移除所有对应角色 |
 | `cwl.add_figures` | Add figure and card of chara with ID | 添加指定ID角色的立绘和卡片 |
+| `cwl.identify` | Identify everything | 鉴定所有 |
 | `cwl.spawn_altar` | Spawn an altar of a custom religion | 生成指定自定义信仰的祭坛 |
+| `cwl.spawn_zone` | Spawn a zone, at player pos or with specific X, Y | 生成区域 |
+| `cwl.remove_zone` | Remove a zome, at player pos or with specific X, Y | 移除区域 |
 
 ## Data Loader / 数据加载器
 
