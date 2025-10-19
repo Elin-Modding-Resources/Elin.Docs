@@ -163,7 +163,7 @@ function getDiff() {
   }
 
   const versionIcons = [
-    { pattern: /nyaightly/i, icon: " 🐱" },
+    { pattern: /nya/i, icon: " 🐱🐱🐱" },
     { pattern: /nightly/i, icon: " 🌙" },
     { pattern: /stable/i, icon: " ⭐" },
   ];
