@@ -15,7 +15,7 @@
     "gun_assault": {
         "Num": 3,
         "Delay": 0.1,
-        "IdEffect": "",
+        "IdEffect": "gunfire",
         "IdSprite": "ranged_gun",
         "IdSound": "attack_gun_assault",
         "IdSoundEject": "bullet_drop",
@@ -86,10 +86,22 @@
     "panzerfaust": {
         "Num": 1,
         "Delay": 0.01,
-        "IdEffect": "",
+        "IdEffect": "gunfire",
         "IdSprite": "ranged_gun_rocket",
         "IdSound": "attack_gun_rocket",
         "Eject": false,
         "FirePos": {}
+    },
+    "gun_laser_assault": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun_laser",
+        "IdSound": "attack_gun_laser_assault",
+        "Eject": false,
+        "FirePos": {
+            "x": 0.28,
+            "y": 0.2
+        }
     }
 }
