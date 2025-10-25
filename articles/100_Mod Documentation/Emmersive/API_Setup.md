@@ -55,6 +55,10 @@ Optional: `temperature` `top_p` `max_tokens` `frequency_penalty` `presence_penal
 
 Recommended AI Service cooldown: `1`s
 
+## Other Free AI Resources:
+
+[free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+
 ## OpenAI ChatGPT
 
 Head to [OpenAI Platform](https://platform.openai.com/api-keys), and generate a new API key.

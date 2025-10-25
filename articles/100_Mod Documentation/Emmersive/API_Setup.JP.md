@@ -12,8 +12,6 @@ hide: true
 
 Emmersive（Elin with AI）は、**function-calling（関数呼び出し）** または **tool-call（ツール呼び出し）**、さらに **structured output（構造化出力）** または **json mode（JSON モード）** に対応した AI サービスを必要とします。
 
----
-
 ## 推論を有効にするかどうか
 
 一部のモデルは「推論機能（reasoning）」を提供しており、より高品質な出力を生成できますが、その分、生成時間が長くなり、token の消費も増えます。
@@ -21,8 +19,6 @@ Emmersive（Elin with AI）は、**function-calling（関数呼び出し）** �
 Elin ゲームのコンテキストおよび Emmersive システムが数行の JSON 出力を主とする特性を考慮すると、推論機能を有効にすることによるコスト（遅延・token 消費・応答性の低下）はあまり得策ではないかもしれません。
 
 すべての `reasoning_effort` / `thinkingBudget` はデフォルトで最低値に設定されていますが、必要に応じてパラメータで変更できます。
-
----
 
 ## Google Gemini（無料！）
 
@@ -39,7 +35,6 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 **推奨 AI サービスのクールダウン時間**：`1`s
 
----
 
 ## NVIDIA NIM（無料！）
 
@@ -66,7 +61,9 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 **推奨クールダウン時間**：`1`s
 
----
+## その他の無料AIリソース:
+
+[free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
 
 ## OpenAI ChatGPT
 
@@ -94,14 +91,10 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 参照：[OpenAI Chat Completion API Reference](https://platform.openai.com/docs/api-reference/chat/create)
 
----
-
 ## OpenAI 互換サービスプロバイダー
 
 他のサービスプロバイダーを使用するのも簡単です。
 ベース URL、モデル、パラメータを変更するだけで対応できます。
-
----
 
 ### DeepSeek
 
@@ -123,8 +116,6 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 ```
 
 参照：[DeepSeek Chat Completion API Reference](https://api-docs.deepseek.com/api/create-chat-completion)
-
----
 
 ### X.AI（grok）
 
@@ -149,8 +140,6 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 ```
 
 参照：[X.AI Chat Completions API Reference](https://docs.x.ai/docs/api-reference#chat-completions)
-
----
 
 ### ローカル LLM（Ollama / WebUI）
 
