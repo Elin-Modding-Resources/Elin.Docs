@@ -103,5 +103,26 @@
             "x": 0.28,
             "y": 0.2
         }
+    },
+    "shotgun": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_fun",
+        "IdSound": "attack_gun_shotgun",
+        "Eject": false,
+        "FirePos": {
+            "x": 0.3,
+            "y": 0.18
+        }
+    },
+    "sling": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_stone",
+        "IdSound": "throw",
+        "Eject": false,
+        "FirePos": {}
     }
 }
