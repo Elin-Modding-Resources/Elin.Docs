@@ -30,7 +30,9 @@ tags: Guide/External
 <LinkCard t="kuronekotei/ElinMod" u="https://github.com/kuronekotei/ElinMOD" i="https://avatars.githubusercontent.com/u/24914893?v=4"/>
 <LinkCard t="Ykey/ElinMod" u="https://github.com/ykeyjp/ElinMod" i="https://avatars.githubusercontent.com/u/15781024?v=4"/>
 <LinkCard t="gottyduke/Elin.Plugins" u="https://github.com/gottyduke/Elin.Plugins"/>
+<LinkCard t="InuiDame/Elin.Plugins" u="https://github.com/InuiDame/Elin.Plugins" i="https://avatars.githubusercontent.com/u/231474617?v=4"/>
 <LinkCard t="105gun/ElinMods" u="https://github.com/105gun?tab=repositories&q=Elin" i="https://cdn.discordapp.com/avatars/670440409251708952/7427d076fea6f2f1c92ef31c730f7f27.webp"/>
+<LinkCard t="chuahan/mc.elinplugins" u="https://github.com/chuahan/mc.elinplugins" i="https://avatars.githubusercontent.com/u/1166242?v=4"/>
 <LinkCard t="Drakeny/ElinMods" u="https://github.com/Drakeny?tab=repositories&q=Elin" i="https://avatars.githubusercontent.com/u/7444214?v=4"/>
 <LinkCard t="yuzutuki/ElinMod" u="https://github.com/yuzutuki/ElinMod" i="https://cdn.discordapp.com/avatars/250953554414534657/66b2e879677f392b250eb3c81f7ac241.webp"/>
 <LinkCard t="Seacolor/ElinMOD" u="https://github.com/Seacolor/ElinMOD" i="https://cdn.discordapp.com/avatars/414045627400454144/b5f7f32a00b8653bd28ac58f9b85a2b8.webp"/>
