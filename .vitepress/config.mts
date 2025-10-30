@@ -2,7 +2,6 @@ import { defineConfig, HeadConfig, TransformContext } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";
-import lightbox from "vitepress-plugin-lightbox";
 
 await generateDiff();
 
@@ -28,9 +27,6 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
-    config(md) {
-      md.use(lightbox, {});
-    },
   },
 
   themeConfig: {
