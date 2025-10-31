@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@cssnr/vitepress-plugin-copybutton':
+        specifier: ^0.0.2
+        version: 0.0.2(vitepress@2.0.0-alpha.12(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6))(vue@3.5.22)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.16
@@ -61,6 +65,12 @@ packages:
   '@babel/types@7.28.5':
     resolution: {integrity: sha512-qQ5m48eI/MFLQ5PxQj4PFaprjyCTLI37ElWMmNs0K8Lk3dVeOdNpB3ks8jc7yM5CDmVC73eMVk/trk3fgmrUpA==}
     engines: {node: '>=6.9.0'}
+
+  '@cssnr/vitepress-plugin-copybutton@0.0.2':
+    resolution: {integrity: sha512-Cjg0R0PIkUhS10x2g6fs1Mo9mv9AG+nsPxAviQB12K5UrzQKk8QTow3kZhxHQP0eLuzJxV3v0CuB4XiiXKMruA==}
+    peerDependencies:
+      vitepress: '*'
+      vue: ^3.0.0
 
   '@docsearch/css@4.2.0':
     resolution: {integrity: sha512-65KU9Fw5fGsPPPlgIghonMcndyx1bszzrDQYLfierN+Ha29yotMHzVS94bPkZS6On9LS8dE4qmW4P/fGjtCf/g==}
@@ -1066,6 +1076,11 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+
+  '@cssnr/vitepress-plugin-copybutton@0.0.2(vitepress@2.0.0-alpha.12(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6))(vue@3.5.22)':
+    dependencies:
+      vitepress: 2.0.0-alpha.12(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6)
+      vue: 3.5.22
 
   '@docsearch/css@4.2.0': {}
 

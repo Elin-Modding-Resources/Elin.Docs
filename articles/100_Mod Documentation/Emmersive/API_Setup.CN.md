@@ -39,9 +39,9 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [NVIDIA Build](https://build.nvidia.com/settings/api-keys)，创建一个新的 API key。
 
-**基址**：`https://integrate.api.nvidia.com/v1`
+**基址**：`https://integrate.api.nvidia.com/v1`<C prev />
 
-**模型**：`deepseek-ai/deepseek-v3.1-terminus`  
+**模型**：`deepseek-ai/deepseek-v3.1-terminus`<C prev />  
 （或其他可在 [NVIDIA 模型列表](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v3_1-terminus) 中找到的模型）
 
 **参数：**
@@ -62,15 +62,16 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 ## 其他免费 AI 资源：
 
 [free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+
 氕氙特供贴吧群免费API -> Elin 贴吧交流群
 
 ## OpenAI ChatGPT
 
 访问 [OpenAI Platform](https://platform.openai.com/api-keys)，生成一个新的 API key。
 
-**基址**：`https://api.openai.com/v1`
+**基址**：`https://api.openai.com/v1`<C prev />
 
-**模型**：`gpt-5-nano`
+**模型**：`gpt-5-nano`<C prev />  
 （或 [OpenAI 模型列表](https://platform.openai.com/docs/pricing) 中的任意模型）
 
 **参数**（由 Emmersive 默认提供）：
@@ -97,9 +98,9 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [DeepSeek Platform](https://platform.deepseek.com/api_keys)，生成一个新的 API key。
 
-**基址**：`http://api.deepseek.com/v1` (或者其他服务提供商，例如硅基流动)
+**基址**：`http://api.deepseek.com/v1`<C prev /> (或者其他服务提供商，例如硅基流动)
 
-**模型**：`deepseek-chat`（DeepSeekV3.2-Exp 的非推理版本）
+**模型**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp 的非推理版本）
 
 **参数：**
 ```json
@@ -117,9 +118,9 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [X.AI](https://docs.x.ai/docs/models)，登录并生成新的 API key。
 
-**基址**：`https://api.x.ai/v1`
+**基址**：`https://api.x.ai/v1`<C prev />
 
-**模型**：`grok-4-fast-non-reasoning`
+**模型**：`grok-4-fast-non-reasoning`<C prev />
 （或 [X.AI 模型列表](https://docs.x.ai/docs/models) 中任意模型）
 
 **参数：**

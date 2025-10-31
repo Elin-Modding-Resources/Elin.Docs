@@ -40,9 +40,9 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [NVIDIA Build](https://build.nvidia.com/settings/api-keys) にアクセスし、新しい API キーを作成します。
 
-**ベース URL**：`https://integrate.api.nvidia.com/v1`
+**ベース URL**：`https://integrate.api.nvidia.com/v1`<C prev />
 
-**モデル**：`deepseek-ai/deepseek-v3.1-terminus`
+**モデル**：`deepseek-ai/deepseek-v3.1-terminus`<C prev />  
 （または [NVIDIA モデル一覧](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v3_1-terminus) に掲載されている他のモデル）
 
 **パラメータ：**
@@ -69,9 +69,9 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [OpenAI Platform](https://platform.openai.com/api-keys) にアクセスし、新しい API キーを生成します。
 
-**ベース URL**：`https://api.openai.com/v1`
+**ベース URL**：`https://api.openai.com/v1`<C prev />
 
-**モデル**：`gpt-5-nano`
+**モデル**：`gpt-5-nano`<C prev />  
 （または [OpenAI モデル一覧](https://platform.openai.com/docs/pricing) にある任意のモデル）
 
 **パラメータ**（Emmersive によりデフォルト提供）：
@@ -100,9 +100,9 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [DeepSeek Platform](https://platform.deepseek.com/api_keys) にアクセスし、新しい API キーを作成します。
 
-**ベース URL**：`http://api.deepseek.com/v1`（またはシリコンフローなど他の提供元）
+**ベース URL**：`http://api.deepseek.com/v1`<C prev />（またはシリコンフローなど他の提供元）
 
-**モデル**：`deepseek-chat`（DeepSeekV3.2-Exp の非推論バージョン）
+**モデル**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp の非推論バージョン）
 
 **パラメータ：**
 
@@ -121,9 +121,9 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [X.AI](https://docs.x.ai/docs/models) にアクセスし、ログインして新しい API キーを作成します。
 
-**ベース URL**：`https://api.x.ai/v1`
+**ベース URL**：`https://api.x.ai/v1`<C prev />
 
-**モデル**：`grok-4-fast-non-reasoning`
+**モデル**：`grok-4-fast-non-reasoning`<C prev />  
 （または [X.AI モデル一覧](https://docs.x.ai/docs/models) にある任意のモデル）
 
 **パラメータ：**

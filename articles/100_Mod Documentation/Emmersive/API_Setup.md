@@ -24,9 +24,9 @@ All `reasoning_effort` / `thinkingBudget` are set to minimal by default, but you
 
 Head to [Google AI Studio](https://aistudio.google.com/projects), create a project. If you are using free tier, I recommend making 3 projects (rate limit is per project, not per API key) and generate an API key for each project.
 
-Model: `gemini-2.5-flash` You can modify the model as you wish, do note that free tier is likely to be slower, even so on heavier models like `gemini-2.5-pro`.  Default model is `gemini-2.5-flash`.
+**Model**: `gemini-2.5-flash` You can modify the model as you wish, do note that free tier is likely to be slower, even so on heavier models like `gemini-2.5-pro`.  Default model is `gemini-2.5-flash`.
 
-Params:
+**Params**:
 [Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
 
 **Free tier ratelimit**: 15 request per min per project, 250 requests per day per account
@@ -37,11 +37,12 @@ Recommended AI Service cooldown: `1`s
 
 Head to [NVIDIA Build](https://build.nvidia.com/settings/api-keys), create a new API key.
 
-Endpoint: `https://integrate.api.nvidia.com/v1`
+**Endpoint**: `https://integrate.api.nvidia.com/v1`<C prev />  
 
-Model: `deepseek-ai/deepseek-v3.1-terminus` (Or [any other model you like](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v3_1-terminus))
+**Model**: `deepseek-ai/deepseek-v3.1-terminus`<C prev />  
+(Or [any other model you like](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v3_1-terminus))
 
-Params:
+**Params**:
 ```json
 {
   "response_format": {
@@ -63,11 +64,12 @@ Recommended AI Service cooldown: `1`s
 
 Head to [OpenAI Platform](https://platform.openai.com/api-keys), and generate a new API key.
 
-Endpoint: `https://api.openai.com/v1`
+**Endpoint**: `https://api.openai.com/v1`<C prev />
 
-Model: `gpt-5-nano` (Or [any other model you like](https://platform.openai.com/docs/pricing))
+**Model**: `gpt-5-nano`<C prev />  
+(Or [any other model you like](https://platform.openai.com/docs/pricing))
 
-Params: (provided by Emmersive as default)
+**Params**: (provided by Emmersive as default)
 ```json
 {
   "frequency_penalty": 0.6,
@@ -90,11 +92,11 @@ Using different providers is as simple as swapping the endpoint, model, and corr
 
 Head to [DeepSeek Platform](https://platform.deepseek.com/api_keys), and generate a new API key.
 
-Endpoint: `http://api.deepseek.com/v1` 
+**Endpoint**: `http://api.deepseek.com/v1`<C prev /> 
 
-Model: `deepseek-chat` (the thinking-disabled variant of DeepSeekV3.2-Exp)
+**Model**: `deepseek-chat`<C prev /> (the thinking-disabled variant of DeepSeekV3.2-Exp)
 
-Params:
+**Params**:
 ```json
 {
   "frequency_penalty": 0.6,
@@ -109,11 +111,12 @@ Optional: [DeepSeek Chat Completion API Reference](https://api-docs.deepseek.com
 
 Head to [X.AI](https://docs.x.ai/docs/models), login, and generate a new API key.
 
-Endpoint: `https://api.x.ai/v1`
+**Endpoint**: `https://api.x.ai/v1`<C prev />
 
-Model: `grok-4-fast-non-reasoning` (Or [any other model you like](https://docs.x.ai/docs/models))
+**Model**: `grok-4-fast-non-reasoning`<C prev />  
+(Or [any other model you like](https://docs.x.ai/docs/models))
 
-Params:
+**Params**:
 ```json
 {
   "response_format": {
