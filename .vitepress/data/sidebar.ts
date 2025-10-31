@@ -163,18 +163,28 @@ function getDiff() {
   }
 
   const versionIcons = [
-    { pattern: /nya/i, icon: " 🐱🐱🐱" },
-    { pattern: /nightly/i, icon: " 🌙" },
-    { pattern: /stable/i, icon: " ⭐" },
+    { pattern: /anni/i, color: "text-pink-400", icon: "🎉🎉🎉" },
+    { pattern: /nya/i, color: "text-green-400", icon: "😺" },
+    { pattern: /nightly/i, color: "text-blue-400", icon: "🌙" },
+    { pattern: /stable/i, color: "text-orange-400", icon: "🌌" },
   ];
 
   for (const version of grouped) {
-    const match = versionIcons.find((mapping) =>
-      mapping.pattern.test(version.text)
-    );
-    if (match) {
-      version.text += match.icon;
-    }
+    let matchedEmojis = new Set<string>();
+
+    // replace all matching words
+    let text = version.text.replace(/\b\w+\b/g, (word: string) => {
+      for (const mapping of versionIcons) {
+        if (mapping.pattern.test(word)) {
+          matchedEmojis.add(mapping.icon);
+          return `<span class="${mapping.color} font-semibold">${word}</span>`;
+        }
+      }
+      return word;
+    });
+
+    // append all matched emojis (unique)
+    version.text = text + " " + Array.from(matchedEmojis).join("");
   }
 
   (grouped[0] as any).collapsed = false;
