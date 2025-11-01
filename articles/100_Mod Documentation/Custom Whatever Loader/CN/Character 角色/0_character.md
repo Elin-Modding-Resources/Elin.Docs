@@ -10,7 +10,6 @@ hide: true
 <LinkCard t="Chara表粗略解释" u="https://elin-modding-resources.github.io/Elin.Docs/articles/10_Source%20Sheets/puddles_chara_note" />
  
 CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签。**请记住，标签之间用 `,`（逗号）分隔，中间不要有空格**。
-Here are the translations:
 
 ## 测试更改
 
