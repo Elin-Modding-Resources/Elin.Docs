@@ -6,6 +6,8 @@ hide: true
 
 ## API Setup Examples
 
+![](https://github.com/gottyduke/Elin.Plugins/blob/master/Emmersive/assets/access_en.png?raw=true)
+
 > [!Important]
 > When setting a nickname for the provider, don't forget to click "Reload" before editing params.   
 > If you are unfamilar with JSON format, use website like [JSONLint](https://jsonlint.com/).

@@ -6,6 +6,8 @@ hide: true
 
 ## API 设置示例
 
+![](https://github.com/gottyduke/Elin.Plugins/blob/master/Emmersive/assets/access_cn.png?raw=true)
+
 > [!Important]
 > 当为提供者设置昵称时，不要忘记在编辑参数前点击“Reload”（重新加载）。  
 > 如果你不熟悉 JSON 格式，可以使用网站 [JSONLint](https://jsonlint.com/) 来验证格式。

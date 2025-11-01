@@ -6,6 +6,8 @@ hide: true
 
 ## API 設定例
 
+![](https://github.com/gottyduke/Elin.Plugins/blob/master/Emmersive/assets/access_jp.png?raw=true)
+
 > [!Important]
 > プロバイダーにニックネームを設定する際は、パラメータを編集する前に必ず「Reload（再読み込み）」をクリックしてください。
 > JSON 形式に慣れていない場合は、[JSONLint](https://jsonlint.com/) のようなサイトで検証することをおすすめします。
