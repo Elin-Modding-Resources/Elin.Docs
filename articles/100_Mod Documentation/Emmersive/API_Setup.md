@@ -10,7 +10,7 @@ hide: true
 
 > [!Important]
 > When setting a nickname for the provider, don't forget to click "Reload" before editing params.   
-> If you are unfamilar with JSON format, use website like [JSONLint](https://jsonlint.com/).
+> If you are unfamiliar with JSON format, use website like [JSONLint](https://jsonlint.com/).
 
 Emmersive(Elin with AI) requires the AI service with **function-calling** (or **tool-call**) and **structured output** (or **json mode**) capabilities.
 
@@ -31,7 +31,7 @@ Head to [Google AI Studio](https://aistudio.google.com/projects), create a proje
 **Params**:
 [Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
 
-**Free tier ratelimit**: 15 request per min per project, 250 requests per day per account
+**Free tier ratelimit**: 15 requests per min per project, 250 `gemini-2.5-flash` requests per day per account, 1000 `gemini-2.5-flash-lite` requests per day per account
 
 Recommended AI Service cooldown: `1`s
 
@@ -88,7 +88,9 @@ Optional: [OpenAI Chat Completion API Reference](https://platform.openai.com/doc
 
 ## Other OpenAI Compatible Providers
 
-Using different providers is as simple as swapping the endpoint, model, and correcting params.
+Using different OpenAI providers is as simple as swapping the endpoint, model, and correcting params.
+
+For example, DeepSeek (or other DeepSeek providers, like OpenRouter), and X.AI:
 
 ### DeepSeek
 
@@ -131,8 +133,14 @@ Head to [X.AI](https://docs.x.ai/docs/models), login, and generate a new API key
 ```
 Optional: [X.AI Chat Completions API Reference](https://docs.x.ai/docs/api-reference#chat-completions)
 
-### Local LLM (Ollama/Webui)
+### Local LLM (Ollama/WebUI)
 
 Same setup but swap the endpoints to your local port.
 
 Change the model and params accordingly to your choice.
+
+E.g. For Ollama, it opens an OpenAI compatible port:
+
+**Endpoint**: `http://localhost:11434/v1`<C prev />
+
+Note that Ollama/WebUI may contain their special settings for thinking/reasoning that you'll need to refer to their docs accordingly.

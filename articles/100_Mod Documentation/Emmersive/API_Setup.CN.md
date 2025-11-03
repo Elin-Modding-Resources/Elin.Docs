@@ -28,7 +28,7 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 如果你使用的是免费额度，建议创建 **3 个项目**（速率限制按项目计，不按 API key 计），并为每个项目生成一个 API key。
 
 **模型**：`gemini-2.5-flash`  
-你可以自由修改模型，但请注意免费可能较慢，尤其是像 `gemini-2.5-pro` 这样的思考模型。  
+你可以自由修改模型，但请注意免费额度可能较慢，尤其是像 `gemini-2.5-pro` 这样的思考模型。  
 默认模型为 `gemini-2.5-flash`。
 
 **参数参考**：[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
@@ -145,3 +145,5 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 配置方式相同，只需将基址修改为本地端口。
 
 根据所用模型调整对应的模型与参数。
+
+例如，Ollama的 OpenAI 端口为 `http://localhost:11434/v1`<C prev />
