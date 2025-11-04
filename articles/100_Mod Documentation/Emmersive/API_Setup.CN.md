@@ -100,7 +100,7 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [DeepSeek Platform](https://platform.deepseek.com/api_keys)，生成一个新的 API key。
 
-**基址**：`http://api.deepseek.com/v1`<C prev /> (或者其他服务提供商，例如硅基流动)
+**基址**：`https://api.deepseek.com/v1`<C prev /> (或者其他服务提供商，例如硅基流动)
 
 **模型**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp 的非推理版本）
 

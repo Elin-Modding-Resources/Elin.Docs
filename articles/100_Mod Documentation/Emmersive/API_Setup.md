@@ -96,7 +96,7 @@ For example, DeepSeek (or other DeepSeek providers, like OpenRouter), and X.AI:
 
 Head to [DeepSeek Platform](https://platform.deepseek.com/api_keys), and generate a new API key.
 
-**Endpoint**: `http://api.deepseek.com/v1`<C prev /> 
+**Endpoint**: `https://api.deepseek.com/v1`<C prev /> 
 
 **Model**: `deepseek-chat`<C prev /> (the thinking-disabled variant of DeepSeekV3.2-Exp)
 

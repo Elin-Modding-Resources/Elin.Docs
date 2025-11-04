@@ -102,7 +102,7 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [DeepSeek Platform](https://platform.deepseek.com/api_keys) にアクセスし、新しい API キーを作成します。
 
-**ベース URL**：`http://api.deepseek.com/v1`<C prev />（またはシリコンフローなど他の提供元）
+**ベース URL**：`https://api.deepseek.com/v1`<C prev />（またはシリコンフローなど他の提供元）
 
 **モデル**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp の非推論バージョン）
 
