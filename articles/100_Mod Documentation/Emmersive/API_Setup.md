@@ -39,6 +39,8 @@ Recommended AI Service cooldown: `1`s
 
 Head to [NVIDIA Build](https://build.nvidia.com/settings/api-keys), create a new API key.
 
+Create an OpenAI provider, paste the API key, and change the settings:
+
 **Endpoint**: `https://integrate.api.nvidia.com/v1`<C prev />  
 
 **Model**: `deepseek-ai/deepseek-v3.1-terminus`<C prev />  
@@ -65,6 +67,8 @@ Recommended AI Service cooldown: `1`s
 ## OpenAI ChatGPT
 
 Head to [OpenAI Platform](https://platform.openai.com/api-keys), and generate a new API key.
+
+Create an OpenAI provider, paste the API key, and change the settings:
 
 **Endpoint**: `https://api.openai.com/v1`<C prev />
 
@@ -96,6 +100,8 @@ For example, DeepSeek (or other DeepSeek providers, like OpenRouter), and X.AI:
 
 Head to [DeepSeek Platform](https://platform.deepseek.com/api_keys), and generate a new API key.
 
+Create an OpenAI provider, paste the API key, and change the settings:
+
 **Endpoint**: `https://api.deepseek.com/v1`<C prev /> 
 
 **Model**: `deepseek-chat`<C prev /> (the thinking-disabled variant of DeepSeekV3.2-Exp)
@@ -114,6 +120,8 @@ Optional: [DeepSeek Chat Completion API Reference](https://api-docs.deepseek.com
 ### X.AI(grok)
 
 Head to [X.AI](https://docs.x.ai/docs/models), login, and generate a new API key.
+
+Create an OpenAI provider, paste the API key, and change the settings:
 
 **Endpoint**: `https://api.x.ai/v1`<C prev />
 
@@ -137,7 +145,7 @@ Optional: [X.AI Chat Completions API Reference](https://docs.x.ai/docs/api-refer
 
 Same setup but swap the endpoints to your local port.
 
-Change the model and params accordingly to your choice.
+Create an OpenAI provider, input empty API key or whatever you like, and change the model and params to your choice.
 
 E.g. For Ollama, it opens an OpenAI compatible port:
 

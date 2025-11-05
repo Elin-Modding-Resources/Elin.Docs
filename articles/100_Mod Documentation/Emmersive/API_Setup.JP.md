@@ -42,6 +42,8 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [NVIDIA Build](https://build.nvidia.com/settings/api-keys) にアクセスし、新しい API キーを作成します。
 
+OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変更してください。
+
 **ベース URL**：`https://integrate.api.nvidia.com/v1`<C prev />
 
 **モデル**：`deepseek-ai/deepseek-v3.1-terminus`<C prev />  
@@ -70,6 +72,8 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 ## OpenAI ChatGPT
 
 [OpenAI Platform](https://platform.openai.com/api-keys) にアクセスし、新しい API キーを生成します。
+
+OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変更してください。
 
 **ベース URL**：`https://api.openai.com/v1`<C prev />
 
@@ -102,6 +106,8 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 [DeepSeek Platform](https://platform.deepseek.com/api_keys) にアクセスし、新しい API キーを作成します。
 
+OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変更してください。
+
 **ベース URL**：`https://api.deepseek.com/v1`<C prev />（またはシリコンフローなど他の提供元）
 
 **モデル**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp の非推論バージョン）
@@ -122,6 +128,8 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 ### X.AI（grok）
 
 [X.AI](https://docs.x.ai/docs/models) にアクセスし、ログインして新しい API キーを作成します。
+
+OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変更してください。
 
 **ベース URL**：`https://api.x.ai/v1`<C prev />
 
@@ -146,6 +154,8 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 ### ローカル LLM（Ollama / WebUI）
 
 設定方法は同じで、ベース URL をローカルポートに変更するだけです。
+
+OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変更してください。
 
 使用するモデルに応じて、モデル名とパラメータを調整してください。
 

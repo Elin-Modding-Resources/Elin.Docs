@@ -41,6 +41,8 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [NVIDIA Build](https://build.nvidia.com/settings/api-keys)，创建一个新的 API key。
 
+添加 OpenAI 服务，粘贴 API key，并更改配置。
+
 **基址**：`https://integrate.api.nvidia.com/v1`<C prev />
 
 **模型**：`deepseek-ai/deepseek-v3.1-terminus`<C prev />  
@@ -71,6 +73,8 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [OpenAI Platform](https://platform.openai.com/api-keys)，生成一个新的 API key。
 
+添加 OpenAI 服务，粘贴 API key，并更改配置。
+
 **基址**：`https://api.openai.com/v1`<C prev />
 
 **模型**：`gpt-5-nano`<C prev />  
@@ -100,6 +104,8 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 访问 [DeepSeek Platform](https://platform.deepseek.com/api_keys)，生成一个新的 API key。
 
+添加 OpenAI 服务，粘贴 API key，并更改配置。
+
 **基址**：`https://api.deepseek.com/v1`<C prev /> (或者其他服务提供商，例如硅基流动)
 
 **模型**：`deepseek-chat`<C prev />（DeepSeekV3.2-Exp 的非推理版本）
@@ -119,6 +125,8 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 ### X.AI（grok）
 
 访问 [X.AI](https://docs.x.ai/docs/models)，登录并生成新的 API key。
+
+添加 OpenAI 服务，粘贴 API key，并更改配置。
 
 **基址**：`https://api.x.ai/v1`<C prev />
 
@@ -143,6 +151,8 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 ### 本地 LLM（Ollama / WebUI）
 
 配置方式相同，只需将基址修改为本地端口。
+
+添加 OpenAI 服务，粘贴 API key，并更改配置。
 
 根据所用模型调整对应的模型与参数。
 
