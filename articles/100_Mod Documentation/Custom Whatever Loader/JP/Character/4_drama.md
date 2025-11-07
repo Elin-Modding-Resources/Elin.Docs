@@ -68,6 +68,7 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|--|
 |`console_cmd`|コンソールコマンド 引数1 引数2...|コンソールコマンドを実行する|常時|
+|`destroy_item`|[アイテム ID](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439)、数量|指定された数のアイテムを `actor` インベントリから削除します|常時|
 |`mod_affinity`|数値式(例: `+5`)|`actor`の好感度を調整|成功時|
 |`mod_currency`|通貨の種類, 数値式|指定された通貨を`actor`に変更します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|常時|
 |`mod_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 強度(省略可)|`actor`の指定された要素(特性/抵抗/スキルなど)を変更し, デフォルトの強度は`1`であり, 異なるタイプの要素には異なる強度が使用される|常時|
