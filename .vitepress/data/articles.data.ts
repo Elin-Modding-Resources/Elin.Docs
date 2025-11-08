@@ -17,7 +17,10 @@ export default createContentLoader("articles/**/*.md", {
     return raw
       .filter(
         ({ frontmatter }) =>
-          frontmatter.exclude !== true && frontmatter.hide !== true
+          frontmatter &&
+          Object.keys(frontmatter).length > 0 &&
+          frontmatter.exclude !== true &&
+          frontmatter.hide !== true
       )
       .map(({ url, frontmatter }) => ({
         date: formatDate(frontmatter.date),
