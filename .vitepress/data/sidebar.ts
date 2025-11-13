@@ -59,7 +59,7 @@ function generateItems(fullDir: string, dir: string) {
       });
     }
 
-    if (article.isFile() && article.name.endsWith(".md")) {
+    if (article.isFile() && article.name.toLowerCase().endsWith(".md")) {
       const { data } = matter.read(currentPath);
       if (data.exclude === true) {
         continue;
