@@ -1,10 +1,12 @@
 ---
 title: Editing Sources at Runtime
 author: Mr Pops Alot
-description: Editing Thing sources at runtime using Harmony patches.
-date: 2025/11/11 12:30
-tags: Guide/General
+description: Editing Thing and Race sources at runtime using Harmony patches.
+date: 2025/11/16 21:00
+tags: Guide/Patch/C#
 ---
+# Editing Sources at Runtime
+
 
 Sometimes you want your Thing (or other source) to only be added when a certain mod option is enabled, or if you want to patch an existing Thing so that it integrates into your mod. You can override the entry with an XLSX edit, but this can conflict with mods that also override the source with their own edits, as well the possibility of the Thing or other element breaking when Noa changes things.
 
@@ -92,3 +94,30 @@ We can test the patch by opening the game in debug mode and using the ingame con
 As you can see, the name of the Thing was changed to "Things".
 
 Note that some Things, such as `poop` may not be editable. Food (`SourceFood`) is also not editable this way
+
+# Race Editing
+Races can be edited also like Things. One part that's different from Things is that patching on OnStartCore is limited, but patching on SourceManager.Init has none of these limitations. However, instead of using SourceThing rows, you use SourceRace rows.
+
+```cs
+[HarmonyPatch]
+internal class PatchSomeRows
+{
+    [HarmonyAfter("dk.elinplugins.customdialogloader")]
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SourceManager), nameof(SourceManager.Init))]
+    internal static void Thingy()
+    {
+        SourceManager sources = EMono.sources; 
+		SourceRace.Row c = sources.races.rows.Find((SourceRace.Row x) => x.id == "mifu"); // Gets our row and tries to find a race with the id "mifu"
+        //Your changes here
+        c.elementMap.Add(1512,3);// Add Sharp Eye mutation level 3
+        c.name = "test race";// Rename race to "test race"
+        c.playable = 1;// Set race so that its shown without extra races enabled.
+        return;
+    }
+}
+```
+
+You can go and make a new game to display the race overview during character creation. As you can see, the rename, Element addition, and playable flag changes were applied.
+
+![](/articles/50_Patching/assets/Screenshot_20251116_204729.png)
