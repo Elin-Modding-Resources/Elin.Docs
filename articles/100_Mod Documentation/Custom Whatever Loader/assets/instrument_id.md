@@ -15,6 +15,7 @@
 |recorder|recorder|竖笛|recorder|リコーダー|
 |flute|flute|长笛|flute|フルート|
 |taiko|taiko|太鼓|taiko|太鼓|
+|drum|drum|鼓|drum|鼓|
 |mokugyo|mokugyo|木鱼|wooden gong|木魚|
 |tambourine|tambourine|铃鼓|tambourine|タンバリン|
 |mic|mic_rachmaninoff|麦克风|mic|マイク|
