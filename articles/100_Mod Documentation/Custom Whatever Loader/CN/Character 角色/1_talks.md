@@ -152,6 +152,60 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 `if` 列**仅在剧情表加载时判定一次**，这意味着您无法动态启用/禁用行。请使用 `reload` 或 CWL 的 `invoke*` 拓展条件。
 :::
 
+## 内置跳转
+
+执行 `inject/Unique` 动作后，会有大量内置的剧情步骤被注入当前剧情表。要使用它们，只需将它们设置为 `jump` 目标即可。有些步骤已经在默认的 `inject/Unique` 对话中使用了，你无需再次使用。
+
+|步骤名称|用途|
+|-|-|
+|`_banish`|结束剧情|
+|`_bye`|结束剧情|
+|`_toggleSharedEquip`|切换 `tg` 的共享装备状态|
+|`_daMakeMaid`|将 `tg` 设为女仆|
+|`_joinParty`|如果 `tg` 的特质允许加入，则将其设为队伍成员。**这不是邀请！**|
+|`_leaveParty`|将 `tg` 从队伍移除，并送回据点区域|
+|`_makeLivestock`|将 `tg` 设为派系家畜|
+|`_makeResident`|将 `tg` 设为派系居民|
+|`_depart`|将 `tg` 从派系移除|
+|`_rumor`|查看流言|
+|`_sleepBeside`|切换 `tg` 是否在玩家旁睡觉|
+|`_disableLoyal`|切换 `tg` 忠诚心状态|
+|`_insult`|切换 `tg` 嘲讽状态|
+|`_makeHome`|将当前区域分支设为 `tg` 的家|
+|`_invite`|尝试邀请 `tg` 成为同伴，会检查玩家属性和 `tg` 可邀请状态|
+|`_Guide`|引导玩家前往一系列地点|
+|`_tail`|干，付费|
+|`_whore`|干，免费|
+|`_bloom`|加深与 `tg` 的羁绊|
+|`_buy`|从 `tg` 购买物品|
+|`_buyPlan`|从 `tg` 购买研究图纸|
+|`_give`|给 `tg` 物品|
+|`_blessing`|对队伍施加祝福|
+|`_train`|与 `tg` 进行技能训练|
+|`_changeDomain`|改变 `tg` 的领域|
+|`_revive`|复活死亡的同伴|
+|`_buySlave`|从 `tg` 购买奴隶|
+|`_trade`|与 `tg` 交换物品|
+|`_identify`|与 `tg` 鉴定物品|
+|`_identifyAll`|与 `tg` 鉴定所有物品|
+|`_identifySP`|与 `tg` 使用高级技能鉴定物品|
+|`_bout`|发起决斗|
+|`_news`|在地图上生成随机地城|
+|`_heal`|治疗玩家|
+|`_food`|从 `tg` 购买食物|
+|`_deposit`|向 `tg` 存款|
+|`_withdraw`|向 `tg` 取款|
+|`_copyItem`|与 `tg` 复制物品|
+|`_extraTax`|缴纳额外税金|
+|`_upgradeHearth`|升级炉石|
+|`_sellFame`|出售声望|
+|`_investZone`|投资当前区域|
+|`_investShop`|投资 `tg` 的商店|
+|`_changeTitle`|更改玩家称号|
+|`_buyLand`|扩展当前区域地图|
+|`_disableMove`|使 `tg` 无法移动|
+|`_enableMove`|使 `tg` 可以移动|
+
 ## 剧情拓展
 
 在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。

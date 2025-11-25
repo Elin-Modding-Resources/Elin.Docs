@@ -149,6 +149,60 @@ Most of the time you only need `if` column in your sheet. If you think you need 
 The `if` column is evaluated **only once on drama load**, that means you cannot dynamically enable/disable lines. Use `reload` or CWL's `invoke*` condition.
 :::
 
+## Builtin Jumps
+
+After executing `inject/Unique` action, a lot of builtin drama steps will be injected into current drama sheet. To utilize them, simply set them as the `jump` target. Some steps are already used in the default `inject/Unique` dialogues and you do not need to re-use them on your own.
+
+|step name|usage|
+|-|-|
+|`_banish`|End the drama|
+|`_bye`|End the drama|
+|`_toggleSharedEquip`|Toggle `tg` shared equipment usage|
+|`_daMakeMaid`|Set `tg` as maid|
+|`_joinParty`|If `tg` trait is joinable, set as party member. **THIS IS NOT INVITING**|
+|`_leaveParty`|Remove `tg` from party, and sent to home zone|
+|`_makeLivestock`|Set `tg` as faction livestock|
+|`_makeResident`|Set `tg` as faction resident|
+|`_depart`|Remove `tg` from faction|
+|`_rumor`|Rumor|
+|`_sleepBeside`|Toggle `tg` sleep beside player state|
+|`_disableLoyal`|Toggle `tg` loyal state|
+|`_insult`|Toggle `tg` taunt state|
+|`_makeHome`|Set current zone branch as `tg` home branch|
+|`_invite`|Try inviting `tg` as ally, checks player attributes and `tg` invitable state|
+|`_Guide`|Guide player to a list of locations|
+|`_tail`|Have sex, cost money|
+|`_whore`|Have sex, free|
+|`_bloom`|Deepen bond with `tg`|
+|`_buy`|Buy stuff from `tg`|
+|`_buyPlan`|Buy research plan from `tg`|
+|`_give`|Give stuff to `tg`|
+|`_blessing`|Blessing upon party|
+|`_train`|Train skills with `tg`|
+|`_changeDomain`|Change `tg` domain|
+|`_revive`|Revive dead allies|
+|`_buySlave`|Buy slave from `tg`|
+|`_trade`|Trade items with `tg`|
+|`_identify`|Identify items with `tg`|
+|`_identifyAll`|Identify all items with `tg`|
+|`_identifySP`|Identify items with `tg` using superior skill|
+|`_bout`|Challenge to a duel|
+|`_news`|Spawn a random dungeon on map|
+|`_heal`|Heal the player|
+|`_food`|Buy some food from `tg`|
+|`_deposit`|Deposit with `tg`|
+|`_withdraw`|Withdraw with `tg`|
+|`_copyItem`|Duplicate item with `tg`|
+|`_extraTax`|Pay additional tax|
+|`_upgradeHearth`|Upgrade hearth stone|
+|`_sellFame`|Sell fame|
+|`_investZone`|Invest current zone|
+|`_investShop`|Invest `tg` barter shop|
+|`_changeTitle`|Change player title|
+|`_buyLand`|Expand current zone map|
+|`_disableMove`|Set `tg` to not move|
+|`_enableMove`|Set `tg` can move|
+
 ## Drama Expansion
 
 Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.
