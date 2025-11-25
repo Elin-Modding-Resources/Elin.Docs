@@ -171,8 +171,8 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 |`_makeHome`|Set current zone branch as `tg` home branch|
 |`_invite`|Try inviting `tg` as ally, checks player attributes and `tg` invitable state|
 |`_Guide`|Guide player to a list of locations|
-|`_tail`|Have sex, cost money|
-|`_whore`|Have sex, free|
+|`_tail`|Have sex, for money|
+|`_whore`|Have sex, cost money|
 |`_bloom`|Deepen bond with `tg`|
 |`_buy`|Buy stuff from `tg`|
 |`_buyPlan`|Buy research plan from `tg`|
