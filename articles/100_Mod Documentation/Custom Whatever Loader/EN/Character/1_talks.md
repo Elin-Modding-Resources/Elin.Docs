@@ -169,7 +169,7 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 |`_disableLoyal`|Toggle `tg` loyal state|
 |`_insult`|Toggle `tg` taunt state|
 |`_makeHome`|Set current zone branch as `tg` home branch|
-|`_invite`|Try inviting `tg` as ally, checks player attributes and `tg` invitable state|
+|`_invite`|Try inviting `tg` as ally, checks player attributes and `tg` invitable state. To unconditionally invite as ally, use CWL drama action [`join_party()`](https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/EN/Character/4_drama#actions)|
 |`_Guide`|Guide player to a list of locations|
 |`_tail`|Have sex, for money|
 |`_whore`|Have sex, cost money|

@@ -173,7 +173,7 @@ hide: true
 |`_disableLoyal`|`tg` の忠誠状態を切り替える|
 |`_insult`|`tg` の嘲弄状態を切り替える|
 |`_makeHome`|現在のゾーン分岐を `tg` のホームとして設定する|
-|`_invite`|`tg` を仲間として招待することを試みる。プレイヤー属性および `tg` の招待可能状態をチェックする|
+|`_invite`|`tg` を仲間として招待することを試みる。プレイヤー属性および `tg` の招待可能状態をチェックする。無条件でパーティーに勧誘する場合は、CWL拡張アクション[`join_party()`](https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/JP/Character/4_drama#%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3)を使用してください|
 |`_Guide`|プレイヤーを複数の場所へ案内する|
 |`_tail`|純粋な肉体関係|
 |`_whore`|金銭の発生する肉体関係|
