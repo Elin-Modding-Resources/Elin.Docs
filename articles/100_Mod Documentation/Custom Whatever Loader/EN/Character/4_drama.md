@@ -31,6 +31,21 @@ If the `jump` in the same line has any value, then the return value of the expan
 
 **Value Expression**: `+5`, `*10`, `=69`, `!=114` etc, used to evaluate or assign values.
 
+|Expression|Meaning|
+|-|-|
+|`69`|Assign value `69`|
+|`=69`|Assign value `69`|
+|`+5`|Increase original value by `5`|
+|`-3`|Decrease original value by `3`|
+|`*10`|Multiply original value by `10`|
+|`/2`|Divide original value by `2`|
+|`==69`|Check if equal to `69`|
+|`!=114`|Check if not equal to `114`|
+|`>10`|Check if greater than `10`|
+|`>=20`|Check if greater than or equal to `20`|
+|`<5`|Check if less than `5`|
+|`<=3`|Check if less than or equal to `3`|
+
 ## Actions
 
 |method|param|description|jump|
