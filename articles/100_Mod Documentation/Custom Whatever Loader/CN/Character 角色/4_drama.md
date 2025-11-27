@@ -103,6 +103,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
+|`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
+|`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
 |`if_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|检查`actor`是否拥有状态|满足时|
 |`if_currency`|货币种类, 数值表达式|检查`actor`是否拥有符合的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|满足时|
 |`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数值表达式|检查`actor`是否拥有符合的元素|满足时|

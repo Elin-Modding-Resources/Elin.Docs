@@ -53,11 +53,11 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`add_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [material alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(optional), level(optional), count(optional)|Add the item with id to `actor`, default random material, auto level, and count of `1`|always|
 |`equip_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [material alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(optional), level(optional)|Equip the item with id on `actor`, default random material, auto level|always|
 |`join_party`||Make `actor` join player party|always|
-|`join_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(optional)|Make `actor` join the specific religion with id or leave the current religion with empty value|if success|
+|`join_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(optional)|Make `actor` join the specific religion with id or leave the current religion with empty value|If success|
 |`apply_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), power|Apply a condition with id to `actor`, default power `100`|always|
-|`cure_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Cure the condition on `actor`|if cured|
+|`cure_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Cure the condition on `actor`|If cured|
 |`remove_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Remove the condition on `actor`|always|
-|`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|if success|
+|`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|If success|
 |`emit_call`|ext.method|Invoke an external static method|always|
 
 `build_ext` and `emit_call` requires the CWL configuration value `Dialog.ExpandedActionsAllowExternal` set to `true`, enabled by default.
@@ -86,13 +86,13 @@ If the `jump` in the same line has any value, then the return value of the expan
 |-|-|-|-|
 |`console_cmd`|cmd param1 param2...|Run console command|always|
 |`destroy_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), number|Remove `number` of items from `actor`|always|
-|`mod_affinity`|value expression|Modify `actor` affinity with value expression|if success|
+|`mod_affinity`|value expression|Modify `actor` affinity with value expression|If success|
 |`mod_currency`|currency type, value expression|Modify `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|always|
 |`mod_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), power(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default power `1`. Different types of elements use different power scaling|always|
 |`mod_element_exp`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Modifies the exp of a specified element for the `actor`|If success|
 |`mod_fame`|value expression|Modify player fame with value expression|always|
 |`mod_flag`|flag, value expression|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`. This supports non player character|always|
-|`mod_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `=1`|if success|
+|`mod_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `=1`|If success|
 
 ## Conditions
 
@@ -100,20 +100,22 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 
 |method|param|description|jump|
 |-|-|-|-|
-|`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|if satisfies|
-|`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|if active|
-|`if_currency`|currency type, value expression|Check `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|if satisfies|
-|`if_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Check `actor` element with expression|if satisfies|
-|`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|if satisfies|
-|`if_fame`|value expression|Check player's fame with value expression|if satisfies|
-|`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|if satisfies|
-|`if_has_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), value expression(optional)|Checks if `actor` possesses a quantity of the item that meets the expression, default `>=1`|if satisfies|
-|`if_hostility`|hostility value expression|Checks if `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|if satisfies|
-|`if_in_party`||Check if `actor` is in player's party|if satisfies|
-|`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|if satisfies|
-|`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|if satisfies|
-|`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|if defined|
-|`if_zone`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), level(optional)|Check if `actor` is in certain zone and optionally check level|if present|
+|`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|If satisfies|
+|`if_cint`|[CINT index](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), value expression|Check `actor` CINT value with expression|If satisfies|
+|`if_cs_get`|C# member name, value expression(optional)|Check `actor` C# class member value with expression. Value expression can be omitted for `bool` members, or a string for `string` members. See [Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html) and its base class [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|If satisfies|
+|`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|If active|
+|`if_currency`|currency type, value expression|Check `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|If satisfies|
+|`if_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Check `actor` element with expression|If satisfies|
+|`if_faith`|[religion id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|If satisfies|
+|`if_fame`|value expression|Check player's fame with value expression|If satisfies|
+|`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|If satisfies|
+|`if_has_item`|[item id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), value expression(optional)|Checks if `actor` possesses a quantity of the item that meets the expression, default `>=1`|If satisfies|
+|`if_hostility`|hostility value expression|Checks if `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|If satisfies|
+|`if_in_party`||Check if `actor` is in player's party|If satisfies|
+|`if_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Check if player has keyitem with expression, default `>0`|If satisfies|
+|`if_race`|[race id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|Check if `actor` is of certain race|If satisfies|
+|`if_tag`|tag|Check if `actor` has certain tag defined in Chara row|If defined|
+|`if_zone`|[zone id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), level(optional)|Check if `actor` is in certain zone and optionally check level|If present|
 
 There are 3 special composite conditions where you put the above condition as parameter:
 

@@ -99,6 +99,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
 |`if_affinity`|数値式|`actor`の好感度をチェック|条件が満たされた時|
+|`if_cint`|[CINTインデックス](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数値式|actor の CINT 値を式で比較|条件が満たされた時|
+|`if_cs_get`|C# メンバー名, 値式(省略可)|`actor`のC#クラスメンバーの値を式で比較。`bool` 型のメンバーは値式を省略可能、`string` 型の場合は文字列を指定。詳細は[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)とその基底クラス [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)を参照|条件が満たされた時|
 |`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`が状態を持っているかチェック|条件が満たされた時|
 |`if_currency`|通貨の種類, 数値式|`actor`が該当する通貨を所有しているか確認します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|条件が満たされた時|
 |`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数値式|`actor`が条件に合った元素を持っているか確認|条件が満たされた時|
