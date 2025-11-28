@@ -23,3 +23,4 @@
 |instrument_violin|violin_chaconne|小提琴|violin|ヴァイオリン|
 |panty|violin_chaconne|小提琴|panty|パンティー|
 |stradivarius|violin_furusato|斯特拉迪瓦里|stradivarius|ストラディバリウス|
+|koto|koto|古筝|koto|筝|
