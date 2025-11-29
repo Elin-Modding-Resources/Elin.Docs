@@ -100,6 +100,7 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 
 |method|param|description|jump|
 |-|-|-|-|
+|`choice`|expanded condition|Conditionally enable a choice line, such as `choice(if_lv(>=10))`|If satisfies|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|If satisfies|
 |`if_cint`|[CINT index](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), value expression|Check `actor` CINT value with expression|If satisfies|
 |`if_cs_get`|C# member name, value expression(optional)|Check `actor` C# class member value with expression. Value expression can be omitted for `bool` members, or a string for `string` members. See [Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html) and its base class [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|If satisfies|

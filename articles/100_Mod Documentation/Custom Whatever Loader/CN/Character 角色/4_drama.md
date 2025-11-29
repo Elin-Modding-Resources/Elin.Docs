@@ -102,6 +102,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
+|`choice`|拓展动作|用于条件式启用choice动作，例如 `choice(if_lv(>=10))`|成功时|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
 |`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
 |`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
