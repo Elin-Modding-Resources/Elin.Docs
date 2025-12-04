@@ -23,3 +23,8 @@ E.g.
 Nov 28, 2024 - May 5, 2025
 
 <a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_42_23_133.tar" download>23_42_23_133.tar</a>
+
+### EA 23.134 - EA 23.228
+May 7, 2025 - October 30, 2025
+
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_134_23_228.tar" download>23_134_23_228.tar</a>
