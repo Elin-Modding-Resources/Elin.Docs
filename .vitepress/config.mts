@@ -16,12 +16,14 @@ const lastUpdate = new Date(commit.commit.author.date)
 
 const { sidebar, latest } = await makeSidebar();
 
+const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Elin Modding Wiki",
   description: "Elin Modding Community Compendium",
 
-  base: "/Elin.Docs/",
+  base: isCI_GitHub ? `/${process.env.GITHUB_REPOSITORY!.split("/")[1]}/` : "/",
   cleanUrls: true,
   lastUpdated: true,
 
