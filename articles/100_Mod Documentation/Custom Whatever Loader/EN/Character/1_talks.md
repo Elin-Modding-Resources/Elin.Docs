@@ -167,6 +167,7 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 |`_rumor`|Rumor|
 |`_sleepBeside`|Toggle `tg` sleep beside player state|
 |`_disableLoyal`|Toggle `tg` loyal state|
+|`_suck`|`tg` sucks pc. **Prioritizes blood sucking over cat huffing**|
 |`_insult`|Toggle `tg` taunt state|
 |`_makeHome`|Set current zone branch as `tg` home branch|
 |`_invite`|Try inviting `tg` as ally, checks player attributes and `tg` invitable state. To unconditionally invite as ally, use CWL drama action [`join_party()`](https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/EN/Character/4_drama#actions)|

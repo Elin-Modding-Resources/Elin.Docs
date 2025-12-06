@@ -118,3 +118,5 @@
 |117|117 atonement|Shokuzai No Mori|
 |118|118 kizuami|NINO - Kizuami of Trickery|
 |119|119 horome|NINO - Horome of Moonshadow|
+|120|120 lurie|NINO - Lurie|
+|121|121 eternity|NINO - Eternity|

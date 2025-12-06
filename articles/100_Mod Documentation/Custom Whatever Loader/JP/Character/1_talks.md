@@ -171,6 +171,7 @@ hide: true
 |`_rumor`|噂話|
 |`_sleepBeside`|`tg` がプレイヤーの隣で寝る状態を切り替える|
 |`_disableLoyal`|`tg` の忠誠状態を切り替える|
+|`_suck`|`tg` pc を吸う。優先度は吸血が最優先、次に猫吸い|
 |`_insult`|`tg` の嘲弄状態を切り替える|
 |`_makeHome`|現在のゾーン分岐を `tg` のホームとして設定する|
 |`_invite`|`tg` を仲間として招待することを試みる。プレイヤー属性および `tg` の招待可能状態をチェックする。無条件でパーティーに勧誘する場合は、CWL拡張アクション[`join_party()`](https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/JP/Character/4_drama#%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3)を使用してください|
