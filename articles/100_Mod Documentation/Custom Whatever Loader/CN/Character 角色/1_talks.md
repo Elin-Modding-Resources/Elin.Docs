@@ -173,7 +173,7 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 |`_suck`|`tg` 吸血或者吸猫。**优先吸血，其次吸猫**|
 |`_insult`|切换 `tg` 嘲讽状态|
 |`_makeHome`|将当前区域分支设为 `tg` 的家|
-|`_invite`|尝试邀请 `tg` 成为同伴，会检查玩家属性和 `tg` 可邀请状态。无条件邀请入队请使用CWL拓展动作[`join_party()`](https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama#%E6%8B%93%E5%B1%95%E6%96%B9%E6%B3%95)|
+|`_invite`|尝试邀请 `tg` 成为同伴，会检查玩家属性和 `tg` 可邀请状态。无条件邀请入队请使用CWL拓展动作[`join_party()`](https://elin-modding.net/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama#%E6%8B%93%E5%B1%95%E6%96%B9%E6%B3%95)|
 |`_Guide`|引导玩家前往一系列地点|
 |`_tail`|纯洁的肉体关系|
 |`_whore`|有金钱交易的肉体关系|
@@ -211,10 +211,10 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 
 在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。
 
-<LinkCard t="CWL剧情拓展" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama" />
+<LinkCard t="CWL剧情拓展" u="https://elin-modding.net/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama" />
 
 ## Mod Help集成
 
 有时您可能想为玩家提供一些提示，以便他们更好地体验您精彩的剧情故事。通过使用CWL制作模组，您可以使用Mod Help 来提供定制的帮助页面。
 
-<LinkCard t="Mod Help" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Mod%20Help/2_mod_help_cn" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />
+<LinkCard t="Mod Help" u="https://elin-modding.net/articles/100_Mod%20Documentation/Mod%20Help/2_mod_help_cn" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />

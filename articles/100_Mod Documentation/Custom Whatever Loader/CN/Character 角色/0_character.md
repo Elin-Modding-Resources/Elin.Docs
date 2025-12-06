@@ -7,7 +7,7 @@ hide: true
 ## 导入自定义角色
 
 假设您已经在 Chara 表中定义了您的自定义角色。您可以参考现有的模组或 Elin Sources。
-<LinkCard t="Chara表粗略解释" u="https://elin-modding-resources.github.io/Elin.Docs/articles/10_Source%20Sheets/puddles_chara_note" />
+<LinkCard t="Chara表粗略解释" u="https://elin-modding.net/articles/10_Source%20Sheets/puddles_chara_note" />
  
 CWL 利用 tag 单元格来添加功能，您可以添加任意数量的标签。**请记住，标签之间用 `,` 半角逗号分隔，中间不要有空格**。
 
