@@ -33,7 +33,7 @@
 </style>
 
 <script setup lang="ts">
-import { useRouter } from "vitepress";
+import { useRouter, useData } from "vitepress";
 
 const { title, author, date, desc, tags, link } = defineProps([
   "title",
@@ -44,8 +44,10 @@ const { title, author, date, desc, tags, link } = defineProps([
   "link",
 ]);
 
+const { site } = useData();
 const router = useRouter();
+
 function goto(link: string) {
-  router.go("/Elin.Docs" + link);
+  router.go(site.value.base + link.replace(/^\//, ''));
 }
 </script>

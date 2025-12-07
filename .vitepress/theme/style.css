@@ -188,7 +188,7 @@
   max-width: 95% !important;
 }
 
-.VPDoc:not(has-aside) .content-container {
+.VPDoc:not(.has-aside) .content-container {
   max-width: 95% !important;
 }
 
