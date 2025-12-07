@@ -22,21 +22,6 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 所有 `reasoning_effort` / `thinkingBudget` 默认设置为最低值，但你可以在参数中自行修改。
 
-## Google Gemini（免费！）
-
-访问 [Google AI Studio](https://aistudio.google.com/projects)，创建一个项目。  
-如果你使用的是免费额度，建议创建 **3 个项目**（速率限制按项目计，不按 API key 计），并为每个项目生成一个 API key。
-
-**模型**：`gemini-2.5-flash`  
-你可以自由修改模型，但请注意免费额度可能较慢，尤其是像 `gemini-2.5-pro` 这样的思考模型。  
-默认模型为 `gemini-2.5-flash`。
-
-**参数参考**：[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
-
-**免费速率限制**：每个项目每分钟 15 次请求，每个账号每天 250 次 `gemini-2.5-flash` 请求，每天 1000 次 `gemini-2.5-flash-lite` 请求。
-
-**推荐 AI 服务冷却时间**：`1`s
-
 ## NVIDIA NIM（免费！）
 
 访问 [NVIDIA Build](https://build.nvidia.com/settings/api-keys)，创建一个新的 API key。
@@ -63,9 +48,28 @@ Emmersive（Elin with AI）需要具备 **function-calling（函数调用）** �
 
 **推荐 AI 服务冷却时间**：`1`s
 
+## Google Gemini（~~免费！~~ 坏事了）
+
+::: danger
+12/06/2025 Google将免费额度的 `gemini-2.5-flash` 降至每个账号每天 20 次请求。遗憾离场。
+:::
+
+访问 [Google AI Studio](https://aistudio.google.com/projects)，创建一个项目。  
+如果你使用的是免费额度，建议创建 **3 个项目**（速率限制按项目计，不按 API key 计），并为每个项目生成一个 API key。
+
+**模型**：`gemini-2.5-flash`  
+你可以自由修改模型，但请注意免费额度可能较慢，尤其是像 `gemini-2.5-pro` 这样的思考模型。  
+默认模型为 `gemini-2.5-flash`。
+
+**参数参考**：[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
+
+**免费速率限制**：每个项目每分钟 15 次请求，每个账号每天 250 次 `gemini-2.5-flash` 请求，每天 1000 次 `gemini-2.5-flash-lite` 请求。
+
+**推荐 AI 服务冷却时间**：`1`s
+
 ## 其他免费 AI 资源：
 
-[free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+[free-llm-api-resources](https://gist.github.com/mcowger/892fb83ca3bbaf4cdc7a9f2d7c45b081)
 
 氕氙特供贴吧群免费API -> Elin 贴吧交流群
 

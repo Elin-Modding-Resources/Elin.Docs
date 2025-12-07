@@ -22,19 +22,6 @@ Given the contexts of Elin game and the default Emmersive system instruction whi
 
 All `reasoning_effort` / `thinkingBudget` are set to minimal by default, but you can change that in the params.
 
-## Google Gemini(Free!)
-
-Head to [Google AI Studio](https://aistudio.google.com/projects), create a project. If you are using free tier, I recommend making 3 projects (rate limit is per project, not per API key) and generate an API key for each project.
-
-**Model**: `gemini-2.5-flash` You can modify the model as you wish, do note that free tier is likely to be slower, even so on heavier models like `gemini-2.5-pro`.  Default model is `gemini-2.5-flash`.
-
-**Params**:
-[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
-
-**Free tier ratelimit**: 15 requests per min per project, 250 `gemini-2.5-flash` requests per day per account, 1000 `gemini-2.5-flash-lite` requests per day per account
-
-Recommended AI Service cooldown: `1`s
-
 ## NVIDIA NIM(Free!)
 
 Head to [NVIDIA Build](https://build.nvidia.com/settings/api-keys), create a new API key.
@@ -60,9 +47,26 @@ Optional: `temperature` `top_p` `max_tokens` `frequency_penalty` `presence_penal
 
 Recommended AI Service cooldown: `1`s
 
+## Google Gemini (~~Free!~~ No Longer)
+
+::: danger
+12/06/2025 Google has reduced the free quota for `gemini-2.5-flash` to only 20 requests per account per day. Sadly signing off.
+:::
+
+Head to [Google AI Studio](https://aistudio.google.com/projects), create a project. If you are using free tier, I recommend making 3 projects (rate limit is per project, not per API key) and generate an API key for each project.
+
+**Model**: `gemini-2.5-flash` You can modify the model as you wish, do note that free tier is likely to be slower, even so on heavier models like `gemini-2.5-pro`.  Default model is `gemini-2.5-flash`.
+
+**Params**:
+[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
+
+**Free tier ratelimit**: 15 requests per min per project, 250 `gemini-2.5-flash` requests per day per account, 1000 `gemini-2.5-flash-lite` requests per day per account
+
+Recommended AI Service cooldown: `1`s
+
 ## Other Free AI Resources:
 
-[free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+[free-llm-api-resources](https://gist.github.com/mcowger/892fb83ca3bbaf4cdc7a9f2d7c45b081)
 
 ## OpenAI ChatGPT
 

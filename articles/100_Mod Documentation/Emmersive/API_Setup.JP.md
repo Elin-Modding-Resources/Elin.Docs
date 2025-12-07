@@ -22,22 +22,6 @@ Elin ゲームのコンテキストおよび Emmersive システムが数行の 
 
 すべての `reasoning_effort` / `thinkingBudget` はデフォルトで最低値に設定されていますが、必要に応じてパラメータで変更できます。
 
-## Google Gemini（無料！）
-
-[Google AI Studio](https://aistudio.google.com/projects) にアクセスし、プロジェクトを作成します。
-無料枠を利用する場合は、**3 つのプロジェクト**を作成することを推奨します（レート制限は API キー単位ではなくプロジェクト単位で適用されます）。
-
-**モデル**：`gemini-2.5-flash`
-他のモデルに変更可能ですが、無料層では `gemini-2.5-pro` のような推論モデルはやや遅い場合があります。
-デフォルトモデルは `gemini-2.5-flash` です。
-
-**パラメータ参考**：[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
-
-**無料レート制限**：1 プロジェクトあたり 1 分間に 15 リクエスト、1 アカウントあたり 1 日 250 リクエスト。
-
-**推奨 AI サービスのクールダウン時間**：`1`s
-
-
 ## NVIDIA NIM（無料！）
 
 [NVIDIA Build](https://build.nvidia.com/settings/api-keys) にアクセスし、新しい API キーを作成します。
@@ -65,9 +49,28 @@ OpenAIプロバイダーを作成し、APIキーを貼り付けて設定を変�
 
 **推奨クールダウン時間**：`1`s
 
+## Google Gemini（~~無料！~~）
+
+::: danger
+2025年12月6日 Googleが `gemini-2.5-flash` の無料枠を1アカウントあたり1日20回のリクエストに制限しました。残念ながらお別れです。
+:::
+
+[Google AI Studio](https://aistudio.google.com/projects) にアクセスし、プロジェクトを作成します。
+無料枠を利用する場合は、**3 つのプロジェクト**を作成することを推奨します（レート制限は API キー単位ではなくプロジェクト単位で適用されます）。
+
+**モデル**：`gemini-2.5-flash`
+他のモデルに変更可能ですが、無料層では `gemini-2.5-pro` のような推論モデルはやや遅い場合があります。
+デフォルトモデルは `gemini-2.5-flash` です。
+
+**パラメータ参考**：[Google Gemini API Reference](https://ai.google.dev/api/generate-content#request-body)
+
+**無料レート制限**：1 プロジェクトあたり 1 分間に 15 リクエスト、1 アカウントあたり 1 日 250 リクエスト。
+
+**推奨 AI サービスのクールダウン時間**：`1`s
+
 ## その他の無料AIリソース:
 
-[free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+[free-llm-api-resources](https://gist.github.com/mcowger/892fb83ca3bbaf4cdc7a9f2d7c45b081)
 
 ## OpenAI ChatGPT
 
