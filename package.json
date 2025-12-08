@@ -6,16 +6,16 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.16",
     "@cssnr/vitepress-plugin-copybutton": "^0.0.2",
-    "autoprefixer": "^10.4.21",
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
     "gray-matter": "^4.0.3",
     "parse-git-diff": "^0.0.19",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.1.17",
     "viewerjs": "^1.11.7",
-    "vitepress": "2.0.0-alpha.12",
+    "vitepress": "2.0.0-alpha.15",
     "vitepress-plugin-image-viewer": "^1.1.6",
-    "vue": "^3.5.22"
+    "vue": "^3.5.25"
   }
 }
