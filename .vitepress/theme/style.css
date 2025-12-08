@@ -192,12 +192,6 @@
   max-width: 95% !important;
 }
 
-@media (min-width: 1440px) {
-  .VPNavBar.has-sidebar .content-body {
-    padding-right: 32px !important;
-  }
-}
-
 .aside {
   text-transform: capitalize;
 }
