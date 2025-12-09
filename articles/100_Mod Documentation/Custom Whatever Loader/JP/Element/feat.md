@@ -18,6 +18,8 @@ internal class FeatMyExample : Feat
     internal void _OnApply(int add, ElementContainer eleOwner, bool hint) // [!code focus]
     { // [!code focus]
         // 属性の変更、潜在能力の設定、効果の適用など // [!code focus]
+        owner.ModBase(SKILL.life, add * 15);
+        owner.ModPotential(SKILL.DEX, add * 2);
     } // [!code focus]
 }
 ```
