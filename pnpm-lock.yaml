@@ -11,6 +11,9 @@ importers:
       '@cssnr/vitepress-plugin-copybutton':
         specifier: ^0.0.2
         version: 0.0.2(vitepress@2.0.0-alpha.15(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6))(vue@3.5.25)
+      '@miletorix/vitepress-back-to-top-button':
+        specifier: ^1.0.1
+        version: 1.0.1(vitepress@2.0.0-alpha.15(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6))(vue@3.5.25)
       '@tailwindcss/postcss':
         specifier: ^4.1.17
         version: 4.1.17
@@ -254,6 +257,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@miletorix/vitepress-back-to-top-button@1.0.1':
+    resolution: {integrity: sha512-ouvo+ke+UVzUD+7U4P73ZKSwUMbbnWyqmGJjrQUDPnNOatro9ZUybMiALCvu6zdhonURcaxV1vDM7NEMARbM6g==}
+    peerDependencies:
+      vitepress: ^1.6.3
+      vue: ^3.0.0
 
   '@rolldown/pluginutils@1.0.0-beta.50':
     resolution: {integrity: sha512-5e76wQiQVeL1ICOZVUg4LSOVYg9jyhGCin+icYozhsUzM+fHE7kddi1bdiE0jwVqTfkjba3jUFbEkoC9WkdvyA==}
@@ -1192,6 +1201,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@miletorix/vitepress-back-to-top-button@1.0.1(vitepress@2.0.0-alpha.15(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6))(vue@3.5.25)':
+    dependencies:
+      vitepress: 2.0.0-alpha.15(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6)
+      vue: 3.5.25
 
   '@rolldown/pluginutils@1.0.0-beta.50': {}
 

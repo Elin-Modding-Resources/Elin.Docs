@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@cssnr/vitepress-plugin-copybutton": "^0.0.2",
+    "@miletorix/vitepress-back-to-top-button": "^1.0.1",
     "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "gray-matter": "^4.0.3",
