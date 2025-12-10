@@ -57,7 +57,7 @@ Note that it's the **sheet name**, not the file name! For example, this will imp
 ![img](https://i.postimg.cc/vZqGNjfC/Screenshot-1.png)
 
 Supported `SourceData` are: 
-```:no-line-numbers
+```txt:no-line-numbers
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
@@ -65,7 +65,7 @@ GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
 Supported `SourceLang` are: 
-```:no-line-numbers
+```txt:no-line-numbers
 General, Game, List, Word, Note
 ```
 

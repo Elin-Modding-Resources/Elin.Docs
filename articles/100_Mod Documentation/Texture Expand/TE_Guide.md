@@ -5,7 +5,11 @@ hide: true
 ---
 
 <script setup>
-window.open('/TE_Spec_Guide.html', '_blank')
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  window.open('/TE_Spec_Guide.html', '_blank')
+})
 </script>
 
 <LinkCard t="TE Specification 12/9 Rev" u="/TE_Spec_Guide.html"/>

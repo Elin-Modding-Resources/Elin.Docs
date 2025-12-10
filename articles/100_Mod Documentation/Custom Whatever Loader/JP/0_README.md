@@ -56,7 +56,7 @@ CWLがリソースをインポートする際は、現在の言語フォルダ�
 ![img](https://i.postimg.cc/vZqGNjfC/Screenshot-1.png)
 
 サポートされている`SourceData`：
-```:no-line-numbers
+```txt:no-line-numbers
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
@@ -64,7 +64,7 @@ GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
 サポートされている`SourceLang`：
-```:no-line-numbers
+```txt:no-line-numbers
 General, Game, List, Word, Note
 ```
 

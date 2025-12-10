@@ -57,7 +57,7 @@ CWL 要求Mod将各种数据资源放置在**LangMod**文件夹中，您可以�
 ![img](https://i.postimg.cc/vZqGNjfC/Screenshot-1.png)
 
 支持的 `SourceData：`
-```:no-line-numbers
+```txt:no-line-numbers
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
@@ -65,7 +65,7 @@ GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
 支持的 `SourceLang：`
-```:no-line-numbers
+```txt:no-line-numbers
 General, Game, List, Word, Note
 ```
 
