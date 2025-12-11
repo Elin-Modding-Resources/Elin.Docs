@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      continue;
+      //continue;
     }
 
     const content = await generateDiffForCommit(commit);
@@ -35,11 +35,16 @@ export async function generateDiff() {
 }
 
 async function generateDiffForCommit(commit: {
-  html_url: any;
-  sha: any;
+  url: string;
+  sha: string;
   commit: { committer: { date: string }; message: string };
 }) {
-  const rawDiff = await fetch(`${commit.html_url}.diff`);
+  const rawDiff = await fetch(commit.url, {
+    headers: {
+      "User-Agent": "Elin-Modding-Resources-Diff-Maker/1.0",
+      Accept: "application/vnd.github.v3.diff",
+    },
+  });
   const diffs = parseGitDiff(await rawDiff.text());
 
   let content: string[] = [];
