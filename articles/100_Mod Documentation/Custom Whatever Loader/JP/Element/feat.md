@@ -15,12 +15,18 @@ Elin はすべてのFeat効果を `Feat.Apply` メソッドに記述している
 ```cs
 internal class FeatMyExample : Feat
 {
-    internal void _OnApply(int add, ElementContainer eleOwner, bool hint) // [!code focus]
-    { // [!code focus]
-        // 属性の変更、潜在能力の設定、効果の適用など // [!code focus]
-        owner.ModBase(SKILL.life, add * 15);
-        owner.ModPotential(SKILL.DEX, add * 2);
-    } // [!code focus]
+    internal void _OnApply(int add, ElementContainer eleOwner, bool hint)
+    {
+        if (hint) {
+            hints.Add("This is a custom feat"); // 任意（オプション）
+        } else {
+            // 属性の変更、ポテンシャルの設定、効果の適用などを行う
+            // hint モードではない場合のみ実行する
+            eleOwner.ModBase(SKILL.life, add * 15);
+            eleOwner.ModPotential(SKILL.DEX, add * 2);
+            // その他
+        }
+    }
 }
 ```
 

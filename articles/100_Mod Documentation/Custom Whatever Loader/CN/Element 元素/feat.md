@@ -17,12 +17,18 @@ internal class FeatMyExample: Feat
 ```cs
 internal class FeatMyExample : Feat
 {
-    internal void _OnApply(int add, ElementContainer eleOwner, bool hint) // [!code focus]
-    { // [!code focus]
-        // 修改属性，设置潜力，应用效果等 // [!code focus]
-        owner.ModBase(SKILL.life, add * 15);
-        owner.ModPotential(SKILL.DEX, add * 2);
-    } // [!code focus]
+    internal void _OnApply(int add, ElementContainer eleOwner, bool hint)
+    {
+        if (hint) {
+            hints.Add("This is a custom feat"); // 可选
+        } else {
+            // 修改属性、设置潜力、应用效果等
+            // 只有在不是 hint 模式时才执行这些
+            eleOwner.ModBase(SKILL.life, add * 15);
+            eleOwner.ModPotential(SKILL.DEX, add * 2);
+            // 其他内容
+        }
+    }
 }
 ```
 

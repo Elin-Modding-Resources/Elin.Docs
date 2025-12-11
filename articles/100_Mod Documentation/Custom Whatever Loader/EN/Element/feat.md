@@ -15,12 +15,18 @@ Since Elin hardcodes its feat effects in the big ol `Feat.Apply` non-virtual met
 ```cs
 internal class FeatMyExample : Feat
 {
-    internal void _OnApply(int add, ElementContainer eleOwner, bool hint) // [!code focus]
-    { // [!code focus]
-        // mod attributes, set potential, apply effects, etc // [!code focus]
-        owner.ModBase(SKILL.life, add * 15);
-        owner.ModPotential(SKILL.DEX, add * 2);
-    } // [!code focus]
+    internal void _OnApply(int add, ElementContainer eleOwner, bool hint)
+    {
+        if (hint) {
+            hints.Add("This is a custom feat") // Optional
+        } else {
+            // mod attributes, set potential, apply effects, etc
+            // only do this when it's not hint mode
+            eleOwner.ModBase(SKILL.life, add * 15);
+            eleOwner.ModPotential(SKILL.DEX, add * 2);
+            // other stuff
+        }
+    }
 }
 ```
 
