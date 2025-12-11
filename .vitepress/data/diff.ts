@@ -22,7 +22,7 @@ export async function generateDiff() {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
-      //continue;
+      continue;
     }
 
     const content = await generateDiffForCommit(commit);
