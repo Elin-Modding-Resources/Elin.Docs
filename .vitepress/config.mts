@@ -56,6 +56,13 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/Elin-Modding-Resources" },
       { icon: "discord", link: "https://discord.gg/elona" },
     ],
+
+    footer: {
+      message: `This project is an unofficial documentation site and is not affiliated with, 
+        endorsed by, or associated with Elin or Lafrontier / Noa.
+        All trademarks are the property of their respective owners.
+      `,
+    },
   },
 
   head: [
