@@ -106,11 +106,3 @@ Make sure in the Workshop you add ONE of the CWLs as a prerequisite mod!
 
 If you want your race/class to have custom feats or abilities, that will likely need some C# knowledge to code and add the new feat/abilities.
 That's somewhat out of scope for this basic tutorial though.
-
-
-
-
-
-
-
-
