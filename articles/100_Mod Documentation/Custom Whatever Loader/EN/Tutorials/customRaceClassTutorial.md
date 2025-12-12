@@ -38,7 +38,6 @@ In this folder, you will want multiple things for a CWL mod.
 ## The package.xml file.
 
 A `package.xml` describes the mod. Create a new text file in the mod folder and change its name **and extension** to `package.xml`:
-![package file](./assets/package_file.png)
 
 Open it with an editor - not chrome/your browser, and fill in the following information:
 ```xml
