@@ -63,7 +63,8 @@ Create the "LangMod" folder in your package folder.
 In there, create an "EN" folder.
 In there, you will have your own Source xlsx file.
 
-To save some hassle (because I have royally screwed this up before), I have uploaded a simple example sheet for you to use [here](../../../../100_Mod%20Documentation/Custom%20Whatever%20Loader/EN/Tutorials/assets/SourceExampleForRaceAndClass.xlsx)
+To save some hassle (because I have royally screwed this up before), I have uploaded a simple example sheet for you to use 
+<a href="/SourceExampleForRaceAndClass.xlsx" download>here</a>  
 Download this xlsx file, move it into your LangMod/EN folder and rename it to whatever you want.
 
 ## Updating the Source File
