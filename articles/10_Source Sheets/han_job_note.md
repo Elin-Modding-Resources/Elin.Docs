@@ -1,15 +1,17 @@
 ---
-title: Race
+title: Job
 author: Han
-description: Comments about columns of Race sheet.
+description: Comments about columns of Job sheet.
 date: 2025/12/11 00:00
 tags: SourceSheet/Job
 ---
 
 # Job Sheet
 
-<LinkCard t="SourceCard/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+<LinkCard t="SourceChara/Job" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 The Job Sheet is stored inside the Chara sheet, change the tile at the bottom.
+
+Yes, it's called Job. This is for the Classes though.
 
 ## id
 'string'
@@ -40,7 +42,7 @@ Macro to approximate the job strength, unused in game but must be present in the
 
 ## elements
 'elements'
-Inherent elements added onto this race. Used to add job feats, base skill bonuses.
+Inherent elements added onto this job. Used to add job feats, base skill bonuses.
 format is <element alias>/<value> as <string>/<int>
 
 ## weapon
