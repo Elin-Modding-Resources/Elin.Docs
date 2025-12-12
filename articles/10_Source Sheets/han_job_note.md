@@ -43,7 +43,7 @@ Macro to approximate the job strength, unused in game but must be present in the
 ## elements
 'elements'
 Inherent elements added onto this job. Used to add job feats, base skill bonuses.
-format is <element alias>/<value> as <string>/<int>
+format is 'element alias/value' as 'string/int'
 
 ## weapon
 'string[]'
