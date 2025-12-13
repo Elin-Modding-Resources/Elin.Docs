@@ -204,6 +204,19 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 |`_disableMove`|Set `tg` to not move|
 |`_enableMove`|Set `tg` can move|
 
+## (NEW!) Drama Scripting
+
+Starting with **CWL 1.21.0**, [scripting support](../Other/scripting) is available for drama sheets. You can now write **C# scripts** directly inside a drama sheet using the `eval` action.
+
+This provides the same scripting capabilities as regular CWL scripts, with one key difference:
+the **script state is bound to the current drama instance**. It persists for the entire duration of the drama and is **automatically reset when the drama ends**.
+
+![](./assets/drama_eval.png)
+
+If the script returns a value of type `bool`, that value is used to decide whether the specified `jump` target should be executed.
+
+Script file within the same folder as the drama sheet can be imported by `eval <<<script_snippet.cs`.
+
 ## Drama Expansion
 
 Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.

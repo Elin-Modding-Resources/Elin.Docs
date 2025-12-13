@@ -4,11 +4,33 @@ date: 2025/5/15 01:00
 hide: true
 ---
 
-## Custom Expansions
+## Custom Expansion Actions
 
-First, define a class derived from `DramaOutcome`. This will allow CWL to add all methods in this class that has valid expansion method signature.
+You can register action handlers with CWL for custom drama actions (like how CWL handles `invoke*`).
 
-Next, your drama expansion methods must use the signature: `static`, return `bool`, and accept three parameters: `DramaManager dm, Dictionary<string, string> line, params string[] parameters`.
+```cs
+using Cwl.API.Attributes;
+
+[CwlDramaAction("s*")] // register aliases
+[CwlDramaAction("somethingy")]
+internal static bool ProcessSomethingyAction(DramaManager dm, Dictionary<string, string> line)
+{
+    // your actions 
+    dm.lastTalk.AddChoice(...);
+    return true; // handled
+
+    return false; // not handled, pass through 
+}
+```
+
+## Custom Expansion Methods
+
+Create a class that inherits from `DramaOutcome`. CWL will automatically register any valid expansion methods in this class.
+
+Expansion methods must:
++ be `static`
++ return `bool`
++ take these parameters: `DramaManager dm, Dictionary<string, string> line, params string[] parameters`
 
 ```cs
 internal class MyDramaExpansion : DramaOutcome
