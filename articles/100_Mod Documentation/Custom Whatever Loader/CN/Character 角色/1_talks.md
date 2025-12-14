@@ -209,16 +209,26 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 
 ## (新！) 剧情脚本
 
-从 CWL 1.21.0 开始，剧情表支持 [脚本功能](../Other%20其他/scripting)。你现在可以在剧情表中使用 `eval` 动作直接编写 C# 脚本。
+Here’s the translation of your text into **Chinese** and **Japanese**:
 
-该功能提供了与普通 CWL 脚本相同的能力，但有一个重要区别：
-脚本状态会绑定到当前剧情实例，在整个剧情流程中持续存在，并在剧情结束时自动重置。
+---
+
+### **Chinese (简体中文)**
+
+从 **CWL 1.21.0** 开始，剧情表支持 [脚本功能](../Other/scripting)。你现在可以在剧情表中直接使用 `eval` 动作编写 **C# 脚本**。
+
+这提供了与普通 CWL 脚本相同的功能，但有一些关键区别：
+
+* **脚本状态绑定到当前剧情实例**。它在整个剧情期间保持，并且**剧情结束时会自动重置**。
+* 脚本变量可以通过 `Script["dm"] as DramaManager` 访问 `DramaManager`。
 
 ![](./assets/drama_eval.png)
 
-如果脚本返回的是 `bool` 类型的值，该返回值将用于判断是否执行指定的 `jump` 目标。
+如果脚本返回 **bool 类型的值**，该值将用于判断是否执行指定的 `jump` 目标。
 
-也可以使用 `eval <<<脚本.cs` 来导入与剧情表同一文件夹的脚本文件。
+同文件夹下的脚本文件可以通过 `eval <<<script_snippet.cs` 导入。
+
+如有疑问，请在 Elona Discord 上联系 <u>@freshcloth</u> 或者 Elin 模组讨论群 手来！
 
 ## 剧情拓展
 
