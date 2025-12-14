@@ -102,8 +102,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展的 action|如果满足|
-|`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本|返回 `true` 时|
+|`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展方法![](./assets/drama_c.png)|如果满足|
+|`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本![](./assets/drama_eval.png)|返回 `true` 时|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
 |`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
 |`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
