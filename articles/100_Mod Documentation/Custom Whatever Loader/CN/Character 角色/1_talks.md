@@ -209,12 +209,6 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 
 ## (新！) 剧情脚本
 
-Here’s the translation of your text into **Chinese** and **Japanese**:
-
----
-
-### **Chinese (简体中文)**
-
 从 **CWL 1.21.0** 开始，剧情表支持 [脚本功能](../Other%20其他/scripting)。你现在可以在剧情表中直接使用 `eval` 动作编写 **C# 脚本**。
 
 这提供了与普通 CWL 脚本相同的功能，但有一些关键区别：
