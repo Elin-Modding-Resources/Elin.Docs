@@ -210,9 +210,7 @@ hide: true
 
 ## 拡張機能
 
-スクリプトテーブル内蔵の `action` を使用して期待した効果が得られませんでしたか？追加の条件チェックが必要ですか？CWL は、DLL にカスタム拡張メソッドを追加し、スクリプトテーブル内でそれらを呼び出すことを許可します。
-
-<LinkCard t="CWL シナリオの拡張" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/JP/Character/4_drama"/>
+シナリオの組み込み`action`を使用しても期待した効果が得られない場合？より多くの条件チェックが必要ですか？CWLは一連の[組み込み拡張メソッド](./4_drama)を提供しており、DLL内でカスタム拡張メソッドを追加するためのAPIも許可しています。
 
 ## （新！）ドラマスクリプト
 

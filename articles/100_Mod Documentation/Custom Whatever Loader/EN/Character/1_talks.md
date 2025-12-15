@@ -204,6 +204,10 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 |`_disableMove`|Set `tg` to not move|
 |`_enableMove`|Set `tg` can move|
 
+## Drama Expansion
+
+Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL has a builtin set of [drama expansion methods](./4_drama) to use and an API for adding your own.
+
 ## (NEW!) Drama Scripting
 
 Starting with **CWL 1.21.0**, [scripting support](../Other/scripting) is available for drama sheets. You can now write **C# scripts** directly inside a drama sheet using the `eval` action.
@@ -241,12 +245,6 @@ var value = (int)Script["random_value"];
 | Modify level | `chara.SetLv(chara.LV + 5);` |
 
 Don't hesitate to ask for help on Elona Discord <u>@freshcloth</u>.
-
-## Drama Expansion
-
-Struggling with the built-in `action` of the drama sheet not achieving the desired effect? Need more condition checks? CWL allows you to add custom drama expansion methods in the DLL and call them in the drama sheet.
-
-<LinkCard t="CWL Drama Expansion" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/EN/Character/4_drama"/>
 
 ## Mod Help Integration
 

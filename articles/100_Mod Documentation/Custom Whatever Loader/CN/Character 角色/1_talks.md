@@ -209,9 +209,7 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 
 ## 剧情拓展
 
-在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。
-
-<LinkCard t="CWL剧情拓展" u="https://elin-modding.net/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama" />
+在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 提供了一套[内置的拓展方法](./4_drama)以及允许您在 DLL 中添加自定义拓展方法的API。
 
 ## (新！) 剧情脚本
 
