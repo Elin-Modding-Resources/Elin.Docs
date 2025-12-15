@@ -55,8 +55,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`apply_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246), 強度|`actor`に状態を適用します|常時|
 |`cure_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`の状態を治癒します|成功時|
 |`remove_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`から状態を削除します|常時|
-|`build_ext`|アセンブリ名|指定されたアセンブリ内のメソッドを可能な限りストーリー拡張テーブルに追加する|成功時|
-|`emit_call`|ext.メソッド名|外部の静的メソッドを呼び出す|常時|
+|(非推奨 - `eval`)`build_ext`|アセンブリ名|指定されたアセンブリ内のメソッドを可能な限りストーリー拡張テーブルに追加する|成功時|
+|(非推奨 - `eval`)`emit_call`|ext.メソッド名|外部の静的メソッドを呼び出す|常時|
 
 `build_ext` と `emit_call` を通じて外部アセンブリメソッドを呼び出すには,  `Dialog.ExpandedActionsAllowExternal` 設定を有効にする必要があります。デフォルトでは有効になっています。
 
@@ -101,8 +101,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`choice`|拡張条件|選択行を条件付きで有効化する、例えば `choice(if_lv(>=10))`。**推奨**されるのは、`choice` アクション（`invoke*` の代わりに）を使用し、param を拡張されたアクションに設定すること![](./assets/drama_c.png)|条件を満たす場合|
 |`eval`|C# スクリプト|C# スクリプトまたはファイルを `<<<path.cs` 構文で実行する。**推奨**されるのは、`eval` アクション（`invoke*` の代わりに）を使用し、param を C# スクリプトに設定すること![](./assets/drama_eval.png)|`true` を返す場合|
 |`if_affinity`|数値式|`actor`の好感度をチェック|条件が満たされた時|
-|`if_cint`|[CINTインデックス](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数値式|actor の CINT 値を式で比較|条件が満たされた時|
-|`if_cs_get`|C# メンバー名, 値式(省略可)|`actor`のC#クラスメンバーの値を式で比較。`bool` 型のメンバーは値式を省略可能、`string` 型の場合は文字列を指定。詳細は[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)とその基底クラス [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)を参照|条件が満たされた時|
+|(非推奨 - `eval`)`if_cint`|[CINTインデックス](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数値式|actor の CINT 値を式で比較|条件が満たされた時|
+|(非推奨 - `eval`)`if_cs_get`|C# メンバー名, 値式(省略可)|`actor`のC#クラスメンバーの値を式で比較。`bool` 型のメンバーは値式を省略可能、`string` 型の場合は文字列を指定。詳細は[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)とその基底クラス [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)を参照|条件が満たされた時|
 |`if_condition`|[状態alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|`actor`が状態を持っているかチェック|条件が満たされた時|
 |`if_currency`|通貨の種類, 数値式|`actor`が該当する通貨を所有しているか確認します。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|条件が満たされた時|
 |`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数値式|`actor`が条件に合った元素を持っているか確認|条件が満たされた時|

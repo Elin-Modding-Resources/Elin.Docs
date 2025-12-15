@@ -59,8 +59,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`apply_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)，强度|为`actor`施加状态|总是|
 |`cure_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`治愈状态|成功时|
 |`remove_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`移除状态|总是|
-|`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
-|`emit_call`|ext.方法名|调用一个外部静态方法|总是|
+|(推荐使用`eval`)`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
+|(推荐使用`eval`)`emit_call`|ext.方法名|调用一个外部静态方法|总是|
 
 通过 `build_ext` 和 `emit_call` 调用外部程序集方法，需启用 `Dialog.ExpandedActionsAllowExternal` 配置。默认启用。
 
@@ -105,8 +105,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展方法![](./assets/drama_c.png)|如果满足|
 |`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本![](./assets/drama_eval.png)|返回 `true` 时|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
-|`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
-|`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
+|(推荐使用`eval`)`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
+|(推荐使用`eval`)`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
 |`if_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|检查`actor`是否拥有状态|满足时|
 |`if_currency`|货币种类, 数值表达式|检查`actor`是否拥有符合的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|满足时|
 |`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数值表达式|检查`actor`是否拥有符合的元素|满足时|

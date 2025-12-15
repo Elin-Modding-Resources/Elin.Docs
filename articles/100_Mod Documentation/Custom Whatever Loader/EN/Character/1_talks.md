@@ -210,13 +210,35 @@ Starting with **CWL 1.21.0**, [scripting support](../Other/scripting) is availab
 
 This provides the same scripting capabilities as regular CWL scripts, with some key differences:
 + **Script state is bound to the current drama instance**. It persists for the entire duration of the drama and is **automatically reset when the drama ends**.
-+ Script variable `DramaManager` is accessible via `Script["dm"] as DramaManager`.
++ Script variable `DramaManager` is accessible via `(DramaManager)Script["dm"]`.
++ Current drama line data is accessible via `(Dictionary<string, string)Script["line"]`. 
 
 ![](./assets/drama_eval.png)
 
-If the script returns a value of type `bool`, that value is used to decide whether the specified `jump` target should be executed.
+If the script returns a value of type `bool`, that value is used to decide whether the specified `jump` target should be executed. You can also just execute actions without returning a value.
 
 Script file within the same folder as the drama sheet can be imported by `eval <<<script_snippet.cs`.
+
+### Passing Variables Between Different `eval` Code Blocks
+
+The usage is the same as in CWL scripts, passing via the `Script` state dictionary, for example:
+```cs
+var value = EClass.rnd(100) * 5;
+Script["random_value"] = value;
+// In another eval
+var value = (int)Script["random_value"];
+```
+
+### Common Examples
+
+| Function | Code |
+|-|-|
+| Jump to step | `DramaExpansion.GoTo("my_new_step");` |
+| Insert "Let's chat!" option (chat only, not `inject Unique`) | `DramaExpansion.InjectUniqueRumor();` |
+| Insert temporary topic | `DramaExpansion.AddTempTalk("topic", "actor", "jump");` |
+| Get character Chara instance | `var chara = dm.GetChara("tinymita");` |
+| Recruit character to party | `chara.MakeAlly();` |
+| Modify level | `chara.SetLv(chara.LV + 5);` |
 
 Don't hesitate to ask for help on Elona Discord <u>@freshcloth</u>.
 

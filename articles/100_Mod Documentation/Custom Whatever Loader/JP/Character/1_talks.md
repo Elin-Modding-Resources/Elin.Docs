@@ -208,28 +208,48 @@ hide: true
 |`_disableMove`|`tg` を移動不可にする|
 |`_enableMove`|`tg` を移動可能にする|
 
-## （新！）ドラマスクリプト
-
-**CWL 1.21.0** 以降、ドラマシートで [スクリプト機能](../Other/scripting) が利用可能になりました。`eval` アクションを使って、ドラマシート内で直接 **C# スクリプト** を記述できます。
-
-通常の CWL スクリプトと同じ機能を提供しますが、以下の重要な違いがあります：
-
-* **スクリプトの状態は現在のドラマインスタンスに紐づけられます**。ドラマの間ずっと保持され、**ドラマ終了時に自動的にリセット**されます。
-* スクリプト変数 `DramaManager` は `Script["dm"] as DramaManager` でアクセス可能です。
-
-![](./assets/drama_eval.png)
-
-スクリプトが **bool 型の値** を返した場合、その値によって指定された `jump` ターゲットを実行するかどうかが決定されます。
-
-ドラマシートと同じフォルダ内のスクリプトファイルは `eval <<<script_snippet.cs` でインポート可能です。
-
-質問がある場合は Elona Discord で <u>@freshcloth</u> に問い合わせてください。
-
 ## 拡張機能
 
 スクリプトテーブル内蔵の `action` を使用して期待した効果が得られませんでしたか？追加の条件チェックが必要ですか？CWL は、DLL にカスタム拡張メソッドを追加し、スクリプトテーブル内でそれらを呼び出すことを許可します。
 
 <LinkCard t="CWL シナリオの拡張" u="https://elin-modding-resources.github.io/Elin.Docs/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/JP/Character/4_drama"/>
+
+## （新！）ドラマスクリプト
+
+**CWL 1.21.0** から、ドラマテーブルは[スクリプト機能](../Other%20他の/scripting)をサポートします。今、ドラマテーブル内で `eval` アクションを使って **C# スクリプト** を直接記述し、ホットリロードできるようになりました。
+
+これは通常の CWL スクリプトと同じ機能を提供しますが、いくつかの重要な違いがあります：
+
+* スクリプト状態 `Script` は**現在のドラマインスタンスにバインド**されます。ドラマ全体で利用可能で、**ドラマ終了時に自動的にリセット**されます。
+* `(DramaManager)Script["dm"]` で `DramaManager` インスタンスにアクセスできます。
+* `(Dictionary<string, string>)Script["line"]` で現在の行データにアクセスできます。
+
+![](./assets/drama_eval.png)
+
+スクリプトが **bool 型の値** を返す場合、その値を使って指定された `jump` ターゲットを実行するかどうかを判断します。値を返さずにアクションだけを実行することも可能です。
+
+同じフォルダ内のスクリプトファイルは `eval <<<script_snippet.cs` でインポートできます。
+
+### 異なる `eval` コードブロック間で変数を渡す
+
+CWL スクリプトと同じ使い方で、`Script` 状態ディクショナリ経由で渡します。例えば:
+```cs
+var value = EClass.rnd(100) * 5;
+Script["random_value"] = value;
+// 別のevalで
+var value = (int)Script["random_value"];
+```
+
+### よく使う例
+
+| 機能 | コード |
+|-|-|
+| ステップにジャンプ | `DramaExpansion.GoTo("my_new_step");` |
+| Let's Talk オプションを挿入（チャットのみ、`inject Unique` ではない） | `DramaExpansion.InjectUniqueRumor();` |
+| 一時トピックを挿入 | `DramaExpansion.AddTempTalk("topic", "actor", "jump");` |
+| キャラクターのCharaインスタンスを取得 | `var chara = dm.GetChara("tinymita");` |
+| キャラクターを仲間にする | `chara.MakeAlly();` |
+| レベルを変更 | `chara.SetLv(chara.LV + 5);` |
 
 ## Mod Help集成
 

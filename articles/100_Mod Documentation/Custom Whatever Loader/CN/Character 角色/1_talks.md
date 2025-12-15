@@ -207,28 +207,50 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 |`_disableMove`|使 `tg` 无法移动|
 |`_enableMove`|使 `tg` 可以移动|
 
-## (新！) 剧情脚本
-
-从 **CWL 1.21.0** 开始，剧情表支持 [脚本功能](../Other%20其他/scripting)。你现在可以在剧情表中直接使用 `eval` 动作编写 **C# 脚本**。
-
-这提供了与普通 CWL 脚本相同的功能，但有一些关键区别：
-
-* **脚本状态绑定到当前剧情实例**。它在整个剧情期间保持，并且**剧情结束时会自动重置**。
-* 脚本变量可以通过 `Script["dm"] as DramaManager` 访问 `DramaManager`。
-
-![](./assets/drama_eval.png)
-
-如果脚本返回 **bool 类型的值**，该值将用于判断是否执行指定的 `jump` 目标。
-
-同文件夹下的脚本文件可以通过 `eval <<<script_snippet.cs` 导入。
-
-如有疑问，请在 Elona Discord 上联系 <u>@freshcloth</u> 或者 Elin 模组讨论群 手来！
-
 ## 剧情拓展
 
 在使用剧本表内置的 `action` 时未能达到预期效果？需要更多条件检查？CWL 允许您在 DLL 中添加自定义拓展方法，并在剧本表中调用它们。
 
 <LinkCard t="CWL剧情拓展" u="https://elin-modding.net/articles/100_Mod%20Documentation/Custom%20Whatever%20Loader/CN/Character%20%E8%A7%92%E8%89%B2/4_drama" />
+
+## (新！) 剧情脚本
+
+从 **CWL 1.21.0** 开始，剧情表支持 [脚本功能](../Other%20其他/scripting)。你现在可以在剧情表中直接使用 `eval` 动作编写 **C# 脚本** 并热重载。
+
+这提供了与普通 CWL 脚本相同的功能，但有一些关键区别：
+
+* **脚本状态 `Script` 绑定到当前剧情实例**。它在整个剧情期间可用，并且**剧情结束时会自动重置**。
+* 可以通过 `(DramaManager)Script["dm"]` 访问 `DramaManager` 实例。
+* 可以通过 `(Dictionary<string, string>)Script["line"]` 访问本行数据。
+
+![](./assets/drama_eval.png)
+
+如果脚本返回 **bool 类型的值**，该值将用于判断是否执行指定的 `jump` 目标。也可以仅执行动作而不返回值。
+
+同文件夹下的脚本文件可以通过 `eval <<<script_snippet.cs` 导入。
+
+### 在不同的 `eval` 代码块里传递变量
+
+用法与 CWL 脚本相同，通过 `Script` 状态字典进行传递，例如:
+```cs
+var value = EClass.rnd(100) * 5;
+Script["random_value"] = value;
+// 另一eval中
+var value = (int)Script["random_value"];
+```
+
+### 常用示例
+
+|功能|代码|
+|-|-|
+|跳转到步骤|`DramaExpansion.GoTo("my_new_step");`|
+|插入来聊天吧！选项(仅聊天，并非`inject Unique`)|`DramaExpansion.InjectUniqueRumor();`|
+|插入临时话题|`DramaExpansion.AddTempTalk("topic", "actor", "jump");`|
+|获取角色Chara实例|`var chara = dm.GetChara("tinymita");`|
+|角色入队|`chara.MakeAlly();`|
+|修改等级|`chara.SetLv(chara.LV + 5);`|
+
+如有疑问，请在 Elona Discord 上联系 <u>@freshcloth</u> 或者 Elin 模组讨论群 手来！
 
 ## Mod Help集成
 
