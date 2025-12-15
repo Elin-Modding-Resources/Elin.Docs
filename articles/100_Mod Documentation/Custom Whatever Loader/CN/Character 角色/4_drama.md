@@ -79,7 +79,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`play_emote`|[表情id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|使`actor`显示表情|总是|
 |`play_screen_effect`|[屏幕特效id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
 |`pop_text`|文本|使`actor`发出喊叫文本(气泡框)|总是|
-|`portrait_set`|立绘id(可选)|设置`actor`对话立绘，为空时重置，支持**Portrait**文件夹自定义立绘，例如 `UN_myChara_happy.png` 则使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_portrait`/`portrait_set`|立绘id(可选)|设置`actor`对话立绘，为空时重置，支持**Portrait**文件夹自定义立绘，例如 `UN_myChara_happy.png` 则使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_sprite`|贴图id(可选)|设置`actor`自定义贴图，为空时重置，由**Texture**文件获取|总是|
 |`show_book`|书籍id, 类别(`Book` 或 `Scroll`)|打开一本书籍, 支持**LangMod/_*_*/Text**文件夹，例如 `Text/Book/ok.txt` 则使用 `(ok, Book)`|成功时|
 
 ### 修改

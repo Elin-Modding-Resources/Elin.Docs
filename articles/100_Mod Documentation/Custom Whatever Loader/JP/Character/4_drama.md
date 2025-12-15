@@ -75,7 +75,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 |`play_emote`|[感情id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|`actor`に感情を表示させる|常時|
 |`play_screen_effect`|[画面エフェクトid](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|画面エフェクトを再生する|常時|
 |`pop_text`|テキスト|`actor`に叫びのテキスト(吹き出し)を発声させる|常時|
-|`portrait_set`|立ち絵id(省略可)|`actor`の対話立ち絵を設定します。空の場合はリセットされます。**Portrait**フォルダーのカスタム立ち絵をサポートしています。例えば、`UN_myChara_happy.png`は`happy`または`UN_myChara_happy`として使用できます。|常時|
+|`set_portrait`/`portrait_set`|立ち絵id(省略可)|`actor`の対話立ち絵を設定します。空の場合はリセットされます。**Portrait**フォルダーのカスタム立ち絵をサポートしています。例えば、`UN_myChara_happy.png`は`happy`または`UN_myChara_happy`として使用できます。|常時|
+|`set_sprite`|テクスチャID（任意）|`actor`のカスタムスプライトを設定します。未指定の場合はリセットされ、**Texture** ファイルから取得されます|常時|
 |`show_book`|書籍id, カテゴリー(`Book` または `Scroll`)|本を開く。**LangMod/_*_*/Text**フォルダーをサポートする。例えば `Text/Book/ok.txt` ならば `(ok, Book)` を使用|成功時|
 
 ## 値を変更する

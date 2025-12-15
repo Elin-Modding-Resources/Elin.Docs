@@ -77,7 +77,8 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`play_emote`|[emote id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|Play emote on `actor`|always|
 |`play_screen_effect`|[screen effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|Play screen effect|always|
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
-|`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
+|`set_portrait`/`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
+|`set_sprite`|texture id(optional)|Set the custom sprite override `actor` or reset with empty value. Files are fetched from **Texture** folder|always|
 |`show_book`|book id, category(`Book` or `Scroll`)|Open a book, supports **LangMod/_*_*/Text** folder, for example `Text/Book/ok.txt` would use `(ok, Book)`|If success|
 
 ## Modifications
