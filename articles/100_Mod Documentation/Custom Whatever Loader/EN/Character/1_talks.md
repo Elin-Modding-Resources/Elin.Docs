@@ -214,8 +214,8 @@ Starting with **CWL 1.21.0**, [scripting support](../Other/scripting) is availab
 
 This provides the same scripting capabilities as regular CWL scripts, with some key differences:
 + **Script state is bound to the current drama instance**. It persists for the entire duration of the drama and is **automatically reset when the drama ends**.
-+ Script variable `DramaManager` is accessible via `(DramaManager)Script["dm"]`.
-+ Current drama line data is accessible via `(Dictionary<string, string)Script["line"]`. 
++ Script variable `DramaManager` is accessible via `dm`.
++ Current drama line `Dictionary<string, string>` is accessible via `line`. 
 
 ![](./assets/drama_eval.png)
 
@@ -240,7 +240,7 @@ var value = (int)Script["random_value"];
 | Jump to step | `DramaExpansion.GoTo("my_new_step");` |
 | Insert "Let's chat!" option (chat only, not `inject Unique`) | `DramaExpansion.InjectUniqueRumor();` |
 | Insert temporary topic | `DramaExpansion.AddTempTalk("topic", "actor", "jump");` |
-| Get character Chara instance | `var chara = dm.GetChara("tinymita");` |
+| Get character Chara instance | `var chara = dm.GetChara("tg");` |
 | Recruit character to party | `chara.MakeAlly();` |
 | Modify level | `chara.SetLv(chara.LV + 5);` |
 

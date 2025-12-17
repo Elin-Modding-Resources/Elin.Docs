@@ -35,6 +35,8 @@ Simply open the `Elin/Elin_Data/Managed/Elin.dll` in the decompiler and load its
 
 If you are already familiar with C# and bepinex modding/Unity, you can skip to [Debugging](./debugging).
 
+Please follow the instructions in the README:
+
 <LinkCard t="Elin Plugin Template" u="https://github.com/gottyduke/Elin.Plugins/tree/master/PluginTemplate#readme"/>
 
 ## Basic Plugin

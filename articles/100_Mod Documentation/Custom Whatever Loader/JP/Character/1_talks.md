@@ -219,8 +219,8 @@ hide: true
 これは通常の CWL スクリプトと同じ機能を提供しますが、いくつかの重要な違いがあります：
 
 * スクリプト状態 `Script` は**現在のドラマインスタンスにバインド**されます。ドラマ全体で利用可能で、**ドラマ終了時に自動的にリセット**されます。
-* `(DramaManager)Script["dm"]` で `DramaManager` インスタンスにアクセスできます。
-* `(Dictionary<string, string>)Script["line"]` で現在の行データにアクセスできます。
+* `dm` で `DramaManager` インスタンスにアクセスできます。
+* `line` で現在の行 `Dictionary<string, string>` データにアクセスできます。
 
 ![](./assets/drama_eval.png)
 
@@ -245,7 +245,7 @@ var value = (int)Script["random_value"];
 | ステップにジャンプ | `DramaExpansion.GoTo("my_new_step");` |
 | Let's Talk オプションを挿入（チャットのみ、`inject Unique` ではない） | `DramaExpansion.InjectUniqueRumor();` |
 | 一時トピックを挿入 | `DramaExpansion.AddTempTalk("topic", "actor", "jump");` |
-| キャラクターのCharaインスタンスを取得 | `var chara = dm.GetChara("tinymita");` |
+| キャラクターのCharaインスタンスを取得 | `var chara = dm.GetChara("tg");` |
 | キャラクターを仲間にする | `chara.MakeAlly();` |
 | レベルを変更 | `chara.SetLv(chara.LV + 5);` |
 

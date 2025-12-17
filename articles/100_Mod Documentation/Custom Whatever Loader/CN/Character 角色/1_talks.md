@@ -218,8 +218,8 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 这提供了与普通 CWL 脚本相同的功能，但有一些关键区别：
 
 * **脚本状态 `Script` 绑定到当前剧情实例**。它在整个剧情期间可用，并且**剧情结束时会自动重置**。
-* 可以通过 `(DramaManager)Script["dm"]` 访问 `DramaManager` 实例。
-* 可以通过 `(Dictionary<string, string>)Script["line"]` 访问本行数据。
+* 可以通过 `dm` 访问 `DramaManager` 实例。
+* 可以通过 `line` 访问本行数据 `Dictionary<string, string>` 。
 
 ![](./assets/drama_eval.png)
 
@@ -244,7 +244,7 @@ var value = (int)Script["random_value"];
 |跳转到步骤|`DramaExpansion.GoTo("my_new_step");`|
 |插入来聊天吧！选项(仅聊天，并非`inject Unique`)|`DramaExpansion.InjectUniqueRumor();`|
 |插入临时话题|`DramaExpansion.AddTempTalk("topic", "actor", "jump");`|
-|获取角色Chara实例|`var chara = dm.GetChara("tinymita");`|
+|获取角色Chara实例|`var chara = dm.GetChara("tg");`|
 |角色入队|`chara.MakeAlly();`|
 |修改等级|`chara.SetLv(chara.LV + 5);`|
 
