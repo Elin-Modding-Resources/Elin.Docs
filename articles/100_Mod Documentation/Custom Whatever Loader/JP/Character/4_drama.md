@@ -99,8 +99,8 @@ CWLには, 内蔵された一連のスクリプト拡張メソッドが付属し
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
-|`choice`|拡張条件|選択行を条件付きで有効化する、例えば `choice(if_lv(>=10))`。**推奨**されるのは、`choice` アクション（`invoke*` の代わりに）を使用し、param を拡張されたアクションに設定すること![](./assets/drama_c.png)|条件を満たす場合|
-|`eval`|C# スクリプト|C# スクリプトまたはファイルを `<<<path.cs` 構文で実行する。**推奨**されるのは、`eval` アクション（`invoke*` の代わりに）を使用し、param を C# スクリプトに設定すること![](./assets/drama_eval.png)|`true` を返す場合|
+|`choice`|拡張条件|選択行を条件付きで有効化する、例えば `choice(if_lv(>=10))`。**推奨**されるのは、`choice` アクション（`invoke*` の代わりに）を使用し、param を拡張されたアクションに設定すること![](../../assets/drama_c.png)|条件を満たす場合|
+|`eval`|C# スクリプト|C# スクリプトまたはファイルを `<<<path.cs` 構文で実行する。**推奨**されるのは、`eval` アクション（`invoke*` の代わりに）を使用し、param を C# スクリプトに設定すること![](../../assets/drama_eval.png)|`true` を返す場合|
 |`if_affinity`|数値式|`actor`の好感度をチェック|条件が満たされた時|
 |(非推奨 - `eval`)`if_cint`|[CINTインデックス](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数値式|actor の CINT 値を式で比較|条件が満たされた時|
 |(非推奨 - `eval`)`if_cs_get`|C# メンバー名, 値式(省略可)|`actor`のC#クラスメンバーの値を式で比較。`bool` 型のメンバーは値式を省略可能、`string` 型の場合は文字列を指定。詳細は[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)とその基底クラス [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)を参照|条件が満たされた時|
