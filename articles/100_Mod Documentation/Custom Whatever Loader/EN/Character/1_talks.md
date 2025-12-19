@@ -216,8 +216,10 @@ This provides the same scripting capabilities as regular CWL scripts, with some 
 + **Script state is bound to the current drama instance**. It persists for the entire duration of the drama and is **automatically reset when the drama ends**.
 + Script variable `DramaManager` is accessible via `dm`.
 + Current drama line `Dictionary<string, string>` is accessible via `line`. 
++ Current target `Chara` is accessible via `tg`.
++ Player `Chara` is accessible via `pc`.
 
-![](./assets/drama_eval.png)
+![](../../assets/drama_eval.png)
 
 If the script returns a value of type `bool`, that value is used to decide whether the specified `jump` target should be executed. You can also just execute actions without returning a value.
 

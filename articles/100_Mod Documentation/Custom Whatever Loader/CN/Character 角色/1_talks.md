@@ -220,8 +220,10 @@ dialog.xlsx的文本数据从表格第5行开始，而非源表格式的第4行�
 * **脚本状态 `Script` 绑定到当前剧情实例**。它在整个剧情期间可用，并且**剧情结束时会自动重置**。
 * 可以通过 `dm` 访问 `DramaManager` 实例。
 * 可以通过 `line` 访问本行数据 `Dictionary<string, string>` 。
+* 可以通过 `tg` 访问剧情表对象角色实例 `Chara`。
+* 可以通过 `pc` 访问玩家角色实例 `Chara` 。
 
-![](./assets/drama_eval.png)
+![](../../assets/drama_eval.png)
 
 如果脚本返回 **bool 类型的值**，该值将用于判断是否执行指定的 `jump` 目标。也可以仅执行动作而不返回值。
 
