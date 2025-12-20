@@ -16,7 +16,7 @@ export async function generateDiff() {
     )
   ).json();
 
-  for (const commit of commits.slice(0, 3)) {
+  for (const commit of commits.slice(0, 10)) {
     const message = commit.commit.message;
     if (/^(?!EA|\+EA)/.test(message.trim())) {
       continue;
