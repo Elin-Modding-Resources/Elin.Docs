@@ -14,7 +14,7 @@ It's important in development phase to see what's happening and where it's happe
 
 You'll need a debug build of MonoBleedingEdge runtime to replace the Elin's packaged release version.
 
-<a href="/mono-2.0-bdwgc.dll" download>mono-2.0-bdwgc.dll</a>
+<a :href="withBase('/mono-2.0-bdwgc.dll')" download>mono-2.0-bdwgc.dll</a>
 
 > Recompiled for Unity 2021.3.45f1-mbe, use this for Elin 23.210 Nightly and after.
 
@@ -52,3 +52,7 @@ MyElinMod.Log($"This is {114}th attempts!");
 ```
 
 An alternative to the `BepInPlugin.Logger` is `Debug.Log` from Unity, which writes log strings to the Player.log without any prefix.
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

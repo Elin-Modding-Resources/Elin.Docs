@@ -64,7 +64,7 @@ In there, create an "EN" folder.
 In there, you will have your own Source xlsx file.
 
 To save some hassle (because I have royally screwed this up before), I have uploaded a simple example sheet for you to use 
-<a href="/SourceExampleForRaceAndClass.xlsx" download>here</a>  
+<a :href="withBase('/SourceExampleForRaceAndClass.xlsx')" download>here</a>  
 Download this xlsx file, move it into your LangMod/EN folder and rename it to whatever you want.
 
 ## Updating the Source File
@@ -106,3 +106,7 @@ Make sure in the Workshop you add ONE of the CWLs as a prerequisite mod!
 
 If you want your race/class to have custom feats or abilities, that will likely need some C# knowledge to code and add the new feat/abilities.
 That's somewhat out of scope for this basic tutorial though.
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>
