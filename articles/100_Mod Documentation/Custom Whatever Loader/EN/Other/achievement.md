@@ -68,7 +68,7 @@ Here is a completed and expanded version of your documentation based directly on
 
 After defining achievement templates, you can manage them via the `CustomAchievement` API.
 
-### Getting an CustomAchievement Object (Not Required)
+### Getting CustomAchievement Object (Not Required)
 
 ```cs
 var achievement = CustomAchievement.GetAchievement("mymod_achievement_1");
