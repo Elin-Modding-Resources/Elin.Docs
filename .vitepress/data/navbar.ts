@@ -1,3 +1,5 @@
+const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
+
 export function makeNavBar(lastUpdated: string, diffVer: string) {
   return [
     {
@@ -16,7 +18,9 @@ export function makeNavBar(lastUpdated: string, diffVer: string) {
     },
     {
       text: "📝 Elin Decompiled",
-      link: "https://elin-modding-resources.github.io/Elin-Decompiled/",
+      link: isCI_GitHub
+        ? "https://elin-modding-resources.github.io/Elin-Decompiled/"
+        : "https://code.elin-modding.net/",
     },
     {
       text: "📗 Elin Sources",
