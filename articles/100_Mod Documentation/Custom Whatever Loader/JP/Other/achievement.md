@@ -167,7 +167,7 @@ cwl.achievement.unlock mymod_achievement_1
 IsPrerequisiteMet && IsProgressMet
 ```
 
-- `IsPrerequisiteMet`：すべての前提実績が解除済み  
+- `IsPrerequisiteMet`：すべての前提実績が解除済み
 - `IsProgressMet`：進捗 ≥ `AutoUnlockProgress`（定義されている場合）
 
 どちらか一方でも満たさない場合、通常の `Unlock()` は何も行いません（`force = true` を除く）。
@@ -185,8 +185,3 @@ CustomAchievement.AddAchievement(new SerializableAchievement {
     AutoUnlockProgress = 50f,
 });
 ```
-
-以上がカスタム実績システムの日本語訳となります。
-```
-
-必要に応じてさらに口語的な表現にしたり、特定の用語をゲームコミュニティの慣習に合わせたりできますので、追加の要望があれば教えてください！
