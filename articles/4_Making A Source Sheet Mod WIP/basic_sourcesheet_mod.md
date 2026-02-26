@@ -98,7 +98,7 @@ Before you get started, ensure you have the following:
 
 This tutorial is designed in the windows environment with a normal steam installation location (e.g. C:\\Program Files (x86)\\Steam\\steamapps\\common\\Elin)
 
-Your first step is to set up your basic mod skeleton. This will follow a lot of the steps listed in [Basic Elin mod Package](../../../../2_Getting%20Started/basic_mod) and this: [Setting up script mods](../../../../2_Getting%20Started/Script%20Mods/script_mod)
+Your first step is to set up your basic mod skeleton. This will follow a lot of the steps listed in [Basic Elin mod Package](../2_Getting%20Started/basic_mod) and this: [Setting up script mods](../2_Getting%20Started/Script%20Mods/script_mod)
 
 Go to the Elin Install Location and go to the "Package" folder.
 Create a new folder for your Mod. Use the name format "Mod_MyModName", something that makes sense for what you're adding.
