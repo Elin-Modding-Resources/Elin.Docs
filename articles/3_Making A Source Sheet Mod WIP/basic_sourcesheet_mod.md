@@ -11,7 +11,40 @@ tags: Guide/General
 Elin can be easily modded by adding Source entries. By creating a Mod Package and simply adding a properly formatted xlsx file in the right location, you can add all kind of things into Elin.
 This tutorial is meant to help anyone set up their own Source Sheet based mod, no coding necessary!
 
-# The Source Sheets
+
+## Example Mod Setup
+
+![img](./assets/mod_package_layout.png)
+
+### LangMod
+
+LangMod folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (.xlsx).
+
+Modders can now simply place the xlsx files within the language folder and they will be imported with the matching sheet names.
+
+Note that it's the **sheet name**, not the file name.
+
+Supported `SourceData` are: 
+```txt:no-line-numbers
+Chara, CharaText, Tactics, Race, Job, Hobby
+Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
+Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
+GlobalTile, Block, Floor, Obj, CellEffect, Material
+```
+
+Supported `SourceLang` are: 
+```txt:no-line-numbers
+General, Game, List, Word, Note
+```
+
+You may also split the sheets into multiple xlsx files for organizing. The xlsx file name doesn't matter.
+
+If you want to browse the IDs and formats of in game things/characters/various sources, checkout the official Elin Sources:
+
+![img](https://i.postimg.cc/15wF6V2L/image.png)
+
+
+## The Source Sheets
 
 First, check out this google drive: https://drive.google.com/drive/folders/1czOUsixQyAIqMNCyjOpsDZmqVxo_FUFg
 Here you will find all of the Source Sheets uploaded by the developer for modders to view.
@@ -43,13 +76,13 @@ When you set up your sheets, you should go to the original sheets and copy the f
 ![](./assets/3_CopyHeaderRows.png)
 
 
-### Source Sheets Quick Summary
+## Source Sheets Quick Summary
 
-#### Lang
+### Lang
 - The Language files. It's a bit hard to explain this, but these are the words that you the player will see, from in the logs, to UI elements, everything.
 Modders who plan on adding extensive new content should get used to this file, but you likely do not need to do too much here if you are aren't planning to code.
 
-#### SourceBlock
+### SourceBlock
 - GlobalTile - Tiles used on the world map, pointing to what zone they should spawn when you enter it. This does not include prefab locations (e.g. cities, dungeons, nefias)
 - Block - Blocks, Walls, Roofs, Stairs. For building with.
 - Floor - Floor data. Self explanatory.
@@ -57,7 +90,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - CellEffect - Extra effects applied to the tile.
 - Material - What materials are made available in the game.
 
-#### SourceCard
+### SourceCard
 - Thing - Items.
 - ThingV - Furniture Variations of items.
 - Food - Food Items and their stats.
@@ -67,7 +100,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Collectible - Junk items, mostly for decoration, or quests.
 - KeyItem - Key Items.
 
-#### SourceChara
+### SourceChara
 - Chara - Character entries.
 - CharaText - Text that the characters would say over their heads, or in the log based on the scenario.
 - Tactics - Combat AI. Weights on what kind of action each tactic style would take in a given turn.
@@ -75,7 +108,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Job - Character Jobs. Can be referred to as Classes as well.
 - Hobby - Character Hobbies, the one each character has at least two of.
 
-#### SourceGame
+### SourceGame
 - Element - Basically all the Attributes/Skills/Feats/Spells/Abilities are housed here.
 - Calc - Dice calculation for various spells or abilities.
 - Stat - Conditions.
@@ -90,67 +123,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Research - Licenses and rewards.
 - Person - Unique characters in game.
 
-# Setting Up your first Source Sheet Mod
-
-Before you get started, ensure you have the following:
-- A text editor. The basic Notepad included in windows would work.
-- An xlsx editor. Microsoft Excel or LibreOffice are two options, the latter being free.
-
-This tutorial is designed in the windows environment with a normal steam installation location (e.g. C:\\Program Files (x86)\\Steam\\steamapps\\common\\Elin)
-
-Your first step is to set up your basic mod skeleton. This will follow a lot of the steps listed in [Basic Elin mod Package](../2_Getting%20Started/basic_mod) and this: [Setting up script mods](../2_Getting%20Started/Script%20Mods/script_mod)
-
-Go to the Elin Install Location and go to the "Package" folder.
-Create a new folder for your Mod. Use the name format "Mod_MyModName", something that makes sense for what you're adding.
-For the sake of this tutorial, it will be "Mod_CustomSourceMod"
-![](./assets/4_CreateModPackageFolder.png)
-
-Enter the new folder, then open your text editor of choice. Add the following xml block into the new file:
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<Meta>
-  <title>Custom Source Mod</title>
-  <id>myname.myfirstsourcemod</id>
-  <author>myname</author>
-  <loadPriority>100</loadPriority>
-  <version>0.23.275</version>
-  <tags>Race,Class,Chara</tags>
-  <description>
-    My First Source Mod!
-  </description>
-  <builtin>false</builtin>
-</Meta>
-```
-
-A quick explanation of each of the fields:  
-- title : The title of your mod that shows up in the Workshop, as well as in the in game Mod Viewer. Will be used as the Title in the workshop when you first upload it.  
-- id: A unique identifier for your mod. You cannot upload a mod with the same id as an existing mod. This should not change once uploaded!  
-- author: The author of the mod. In this case, you.  
-- loadPriority: The load priority of the mod. Mods with lower numbers are loaded first, allowing dependencies, or overwrites.  
-- version: The latest version of Elin that your mod will work on.  
-- tags: Which tags do you want your mod to be tagged with in the workshop. These should be comma separated.  
-- description: The description of your mod. Will be used as the description in the workshop when you first upload it.  
-- Ignore builtin, leave it as false.  
-
-Once the package.xml is filled out, save this as package.xml (ensure you have the right file extension!) into the newly created Mod Package folder.  
-![](./assets/5_CreatePackageXML.png)
-
-Next, in the same Mod Package folder, create a new folder called LangMod.  
-![](./assets/6_CreateLangModFolder.png)
-
-In the new LangMod folder create another folder called EN.  
-![](./assets/7_CreateENFolder.png)
-
-Create a new xlsx file called "SourceSheet" and drop it into your EN folder.  
-![](./assets/8_CreateSourceSheet.png)
-
-So after all of that, you should have a file structure that looks like this:  
-![](./assets/9_FolderStructure.png)
-
-Now you are finally ready to start adding things into the Source Sheet to mod them into your game.
-
-# Editing your First Source Sheet Mod.
+### Editing your First Source Sheet Mod.
 
 For this tutorial, we will be adding a custom race, job, and character. In your new xlsx file, set up the following four sheets:  
 - Race
@@ -161,7 +134,7 @@ For this tutorial, we will be adding a custom race, job, and character. In your 
 In the new SourceSheet, rename the first sheet to Race, then create three additional sheets, Job, Chara, and CharaText. Then go to the original Source Sheets and copy the first three rows from each sheet.
 ![](./assets/10_CreateSheets.png)
 
-## Alraune Race.
+### Alraune Race.
 Let's start by creating the modded race. We will be creating the "Alraune" race, a plant monster that lures prey to their doom with sweet scents and their enchanting beauty.  
 Alraunes are very much like the vanilla "Ent" race, so let's just copy that entire row from the Race sheet to start. Once we rename a few things, we can update the existing statlines to better fit our modded race, like increasing their base CHA and MAG.  
 We set the playable to 5 so that it can be selected through "Advanced Classes and Races."  
@@ -169,14 +142,14 @@ For the elements, we can reference the Element sheet from SourceGame. As they ar
 Add some flavor text for details, add translations, and we now have the Alraune race!  
 ![](./assets/11_AlrauneRace.png)
 
-## Herbalist Job. 
+### Herbalist Job. 
 For the custom Job, we'll be creating the "Herbalist", which is a mix between the Farmer and the Witch.  
 This will largely be simillar to the previous step, where we will copy the vanilla "Farmer" job then update it for our mod. Rename it to herbalist, make sure playable is set, and start updating the elements.  
 We don't want it to completely be a better Farmer, so we reduced it's featFarmer from 2 to 1, then added featWitch/1 so it can do some potion brewing.  
 Fill out some of the remianing fields, add some flavor text, translate, and that's it!
 ![](./assets/12_HerbalistJob.png)
 
-## Custom Adventurer
+### Custom Adventurer
 Finally, we get to the the Character adding.  
 Like the previous, we'll largely just be copying an existing entry and editing it for our mods.  
 We will be creating the custom Adventurer, Azalea, who is an traveling Alraune Herbalist.  
