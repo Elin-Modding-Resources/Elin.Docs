@@ -102,10 +102,10 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |method|param|description|jump|
 |-|-|-|-|
 |`choice`|expanded condition|Conditionally enable a choice line, such as `choice(if_lv(>=10))`. It's **recommended** to use `choice` action (instead of `invoke*`) with param set to expanded action![](../../assets/drama_c.png)|If satisfies|
-|`eval`|C# script|Executes the C# script or file with `<<<path.cs` syntax. It's **recommended** to use `eval` action (instead of `invoke*) with param set to the C# script![](../../assets/drama_eval.png)|If returns `true`|
+|`eval`|C# script|Executes the C# script or file with `<<<path.cs` syntax. It's **recommended** to use `eval` action (instead of `invoke*`) with param set to the C# script![](../../assets/drama_eval.png)|If returns `true`|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|If satisfies|
-|(deprecated, use `eval`)`if_cint`|[CINT index](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), value expression|Check `actor` CINT value with expression|If satisfies|
-|(deprecated, use `eval`)`if_cs_get`|C# member name, value expression(optional)|Check `actor` C# class member value with expression. Value expression can be omitted for `bool` members, or a string for `string` members. See [Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html) and its base class [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|If satisfies|
+|`if_cint` (deprecated, use `eval`)|[CINT index](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), value expression|Check `actor` CINT value with expression|If satisfies|
+|`if_cs_get` (deprecated, use `eval`)|C# member name, value expression(optional)|Check `actor` C# class member value with expression. Value expression can be omitted for `bool` members, or a string for `string` members. See [Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html) and its base class [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|If satisfies|
 |`if_condition`|[condition alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|Check if `actor` has active condition with alias|If active|
 |`if_currency`|currency type, value expression|Check `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|If satisfies|
 |`if_element`|[element alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), value expression|Check `actor` element with expression|If satisfies|
