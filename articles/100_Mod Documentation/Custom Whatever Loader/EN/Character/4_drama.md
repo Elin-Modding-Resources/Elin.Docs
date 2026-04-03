@@ -79,7 +79,7 @@ If the `jump` in the same line has any value, then the return value of the expan
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
 |`set_portrait`/`portrait_set`|portrait id(optional)|Set `actor` portrait in dialog to the specific one or reset with empty value, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
 |`set_sprite`|texture id(optional)|Set the custom sprite override `actor` or reset with empty value. Files are fetched from **Texture** folder|always|
-|`show_book`|book id, category(`Book` or `Scroll`)|Open a book, supports **LangMod/_*_*/Text** folder, for example `Text/Book/ok.txt` would use `(ok, Book)`|If success|
+|`show_book`|category/book id|Open a book, supports **LangMod/_*_*/Text** folder, for example `Text/Book/ok.txt` would use `(Book/ok)`|If success|
 
 ## Modifications
 
