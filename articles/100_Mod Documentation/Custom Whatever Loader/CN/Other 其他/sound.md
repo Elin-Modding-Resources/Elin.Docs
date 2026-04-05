@@ -38,30 +38,9 @@ SE.PlaySound("clown_horn");
 
 启动游戏一次，为新添加的音效生成一个元数据 **json** 文件，然后退出游戏，编辑该元数据 json 文件，将 **type** 设置为 **BGM**，并为乐器演奏添加一些 **parts**（片段）：
 
-```json
-"parts": [
-    {
-        "start": 0.0,
-        "duration": 4.0
-    },
-    {
-        "start": 4.0,
-        "duration": 4.0
-    },
-    {
-        "start": 8.0,
-        "duration": 4.0
-    },
-    {
-        "start": 12.0,
-        "duration": 4.0
-    },
-    {
-        "start": 16.0,
-        "duration": 4.0
-    }
-]
-```
+::: details cello_prelude.json
+<<< ../../assets/cello_prelude.json
+:::
 
 每个 **part** 都有一个以秒为单位的起始时间（**start**）和持续时间（**duration**）。在乐器演奏期间，系统将随机选择这些片段进行播放。
 

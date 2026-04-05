@@ -37,30 +37,10 @@ If you are making a **new** instrument, use instrument's ID (Thing ID) as Sound 
 :::
 
 Launch the game once to generate a metadata json file for the newly added sound, exit game, edit the metadata json to use **type: BGM**, and add some parts for the instrument play:
-```json
-"parts": [
-	{
-		"start": 0.0,
-		"duration": 4.0
-	},
-	{
-		"start": 4.0,
-		"duration": 4.0
-	},
-	{
-		"start": 8.0,
-		"duration": 4.0
-	},
-	{
-		"start": 12.0,
-		"duration": 4.0
-	},
-	{
-		"start": 16.0,
-		"duration": 4.0
-	}
-]
-```
+
+::: details cello_prelude.json
+<<< ../../assets/cello_prelude.json
+:::
 
 Each part has a start timestamp and a duration in seconds. Parts will be randomly selected during instrument play.
 

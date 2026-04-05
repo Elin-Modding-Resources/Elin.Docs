@@ -37,30 +37,9 @@ SE.PlaySound("clown_horn");
 
 ゲームを一度起動して、新しく追加したオーディオファイルの**メタデータ json ファイル**を生成し、その後ゲームを終了します。このメタデータ json ファイルを編集し、**type** を **BGM** に設定し、楽器演奏用にいくつかの **parts**（断片）を追加します。
 
-```json
-"parts": [
-    {
-        "start": 0.0,
-        "duration": 4.0
-    },
-    {
-        "start": 4.0,
-        "duration": 4.0
-    },
-    {
-        "start": 8.0,
-        "duration": 4.0
-    },
-    {
-        "start": 12.0,
-        "duration": 4.0
-    },
-    {
-        "start": 16.0,
-        "duration": 4.0
-    }
-]
-```
+::: details cello_prelude.json
+<<< ../../assets/cello_prelude.json
+:::
 
 各 **part** には、**秒単位**の開始時間（**start**）と継続時間（**duration**）があります。楽器が演奏されている間、システムはこれらの断片をランダムに選択して再生します。
 
