@@ -22,10 +22,6 @@ class TraitGeneGun : TraitTool
 
 That's it, we now have a new trait, we can go to our Thing sheet and add `GeneGun` to the trait column, yes, without the "Trait" part.
 
-::: warning
-I am recommending creating our trait in a new file not only for organization sake, but most importantly because you have to make sure that this class is on the `global namespace` otherwise the game will not recognize it and will not load it into the `classCache`. Thanks to @Ryozu on discord for the tip!
-:::
-
 ## Adding functionality
 
 Before we continue, I'd like to recommend that if you want to have a better understanding of a fair chunk of how the game works, that you take your time to read the base classes of most common things in the game that we've been interacting so far, such as the `Card` and `Thing` class and in this case, the `Trait` class. This is knowledge that we'll be making use right now as we override a very "obvious" function:
