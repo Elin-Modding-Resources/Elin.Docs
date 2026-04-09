@@ -10,7 +10,7 @@ tags: Texture/Skin
 
 The Skin folder is where you put custom textures for the resident board's **Change Skin** feature.
 
-+ Location: `%localappdata%\low\Lafrontier\Elin\Custom\Skin`
++ Location: `%localappdata%low\Lafrontier\Elin\Custom\Skin`
 + Size: 128×128 or 128×256
 + Background: Transparent
 + Filename: skinname.png
