@@ -39,3 +39,7 @@ hatY = 0
 + `scaleIcon` icon sprite size scaling
 + `liquidMod` liquid level modifier on the tile; can be negative
 + `hatY` hat renderer y position offset
+
+## Shadow Data ID
+
+<!--@include: ./assets/shadow_data.md-->
