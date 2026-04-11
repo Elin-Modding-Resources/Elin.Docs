@@ -16,7 +16,7 @@ To convert your still image into an animated sprite, you'll need to provide a ho
 
 ```ini
 frame = 6
-interval = 0.066
+time = 0.066
 scale = 100
 ```
 
