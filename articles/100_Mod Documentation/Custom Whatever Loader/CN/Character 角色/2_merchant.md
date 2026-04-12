@@ -6,19 +6,20 @@ hide: true
 
 ## 自定义商人库存
 
-您可以使用标签 `addStock` 和一份库存文件来自定义商人的库存。
+你可以使用 `addStock` 标签和库存文件来定义自定义商人库存。
 
 ![img](https://i.postimg.cc/59gzM54K/image.png)
 
-::: warning Trait 需求移除
-CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。如果您不使用 CWL API，您的角色还是需要 `Merchant` 或者 `MerchantXXX` Trait 使其可以交易。
+::: warning 特性变更
+CWL 1.19.21 已移除添加自定义库存时对 `Merchant` 特性的要求，这主要是一项 API 变更。如果你没有使用 CWL API，仍建议给你的角色添加 `Merchant` 或 `MerchantXXX` 特性，以便能够与其进行交易。
 :::
 
-库存文件是一个简单的 JSON 文件，放置在您的 `LangMod/**/Data/` 文件夹中，名称为 `stock_ID.json`，此ID是库存文件的独特ID或者您的角色ID。例如: `stock_my_cnpc.json` 或 `stock_unique_armor.json`。
+库存文件是一个简单的 JSON 文件，放置在你的 `LangMod/**/Data/` 文件夹中，文件名为 `stock_ID.json`。其中 ID 是该库存文件或角色的唯一标识符。例如：`stock_my_cnpc.json` 或 `stock_unique_armor.json`。
 
-使用 `addStock` 标签时，CWL 会默认使用与该角色ID相同的库存ID。您也可以使用 `addStock_ID` 标签来指定特定库存，省去为多个角色定义重复库存的麻烦。
+使用 `addStock` 标签时，库存 ID 默认使用角色 ID。你也可以通过多个标签指定或组合多个库存文件，例如：
+`addStock,addStock_unique_items,addStock_unique_armor`。
 
-使用多个标签可以组合特定库存，例如 `addStock,addStock_armor,addStock_weapon`。
+库存文件的结构如下：
 
 ```json
 {
@@ -52,35 +53,88 @@ CWL 1.19.21 移除了 `Merchant` Trait 需求，这主要是一个 API 改动。
     },
     {
       "Id": "SpShutterHex",
-      "Num": "5",
+      "Num": 5,
       "Type": "Spell"
     }
   ]
 }
 ```
 
-`Items` 是库存中物品的列表。
+`Items` 是一个包含库存物品的数组。
 
-+ `Id` 是物品的 ID。
-+ `Material` 是您希望其作为的材料，留空以使用在物品行中定义的默认材料。默认值为 `""`。
-+ `Num` 是堆叠中物品的数量。默认值为 `1`。
-+ `Restock` 定义它是否为限时物品，当设置为 `false` 时，只能购买一次。默认值为 `true`。
-+ `Type` 可以是 `Item`(物品)、`Recipe`(配方) 或 `Spell`(法术书)。默认值为 `Item`。
-+ `Rarity` 是物品的稀有度，`Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`。默认值为 `Normal`。
-+ `Identified` 定义它购买时是否已鉴定。默认值为 `true`。
+### 字段说明
+* `Id`
+  物品（Thing）的 ID。此字段**必需**。
+  对于某些库存类型，此处可以是元素的别名、数字 ID 或名称。
+* `Material`
+  物品所使用的材质。留空则使用 Thing 数据中定义的默认材质。
+  默认值：`""`
+* `Num`
+  物品数量。
+  默认值：`1`
+* `Restock`
+  决定物品是否会补货。
+  设置为 `false` 表示该物品为限量，只能购买一次。
+  默认值：`true`
+* `Rarity`
+  可选值：`Random`、`Crude`、`Normal`、`Superior`、`Legendary`、`Mythical`、`Artifact`
+  默认值：`Normal`
+* `Identified`（**已弃用，但仍可使用**）
+  决定物品初始是否已鉴定。
+  默认值：`true`
+* `IdentifyLevel`（**新增**）
+  决定物品初始的鉴定状态。
+  可选值：`Identified`、`RequireSuperiorIdentify`、`KnowQuality`、`Unknown`
+  默认值：`Identified`
+* `Blessed`
+  决定物品的祝福状态。
+  可选值：`Doomed`、`Cursed`、`Normal`、`Blessed`
+  默认值：`Normal`
 
-**任何您希望使用默认值的字段，都可以省略**。例如，这是一个合法的库存物品：
+### 注意事项
+
+* 你可以省略任意字段以使用其默认值。
+  例如，以下是一个有效的库存物品定义：
+
 ```json
 {
   "Id": "example_item"
 }
 ```
 
-如果您不使用代码编辑器，您应该使用 [JSONLint](https://jsonlint.com/) 来验证您的 JSON。  
+### 支持的物品类型
 
-代码API相关，请查看[Custom Merchant API](../API/Custom/merchant)。  
+|Type|说明|
+|-|-|
+|Item|标准物品。支持材质、等级和堆叠数量。|
+|Block|可放置的方块物品，由方块别名和材质生成。|
+|Cassette|音乐磁带。如果 bgm id 无效，则使用随机曲目。|
+|Currency|货币物品。Id 可以是 `money`、`money2`、`plat`、`medal`、`influence`、`casino_coin`、`ecopo`。`Num` 表示金额。|
+|Category|从分类中生成物品。|
+|Filter|根据过滤器生成物品。`Id` 为过滤器名称。|
+|Tag|根据标签生成物品。`Id` 为标签名称。|
+|Letter|信件物品。`Id` 为信件名称。|
+|Obj|Obj 对象。`Id` 为对象别名。|
+|Perfume|香水。`Id` 为元素别名或 ID。|
+|Plan|计划书。`Id` 为元素别名或 ID。|
+|Potion|药水物品。`Id` 为元素别名或 ID。`Num` 定义堆叠数量。|
+|Recipe|用于合成的配方物品。|
+|RedBook|红皮书物品。`Id` 为书籍 ID。`Num` 定义堆叠数量。|
+|Rod|魔杖物品。`Id` 为元素别名或 ID。`Num` 定义充能次数或堆叠数量。|
+|Rune|符文物品。`Id` 为元素别名或 ID。|
+|RuneFree|免费符文物品。`Id` 为元素别名或 ID。|
+|Scroll|卷轴物品。`Id` 为元素别名或 ID。|
+|Skill|技能书。`Id` 为元素别名或 ID。|
+|Spell|法术书。`Id` 为元素别名或 ID。|
+|Usuihon|特殊物品。`Id` 为宗教 ID。|
 
-::: warning 格式变动
-+ CWL 1.19.21 版本后新增了 `Identified` 字段，可以定义物品鉴定状态。这项改动兼容旧版本格式。
-+ CWL 1.18.13 版本后移除了 `Owner` 字段，并新增了 `Rarity` 字段，改为由库存文件名作为库存ID的方式进行索引。这项改动兼容旧版本的格式。
+如果你没有使用代码编辑器，可以使用 [JSONLint](https://jsonlint.com/) 来验证你的 JSON 格式。
+
+关于 API 的相关用法，请参阅 [Custom Merchant API](../API/Custom/merchant)。
+
+::: warning 规格变更
++ CWL 1.22.14 新增 `IdentifyLevel` 字段，用于自定义鉴定等级。此变更可选且向下兼容。
++ CWL 1.19.21 新增 `Identified` 字段，允许出售未鉴定的物品。此变更向下兼容。
++ CWL 1.18.13 移除了 `Owner` 字段并新增 `Rarity` 字段，改为基于库存 ID 而非角色 ID 进行索引。此变更向下兼容。
 :::
+````
