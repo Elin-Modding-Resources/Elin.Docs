@@ -38,8 +38,10 @@ equipY = 0
 stackX = 0
 ```
 
+You may omit any unused fields. `#` comments can also be used.
+
 + `x`, `y`, `z` position offset
-+ `pivotX`,`pivotY` pivot offset
++ `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
 + `shadow` ShadowData id
 + `shadowX`, `shadowY` shadow position offset
 + `shadowRX`, `shadowRY` shadow reverse
