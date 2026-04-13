@@ -30,7 +30,7 @@ For example, to give `ninja` one sprite for male and a different sprite for non-
 
 You can add more pairs to support additional skinsets. For example, for three pairs of gender-based sprites (2 images per pair, 6 in total), you need to put `0,1,2,3,4,5` into the `tiles` column. The pairs will be picked randomly. Even indices are male, and odd indices are non-male.
 
-If your character has a non-random gender but you still wish to provide random skinsets, you can use the same skin id in each pair. For example, for three skinsets, you need to put `0,0,1,1,2,2` into the `tiles` column.
+If your character has a non-random gender but you still wish to provide random skinsets, you can use the same skin id in each pair. For example, for three sprites, you need to put `0,0,1,1,2,2` into the `tiles` column.
 
 There is no limit to how many variations you can define.
 
