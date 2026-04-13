@@ -21,24 +21,38 @@ pivotY = 0
 shadow = 0
 shadowX = 0
 shadowY = 0
+shadowRX = 0
+shadowRY = 0
+shadowBX = 0
+shadowBY = 0
+shadowBRX = 0
+shadowBRY = 0
 height = 0
+heightFix = 0
 scaleIcon = -40
 liquidMod = 0
+liquidModMax = 0
 hatY = 0
+equipX = 0
+equipY = 0
+stackX = 0
 ```
 
-+ `x` x position offset
-+ `y` y position offset
-+ `z` z position offset
-+ `pivotX` pivot.x offset
-+ `pivotY` pivot.y offset
++ `x`, `y`, `z` position offset
++ `pivotX`,`pivotY` pivot offset
 + `shadow` ShadowData id
-+ `shadowX` shadow x position offset
-+ `shadowY` shadow y position offset
++ `shadowX`, `shadowY` shadow position offset
++ `shadowRX`, `shadowRY` shadow reverse
++ `shadowBX`, `shadowBY` shadow back
++ `shadowBRX`, `shadowBRY` shadow back reverse
 + `height` tile height modifier
-+ `scaleIcon` icon sprite size scaling
-+ `liquidMod` liquid level modifier on the tile; can be negative
++ `heightFix` text component height offset (floating little widgets)
++ `scaleIcon` icon size scaling
++ `liquidMod` tile liquid level modifier; can be negative
++ `liquidModMax` tile liquid level max
 + `hatY` hat renderer y position offset
++ `equipX`, `equipY` held position offset 
++ `stackX` tile stacking x position offset
 
 ## Shadow Data ID
 
