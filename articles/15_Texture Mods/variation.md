@@ -28,9 +28,11 @@ These are gender-dependent textures in pairs, selected randomly during creation.
 
 For example, to give `ninja` one sprite for male and a different sprite for non-male, put `0,1` into the `tiles` column, then provide `ninja_skin0.png` and `ninja_skin1.png` as variations.
 
-You can add more pairs to support additional skinsets, such as `0,1,2,3,4,5` for three pairs of gender-dependent sprites. The pairs will be picked randomly.
+You can add more pairs to support additional skinsets. For example, for three pairs of gender-based sprites (2 images per pair, 6 in total), you need to put `0,1,2,3,4,5` into the `tiles` column. The pairs will be picked randomly. Even indices are male, and odd indices are non-male.
 
-If your character has a non-random gender but you still wish to provide random skinsets, you can use the same skin id inside the pair, such as `0,0,1,1,2,2`.
+If your character has a non-random gender but you still wish to provide random skinsets, you can use the same skin id in each pair. For example, for three skinsets, you need to put `0,0,1,1,2,2` into the `tiles` column.
+
+There is no limit to how many variations you can define.
 
 ## Directional Sprites
 
