@@ -38,7 +38,7 @@ equipY = 0
 stackX = 0
 ```
 
-You may omit any unused fields. `#` comments can also be used.
+You may omit any unused fields. `;` comments can also be used.
 
 + `x`, `y`, `z` position offset
 + `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
