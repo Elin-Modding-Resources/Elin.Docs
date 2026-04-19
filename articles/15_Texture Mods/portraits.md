@@ -2,7 +2,7 @@
 title: Portraits
 author: DK
 description: How to add portraits for pc and npc.
-date: 2026/4/9 9:00
+date: 2026/4/9 15:00
 tags: Texture/Portrait
 ---
 

@@ -2,7 +2,7 @@
 title: Custom Skins
 author: DK
 description: How to add custom skins
-date: 2026/4/9 9:00
+date: 2026/4/9 16:00
 tags: Texture/Skin
 ---
 

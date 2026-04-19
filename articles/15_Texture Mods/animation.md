@@ -1,5 +1,5 @@
 ---
-title: Animated Sprites
+title: Sprite Animation
 author: DK
 description: How to make animated sprites for character and items.
 date: 2026/4/9 9:00

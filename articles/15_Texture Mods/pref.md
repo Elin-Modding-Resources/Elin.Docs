@@ -1,8 +1,8 @@
 ---
-title: Customization
+title: Sprite Customization
 author: DK
 description: Details of .pref file to customize your sprite.
-date: 2026/4/9 9:00
+date: 2026/4/9 8:00
 tags: Texture/Pref
 ---
 

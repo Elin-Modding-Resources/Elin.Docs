@@ -1,5 +1,5 @@
 ---
-title: Variations
+title: Sprite Variations
 author: DK
 description: How to add directional, skinsets, and snow variations.
 date: 2026/4/9 9:00
