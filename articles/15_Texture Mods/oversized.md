@@ -1,5 +1,5 @@
 ---
-title: Over 128x128 Canvas
+title: Oversized Sprites
 author: DK
 description: Tips for creating sprites larger than 128x128
 date: 2026/4/11 13:00
