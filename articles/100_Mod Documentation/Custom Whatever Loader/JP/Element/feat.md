@@ -45,7 +45,7 @@ internal class FeatMyExample : Feat
 
 テクスチャのサイズが32x32でない場合、CWLはそれを32x32に調整します。
 
-<a :href="with Base('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
+<a :href="withBase('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
 <a :href="withBase('/icon_elements.png')" download>ゲームの属性アイコン一覧をダウンロード</a>
 
 ## 自動取得
@@ -54,3 +54,7 @@ internal class FeatMyExample : Feat
 
 <LinkCard t="CWL Example: Donakoko" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />
 <LinkCard t="Donakoko Source Code" u="https://github.com/gottyduke/Elin.Plugins/tree/master/CwlExamples/Donakoko" />
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

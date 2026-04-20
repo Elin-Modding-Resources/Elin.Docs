@@ -21,3 +21,8 @@ internal class ConCarbonated : ConDrunk;
 
 <a :href="withBase('/icon_ability.png')" download>Download game ability icons reference.</a>
 <a :href="withBase('/icon_elements.png')" download>Download game element icons reference.</a>
+
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

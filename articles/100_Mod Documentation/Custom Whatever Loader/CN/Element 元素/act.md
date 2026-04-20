@@ -69,3 +69,7 @@ internal class ActLionDance : Act
 该类必须派生自 **Element**，常见的有 **Act**、**AIAct**、**Ability**、**Spell** 等能力类型，具体取决于用法和意图。
 
 您可以在任何命名空间中声明您的类，CWL 将限定类型名称，因此元素类型只需是类名本身。
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

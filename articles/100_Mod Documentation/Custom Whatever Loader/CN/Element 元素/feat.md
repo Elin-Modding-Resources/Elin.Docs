@@ -58,3 +58,7 @@ internal class FeatMyExample : Feat
 
 <LinkCard t="CWL 范例: 多娜可可" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />
 <LinkCard t="多娜可可 源码" u="https://github.com/gottyduke/Elin.Plugins/tree/master/CwlExamples/Donakoko" />
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

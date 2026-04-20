@@ -24,7 +24,7 @@ hide: true
 
 または、`GetSprite` メソッドをオーバーライドして独自のアイコンを提供することもできます。
 
-<a :href="with Base('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
+<a :href="withBase('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
 <a :href="withBase('/icon_elements.png')" download>ゲームの属性アイコン一覧をダウンロード</a>
 
 ### タグ
@@ -69,3 +69,8 @@ internal class ActLionDance : Act
 このクラスは **Element** から派生している必要があります。一般的な能力タイプには、用途や意図に応じて **Act**、**AIAct**、**Ability**、**Spell** などがあります。
 
 クラスは任意の名前空間で宣言できます。CWLは型名を修飾するため、要素型はクラス名自体であるだけで十分です。
+
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

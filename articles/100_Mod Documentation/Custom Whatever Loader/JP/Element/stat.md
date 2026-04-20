@@ -23,5 +23,9 @@ internal class ConCarbonated: ConDrunk;
 
 テクスチャのサイズが32x32でない場合、CWLはそれを32x32に調整します。
 
-<a :href="with Base('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
+<a :href="withBase('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
 <a :href="withBase('/icon_elements.png')" download>ゲームの属性アイコン一覧をダウンロード</a>
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

@@ -25,3 +25,8 @@ internal class ConCarbonated: ConDrunk;
 
 <a :href="withBase('/icon_ability.png')" download>下载游戏能力图标参照</a>
 <a :href="withBase('/icon_elements.png')" download>下载游戏元素图标参照</a>
+
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>

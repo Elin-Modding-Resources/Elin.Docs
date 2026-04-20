@@ -68,3 +68,8 @@ internal class ActLionDance : Act
 The class must derive from **Element**, common ones are **Act**, **AIAct**, **Ability**, **Spell** for ability types, depending on the usage and intention.
 
 You can declare your class in any namespace, CWL will qualify the type name, so the element type only needs to be the class name itself.
+
+
+<script setup>
+import { withBase } from 'vitepress'
+</script>
