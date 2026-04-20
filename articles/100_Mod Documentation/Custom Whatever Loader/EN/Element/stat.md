@@ -18,3 +18,6 @@ A custom condition must derive from **Condition**, common ones are **BadConditio
 ```cs
 internal class ConCarbonated : ConDrunk;
 ```
+
+<a :href="withBase('/icon_ability.png')" download>Download game ability icons reference.</a>
+<a :href="withBase('/icon_elements.png')" download>Download game element icons reference.</a>

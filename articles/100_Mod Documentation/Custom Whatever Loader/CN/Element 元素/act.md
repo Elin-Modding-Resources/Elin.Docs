@@ -24,6 +24,9 @@ hide: true
 
 您还可以选择重写 `GetSprite` 方法并提供您自己的图标。
 
+<a :href="withBase('/icon_ability.png')" download>下载游戏能力图标参照</a>
+<a :href="withBase('/icon_elements.png')" download>下载游戏元素图标参照</a>
+
 ### 标签
 
 **`addEleOnLoad`**: 玩家将在加载时自动获得此能力。

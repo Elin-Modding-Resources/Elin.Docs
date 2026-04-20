@@ -45,6 +45,11 @@ internal class FeatMyExample : Feat
 
 If the texture size is not 32x32, CWL will resize it for you.
 
+<a :href="withBase('/icon_ability.png')" download>Download game ability icons reference.</a>
+<a :href="withBase('/icon_elements.png')" download>Download game element icons reference.</a>
+
+## Add On Load
+
 With the tag **addEleOnLoad**, player will gain this feat automatically upon loading.
 
 <LinkCard t="CWL Example: Donakoko" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3400267207" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/Donakoko/preview.jpg" />

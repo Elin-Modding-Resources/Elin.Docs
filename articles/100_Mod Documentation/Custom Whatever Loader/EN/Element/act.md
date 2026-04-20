@@ -24,6 +24,9 @@ If the texture size is not 48x48, CWL will resize it for you.
 
 Optionally, you can also override `GetSprite` method and provide your own icon sprite.
 
+<a :href="withBase('/icon_ability.png')" download>Download game ability icons reference.</a>
+<a :href="withBase('/icon_elements.png')" download>Download game element icons reference.</a>
+
 ### Tags
 
 **`addEleOnLoad`**: player will gain this ability automatically upon loading.  

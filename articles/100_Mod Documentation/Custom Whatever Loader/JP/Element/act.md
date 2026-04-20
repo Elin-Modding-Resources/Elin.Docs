@@ -24,6 +24,9 @@ hide: true
 
 または、`GetSprite` メソッドをオーバーライドして独自のアイコンを提供することもできます。
 
+<a :href="with Base('/icon ability.png')" download>ゲームのアビリティアイコン一覧をダウンロード</a>
+<a :href="withBase('/icon_elements.png')" download>ゲームの属性アイコン一覧をダウンロード</a>
+
 ### タグ
 
 **`addEleOnLoad`**: プレイヤーはロード時にこの能力を自動的に獲得します。

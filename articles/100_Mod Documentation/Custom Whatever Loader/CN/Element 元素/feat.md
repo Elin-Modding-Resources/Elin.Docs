@@ -49,6 +49,9 @@ internal class FeatMyExample : Feat
 
 如果纹理大小不是32x32，CWL会将其调整为32x32。
 
+<a :href="withBase('/icon_ability.png')" download>下载游戏能力图标参照</a>
+<a :href="withBase('/icon_elements.png')" download>下载游戏元素图标参照</a>
+
 ### 自动获取
 
 使用标签 **addEleOnLoad**，玩家在加载时将自动获得这个专长。

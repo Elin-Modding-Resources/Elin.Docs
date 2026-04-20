@@ -22,3 +22,6 @@ internal class ConCarbonated: ConDrunk;
 自定义状态还可以拥有自定义图标，您的图标需要放置在 **Texture** 文件夹中，使用与 **alias** 相同的文件名，例如 **ConCarbonated.png**。
 
 如果纹理大小不是32x32，CWL会将其调整为32x32。
+
+<a :href="withBase('/icon_ability.png')" download>下载游戏能力图标参照</a>
+<a :href="withBase('/icon_elements.png')" download>下载游戏元素图标参照</a>
