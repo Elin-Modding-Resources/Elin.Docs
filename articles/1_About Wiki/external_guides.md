@@ -8,6 +8,9 @@ tags: Guide/External
 
 # External Guides
 
++ [Ylvapedia Wiki](https://ylvapedia.wiki/wiki/Main_Page)
++ [Ylvania Dev Room](https://ylvania.org/elin_dev_e.html)
+
 ## English
 
 + [Writing package.xml](https://docs.google.com/document/d/e/2PACX-1vQSITB8aYTycrnn3PxxGnPjNZ2_y1G3LDfXjC_PM5S_mTPCh6fv1vcj1bkfPbbUZ88WVb5_7T-62zYc/pub)

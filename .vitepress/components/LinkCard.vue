@@ -5,10 +5,10 @@
   >
     <div class="flex items-center">
       <!-- Conditionally render the icon if it exists -->
-      <div v-if="i" class="flex-shrink-0 mr-4">
+      <div v-if="i" class="shrink-0 mr-4">
         <img
           :src="i"
-          class="h-14 w-14 rounded-full sm:h-[70px] sm:w-[70px] overflow-hidden"
+          class="h-14 w-14 rounded-full sm:h-17.5 sm:w-17.5 overflow-hidden"
         />
       </div>
       <div class="flex-1">
@@ -24,8 +24,32 @@
 </template>
 
 <script setup lang="ts">
-const { t, u, i } = defineProps(["t", "u", "i"]);
+import { useRouter, useData } from "vitepress";
+
+const { site } = useData();
+const router = useRouter()
+
+const { t, u, i } = defineProps(["t", "u", "i"])
+
+function isExternal(url: string) {
+  return /^(https?:)?\/\//.test(url)
+}
+
+function normalizeInternal(url: string) {
+  let path = url.replace(/^\//, '')
+
+  if (path.endsWith('.md')) {
+    path = 'articles/' + path.replace(/\.md$/, '')
+  }
+
+  return site.value.base + path
+}
+
 function goto() {
-  window.open(u, "_blank");
+  if (isExternal(u)) {
+    window.open(u, "_blank")
+  } else {
+    router.go(normalizeInternal(u))
+  }
 }
 </script>
