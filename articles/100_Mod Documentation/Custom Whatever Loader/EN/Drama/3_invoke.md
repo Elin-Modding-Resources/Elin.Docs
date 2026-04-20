@@ -1,21 +1,19 @@
 ---
-title: Drama Expansion (Invoke*)
-date: 2025/5/24 01:00
-hide: true
+title: Invoke* Expansion
+author: DK
+description: CWL expanded action `invoke*` and its usages.
+date: 2026/4/19 17:00
+tags: Guide/CWL/Drama
 ---
 
 ## Expanded Drama Invoke*
-
-::: tip Temporary Version
-This part of documentation is a partially written stub, and API usages may change at any time.
-:::
 
 CWL comes with a small set of built-in drama expansion methods, which you can [checkout code here](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/API/Drama/Expansions).
 
 This feature requires the CWL configuration value `Dialog.ExpandedActions` set to `true`, enabled by default.
 
 In the drama sheet, you can use the CWL special action `invoke*` or `i*` for short to call expansion method:
-![](./assets/dramae_invoke.png)
+![](../../assets/drama/dramae_invoke.png)
 
 ## Parameter Passing
 
@@ -60,10 +58,6 @@ If the `jump` in the same line has any value, then the return value of the expan
 |(deprecated, use `eval`)`build_ext`|assembly partial name|Attempt to add static methods from assembly to drama expansion table|If success|
 |(deprecated, use `eval`)`emit_call`|ext.method|Invoke an external static method|always|
 
-`build_ext` and `emit_call` requires the CWL configuration value `Dialog.ExpandedActionsAllowExternal` set to `true`, enabled by default.
-
-![](./assets/dramae_ext.png)
-
 ## Scene Play
 
 |method|param|description|jump|
@@ -101,8 +95,8 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 
 |method|param|description|jump|
 |-|-|-|-|
-|`choice`|expanded condition|Conditionally enable a choice line, such as `choice(if_lv(>=10))`. It's **recommended** to use `choice` action (instead of `invoke*`) with param set to expanded action![](../../assets/drama_c.png)|If satisfies|
-|`eval`|C# script|Executes the C# script or file with `<<<path.cs` syntax. It's **recommended** to use `eval` action (instead of `invoke*`) with param set to the C# script![](../../assets/drama_eval.png)|If returns `true`|
+|`choice`|expanded condition|Conditionally enable a choice line, such as `choice(if_lv(>=10))`. It's **recommended** to use `choice` action (instead of `invoke*`) with param set to expanded action![](../../assets/drama/drama_c.png)|If satisfies|
+|`eval`|C# script|Executes the C# script or file with `<<<path.cs` syntax. It's **recommended** to use `eval` action (instead of `invoke*`) with param set to the C# script![](../../assets/drama/drama_eval.png)|If returns `true`|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|If satisfies|
 |`if_cint` (deprecated, use `eval`)|[CINT index](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), value expression|Check `actor` CINT value with expression|If satisfies|
 |`if_cs_get` (deprecated, use `eval`)|C# member name, value expression(optional)|Check `actor` C# class member value with expression. Value expression can be omitted for `bool` members, or a string for `string` members. See [Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html) and its base class [Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|If satisfies|
@@ -127,10 +121,6 @@ There are 3 special composite conditions where you put the above condition as pa
 |`and`|`and(if_flag(flag1, >0), if_flag(flag2, <0))`|If all satisfies|
 |`or`|`or(if_race(lich), if_race(snail))`|If any satisfies|
 |`not`|`not(if_zone(dungeon), if_zone(field), if_zone(underground))`|If none satisfies|
-
-::: tip `if_flag` or `hasFlag`?
-`hasFlag` in `if` column is a static condition, which only gets evaluated **once on drama load**, which means your flag value changes later won't reflect unless using **`reload`** action or **reopening the drama**. CWL's `if_flag()` expansion condition is dynamic and can be used for branching.
-:::
 
 ## Implementing Your Own
 

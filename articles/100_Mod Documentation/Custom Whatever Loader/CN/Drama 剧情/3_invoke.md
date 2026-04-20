@@ -1,21 +1,18 @@
 ---
-title: 剧情拓展
-date: 2025/5/24 01:00
+title: 拓展动作
+author: DK
+date: 2026/4/19 17:00
 hide: true
 ---
 
-## 拓展功能
-
-::: tip 临时版本
-本节文档为临时版本，API可能随时变更。
-:::
+## 拓展动作
 
 CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/API/Drama/Expansions)。
 
 需启用 `Dialog.ExpandedActions` 配置。默认启用。
 
 在剧情表中，你可以使用 CWL 特殊动作 `invoke*` 或者 `i*` 来调用拓展方法：
-![](./assets/dramae_invoke.png)
+![](../../assets/drama/dramae_invoke.png)
 
 ## 参数传递
 
@@ -46,9 +43,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`<5`|判断是否小于 `5`|
 |`<=3`|判断是否小于等于 `3`|
 
-## 拓展方法
-
-### 动作
+## 动作
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
@@ -62,11 +57,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |(推荐使用`eval`)`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
 |(推荐使用`eval`)`emit_call`|ext.方法名|调用一个外部静态方法|总是|
 
-通过 `build_ext` 和 `emit_call` 调用外部程序集方法，需启用 `Dialog.ExpandedActionsAllowExternal` 配置。默认启用。
-
-![](./assets/dramae_ext.png)
-
-### 演出
+## 演出
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
@@ -83,7 +74,7 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`set_sprite`|贴图id(可选)|设置`actor`自定义贴图，为空时重置，由**Texture**文件获取|总是|
 |`show_book`|分类/书籍 id|打开一本书，支持 **LangMod/_*_*/Text** 文件夹；例如 `Text/Book/ok.txt` 将使用 `(Book/ok)`|成功时|
 
-### 修改
+## 修改
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
@@ -97,14 +88,14 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`mod_flag`|flag, 数值表达式|修改`actor`的flag值|总是|
 |`mod_keyitem`|[关键物品alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)，数值表达式(可选)|修改玩家的关键物品值，默认 `=1`|成功时|
 
-### 条件
+## 条件
 
 这些也是拓展方法(通过 `invoke*` 动作调用)，但是它们的返回值可以用于判定 `jump` 跳转。
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展方法![](../../assets/drama_c.png)|如果满足|
-|`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本![](../../assets/drama_eval.png)|返回 `true` 时|
+|`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展方法![](../../assets/drama/drama_c.png)|如果满足|
+|`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本![](../../assets/drama/drama_eval.png)|返回 `true` 时|
 |`if_affinity`|数值表达式|检查`actor`好感度|满足时|
 |(推荐使用`eval`)`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
 |(推荐使用`eval`)`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
@@ -129,10 +120,6 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`and`|`and(if_flag(flag1, >0), if_flag(flag2, <0))`|全部满足时|
 |`or`|`or(if_race(lich), if_race(snail))`|任意满足时|
 |`not`|`not(if_zone(dungeon), if_zone(field), if_zone(underground))`|全部不满足时|
-
-::: tip `if_flag` 还是 `hasFlag`？
-`if` 列中的 `hasFlag` 是一个静态条件，**仅在剧情表加载时判定一次**，这意味着之后更改的flag值不会产生影响，除非使用 **`reload`** 动作或 **重新打开剧情表**。CWL 的 `if_flag()` 扩展条件是动态的，也可以用于剧情分支。  
-:::
 
 ## 实现自定义方法
 
