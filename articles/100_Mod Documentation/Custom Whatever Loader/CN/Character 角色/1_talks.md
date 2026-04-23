@@ -22,7 +22,7 @@ hide: true
 
 ## 对话
 
-想添加一些角色**来聊天吧**时的对话, 可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
+想添加一些角色 **来聊天吧** 时的对话, 可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
 
 ![img](./assets/dialog.png)
 

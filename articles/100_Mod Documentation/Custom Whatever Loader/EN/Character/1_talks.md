@@ -24,7 +24,7 @@ You can also insert [custom sound](../Other/sound) tags in each entry to make it
 
 ## Dialog
 
-To add some chatty texts to the character for the `**Let's Talk**` option, you'll need to have a `dialog.xlsx` sheet in your `LangMod/**/Dialog/` folder.
+To add some chatty texts to the character for the **Let's Talk** option, you'll need to have a `dialog.xlsx` sheet in your `LangMod/**/Dialog/` folder.
 
 ![img](./assets/dialog.png)
 
