@@ -3,20 +3,28 @@ import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";
 
-await generateDiff();
+const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 
-const commit = await (
-  await fetch(
-    "https://api.github.com/repos/Elin-Modding-Resources/Elin.Docs/commits/master"
-  )
-).json();
-const lastUpdate = new Date(commit.commit.author.date)
-  .toISOString()
-  .slice(0, 10);
+if (isCI_GitHub) {
+  await generateDiff();
+}
+
+let commitDate;
+try {
+  const commit = await (
+    await fetch(
+      "https://api.github.com/repos/Elin-Modding-Resources/Elin.Docs/commits/master",
+    )
+  ).json();
+  const dateStr = commit?.commit?.author?.date;
+
+  commitDate = dateStr ? new Date(dateStr) : new Date();
+} catch (e) {
+  commitDate = new Date();
+}
 
 const { sidebar, latest } = await makeSidebar();
-
-const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
+const lastUpdate = commitDate.toISOString().slice(0, 10);
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
