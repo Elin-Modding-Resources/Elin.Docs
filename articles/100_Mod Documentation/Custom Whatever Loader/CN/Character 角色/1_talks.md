@@ -6,11 +6,11 @@ hide: true
 
 ## 头顶气泡（Barks）
 
-在某些情况下, 角色会触发特定的台词，并以气泡形式显示在其头顶。
+在某些情况下，角色会触发特定的台词，并以气泡形式显示在其头顶。
 
 ![](./assets/bark.png)
 
-这些对话写在 **CharaText** 表格中, 而你的角色则在 **idText** 单元格中填入该对话的 ID 将其链接。
+这些对话写在 **CharaText** 表格中，而你的角色则在 **idText** 单元格中填入该对话的 ID 将其链接。
 
 ![](./assets/charatext.png)
 
@@ -22,11 +22,11 @@ hide: true
 
 ## 对话
 
-想添加一些角色 **来聊天吧** 时的对话, 可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
+想添加一些角色 **来聊天吧** 时的对话，可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
 
 ![img](./assets/dialog.png)
 
-此表格的格式与游戏的对话表格 **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx** 相同, 但你只需 `unique` 表格和包含你角色 ID 的那一行。
+此表格的格式与游戏的对话表格 **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx** 相同，但你只需 `unique` 表格和包含你角色 ID 的那一行。
 
 ![](./assets/unique.png)
 
