@@ -6,7 +6,7 @@ date: 2026/4/19 17:00
 tags: Guide/CWL/Drama
 ---
 
-# Drama Scripting
+## Drama Scripting
 
 You can run **C# code** directly in a drama sheet using the `eval` action.
 
@@ -24,7 +24,7 @@ It offers the same scripting power as regular CWL, with these differences:
 
 Import a script file from the same folder with: `<<<script_snippet.cs`
 
-### Passing Variables
+## Passing Variables
 
 Use the shared `Script` dictionary:
 
@@ -37,7 +37,7 @@ Script["random_value"] = value;
 var value = (int)Script["random_value"];
 ```
 
-### Common Examples
+## Common Examples
 
 | Function                        | Code                                              |
 |---------------------------------|---------------------------------------------------|

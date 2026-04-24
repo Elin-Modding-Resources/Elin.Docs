@@ -6,7 +6,7 @@ date: 2026/4/19 17:00
 tags: Guide/CWL/Drama
 ---
 
-# Drama
+## Drama
 
 A drama is the rich dialog that usually has options and additional actions. 
 
