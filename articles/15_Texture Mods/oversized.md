@@ -14,6 +14,6 @@ Default canvas size of 128x128 may not satisfy your drawing needs. When using a 
 |-|-|
 |![](./assets/128c.png)|![](./assets/256c.png)|
 
-For your characters and items to display correctly as icons and avatars, modify `pivotX` and `scaleIcon` accordingly in the [pref file](./pref).
+For your characters and items to display correctly as icons and avatars, adjust `pivotX`, `pivotY`, and `scaleIcon` accordingly in the [pref file](./pref).
 
 > 256 Art by Veila

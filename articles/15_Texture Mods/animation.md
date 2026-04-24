@@ -30,4 +30,4 @@ This defines an animation with 6 frames at a 66 ms interval.
 
 ## Variation
 
-You can use [Variations](./variation) with animated sprites for automatic switching.
+You can use [variations](./variation) with animated sprites for automatic switching.
