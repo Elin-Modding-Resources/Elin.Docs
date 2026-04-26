@@ -1,24 +1,23 @@
 ---
-title: New Sound
-description: Add new sounds from file
+title: 音声
 date: 2025/1/3 01:00
 hide: true
 ---
 
-## Custom Sound
+## 音声
 
-Sound files should be in one of **acc**, **mp3**, **ogg**, **wav** formats, with the filename serving as the sound ID. A default metadata JSON is generated upon **using the sound**, allowing you to edit and apply sound file metadata on the next game launch.
+オーディオファイルは **acc**、**mp3**、**ogg**、**wav** 形式で、ファイル名がオーディオIDとして使用されます。音声を使用すると、デフォルトの同名メタデータJSONが生成され、編集して次回ゲーム起動時に音声ファイルのメタデータを適用することができます。
 
-By setting **"type"**: **"BGM"** in the metadata, the sound file will be instantiated as **BGMData** instead of **SoundData**. You can also customize the BGM parts in the metadata.
+メタデータで"type": "BGM"を設定すると、オーディオは**BGMData**としてではなく**SoundData**としてインスタンス化されます。また、メタデータ内でBGMの小節部分をカスタマイズすることもできます。
 
-Subdirectories in the **Sound** folder will serve as ID prefixes. For example, **AI_PlayMusic** will use **Instrument/sound_id**, so you should place the sound file in the `Instrument` folder if you plan to replace instrument sounds.
+**同じIDを使用して、既存のゲーム内音声を上書きすることができます**。例えば、ひよこの鳴き声はID **Animal/Chicken/chicken**を使用しているので、**Sound/Animal/Chicken/**フォルダーに**chicken**という名前の音声ファイルを用意して上書きすることができます。
 
-**You can override existing in-game sounds using the same ID**. For example, chicken uses sound ID **Animal/Chicken/chicken**, if you want to replace this sound, you should put your sound file named **chicken** with one of the supported formats, in **Sound/Animal/Chicken/** folder.
+**Sound**フォルダー内のサブディレクトリはオーディオIDのプレフィックスとして使用されます。たとえば、`AI_PlayMusic`は`Instrument/sound_id`を使用するため、楽器音楽を置き換える場合は、同名のオーディオファイルを`Instrument`フォルダーに配置してください。
 
-Sounds can be used in the game via sound ID.
-
+例：
 ![](./assets/clown_horn.png)
 ```cs
 pc.PlaySound("clown_horn"); // <- Card.PlaySound
 SE.PlaySound("clown_horn");
 ```
+---

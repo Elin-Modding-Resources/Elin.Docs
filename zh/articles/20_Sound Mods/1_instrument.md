@@ -7,8 +7,6 @@ hide: true
 
 ## 自定义乐器音乐
 
-由于 **[Custom Instrument Track](https://steamcommunity.com/sharedfiles/filedetails/?id=3374708172)** 这个模组目前未维护，以下是如何使用 CWL 手动替换乐器音轨的方法：
-
 首先，在 **Sound/Instrument** 文件夹中准备一个音效文件，文件名请使用以下音频ID之一：
 
 如果您要制作一个**新的**乐器，请使用该乐器的ID（Thing ID）作为音频ID。

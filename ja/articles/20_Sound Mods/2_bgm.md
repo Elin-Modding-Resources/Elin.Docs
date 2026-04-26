@@ -1,32 +1,30 @@
 ---
-title: Add & Replace BGM
+title: BGMの追加
 description: Add or replace in game BGMs
 date: 2025/1/3 01:00
 hide: true
 ---
 
-## Custom BGM
+## カスタムBGM/プレイリスト
 
-Game comes with 100+ BGMs, they are defined by a numeric ID and sound file ID. You may check them out here:
-::: details BGM Items
-|bgm ID|sound ID|bgm name|
+ゲームには100以上のBGMが含まれており、それぞれに数字IDと音声IDがあります。
+::: details BGM
+|BGM ID|音频 ID|BGM 名称|
 <!--@include: ./assets/bgm_items.md-->
 :::
 
-## Add New BGM
+## 新しいBGMの追加
 
-Custom BGMs are placed in the **Sound/BGM** sub folder, unlike custom sounds, you need to manually edit the `id` field in the metadata JSON. Be sure to launch game once to generate the JSON files first.
+カスタムBGMは **Sound/BGM** サブフォルダーに配置されます。カスタム音效とは異なり、メタデータJSONの `id` フィールドを手動で編集する必要があります。
 
-Using **ogg** format is recommended for streaming loading and avoiding codec errors.
+デコードエラーを回避し、ストリーミングを可能にするため、**ogg**形式を使用することをお勧めします。
 
 ![](./assets/new_bgm.png)
 
-The `id` is an arbitrary number, set it to larger than what game uses and make it less likely to collide with other BGM's ID. 
+`id` は任意のユニークな数字で、ゲームで最後に使用されたBGM ID（`117`）より大きく、衝突を避けるために十分ユニークである必要があります。
 
-**Important to note,** this `id` is purely for the BGM. Your sound ID is still the file name without extension, e.g. **`BGM/MySoundFile`**
+**重要な注意事項、** この `id` はBGM専用です。音效のIDは拡張子なしのファイル名のままです, e.g. **`BGM/Happy Birthday`**
 
-## Replace Ingame BGM
+既存のIDをBGMに割り当てると、そのBGMはゲーム全体のBGMを置き換えるものとして機能します。例えば、BGMのメタデータJSONにID「56」を割り当てると、ゲーム内のBGM「056 orc01」がそのBGMに置き換わります。これが、新規に追加するBGM（既存の置き換えを目的としないもの）には必ず固有のIDを使用すべき理由です。そうしなければ、同じIDを持つ別のBGMが後から読み込まれた際に、あなたのBGMが上書きされてしまうことになります。
 
-When you assign an existing ID to your BGM, then it becomes a global BGM replacement. E.g. Assigning ID `56` to the song metadata JSON, it will replace the in game BGM `056 orc01`. This is why you want your new BGM (non-replacement ones) to use a unique ID, otherwise the next BGM with the same ID will replace yours.
-
-> `056 orc01` is the title menu BGM.
+> 「056 orc01」はタイトルメニューのBGMです。
