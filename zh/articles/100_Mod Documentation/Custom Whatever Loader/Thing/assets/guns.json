@@ -1,0 +1,128 @@
+{
+    "gun": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        }
+    },
+    "gun_assault": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_assault",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.48,
+            "y": 0.04
+        }
+    },
+    "bow": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_arrow",
+        "IdSound": "attack_bow",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "gun_rail": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "",
+        "IdSound": "attack_gun_rail",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "cane": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_cane",
+        "IdSound": "attack_cane",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "windbow": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_arrow_wind",
+        "IdSound": "attack_windbow",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "gun_mani": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun",
+        "IdSound": "attack_gun_shotgun",
+        "IdSoundEject": "bullet_drop",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        }
+    },
+    "gun_laser": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "",
+        "IdSound": "attack_gun_laser",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "panzerfaust": {
+        "Num": 1,
+        "Delay": 0.01,
+        "IdEffect": "gunfire",
+        "IdSprite": "ranged_gun_rocket",
+        "IdSound": "attack_gun_rocket",
+        "Eject": false,
+        "FirePos": {}
+    },
+    "gun_laser_assault": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_gun_laser",
+        "IdSound": "attack_gun_laser_assault",
+        "Eject": false,
+        "FirePos": {
+            "x": 0.28,
+            "y": 0.2
+        }
+    },
+    "shotgun": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_fun",
+        "IdSound": "attack_gun_shotgun",
+        "Eject": false,
+        "FirePos": {
+            "x": 0.3,
+            "y": 0.18
+        }
+    },
+    "sling": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "",
+        "IdSprite": "ranged_stone",
+        "IdSound": "throw",
+        "Eject": false,
+        "FirePos": {}
+    }
+}

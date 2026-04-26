@@ -1,6 +1,11 @@
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 
-export function makeNavBar(lastUpdated: string, diffVer: string) {
+export function makeNavBar(
+  lastUpdated: string,
+  diffVer: string,
+  locale: string = "en",
+) {
+  const base = locale === "en" ? "" : `/${locale}`;
   return [
     {
       text: lastUpdated,
@@ -8,13 +13,13 @@ export function makeNavBar(lastUpdated: string, diffVer: string) {
     },
     {
       text: "📖 Archive",
-      link: "/articles/archive",
-      activeMatch: "/articles/",
+      link: `${base}/articles/archive`,
+      activeMatch: `${base}/articles/`,
     },
     {
       text: `🛠️ ${diffVer}`,
-      link: "/diff/diffview",
-      activeMatch: "/diff/",
+      link: `${base}/diff/diffview`,
+      activeMatch: `${base}/diff/`,
     },
     {
       text: "📝 Elin Decompiled",

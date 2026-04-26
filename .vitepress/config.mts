@@ -23,8 +23,11 @@ try {
   commitDate = new Date();
 }
 
-const { sidebar, latest } = await makeSidebar();
 const lastUpdate = commitDate.toISOString().slice(0, 10);
+
+const enData = await makeSidebar("en");
+const jaData = await makeSidebar("ja");
+const zhData = await makeSidebar("zh");
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -35,15 +38,54 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
 
+  locales: {
+    root: {
+      label: "English",
+      lang: "en",
+      themeConfig: {
+        nav: makeNavBar(lastUpdate, enData.latest, "en"),
+        sidebar: enData.sidebar,
+        editLink: {
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          text: "Edit this page",
+        },
+      },
+    },
+    ja: {
+      label: "日本語",
+      lang: "ja",
+      themeConfig: {
+        nav: makeNavBar(lastUpdate, jaData.latest, "ja"),
+        sidebar: jaData.sidebar,
+        editLink: {
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          text: "このページを編集",
+        },
+      },
+    },
+    zh: {
+      label: "简体中文",
+      lang: "zh",
+      themeConfig: {
+        nav: makeNavBar(lastUpdate, zhData.latest, "zh"),
+        sidebar: zhData.sidebar,
+        editLink: {
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          text: "编辑页面",
+        },
+      },
+    },
+  },
+
   markdown: {
     lineNumbers: true,
   },
 
   themeConfig: {
     logo: "/community-icon.png",
-
-    sidebar: sidebar,
-    nav: makeNavBar(lastUpdate, latest),
 
     search: {
       provider: "algolia",
@@ -52,12 +94,6 @@ export default defineConfig({
         apiKey: "411a331d698a1a4bd856c0960fc06ee2",
         indexName: "elin-modding-resourcesio",
       },
-    },
-
-    editLink: {
-      pattern:
-        "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
-      text: "Edit Page",
     },
 
     socialLinks: [

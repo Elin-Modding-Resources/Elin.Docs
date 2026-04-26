@@ -2,18 +2,19 @@ import { readdirSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export async function makeSidebar() {
-  const { diff, latest } = getDiff();
+export async function makeSidebar(locale: string = "en") {
+  const base = locale === "en" ? "" : `/${locale}`;
+  const { diff, latest } = getDiff(base);
   return {
     sidebar: {
-      "/articles/": getArticles(),
-      "/diff/": diff,
+      [`${base}/articles/`]: getArticles(base),
+      [`${base}/diff/`]: diff,
     },
     latest: latest,
   };
 }
 
-function getArticles() {
+function getArticles(base: string = "") {
   const articleDir = path.join(process.cwd(), "/articles");
 
   const dirs: string[] = readdirSync(articleDir, { withFileTypes: true })
@@ -28,7 +29,7 @@ function getArticles() {
     const group = dir.split("_")[1];
 
     const fullDir = path.join(articleDir, dir);
-    let items = generateItems(fullDir, dir);
+    let items = generateItems(fullDir, dir, base);
 
     if (items.length == 0) {
       continue;
@@ -45,7 +46,7 @@ function getArticles() {
   return sidebar;
 }
 
-function generateItems(fullDir: string, dir: string) {
+function generateItems(fullDir: string, dir: string, base: string = "") {
   const articles = readdirSync(fullDir, { withFileTypes: true });
 
   let items: any[] = [];
@@ -54,7 +55,7 @@ function generateItems(fullDir: string, dir: string) {
     if (article.isDirectory() && article.name.toLowerCase() != "assets") {
       items.push({
         text: article.name.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
-        items: generateItems(currentPath, `${dir}/${article.name}`),
+        items: generateItems(currentPath, `${dir}/${article.name}`, base),
         collapsed: true,
       });
     }
@@ -66,8 +67,10 @@ function generateItems(fullDir: string, dir: string) {
       }
 
       items.push({
-        text: data.title.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
-        link: `/articles/${dir}/${article.name}`,
+        text: data.title.replace(/^(.)|\s+(.)/g, (c: string) =>
+          c.toUpperCase(),
+        ),
+        link: `${base}/articles/${dir}/${article.name}`,
         time: +new Date(data.date).getTime(),
       });
     }
@@ -77,7 +80,7 @@ function generateItems(fullDir: string, dir: string) {
   return items;
 }
 
-function getDiff() {
+function getDiff(base: string = "") {
   const diffDir = path.join(process.cwd(), "/diff");
   const diffs = readdirSync(diffDir, { withFileTypes: true })
     .filter((d) => d.isFile())
@@ -93,7 +96,7 @@ function getDiff() {
     let items: any[] = [
       {
         text: "Important Changes",
-        link: `/diff/${diff}#important-changes`,
+        link: `${base}/diff/${diff}#important-changes`,
       },
     ];
     for (const file of files) {
@@ -103,12 +106,14 @@ function getDiff() {
         .replace(/[\s_.]/g, "-");
       items.push({
         text: file,
-        link: `/diff/${diff}#${normalized}`,
+        link: `${base}/diff/${diff}#${normalized}`,
       });
     }
 
     sidebar.push({
-      text: data.version.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()).trim(),
+      text: data.version
+        .replace(/^(.)|\s+(.)/g, (c: string) => c.toUpperCase())
+        .trim(),
       items: items,
       collapsed: true,
     });
@@ -119,9 +124,9 @@ function getDiff() {
       const afterEA = (text.split("EA ")[1] || "").trim();
       const versions = afterEA.match(/\d+/g) || [];
       return [
-        parseInt(versions[0], 10) || 0,
-        parseInt(versions[1], 10) || 0,
-        parseInt(versions[2], 10) || 0,
+        parseInt(versions[0] || "0", 10),
+        parseInt(versions[1] || "0", 10),
+        parseInt(versions[2] || "0", 10),
       ];
     };
 
@@ -149,7 +154,7 @@ function getDiff() {
     }
 
     const parent = grouped.filter(
-      (version) => version.text === parentVersion[1]
+      (version) => version.text === parentVersion[1],
     );
     if (parent.length == 0) {
       continue;

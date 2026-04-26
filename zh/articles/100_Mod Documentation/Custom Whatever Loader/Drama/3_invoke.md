@@ -1,0 +1,126 @@
+---
+title: 拓展动作
+author: DK
+date: 2026/4/19 17:00
+hide: true
+---
+
+## 拓展动作
+
+CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/API/Drama/Expansions)。
+
+需启用 `Dialog.ExpandedActions` 配置。默认启用。
+
+在剧情表中，你可以使用 CWL 特殊动作 `invoke*` 或者 `i*` 来调用拓展方法：
+![](./assets/dramae_invoke.png)
+
+## 参数传递
+
+使用 `,` **半角逗号**分隔参数：
+
+|action|param|actor|
+|-|-|-|
+|`invoke*`/`i*`|honk_honk(arg1, arg2)|`pc`|
+
+大多数方法还会将 `actor` 单元格作为目标角色来执行该方法，例如 `pc` 或 `tg`（剧情绑定角色），或任何有效的[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)。为空时默认指定 `tg`。
+
+若同一行中的 `jump` 格存在值，则拓展方法的返回值将决定是否执行该 `jump` 指令。返回 `true` 时会执行跳转，反之则不执行。
+
+**数值表达式**: `+5`, `*10`, `=69`, `!=114` 等用于判定或赋值的表达式。
+
+|表达式示例|含义说明|
+|-|-|
+|`69`|赋值为 `69`|
+|`=69`|赋值为 `69`|
+|`+5`|在原值基础上增加 `5`|
+|`-3`|在原值基础上减少 `3`|
+|`*10`|在原值基础上乘以 `10`|
+|`/2`|在原值基础上除以 `2`|
+|`==69`|判断是否等于 `69`|
+|`!=114`|判断是否不等于 `114`|
+|`>10`|判断是否大于 `10`|
+|`>=20`|判断是否大于等于 `20`|
+|`<5`|判断是否小于 `5`|
+|`<=3`|判断是否小于等于 `3`|
+
+## 动作
+
+|方法|参数|说明|跳转条件|
+|-|-|-|-|
+|`add_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [材质alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(可选), 等级(可选), 数量(可选)|为`actor`添加指定物品，默认随机材质，自动等级，数量 `1`|总是|
+|`equip_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), [材质alias](https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=33087043#gid=33087043)(可选), 等级(可选)|为`actor`装备指定物品，默认随机材质，自动等级|总是|
+|`join_party`||使`actor`加入队伍|总是|
+|`join_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062)(可选)|使`actor`加入信仰，为空时则退出当前信仰|成功时|
+|`apply_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)，强度|为`actor`施加状态|总是|
+|`cure_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`治愈状态|成功时|
+|`remove_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|为`actor`移除状态|总是|
+|(推荐使用`eval`)`build_ext`|程序集名称|尽可能地将指定程序集中的方法添加至剧情拓展表|成功时|
+|(推荐使用`eval`)`emit_call`|ext.方法名|调用一个外部静态方法|总是|
+
+## 演出
+
+|方法|参数|说明|跳转条件|
+|-|-|-|-|
+|`move_next_to`|[角色id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1622484657#gid=1622484657)|使`actor`移动到**同地图角色**身旁|总是|
+|`move_tile`|X, Y偏移|使`actor`进行**相对坐标**移动，例如 `1,1`|总是|
+|`move_to`|X, Y|使`actor`进行**绝对坐标**移动，例如 `1,1`|总是|
+|`move_zone`|[区域id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752)，层数(可选)|传送`actor`到指定区域，默认 `0` 层|总是|
+|`play_anime`|[动画id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|使`actor`执行动画|总是|
+|`play_effect`|[特效id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|使`actor`播放特效|总是|
+|`play_emote`|[表情id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|使`actor`显示表情|总是|
+|`play_screen_effect`|[屏幕特效id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
+|`pop_text`|文本|使`actor`发出喊叫文本(气泡框)|总是|
+|`set_portrait`/`portrait_set`|立绘id(可选)|设置`actor`对话立绘，为空时重置，支持**Portrait**文件夹自定义立绘，例如 `UN_myChara_happy.png` 则使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_sprite`|贴图id(可选)|设置`actor`自定义贴图，为空时重置，由**Texture**文件获取|总是|
+|`show_book`|分类/书籍 id|打开一本书，支持 **LangMod/_*_*/Text** 文件夹；例如 `Text/Book/ok.txt` 将使用 `(Book/ok)`|成功时|
+
+## 修改
+
+|方法|参数|说明|跳转条件|
+|-|-|-|-|
+|`console_cmd`|控制台命令 参数1 参数2...|执行控制台命令|总是|
+|`destroy_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), 数量|从`actor`库存删除指定数量的物品|总是|
+|`mod_affinity`|数值表达式|调整`actor`好感度|成功时|
+|`mod_currency`|货币种类, 数值表达式|为`actor`修改指定的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|总是|
+|`mod_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 强度(可选)|为`actor`修改指定元素(特质/抗性/技能等)，默认强度 `1`，不同类型的元素使用的强度不同|总是|
+|`mod_element_exp`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727)，数值表达式|为`actor`修改指定元素的经验值|成功时|
+|`mod_fame`|数值表达式|修改玩家的名声|总是|
+|`mod_flag`|flag, 数值表达式|修改`actor`的flag值|总是|
+|`mod_keyitem`|[关键物品alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107)，数值表达式(可选)|修改玩家的关键物品值，默认 `=1`|成功时|
+
+## 条件
+
+这些也是拓展方法(通过 `invoke*` 动作调用)，但是它们的返回值可以用于判定 `jump` 跳转。
+
+|方法|参数|说明|跳转条件|
+|-|-|-|-|
+|`choice`|扩展条件|有条件地启用一个选择行，例如 `choice(if_lv(>=10))`。**推荐**使用 `choice` 动作（而不是 `invoke*`）并将 param 设置为扩展方法![](./assets/drama_c.png)|如果满足|
+|`eval`|C# 脚本|执行 C# 脚本或文件，使用 `<<<path.cs` 语法。**推荐**使用 `eval` 动作（而不是 `invoke*`）并将 param 设置为 C# 脚本![](./assets/drama_eval.png)|返回 `true` 时|
+|`if_affinity`|数值表达式|检查`actor`好感度|满足时|
+|(推荐使用`eval`)`if_cint`|[CINT序号](https://elin-modding-resources.github.io/Elin-Decompiled/classCINT.html), 数值表达式|检查`actor`是否拥有符合的CINT值|满足时|
+|(推荐使用`eval`)`if_cs_get`|C#类成员名称, 数值表达式(可选)|检查`actor`C#类成员的值, 请查阅[Chara](https://elin-modding-resources.github.io/Elin-Decompiled/classChara.html)以及其基类[Card](https://elin-modding-resources.github.io/Elin-Decompiled/classCard.html)|满足时|
+|`if_condition`|[状态alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=921112246#gid=921112246)|检查`actor`是否拥有状态|满足时|
+|`if_currency`|货币种类, 数值表达式|检查`actor`是否拥有符合的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|满足时|
+|`if_element`|[元素alias](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1766305727#gid=1766305727), 数值表达式|检查`actor`是否拥有符合的元素|满足时|
+|`if_faith`|[信仰id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=729486062#gid=729486062), 奉献等级(可选)|检查`actor`是否加入特定信仰且不少于特定等级，默认 `0` 级|满足时|
+|`if_fame`|数值表达式|检查玩家名声|满足时|
+|`if_flag`|flag, 数值表达式|检查`actor`的flag值|满足时|
+|`if_has_item`|[物品id](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439), 数值表达式(可选)|检查`actor`是否拥有符合表达式的物品数量，默认 `>=1`|满足时|
+|`if_hostility`|阵营数值表达式|检查`actor`的阵营是否符合特定条件，例如 `=Ally`，`>Enemy`。阵营值从小到大依次为 `Enemy`, `Neutral`, `Friend`, `Ally`|满足时|
+|`if_in_party`||检查`actor`是否在玩家队伍中|满足时|
+|`if_keyitem`|[关键物品alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数值表达式(可选)|检查玩家是否拥有符合表达式的关键物品值，默认 `>0`|满足时|
+|`if_race`|[种族id](https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=140821251#gid=140821251)|检查`actor`是否为对应种族|满足时|
+|`if_tag`|标签|检查`actor`是否拥有标签|满足时|
+|`if_zone`|[区域id](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752), 层数(可选)|检查`actor`所在区域|满足时|
+
+有三种特殊的复合条件，它们将上述条件作为参数：
+
+|方法|示例|跳转条件|
+|-|-|-|
+|`and`|`and(if_flag(flag1, >0), if_flag(flag2, <0))`|全部满足时|
+|`or`|`or(if_race(lich), if_race(snail))`|任意满足时|
+|`not`|`not(if_zone(dungeon), if_zone(field), if_zone(underground))`|全部不满足时|
+
+## 实现自定义方法
+
+CWL 提供了[简单的 API](../API/Custom/drama)，允许您在自己的脚本 DLL 中添加拓展方法，甚至无需引用 CWL 的程序集。

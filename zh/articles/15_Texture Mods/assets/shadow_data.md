@@ -1,0 +1,39 @@
+|id|name|
+|-|-|
+|0|default|
+|1|no shadow|
+|17|pillar|
+|18|altar|
+|19|cabinet|
+|20|bed|
+|21|counter|
+|22|gacha|
+|23|tree|
+|24|screen|
+|25|safe|
+|26|vendor|
+|27|straw|
+|28|grave|
+|29|thin|
+|30|tree0|
+|31|tree1|
+|32|tree2|
+|33|tree3|
+|34|tree4|
+|35|tree5|
+|36|tree6|
+|37|pillar|
+|38|big table|
+|39|big table2|
+|40|counter2|
+|41|door|
+|42|thin2|
+|43|square|
+|44|boss1|
+|45|boss2|
+|47|corner|
+|48|ceil|
+|49|big|
+|50|bridge|
+|51|long|
+|52|long2|
