@@ -2,6 +2,6 @@
 exclude: true
 ---
 
-# 归档（最近更新）
+# 归档（时间顺序）
 
 <CardContainer/>
