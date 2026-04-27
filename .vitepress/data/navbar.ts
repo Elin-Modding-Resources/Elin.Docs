@@ -6,13 +6,37 @@ export function makeNavBar(
   locale: string = "en",
 ) {
   const base = locale === "en" ? "" : `/${locale}`;
+
+  const getText = (key: string): string => {
+    const translations: Record<string, Record<string, string>> = {
+      en: {
+        archive: "📖 Archive",
+        decompiled: "📝 Elin Decompiled",
+        sources: "📗 Elin Sources",
+      },
+      ja: {
+        archive: "📖 アーカイブ",
+        decompiled: "📝 Elin Decompiled",
+        sources: "📗 Elin ソース",
+      },
+      zh: {
+        archive: "📖 目录",
+        decompiled: "📝 Elin 反编译",
+        sources: "📗 Elin 源表",
+      },
+    };
+
+    const lang = locale === "zh" || locale === "ja" ? locale : "en";
+    return translations[lang]?.[key] || translations.en[key] || key;
+  };
+
   return [
     {
       text: lastUpdated,
       link: "https://github.com/Elin-Modding-Resources/Elin.Docs/commits/master/",
     },
     {
-      text: "📖 Archive",
+      text: getText("archive"),
       link: `${base}/articles/archive`,
       activeMatch: `${base}/articles/`,
     },
@@ -22,13 +46,13 @@ export function makeNavBar(
       activeMatch: `${base}/diff/`,
     },
     {
-      text: "📝 Elin Decompiled",
+      text: getText("decompiled"),
       link: isCI_GitHub
         ? "https://elin-modding-resources.github.io/Elin-Decompiled/"
         : "https://code.elin-modding.net/",
     },
     {
-      text: "📗 Elin Sources",
+      text: getText("sources"),
       items: [
         {
           text: "Lang",
