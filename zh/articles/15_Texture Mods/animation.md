@@ -8,11 +8,11 @@ tags: Texture/Animation
 
 # 准备工作
 
-要将静态贴图转换为动图，你需要提供一张水平精灵表（Sprite Sheet）以及一个 `.ini` 文件。
+要将静态贴图转换为动图，你需要提供一张水平排列的精灵表（Sprite Sheet）以及一个 `.ini` 文件。
 
 `.ini` 的文件名、水平精灵表图片的文件名、加载mod的Excel表里的id列，这三者应一致。
 
-水平精灵表示例：
+精灵表例子：
 
 ![](./assets/boxchicken.png)
 
