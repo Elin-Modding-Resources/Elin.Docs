@@ -6,11 +6,15 @@ date: 2026/4/9 8:00
 tags: Texture/Pref
 ---
 
-# Pref File
+# Pref 文件
 
-Sometimes the default rendering settings for your sprites may not be ideal. Customize them by creating a `.pref` file with the same filename as your sprite.
+通过 `.pref` 文件可以微调贴图、阴影、居民告示板上NPC头像小图标等等。
 
-Open it with Notepad or any text editor; it uses INI format.
+有时，贴图的默认渲染设置可能并不理想。您可以创建一个与贴图同名的 `.pref` 文件来自定义渲染。
+
+使用记事本即可打开或书写，该文件采用 INI 格式，保存时改后缀即可。其他文本编辑器也可。
+
+注意：`.pref` 的文件名、贴图图片的文件名、加载mod的Excel表里的id列，这三者应一致，
 
 ```ini
 x = 0
@@ -38,24 +42,24 @@ equipY = 0
 stackX = 0
 ```
 
-You may omit any unused fields. `;` comments can also be used.
+您可以省略任何未使用的行。英文分号 `;` 开头的注释也可以使用。
 
-+ `x`, `y`, `z` position offset
-+ `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
-+ `shadow` ShadowData id
-+ `shadowX`, `shadowY` shadow position offset
-+ `shadowRX`, `shadowRY` shadow reverse
-+ `shadowBX`, `shadowBY` shadow back
-+ `shadowBRX`, `shadowBRY` shadow back reverse
-+ `height` tile height modifier
-+ `heightFix` text component height offset (floating little widgets)
-+ `scaleIcon` icon size scaling
-+ `liquidMod` tile liquid level modifier; can be negative
-+ `liquidModMax` tile liquid level max
-+ `hatY` hat renderer y position offset
-+ `equipX`, `equipY` held position offset 
-+ `stackX` tile stacking x position offset
++ `x`, `y`, `z` 位置偏移量
++ `pivotX`, `pivotY` 中心点（Pivot）偏移量，如：居民告示板上角色的头像小图标
++ `shadow` 阴影数据（ShadowData）ID
++ `shadowX`, `shadowY` 阴影位置偏移量
++ `shadowRX`, `shadowRY` 阴影反向偏移量
++ `shadowBX`, `shadowBY` 阴影背面偏移量
++ `shadowBRX`, `shadowBRY` 阴影背面反向偏移量
++ `height` 地块高度修正值
++ `heightFix` 文本组件高度偏移（用于悬浮的小部件）
++ `scaleIcon` 图标缩放比例
++ `liquidMod` 地块液体高度修正值（可为负）
++ `liquidModMax` 地块液体高度上限
++ `hatY` 帽子渲染器的 Y 轴偏移量
++ `equipX`, `equipY` 手持物位置偏移量
++ `stackX` 地块堆叠的 X 轴偏移量
 
-## Shadow Data ID
+## 阴影数据 ID
 
 <!--@include: ./assets/shadow_data.md-->
