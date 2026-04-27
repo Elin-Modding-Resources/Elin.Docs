@@ -8,7 +8,9 @@ tags: Texture/Skin
 
 # Skin文件夹
 
-放在这里的贴图，可以用于游戏内→ 居民告示板 → 改变贴图。此改变贴图功能，只会改变某一个NPC贴图，而不改变某一类NPC贴图。
+放在这里的贴图，可以用于游戏内→ 居民告示板 → **改变贴图**。
+
+此**改变贴图**功能，只会改变某一个NPC贴图，而不改变某一类NPC贴图。
 
 + **位置：** `%localappdata%low\Lafrontier\Elin\Custom\Skin`
 + **打开方式：** 游戏内按 Esc → 工具 → 打开自定义文件夹（即Custom文件夹） → Skin
