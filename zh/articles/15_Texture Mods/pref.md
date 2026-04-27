@@ -46,7 +46,7 @@ stackX = 0
 
 + `x`, `y`, `z` 位置偏移量
 + `pivotX`, `pivotY` 中心点（Pivot）偏移量，如：居民告示板上角色的头像小图标
-+ `shadow` 阴影数据（ShadowData）ID
++ `shadow` 阴影数据 ID （见下面章节）
 + `shadowX`, `shadowY` 阴影位置偏移量
 + `shadowRX`, `shadowRY` 阴影反向偏移量
 + `shadowBX`, `shadowBY` 阴影背面偏移量
