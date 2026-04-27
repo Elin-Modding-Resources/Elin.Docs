@@ -1,5 +1,5 @@
 ---
-title: Sprite Customization
+title: 贴图渲染自定义（Pref）
 author: DK
 description: Details of .pref file to customize your sprite.
 date: 2026/4/9 8:00
