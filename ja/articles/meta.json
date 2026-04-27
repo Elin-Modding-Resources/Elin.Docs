@@ -1,0 +1,98 @@
+{
+    "1_About Wiki": {
+        "text": "Wiki について",
+        "collapsed": true
+    },
+    "2_Getting Started": {
+        "text": "クイックスタート",
+        "collapsed": false,
+        "items": {
+            "Script Mods": {
+                "text": "スクリプトMOD",
+                "collapsed": true
+            }
+        }
+    },
+    "3_Making A Source Sheet Mod WIP": {
+        "text": "ソースシートMODの作成",
+        "collapsed": true
+    },
+    "10_Source Sheets": {
+        "text": "ソースシート",
+        "collapsed": true
+    },
+    "15_Texture Mods": {
+        "text": "テクスチャMOD",
+        "collapsed": true
+    },
+    "20_Sound Mods": {
+        "text": "サウンドMOD",
+        "collapsed": true
+    },
+    "50_Patching": {
+        "text": "パッチ適用",
+        "collapsed": true,
+        "items": {
+            "Transpiler 101": {
+                "text": "トランスパイラ入門",
+                "collapsed": true
+            },
+            "Transpiler Examples": {
+                "text": "トランスパイラ例",
+                "collapsed": true
+            }
+        }
+    },
+    "100_Mod Documentation": {
+        "text": "MODドキュメント",
+        "collapsed": true,
+        "items": {
+            "Custom Whatever Loader": {
+                "text": "CWLローダー",
+                "collapsed": true,
+                "items": {
+                    "API": {
+                        "text": "API",
+                        "collapsed": true
+                    },
+                    "Character": {
+                        "text": "キャラクター",
+                        "collapsed": true
+                    },
+                    "Drama": {
+                        "text": "ドラマ",
+                        "collapsed": true
+                    },
+                    "Element": {
+                        "text": "エレメント",
+                        "collapsed": true
+                    },
+                    "Other": {
+                        "text": "その他",
+                        "collapsed": true
+                    },
+                    "Thing": {
+                        "text": "アイテム",
+                        "collapsed": true
+                    },
+                    "Tutorials": {
+                        "text": "チュートリアル",
+                        "collapsed": true
+                    }
+                }
+            },
+            "Emmersive": {
+                "text": "Elin with AI/Emmersive",
+                "collapsed": true
+            },
+            "Mod Help": {
+                "text": "MODヘルプ",
+                "collapsed": true
+            },
+            "Texture Expand": {
+                "text": "テクスチャ拡張",
+                "collapsed": true
+            }
+        }
+    }
+}

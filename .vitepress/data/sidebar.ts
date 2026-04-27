@@ -1,86 +1,126 @@
-import { readdirSync } from "fs";
+import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
 
 export async function makeSidebar(locale: string = "en") {
   const base = locale === "en" ? "" : `/${locale}`;
-  const { diff, latest } = getDiff(base);
+  const { diff, latest } = getDiff();
   return {
     sidebar: {
-      [`${base}/articles/`]: getArticles(base),
+      [`${base}/articles/`]: getArticles(locale, base),
       [`${base}/diff/`]: diff,
     },
     latest: latest,
   };
 }
 
-function getArticles(base: string = "") {
-  const articleDir = path.join(process.cwd(), "/articles");
-
-  const dirs: string[] = readdirSync(articleDir, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .filter((d) => d.name.includes("_"))
-    .sort((a, b) => Number(a.name.split("_")[0]) - Number(b.name.split("_")[0]))
-    .map((f) => f.name);
-
-  let sidebar: {}[] = [];
-
-  for (const dir of dirs) {
-    const group = dir.split("_")[1];
-
-    const fullDir = path.join(articleDir, dir);
-    let items = generateItems(fullDir, dir, base);
-
-    if (items.length == 0) {
-      continue;
-    }
-
-    const name = group.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
-    sidebar.push({
-      text: name,
-      items: items,
-      collapsed: name != "Getting Started",
-    });
+function loadMeta(articleDir: string) {
+  try {
+    const metaPath = path.join(articleDir, "meta.json");
+    return JSON.parse(readFileSync(metaPath, "utf-8")) as Record<string, any>;
+  } catch (e) {
+    console.warn(`[Sidebar] meta.json not found`);
+    return {};
   }
-
-  return sidebar;
 }
 
-function generateItems(fullDir: string, dir: string, base: string = "") {
-  const articles = readdirSync(fullDir, { withFileTypes: true });
+export function getArticles(locale: string, base: string = "") {
+  const articleDir =
+    locale === "en"
+      ? path.join(process.cwd(), "articles")
+      : path.join(process.cwd(), locale, "articles");
+  const meta = loadMeta(articleDir);
+  const topDirs = readdirSync(articleDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && d.name.includes("_"))
+    .sort((a, b) => Number(a.name.split("_")[0]) - Number(b.name.split("_")[0]))
+    .map((d) => d.name);
 
-  let items: any[] = [];
-  for (var article of articles) {
-    const currentPath = path.join(fullDir, article.name);
-    if (article.isDirectory() && article.name.toLowerCase() != "assets") {
+  return topDirs.map((dir) => {
+    const fullPath = path.join(articleDir, dir);
+    const items = buildSidebarItems(
+      fullPath,
+      dir,
+      base,
+      locale,
+      meta[dir]?.items || {},
+    );
+
+    const metaConfig = meta[dir] || {};
+    const text =
+      metaConfig.text ||
+      dir
+        .split("_")
+        .slice(1)
+        .join(" ")
+        .replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
+
+    return {
+      text,
+      items,
+      collapsed: metaConfig.collapsed ?? true,
+    };
+  });
+}
+
+function buildSidebarItems(
+  fullDir: string,
+  dirKey: string,
+  base: string,
+  locale: string,
+  metaItems: Record<string, any> = {},
+): any[] {
+  const entries = readdirSync(fullDir, { withFileTypes: true });
+  const items: any[] = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(fullDir, entry.name);
+
+    if (entry.isDirectory() && entry.name.toLowerCase() !== "assets") {
+      const childMeta = metaItems[entry.name] || {};
+      const childItems = buildSidebarItems(
+        entryPath,
+        `${dirKey}/${entry.name}`,
+        base,
+        locale,
+        childMeta.items || {},
+      );
+
+      const text =
+        childMeta.text ||
+        entry.name
+          .replace(/^\d+_/, "")
+          .replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
+
       items.push({
-        text: article.name.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase()),
-        items: generateItems(currentPath, `${dir}/${article.name}`, base),
-        collapsed: true,
+        text,
+        items: childItems,
+        collapsed: childMeta.collapsed ?? true,
       });
-    }
+    } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".md")) {
+      const { data } = matter.read(entryPath);
+      if (data.exclude === true) continue;
 
-    if (article.isFile() && article.name.toLowerCase().endsWith(".md")) {
-      const { data } = matter.read(currentPath);
-      if (data.exclude === true) {
-        continue;
-      }
+      const slug = entry.name.replace(/\.md$/i, "");
+      const link =
+        locale === "en"
+          ? `/articles/${dirKey}/${slug}`
+          : `/${locale}/articles/${dirKey}/${slug}`;
 
       items.push({
-        text: data.title.replace(/^(.)|\s+(.)/g, (c: string) =>
+        text: (data.title || slug).replace(/^(.)|\s+(.)/g, (c) =>
           c.toUpperCase(),
         ),
-        link: `${base}/articles/${dir}/${article.name}`,
-        time: +new Date(data.date).getTime(),
+        link,
+        time: data.date ? +new Date(data.date).getTime() : 0,
       });
     }
   }
 
-  items.sort((a, b) => (a as any).time - (b as any).time);
+  items.sort((a, b) => (a.time || 0) - (b.time || 0));
   return items;
 }
 
-function getDiff(base: string = "") {
+function getDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
   const diffs = readdirSync(diffDir, { withFileTypes: true })
     .filter((d) => d.isFile())
@@ -96,7 +136,7 @@ function getDiff(base: string = "") {
     let items: any[] = [
       {
         text: "Important Changes",
-        link: `${base}/diff/${diff}#important-changes`,
+        link: `/diff/${diff}#important-changes`,
       },
     ];
     for (const file of files) {
@@ -106,7 +146,7 @@ function getDiff(base: string = "") {
         .replace(/[\s_.]/g, "-");
       items.push({
         text: file,
-        link: `${base}/diff/${diff}#${normalized}`,
+        link: `/diff/${diff}#${normalized}`,
       });
     }
 
@@ -134,14 +174,9 @@ function getDiff(base: string = "") {
     const versionB = parseEAVersion(b.text);
 
     for (let i = 0; i < 3; i++) {
-      if (versionA[i] > versionB[i]) {
-        return -1;
-      }
-      if (versionA[i] < versionB[i]) {
-        return 1;
-      }
+      if (versionA[i] > versionB[i]) return -1;
+      if (versionA[i] < versionB[i]) return 1;
     }
-
     return b.text.localeCompare(a.text);
   });
 
@@ -149,16 +184,12 @@ function getDiff(base: string = "") {
   let grouped = sidebar.filter((version) => !version.text.startsWith("+"));
   for (const change of sidebar) {
     const parentVersion = change.text.match(/\+(.+?)(?= -)/);
-    if (!parentVersion) {
-      continue;
-    }
+    if (!parentVersion) continue;
 
     const parent = grouped.filter(
       (version) => version.text === parentVersion[1],
     );
-    if (parent.length == 0) {
-      continue;
-    }
+    if (parent.length == 0) continue;
 
     parent[0].items.splice(0, 0, {
       text: change.text.split(" ").at(-1),
@@ -176,8 +207,6 @@ function getDiff(base: string = "") {
 
   for (const version of grouped) {
     let matchedEmojis = new Set<string>();
-
-    // replace all matching words
     let text = version.text.replace(/\b\w+\b/g, (word: string) => {
       for (const mapping of versionIcons) {
         if (mapping.pattern.test(word)) {
@@ -187,8 +216,6 @@ function getDiff(base: string = "") {
       }
       return word;
     });
-
-    // append all matched emojis (unique)
     version.text = text + " " + Array.from(matchedEmojis).join("");
   }
 

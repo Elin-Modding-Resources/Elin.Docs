@@ -1,0 +1,98 @@
+{
+    "1_About Wiki": {
+        "text": "About Wiki",
+        "collapsed": true
+    },
+    "2_Getting Started": {
+        "text": "Getting Started",
+        "collapsed": false,
+        "items": {
+            "Script Mods": {
+                "text": "Script Mods",
+                "collapsed": true
+            }
+        }
+    },
+    "3_Making A Source Sheet Mod WIP": {
+        "text": "Making A Source Sheet Mod",
+        "collapsed": true
+    },
+    "10_Source Sheets": {
+        "text": "Source Sheets",
+        "collapsed": true
+    },
+    "15_Texture Mods": {
+        "text": "Texture Mods",
+        "collapsed": true
+    },
+    "20_Sound Mods": {
+        "text": "Sound Mods",
+        "collapsed": true
+    },
+    "50_Patching": {
+        "text": "Patching",
+        "collapsed": true,
+        "items": {
+            "Transpiler 101": {
+                "text": "Transpiler 101",
+                "collapsed": true
+            },
+            "Transpiler Examples": {
+                "text": "Transpiler Examples",
+                "collapsed": true
+            }
+        }
+    },
+    "100_Mod Documentation": {
+        "text": "Mod Documentation",
+        "collapsed": true,
+        "items": {
+            "Custom Whatever Loader": {
+                "text": "Custom Whatever Loader",
+                "collapsed": true,
+                "items": {
+                    "API": {
+                        "text": "API",
+                        "collapsed": true
+                    },
+                    "Character": {
+                        "text": "Character",
+                        "collapsed": true
+                    },
+                    "Drama": {
+                        "text": "Drama",
+                        "collapsed": true
+                    },
+                    "Element": {
+                        "text": "Element",
+                        "collapsed": true
+                    },
+                    "Other": {
+                        "text": "Other",
+                        "collapsed": true
+                    },
+                    "Thing": {
+                        "text": "Thing",
+                        "collapsed": true
+                    },
+                    "Tutorials": {
+                        "text": "Tutorials",
+                        "collapsed": true
+                    }
+                }
+            },
+            "Emmersive": {
+                "text": "Emmersive",
+                "collapsed": true
+            },
+            "Mod Help": {
+                "text": "Mod Help",
+                "collapsed": true
+            },
+            "Texture Expand": {
+                "text": "Texture Expand",
+                "collapsed": true
+            }
+        }
+    }
+}

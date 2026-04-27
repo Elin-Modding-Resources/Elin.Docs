@@ -1,0 +1,98 @@
+{
+    "1_About Wiki": {
+        "text": "关于 Wiki",
+        "collapsed": true
+    },
+    "2_Getting Started": {
+        "text": "快速入门",
+        "collapsed": false,
+        "items": {
+            "Script Mods": {
+                "text": "脚本模组",
+                "collapsed": true
+            }
+        }
+    },
+    "3_Making A Source Sheet Mod WIP": {
+        "text": "制作源表模组",
+        "collapsed": true
+    },
+    "10_Source Sheets": {
+        "text": "源表",
+        "collapsed": true
+    },
+    "15_Texture Mods": {
+        "text": "贴图模组",
+        "collapsed": true
+    },
+    "20_Sound Mods": {
+        "text": "声音模组",
+        "collapsed": true
+    },
+    "50_Patching": {
+        "text": "补丁修改",
+        "collapsed": true,
+        "items": {
+            "Transpiler 101": {
+                "text": "转译器入门",
+                "collapsed": true
+            },
+            "Transpiler Examples": {
+                "text": "转译器示例",
+                "collapsed": true
+            }
+        }
+    },
+    "100_Mod Documentation": {
+        "text": "模组文档",
+        "collapsed": true,
+        "items": {
+            "Custom Whatever Loader": {
+                "text": "CWL加载器",
+                "collapsed": true,
+                "items": {
+                    "API": {
+                        "text": "API 接口",
+                        "collapsed": true
+                    },
+                    "Character": {
+                        "text": "角色",
+                        "collapsed": true
+                    },
+                    "Drama": {
+                        "text": "剧情",
+                        "collapsed": true
+                    },
+                    "Element": {
+                        "text": "元素",
+                        "collapsed": true
+                    },
+                    "Other": {
+                        "text": "其他",
+                        "collapsed": true
+                    },
+                    "Thing": {
+                        "text": "物品",
+                        "collapsed": true
+                    },
+                    "Tutorials": {
+                        "text": "教程",
+                        "collapsed": true
+                    }
+                }
+            },
+            "Emmersive": {
+                "text": "Emmersive 爱对话",
+                "collapsed": true
+            },
+            "Mod Help": {
+                "text": "Mod Help 模组帮助",
+                "collapsed": true
+            },
+            "Texture Expand": {
+                "text": "TE 贴图扩展",
+                "collapsed": true
+            }
+        }
+    }
+}
