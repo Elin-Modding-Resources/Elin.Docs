@@ -1,19 +1,22 @@
 ---
-title: Sprite Canvas Size
+title: 贴图画布尺寸
 author: DK
-description: Tips for creating sprites larger than 128x128
+description: 制作大于 128x128 像素贴图的技巧
 date: 2026/4/9 13:00
 tags: Texture/Variation
 ---
 
-# I Need More Space
+# 我要更大的空间
 
-Default canvas size of 128x128 may not satisfy your drawing needs. When using a larger canvas, make sure it's center aligned (pivot at center):
+对于角色来说，默认画布尺寸为128x128像素，这可能无法满足您的需求。您可以使用更大尺寸的画布（长宽均大于128的任意矩形）。
+
+若使用大于默认128尺寸的画布，请确保其居中对齐（图形中心点位于画布中心位置）：
 
 |**128x128**|**256*256**|
 |-|-|
 |![](./assets/128c.png)|![](./assets/256c.png)|
 
-For your characters and items to display correctly as icons and avatars, adjust `pivotX`, `pivotY`, and `scaleIcon` accordingly in the [pref file](./pref).
+为使您的角色 / 物品，能正确显示为头像和小图标，请在 [pref 文件](./pref) 中调整 `pivotX`, `pivotY`, 和 `scaleIcon` 。
++ 比如：当角色贴图画布大于128时，在居民告示板显示的头像，可能有偏移问题，因此需要修改[pref 文件](./pref) 的 `pivotX`和 `pivotY`
 
-> 256 Art by Veila
+> 256像素图片画师： Veila
