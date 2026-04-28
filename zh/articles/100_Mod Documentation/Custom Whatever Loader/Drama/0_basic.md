@@ -11,9 +11,9 @@ hide: true
 
 ![](./assets/drama_eg.png)
 
-要为角色定义自定义剧情, 请使用 `addDrama_剧情表名称` 标签, CWL将自动定向该剧情。
+要为角色指定自定义剧情，请在源表的 `tag` 列中，使用 `addDrama_自定义剧情表名称` 标签；CWL将自动定向至该剧情。
 
-自定义剧情表必须放置在 `LangMod/**/Dialog/Drama/` 文件夹下, 且名称需与标签匹配。例如：使用 `addDrama_drama_example` 时需对应`Dialog/Drama/drama_example.xlsx`文件。
+自定义剧情表必须放置在 `LangMod/**/Dialog/Drama/` 文件夹下, 且名称需与标签匹配。例如：使用 `addDrama_drama_example` 标签时需对应`Dialog/Drama/drama_example.xlsx`文件。其中`drama_example`换成你的剧情表名称（英语+数字），此外名称请足够独特。
 
 **<span class="text-amber-300">重要</span>**: 您只需提供 **1** 份剧情表，它可以放置在任何语言子文件夹中。CWL支持在同一表格内提供多语言的本地化。
 
