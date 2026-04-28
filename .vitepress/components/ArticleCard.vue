@@ -35,14 +35,14 @@
 <script setup lang="ts">
 import { useRouter, useData } from "vitepress";
 
-const { title, author, date, desc, tags, link } = defineProps([
-  "title",
-  "author",
-  "date",
-  "desc",
-  "tags",
-  "link",
-]);
+const { title, author, date, desc, tags, link } = defineProps<{
+  title: string;
+  author: string;
+  date: string;
+  desc: string;
+  tags: string[];
+  link: string;
+}>();
 
 const { site } = useData();
 const router = useRouter();
