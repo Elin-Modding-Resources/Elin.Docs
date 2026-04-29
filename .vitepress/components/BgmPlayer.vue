@@ -29,7 +29,9 @@
               <span
                 class="font-medium"
                 :class="[
-                  isMobile ? 'whitespace-nowrap' : 'whitespace-normal break-words'
+                  isMobile
+                    ? 'whitespace-nowrap'
+                    : 'whitespace-normal break-words',
                 ]"
               >
                 {{ t("allTracks") }} ({{ bgmItems.length }})
@@ -44,7 +46,9 @@
               {{ t("playlists") }}
             </div>
 
-            <div class="flex-1 overflow-y-auto overflow-x-hidden custom-scroll space-y-1 pr-2 min-h-0">
+            <div
+              class="flex-1 overflow-y-auto overflow-x-hidden custom-scroll space-y-1 pr-2 min-h-0"
+            >
               <div
                 v-for="playlist in playlists"
                 :key="playlist.name"
@@ -60,7 +64,9 @@
                 <span
                   class="font-medium min-w-0"
                   :class="[
-                    isMobile ? 'whitespace-nowrap' : 'whitespace-normal break-words'
+                    isMobile
+                      ? 'whitespace-nowrap'
+                      : 'whitespace-normal break-words',
                   ]"
                 >
                   {{ playlist.name }}
@@ -71,7 +77,9 @@
         </div>
 
         <!-- 右列 -->
-        <div class="player-main flex flex-col bg-zinc-950 dark:bg-neutral-900 min-h-0">
+        <div
+          class="player-main flex flex-col bg-zinc-950 dark:bg-neutral-900 min-h-0"
+        >
           <!-- 顶部信息区：标题一行，搜索/数量下一行 -->
           <div
             class="border-b border-zinc-800 dark:border-neutral-700 bg-zinc-900/70 dark:bg-neutral-900/70 px-4 py-3 shrink-0"
@@ -79,7 +87,9 @@
             <div
               class="font-semibold text-zinc-100 dark:text-neutral-100 text-base leading-6 text-left"
               :class="[
-                isMobile ? 'whitespace-nowrap' : 'whitespace-normal break-words'
+                isMobile
+                  ? 'whitespace-nowrap'
+                  : 'whitespace-normal break-words',
               ]"
             >
               {{ currentTitle }}
@@ -129,7 +139,9 @@
           </div>
 
           <!-- 列表区 -->
-          <div class="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-1 custom-scroll min-h-0">
+          <div
+            class="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-1 custom-scroll min-h-0"
+          >
             <div
               v-for="(track, index) in filteredTracks"
               :key="track.id"
@@ -153,7 +165,9 @@
                     isCurrentTrack(track)
                       ? 'text-violet-300 dark:text-violet-400'
                       : '',
-                    isMobile ? 'whitespace-nowrap' : 'whitespace-normal break-words'
+                    isMobile
+                      ? 'whitespace-nowrap'
+                      : 'whitespace-normal break-words',
                   ]"
                 >
                   {{ track.name }}
@@ -161,7 +175,9 @@
                 <div
                   class="text-xs text-zinc-500 dark:text-neutral-500"
                   :class="[
-                    isMobile ? 'whitespace-nowrap' : 'whitespace-normal break-words'
+                    isMobile
+                      ? 'whitespace-nowrap'
+                      : 'whitespace-normal break-words',
                   ]"
                 >
                   #{{ track.id }}
@@ -176,7 +192,9 @@
                 <div
                   class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"
                 ></div>
-                <span class="text-xs font-medium whitespace-nowrap">PLAYING</span>
+                <span class="text-xs font-medium whitespace-nowrap"
+                  >PLAYING</span
+                >
               </div>
             </div>
 
@@ -193,11 +211,13 @@
 
     <!-- 底部播放器 -->
     <div
-      class="player-footer shrink-0 border-t border-zinc-800 dark:border-neutral-700 bg-zinc-900 dark:bg-neutral-950"
+      class="player-footer shrink-0 border-t border-zinc-800 dark:border-neutral-700 bg-zinc-900 dark:bg-neutral-950 flex items-center"
     >
       <ClientOnly>
-        <div ref="playerRef" class="w-full"></div>
+        <div ref="playerRef" class="flex-1 min-w-0"></div>
       </ClientOnly>
+
+      <div class="shrink-0"></div>
     </div>
   </div>
 </template>
@@ -226,21 +246,21 @@ const i18n = {
     allTracks: "全部曲目",
     playlists: "播放列表",
     tracks: "首",
-    searchPlaceholder: "搜索曲目...",
+    searchPlaceholder: "搜索...",
   },
   en: {
     library: "LIBRARY",
     allTracks: "All Tracks",
     playlists: "PLAYLISTS",
     tracks: "tracks",
-    searchPlaceholder: "Search tracks...",
+    searchPlaceholder: "Search...",
   },
   ja: {
     library: "音楽ライブラリ",
     allTracks: "全曲",
     playlists: "プレイリスト",
     tracks: "曲",
-    searchPlaceholder: "曲を検索...",
+    searchPlaceholder: "検索...",
   },
 } as const;
 
@@ -256,6 +276,7 @@ const currentPlaylist = ref<any>(null);
 const currentAudioList = ref<any[]>([]);
 const searchQuery = ref("");
 const isMobile = ref(false);
+const currentlyPlayingId = ref<number | null>(null);
 
 const updateIsMobile = () => {
   isMobile.value = window.innerWidth < 768;
@@ -319,14 +340,16 @@ const buildAudioList = (tracks: any[]) =>
 const playTrack = async (filteredIndex: number) => {
   if (!aplayer) return;
   const track = filteredTracks.value[filteredIndex];
+  if (!track) return;
   const originalIndex = getOriginalIndex(track);
-
   const newList = buildAudioList(currentTracks.value);
+
   if (JSON.stringify(newList) !== JSON.stringify(currentAudioList.value)) {
     currentAudioList.value = newList;
     aplayer.list.clear();
     aplayer.list.add(newList);
   }
+  currentlyPlayingId.value = track.id;
 
   await nextTick();
   aplayer.list.switch(originalIndex);
@@ -334,9 +357,7 @@ const playTrack = async (filteredIndex: number) => {
 };
 
 const isCurrentTrack = (track: any) => {
-  if (!aplayer?.list?.audios?.length) return false;
-  const current = aplayer.list.audios[aplayer.list.index];
-  return current?.name === track.name;
+  return track.id === currentlyPlayingId.value;
 };
 
 const switchToAll = () => {
@@ -354,7 +375,29 @@ const switchPlaylist = (playlist: any) => {
 onMounted(async () => {
   updateIsMobile();
   window.addEventListener("resize", updateIsMobile);
+
   await initPlayer();
+  if (aplayer) {
+    const updatePlayingState = () => {
+      if (!aplayer.list?.audios?.length || !currentTracks.value.length) {
+        currentlyPlayingId.value = null;
+        return;
+      }
+
+      const currentAudio = aplayer.list.audios[aplayer.list.index];
+      if (!currentAudio) return;
+      const track = currentTracks.value.find(
+        (t: any) => t.name === currentAudio.name,
+      );
+
+      currentlyPlayingId.value = track?.id ?? null;
+    };
+
+    aplayer.on("play", updatePlayingState);
+    aplayer.on("listswitch", updatePlayingState);
+    aplayer.on("ended", updatePlayingState);
+  }
+
   switchToAll();
 });
 
@@ -383,7 +426,7 @@ onUnmounted(() => {
  *  左列自己纵向滚动，右列自己纵向滚动。
  *  左右两列合成区域下，底部播放器固定在最下面，形状适配底部
  *  
- */ 
+ */
 
 /* 双列合并区域 */
 .player-body-viewport {

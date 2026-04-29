@@ -107,6 +107,7 @@ export default defineConfig({
         All trademarks are the property of their respective owners.
       `,
     },
+    outline: "deep",
   },
 
   vite: {

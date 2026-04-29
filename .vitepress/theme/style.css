@@ -42,7 +42,6 @@
  * - `danger`: Used to show error, or dangerous message to the users. Used
  *   in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
-@reference "./tailwind.css"
 
 :root {
   --vp-c-default-1: var(--vp-c-gray-1);
@@ -69,6 +68,22 @@
   --vp-c-danger-2: var(--vp-c-red-2);
   --vp-c-danger-3: var(--vp-c-red-3);
   --vp-c-danger-soft: var(--vp-c-red-soft);
+}
+
+:root {
+  --emr-text-indigo: #3a5ccc;
+  --emr-text-indigo-plus: #3451b2;
+  --emr-text-indigo-light: #241f1f6e;
+  --emr-border-indigo: #3e63dd;
+  --emr-bg-indigo: #f0f4ff;
+}
+
+.dark {
+  --emr-text-indigo: #99a2ff;
+  --emr-text-indigo-plus: #dddffe;
+  --emr-text-indigo-light: #71b6b66e;
+  --emr-border-indigo: #99a2ff;
+  --emr-bg-indigo: #5e637863;
 }
 
 /**
@@ -110,18 +125,6 @@
   --vp-button-brand-hover-bg: #0ea5e9;
 }
 
-@media (min-width: 640px) {
-  :root {
-    --vp-home-hero-image-filter: blur(56px);
-  }
-}
-
-@media (min-width: 960px) {
-  :root {
-    --vp-home-hero-image-filter: blur(68px);
-  }
-}
-
 /**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
@@ -139,231 +142,4 @@
 
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
-}
-
-:root {
-  --emr-text-indigo: #3a5ccc;
-  --emr-text-indigo-plus: #3451b2;
-  --emr-text-indigo-light: #241f1f6e;
-  --emr-border-indigo: #3e63dd;
-  --emr-bg-indigo: #f0f4ff;
-}
-
-.dark {
-  --emr-text-indigo: #99a2ff;
-  --emr-text-indigo-plus: #dddffe;
-  --emr-text-indigo-light: #71b6b66e;
-  --emr-border-indigo: #99a2ff;
-  --emr-bg-indigo: #5e637863;
-}
-
-.VPContent.has-sidebar {
-  background-position: 50%;
-  background-size: 20px 20px;
-  background-image: linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
-    linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
-}
-
-.dark .VPContent.has-sidebar {
-  background-position: 50%;
-  background-size: 20px 20px;
-  background-image: linear-gradient(90deg, #93b1c108 3%, transparent 0),
-    linear-gradient(1turn, #93b1c108 3%, transparent 0);
-}
-
-:root {
-  --vp-layout-max-width: 80%;
-  --vp-sidebar-width: 20rem;
-}
-
-.VPDoc:not(.has-sidebar) .container {
-  max-width: 1267.2px !important;
-}
-
-.VPDoc:not(.has-sidebar) .content {
-  max-width: 1011.2px !important;
-}
-
-.VPDoc.has-aside .content-container {
-  max-width: 95% !important;
-}
-
-.VPDoc:not(.has-aside) .content-container {
-  max-width: 95% !important;
-}
-
-.aside {
-  text-transform: capitalize;
-}
-
-.vp-doc h1,
-.vp-doc h2,
-.vp-doc h3,
-.vp-doc h4,
-.vp-doc h5,
-.vp-doc h6 {
-  color: var(--emr-text-indigo);
-  letter-spacing: 0.1em;
-  text-transform: capitalize;
-}
-
-.vp-doc h1 {
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--emr-border-indigo);
-  width: fit-content;
-  @apply transition-all duration-300;
-}
-
-.vp-doc h1:hover {
-  padding-right: 1.75rem;
-}
-
-.vp-doc h2 {
-  margin-top: 10px;
-  border-bottom: 3px solid var(--emr-border-indigo);
-  width: fit-content;
-  padding-bottom: 4px;
-  border-top: 0px solid var(--emr-border-indigo);
-}
-
-.vp-doc h5 {
-  color: var(--emr-text-indigo-light);
-}
-
-.vp-doc blockquote {
-  margin: 2em 0;
-  padding: 24px 32px;
-  background: var(--emr-bg-indigo);
-  border-left: 2px solid var(--emr-border-indigo);
-  position: relative;
-}
-
-.vp-doc blockquote::before {
-  content: "❝";
-  top: 8px;
-  left: 8px;
-  color: var(--emr-text-indigo-plus);
-  font-size: 30px;
-  line-height: 1;
-  font-weight: 700;
-  position: absolute;
-  opacity: 0.7;
-}
-
-.vp-doc blockquote::after {
-  content: "❞";
-  font-size: 30px;
-  position: absolute;
-  right: 8px;
-  bottom: 0;
-  color: var(--emr-text-indigo-plus);
-  opacity: 0.7;
-}
-
-.vp-doc blockquote > p {
-  color: var(--emr-text-indigo-plus);
-}
-
-.vp-doc li::marker {
-  color: var(--emr-text-indigo);
-}
-
-.vp-doc table {
-  display: inline-block !important;
-  font-size: 12px;
-  width: auto;
-  max-width: 100%;
-  overflow: auto;
-}
-
-.vp-doc thead {
-  background: var(--emr-bg-indigo);
-  color: var(--emr-text-indigo);
-  text-align: left;
-}
-
-.vp-doc tr:nth-child(2n) {
-  background: var(--emr-bg-indigo);
-}
-
-.vp-doc th {
-  color: var(--emr-text-indigo);
-  background: var(--emr-bg-indigo);
-}
-
-.vp-doc th,
-.vp-doc td {
-  padding: 12px 7px;
-  line-height: 24px;
-}
-
-.vp-doc td {
-  min-width: 120px;
-}
-
-.VPDocAsideOutline .outline-marker {
-  @apply w-1;
-}
-.VPDocAsideOutline .content .root li .active {
-  color: var(--emr-text-indigo);
-}
-
-.VPDocFooter .prev-next .pager-link {
-  @apply bg-zinc-50/70 dark:bg-zinc-900;
-}
-
-.dark .VPDocFooter .prev-next .pager-link {
-  @apply bg-zinc-50/20 dark:bg-zinc-900;
-}
-
-.vp-doc hr {
-  border-color: var(--emr-border-indigo);
-}
-
-.bg-stripe:hover {
-  background-image: repeating-linear-gradient(
-    45deg,
-    hsl(0 0% 100%),
-    hsl(0 0% 100%) 13px,
-    hsl(0 0% 95%) 13px,
-    hsl(0 0% 95%) 14px
-  );
-}
-
-.dark .bg-stripe:hover {
-  background-image: repeating-linear-gradient(
-    45deg,
-    hsl(202, 80%, 24%),
-    hsl(202, 80%, 24%) 13px,
-    hsl(200, 80%, 20%) 13px,
-    hsl(200, 80%, 20%) 14px
-  );
-}
-
-.VPSidebar::-webkit-scrollbar {
-  @apply hidden;
-}
-
-@media (min-width: 960px) {
-  .main .name {
-    background-position: initial;
-  }
-}
-
-.vp-doc a {
-  @apply hover:text-blue-500 after:hover:opacity-100 dark:hover:text-blue-400;
-}
-
-.medium-zoom-overlay {
-  backdrop-filter: blur(5rem);
-  background-color: var(--vp-c-bg) !important;
-  z-index: 2147483646;
-}
-
-.medium-zoom-overlay ~ img {
-  z-index: 2147483647;
-}
-
-.medium-zoom--opened .medium-zoom-overlay {
-  opacity: 0.9 !important;
 }

@@ -9,43 +9,43 @@
     "id": 2,
     "name": "Pop01",
     "path": "pop01 jurgen.mp3",
-    "author": "Elin"
+    "author": "西尾周一郎"
   },
   {
     "id": 3,
     "name": "PSML516",
     "path": "PSML516.mp3",
-    "author": "Elona"
+    "author": "Finalia"
   },
   {
     "id": 4,
-    "name": "Hoshi No Kiseki / 星と月の丘",
+    "name": "Hoshi No Kiseki / 星の軌跡",
     "path": "DS-096 (3).mp3",
-    "author": "MATSU"
+    "author": "龍的交響楽"
   },
   {
     "id": 5,
     "name": "Tyris 1",
     "path": "field1.mp3",
-    "author": "Elin"
+    "author": "Atelier Nonta"
   },
   {
     "id": 6,
     "name": "Tyris 2",
     "path": "field2.mp3",
-    "author": "Elin"
+    "author": "Atelier Nonta"
   },
   {
     "id": 7,
     "name": "Tyris 3",
     "path": "field7.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 8,
     "name": "Town 2",
     "path": "town2 magic.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 9,
@@ -57,31 +57,31 @@
     "id": 10,
     "name": "Bouken No Junbi",
     "path": "boukennojunbi.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 11,
     "name": "Buki Kobo",
     "path": "bukikobo.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 12,
     "name": "Kiminoita Natsu",
     "path": "kiminoitanatsu.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 13,
     "name": "Ruins",
     "path": "ruins magic.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 14,
     "name": "Village",
     "path": "village1 sgm_person.wav",
-    "author": "Elin"
+    "author": "真田誠"
   },
   {
     "id": 15,
@@ -93,37 +93,37 @@
     "id": 16,
     "name": "Intro 2",
     "path": "densetu.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 17,
     "name": "Cobalt",
     "path": "cobalt.mp3",
-    "author": "Elin"
+    "author": "Hiroki"
   },
   {
     "id": 18,
     "name": "Mitologia",
     "path": "mitologia.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 19,
     "name": "Morning Breeze",
     "path": "morning_breeze.mp3",
-    "author": "Elin"
+    "author": "Hiroki"
   },
   {
     "id": 20,
     "name": "Morning Breeze(Sunny Day)",
     "path": "sunnyday.mp3",
-    "author": "Elin"
+    "author": "Hiroki"
   },
   {
     "id": 21,
     "name": "PSML047",
     "path": "psml047 magic.mp3",
-    "author": "Elin"
+    "author": "Finalia"
   },
   {
     "id": 22,
@@ -135,43 +135,43 @@
     "id": 23,
     "name": "Mysterious Forest",
     "path": "00113_mysterious-forest.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 24,
     "name": "PSML514",
     "path": "psml514 titanic.wav",
-    "author": "Elin"
+    "author": "Finalia"
   },
   {
     "id": 25,
     "name": "Nodokana Mura",
     "path": "nodokanamura.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 26,
     "name": "Kokyo",
     "path": "kokyou.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 27,
     "name": "Mayonakano Omochabako",
     "path": "mayonakanoomochabako.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 28,
     "name": "Kagayaku Tsuki",
     "path": "kagayaku tsuki.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 29,
     "name": "Map BGM",
     "path": "MapBGM.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 30,
@@ -183,7 +183,7 @@
     "id": 31,
     "name": "SBGM 5",
     "path": "SBGMv2_05.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 32,
@@ -193,45 +193,45 @@
   },
   {
     "id": 33,
-    "name": "Hoshi To Tsuki No Oka",
+    "name": "Hoshi To Tsuki No Oka / 星と月の丘",
     "path": "hoshi to tsuki.mp3",
-    "author": "Elin"
+    "author": "MATSU"
   },
   {
     "id": 34,
     "name": "Epilogue 2",
     "path": "ep2 fluid - コピー.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 35,
     "name": "Nibiiro No Sora",
     "path": "giniro.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 36,
     "name": "Oita Kataribe",
     "path": "oita kataribe.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 37,
     "name": "Kaerimichi(Piano)",
     "path": "kaerimichi.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 38,
     "name": "Mori",
     "path": "mori01.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 39,
     "name": "Raina",
     "path": "raina_sora.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 40,
@@ -243,13 +243,13 @@
     "id": 41,
     "name": "Earlgrey Guitar",
     "path": "earlgrey_guitar.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 42,
     "name": "Mayonakano Park",
     "path": "_mayonakano-park.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 43,
@@ -261,25 +261,25 @@
     "id": 44,
     "name": "Heya Guitar",
     "path": "heya_guitar.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 45,
     "name": "Sancho Panza",
     "path": "Sancho_Panza.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 46,
     "name": "Dwarf",
     "path": "dwarf sgm aa.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 47,
     "name": "Nonbiri Dwarf",
     "path": "nonbiri dwarf.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 48,
@@ -297,61 +297,61 @@
     "id": 50,
     "name": "Title",
     "path": "ep1 magic2.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 51,
     "name": "Yuki",
     "path": "snow.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 52,
     "name": "Fear 2",
     "path": "PerituneMaterial_Fear2_loop.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 53,
     "name": "Hoard",
     "path": "LRPG_Fairy_s_Awakening_FULL_Loop.wav",
-    "author": "Elin"
+    "author": "wowsoundsg"
   },
   {
     "id": 54,
     "name": "The House of Leaves",
     "path": "The House of Leaves.wav",
-    "author": "Elin"
+    "author": "Kevin MacLeod"
   },
   {
     "id": 55,
     "name": "Sirube",
     "path": "sirube.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 56,
     "name": "Orc01",
     "path": "orc01 (1).mp3",
-    "author": "Elin"
+    "author": "西尾周一郎"
   },
   {
     "id": 57,
     "name": "Mearas Village 2",
     "path": "Mearas_Village02.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 58,
     "name": "PSML060",
     "path": "psml060.WAV",
-    "author": "Elin"
+    "author": "Finalia"
   },
   {
     "id": 59,
     "name": "Tyris 4",
     "path": "field4.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 60,
@@ -369,43 +369,43 @@
     "id": 62,
     "name": "Mearas Workshop",
     "path": "Mearas_Workshop01.ogg",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 63,
-    "name": "Shop",
+    "name": "Shop / ショップ",
     "path": "Shop.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 64,
     "name": "Mearas Town",
     "path": "Mearas_Town03.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 65,
     "name": "Soaring",
     "path": "Soaring_4min.mp3",
-    "author": "Elin"
+    "author": "Skittlegirl Sound"
   },
   {
     "id": 66,
-    "name": "Soraochiruhi",
+    "name": "Soraochiruhi / 空落ちる日",
     "path": "sora fluid.mp3",
-    "author": "Elin"
+    "author": "柳沢英樹"
   },
   {
     "id": 67,
     "name": "Wizartorium",
     "path": "Wizartorium.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 68,
     "name": "Gray",
     "path": "gray.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 69,
@@ -415,45 +415,45 @@
   },
   {
     "id": 70,
-    "name": "Arifureta Shiawase",
+    "name": "Arifureta Shiawase / ありふれたしあわせ",
     "path": "ありふれたしあわせ.mp3",
-    "author": "Elin"
+    "author": "Hayashi Yu"
   },
   {
     "id": 71,
     "name": "Taikutsu",
     "path": "taikutu.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 72,
     "name": "Netherworld Shanty",
     "path": "Netherworld_Shanty.wav",
-    "author": "Elin"
+    "author": "Kevin MacLeod"
   },
   {
     "id": 73,
     "name": "Tabino Hajime",
     "path": "tabinohajime.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 74,
     "name": "Gag",
     "path": "gag.mp3",
-    "author": "Elin"
+    "author": "Euphluca"
   },
   {
     "id": 75,
     "name": "Mearas Happy",
     "path": "Mearas_Happy01.ogg",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 76,
     "name": "Mearas Village 3",
     "path": "Mearas_Village03.ogg",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 77,
@@ -465,7 +465,7 @@
     "id": 78,
     "name": "Legend of One",
     "path": "Legend_of_One.mp3",
-    "author": "Elin"
+    "author": "Kevin MacLeod"
   },
   {
     "id": 79,
@@ -483,85 +483,85 @@
     "id": 81,
     "name": "Exotics",
     "path": "Exotics.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 82,
     "name": "Mearas Magic City",
     "path": "Mearas_Magiccity.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 83,
-    "name": "Gothic",
+    "name": "Gothic / gothic#1 -迷宮アリスと追いかけっこ-",
     "path": "gothic1.ogg",
-    "author": "Elin"
+    "author": "Timelessberry"
   },
   {
     "id": 84,
     "name": "Field",
     "path": "field-a.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 85,
     "name": "PSML515",
     "path": "PSML515.mp3",
-    "author": "Elin"
+    "author": "Finalia"
   },
   {
     "id": 86,
-    "name": "Anosorano Mukouni",
+    "name": "Anosorano Mukouni / あの空の向こうに",
     "path": "m2m-b0d7d5be8db9eb4f8ccc2db00966f01c13919.mp3",
-    "author": "Elin"
+    "author": "柳沢英樹"
   },
   {
     "id": 87,
-    "name": "Memory",
+    "name": "Memory / 記憶1",
     "path": "memory (5).mp3",
-    "author": "Elin"
+    "author": "Atelier Nonta"
   },
   {
     "id": 88,
-    "name": "Memory 2",
+    "name": "Memory 2 / 記憶2",
     "path": "memory2.mp3",
-    "author": "Elin"
+    "author": "Atelier Nonta"
   },
   {
     "id": 89,
     "name": "Semi. Yuugata.",
     "path": "semi.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 90,
-    "name": "Hirusagari Kibun",
+    "name": "Hirusagari Kibun / 昼下がり気分",
     "path": "hirusagari.mp3",
-    "author": "Elin"
+    "author": "KK"
   },
   {
     "id": 91,
     "name": "Nichiyo No Gogo",
     "path": "nichiyo no gogo.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 92,
     "name": "Itazura Kids",
     "path": "itazura kids.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 93,
     "name": "Cat Life",
     "path": "Cat_life.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 94,
     "name": "Ensolarado",
     "path": "ensolarado.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 95,
@@ -585,43 +585,43 @@
     "id": 98,
     "name": "Pixel Myth",
     "path": "Pixel Myth.mp3",
-    "author": "Elin"
+    "author": "Jeremiah George"
   },
   {
     "id": 99,
     "name": "Tsukito Watashi",
     "path": "tsukitowatashi.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 100,
     "name": "Tsukino Kobune",
     "path": "tsukinokobune.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 101,
     "name": "Flashback",
     "path": "flashback.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 102,
     "name": "Punipunichuiho",
     "path": "punipunichuuihou.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 103,
     "name": "Sabakuwo Iku",
     "path": "sabakuwoiku.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 104,
     "name": "Butoukai",
     "path": "butou.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 105,
@@ -645,13 +645,13 @@
     "id": 108,
     "name": "Wafu",
     "path": "wafu.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 109,
     "name": "And Thus Into Legend",
     "path": "into_legend.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 110,
@@ -661,39 +661,39 @@
   },
   {
     "id": 111,
-    "name": "Snow Forest",
+    "name": "Snow Forest / 雪降る森",
     "path": "snow forest.mp3",
-    "author": "Elin"
+    "author": "蒲鉾さちこ"
   },
   {
     "id": 112,
     "name": "Hirahira",
     "path": "HIRAHIRA.mp3",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 113,
     "name": "Luna",
-    "path": "Unused/luna.mp3",
-    "author": "Elin"
+    "path": "luna.mp3",
+    "author": ""
   },
   {
     "id": 114,
     "name": "Orchestra 5",
     "path": "orc05 1.mp3",
-    "author": "Elin"
+    "author": "西尾周一郎"
   },
   {
     "id": 115,
     "name": "Holy Night",
     "path": "xmas.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 116,
     "name": "Jingle Bell",
     "path": "xmas2.wav",
-    "author": "Elin"
+    "author": ""
   },
   {
     "id": 117,
@@ -705,54 +705,54 @@
     "id": 118,
     "name": "Kizuami of Trickery",
     "path": "NINO - Elin_Kizuami of Trickery.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 119,
     "name": "Horome of Moonshadow",
     "path": "NINO_ELIN_Nefu.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 120,
     "name": "Lurie",
     "path": "NINO_ELIN_SUNKEN TEMPLE OF LURIE.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 121,
     "name": "Eternity",
     "path": "NINO_ELIN_Garden of Eternity.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 122,
     "name": "Ehekatl of Fortune",
     "path": "NINO_ELIN_Ehekatl_of_luck_C.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 123,
     "name": "Kumiromi of Harvest",
     "path": "NINO_Kumiromi of Harvest_c.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 124,
     "name": "Music Box of Memory",
     "path": "NINO - Elin_Music Box of Memories_Long (1).mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 125,
     "name": "Music Box of Fortune",
     "path": "NINO_ELIN_Ehekatl_musicbox.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   },
   {
     "id": 126,
     "name": "Music Box of Harvest",
     "path": "NINO_ELIN_MusicBox of Harvest.mp3",
-    "author": "Elin & NINO"
+    "author": "NINO"
   }
 ]

@@ -10,19 +10,19 @@ export function makeNavBar(
   const getText = (key: string): string => {
     const translations: Record<string, Record<string, string>> = {
       en: {
-        archive: "📖 Archive",
-        decompiled: "📝 Elin Decompiled",
-        sources: "📗 Elin Sources",
+        archive: "Archive",
+        decompiled: "Decompiled",
+        sources: "Sources",
       },
       ja: {
-        archive: "📖 アーカイブ",
-        decompiled: "📝 Elin Decompiled",
-        sources: "📗 Elin ソース",
+        archive: "アーカイブ",
+        decompiled: "Decompiled",
+        sources: "ソース",
       },
       zh: {
-        archive: "📖 目录",
-        decompiled: "📝 Elin 反编译",
-        sources: "📗 Elin 源表",
+        archive: "目录",
+        decompiled: "反编译",
+        sources: "源表",
       },
     };
 
@@ -41,7 +41,7 @@ export function makeNavBar(
       activeMatch: `${base}/articles/`,
     },
     {
-      text: `🛠️ ${diffVer}`,
+      text: diffVer,
       link: `${base}/diff/diffview`,
       activeMatch: `${base}/diff/`,
     },

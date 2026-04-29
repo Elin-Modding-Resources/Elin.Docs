@@ -35,7 +35,7 @@ const router = useRouter();
 const { t, u, i } = defineProps<{
   t: string;
   u: string;
-  i: string;
+  i?: string;
 }>();
 
 function isExternal(url: string) {

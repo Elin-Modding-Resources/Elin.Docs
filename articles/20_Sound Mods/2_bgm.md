@@ -12,6 +12,10 @@ Game comes with 100+ BGMs, they are defined by a numeric ID and sound file ID. Y
 
 <BgmPlayer />
 
+::: warning Attribution
+We are still working on finding attributions for some materials. If you have any information, please let us know in Elona Discord.
+:::
+
 ## Add New BGM
 
 Custom BGMs are placed in the **Sound/BGM** sub folder, unlike custom sounds, you need to manually edit the `id` field in the metadata JSON. Be sure to launch game once to generate the JSON files first.
