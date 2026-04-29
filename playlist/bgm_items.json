@@ -27,13 +27,13 @@
     "id": 5,
     "name": "Tyris 1",
     "path": "field1.mp3",
-    "author": "Atelier Nonta"
+    "author": ""
   },
   {
     "id": 6,
     "name": "Tyris 2",
     "path": "field2.mp3",
-    "author": "Atelier Nonta"
+    "author": ""
   },
   {
     "id": 7,
@@ -519,13 +519,13 @@
     "id": 87,
     "name": "Memory / 記憶1",
     "path": "memory (5).mp3",
-    "author": "Atelier Nonta"
+    "author": "のん太"
   },
   {
     "id": 88,
     "name": "Memory 2 / 記憶2",
     "path": "memory2.mp3",
-    "author": "Atelier Nonta"
+    "author": "のん太"
   },
   {
     "id": 89,
