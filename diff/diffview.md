@@ -14,7 +14,7 @@ E.g.
 + Patch 4 (includes diff for Patch 2, 3, 4)
 + Patch 1
 
-<LinkCard t="Drakeny's Elin Decompiled" u="https://github.com/Elin-Modding-Resources/Elin-Decompiled" i="https://cdn.discordapp.com/avatars/84674625396551680/8043788a15c80fe9689111de32c86b28.webp" />
+<LinkCard t="Drakeny's Elin Decompiled" u="https://github.com/Elin-Modding-Resources/Elin-Decompiled" i="https://cdn.discordapp.com/emojis/1324968181504282796.webp" />
 
 
 ## Archived Diffs
