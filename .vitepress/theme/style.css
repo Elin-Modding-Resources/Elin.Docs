@@ -45,11 +45,12 @@
 @reference "./tailwind.css"
 
 :root {
-  --vp-layout-max-width: 1480px;
-  --vp-sidebar-width: 280px;
-  --vp-aside-width: 260px;
-  --vp-content-max-width: 860px;
-  --vp-content-wide-max-width: 980px;
+  --vp-layout-max-width: 1760px;
+  --vp-sidebar-width: 288px;
+  --vp-aside-width: 272px;
+  --vp-content-max-width: 980px;
+  --vp-content-wide-max-width: 1240px;
+  --vp-content-ultra-wide-max-width: 1380px;
 
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
@@ -83,29 +84,50 @@
 
 .VPContent.has-sidebar {
   background-position: 50%;
-  background-size: 20px 20px;
-  background-image: linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
     linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
 }
 
 .dark .VPContent.has-sidebar {
-  background-image: linear-gradient(90deg, #93b1c108 3%, transparent 0),
+  background-image:
+    linear-gradient(90deg, #93b1c108 3%, transparent 0),
     linear-gradient(1turn, #93b1c108 3%, transparent 0);
 }
 
 .VPDoc .container {
   max-width: var(--vp-layout-max-width) !important;
-  margin: 0 auto;
+  margin: 0 24px;
 }
 
 .VPDoc .content {
-  max-width: clamp(760px, 75vw, var(--vp-content-wide-max-width)) !important;
+  max-width: clamp(820px, 78vw, var(--vp-content-wide-max-width)) !important;
   margin: 0 auto;
   padding: 0 2.5rem;
+  transition: max-width 0.4s ease;
 }
 
 .VPDoc.has-sidebar .content {
-  max-width: clamp(720px, 68vw, 860px) !important;
+  max-width: clamp(780px, 82vw, 1080px) !important;
+}
+
+@media (min-width: 2560px) {
+  .VPDoc:not(.has-sidebar) .content {
+    max-width: 1360px !important;
+  }
+
+  .VPDoc.has-sidebar .content {
+    max-width: 1120px !important;
+  }
+}
+
+.VPDoc:not(.has-sidebar) .content {
+  max-width: clamp(
+    860px,
+    82vw,
+    var(--vp-content-ultra-wide-max-width)
+  ) !important;
 }
 
 .VPDoc.home .content {
@@ -123,80 +145,57 @@
 .vp-doc h5,
 .vp-doc h6 {
   color: var(--emr-text-indigo);
-  letter-spacing: 0.04em;
-  font-weight: 700;
+  letter-spacing: 0.035em;
 }
-
 .vp-doc h1 {
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.8rem;
   border-bottom: 4px solid var(--emr-border-indigo);
   width: fit-content;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .vp-doc h1:hover {
-  padding-right: 2rem;
-  transform: translateX(-4px);
+  padding-right: 2.25rem;
+  transform: translateX(-6px);
 }
-
 .vp-doc h2 {
-  margin-top: 2.8rem;
-  padding-bottom: 0.5rem;
+  margin-top: 3rem;
+  padding-bottom: 0.6rem;
   border-bottom: 3px solid var(--emr-border-indigo);
   width: fit-content;
 }
-
-.vp-doc h5 {
-  color: var(--emr-text-indigo-light);
-  font-weight: 600;
-}
-
 .vp-doc blockquote {
-  margin: 2.2em 0;
-  padding: 28px 32px 28px 38px;
+  margin: 2.5em 0;
+  padding: 32px 36px 32px 42px;
   background: var(--emr-bg-indigo);
-  border-left: 4px solid var(--emr-border-indigo);
-  border-radius: 8px;
+  border-left: 5px solid var(--emr-border-indigo);
+  border-radius: 10px;
   position: relative;
 }
-
 .vp-doc blockquote::before {
   content: "❝";
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  color: var(--emr-text-indigo-plus);
-  font-size: 38px;
-  line-height: 1;
-  opacity: 0.75;
+  top: 20px;
+  left: 22px;
+  font-size: 42px;
+  opacity: 0.8;
 }
-
 .vp-doc blockquote::after {
   content: "❞";
-  position: absolute;
-  bottom: 12px;
-  right: 18px;
-  color: var(--emr-text-indigo-plus);
-  font-size: 38px;
-  opacity: 0.75;
+  bottom: 14px;
+  right: 22px;
+  font-size: 42px;
+  opacity: 0.8;
 }
-
 .vp-doc table {
   width: 100%;
-  max-width: 100%;
-  font-size: 14px;
-  border-collapse: collapse;
-  margin: 1.5em 0;
+  font-size: 14.2px;
+}
+.vp-doc th,
+.vp-doc td {
+  padding: 15px 14px;
 }
 
 .vp-doc thead {
   background: var(--emr-bg-indigo);
-}
-
-.vp-doc th,
-.vp-doc td {
-  padding: 14px 12px;
-  border: 1px solid rgba(62, 99, 221, 0.15);
 }
 
 .vp-doc li::marker {
@@ -253,7 +252,7 @@
 
 @media (min-width: 960px) {
   :root {
-    --vp-home-hero-image-filter: blur(64px);
+    --vp-home-hero-image-filter: blur(68px);
   }
 }
 
