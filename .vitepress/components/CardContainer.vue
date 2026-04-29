@@ -35,23 +35,17 @@
 import ArticleCard from "./ArticleCard.vue";
 import PaginationBar from "./PaginationBar.vue";
 import { data as articles } from "../data/articles.data";
-import { useRoute } from "vitepress";
+import { useData } from "vitepress";
 import { computed, ref, watch } from "vue";
 
 const PAGE_SIZE = 12;
 
-const route = useRoute();
 const currentPage = ref(1);
 
-const currentLocale = computed(() => {
-  const path = route.path;
-  if (path.startsWith("/ja")) return "ja";
-  if (path.startsWith("/zh")) return "zh";
-  return "en";
-});
+const { lang } = useData();
 
 const displayedArticles = computed(() =>
-  articles.filter((article) => article.locale === currentLocale.value)
+  articles.filter((article) => article.locale === lang.value)
 );
 
 const totalPages = computed(() =>
@@ -72,7 +66,7 @@ function formatTags(tags: string | undefined): string[] {
   return tags ? tags.split("/").filter(Boolean) : [];
 }
 
-watch(currentLocale, () => {
+watch(lang, () => {
   currentPage.value = 1;
 });
 </script>

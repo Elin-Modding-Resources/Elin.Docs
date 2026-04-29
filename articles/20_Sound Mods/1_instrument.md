@@ -1,8 +1,9 @@
 ---
 title: Custom Instrument Tracks
+author: DK
 description: Add or replace instrument tracks
 date: 2025/1/3 01:00
-hide: true
+tags: Guide/BGM
 ---
 
 ## Custom Instrument Tracks

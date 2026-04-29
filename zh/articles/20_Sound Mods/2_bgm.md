@@ -5,13 +5,12 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
-## 自定义BGM
+## Elin BGM
 
 游戏自带100+首BGM，它们拥有一个数字ID和音频ID。
-::: details BGM 列表
-|BGM ID|音频 ID|BGM 名称|
-<!--@include: ./assets/bgm_items.md-->
-:::
+
+<BgmPlayer />
+
 
 ## 添加新BGM
 

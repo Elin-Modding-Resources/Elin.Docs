@@ -1,8 +1,9 @@
 ---
 title: New Sound
+author: DK
 description: Add new sounds from file
 date: 2025/1/3 01:00
-hide: true
+tags: Guide/BGM
 ---
 
 ## Custom Sound

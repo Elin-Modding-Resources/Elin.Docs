@@ -5,13 +5,12 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
-## カスタムBGM/プレイリスト
+## Elin BGM
 
 ゲームには100以上のBGMが含まれており、それぞれに数字IDと音声IDがあります。
-::: details BGM
-|BGM ID|音频 ID|BGM 名称|
-<!--@include: ./assets/bgm_items.md-->
-:::
+
+<BgmPlayer />
+
 
 ## 新しいBGMの追加
 

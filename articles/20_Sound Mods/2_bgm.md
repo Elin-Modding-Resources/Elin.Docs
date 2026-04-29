@@ -1,17 +1,16 @@
 ---
 title: Add & Replace BGM
+author: DK
 description: Add or replace in game BGMs
 date: 2025/1/3 01:00
-hide: true
+tags: Guide/BGM
 ---
 
-## Custom BGM
+## Elin BGM
 
 Game comes with 100+ BGMs, they are defined by a numeric ID and sound file ID. You may check them out here:
-::: details BGM Items
-|bgm ID|sound ID|bgm name|
-<!--@include: ./assets/bgm_items.md-->
-:::
+
+<BgmPlayer />
 
 ## Add New BGM
 
