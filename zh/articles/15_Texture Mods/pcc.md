@@ -64,10 +64,10 @@ PCC部件必须遵循此格式:
 
 把人物 PCC 图片文件放入 `Actor/PCC/female` 文件夹（注意：游戏内无论男女角色，该路径均固定包含 female）；把坐骑的 PCC 图片文件放入 `Actor/PCC/ride` 文件夹。
 
-这两个文件夹都在你的 `游戏安装目录/Elin/Package/自定义mod文件夹名字` 内，详情请移步 [mod package](../2_Getting%20Started/basic_mod)。
+这两个文件夹都在你的 `游戏安装目录/Elin/Package/自定义mod文件夹名字` 内，详情请移步 [Elin基础Mod包](../2_Getting%20Started/basic_mod) 页面。
 
 ## 更大画布
 
-如果要创建大于 32×48 的图块，请安装 Variable Sprite Support 模组。
+如果要创建大于 32×48 的图块，请安装 [Variable Sprite Support](https://steamcommunity.com/sharedfiles/filedetails/?id=3369451909)模组，详情见此mod描述。
 
-注意：即使使用了此 Mod，贴图在游戏内仍会缩放到与原版 PCC 相近的大小，无法直接做出“巨人”效果。
+此外，使用此 Mod ，只是上额外追加“帽子”等部件，以让图块大于 32×48 ；无法直接做出“巨人”的躯干。
