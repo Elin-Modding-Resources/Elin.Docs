@@ -12,7 +12,9 @@ Game comes with 100+ BGMs, they are defined by a numeric ID and sound file ID. Y
 
 <BgmPlayer />
 
-::: warning Attribution
+::: warning BGM Player
+If the player is not showing up, try refreshing the page.
+
 We are still working on finding attributions for some materials. If you have any information, please let us know in Elona Discord.
 :::
 
