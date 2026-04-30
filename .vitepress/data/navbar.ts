@@ -21,7 +21,7 @@ export function makeNavBar(
       },
       zh: {
         archive: "目录",
-        decompiled: "反编译",
+        decompiled: "反编译文档",
         sources: "源表",
       },
     };
