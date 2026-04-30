@@ -248,14 +248,25 @@
 /* ==========================================================================
    Medium Screen Navbar Layout Optimization
    中等屏幕下导航栏（Navbar）显示优化
-
-   Includes the 1024px breakpoint because this is the most critical
-   compression zone, where center navigation items are most likely
-   to overlap with the right-side controls.
-
-   必须包含 1024px，因为加入本段之前， 1024px 是导航栏最容易发生挤压冲突的关键区间，
-   中间导航项最容易遮挡右侧功能按钮。也必须包含 768px
    ========================================================================== */
+
+/*
+   Includes both 768px and 1024px breakpoints.
+
+   1024px is the most critical compression zone, where center navigation items
+   are most likely to overlap with right-side controls.
+
+   768px must also be included to ensure the layout transition remains consistent
+   between mobile and desktop navigation behavior.
+
+   必须包含 768px 和 1024px。
+
+   其中，1024px 是加入本段样式之前最容易发生导航栏挤压冲突的区间，
+   中间导航项最容易遮挡右侧功能按钮。
+
+   同时也必须包含 768px，以确保移动端与桌面端导航切换过程中的
+   布局行为保持一致。
+*/
 
 @media (min-width: 768px) and (max-width: 1279px) {
 
@@ -295,6 +306,7 @@
         display: block !important;
     }
 }
+
 
 
 /* ==========================================================================
