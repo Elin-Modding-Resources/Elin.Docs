@@ -254,10 +254,10 @@
    to overlap with the right-side controls.
 
    必须包含 1024px，因为加入本段之前， 1024px 是导航栏最容易发生挤压冲突的关键区间，
-   中间导航项最容易遮挡右侧功能按钮。
+   中间导航项最容易遮挡右侧功能按钮。也必须包含 768px
    ========================================================================== */
 
-@media (min-width: 769px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1279px) {
 
     /* Force hide center navigation items
        (e.g. Sources, Decompiled)
