@@ -243,3 +243,21 @@
 .medium-zoom--opened .medium-zoom-overlay {
   opacity: 0.9 !important;
 }
+
+
+/* ==========================================================================
+    Language-Specific Styles (Should be placed at the bottom)
+   ========================================================================== */
+
+/* ---------- Chinese ---------- */
+
+/* 电脑端，给横着的导航菜单增加间距。如源表等；不含语言切换、不含夜间模式那几个。 */
+@media (min-width: 768px) {
+    html[lang="zh"] .VPNavBarMenu {
+        gap: 8px;
+    }
+}
+
+/* ---------- English ---------- */
+
+/* ---------- Japanese ---------- */
