@@ -260,8 +260,8 @@
 @media (min-width: 769px) and (max-width: 1279px) {
 
     /* Force hide center navigation items
-       (e.g. Sources, TOC)
-       强制隐藏中间导航项（源表、目录等） */
+       (e.g. Sources, Decompiled)
+       强制隐藏中间导航项（源表、反编译等） */
     .VPNavBarMenu {
         display: none !important;
     }
@@ -290,7 +290,7 @@
     /* Force show the mobile dropdown panel
        for hamburger menu
        强制显示汉堡菜单对应的移动端下拉面板
-       （内含源表、目录等） */
+       （内含源表、反编译等） */
     .VPNavScreen {
         display: block !important;
     }
