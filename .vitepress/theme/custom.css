@@ -246,6 +246,58 @@
 
 
 /* ==========================================================================
+   Medium Screen Navbar Layout Optimization
+   中等屏幕下导航栏（Navbar）显示优化
+
+   Includes the 1024px breakpoint because this is the most critical
+   compression zone, where center navigation items are most likely
+   to overlap with the right-side controls.
+
+   必须包含 1024px，因为加入本段之前， 1024px 是导航栏最容易发生挤压冲突的关键区间，
+   中间导航项最容易遮挡右侧功能按钮。
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1279px) {
+
+    /* Force hide center navigation items
+       (e.g. Sources, TOC)
+       强制隐藏中间导航项（源表、目录等） */
+    .VPNavBarMenu {
+        display: none !important;
+    }
+
+    /* Keep right-side utility controls visible
+       (e.g. language switcher, appearance toggle)
+       保持右侧功能组件可见（语言切换、夜间模式等） */
+    .VPNavBarAppearance.appearance,
+    .VPNavBarSocialLinks.social-links,
+    .VPNavBarTranslations.translations {
+        display: flex;
+    }
+
+    /* Hide the "three dots" overflow menu
+       隐藏“三个点”收纳菜单（收纳上述右侧功能组件） */
+    .VPNavBarExtra.extra {
+        display: none;
+    }
+
+    /* Show hamburger menu button
+       显示汉堡菜单按钮 */
+    .VPNavBarHamburger {
+        display: flex;
+    }
+
+    /* Force show the mobile dropdown panel
+       for hamburger menu
+       强制显示汉堡菜单对应的移动端下拉面板
+       （内含源表、目录等） */
+    .VPNavScreen {
+        display: block !important;
+    }
+}
+
+
+/* ==========================================================================
     Language-Specific Styles (Should be placed at the bottom)
    ========================================================================== */
 
