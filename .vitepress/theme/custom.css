@@ -303,6 +303,8 @@
        for hamburger menu
        强制显示汉堡菜单对应的移动端下拉面板
        （内含源表、反编译等） */
+    /*   VPNavScreen的!important 必须保留：用于覆盖框架 768px+ 环境下对面板的硬编码隐藏。
+         因组件菜单关闭时 DOM 物理不存在，故此处强制显示无副作用。 此注释也应当保留 */
     .VPNavScreen {
         display: block !important;
     }
