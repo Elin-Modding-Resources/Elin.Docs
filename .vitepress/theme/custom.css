@@ -245,30 +245,31 @@
 }
 
 
+
 /* ==========================================================================
    Medium Screen Navbar Layout Optimization
-   中等屏幕下导航栏（Navbar）显示优化
+   中等屏幕下导航栏（Navbar）显示优化————响应式折叠
    ========================================================================== */
 
 /*
-   Includes both 768px and 1024px breakpoints.
-
-   1024px is the most critical compression zone, where center navigation items
+   1024px and 1280px is the most critical compression zone, where center navigation items
    are most likely to overlap with right-side controls.
 
    768px must also be included to ensure the layout transition remains consistent
    between mobile and desktop navigation behavior.
 
-   必须包含 768px 和 1024px。
+   必须包含 768px、 1024px 和 1280px
 
-   其中，1024px 是加入本段样式之前最容易发生导航栏挤压冲突的区间，
+   其中，1024px 和 1280px 是加入本段样式之前最容易发生导航栏挤压冲突的区间，
    中间导航项最容易遮挡右侧功能按钮。
 
    同时也必须包含 768px，以确保移动端与桌面端导航切换过程中的
    布局行为保持一致。
+
+   不含1440，以便于测试。
 */
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1439px) {
 
     /* Force hide center navigation items
        (e.g. Sources, Decompiled)
@@ -316,6 +317,8 @@
 /* ---------- Chinese ---------- */
 
 /* 大屏下，给横着的导航菜单增加间距。如源表等；不含语言切换、不含夜间模式那几个。 */
+/*   中文天然比日语英语短，所以gap要大 */
+/*   应为1440或1536，不可以1920，否则放大了吃不到；比如：系统缩放为125%时，1920px/1.25=1536px */
 @media (min-width: 1440px) {
     html[lang="zh"] .VPNavBarMenu {
         gap: 8px;
