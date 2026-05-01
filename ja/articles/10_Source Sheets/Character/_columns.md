@@ -1,12 +1,12 @@
 ---
-title: Chara
+title: Sheet Columns
 author: Puddles
 description: Comments about columns of Chara sheet.
 date: 2025/8/30 00:00
 tags: SourceSheet/Chara
 ---
 
-# Chara Sheet
+## Chara Sheet
 
 <LinkCard t="SourceCard/Chara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
@@ -26,8 +26,8 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | sort | string | Unused in SourceChara. |
 | size | string | Tile dimensions occupied by the Chara; usually empty. Example: `2,2` makes the Chara occupy 2×2 tiles and prevents shoving. |
 | _idRenderData | string | Controls sprite sheet referencing. `chara`/`chara_L`... uses tile IDs from `tiles` with textures in **Texture Replace** (limited slots, can be overridden). `@chara` uses same-ID texture from **Texture** (**mandatory** for modded Chara). |
-| tiles | int | tile IDs for sprite sheet, or [skinset](../15_Texture%20Mods/skins) for modded Chara. |
-| tiles_snow | int | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../15_Texture%20Mods/variation) instead. |
+| tiles | int | tile IDs for sprite sheet, or [skinset](../../15_Texture%20Mods/skins) for modded Chara. |
+| tiles_snow | int | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../../15_Texture%20Mods/variation) instead. |
 | colorMod | int | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
 | components | string | Unused in SourceChara. |
 | defMat | string | Unused in SourceChara. |
