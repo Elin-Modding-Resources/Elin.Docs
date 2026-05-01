@@ -5,10 +5,10 @@
   >
     <div class="flex items-stretch gap-4">
       <div
-        v-if="i"
         class="w-20 h-20 shrink-0 overflow-hidden rounded-md flex items-center justify-center"
+        v-if="i"
       >
-        <img :src="normalizedImage" class="w-full h-full object-contain block align-middle" />
+        <img :src="i" class="w-full h-full object-contain block align-middle" />
       </div>
 
       <div class="flex flex-col justify-center flex-1 min-w-0">
@@ -27,10 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter, useData, withBase } from "vitepress";
+import { useRouter, useData } from "vitepress";
 
-const { site } = useData();
+const { site, lang } = useData();
 const router = useRouter();
 
 const { t, u, i } = defineProps<{
@@ -43,20 +42,15 @@ function isExternal(url: string) {
   return /^(https?:)?\/\//.test(url);
 }
 
-const normalizedImage = computed(() => {
-  if (!i) return undefined;
-
-  if (isExternal(i)) return i;
-  
-  const path = i.startsWith('/') ? i : `/${i}`;
-  return withBase(path);
-});
-
 function normalizeInternal(url: string) {
   let path = url.replace(/^\//, "");
 
   if (path.endsWith(".md")) {
-    path = "articles/" + path.replace(/\.md$/, "");
+    if (lang.value !== "en") {
+      path = lang.value + "/articles/" + path.replace(/\.md$/, "");
+    } else {
+      path = "articles/" + path.replace(/\.md$/, "");
+    }
   }
 
   return site.value.base + path;

@@ -7,7 +7,7 @@ hide: true
 ## 导入自定义角色
 
 假设您已经在 Chara 表中定义了您的自定义角色。您可以参考现有的模组或 Elin Sources。
-<LinkCard t="Chara表粗略解释" u="/zh/articles/10_Source Sheets/Character/_columns.md" />
+<LinkCard t="Chara表解释" u="/10_Source Sheets/Character/_columns.md" />
 
 ## 自动生成/添加到区域
 
