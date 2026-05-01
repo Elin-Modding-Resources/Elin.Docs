@@ -19,7 +19,7 @@ hero:
       link: /
 
     - theme: alt
-      text: 日本语
+      text: 日本語
       link: /ja/
 ---
 
