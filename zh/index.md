@@ -15,12 +15,12 @@ hero:
       link: /zh/articles/2_Getting Started/basic_mod
       
     - theme: alt
-      text: GitHub
-      link: "https://github.com/Elin-Modding-Resources"
+      text: English
+      link: /
 
     - theme: alt
-      text: Discord
-      link: "https://discord.gg/elona"
+      text: 日本语
+      link: /ja/
 ---
 
 <h3>在伊尔瓦大陆上...</h3>

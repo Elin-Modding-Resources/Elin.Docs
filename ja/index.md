@@ -12,15 +12,15 @@ hero:
   actions:
     - theme: brand
       text: クイックスタート
-      link: /articles/2_Getting Started/basic_mod
+      link: /ja/articles/2_Getting Started/basic_mod
       
     - theme: alt
-      text: GitHub
-      link: "https://github.com/Elin-Modding-Resources"
+      text: 中文
+      link: /zh/
 
     - theme: alt
-      text: Discord
-      link: "https://discord.gg/elona"
+      text: English
+      link: /
 ---
 
 <h3>その頃、イルヴァでは……</h3>

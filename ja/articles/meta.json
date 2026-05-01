@@ -19,7 +19,13 @@
     },
     "10_Source Sheets": {
         "text": "ソースシート",
-        "collapsed": true
+        "collapsed": true,
+        "items": {
+            "Character": {
+                "text": "キャラクター",
+                "collapsed": true
+            }
+        }
     },
     "15_Texture Mods": {
         "text": "テクスチャMOD",

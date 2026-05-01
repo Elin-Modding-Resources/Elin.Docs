@@ -1,5 +1,5 @@
 ---
-title: Sheet Columns
+title: SourceChara
 author: Puddles
 description: Comments about columns of Chara sheet.
 date: 2025/8/30 00:00
@@ -26,14 +26,14 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | sort | string | Unused in SourceChara. |
 | size | string | Tile dimensions occupied by the Chara; usually empty. Example: `2,2` makes the Chara occupy 2×2 tiles and prevents shoving. |
 | _idRenderData | string | Controls sprite sheet referencing. `chara`/`chara_L`... uses tile IDs from `tiles` with textures in **Texture Replace** (limited slots, can be overridden). `@chara` uses same-ID texture from **Texture** (**mandatory** for modded Chara). |
-| tiles | int | tile IDs for sprite sheet, or [skinset](../../15_Texture%20Mods/skins) for modded Chara. |
-| tiles_snow | int | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../../15_Texture%20Mods/variation) instead. |
-| colorMod | int | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
+| tiles | integer | tile IDs for sprite sheet, or [skinset](../../15_Texture%20Mods/skins) for modded Chara. |
+| tiles_snow | integer | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../../15_Texture%20Mods/variation) instead. |
+| colorMod | integer | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
 | components | string | Unused in SourceChara. |
 | defMat | string | Unused in SourceChara. |
-| LV | int | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
-| chance | int | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
-| quality | int | `0–2`: regular tiers. `3`: Unique Monsters (egg obtainable; cannot befriend/capture/tame). `4`: Unique Characters (only chicken eggs; can befriend but not capture/tame). |
+| LV | integer | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
+| chance | integer | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
+| quality | integer | `0–2`: regular tiers. `3`: Unique Monsters (egg obtainable; cannot befriend/capture/tame). `4`: Unique Characters (only chicken eggs; can befriend but not capture/tame). |
 | hostility | string | Temperament toward player/allies/bystanders. Blank: `Hostile`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
 | biome | string | Increases (possibly doubles) spawn chance on specified floor type, decreases (possibly halves) on others. Example: `Water` strongly favors water-floor spawning. |
 | tag | string | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). |
@@ -66,7 +66,3 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | recruitItems | string | Special recruit dialog items, only used by mani right now. |
 | detail_JP | string | Unused in SourceChara; can be used for notes. |
 | detail | string | Unused in SourceChara; can be used for notes. |
-
-## Import
-
-

@@ -19,7 +19,13 @@
     },
     "10_Source Sheets": {
         "text": "源表",
-        "collapsed": true
+        "collapsed": true,
+        "items": {
+            "Character": {
+                "text": "角色",
+                "collapsed": true
+            }
+        }
     },
     "15_Texture Mods": {
         "text": "贴图模组",
