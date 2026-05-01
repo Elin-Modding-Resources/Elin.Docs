@@ -248,9 +248,8 @@
 
 /* ==========================================================================
    Medium Screen Navbar Layout Optimization
-   中等屏幕下导航栏（Navbar）显示优化————响应式折叠
+   中等屏幕下导航栏（Navbar）显示优化——响应式折叠
    ========================================================================== */
-
 /*
    1024px and 1280px is the most critical compression zone, where center navigation items
    are most likely to overlap with right-side controls.
@@ -268,7 +267,6 @@
 
    不含1440，以便于测试。
 */
-
 @media (min-width: 768px) and (max-width: 1439px) {
 
     /* Force hide center navigation items
@@ -280,11 +278,15 @@
 
     /* Keep right-side utility controls visible
        (e.g. language switcher, appearance toggle)
-       保持右侧功能组件可见（语言切换、夜间模式等） */
+       保持右侧功能组件可见（语言切换、夜间模式等）
+       出问题，考虑删除align-items、height、flex-shrink试试 */
     .VPNavBarAppearance.appearance,
     .VPNavBarSocialLinks.social-links,
     .VPNavBarTranslations.translations {
         display: flex;
+        align-items: center;
+        height: var(--vp-nav-height);
+        flex-shrink: 0;
     }
 
     /* Hide the "three dots" overflow menu
@@ -302,11 +304,19 @@
     /* Force show the mobile dropdown panel
        for hamburger menu
        强制显示汉堡菜单对应的移动端下拉面板
-       （内含源表、反编译等） */
+       下拉内含源表、反编译等 */
     /*   VPNavScreen的!important 必须保留：用于覆盖框架 768px+ 环境下对面板的硬编码隐藏。
          因组件菜单关闭时 DOM 物理不存在，故此处强制显示无副作用。 此注释也应当保留 */
     .VPNavScreen {
         display: block !important;
+    }
+
+    /* Lock pseudo-element divider position
+       锁定伪元素分隔线位置（夜间模式前面的竖线） */
+    .VPNavBarAppearance::before,
+    .VPNavBarSocialLinks::before,
+    .VPNavBarTranslations::before {
+        align-self: center;
     }
 }
 
