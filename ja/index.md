@@ -23,5 +23,5 @@ hero:
       link: "https://discord.gg/elona"
 ---
 
-<h3>Meanwhile on Ylva...</h3>
+<h3>その頃、イルヴァでは……</h3>
 <CardContainer/>
