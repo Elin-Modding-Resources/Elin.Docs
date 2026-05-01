@@ -4,14 +4,14 @@ layout: home
 
 hero:
   name: "Elin Modding Wiki"
-  text: "A compendium of community resources"
+  text: "有志によるMOD制作ガイド"
   
   image:
     src: "/elin-portrait.png"
 
   actions:
     - theme: brand
-      text: Getting Started
+      text: クイックスタート
       link: /articles/2_Getting Started/basic_mod
       
     - theme: alt
