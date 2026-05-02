@@ -6,6 +6,10 @@ date: 2025/12/11 00:00
 tags: SourceSheet/Job
 ---
 
+::: warning
+Work in progress
+:::
+
 # Job Sheet
 
 <LinkCard t="SourceChara/Job" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />

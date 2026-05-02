@@ -1,5 +1,5 @@
 ---
-title: Source Translation
+title: Translation
 author: DK
 description: How to provide translations for your source sheets
 date: 2026/4/8 00:00

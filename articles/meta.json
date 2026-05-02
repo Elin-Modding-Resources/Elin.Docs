@@ -19,13 +19,7 @@
     },
     "10_Source Sheets": {
         "text": "Source Sheets",
-        "collapsed": true,
-        "items": {
-            "Character": {
-                "text": "Character",
-                "collapsed": true
-            }
-        }
+        "collapsed": true
     },
     "15_Texture Mods": {
         "text": "Texture Mods",

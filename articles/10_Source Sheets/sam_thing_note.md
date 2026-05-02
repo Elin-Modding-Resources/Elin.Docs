@@ -6,6 +6,10 @@ date: 2025/1/10 16:00
 tags: SourceSheet/Thing
 ---
 
+::: warning
+Work in progress
+:::
+
 # Thing Sheet
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
