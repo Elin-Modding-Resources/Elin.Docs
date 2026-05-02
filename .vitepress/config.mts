@@ -2,6 +2,7 @@ import { defineConfig, HeadConfig, TransformContext } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";
+import tailwindcss from "@tailwindcss/vite";
 
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 
@@ -114,6 +115,7 @@ export default defineConfig({
     ssr: {
       noExternal: ["aplayer"],
     },
+    plugins: [tailwindcss()],
   },
 
   head: [
