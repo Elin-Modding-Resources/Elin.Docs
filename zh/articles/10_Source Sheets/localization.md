@@ -8,7 +8,7 @@ tags: SourceSheet/Localization
 
 # 源表
 
-默认情况下，源表中包含可翻译的英文列和日文列 `name` and `name_JP`, `aka` and `aka_JP`。
+默认情况下，源表里包含英文列与日文列，比如 `name` 与 `name_JP`， `aka` 与 `aka_JP`。
 
 源表应放入 `EN` 或 `JP` 文件夹。
 
@@ -21,7 +21,7 @@ tags: SourceSheet/Localization
 
 此时，您的模组的 `LangMod/XX` 文件夹中，会出现 `SourceLocalization.json` 文件（  `XX` 是当前语言的代码，比如中文是 `CN` ）。
 
-接下来开始翻译，编辑此 `json` 文件以进行翻译。（可直接复制json内容，发给deepseek等ai进行汉化，之后校对即可）
+接下来开始翻译，编辑此 `json` 文件以进行翻译。
 
 ## 为他人 Mod 添加翻译
 
