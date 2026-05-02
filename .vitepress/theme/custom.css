@@ -279,14 +279,13 @@
     /* Keep right-side utility controls visible
        (e.g. language switcher, appearance toggle)
        保持右侧功能组件可见（语言切换、夜间模式等）
-       出问题，考虑删除align-items、height、flex-shrink试试 */
+       出问题，考虑删除align-items、height试试 */
     .VPNavBarAppearance.appearance,
     .VPNavBarSocialLinks.social-links,
     .VPNavBarTranslations.translations {
         display: flex;
         align-items: center;
         height: var(--vp-nav-height);
-        flex-shrink: 0;
     }
 
     /* Hide the "three dots" overflow menu
@@ -298,7 +297,7 @@
     /* Show hamburger menu button
        显示汉堡菜单按钮 */
     .VPNavBarHamburger {
-        display: flex;
+        display: flex !important;
     }
 
     /* Force show the mobile dropdown panel
