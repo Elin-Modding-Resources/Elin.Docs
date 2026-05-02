@@ -1,4 +1,4 @@
-@reference "./tailwind.css";
+@import "./tailwind.css";
 
 :root {
   --vp-layout-max-width: clamp(760px, 88vw, 1760px);
