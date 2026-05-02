@@ -34,3 +34,7 @@ You should then be able to edit the `SourceLocalization.json` file in that mod's
 
 - Send this file to the mod author, or
 - Publish a new mod on the Workshop containing only this translation file in the correct folder structure.
+
+## Note
+
+Using `json` for translation only works for source sheets; it isn't suitable for drama sheet or dialogue sheet.
