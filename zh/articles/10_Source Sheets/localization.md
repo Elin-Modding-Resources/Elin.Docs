@@ -37,4 +37,4 @@ tags: SourceSheet/Localization
 
 ## 备注
 
-这种方式只适合源表，而drama表、dialog表等都无法用 `json` 来翻译。
+用 `json` 来翻译的方式只适合源表；而drama表、dialog表等都无法用此方法来翻译。
