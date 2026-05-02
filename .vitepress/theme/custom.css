@@ -294,8 +294,8 @@
         display: none;
     }
 
-    /* Show hamburger menu button
-       显示汉堡菜单按钮 */
+    /* Force show hamburger menu button
+       强制显示汉堡菜单按钮 */
     .VPNavBarHamburger {
         display: flex !important;
     }
