@@ -1,7 +1,7 @@
 ---
 title: Chara キャラ
 author: DK
-description: How to make new Chara sheet.
+description: 新しいキャラクターシートの作成方法
 date: 2026/5/2 03:00
 tags: SourceSheet/Chara
 ---

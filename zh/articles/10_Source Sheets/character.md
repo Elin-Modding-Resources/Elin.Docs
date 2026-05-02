@@ -1,7 +1,7 @@
 ---
 title: Chara 角色
 author: DK
-description: How to make new Chara sheet.
+description: 如何填写角色数据
 date: 2026/5/2 03:00
 tags: SourceSheet/Chara
 ---
