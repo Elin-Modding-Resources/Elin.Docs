@@ -274,7 +274,7 @@
    所有的 !important 都必须保留，否则可能有神秘 bug，
    无 !important 的话，DK（gottyduke）遇到了此神秘 bug，但我不能复现。
 */
-@media (min-width: 768px) and (max-width: 1439px) {
+@media (min-width: 768px) and (max-width: 1439.98px) {
 
     /* Force hide center navigation items
        (e.g. Sources, Decompiled)
