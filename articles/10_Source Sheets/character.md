@@ -234,8 +234,6 @@ These barks are written in **CharaText** sheet, and your Chara sheet uses **idTe
 
 To add some chatty texts to the character for the **Let's Talk** option, you'll need to use `dialog.xlsx` file placed in your `LangMod/**/Dialog/` folder.
 
-![let's talk](./assets/dialog.png)
-
 Let's talk texts are line-separated texts in `unique` sheet and a row with your character's ID.
 
 ::: warning Format

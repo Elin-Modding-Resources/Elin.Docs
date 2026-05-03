@@ -55,7 +55,7 @@ tags: SourceSheet/Chara
 |actIdle|文本|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
 |lightData|文本|在 SourceChara 中未使用。发出的光颜色。|
 |idExtra|文本|在 SourceChara 中未使用。额外的渲染数据。|
-|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`birthyear`（可选）、`height`（可选）、`weight`（可选）、来自 `chara_tone.xlsx` 的 `tone`（可选）、来自 `chara_talk.xlsx` 的 `talk`（可选）。示例：<code>f/51044/152/46/friendly|私|あなた</code>。|
+|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`birthyear`（可选）、`height`（可选）、`weight`（可选）、来自 `chara_tone.xlsx` 的 `tone`（可选）、来自 `chara_talk.xlsx` 的 `talk`（可选）。示例：`f/51044/152/46/friendly\|私\|あなた`。|
 |faith|文本|固定的宗教。设置后游戏内无法更改。|
 |works|文本|来自 SourceHobby 的 alias。|
 |hobbies|文本|来自 SourceHobby 的 alias。|
@@ -237,8 +237,6 @@ addZone_palmia,addThing_padoru_gift#10,addThing_1174#5
 ### 来聊天吧
 
 想添加一些角色 **来聊天吧** 时的对话，可以在 `LangMod/**/Dialog/` 文件夹中准备一个 `dialog.xlsx` 表格。
-
-![img](./assets/dialog.png)
 
 此表格的格式与游戏的对话表格 **Elin/Package/_Elona/Lang/_Dialog/dialog.xlsx** 相同，但你只需 `unique` 表和包含你角色 ID 的那一行。
 

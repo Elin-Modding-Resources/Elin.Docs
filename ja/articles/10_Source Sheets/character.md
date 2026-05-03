@@ -55,7 +55,7 @@ tags: SourceSheet/Chara
 |actIdle|テキスト|非戦闘時の特殊行動。例：`readBook`（ランダム本を生成・読書・削除）、`buffMage`（定期的に`spResElement`や`spHero`などのバフ魔法を唱える）など。|
 |lightData|テキスト|SourceCharaでは使用していません。発光色を設定できます。|
 |idExtra|テキスト|SourceCharaでは使用していません。追加の描画データ。|
-|bio|テキスト|スラッシュ区切りの値（空白なし）：`gender`（`m`/`f`/`n`、必須）、`birthyear`（任意）、`height`（任意）、`weight`（任意）、`chara_tone.xlsx`の`tone`（任意）、`chara_talk.xlsx`の`talk`（任意）。例：`f/51044/152/46/friendly|私|あなた`|
+|bio|テキスト|スラッシュ区切りの値（空白なし）：`gender`（`m`/`f`/`n`、必須）、`birthyear`（任意）、`height`（任意）、`weight`（任意）、`chara_tone.xlsx`の`tone`（任意）、`chara_talk.xlsx`の`talk`（任意）。例：`f/51044/152/46/friendly\|私\|あなた`|
 |faith|テキスト|固定の信仰。設定するとゲーム内で変更できなくなります。|
 |works|テキスト|SourceHobbyのaliasを指定します。|
 |hobbies|テキスト|SourceHobbyのaliasを指定します。|
