@@ -260,7 +260,7 @@
    1440px is intentionally excluded to make testing easier.
 
    All !important declarations must be kept. Removing them may cause mysterious layout bugs.
-   DK (gottyduke) encountered this issue, although I could not reproduce it.
+   Without !important, DK (gottyduke) encountered this issue, although I could not reproduce it.
 
    必须包含 768px、1024px 和 1280px
 
@@ -272,7 +272,7 @@
 
    不含 1440，以便于测试。
    所有的 !important 都必须保留，否则可能有神秘 bug，
-   DK（gottyduke）遇到了但我不能复现。
+   无 !important 的话，DK（gottyduke）遇到了此神秘 bug，但我不能复现。
 */
 @media (min-width: 768px) and (max-width: 1439px) {
 
