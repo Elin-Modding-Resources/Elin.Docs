@@ -19,9 +19,9 @@ tags: SourceSheet/Chara
 |id|文本|条目中最重要的标识单元，用于在角色表中将其与其他所有内容区分开来。如果该 ID 与原版条目或其他模组条目的 ID 匹配，则最后加载的表格将覆盖其他表格。该值不能包含任何空格，必要时建议使用 snake_case 风格，例如 `mymod_chara_yajyuu_senpai`。|
 |_id|整数|用于图鉴中的排序，可以是任意数值。该值不必唯一。|
 |name_JP|文本|角色的游戏内显示的日文名称。|
-|name|文本|角色的游戏内显示的英文名称。其他语言使用 SourceLocalization.json。|
+|name|文本|角色的游戏内显示的英文名称。其他语言使用  [SourceLocalization.json](./localization) 。|
 |aka_JP|文本|角色的游戏内别名/称号的日文名称。|
-|aka|文本|角色的游戏内别名/称号的英文名称。其他语言使用 SourceLocalization.json。|
+|aka|文本|角色的游戏内别名/称号的英文名称。其他语言使用  [SourceLocalization.json](./localization) 。|
 |idActor|文本|控制角色是否使用 PCC 部件渲染。示例：`pcc,unique,jure` 会从 `pcc/unique/jure` 加载 PCC 部件。|
 |sort|文本|在 SourceChara 中未使用。|
 |size|文本|角色占用的图块尺寸；通常为空。示例：`2,2` 会使角色占用 2×2 图块并防止被推挤。|
