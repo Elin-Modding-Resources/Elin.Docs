@@ -108,12 +108,15 @@ Create an OpenAI provider, paste the API key, and change the settings:
 
 **Endpoint**: `https://api.deepseek.com/v1`<C prev /> 
 
-**Model**: `deepseek-chat`<C prev /> (the thinking-disabled variant of DeepSeekV3.2-Exp)
+**Model**: `deepseek-v4-flash`<C prev />
 
 **Params**:
 ```json
 {
   "frequency_penalty": 0.6,
+  "thinking": {
+    "type": "disabled"
+  },
   "response_format": {
     "type": "json_object"
   }
