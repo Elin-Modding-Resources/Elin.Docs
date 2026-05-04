@@ -30,12 +30,16 @@ Create an OpenAI provider, paste the API key, and change the settings:
 
 **Endpoint**: `https://integrate.api.nvidia.com/v1`<C prev />  
 
-**Model**: `deepseek-ai/deepseek-v3.1-terminus`<C prev />  
-(Or [any other model you like](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v3_1-terminus))
+**Model**: `deepseek-ai/deepseek-v4-flash`<C prev />  
+(Or [any other model you like](https://docs.api.nvidia.com/nim/reference/deepseek-ai-deepseek-v4-flash))
 
 **Params**:
 ```json
 {
+  "frequency_penalty": 0.6,
+  "thinking": {
+    "type": "disabled"
+  },
   "response_format": {
     "type": "json_object"
   }
