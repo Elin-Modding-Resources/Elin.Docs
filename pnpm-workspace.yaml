@@ -1,3 +1,7 @@
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - esbuild
+allowBuilds:
+  esbuild: true
+overrides:
+  vite: 8.0.11
+peerDependencyRules:
+  allowAny:
+    - "*"
