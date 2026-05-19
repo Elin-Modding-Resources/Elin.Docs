@@ -70,7 +70,8 @@ CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码
 |`play_emote`|[表情id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|使`actor`显示表情|总是|
 |`play_screen_effect`|[屏幕特效id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
 |`pop_text`|文本|使`actor`发出喊叫文本(气泡框)|总是|
-|`set_portrait`/`portrait_set`|立绘id(可选)|设置`actor`对话立绘，为空时重置，支持**Portrait**文件夹自定义立绘，例如 `UN_myChara_happy.png` 则使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_portrait`|头像id(可选)|设置`actor`对话头像，为空时重置，支持**Portrait**文件夹自定义头像，例如 `UN_myChara_happy.png` 则使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_portrait_override`|头像id(可选)|设置`actor`对话外头像，为空时重置，支持**Portrait**文件夹自定义头像，须使用全名ID。此变动不会影响当前的对话头像(如前一方法)|总是|
 |`set_sprite`|贴图id(可选)|设置`actor`自定义贴图，为空时重置，由**Texture**文件获取|总是|
 |`show_book`|分类/书籍 id|打开一本书，支持 **LangMod/_*_*/Text** 文件夹；例如 `Text/Book/ok.txt` 将使用 `(Book/ok)`|成功时|
 
