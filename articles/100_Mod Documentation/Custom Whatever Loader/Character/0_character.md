@@ -7,7 +7,7 @@ hide: true
 ## Import Custom Character
 
 Assumes you already have your custom character defined in a Chara sheet. You can take reference from existing mods or Elin Sources.
-<LinkCard t="SourceChara Explanation" u="https://elin-modding-resources.github.io/Elin.Docs/articles/10_Source%20Sheets/character" />
+<LinkCard t="SourceChara Explanation" u="10_Source Sheets/character.md" />
 
 CWL utilizes the tag cell of the Chara row to add features, you can add as many tags as you want. **Remember, tags are separated by `,` (comma) with no spaces in between**. 
 
