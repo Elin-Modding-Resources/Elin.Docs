@@ -7,7 +7,7 @@ hide: true
 ## 导入自定义角色
 
 首先您需要 Chara 表中定义您的自定义角色，您可以参考下面链接、现有的模组以及 Elin Sources。
-<LinkCard t="Chara表解释" u="https://elin-modding.net/zh/articles/10_Source%20Sheets/character" />
+<LinkCard t="Chara表解释" u="10_Source Sheets/character.md" />
 
 接下来，将假设您已经在 Chara 表中定义了您的自定义角色。
  
