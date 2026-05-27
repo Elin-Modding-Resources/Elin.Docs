@@ -42,4 +42,4 @@ hide: true
 
 ストーリーセクションは別の章に移動しました。
 
-<LinkCard t="ドラマ基礎" u="/100_Mod Documentation/Custom Whatever Loader/JP/Drama/0_basic.md" />
+<LinkCard t="ドラマ基礎" u="/100_Mod Documentation/Custom Whatever Loader/Drama/0_basic.md" />

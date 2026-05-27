@@ -49,4 +49,4 @@ hide: true
 
 プレイヤーに、あなたの素晴らしいドラマをより深く楽しんでもらうためのヒントを提供したい場合があります。CWLでMODを作成している場合、**Mod Help** を利用して、独自のヘルプページをゲーム内に追加することができます。
 
-<LinkCard t="Mod Help" u="/100_Mod Documentation/Mod Help/1_mod_help_jp.md" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />
+<LinkCard t="Mod Help" u="/100_Mod Documentation/Mod Help/0_mod_help.md" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />

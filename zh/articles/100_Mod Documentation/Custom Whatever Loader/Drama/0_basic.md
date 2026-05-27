@@ -49,4 +49,4 @@ hide: true
 
 有时您可能想为玩家提供一些提示，以便他们更好地体验您精彩的剧情故事。通过使用CWL制作模组，您可以使用Mod Help 来提供定制的帮助页面。
 
-<LinkCard t="Mod Help" u="/100_Mod Documentation/Mod Help/2_mod_help_cn.md" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />
+<LinkCard t="Mod Help" u="/100_Mod Documentation/Mod Help/0_mod_help.md" i="https://raw.githubusercontent.com/Drakeny/Elin.ModHelp/refs/heads/main/package/ModHelp.png" />

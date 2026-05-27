@@ -40,4 +40,4 @@ A drama is the rich dialog that usually has options and additional actions.
 
 Drama guides are moved to a new section:
 
-<LinkCard t="Drama System" u="/100_Mod Documentation/Custom Whatever Loader/EN/Drama/0_basic.md" />
+<LinkCard t="Drama System" u="/100_Mod Documentation/Custom Whatever Loader/Drama/0_basic.md" />
