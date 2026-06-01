@@ -1,53 +1,58 @@
 ---
-title: Basic Elin Mod Package
+title: Elin Mod パッケージの基本
 author: DK
-description: How does mod work in Elin and how to make one.
+description: Elin における Mod の仕組みと、Mod の作成方法について。
 date: 2024/11/6 12:00
 tags: Guide/Mod
 ---
 
-# Elin Mod Package
+# Elin Mod パッケージ
 
-Elin supports a variety of mod types, let's walk through the steps of creating a basic example mod.
+Elin はさまざまな種類の Mod をサポートしています。ここでは、基本的なサンプル Mod を作成する手順を紹介します。
 
-## Mod Folder
+## Mod フォルダ
 
-Your locally developed mod should be placed under `<ElinGamePath>/Package/<ModName>` folder.
+ローカルで開発する Mod は `<ElinGamePath>/Package/<ModName>` フォルダ内に配置してください。
 
-If you are not sure where that is, right click Elin in your steam library, go to `Properties`>`Installed Files`:
+場所が分からない場合は、Steam ライブラリで Elin を右クリックし、`プロパティ` → `インストール済みファイル` を開いてください。
 ![browse local](./assets/browse.png)
 
-Click `Browse` and open up the `Package` folder, this is where local mods are placed, including Elin's own core files. Create a new folder for your mod, all of the mod contents will be placed within.
+`参照` をクリックして `Package` フォルダを開きます。ここにはローカル Mod のほか、Elin 本体のコアファイルも含まれています。新しいフォルダを作成し、その中に Mod のファイルを配置してください。
 ![new folder](./assets/new_mod.png)
 
-## Show File Extensions
+## ファイル拡張子を表示する
 
-To proceed and make your life easier, file extensions must not be set to hidden:
+作業を進めやすくするため、ファイル拡張子を非表示にしないよう設定してください。
 ![unhide ext](./assets/unhide_ext.png)
 
 ::: details Windows 10
-+ Open File Explorer; if you do not have an icon for this in the task bar; click Start, click Windows System, and then File Explorer.
-+ Click the View tab in File Explorer.
-+ Click the box next to File name extensions to see file extensions.
++ エクスプローラーを開きます。タスクバーにアイコンがない場合は、スタートメニュー → Windows システム ツール → エクスプローラーを開いてください。
++ エクスプローラー上部の「表示」タブをクリックします。
++ 「ファイル名拡張子」にチェックを入れると、拡張子が表示されます。
 :::
 
 ::: details Windows 11
-+ Open File Explorer; if you do not have an icon for this in the task bar; click Start, click Windows System, and then File Explorer.
-+ Click the View dropdown in File Explorer.
-+ Click the Display option and check file extensions;
++ エクスプローラーを開きます。タスクバーにアイコンがない場合は、スタートメニュー → Windows システム ツール → エクスプローラーを開いてください。
++ エクスプローラー上部の「表示」ドロップダウンをクリックします。
++ 「表示」→「ファイル名拡張子」を有効にしてください。
 :::
 
-## Preview / Thumbnail
+## プレビュー画像 / サムネイル
 
-A preview image will be used as the thumbnail in workshop page. It has to be named `preview`, in `.jpg` format, and preferably under 1MB in size, otherwise you might encounter upload problem.
+プレビュー画像は Workshop ページでサムネイルとして使用されます。
+
+ファイル名は `preview`、形式は `.jpg` にしてください。また、アップロード時の問題を避けるため、サイズはできれば 1MB 未満にしてください。
 ![preview](./assets/preview.png)
 
-## Writing package.xml
+## package.xml を作成する
 
-A `package.xml` describes the mod. Create a new text file in the mod folder and change its name **and extension** to `package.xml`:
+`package.xml` は Mod の情報を記述するファイルです。
+
+Mod フォルダ内に新しいテキストファイルを作成し、**ファイル名と拡張子の両方**を `package.xml` に変更してください。
 ![package file](./assets/package_file.png)
 
-Open it with an editor - not chrome/your browser, and fill in the following information:
+Chrome やブラウザではなく、テキストエディタで開き、以下の内容を入力します。
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Meta>
@@ -65,81 +70,108 @@ Open it with an editor - not chrome/your browser, and fill in the following info
 
 ### title
 
-Your mod title. Enter your mod's title within this tag. When you upload your mod to the Workshop for the first time, the text in this tag will be displayed as the mod's title.
+Mod のタイトルです。
 
-When updating your mod, this text will be ignored. If you need to change the title, please do so directly in the Workshop.
+このタグ内に Mod のタイトルを入力してください。Workshop に初めてアップロードする際、このテキストが Mod のタイトルとして表示されます。
 
-Example: `<title>My Elin Mod</title>`
+ただし、既存 Mod を更新する場合、この値は無視されます。タイトルを変更したい場合は Workshop 側で変更してください。
+
+例: `<title>My Elin Mod</title>`
 
 ### id
 
-Enter a unique ID to identify your mod. If the ID conflicts with an existing mod, the upload will fail. Choose a name unlikely to conflict with others.
+Mod を識別するための一意の ID を指定します。
 
-Example: `<id>my.veryunique.modid</id>`
+既存の Mod と重複するとアップロードに失敗します。他の Mod と衝突しにくい名前を設定してください。
 
-::: danger Updating Mod
-Do not change the **`id`** of the mod once you publish it. Otherwise it will be treated as a new mod and fail to update.
+例: `<id>my.veryunique.modid</id>`
+
+::: danger Mod 更新時の注意
+公開後は Mod の **`id`** を変更しないでください。変更すると別の Mod として扱われ、更新できなくなります。
 :::
 
 ### author
 
-Enter the name of the author. You can write anything here.
+作者名を入力します。
 
-Example: `<author>Me, Myself, and I</author>`
+ここには任意の文字列を記述できます。
+
+例: `<author>Me, Myself, and I</author>`
 
 ### loadPriority
 
-Specifies the order in which mods are loaded. Enter any number (e.g., 0 or higher). Mods with lower numbers are loaded first.
+Mod の読み込み順を指定します。
 
-Example: `<loadPriority>100</loadPriority>`
+任意の数値（0 以上など）を入力してください。値が小さい Mod ほど先に読み込まれます。
+
+例: `<loadPriority>100</loadPriority>`
 
 ### version
 
-Write the version of the Elin main game that your mod was last confirmed to work with. Currently, it’s okay to skip frequent updates to this value unless necessary. If the Elin main game introduces significant changes to mods, mods with versions older than the main game’s update will no longer be loaded.
+この Mod が最後に動作確認された Elin 本体のバージョンを記述します。
+
+現時点では、必要がない限り頻繁に更新する必要はありません。将来的に Elin 本体で Mod システムに大きな変更が入った場合、本体バージョンより古い `version` を持つ Mod は読み込まれなくなります。
 
 ::: warning
-This is **not** your mod's version! Set this version to your game's version. 
+これは **Mod 自身のバージョンではありません！**  
+ゲーム本体のバージョンを設定してください。
 :::
 
-Example: `<version>0.23.212</version>`
+例: `<version>0.23.212</version>`
 
 ### tags
 
-Specify tags for the Workshop, separated by commas(`,`) if multiple tags are used. You may register any tags you like. Using official tags will make your mod visible in the Workshop categories. 
+Workshop 用のタグを指定します。複数指定する場合はカンマ（`,`）で区切ってください。
 
-<LinkCard t="Official Tags" u="https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub"/>
+タグは自由に設定できますが、公式タグを使用すると Workshop のカテゴリに表示されるようになります。
 
-Example: `<tags>General,QoL,Utility,My Fun Mods,Use With Caution</tags>` 
+<LinkCard t="公式タグ一覧" u="https://docs.google.com/document/d/e/2PACX-1vR7MjQ_5hAmavFB8iMW6xm7vSYJg_g8I1s8KtvjBO-N_zNATnsmdmyQsmxQ8z9yEpZxNoc-TTdZm8so/pub"/>
+
+例: `<tags>General,QoL,Utility,My Fun Mods,Use With Caution</tags>`
 
 ### description
 
-Provide a description of your mod. This text will be displayed as the mod's description when it’s first uploaded to the Workshop.
+Mod の説明文を入力します。
 
-When updating your mod, this text will be ignored. If you need to change the description, do so in the Workshop.
+このテキストは Workshop に初回アップロードした際の説明文として使用されます。
 
-Example: `<description />` you should do this in workshop page.
+ただし、更新時には無視されます。説明文を変更したい場合は Workshop 側で編集してください。
+
+例: `<description />`
+
+説明文の編集は Workshop ページで行ってください。
 
 ### builtin
 
-Set this to false. Don't worry about it. Don't think about it.
+`false` に設定してください。
 
-Example: `<builtin>false</builtin>`
+気にしなくて大丈夫です。考えないでください。
 
-### optional: visibility
+例: `<builtin>false</builtin>`
 
-Specifies the visibility of the uploaded mod. Possible values are:
+### オプション: visibility
+
+アップロード時の公開範囲を指定します。
+
+指定可能な値は以下の通りです。
+
 + `Public`
 + `Unlisted`
 + `Private`
 + `FriendsOnly`
 
-If this tag is omitted, the mod will be uploaded as `Public` by default.
+このタグを省略した場合、デフォルトで `Public` としてアップロードされます。
 
-Example: `<visibility>Unlisted</visibility>`
+例: `<visibility>Unlisted</visibility>`
 
-## Upload & Update
+## アップロードと更新
 
-That's it, a basic empty mod that does nothing has been created. Launch Elin and open the Mod Viewer page, find your mod, it should be loaded as `[Local]` because it's a local mod in the `Package` folder.
+以上で、何もしない空の基本 Mod が完成しました。
 
-Click your mod and you should see `Publish` button. If this mod hasn't been published to the workshop yet, it will be **published**. Otherwise the mod will be **updated**.
+Elin を起動し、Mod Viewer を開いてください。作成した Mod が表示され、`Package` フォルダ内のローカル Mod であるため `[Local]` と表示されるはずです。
+
+Mod をクリックすると `Publish` ボタンが表示されます。
+
+まだ Workshop に公開されていない場合は **新規公開** されます。すでに公開済みの場合は **更新** が行われます。
+
 ![publish](./assets/publish.png)
