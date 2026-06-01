@@ -14,6 +14,10 @@ This article will be ever evolving, so its formatting may be a bit wonky.
 
 Need to know where a specific data from the game is? Here are your answers:
 
+### Game Log
+
+> [!Important] %localappdata%low/Lafrontier/Elin/Player.log
+
 ### Graphical assets
 
 #### PCC related
@@ -56,24 +60,17 @@ Need to know where a specific data from the game is? Here are your answers:
 
 ## How do I...?
 
-### Replace a portrait
+### Add/Replace a portrait
+
+> [!Important] To add a new portrait:
+> Create a subfolder called `Portrait` in your mod folder and add your new portrait image.
 
 > [!Important] To replace a portrait:
 > Create a subfolder called `Portrait` in your mod folder and add the image you want to replace with the name of the portrait you want to replace
 > Eg.: `portrait/UN_adv_gaki.png` will replace the portrait of the adventurer Gaki.
-> ::: info You can find the name of the originals [**here**](#portrait)
-> :::
 
-### Add a new portrait
-
-> [!Important] To add a new portrait:
-> Create a subfolder called `Portrait` in your mod folder and add your new portrait image.
-> Eg.: `portrait/my_portrait.png`
+> <LinkCard t="Portrait" u="15_Texture Mods/portraits.md" />
 
 ### Replace a Sprite
 
-> [!Important] To replace a sprite:
-> Create a subfolder called `Texture Replace` in your mod folder and add the sprite image you want to replace using the name of the spritesheet and tile of the sprite you want to replace.
-> Eg.: `Texture Replace/objC_2115.png` will replace the sprite of the adventurer Gaki.
-> ::: info You can find the spritesheet names and tile numbers [**here**](#sprites)
-> :::
+> [!Important] To replace a sprite: Use in game tool `Esc > Tools > Texture Viewer`.
