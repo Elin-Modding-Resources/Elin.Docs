@@ -1,90 +1,100 @@
 ---
-title: Modding Cheatsheet
+title: 速查手册
 author: Drakeny
-description: Quick and easy recurring knowledge for modders.
+description: 为模组制作者准备的快速、易用的备忘知识。
 date: 2024/12/8 2:53
 tags: Cheatsheet
 ---
 
-# Cheatsheet
+# 速查手册
 
-This article will be ever evolving, so its formatting may be a bit wonky.
+本文将持续更新，因此格式可能稍显杂乱。
 
-## Where is...?
+## 在哪里……？
 
-Need to know where a specific data from the game is? Here are your answers:
+想知道游戏中的某个特定数据在哪里吗？请看下文：
 
-### Game Log
+### 游戏日志（Game Log）
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
 
-### Graphical assets
+### 图形资源
 
-#### PCC related
-
-<!-- prettier-ignore -->
-> [!Important] (SteamPath)/Elin/Package/_Elona/Actor
-
-#### Object/Character/Blocks/etc Sprites {#sprites}
+#### PCC 相关
 
 <!-- prettier-ignore -->
-> [!Important] (SteamPath)/Elin/Package/_Elona/Textures
-> ::: info Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`.
-> You can also check their tile number in there
+> [!Important] (Steam安装路径)/Elin/Package/_Elona/Actor
+> 主角的小人，即PCC。
+
+#### 物品/角色/方块/其他的精灵图（Sprite） {#sprites}
+
+<!-- prettier-ignore -->
+> [!Important] (Steam安装路径)/Elin/Package/_Elona/Textures
+> :::info 纹理查看器 
+> 在游戏中，按以下步骤访问所有精灵图集 `Esc > 工具 > 纹理查看器`.
+>
+> 你也可以在此处查看它们的图块编号。
+>
+> Elin本体的角色的图块编号，就与源表SourceChara中的 tile列对应
 > :::
 
-#### Portraits {#portrait}
+#### 肖像 {#portrait}
 
 <!-- prettier-ignore -->
-> [!Important] (SteamPath)/Elin/Package/_Elona/Portraits
+> [!Important] (Steam安装路径)/Elin/Package/_Elona/Portraits
 
-### Game Data
+### 游戏数据（源表）
 
 #### Source Game
 
-> [!Important]Contains the sheets for:
-> `Elements`, `Formulas(Calc)`, `Stats`, `Checks`, `Factions`, `Religions`, `Zones`, `Zone Affixes`, `Quests`, `Areas`, `Home Resources`, `Research` and `Persons`.
+> [!Important]包含以下数据表:
+> `Elements`, `Formulas(Calc)`, `Stats`, `Checks`, `Factions`, `Religions`, `Zones`, `Zone Affixes`, `Quests`, `Areas`, `Home Resources`, `Research` 和 `Persons`.
 > <LinkCard t="SourceGame.xlsx" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_"/>
 
 #### Source Chara
 
-> [!Important]Contains the sheets for:
-> `Characters(Chara)`, `Barks (CharaTalk)`, `Tactics`, `Races`, `Jobs` and `Hobbies`.
+> [!Important]包含以下数据表:
+> `Characters(Chara)`, `Barks (CharaTalk)`, `Tactics`, `Races`, `Jobs` 和 `Hobbies`.
 > <LinkCard t="SourceChara.xlsx" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn"/>
 
 #### Source Card
 
-> [!Important] Contains the sheets for:
-> `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` and `KeyItems`.
+> [!Important]包含以下数据表:
+> `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` 和 `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
-## How do I...?
+## 我该如何……？
 
-### Add/Replace a portrait
+### 添加/替换一个肖像
 
-> [!Important] To add a new portrait:
-> Create a subfolder called `Portrait` in your mod folder and add your new portrait image.
+> [!Important] 添加新肖像：
+> 在你的模组文件夹中创建一个名为 `Portrait` 的子文件夹，然后添加新的肖像图片。详情参阅下文：
 >
-> <LinkCard t="Portrait" u="15_Texture Mods/portraits.md" />
+> <LinkCard t="肖像" u="15_Texture Mods/portraits.md" />
 
-> [!Important] To replace a portrait:
-> Create a subfolder called `Portrait` in your mod folder and add the image you want to replace with the name of the portrait you want to replace
+> [!Important] 替换Elin本体的肖像：
+> 在你的模组文件夹中创建一个名为 `Portrait` 的子文件夹，然后添加你想要替换的图片，图片名称需与要替换的人物肖像名称一致。
 >
-> Eg.: `portrait/UN_adv_gaki.png` will replace the portrait of the adventurer Gaki.
+> 例子： `portrait/UN_adv_gaki.png` 将替换冒险者牙姬的肖像。详情参阅下文：
 >
-> <LinkCard t="Portrait" u="15_Texture Mods/portraits.md" />
+> <LinkCard t="肖像" u="15_Texture Mods/portraits.md" />
 
-### Replace a Sprite
+### 替换精灵图（Sprite）
 
-> [!Important] To replace a sprite: 
-> Use in game tool `Esc > Tools > Texture Viewer` .
+NPC的小人贴图，即精灵图（Sprite）
+
+> [!Important] 替换精灵图：
+> 在游戏内使用纹理查看器： `Esc > 工具 > 纹理查看器` .
 >
-> Middle-click to zoom in, left-click and drag
-
-> [!Important] You can also replace a sprite by this:
-> Create a subfolder called `Texture Replace` in your mod folder and add the sprite image you want to replace using the name of the spritesheet and tile of the sprite you want to replace.
+> 按下中键放缩，按着左键拖动
 >
-> Eg.: `Texture Replace/objC_2115.png` will replace the sprite of the adventurer Gaki.
-> ::: info You can find the spritesheet names and tile numbers in [**Texture Viewer**](#sprites)
+> 若想替换 `objC_811` ，请将新图片命名为 `objC_811.png`，然后鼠标拖动到上面即可
 
 
+> [!Important] 你还可以用此方式，来替换精灵图：
+> 在你的模组文件夹中创建一个名为 `Texture Replace` 的子文件夹。然后找到你想替换的目标，根据目标所在的图集名称和图块编号，将对应的新精灵图片添加进文件夹。
+>
+> 例如： `Texture Replace/objC_2115.png` 将会替换冒险者牙姬的精灵图
+> ::: info 你可以在 [**纹理查看器**](#sprites) 中找到图集名称和图块编号。
+
+完整内容，请移步总目录的【贴图模组】分区阅读。
