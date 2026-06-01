@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger Elin 形式に更新
+CWL 仕様はもはや保守されていませんが、互換性は維持されています。Elin 自体がサポートする新しい形式は、こちらで確認してください：
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## カスタムキャラクターのインポート
 
 <LinkCard t="トウミィの MOD 作成講座" u="https://note.com/seacolor/n/n4118acf824fa?sub_rt=share_pw" i="https://cdn.discordapp.com/avatars/414045627400454144/b5f7f32a00b8653bd28ac58f9b85a2b8.webp" />

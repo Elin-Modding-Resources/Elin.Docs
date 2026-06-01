@@ -6,6 +6,11 @@ date: 2025/1/3 01:00
 tags: Guide/CWL/Chara
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## Barks (Popup)
 
 Sometimes you want the character to banter/bark at certain conditions. The barks pop up above character's head in a speech bubble.

@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Religion" u="/10_Source Sheets/religion.md"/>
+:::
+
 ## Custom Religion
 
 Custom Whatever Loader can import the Religion source sheet and patch it into the game. However, your custom religion ID must begin with **cwl_**, for example: **cwl_spaghettigod**.

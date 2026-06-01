@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## Import Custom Character
 
 Assumes you already have your custom character defined in a Chara sheet. You can take reference from existing mods or Elin Sources.

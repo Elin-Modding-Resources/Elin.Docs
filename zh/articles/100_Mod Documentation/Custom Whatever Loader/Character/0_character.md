@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## 导入自定义角色
 
 首先您需要 Chara 表中定义您的自定义角色，您可以参考下面链接、现有的模组以及 Elin Sources。

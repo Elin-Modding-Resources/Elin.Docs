@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## custom bio
 
 To add more flavor to your character, you may use tag `addBio_ID` to define a custom biography. The bio file is (yet another) json file placed in your `LangMod/**/Data/` folder, with name `bio_ID.json`, the ID is the unique ID for this biography file, such as `bio_my_chara.json`.

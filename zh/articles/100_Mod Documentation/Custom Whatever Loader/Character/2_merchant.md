@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## 自定义商人库存
 
 你可以使用 `addStock` 标签和库存文件来定义自定义商人库存。

@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## 自定义传记
 
 为了为你的角色增添更多风味，你可以使用标签 `addBio_ID` 来指定自定义传记。传记文件是一份 JSON 文件，存放在你的 `LangMod/**/Data/` 文件夹中，名称为 `bio_ID.json`，此ID是传记文件的独特ID。

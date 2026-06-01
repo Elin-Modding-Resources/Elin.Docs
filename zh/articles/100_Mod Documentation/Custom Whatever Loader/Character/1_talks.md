@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+<LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
+:::
+
 ## 头顶气泡（Barks）
 
 在某些情况下，角色会触发特定的台词，并以气泡形式显示在其头顶。

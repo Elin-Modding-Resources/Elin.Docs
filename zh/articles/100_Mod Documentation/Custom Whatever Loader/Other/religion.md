@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+<LinkCard t="Religion" u="/10_Source Sheets/religion.md"/>
+:::
+
 ## 自定义信仰
 
 CWL 可以导入您的自定义信仰表（表名: Religion）并将其添加到游戏中。然而，您的自定义信仰 ID 必须以 **cwl_** 开头，例如：**cwl_spaghettigod**。

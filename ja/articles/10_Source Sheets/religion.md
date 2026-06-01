@@ -1,5 +1,5 @@
 ---
-title: 信仰
+title: Religion 信仰
 author: DK
 description: カスタム信仰の作成方法。
 date: 2026/5/31 18:00

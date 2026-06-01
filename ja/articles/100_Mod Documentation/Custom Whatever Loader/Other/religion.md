@@ -4,6 +4,11 @@ date: 2025/1/3 01:00
 hide: true
 ---
 
+::: danger Elin 形式に更新
+CWL 仕様はもはや保守されていませんが、互換性は維持されています。Elin 自体がサポートする新しい形式は、こちらで確認してください：
+<LinkCard t="Religion" u="/10_Source Sheets/religion.md"/>
+:::
+
 ## カスタム信仰
 
 随便ロードは、あなたのカスタム信仰表（表名: Religion）をインポートし、ゲームに追加することができます。ただし、あなたのカスタム信仰IDは **cwl_** で始まる必要があります。例えば：**cwl_spaghettigod**。
