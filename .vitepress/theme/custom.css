@@ -285,8 +285,9 @@
 
     /* Keep right-side utility controls visible
        (e.g. language switcher, appearance toggle)
-       保持右侧功能组件可见（语言切换、夜间模式等）
-       出问题，考虑删除align-items、height试试 */
+       显示右侧功能组件
+      （语言切换、夜间模式、Github、Discord）
+       若出问题，考虑删除align-items和height试试 */
     .VPNavBarAppearance.appearance,
     .VPNavBarSocialLinks.social-links,
     .VPNavBarTranslations.translations {
@@ -296,7 +297,8 @@
     }
 
     /* Hide the "three dots" overflow menu
-       隐藏“三个点”收纳菜单（收纳上述右侧功能组件） */
+       隐藏“三个点”收纳菜单
+      （语言及其右侧按钮，不含源表等） */
     .VPNavBarExtra.extra {
         display: none;
     }
