@@ -76,10 +76,10 @@ tags: SourceSheet/Chara
 使用 `tag` 标签列来定义生成配置。
 
 ::: warning CWL旧格式
-CWL 格式已经从Wiki移除，它们仍然兼容，但推荐更换并使用新格式。
+CWL 格式已经从Wiki移除，它们仍然兼容，但推荐更换并使用本文的新格式。
 :::
 
-Possible tag actions:
+可选的tag操作：
 + `addZone(zoneId@level)`
 + `addEq(ItemId#Rarity)` / `addEquipment(ItemId#Rarity)`
 + `addThing(ItemId#Count)`
@@ -120,7 +120,7 @@ addThing(padoru_gift#10),addThing(1174#5)
 ### 创建冒险者
 
 ::: warning CWL旧格式
-CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐更换并使用新格式。
+CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本文的新格式。
 :::
 
 如果您的角色 trait 设定为 **`AdventurerCustom`**，将登录该角色为冒险者，并出现在冒险者排名列表中。
