@@ -298,7 +298,7 @@
 
     /* Hide the "three dots" overflow menu
        隐藏“三个点”收纳菜单
-      （语言及其右侧按钮，不含源表等） */
+      （内含：语言及其右侧按钮，不含源表等。上面已经显示，因此“三个点”没用了） */
     .VPNavBarExtra.extra {
         display: none;
     }
