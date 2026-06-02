@@ -76,7 +76,7 @@ tags: SourceSheet/Chara
 使用 `tag` 标签列来定义生成配置。
 
 ::: warning CWL旧格式
-CWL 格式已经从Wiki移除，它们仍然兼容，但推荐更换并使用本文的新格式。
+CWL 格式已经从Wiki移除，它们仍然兼容，但推荐使用本文的新格式。
 :::
 
 可选的tag操作：
@@ -98,6 +98,10 @@ CWL 格式已经从Wiki移除，它们仍然兼容，但推荐更换并使用本
 每一个 `addZone` 标签都会确保在该区域生成一个角色。例如，`addZone(lumiest),addZone(little_garden),addZone(specwing),addZone(*)` 将会在所选的三个区域以及随机一个区域中生成一个角色（同时存在）。
 
 ![img](./assets/spawn_chara.png)
+
+都是英语括号、英语逗号 `,`，其中英文逗号 `,`用于分割tag。
+
+注意：不可以连续两个逗号且中间没有内容（如： `,,` ）；连续两个逗号会插入空值，导致bug。
 
 ### 添加初始装备/物品
 
