@@ -12,6 +12,10 @@ tags: SourceSheet/Religion
 
 ソーステーブルを作成する際は、必ず公式行から最初の3行をコピーし、4行目以降にデータを入力してください。列の順序は変更しないでください。
 
+::: warning CWL旧フォーマット
+CWLフォーマットはWikiから削除されました。CWL仕様のModも `cwl_xxx#minor#cannot` のような形式で引き続き互換性がありますが、新形式への移行をお勧めします。
+:::
+
 ## テーブル説明
 
 |列名|タイプ|説明|
@@ -40,11 +44,11 @@ tags: SourceSheet/Religion
 |textPet_JP|string|神寵情報（日本語）|
 |textPet|string|神寵情報（英語）|
 
-CWL仕様のModも `cwl_xxx#minor#cannot` のような形式で引き続き互換性がありますが、新形式への移行をお勧めします。
-
 ## 肖像
 
 信仰用のカスタム肖像を作成する場合、**Texture** フォルダに **.png** 画像を配置してください。ファイル名は信仰IDと一致させる必要があります（例：**custom_spaghettigod.png**）。
+
+![](./assets/religion_portrait.png)
 
 ## 神会話
 

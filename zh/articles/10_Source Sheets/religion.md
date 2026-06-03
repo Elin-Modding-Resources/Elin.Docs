@@ -12,6 +12,10 @@ tags: SourceSheet/Religion
 
 在制作源表格时，请始终从官方行复制前三行，并从第四行开始填写数据。不要更改列的顺序。
 
+::: warning 从 CWL 迁移
+CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xxx#minor#cannot`）仍可兼容。我们建议您切换至新格式。
+:::
+
 ## 表格解释
 
 |列名|类型|说明|
@@ -40,11 +44,11 @@ tags: SourceSheet/Religion
 |textPet_JP|string|神宠信息（日文）|
 |textPet|string|神宠信息（英文）|
 
-使用 CWL 规范的模组仍然兼容，例如 `cwl_xxx#minor#cannot`，但我们建议切换到新格式。
-
 ## 肖像
 
 如需为信仰创建可选的自定义肖像，请在 **Texture** 文件夹中放置一个 **.png** 图像，文件名与信仰 ID 相同，例如 **custom_spaghettigod.png**。
+
+![](./assets/religion_portrait.png)
 
 ## 神对话
 

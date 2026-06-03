@@ -12,6 +12,10 @@ tags: SourceSheet/Religion
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
+::: warning Migrating From CWL
+CWL specs are removed from the wiki, mods using CWL spec are still compatible, such as `cwl_xxx#minor#cannot`. We recommend switching to the new format.
+:::
+
 ## Sheet Columns
 
 |Column|Type|Description|
@@ -40,11 +44,11 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |textPet_JP|string|God pet information in Japanese|
 |textPet|string|God pet information in English|
 
-Mods using CWL spec are still compatible, such as `cwl_xxx#minor#cannot`, though we recommend switching to the new format.
-
 ## Portrait
 
 To create an optional custom portrait for your religion, put a **.png** image in the **Texture** folder using the same religion ID as the file name, such as **custom_spaghettigod.png**.
+
+![](./assets/religion_portrait.png)
 
 ## God Talks
 
