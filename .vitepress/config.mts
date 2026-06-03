@@ -47,10 +47,11 @@ export default defineConfig({
         nav: makeNavBar(lastUpdate, enData.latest, "en"),
         sidebar: enData.sidebar,
         editLink: {
-          pattern: "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
           text: "Edit this page",
         },
-        outline: { label: "On this page" },
+        outline: { label: "On this page", level: [2, 3] },
         docFooter: { prev: "Previous page", next: "Next page" },
         sidebarMenuLabel: "Menu",
         lastUpdated: { text: "Last updated" },
@@ -63,10 +64,11 @@ export default defineConfig({
         nav: makeNavBar(lastUpdate, jaData.latest, "ja"),
         sidebar: jaData.sidebar,
         editLink: {
-          pattern: "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
           text: "このページを編集",
         },
-        outline: { label: "このページの内容" },
+        outline: { label: "このページの内容", level: [2, 3] },
         docFooter: { prev: "前のページ", next: "次のページ" },
         sidebarMenuLabel: "メニュー",
         lastUpdated: { text: "最終更新日" },
@@ -84,10 +86,11 @@ export default defineConfig({
         nav: makeNavBar(lastUpdate, zhData.latest, "zh"),
         sidebar: zhData.sidebar,
         editLink: {
-          pattern: "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
+          pattern:
+            "https://github.com/Elin-Modding-Resources/Elin.Docs/edit/master/:path",
           text: "编辑页面",
         },
-        outline: { label: "本页目录" },
+        outline: { label: "本页目录", level: [2, 3] },
         docFooter: { prev: "上一页", next: "下一页" },
         sidebarMenuLabel: "总目录",
         lastUpdated: { text: "最后更新" },
