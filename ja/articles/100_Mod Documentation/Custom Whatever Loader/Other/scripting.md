@@ -7,8 +7,9 @@ tags: Guide/CWL/C#
 hide: true
 ---
 
-::: warning
-**バージョン要件**：CWL **1.21.0** 以上
+::: danger Elin 形式に更新
+CWL 仕様はもはや保守されていませんが、互換性は維持されています。Elin 自体がサポートする新しい形式は、こちらで確認してください：
+<LinkCard t="Scripting" u="/5_Elin API/scripting.md"/>
 :::
 
 ## コンソールスクリプト

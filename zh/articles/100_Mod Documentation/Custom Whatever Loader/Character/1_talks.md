@@ -5,7 +5,7 @@ hide: true
 ---
 
 ::: danger 更新至 Elin 格式
-CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本身支持的新格式：
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的新格式：
 <LinkCard t="Chara" u="/10_Source Sheets/character.md"/>
 :::
 

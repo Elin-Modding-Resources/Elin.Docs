@@ -7,8 +7,9 @@ tags: Guide/CWL/C#
 hide: true
 ---
 
-::: warning 
-**版本要求**：CWL **1.21.0** 及以上
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的格式：
+<LinkCard t="Scripting" u="/5_Elin API/scripting.md"/>
 :::
 
 ## 控制台脚本

@@ -6,8 +6,9 @@ author: DK
 tags: Guide/CWL/C#
 ---
 
-::: warning
-Requires CWL 1.21.0 and above.
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Scripting" u="/5_Elin API/scripting.md"/>
 :::
 
 ## Console
