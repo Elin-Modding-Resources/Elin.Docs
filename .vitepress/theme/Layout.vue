@@ -18,18 +18,31 @@ const redirects = data as Redirects;
 const { page, lang } = useData();
 const router = useRouter();
 
+function cleanTrailingBrace(path: string): string {
+  return path.endsWith("%7D") ? path.slice(0, -3) : path;
+}
+
 function getRedirectTarget(): string | null {
   if (!inBrowser || !page.value.isNotFound) return null;
 
   const currentPath = window.location.pathname;
 
-  const cleanPath =
+  let cleanPath =
     lang.value === "en"
       ? currentPath
       : currentPath.replace(/^\/[^/]+/, "") || "/";
 
-  const rule = redirects[cleanPath];
+  const cleanedPath = cleanTrailingBrace(cleanPath);
+  const rule = redirects[cleanedPath];
+
   if (!rule) {
+    if (cleanedPath !== cleanPath) {
+      if (lang.value === "en" || cleanedPath === "/") {
+        return cleanedPath;
+      } else {
+        return `/${lang.value}${cleanedPath}`;
+      }
+    }
     return lang.value !== "en" ? cleanPath : null;
   }
 
