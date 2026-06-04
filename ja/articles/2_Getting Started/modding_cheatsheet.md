@@ -1,90 +1,89 @@
 ---
-title: Modding Cheatsheet
+title: Modding チートシート
 author: Drakeny
-description: Quick and easy recurring knowledge for modders.
+description: Modder向けの素早く簡単に繰り返し使える知識。
 date: 2024/12/8 2:53
 tags: Cheatsheet
 ---
 
-# Cheatsheet
+# チートシート
 
-This article will be ever evolving, so its formatting may be a bit wonky.
+この記事は常に進化し続けるため、フォーマットが少し崩れることがあるかもしれません。
 
-## Where is...?
+## 〜はどこにある？
 
-Need to know where a specific data from the game is? Here are your answers:
+ゲームの特定のデータがどこにあるか知りたいですか？その答えはこちらです：
 
-### Game Log
+### ゲームログ
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
 
-### Graphical assets
+### グラフィックアセット
 
-#### PCC related
+#### PCC関連
 
-<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Actor
 
-#### Object/Character/Blocks/etc Sprites {#sprites}
+#### オブジェクト/キャラクター/ブロックなどのスプライト {#sprites}
 
-<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Textures
-> ::: info Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`.
-> You can also check their tile number in there
+> ::: info 以下の手順で、ゲーム内のすべてのスプライトシートにアクセスできます： `Esc > ツール > テクスチャビューアー` 。
+> そこでタイル番号を確認することもできます。
 > :::
 
-#### Portraits {#portrait}
+#### ポートレート {#portrait}
 
-<!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Portraits
 
-### Game Data
+### ゲームデータ
 
 #### Source Game
 
-> [!Important]Contains the sheets for:
-> `Elements`, `Formulas(Calc)`, `Stats`, `Checks`, `Factions`, `Religions`, `Zones`, `Zone Affixes`, `Quests`, `Areas`, `Home Resources`, `Research` and `Persons`.
+> [!Important] 以下のシートを含みます：
+> `Elements`、`Formulas(Calc)`、`Stats`、`Checks`、`Factions`、`Religions`、`Zones`、`Zone Affixes`、`Quests`、`Areas`、`Home Resources`、`Research`、`Persons`。
 > <LinkCard t="SourceGame.xlsx" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_"/>
 
 #### Source Chara
 
-> [!Important]Contains the sheets for:
-> `Characters(Chara)`, `Barks (CharaTalk)`, `Tactics`, `Races`, `Jobs` and `Hobbies`.
+> [!Important] 以下のシートを含みます：
+> `Characters(Chara)`、`Barks (CharaTalk)`、`Tactics`、`Races`、`Jobs`、`Hobbies`。
 > <LinkCard t="SourceChara.xlsx" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn"/>
 
 #### Source Card
 
-> [!Important] Contains the sheets for:
-> `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` and `KeyItems`.
+> [!Important] 以下のシートを含みます：
+> `Things`、`Foods`、`Recipes`、`SpawnLists`、`Categories`、`Collectables`、`KeyItems`。
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
-## How do I...?
+## 〜する方法
 
-### Add/Replace a portrait
+### ポートレートの追加・置換
 
-> [!Important] To add a new portrait:
-> Create a subfolder called `Portrait` in your mod folder and add your new portrait image.
+> [!Important] 新しいポートレートを追加する場合：
+> Modフォルダ内に `Portrait` というサブフォルダを作成し、新しいポートレート画像を追加します。
 >
 > <LinkCard t="Portrait" u="15_Texture Mods/portraits.md" />
 
-> [!Important] To replace a portrait:
-> Create a subfolder called `Portrait` in your mod folder and add the image you want to replace with the name of the portrait you want to replace
+> [!Important] ポートレートを置換する場合：
+> Modフォルダ内に `Portrait` というサブフォルダを作成し、置換したいポートレートの名前で画像を追加します。
 >
-> Eg.: `portrait/UN_adv_gaki.png` will replace the portrait of the adventurer Gaki.
+> 例：`portrait/UN_adv_gaki.png` は冒険者Gakiのポートレートを置換します。
 >
 > <LinkCard t="Portrait" u="15_Texture Mods/portraits.md" />
 
-### Replace a Sprite
+### スプライトの置換
 
-> [!Important] To replace a sprite: 
-> Use in game tool `Esc > Tools > Texture Viewer` .
+> [!Important] スプライトを置換する場合： 
+> ゲーム内ツールの `Esc > ツール > テクスチャビューアー` を使用します。
 >
-> Middle-click to zoom in, left-click and drag
+> 中クリックで拡大、左クリックしてドラッグします。
 
-> [!Important] You can also replace a sprite by this:
-> Create a subfolder called `Texture Replace` in your mod folder and add the sprite image you want to replace using the name of the spritesheet and tile of the sprite you want to replace.
+> [!Important] 以下の方法でもスプライトを置換できます：
+> Modフォルダ内に `Texture Replace` というサブフォルダを作成し、置換したいスプライトシート名とタイル番号を使用してスプライト画像を追加します。
 >
-> Eg.: `Texture Replace/objC_2115.png` will replace the sprite of the adventurer Gaki.
-> ::: info You can find the spritesheet names and tile numbers in [**Texture Viewer**](#sprites)
+> 例：`Texture Replace/objC_2115.png` は冒険者Gakiのスプライトを置換します。
+> ::: info スプライトシート名とタイル番号は [**テクスチャビューアー**](#sprites) で確認できます。
+> :::
 
+ 完全な内容は、メニューの `テクスチャMod` セクションに移動してお読みください。 <!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD--> 
 

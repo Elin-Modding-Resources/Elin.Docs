@@ -85,6 +85,8 @@ Need to know where a specific data from the game is? Here are your answers:
 > Create a subfolder called `Texture Replace` in your mod folder and add the sprite image you want to replace using the name of the spritesheet and tile of the sprite you want to replace.
 >
 > Eg.: `Texture Replace/objC_2115.png` will replace the sprite of the adventurer Gaki.
-> ::: info You can find the spritesheet names and tile numbers in [**Texture Viewer**](#sprites)
+> ::: info You can find the spritesheet names and tile numbers in [**Texture Viewer**](#sprites)  
+
+For the complete content, please head over to the `Texture Mods` section in the main menu.  <!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD--> 
 
 
