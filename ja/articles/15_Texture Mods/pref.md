@@ -8,9 +8,13 @@ tags: Texture/Pref
 
 # Pref File
 
+Through a `.pref` file, you can fine-tune sprites, shadows, small NPC avatar icons on the resident board, and more.
+
 Sometimes the default rendering settings for your sprites may not be ideal. Customize them by creating a `.pref` file with the same filename as your sprite.
 
-Open it with Notepad or any text editor; it uses INI format.
+Open it with Notepad or any text editor; it uses INI format. Simply change the file extension when saving.
+
+Note: The `.pref` filename, the sprite filename, and the id column in the mod’s Excel must all match exactly.
 
 ```ini
 x = 0
@@ -42,7 +46,7 @@ You may omit any unused fields. `;` comments can also be used.
 
 + `x`, `y`, `z` position offset
 + `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
-+ `shadow` ShadowData id
++ `shadow` ShadowData id (see section below)
 + `shadowX`, `shadowY` shadow position offset
 + `shadowRX`, `shadowRY` shadow reverse
 + `shadowBX`, `shadowBY` shadow back

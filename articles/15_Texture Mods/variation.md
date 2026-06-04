@@ -10,7 +10,9 @@ tags: Texture/Variation
 
 Variations are applied when provided and conditions are met, but they are not mandatory. The base sprite always works.
 
-You can provide a variation by adding a corresponding suffix to your sprite filename, such as:
+You can provide a variation by adding a corresponding suffix to your sprite filename.
+
+For example, when `id` is `doorframe_arch` :
 
 + `doorframe_arch.png`
 + `doorframe_arch_snow.png`
@@ -24,15 +26,37 @@ The variation system works with [custom skins](./skins), character sprites, and 
 
 ## Chara Skinsets
 
-These are gender-dependent textures in pairs, selected randomly during creation.
+These are gender-dependent textures in pairs, selected randomly during character creation.
 
-For example, to give `ninja` one sprite for male and a different sprite for non-male, put `0,1` into the `tiles` column, then provide `ninja_skin0.png` and `ninja_skin1.png` as variations.
+### When Character Gender Is Random
 
-You can add more pairs to support additional skinsets. For example, for three pairs of gender-based sprites (2 images per pair, 6 in total), you need to put `0,1,2,3,4,5` into the `tiles` column. The pairs will be picked randomly. Even indices are male, and odd indices are non-male.
+**Example 1: Single Skinset Pair**
 
-If your character has a non-random gender but you still wish to provide random skinsets, you can use the same skin id in each pair. For example, for three sprites, you need to put `0,0,1,1,2,2` into the `tiles` column.
+For example, to give `ninja` one sprite for male and a different sprite for non-male, put `0,1` into the `tiles` column in the Excel, then provide `ninja_skin0.png` and `ninja_skin1.png` as variations. (where "ninja" is the character ID)
+
+**Example 2: Multiple Skinset Pairs**
+
+You can add more pairs to support additional skinsets. 
+
+For example, to give an NPC 6 sprites (3 images for male and 3 images for non-male): 
++ provide sprites `_skin0` to `_skin5`.
++ Then, put `0,1,2,3,4,5` into the `tiles` column in the Excel.
+
+One of the pairs will be picked randomly. Even indices are male, and odd indices are non-male (female and ???).
 
 There is no limit to how many variations you can define.
+
+### When Character Gender Is Fixed to One Type
+
+If your character has a non-random gender but you still wish to provide random skin variations, you can use the same skin index in each pair. 
+
+For example, to use three sprites ( `_skin0`, `_skin1`, `_skin2`), you need to put `0,0,1,1,2,2` into the `tiles` column of the Excel.
+
+There is no limit to how many variations you can define.
+
+### Note
+
+Counting starts from 0.
 
 ## Directional Sprites
 
@@ -44,7 +68,9 @@ Characters can also use directional sprites; however, it is not recommended.
 
 You can provide an `id_snow.png` variation to enable automatic switching in snow zones or winter.
 
-These can be combined with the above variations in the following order:
+## Suffix Order
+
+The above variations can all be combined, but pay attention to the suffix order, which is as follows:
 
 + `_skinN_dirN_snow`
 + `_skinN_snow`

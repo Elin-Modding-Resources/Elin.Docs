@@ -8,12 +8,15 @@ tags: Texture/Variation
 
 # I Need More Space
 
-Default canvas size of 128x128 may not satisfy your drawing needs. When using a larger canvas, make sure it's center aligned (pivot at center):
+Default canvas size of 128x128 may not satisfy your drawing needs. 
+
+When using a larger canvas, make sure it's center aligned (pivot at center):
 
 |**128x128**|**256*256**|
 |-|-|
 |![](./assets/128c.png)|![](./assets/256c.png)|
 
 For your characters and items to display correctly as icons and avatars, adjust `pivotX`, `pivotY`, and `scaleIcon` accordingly in the [pref file](./pref).
++ For example, if the avatar on the resident board is misaligned, adjust the settings mentioned above.
 
 > 256 Art by Veila

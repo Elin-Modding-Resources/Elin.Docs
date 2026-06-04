@@ -20,7 +20,7 @@ tags: Texture/Skin
 + **文件命名：** skinname.png
   + skinname 即文件名，没有格式要求，但建议使用英文和数字命名，以防止出现奇怪的 bug。
  
-你可以将 [贴图变体功能](./variation) 中的[雪地变体](./variation#雪地变体)、[方向性贴图](./variation#方向性贴图)，结合Skin文件夹使用
+你可以将 [贴图变体功能](./variation) 中的[雪地变体](./variation#雪地变体)、[方向性贴图](./variation#方向性贴图)，结合Skin文件夹使用。它们一起使用于Skin文件夹，也是可以的。
 
 如果你使用了Texture Expand模组的话（以下简称TE）：
 

@@ -8,7 +8,7 @@ tags: Texture/PCC
 
 # PCC
 
-玩家的像素小人、衣服等配件都属于PCC（坐骑也是PCC）。
+玩家的小人图即PCC。衣服、裤子、眼睛等都是PCC 部件。此外，坐骑图也在PCC文件夹中。
 
 你不仅能做衣服，甚至可以制作人鱼尾、狐狸尾，以及把主角改成史莱姆。
 
@@ -64,7 +64,7 @@ PCC部件必须遵循此格式:
 
 把人物 PCC 图片文件放入 `Actor/PCC/female` 文件夹（注意：游戏内无论男女角色，该路径均固定包含 female）；把坐骑的 PCC 图片文件放入 `Actor/PCC/ride` 文件夹。
 
-这两个文件夹都在你的 `游戏安装目录/Elin/Package/自定义mod文件夹名字` 内，详情请移步 [Elin基础Mod包](../2_Getting%20Started/basic_mod) 页面。
+而它们共用的 `Actor` 文件夹，应放置于 `游戏安装目录/Elin/Package/自定义mod文件夹名字` 内，详情请移步 [Elin基础Mod包](../2_Getting%20Started/basic_mod) 页面。
 
 ## 更大画布
 

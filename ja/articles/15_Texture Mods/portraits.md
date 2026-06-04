@@ -8,7 +8,7 @@ tags: Texture/Portrait
 
 # Portrait Spec
 
-Portraits are `.png` files placed in the `Portrait` folder inside your mod package.
+Portraits are `.png` files placed in the `Portrait` folder inside your [mod package](../2_Getting%20Started/basic_mod).
 
 + Size: 240x320
 + Background: Transparent
@@ -43,6 +43,8 @@ Some hardcoded NPCs always use a fixed portrait id:
 |`imotoroid_origin`|`special_f-littlesister`|
 |`citizen_exile`|`special_n-exile` (non-random)|
 
-Unique NPCs use `UN_id` as their portrait id, such as `UN_fiama` or `UN_gwen`.
+Unique NPCs use `UN_id` as their portrait id. For example: Fiama is `UN_fiama`, Gwen is `UN_gwen`.
 
 You can override a unique NPC's portrait by providing a portrait with the same portrait id. 
+
+In addition, when creating character Mods, portraits are also locked/fixed by using the `UN_` prefix.

@@ -8,7 +8,11 @@ tags: Texture/Animation
 
 # Preparation
 
-To convert your still image into an animated sprite, you'll need to provide a horizontal sprite sheet and an `.ini` file with the same filename as your sprite.
+Both characters and items can use animated sprites.
+
+To convert your still image into an animated sprite, you'll need to provide a horizontal sprite sheet and an `.ini` file.
+
+The filename of the .ini file, the filename of the horizontal sprite sheet, and the id column in the mod-loading Excel sheet must all match.
 
 ![](./assets/boxchicken.png)
 
