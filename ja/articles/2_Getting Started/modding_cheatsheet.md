@@ -23,12 +23,16 @@ tags: Cheatsheet
 #### PCC関連
 
 > [!Important] (SteamPath)/Elin/Package/_Elona/Actor
+> 主人公のグラフィック（ドット絵）、つまりPCCのことです。
 
 #### オブジェクト/キャラクター/ブロックなどのスプライト {#sprites}
 
 > [!Important] (SteamPath)/Elin/Package/_Elona/Textures
 > ::: info 以下の手順で、ゲーム内のすべてのスプライトシートにアクセスできます： `Esc > ツール > テクスチャビューアー` 。
+>
 > そこでタイル番号を確認することもできます。
+>
+> Elin本体のキャラクターのタイル番号は、ソースシート「SourceChara」の tile 列に対応しています。
 > :::
 
 #### ポートレート {#portrait}

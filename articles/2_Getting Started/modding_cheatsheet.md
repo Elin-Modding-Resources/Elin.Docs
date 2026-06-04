@@ -24,13 +24,17 @@ Need to know where a specific data from the game is? Here are your answers:
 
 <!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Actor
+> The player's sprite, also known as the PCC.
 
 #### Object/Character/Blocks/etc Sprites {#sprites}
 
 <!-- prettier-ignore -->
 > [!Important] (SteamPath)/Elin/Package/_Elona/Textures
 > ::: info Access all spritesheets in-game with these steps: `Esc > Tools > Texture Viewer`.
+>
 > You can also check their tile number in there
+>
+> The tile numbers of characters in the base game of Elin correspond to the `tile` column in the `SourceChara` source sheet.
 > :::
 
 #### Portraits {#portrait}

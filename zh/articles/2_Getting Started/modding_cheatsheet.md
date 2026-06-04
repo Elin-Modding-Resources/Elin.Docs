@@ -12,7 +12,7 @@ tags: Cheatsheet
 
 ## 在哪里……？
 
-想知道游戏中的某个特定数据在哪里吗？请看下文：
+想知道游戏本体中，某个特定文件在哪里吗？请看下文：
 
 ### 游戏日志（Game Log）
 
@@ -24,7 +24,7 @@ tags: Cheatsheet
 
 <!-- prettier-ignore -->
 > [!Important] (Steam安装路径)/Elin/Package/_Elona/Actor
-> 主角的小人，即PCC。
+> 主角的小人图，即PCC。
 
 #### 物品/角色/方块/其他的精灵图（Sprite） {#sprites}
 
