@@ -1,5 +1,5 @@
 ---
-title: Translation
+title: Translation 翻译
 author: DK
 description: How to provide translations for your source sheets
 date: 2026/4/8 00:00

@@ -1,40 +1,40 @@
 ---
-title: Translation
+title: Translation 翻訳
 author: DK
-description: How to provide translations for your source sheets
+description: ソースシートに翻訳を提供する方法
 date: 2026/4/8 00:00
 tags: SourceSheet/Localization
 ---
 
-# Source Sheet Translation
+# ソースシートの翻訳
 
-Source sheets by default contain translatable columns for English and Japanese, such as `name` and `name_JP`, `aka` and `aka_JP`.
+ソースシートにはデフォルトで、英語と日本語用の翻訳可能な列が含まれています。たとえば、 `name` と `name_JP`、`aka` と `aka_JP` などです。
 
-These entries are provided in the `EN` or `JP` folders.
+これらの項目は、 `EN` または `JP` フォルダー内で提供されます。
 
-## Adding Translations for Other Languages
+## 他の言語の翻訳を追加する
 
-To add translations for languages other than English and Japanese:
+英語と日本語以外の言語の翻訳を追加するには：
 
-1. Switch the game to the desired language.
-2. Restart the game to export the translatable entries.
+1. ゲームを目的の言語に切り替えます。
+2. ゲームを再起動して、翻訳可能な項目をエクスポートします。
 
-You should now see a `SourceLocalization.json` file in your mod's `LangMod/XX` folder, where `XX` is the current language code (e.g., `CN` for Simplified Chinese).
+これで、あなたの Mod の `LangMod/XX` フォルダー内に `SourceLocalization.json` ファイルが表示されるはずです。ここで `XX` は現在の言語コードです（例：簡体字中国語の場合は `CN`）。
 
-Edit this file to provide your translations.
+このファイルを編集して翻訳を追加してください。
 
-## Providing Translations for Other Mods
+## 他の Mod に翻訳を提供する
 
-If you want to provide translations for other mods:
+他の Mod に翻訳を提供したい場合：
 
-1. Copy the other mod to your local `Package` folder.
-2. Start the game in the language you wish to support.
+1. 対象の Mod をローカルの `Package` フォルダーにコピーします。
+2. サポートしたい言語でゲームを起動します。
 
-You should then be able to edit the `SourceLocalization.json` file in that mod's folder. When you are done editing:
+その後、その Mod のフォルダー内にある `SourceLocalization.json` ファイルを編集できるようになります。編集が完了したら：
 
-- Send this file to the mod author, or
-- Publish a new mod on the Workshop containing only this translation file in the correct folder structure.
+- このファイルを Mod 作者に送る、または
+- 正しいフォルダー構成で、この翻訳ファイルのみを含む新しい Mod を Workshop に公開します。
 
-## Note
+## 注記
 
-Using `json` for translation only works for source sheets; it isn't suitable for drama sheet or dialog sheet.
+`json` を使用した翻訳方法は「ソースシート」にのみ適しています。「drama」シート や「dialog」シート などは、この方法では翻訳できません。
