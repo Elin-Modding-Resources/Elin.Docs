@@ -122,7 +122,7 @@ EScriptRunner EScriptSubmission.Compile<T>(string script)
 ```cs
 // グローバルオブジェクトの型
 public class CustomScriptState : EScriptState {
-    public int somethingy = 114514;
+    public int somethingy = 1000;
 }
 // runnerの作成
 var runner = batch.Compile<CustomScriptState>("Debug.Log(somethingy)");

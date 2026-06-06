@@ -122,7 +122,7 @@ Compile or load a `EScriptRunner` delegate from this batch. If the script alread
 ```cs
 // globals type
 public class CustomScriptState : EScriptState {
-    public int somethingy = 114514;
+    public int somethingy = 1000;
 }
 // create runner
 var runner = batch.Compile<CustomScriptState>("Debug.Log(somethingy)");
