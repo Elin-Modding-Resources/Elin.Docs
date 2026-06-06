@@ -60,6 +60,8 @@ stackX = 0
 + `equipX`, `equipY` 手持物位置偏移量
 + `stackX` 地块堆叠的 X 轴偏移量
 
+`.pref` 文件是热加载的，因此修改数值后无需重启游戏，即可实时预览效果，以便微调。
+
 ## 阴影数据 ID
 
 <!--@include: ./assets/shadow_data.md-->

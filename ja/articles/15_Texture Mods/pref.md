@@ -60,6 +60,8 @@ You may omit any unused fields. `;` comments can also be used.
 + `equipX`, `equipY` held position offset 
 + `stackX` tile stacking x position offset
 
+`.pref` files are hot-loaded. This means you can preview the effect in real time after modifying values, without restarting the game, allowing for fine-tuning.
+
 ## Shadow Data ID
 
 <!--@include: ./assets/shadow_data.md-->
