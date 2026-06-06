@@ -150,7 +150,7 @@ Within the stock JSON file, the structure is as follows:
       "Restock": true,
       "Type": "Item",
       "Rarity": "Random",
-      "Identified": true
+      "IdentifyLevel": "Identified"
     },
     {
       "Id": "example_item_limited",
@@ -159,7 +159,7 @@ Within the stock JSON file, the structure is as follows:
       "Restock": false,
       "Type": "Item",
       "Rarity": "Artifact",
-      "Identified": true
+      "IdentifyLevel": "Identified"
     },
     {
       "Id": "example_item_craftable",
@@ -168,7 +168,7 @@ Within the stock JSON file, the structure is as follows:
       "Restock": false,
       "Type": "Recipe",
       "Rarity": "Random",
-      "Identified": true
+      "IdentifyLevel": "Identified"
     },
     {
       "Id": "SpShutterHex",
@@ -193,6 +193,8 @@ Within the stock JSON file, the structure is as follows:
   Determines whether the item restocks.  
   Set to `false` for limited items that can only be purchased once.  
   Default value: `true`
+* `Type`
+  See the type description table below.
 * `Rarity`  
   Possible values: `Random`, `Crude`, `Normal`, `Superior`, `Legendary`, `Mythical`, `Artifact`  
   Default value: `Normal`
@@ -246,6 +248,8 @@ Within the stock JSON file, the structure is as follows:
 |Skill|A skill book. `Id` is the element alias or id.|
 |Spell|A spell book. `Id` is the element alias or id. `Num` defines the charge.|
 |Usuihon|A special item. `Id` is the religion id.|
+
+If you are not using a code editor, you can use [JSONLint](https://jsonlint.com/) to validate your JSON.
 
 ## Talk & Popups
 
@@ -317,3 +321,5 @@ Within the bio file, it's simply as follows:
 + `FavCategory`: Category id.
 + `LikeThing`: Thing/ThingV/Food id.
 + `LikeHobby`: Element alias.
+
+If you are not using a code editor, you can use [JSONLint](https://jsonlint.com/) to validate your JSON.

@@ -37,4 +37,4 @@ You should then be able to edit the `SourceLocalization.json` file in that mod's
 
 ## Note
 
-Using `json` for translation only works for source sheets; it isn't suitable for drama sheet or dialogue sheet.
+Using `json` for translation only works for source sheets; it isn't suitable for drama sheet or dialog sheet.
