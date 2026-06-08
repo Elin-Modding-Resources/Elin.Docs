@@ -55,7 +55,7 @@ tags: SourceSheet/Chara
 |actIdle|文本|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
 |lightData|文本|在 SourceChara 中未使用。发出的光颜色。|
 |idExtra|文本|在 SourceChara 中未使用。额外的渲染数据。|
-|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`birthyear`（可选）、`height`（可选）、`weight`（可选）、来自 `chara_tone.xlsx` 的 `tone`（可选）、来自 `chara_talk.xlsx` 的 `talk`（可选）。示例：`f/51044/152/46/friendly\|私\|あなた`。|
+|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`age`（可选）、`height`（可选）、`weight`（可选）、来自 `chara_tone.xlsx` 的 `tone`（可选）、来自 `chara_talk.xlsx` 的 `talk`（可选）。示例：`f/51044/152/46/friendly\|私\|あなた`。|
 |faith|文本|固定的宗教。设置后游戏内无法更改。|
 |works|文本|来自 SourceHobby 的 alias。|
 |hobbies|文本|来自 SourceHobby 的 alias。|

@@ -55,7 +55,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | actIdle | string | Out-of-combat behavior instructions. Examples: `readBook` (generates/reads/removes random book), `buffMage` (periodically casts buffs like `spResElement` or `spHero`). |
 | lightData | string | Unused in SourceChara. The color emitted from light. |
 | idExtra | string | Unused in SourceChara. Extra renderdata. |
-| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`, required), `birthyear` (optional), `height` (optional), `weight` (optional), `tone` from `chara_tone.xlsx` (optional), `talk` from `chara_talk.xlsx` (optional). Example: `f/51044/152/46/friendly\|私\|あなた`. |
+| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`, required), `age` (optional), `height` (optional), `weight` (optional), `tone` from `chara_tone.xlsx` (optional), `talk` from `chara_talk.xlsx` (optional). Example: `f/51044/152/46/friendly\|私\|あなた`. |
 | faith | string | Fixed religion. Setting this will prevent changing in game. |
 | works | string | Alias from SourceHobby. |
 | hobbies | string | Alias from SourceHobby. |
