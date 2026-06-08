@@ -191,7 +191,7 @@ Within the stock JSON file, the structure is as follows:
   Default value: `1`
 * `Restock`  
   Determines whether the item restocks.    
-  Set to `false` for limited items that can only be purchased once. 
+  Set to `false` for limited items that can only be purchased once.  
   Default value: `true`
 * `Type`
   See the type description table below.
