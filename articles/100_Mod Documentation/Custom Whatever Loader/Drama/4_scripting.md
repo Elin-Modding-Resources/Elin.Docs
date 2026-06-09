@@ -6,6 +6,11 @@ date: 2026/4/19 17:00
 tags: Guide/CWL/Drama
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## Drama Scripting
 
 You can run **C# code** directly in a drama sheet using the `eval` action.

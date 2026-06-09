@@ -5,6 +5,11 @@ date: 2026/4/19 17:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的新格式：
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## 剧情动作
 
 文本行需要玩家输入(点击/按键)继续到下一行, 动作行(`choice`除外)自动执行且不可与文本共存(若共存则忽略文本)。

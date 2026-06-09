@@ -5,6 +5,11 @@ date: 2026/4/19 17:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的新格式：
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## 拓展动作
 
 CWL 附带了一组内置的剧本拓展方法，您可以在这里[查看代码](https://github.com/gottyduke/Elin.Plugins/blob/master/CustomWhateverLoader/API/Drama/Expansions)。

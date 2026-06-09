@@ -5,6 +5,11 @@ date: 2026/4/19 17:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的新格式：
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## 内置条件
 
 通过 `if` / `if2` 列添加该行的条件判断：

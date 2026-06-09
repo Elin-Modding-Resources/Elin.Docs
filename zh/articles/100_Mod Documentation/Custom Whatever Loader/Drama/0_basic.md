@@ -5,6 +5,11 @@ date: 2026/4/19 17:00
 hide: true
 ---
 
+::: danger 更新至 Elin 格式
+CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持的新格式：
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## 剧情
 
 剧情是通过多选项对话和附加动作构成的丰富交互系统。

@@ -6,6 +6,11 @@ date: 2026/4/19 17:00
 tags: Guide/CWL/Drama
 ---
 
+::: danger Migrating to Elin
+CWL specs are no longer being maintained, but still compatible; Please check out the new format that's supported by Elin itself here:
+<LinkCard t="Drama" u="/10_Source Sheets/drama.md"/>
+:::
+
 ## Built-In Actions
 
 **Text lines** are the most common. They only fill `text` and `id` (optionally `if` condition). They require player input (click or key press) to advance.
