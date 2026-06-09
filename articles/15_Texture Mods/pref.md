@@ -1,5 +1,5 @@
 ---
-title: Sprite Customization
+title: Sprite Customization (Pref)
 author: DK
 description: Details of .pref file to customize your sprite.
 date: 2026/4/9 8:00
@@ -8,13 +8,23 @@ tags: Texture/Pref
 
 # Pref File
 
-Through a `.pref` file, you can fine-tune sprites, shadows, small NPC avatar icons on the resident board, and more.
+Sometimes the default rendering settings for your sprites may not be ideal. Customize them by creating a `.pref` file.
 
-Sometimes the default rendering settings for your sprites may not be ideal. Customize them by creating a `.pref` file with the same filename as your sprite.
+It can be used to fine-tune sprites, shadows, small NPC avatar icons on the resident board, icons in the adventure ranking, and more.
 
-Open it with Notepad or any text editor; it uses INI format. Simply change the file extension when saving.
+To create a `.pref` file, simply create a `.txt` file and change the filename to `id.pref` (changing the extension from `.txt` to `.pref`, where `id` represents your character or item sprite ID). Open it with Notepad or any text editor.
 
-Note: The `.pref` filename, the sprite filename, and the id column in the mod’s Excel must all match exactly.
+::: tip
+`.pref` files are hot-loaded. This means you can preview the effect in real time after modifying values, without restarting the game.
+
+Therefore, you can create a `.pref` file first, and continuously test values by checking the display effect in the game.
+:::
+
+## File Content
+
+The complete file is as follows, but you may omit any unused fields.
+
+It uses INI format, and values must be integers. `;` comments can also be used.
 
 ```ini
 x = 0
@@ -42,7 +52,9 @@ equipY = 0
 stackX = 0
 ```
 
-You may omit any unused fields. `;` comments can also be used.
+For the explanation of each line, please refer to the detailed explanation section below.
+
+## Detailed Explanation
 
 + `x`, `y`, `z` position offset
 + `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
@@ -60,8 +72,46 @@ You may omit any unused fields. `;` comments can also be used.
 + `equipX`, `equipY` held position offset 
 + `stackX` tile stacking x position offset
 
-`.pref` files are hot-loaded. This means you can preview the effect in real time after modifying values, without restarting the game, allowing for fine-tuning.
-
 ## Shadow Data ID
 
 <!--@include: ./assets/shadow_data.md-->
+
+## Example Mods
+
+### Modify Shadow
+
+<LinkCard t="庭院之主钢管舞" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3711895231" i="/pole.gif" />
+
+This mod uses `shadow` in the `.pref` file to modify the shadow.
+
+### Small Icons
+
+<LinkCard t="Lost Case Monster Girl Takeover" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3609895215" i="https://images.steamusercontent.com/ugc/13866943819130003260/AF709B61B8CC0DB914A09239906A08359D2B0316/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" />
+
+This mod modifies the display of the character's icon on the resident board and the adventure ranking. It uses `pivotX` and `pivotY` in the `.pref` file.
+
+**Before modifying the character icon:**
+
+![](./assets/PrefExample-before.png)
+
+<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">Left is the resident board, right is the adventure ranking</p>
+
+**After modifying the character icon using the `.pref` file:**
+
+![](./assets/PrefExample-after.png)
+
+<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">Left is the resident board, right is the adventure ranking</p>
+
+The pref values used for this character in this mod:
+
+```ini
+pivotX=0
+pivotY=-37
+
+```
+
+Note:
+
+* The `.pref` filename, the sprite filename, and the id column in the mod’s Excel must all match exactly.
+* `pivotX` and `pivotY` affect both the resident board and the adventure ranking simultaneously; therefore, you should take both into account when testing values.
+* Due to the hot-loaded nature of `.pref` files, you do not need to restart the game; you can preview the effect in real time, allowing for fine-tuning.
