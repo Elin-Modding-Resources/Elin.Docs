@@ -163,6 +163,48 @@ For example, an action line placed after a text line won't execute until the tex
 When providing multiple parameters, they are **separated by comma(`,`) with no spaces in between**.
 :::
 
+## Text
+
+### Substitutions
+
+| text | value |
+|--------|--------|
+| `#tg_his` | `tg`'s possessive pronoun |
+| `#tg_him` | `tg`'s object pronoun |
+| `#tg` | `tg` character name |
+| `#last_choice` | text of the last choice |
+| `#newline` | newline character |
+| `#costHire` | cost to hire `tg` (number, localized) |
+| `#self` / `#me` | full name of character `tg` (including title) |
+| `#his` | `tg`'s possessive pronoun |
+| `#him` | `tg`'s object pronoun |
+| `#1` ~ `#5` | external variables `refDrama1` ~ `refDrama5` (number auto-formatted) |
+| `#god` | name of the god (if `tg` is not empty, uses its faith; otherwise random religion) |
+| `#player` / `#title` | player's title |
+| `#zone` | current zone name |
+| `#guild_title` | title of the guild associated with the current plot |
+| `#guild` | name of the guild in the current plot |
+| `#race` | player's race name |
+| `#pc` | player's short name |
+| `#pc_full` | player's full name (including title) |
+| `#pc_his` | player's possessive pronoun |
+| `#pc_him` | player's object pronoun |
+| `#pc_race` | player's race |
+| `#aka` | player's alias |
+| `#bigdaddy` | localized string `"bigdaddy"` |
+| `#festival` | festival name (if the zone has a festival, use its name; otherwise generic) |
+| `#brother2` | "brother" or "sister" (based on player gender) |
+| `#brother` | random term for brother/sister (randomly from `bro` or `sis` list) |
+| `#onii2` | random term for older brother/sister (from `onii2`/`onee2` lists) |
+| `#onii` | random term for older brother/sister (from `onii`/`onee` lists) |
+| `#gender` | random term based on player gender (from `gendersDrama` list) |
+| `#he` | "he" or "she" (based on player gender) |
+| `#He` | same as above, but with initial capital letter |
+
+### Dynamic Content
+
+Text columns **starting with** `#eval <C# script here..>` that returns a `string` can evaluate text content dynamically.
+
 ## Conditions
 
 Conditions determine whether the line should be executed or not.

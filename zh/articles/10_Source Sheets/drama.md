@@ -113,6 +113,48 @@ tags: Chara/Drama
 |`_enableMove`|使 `tg` 可以移动|
 :::
 
+## 文本
+
+### 替换
+
+| 文本 | 替换值 |
+|--------|--------|
+| `#tg_his` | `tg` 的所有格代词 |
+| `#tg_him` | `tg` 的宾格代词 |
+| `#tg` | `tg` 角色名 |
+| `#last_choice` | 上一次选项的文本 |
+| `#newline` | 换行符 |
+| `#costHire` | 雇佣 `tg` 的花费（数值本地化） |
+| `#self` / `#me` | 角色 `tg` 的全名（含头衔） |
+| `#his` | `tg` 的所有格代词 |
+| `#him` | `tg` 的宾格代词 |
+| `#1` ~ `#5` | 外部变量 `refDrama1`~`refDrama5`（数字自动格式化） |
+| `#god` | 神名称（若 `tg` 不为空用其信仰，否则随机宗教） |
+| `#player` / `#title` | 玩家头衔 |
+| `#zone` | 当前区域名 |
+| `#guild_title` | 当前剧情关联公会的头衔 |
+| `#guild` | 当前剧情公会名 |
+| `#race` | 玩家种族名 |
+| `#pc` | 玩家简名 |
+| `#pc_full` | 玩家全名（含头衔） |
+| `#pc_his` | 玩家的所有格代词 |
+| `#pc_him` | 玩家的宾格代词 |
+| `#pc_race` | 玩家种族 |
+| `#aka` | 玩家别名 |
+| `#bigdaddy` | 本地化字符串 `"bigdaddy"` |
+| `#festival` | 节日名（若区域有节日则用对应节日名，否则通用） |
+| `#brother2` | “兄弟”或“姐妹”（根据玩家性别） |
+| `#brother` | 兄弟/姐妹随机称呼（`bro` 或 `sis` 列表随机） |
+| `#onii2` | 哥哥/姐姐随机称呼（列表 `onii2`/`onee2`） |
+| `#onii` | 哥哥/姐姐随机称呼（列表 `onii`/`onee`） |
+| `#gender` | 玩家性别对应的随机称呼（`gendersDrama` 列表） |
+| `#he` | “他”或“她”（根据玩家性别） |
+| `#He` | 同上，首字母大写 |
+
+### 动态内容
+
+**以** `#eval <此处为 C# 脚本..>` **开头**并返回 `string` 类型的文本列，能够动态生成文本内容。
+
 ## 动作
 
 **文本行** 最常见，仅包含 `id`、`text` 列（可选 `if` 条件）。执行时需要玩家输入（点击或按键）才能继续。
@@ -292,7 +334,7 @@ tags: Chara/Drama
 |-|-|-|-|
 |`mod_affinity`|数值表达式|使用数值表达式调整 `actor` 好感度|成功时|
 |`mod_currency`|货币种类, 数值表达式|使用数值表达式修改 `actor` 的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|总是|
-|`mod_element`|[元素 alias][element-alias-link], 强度(可选)|为 `actor` 修改指定元素（特质/抗性/技能等），默认强度 `1`。不同类型元素的强度缩放规则不同|总是|
+|`mod_element`|[元素 alias][element-alias-link], 强度(可选), 潜能(可选)|为 `actor` 修改指定元素（特质/抗性/技能等），默认强度 `1`，潜能 `100`。不同类型元素的强度缩放规则不同|总是|
 |`mod_element_exp`|[元素 alias][element-alias-link], 数值表达式|修改 `actor` 指定元素的经验值|成功时|
 |`mod_fame`|数值表达式|使用数值表达式修改玩家声望|总是|
 |`mod_flag`|flag, 数值表达式|使用数值表达式修改 `actor` 的 flag 值，例如 `+1`、`=1`、`0`。支持非玩家角色|总是|
