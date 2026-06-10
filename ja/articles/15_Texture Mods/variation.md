@@ -24,6 +24,12 @@ For example, when `id` is `doorframe_arch` :
 
 The variation system works with [custom skins](./skins), character sprites, and [animated sprites](./animation).
 
+::: warning Don't Forget the Base Sprite
+Even if you provide variations, you still need to provide a base sprite, `myCustomID.png`.
+:::
+
+The following introduces the various variations.
+
 ## Chara Skinsets
 
 These are gender-dependent textures in pairs, selected randomly during character creation.
