@@ -47,4 +47,14 @@ Unique NPCs use `UN_id` as their portrait id. For example: Fiama is `UN_fiama`, 
 
 You can override a unique NPC's portrait by providing a portrait with the same portrait id. 
 
-In addition, when creating character Mods, portraits are also locked/fixed by using the `UN_` prefix.
+## Portrait for a New Character Mod
+
+When creating a new character mod, the character portrait (fixed sprite) is also bound using the `UN_` prefix.
+
+You should provide an image with a transparent background named `UN_id.png` as the portrait.
+
++ **Size:** Width:Height=3:4  
+(240x320 is recommended, otherwise scaling may affect image quality.)
++ **Background:** Transparent
++ **File Naming:** `UN_id.png`  
+(where `id` is your character's ID, which is what you entered in the ID column of the [Character Source Sheet](../10_Source%20Sheets/character))

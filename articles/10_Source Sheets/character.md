@@ -323,3 +323,29 @@ Within the bio file, it's simply as follows:
 + `LikeHobby`: Element alias.
 
 If you are not using a code editor, you can use [JSONLint](https://jsonlint.com/) to validate your JSON.
+
+## Portrait and Sprite
+
+### Portrait
+
+Portraits, also known as character art (tachie), are the images displayed on the left side of the popup dialog when conversing with a character.
+
+Portraits should be placed in the `Portrait` folder, and this `Portrait` folder should be located within your [mod package](../2_Getting%20Started/basic_mod).
+
+For more detailed information regarding portraits, please proceed to [Portraits](../15_Texture%20Mods/portraits) and read the portrait section for character mods.
+
+### Texture (Sprite)
+
+The texture of a character on the map is more accurately described as a Sprite.
+
+A character sprite is a `.png` image with a transparent background, which should be placed in the `Texture` folder. The `Texture` folder should be located in your `Game Installation Directory/Elin/Package/Your Custom Mod Folder Name` (where `Your Custom Mod Folder Name` is your [mod package](../2_Getting%20Started/basic_mod)).
+
+You can also utilize animated sprites, larger canvas sizes, and sprite variants that change depending on different conditions.
+
+For further details, please navigate to the `Texture Mods` section in the main directory.<!--Menu=Main Directory=メニュー。Texture Mods=Texture Mods=テクスチャMOD--> 
+
+### Examples
+
+For portraits and sprites, you can refer to the Tiny Mita example:
+
+<LinkCard t="CWL Example: Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />
