@@ -44,7 +44,7 @@ For example, to give `ninja` one sprite for male and a different sprite for non-
 
 You can add more pairs to support additional skinsets. 
 
-For example, to give an NPC 6 sprites (3 images for male and 3 images for non-male): 
+For example, to give an NPC 6 variations (3 images for male and 3 images for non-male): 
 + provide sprites `_skin0` to `_skin5`.
 + Then, put `0,1,2,3,4,5` into the `tiles` column in the Excel.
 
