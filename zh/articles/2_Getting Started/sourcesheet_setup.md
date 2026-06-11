@@ -133,7 +133,7 @@ General, Game, List, Word, Note
 - Area - 可能的房间类型指定。
 - HomeResource - 区域的各种属性状态。
 - Research - 许可证书和奖励。
-- Person - 显式定义的剧情演员。不是必须使用的。
+- Person - 显式定义的剧情对象（Actor）。不是必须使用的。
 
 ### SourceBlock
 - GlobalTile - 世界地图上使用的图块，指向当你进入时应该生成什么区域。这不包括预设位置（例如城市、地牢、地宫）。
