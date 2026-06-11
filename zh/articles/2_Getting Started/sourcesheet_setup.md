@@ -1,46 +1,59 @@
 ---
-title: Basic Elin Sheet Modding and You
+title: 基础 Elin 表格模组制作
 author: Han
-description: A short Tutorial for creating basic Elin Source Sheet Based Mods.
+description: 创建基础 Elin 源表格模组的简短教程。
 date: 2026/02/25 00:00
 tags: Guide/General
 ---
 
-# Introduction
+# 简介
 
-Elin can be easily modded by adding SourceData entries. By creating a [Mod Package](./basic_mod) and using formatted xlsx files, you can add all kind of things into Elin.
-This tutorial is meant to help anyone set up their own Source Sheet based mod, no coding necessary!
+无需编程，通过填写Excel表格（xlsx 文件）即可制作大部分mod
 
-## Example Mod Setup
+通过创建[模组包](./basic_mod)并使用格式化的 xlsx 文件，你可以将各种各样的东西添加到 Elin 中。关于如何填写 xlsx 文件，请移步总目录的 `源表` 分区<!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD--> 
+
+模组包使Elin认识的你mod，而 xlsx 文件能为游戏加入源数据（SourceData）
+
+## 示例模组设置
+
+文件夹结构如下，但你可以省略除[模组包（Mod Package）](./basic_mod)、package.xml、preview.jpg以外，用不到的文件夹：
 
 ![img](./assets/mod_package_layout.png)
 
-**LangMod** folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (**.xlsx**).
+**LangMod** 文件夹包含以语言代码命名的子文件夹，不过一开始你只需要使用 `EN` 或 `JP` 之一即可。
 
-## Source Sheets
+在语言代码文件夹内，就是你放置模组数据的地方，比如你的 Excel 文件 (**.xlsx**)。此Excel 文件就是你的源表。
 
-Checkout the official Elin Sources on the nav bar dropdown:
+## 源表格 (Source Sheets)
+
+在导航栏下拉菜单中查看官方的 Elin 源文件：
 
 ![img](./assets/elin_sources.png)
 
-Here you will find all of the Source Sheets uploaded by the developer for modders to reference.
+在这里，你将找到开发者上传的所有源表，供模组制作者参考。
 
-Ensure you have a method to read and write xlsx files. They are the standard XML based spreadsheets.
-The most common methods to work with this kind of file is Microsoft Excel. Other options would include LibreOffice Calc or Google Sheets.
+::: warning  注意
+你可以参考它，来填写自己的源表。但请不要将官方源表已有的数据行，放入你的源表，否则会覆盖官方。
 
-The Drive has multiple Source Files broken down into categories. Each category contains multiple sheets. When you open one of the files, at the bottom you can see the Source Sheets included.
-Make sure the name of these sheets line up with one of the original sheet names (e.g. Chara, Race, Job.)
+此外关于如何填写源表，请移步总目录的 `源表` 分区，那里有详细解释。
+:::
 
-When making your own Source Sheet file, you need to make sure the format is correct.
-You can have a single Source.xlsx file for your entire mod that has a variety of sheets inside it.
+确保你有读写 xlsx 文件的方法。它们是标准的基于 XML 的电子表格。
+处理此类文件最常见的方法是使用 Microsoft Excel。其他选项包括 LibreOffice Calc 或 Google 表格。
 
-Add new sheets as needed (Click the + button) and rename them (Right click) at the bottom to match the original Source Sheets.
+云盘中有多个按类别划分的源文件。每个类别包含多个工作表（sheets）。当你打开其中一个文件时，在底部你可以看到包含的源表格。
+确保这些工作表的名称与原始工作表名称之一匹配（例如 Chara、Race、Job）。
+
+在制作你自己的源表格文件时，你需要确保格式正确。
+你的整个模组可以只有一个包含各种工作表的 Source.xlsx 文件。
+
+根据需要添加新工作表（点击 + 按钮）并在底部重命名它们（右键点击）以匹配原始的源表格。
 
 |Excel|LibreOffice|
 |-|-|
 |![](./assets/0_ExcelSheets.png)|![](./assets/1_LibreOfficeCalc.png)|
 
-Supported `SourceData` are: 
+支持的 `SourceData` 有： 
 ```txt:no-line-numbers
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
@@ -48,69 +61,87 @@ Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, Hom
 GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
-Supported `SourceLang` are: 
+支持的 `SourceLang` 有： 
 ```txt:no-line-numbers
 General, Game, List, Word, Note
 ```
 
-Note that this the **sheet name**, not the file name.
+请注意，这是**工作表名称**，而不是文件名。
 
-You may also split the sheets into multiple xlsx files for organizing purposes.
+你的源表内的工作表名称，必须与官方一致。而你的源表文件名，可以是 `自定义名称.xlsx` ，自定义名称可以使用 英语/数字，不要使用汉语。
 
-## Data Rows
+为了方便整理：
++ 你可以将这些工作表放入一个 xlsx 文件中。
++ 也可以将这些工作表拆分到多个 xlsx 文件中。
 
-All Source Sheets data rows should start on the 4th Row. (Exception of dialog.xlsx, but we'll go over that later)  
-+ **1st row** is the header, containing what each column represents. Don't change this.  
-+ **2nd row** is the type, containing what type each column should be.  
-+ **3rd row** is the default value for that column.  
-+ **4th row** is where you can start filling it out with what you want to mod into the game.
+## 数据行
 
-When you set up your sheets, you should go to the original sheets and copy the first 3 rows into your own Sheet. Make sure you get the whole row.
+所有源表格的数据行都应从第 4 行开始。（dialog.xlsx 例外，但我们稍后再讲）  
++ **第 1 行**是表头，包含每列代表的内容。不要更改此行。  
++ **第 2 行**是类型，包含每列应属于的数据类型。  
++ **第 3 行**是该列的默认值。  
++ **第 4 行**是你可以开始填写你想修改进游戏里的内容的地方。
+
+在设置工作表时，你应该转到原始工作表并将前 3 行复制到你自己的工作表中。确保复制了整行。
 ![](./assets/3_CopyHeaderRows.png)
 
-## Quick Summary
+## 快速总结
 
 ### Lang
-- The Language files. It's a bit hard to explain this, but these are the words that you the player will see, from in the logs, to UI elements, everything.
-Modders who plan on adding extensive new content should get used to this file, but you likely do not need to do too much here if you are aren't planning to code.
+- 语言文件。这有点难解释，但这些就是玩家将看到的文字，从日志到 UI 元素，包罗万象。
+计划添加大量新内容的模组制作者应该熟悉这个文件，但如果你不打算编写代码，可能不需要在这里做太多修改。
 
 ### SourceCard
-- Thing - Items.
-- ThingV - Furniture Variations of items.
-- Food - Food Items and their stats.
-- Recipe - Crafting Recipes.
-- SpawnList - Spawn lists for either shop inventories or what monsters spawn in which areas.
-- Category - Item Categories.
-- Collectible - Junk items, mostly for decoration, or quests.
-- KeyItem - Key Items.
+- Thing - 物品。
+- ThingV - 物品的家具变体。
+- Food - 食物及它们的属性。
+- Recipe - 制作配方。
+- SpawnList - 商店库存的生成列表，或哪些区域生成哪些怪物的列表。
+- Category - 物品类别。
+- Collectible - 垃圾物品，主要用于装饰或任务。
+- KeyItem - 关键物品。
 
 ### SourceChara
-- Chara - Character entries.
-- CharaText - Bark Text that the characters would say over their heads, or in the log based on the scenario.
-- Tactics - Combat AI. Weights on what kind of action each tactic style would take in a given turn.
-- Race - Character Races.
-- Job - Character Jobs. Can be referred to as Classes as well.
-- Hobby - Character Hobbies, the one each character has at least two of.
+- Chara - 角色条目。
+- CharaText - 角色头顶上弹出的短语（Bark Text），或根据情景出现在日志中的文本。
+- Tactics - 战斗 AI。决定每种战术风格在给定回合中采取哪种行动的权重。
+- Race - 角色种族。
+- Job - 角色职业。也可以被称为 Classes。
+- Hobby - 角色爱好，每个角色至少有两个。
 
 ### SourceGame
-- Element - Basically all the Attributes/Skills/Feats/Spells/Abilities are housed here.
-- Calc - Dice calculation for various spells or abilities.
-- Stat - Conditions, like Buffs and Debuffs.
-- Check - Don't worry about this.
-- Faction - Factions of the game. This part is heavily hardcoded.
-- Religion - Religions of the game. Need CWL to load properly.
-- Zone - Zone data.
-- ZoneAffix - For random nefias, adds a prefix adjective.
-- Quest - Quest Data like descriptions, who is the quest giver, what is the quest name.
-- Area - Possible room designations.
-- HomeResource - Various stats of a Zone.
-- Research - Licenses and rewards.
-- Person - Drama actors that are defined explicitly. It's not mandatory to use.
+- Element - 基本上所有的属性/技能/专长/法术/能力都存放在这里。
+- Calc - 各种法术或能力的骰子计算。
+- Stat - 状态，比如增益和减益效果 (Buffs and Debuffs)。
+- Check - 不用管这个。
+- Faction - 游戏阵营。这部分被严重硬编码。
+- Religion - 游戏宗教。需要 CWL 才能正确加载。
+- Zone - 区域数据。
+- ZoneAffix - 用于随机地牢（奈菲亚/nefias），添加前缀形容词。
+- Quest - 任务数据，如描述、任务发布者是谁、任务名称是什么。
+- Area - 可能的房间类型指定。
+- HomeResource - 区域的各种属性状态。
+- Research - 许可证书和奖励。
+- Person - 显式定义的剧情演员。不是必须使用的。
 
 ### SourceBlock
-- GlobalTile - Tiles used on the world map, pointing to what zone they should spawn when you enter it. This does not include prefab locations (e.g. cities, dungeons, nefias)
-- Block - Blocks, Walls, Roofs, Stairs. For building with.
-- Floor - Floor data. Self explanatory.
-- Obj - Object data. Need CWL to load properly.
-- CellEffect - Extra effects applied to the tile.
-- Material - What materials are made available in the game. Need CWL to load properly.
+- GlobalTile - 世界地图上使用的图块，指向当你进入时应该生成什么区域。这不包括预设位置（例如城市、地牢、地宫）。
+- Block - 方块、墙壁、屋顶、楼梯。用于建造。
+- Floor - 地板数据。不言自明。
+- Obj - 物体数据。需要 CWL 才能正确加载。
+- CellEffect - 应用于图块的额外效果。
+- Material - 游戏中提供哪些材质。需要 CWL 才能正确加载。
+
+## 除日语英语外的其他语言
+
+以中文 `CN` 为例，创建一个 CN 文件夹。然后复制源表过去。
+
+接下来开始翻译，以 `name_JP` 和 `name` 这样的一组为例子，组中带有 `_JP` 后缀的日文列不要动，组中无后缀的是英语列（也是翻译列）。请在翻译列中写中文。（注意如果不是 组中的列，则不要翻译。）
+
+然后，你应将其导出为 `SourceLocalization.json` 的翻译文件并删除 `CN`文件夹中的源表。如何导出 `json`详见[Translation 翻译](../10_Source%20Sheets/localization)页面。
+
+你也可以先导出 `SourceLocalization.json`文件，再在 `json`文件里翻译。
+
+此外对中国玩家来说，制作mod时，还可以先在 `CN`文件夹中建立源表。
+
+无论你是否提供其他语言，日文列以及英语列（翻译列）都要填写，哪怕是占位符。

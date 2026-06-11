@@ -17,7 +17,7 @@ export function makeNavBar(
       ja: {
         archive: "アーカイブ",
         decompiled: "Decompiled",
-        sources: "ソース",
+        sources: "ソースシート",
       },
       zh: {
         archive: "目录",
