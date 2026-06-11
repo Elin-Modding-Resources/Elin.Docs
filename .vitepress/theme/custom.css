@@ -257,7 +257,7 @@
    768px must also be included to ensure the layout transition remains consistent
    between mobile and desktop navigation behavior.
 
-   1440px is intentionally excluded to make testing easier.
+   1536px is intentionally excluded to make testing easier.
 
    All !important declarations must be kept. Removing them may cause mysterious layout bugs.
    Without !important, DK (gottyduke) encountered this issue, although I could not reproduce it.
@@ -270,11 +270,11 @@
    同时也必须包含 768px，以确保移动端与桌面端导航切换过程中的
    布局行为保持一致。
 
-   不含 1440，以便于测试。
+   不含 1536，以便于测试。
    所有的 !important 都必须保留，否则可能有神秘 bug，
    无 !important 的话，DK（gottyduke）遇到了此神秘 bug，但我不能复现。
 */
-@media (min-width: 768px) and (max-width: 1439.98px) {
+@media (min-width: 768px) and (max-width: 1535.98px) {
 
     /* Force hide center navigation items
        (e.g. Sources, Decompiled)
@@ -353,8 +353,8 @@
  *    如果改了rem或navbar字号，可能还要微调一下这段
  */
 
-/* ① 当屏幕 >= 1440px 时 */
-@media (min-width: 1440px) {
+/* ① 当屏幕 >= 1536px 时 */
+@media (min-width: 1536px) {
     html[lang^="zh"] .VPNavBarMenu {
         gap: 0.5rem;      /* 增加导航项间距 */
     }
@@ -363,7 +363,7 @@
 /* ② 当屏幕 >= 1600px 时 */
 @media (min-width: 1600px) {
     html[lang^="zh"] .VPNavBarMenu {
-        gap: 1rem;      /* 增加导航项间距，比 1440px 更大 */
+        gap: 1rem;      /* 增加导航项间距，比 1536px 更大 */
     }
 
     /* 汉字间距增加 */

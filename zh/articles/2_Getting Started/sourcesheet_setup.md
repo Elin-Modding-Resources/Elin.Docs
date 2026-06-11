@@ -30,6 +30,11 @@ tags: Guide/General
 
 ![img](./assets/elin_sources.png)
 
+::: details  如果你找不到这个按钮？
+  如果你屏幕较小，或者缩放太大，可能看不见这个按钮。请点击三横的汉堡菜单，从而找到**源表**。
+  ![](./assets/hamburger_menu.png)
+:::
+
 在这里，你将找到开发者上传的所有源表，供模组制作者参考。
 
 ::: warning  注意
