@@ -1,22 +1,28 @@
 ---
-title: 基础 Elin 表格模组制作
+title: 新手指南：填表制作 Elin 模组
 author: Han
-description: 创建基础 Elin 源表格模组的简短教程。
-date: 2026/02/25 00:00
+description: 创建基础 Elin 源表模组的简短教程。
+date: 2026/06/11 00:00
 tags: Guide/General
 ---
 
 # 简介
 
-无需编程，通过填写Excel表格（xlsx 文件）即可制作大部分mod
+无需编程，通过填写Excel表格（xlsx 文件）即可制作大部分mod。
 
-通过创建[模组包](./basic_mod)并使用格式化的 xlsx 文件，你可以将各种各样的东西添加到 Elin 中。关于如何填写 xlsx 文件，请移步总目录的 `源表` 分区<!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD--> 
+通过创建包含必要文件的[模组包](./basic_mod)，并使用正确的 xlsx 文件，你可以将各种各样的东西添加到 Elin 中。
 
-模组包使Elin认识的你mod，而 xlsx 文件能为游戏加入源数据（SourceData）
+关于如何填写 xlsx 文件，请移步总目录的 `源表` 分区。<!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD-->
+
+::: details  原理简述
++ 模组包内 package.xml 和 preview.jpg 让Elin能加载你的mod，并形成封面。当然，这需要模组包位于正确的文件路径。
++ 格式化的 xlsx 文件为游戏加入源数据（SourceData）。
+:::
+
 
 ## 示例模组设置
 
-文件夹结构如下，但你可以省略除[模组包（Mod Package）](./basic_mod)、package.xml、preview.jpg以外，用不到的文件夹：
+完整的文件夹结构如下，但你可以省略除模组文件夹（Mod Package）、package.xml、preview.jpg以外，用不到的文件夹：
 
 ![img](./assets/mod_package_layout.png)
 
@@ -26,7 +32,7 @@ tags: Guide/General
 
 ## 源表格 (Source Sheets)
 
-在导航栏下拉菜单中查看官方的 Elin 源文件：
+在导航栏下拉菜单中查看 Elin 的官方源表：
 
 ![img](./assets/elin_sources.png)
 
@@ -139,14 +145,25 @@ General, Game, List, Word, Note
 
 ## 除日语英语外的其他语言
 
-以中文 `CN` 为例，创建一个 CN 文件夹。然后复制源表过去。
+### 前置知识
 
-接下来开始翻译，以 `name_JP` 和 `name` 这样的一组为例子，组中带有 `_JP` 后缀的日文列不要动，组中无后缀的是英语列（也是翻译列）。请在翻译列中写中文。（注意如果不是 组中的列，则不要翻译。）
+我们先来了解一下前置知识，以 `name_JP` 和 `name` 这样的一组为例子：
++ 组中带有 `_JP` 后缀的是日文列
++ 组中无后缀的是英语列，也是翻译列。
 
-然后，你应将其导出为 `SourceLocalization.json` 的翻译文件并删除 `CN`文件夹中的源表。如何导出 `json`详见[Translation 翻译](../10_Source%20Sheets/localization)页面。
+### 例子
 
-你也可以先导出 `SourceLocalization.json`文件，再在 `json`文件里翻译。
+以中文 `CN` 为例，创建一个 CN 文件夹。
 
-此外对中国玩家来说，制作mod时，还可以先在 `CN`文件夹中建立源表。
+1. 在EN 或 JP 文件夹之一填写源表，然后再复制到 CN 文件夹（不是官方源表）。源表的详细填写方法请移步总目录的 `源表` 分区。<!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD-->
+2. 开始翻译你的源表，不要动日文列，把上文无后缀的“翻译列”翻译为汉文。（不要动表头，还有其他列作为数据的英语）
+3. 然后，你应将其导出为 `SourceLocalization.json` 的翻译文件并删除 `CN`文件夹中的源表。如何导出 `json`详见[Translation 翻译](../10_Source%20Sheets/localization)页面。你也可以先导出 `SourceLocalization.json`文件，再在 `json`文件里翻译为中文。
 
-无论你是否提供其他语言，日文列以及英语列（翻译列）都要填写，哪怕是占位符。
+### 对中国玩家来说
+制作mod时还可以：
+1. 先在 `CN`文件夹中建立源表。源表的详细填写方法请移步总目录的 `源表` 分区。<!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD-->
+2. 在翻译列内写中文
+3. 做完后再复制到EN文件夹中，翻译并填充英语列
+4. 之后导出 `SourceLocalization.json` 的翻译文件并删除 `CN`文件夹中的源表。如何导出 `json`详见[Translation 翻译](../10_Source%20Sheets/localization)页面。
+
+注意：无论你是否提供其他语言，日文列以及英语列（翻译列）都要填写内容（占位符）。所以过程中你可以先在日文列中填上中文占位。

@@ -2,26 +2,41 @@
 title: Basic Elin Sheet Modding and You
 author: Han
 description: A short Tutorial for creating basic Elin Source Sheet Based Mods.
-date: 2026/02/25 00:00
+date: 2026/06/11 00:00
 tags: Guide/General
 ---
 
 # Introduction
 
-Elin can be easily modded by adding SourceData entries. By creating a [Mod Package](./basic_mod) and using formatted xlsx files, you can add all kind of things into Elin.
-This tutorial is meant to help anyone set up their own Source Sheet based mod, no coding necessary!
+No coding necessary for most mods in Elin!
+
+By creating a [Mod Package](./basic_mod) with the necessary files and using formatted xlsx files, you can add all kinds of things into Elin.
+
+For details on how to fill out the xlsx files, please refer to the `Source Sheets` section in the Menu.
+
+::: details Principle Overview
++ The `package.xml` and `preview.jpg` inside the mod package allow Elin to load your mod and display a cover image. Naturally, this requires the mod package to be placed in the correct file path.
++ The formatted xlsx files add SourceData into the game.
+:::
 
 ## Example Mod Setup
 
+The complete folder structure is shown below, but you can omit any folders you don't use, except for the mod folder itself (Mod Package), `package.xml`, and `preview.jpg`:
+
 ![img](./assets/mod_package_layout.png)
 
-**LangMod** folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (**.xlsx**).
+**LangMod** folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (**.xlsx**).This Excel file will act as your Source Sheet.
 
 ## Source Sheets
 
 Checkout the official Elin Sources on the nav bar dropdown:
 
 ![img](./assets/elin_sources.png)
+
+::: details Can't find it?
+If your screen is small or your zoom level is too high, this button might be hidden. Click the hamburger menu (three horizontal lines) to find the **Sources**.
+![](./assets/hamburger_menu.png)
+:::
 
 Here you will find all of the Source Sheets uploaded by the developer for modders to reference.
 
@@ -55,7 +70,10 @@ General, Game, List, Word, Note
 
 Note that this the **sheet name**, not the file name.
 
-You may also split the sheets into multiple xlsx files for organizing purposes.
+For organizing purposes:
+
++ You may put all these sheets into a single xlsx file.
++ You may also split the sheets into multiple xlsx files.
 
 ## Data Rows
 
@@ -114,3 +132,20 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Obj - Object data. Need CWL to load properly.
 - CellEffect - Extra effects applied to the tile.
 - Material - What materials are made available in the game. Need CWL to load properly.
+
+## Languages Other Than Japanese and English
+
+### Prerequisites
+
+Let's first understand some basics, taking a column group like `name_JP` and `name` as an example:
++ The column with the `_JP` suffix in the group is the Japanese column.
++ The column without a suffix is the English column, which also serves as the translation column.
+
+### Example
+
+Taking Chinese (`CN`) as an example, create a `CN` folder.
+1. Fill out your source sheet in either the `EN` or `JP` folder, and then copy it to the `CN` folder. For detailed instructions on filling out source sheets, please refer to the `Source Sheets` section in the main menu.
+2. Start translating your source sheet. Do not modify the Japanese columns; instead, translate the "translation columns" (the ones without suffixes mentioned above) into your target language.
+3. Afterward, export it as a `SourceLocalization.json` translation file and delete the source sheet in the `CN` folder. For details on how to export the `json`, see the [Translation](../10_Source%20Sheets/localization) page. 
+
+Alternatively, you can export the `SourceLocalization.json` file first and translate it directly within the `json` file. For details, see the [Translation](../10_Source%20Sheets/localization) page. 
