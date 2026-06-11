@@ -18,12 +18,13 @@ tags: Cheatsheet
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
 > :::info 除了按照上面的路径，你还可以按以下步骤打开：
-> 游戏内 `ESC → 设置 → 其他页 → 打开报错记录 `
+> 游戏内 `ESC → 设置 → 其他 → 打开报错记录 `
 >
 > 在文件夹中找到Player.log
 > :::
-> 若有人向你索要Player.log，请将整体文件发送给他，而不要复制文本
+> 其他是指设置里，上面的分页【其他】
 >
+> 若有人向你索要Player.log，请将整体文件发送给他，而不要复制文本
 
 ### 图形资源
 

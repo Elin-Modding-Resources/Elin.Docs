@@ -32,7 +32,7 @@ tags: Guide/General
 
 ## 源表格 (Source Sheets)
 
-在导航栏下拉菜单中查看 Elin 的官方源表：
+在导航栏【源表】的下拉菜单中，查看 Elin 的官方源表：
 
 ![img](./assets/elin_sources.png)
 
