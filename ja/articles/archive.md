@@ -2,6 +2,6 @@
 exclude: true
 ---
 
-# 目录
+# アーカイブ
 
 <CardContainer/>

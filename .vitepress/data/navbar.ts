@@ -20,7 +20,7 @@ export function makeNavBar(
         sources: "ソースシート",
       },
       zh: {
-        archive: "目录",
+        archive: "归档",
         decompiled: "反编译",
         sources: "源表",
       },
