@@ -36,8 +36,8 @@ tags: Guide/General
 
 ![img](./assets/elin_sources.png)
 
-::: details  如果你找不到这个按钮？
-  如果你屏幕较小，或者缩放太大，可能看不见这个按钮。请点击三横的汉堡菜单，从而找到**源表**。
+::: details  找不到这个按钮？
+  如果你屏幕较小，或者缩放太大，都可能看不见这个按钮。请点击汉堡菜单（三条横线），从而找到**源表**。
   ![](./assets/hamburger_menu.png)
 :::
 
