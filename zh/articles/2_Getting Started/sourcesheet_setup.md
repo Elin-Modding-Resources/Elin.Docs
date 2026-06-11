@@ -126,7 +126,7 @@ General, Game, List, Word, Note
 - Stat - 状态，比如增益和减益效果 (Buffs and Debuffs)。
 - Check - 不用管这个。
 - Faction - 游戏阵营。这部分被严重硬编码。
-- Religion - 游戏宗教。需要 CWL 才能正确加载。
+- Religion - 游戏宗教（神的信仰）。
 - Zone - 区域数据。
 - ZoneAffix - 用于随机地牢（奈菲亚/nefias），添加前缀形容词。
 - Quest - 任务数据，如描述、任务发布者是谁、任务名称是什么。
@@ -139,9 +139,9 @@ General, Game, List, Word, Note
 - GlobalTile - 世界地图上使用的图块，指向当你进入时应该生成什么区域。这不包括预设位置（例如城市、地牢、地宫）。
 - Block - 方块、墙壁、屋顶、楼梯。用于建造。
 - Floor - 地板数据。不言自明。
-- Obj - 物体数据。需要 CWL 才能正确加载。
+- Obj - 物体数据。
 - CellEffect - 应用于图块的额外效果。
-- Material - 游戏中提供哪些材质。需要 CWL 才能正确加载。
+- Material - 游戏中提供哪些材质。
 
 ## 除日语英语外的其他语言
 

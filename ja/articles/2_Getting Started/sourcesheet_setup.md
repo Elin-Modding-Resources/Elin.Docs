@@ -1,61 +1,61 @@
 ---
-title: Basic Elin Sheet Modding and You
+title: Elin シートMOD制作の基本とあなた
 author: Han
-description: A short Tutorial for creating basic Elin Source Sheet Based Mods.
+description: Elinのソースシートをベースにした基本的なMOD作成の短いチュートリアル。
 date: 2026/06/11 00:00
 tags: Guide/General
 ---
 
-# Introduction
+# はじめに
 
-No coding necessary for most mods in Elin!
+ElinのほとんどのMODでは、プログラミング（コーディング）の知識は必要ありません！
 
-By creating a [Mod Package](./basic_mod) with the necessary files and using formatted xlsx files, you can add all kinds of things into Elin.
+必要なファイルを含んだ [MODパッケージ](./basic_mod) を作成し、フォーマットされたxlsxファイルを使用することで、Elinにあらゆる種類の要素を追加することができます。
 
-For details on how to fill out the xlsx files, please refer to the `Source Sheets` section in the Menu.
+xlsxファイルの具体的な記入方法については、メニューの「`ソースシート`」セクションを参照してください。
 
-::: details Principle Overview
-+ The `package.xml` and `preview.jpg` inside the mod package allow Elin to load your mod and display a cover image. Naturally, this requires the mod package to be placed in the correct file path.
-+ The formatted xlsx files add SourceData into the game.
+::: details 仕組みの概要
++ MODパッケージ内の `package.xml` と `preview.jpg` により、ElinがMODを読み込み、カバー画像を表示できるようになります。当然ながら、MODパッケージが正しいファイルパスに配置されている必要があります。
++ フォーマットされたxlsxファイルによって、ゲーム内にSourceData（ソースデータ）が追加されます。
 :::
 
-## Example Mod Setup
+## MODセットアップの例
 
-The complete folder structure is shown below, but you can omit any folders you don't use, except for the mod folder itself (Mod Package), `package.xml`, and `preview.jpg`:
+完全なフォルダ構成は以下の通りですが、MODフォルダ自体（MODパッケージ）、`package.xml`、および `preview.jpg` を除き、使用しないフォルダは省略して構いません。
 
 ![img](./assets/mod_package_layout.png)
 
-**LangMod** folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (**.xlsx**).This Excel file will act as your Source Sheet.
+**LangMod** フォルダには言語コード名のサブフォルダが含まれていますが、まずは `EN` または `JP` を使用するだけで十分です。言語コードフォルダの中に、Excelファイル（**.xlsx**）などのMODデータを配置します。このExcelファイルがソースシートとして機能します。
 
-## Source Sheets
+## Source Sheets（ソースシート）
 
-Checkout the official Elin Sources on the nav bar dropdown:
+ナビゲーションバーのドロップダウンにある公式の「ソースシート」を確認してください。
 
 ![img](./assets/elin_sources.png)
 
-::: details Can't find it?
-If your screen is small or your zoom level is too high, this button might be hidden. Click the hamburger menu (three horizontal lines) to find the **Sources**.
+::: details 見つからない場合
+画面サイズが小さいか、ズーム倍率が高すぎる場合、このボタンが隠れていることがあります。ハンバーガーメニュー（3本の水平線）をクリックして **Sources** を探してください。
 ![](./assets/hamburger_menu.png)
 :::
 
-Here you will find all of the Source Sheets uploaded by the developer for modders to reference.
+ここでは、モッダーが参考にするために開発者がアップロードしたすべてのソースシートを見つけることができます。
 
-Ensure you have a method to read and write xlsx files. They are the standard XML based spreadsheets.
-The most common methods to work with this kind of file is Microsoft Excel. Other options would include LibreOffice Calc or Google Sheets.
+xlsxファイルを読み書きできる環境を用意してください。これらは標準的なXMLベースのスプレッドシートです。
+この種類のファイルを扱う最も一般的な方法は Microsoft Excel です。その他の選択肢としては、LibreOffice Calc や Google スプレッドシート（Google Sheets）などがあります。
 
-The Drive has multiple Source Files broken down into categories. Each category contains multiple sheets. When you open one of the files, at the bottom you can see the Source Sheets included.
-Make sure the name of these sheets line up with one of the original sheet names (e.g. Chara, Race, Job.)
+ドライブには、カテゴリごとに分類された複数のソースファイルがあります。各カテゴリには複数のシートが含まれています。いずれかのファイルを開くと、下部に含まれているソースシートが表示されます。
+これらのシート名が、オリジナルのシート名（例：Chara、Race、Jobなど）のいずれかと一致していることを確認してください。
 
-When making your own Source Sheet file, you need to make sure the format is correct.
-You can have a single Source.xlsx file for your entire mod that has a variety of sheets inside it.
+独自のソースシートファイルを作成する際は、フォーマットが正しいことを確認する必要があります。
+MOD全体で、内部にさまざまなシートを含む単一の `Source.xlsx` ファイルを持たせることができます。
 
-Add new sheets as needed (Click the + button) and rename them (Right click) at the bottom to match the original Source Sheets.
+必要に応じて新しいシートを追加し（「+」ボタンをクリック）、下部で名前を変更（右クリック）して、オリジナルのソースシート名に合わせてください。
 
 |Excel|LibreOffice|
 |-|-|
 |![](./assets/0_ExcelSheets.png)|![](./assets/1_LibreOfficeCalc.png)|
 
-Supported `SourceData` are: 
+サポートされている `SourceData` は以下の通りです： 
 ```txt:no-line-numbers
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
@@ -63,89 +63,88 @@ Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, Hom
 GlobalTile, Block, Floor, Obj, CellEffect, Material
 ```
 
-Supported `SourceLang` are: 
+サポートされている `SourceLang` は以下の通りです： 
 ```txt:no-line-numbers
 General, Game, List, Word, Note
 ```
 
-Note that this the **sheet name**, not the file name.
+これはファイル名ではなく、**シート名**であることに注意してください。
 
-For organizing purposes:
+整理のために：
++ これらのシートをすべて1つのxlsxファイルにまとめることができます。
++ シートを複数のxlsxファイルに分割することもできます。
 
-+ You may put all these sheets into a single xlsx file.
-+ You may also split the sheets into multiple xlsx files.
+## データ行（Data Rows）
 
-## Data Rows
+すべてのソースシートのデータ行は4行目から開始する必要があります（dialog.xlsxは例外ですが、これについては後ほど説明します）。  
++ **1行目** はヘッダー（見出し）で、各列が何を表しているかが含まれています。これは変更しないでください。  
++ **2行目** はデータ型（Type）で、各列のデータの種類が含まれています。  
++ **3行目** はその列のデフォルト値（初期値）です。  
++ **4行目** から、ゲームにMODとして導入したい内容を記入し始めることができます。
 
-All Source Sheets data rows should start on the 4th Row. (Exception of dialog.xlsx, but we'll go over that later)  
-+ **1st row** is the header, containing what each column represents. Don't change this.  
-+ **2nd row** is the type, containing what type each column should be.  
-+ **3rd row** is the default value for that column.  
-+ **4th row** is where you can start filling it out with what you want to mod into the game.
-
-When you set up your sheets, you should go to the original sheets and copy the first 3 rows into your own Sheet. Make sure you get the whole row.
+シートを設定する際は、オリジナルのシートに移動し、最初の3行を自分のシートにコピーしてください。必ず行全体をコピーするようにしてください。
 ![](./assets/3_CopyHeaderRows.png)
 
-## Quick Summary
+## クイックサマリー（簡易概要）
 
 ### Lang
-- The Language files. It's a bit hard to explain this, but these are the words that you the player will see, from in the logs, to UI elements, everything.
-Modders who plan on adding extensive new content should get used to this file, but you likely do not need to do too much here if you are aren't planning to code.
+- 言語ファイル。説明が少し難しいですが、これらはログからUI要素に至るまで、プレイヤーであるあなたが目にするすべての言葉です。
+大規模な新規コンテンツの追加を計画しているモッダーはこのファイルに慣れる必要がありますが、コードを書く予定がないのであれば、ここで多くの作業を行う必要はおそらくありません。
 
 ### SourceCard
-- Thing - Items.
-- ThingV - Furniture Variations of items.
-- Food - Food Items and their stats.
-- Recipe - Crafting Recipes.
-- SpawnList - Spawn lists for either shop inventories or what monsters spawn in which areas.
-- Category - Item Categories.
-- Collectible - Junk items, mostly for decoration, or quests.
-- KeyItem - Key Items.
+- Thing - アイテム。
+- ThingV - アイテムの家具バリエーション。
+- Food - 食料アイテムとそのステータス。
+- Recipe - 製作レシピ（クラフトレシピ）。
+- SpawnList - ショップの在庫や、どのエリアにどのモンスターがスポーンするかなどのスポーンリスト。
+- Category - アイテムカテゴリ。
+- Collectible - 主に装飾やクエスト用のジャンクアイテム。
+- KeyItem - 貴重品（キーアイテム）。
 
 ### SourceChara
-- Chara - Character entries.
-- CharaText - Bark Text that the characters would say over their heads, or in the log based on the scenario.
-- Tactics - Combat AI. Weights on what kind of action each tactic style would take in a given turn.
-- Race - Character Races.
-- Job - Character Jobs. Can be referred to as Classes as well.
-- Hobby - Character Hobbies, the one each character has at least two of.
+- Chara - キャラクターのエントリ。
+- CharaText - 吹き出しとしてキャラクターの頭上に表示されたり、シナリオに基づいてログに表示されたりするセリフ（台詞テキスト）。
+- Tactics - 戦闘AI。各タクティクススタイルが特定のターンにどのような行動をとるかの重み付け。
+- Race - キャラクターの種族。
+- Job - キャラクターの職業（ジョブ）。クラス（Class）とも呼ばれます。
+- Hobby - キャラクターの趣味。各キャラクターは少なくとも2つの趣味を持っています。
 
 ### SourceGame
-- Element - Basically all the Attributes/Skills/Feats/Spells/Abilities are housed here.
-- Calc - Dice calculation for various spells or abilities.
-- Stat - Conditions, like Buffs and Debuffs.
-- Check - Don't worry about this.
-- Faction - Factions of the game. This part is heavily hardcoded.
-- Religion - Religions of the game. Need CWL to load properly.
-- Zone - Zone data.
-- ZoneAffix - For random nefias, adds a prefix adjective.
-- Quest - Quest Data like descriptions, who is the quest giver, what is the quest name.
-- Area - Possible room designations.
-- HomeResource - Various stats of a Zone.
-- Research - Licenses and rewards.
-- Person - Drama actors that are defined explicitly. It's not mandatory to use.
+- Element - 基本的にすべての能力値/スキル/フィート/魔法/アビリティがここに格納されます。
+- Calc - さまざまな魔法やアビリティのダイス計算。
+- Stat - バフやデバフなどの状態異常（コンディション）。
+- Check - これについては気にする必要はありません。
+- Faction - ゲーム内の派閥（ファクション）。この部分は大部分がハードコードされています。
+- Religion - ゲーム内の宗教。
+- Zone - ゾーン（エリア）データ。
+- ZoneAffix - ランダムネフィア用で、接頭辞（形容詞）を追加します。
+- Quest - クエストの説明、依頼者、クエスト名などのクエストデータ。
+- Area - 指定可能な部屋の用途。
+- HomeResource - ゾーンのさまざまな統計情報（リソース）。
+- Research - ライセンスと報酬（研究）。
+- Person - 明示的に定義されたドラマ（イベント）の登場人物。使用は必須ではありません。
 
 ### SourceBlock
-- GlobalTile - Tiles used on the world map, pointing to what zone they should spawn when you enter it. This does not include prefab locations (e.g. cities, dungeons, nefias)
-- Block - Blocks, Walls, Roofs, Stairs. For building with.
-- Floor - Floor data. Self explanatory.
-- Obj - Object data. Need CWL to load properly.
-- CellEffect - Extra effects applied to the tile.
-- Material - What materials are made available in the game. Need CWL to load properly.
+- GlobalTile - ワールドマップで使用されるタイル。進入したときにどのゾーンを生成するかを指定します。これにはプレハブの場所（例：都市、ダンジョン、ネフィアなど）は含まれません。
+- Block - ブロック、壁、屋根、階段。建築用。
+- Floor - 床データ。文字通りの意味です。
+- Obj - オブジェクトデータ。
+- CellEffect - タイルに適用される追加エフェクト。
+- Material - ゲーム内で利用可能になる素材（マテリアル）。
 
-## Languages Other Than Japanese and English
+## 日英以外の言語について
 
-### Prerequisites
+### 前提知識
 
-Let's first understand some basics, taking a column group like `name_JP` and `name` as an example:
-+ The column with the `_JP` suffix in the group is the Japanese column.
-+ The column without a suffix is the English column, which also serves as the translation column.
+まずは `name_JP` と `name` のような列グループを例に挙げて、いくつかの基本を理解しましょう：
++ グループ内で `_JP` という接尾辞（サフィックス）が付いている列が日本語の列です。
++ 接尾辞がない列は英語の列であり、翻訳列としても機能します。
 
-### Example
+### 例
 
-Taking Chinese (`CN`) as an example, create a `CN` folder.
-1. Fill out your source sheet in either the `EN` or `JP` folder, and then copy it to the `CN` folder. For detailed instructions on filling out source sheets, please refer to the `Source Sheets` section in the main menu.
-2. Start translating your source sheet. Do not modify the Japanese columns; instead, translate the "translation columns" (the ones without suffixes mentioned above) into your target language.
-3. Afterward, export it as a `SourceLocalization.json` translation file and delete the source sheet in the `CN` folder. For details on how to export the `json`, see the [Translation](../10_Source%20Sheets/localization) page. 
+中国語（`CN`）を例として、`CN` フォルダを作成します。
+1. `EN` または `JP` フォルダのいずれかでソースシートを記入し、それを `CN` フォルダにコピーします。ソースシートの記入に関する詳細な手順については、メインメニューの「`Source Sheets`」セクションを参照してください。
+2. ソースシートの翻訳を開始します。日本語の列は変更せず、代わりに「翻訳列」（上記で述べた接尾辞のない列）を目的の言語に翻訳します。
+3. その後、`SourceLocalization.json` 翻訳ファイルとしてエクスポートし、`CN` フォルダ内のソースシートを削除します。`json` のエクスポート方法の詳細については、[Translation 翻訳](../10_Source%20Sheets/localization) ページを参照してください。 
 
-Alternatively, you can export the `SourceLocalization.json` file first and translate it directly within the `json` file. For details, see the [Translation](../10_Source%20Sheets/localization) page. 
+あるいは、最初に `SourceLocalization.json` ファイルをエクスポートして、`json` ファイル内で直接翻訳することもできます。詳細については、[Translation 翻訳](../10_Source%20Sheets/localization) ページを参照してください。

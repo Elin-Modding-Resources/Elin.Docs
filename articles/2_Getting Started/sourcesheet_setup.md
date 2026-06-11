@@ -116,7 +116,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Stat - Conditions, like Buffs and Debuffs.
 - Check - Don't worry about this.
 - Faction - Factions of the game. This part is heavily hardcoded.
-- Religion - Religions of the game. Need CWL to load properly.
+- Religion - Religions of the game.
 - Zone - Zone data.
 - ZoneAffix - For random nefias, adds a prefix adjective.
 - Quest - Quest Data like descriptions, who is the quest giver, what is the quest name.
@@ -129,13 +129,13 @@ Modders who plan on adding extensive new content should get used to this file, b
 - GlobalTile - Tiles used on the world map, pointing to what zone they should spawn when you enter it. This does not include prefab locations (e.g. cities, dungeons, nefias)
 - Block - Blocks, Walls, Roofs, Stairs. For building with.
 - Floor - Floor data. Self explanatory.
-- Obj - Object data. Need CWL to load properly.
+- Obj - Object data.
 - CellEffect - Extra effects applied to the tile.
-- Material - What materials are made available in the game. Need CWL to load properly.
+- Material - What materials are made available in the game.
 
 ## Languages Other Than Japanese and English
 
-### Prerequisites
+### Before You Begin
 
 Let's first understand some basics, taking a column group like `name_JP` and `name` as an example:
 + The column with the `_JP` suffix in the group is the Japanese column.
