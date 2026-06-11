@@ -17,6 +17,12 @@ tags: Cheatsheet
 ### ゲームログ
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
+> :::info 上記のパス以外にも、次の手順で開くことができます：
+> ゲーム内 `ESC → 設定 → その他 → エラーログを開く`
+>
+> フォルダ内の Player.log ファイルを見つけてください。
+> :::
+> 誰かに Player.log を要求された場合、テキストをコピーするのではなく、ファイル全体を送ってください。
 
 ### グラフィックアセット
 

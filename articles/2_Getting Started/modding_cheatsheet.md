@@ -14,9 +14,15 @@ This article will be ever evolving, so its formatting may be a bit wonky.
 
 Need to know where a specific data from the game is? Here are your answers:
 
-### Game Log
+### Game Log (Player.log)
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
+> :::info In addition to the path above, you can also open it by following these steps:
+> In-game `ESC → Config → Other → Open error Log`
+>
+> Locate the Player.log file in the folder.
+> :::
+> If someone asks you for Player.log, please send them the entire file instead of copying the text.
 
 ### Graphical assets
 
