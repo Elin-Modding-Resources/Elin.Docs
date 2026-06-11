@@ -14,7 +14,7 @@ tags: Cheatsheet
 
 ゲームの特定のデータがどこにあるか知りたいですか？その答えはこちらです：
 
-### ゲームログ
+### ゲームログ (Player.log)
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
 > :::info 上記のパス以外にも、次の手順で開くことができます：
