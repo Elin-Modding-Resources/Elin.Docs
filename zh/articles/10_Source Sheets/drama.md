@@ -119,7 +119,7 @@ tags: Chara/Drama
 
 ### 随机话题
 
-`$topic` 将从 `chara_talk.xlsx` 中定义的话题随机选取一行，该文件可以是 Elin 默认文件 `Package/_Lang_Chinese/Lang/CN/Data/chara_talk.xslx`，也可以是 `LangMod/**/Data/chara_talk.xslx`。例如，`$sup` 将随机播放以下行之一：
+`$topic` 将从 `chara_talk.xlsx` 中定义的话题随机选取一行，该文件可以是 Elin 默认文件 `Package/_Lang_Chinese/Lang/CN/Data/chara_talk.xlsx`，也可以是 `LangMod/**/Data/chara_talk.xlsx`。例如，`$sup` 将随机播放以下行之一：
 ```
 什么？
 什么东西？

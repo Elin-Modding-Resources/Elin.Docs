@@ -119,7 +119,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 
 ### ランダム話題
 
-`$topic`は`chara_talk.xlsx`に定義された話題からランダムに1行を選びます。ファイルはElinのデフォルトである`Package/_Elona/Lang/JP/Data/chara_talk.xslx`か、`LangMod/**/Data/chara_talk.xlsx`のいずれかです。例として`$sup`は以下のいずれかをランダムに再生します。
+`$topic`は`chara_talk.xlsx`に定義された話題からランダムに1行を選びます。ファイルはElinのデフォルトである`Package/_Elona/Lang/JP/Data/chara_talk.xlsx`か、`LangMod/**/Data/chara_talk.xlsx`のいずれかです。例として`$sup`は以下のいずれかをランダムに再生します。
 ```
 何だ？
 何か？
