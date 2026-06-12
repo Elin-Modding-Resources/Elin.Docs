@@ -30,7 +30,7 @@ tags: Guide/General
 
 在语言代码文件夹内，就是你放置模组数据的地方，比如你的 Excel 文件 (**.xlsx**)。此Excel 文件就是你的源表。
 
-## 源表格 (Source Sheets)
+## 源表 (Source Sheets)
 
 在导航栏【源表】的下拉菜单中，查看 Elin 的官方源表：
 
