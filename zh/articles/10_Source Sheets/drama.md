@@ -115,6 +115,22 @@ tags: Chara/Drama
 
 ## 文本
 
+在 `text_JP`、`text_EN`、`text_XX` 列中的文本将用作对话事件，玩家必须点击或按键才能继续。除非动作另有说明，否则不能将动作行与文本行合并。
+
+### 随机话题
+
+`$topic` 将从 `chara_talk.xlsx` 中定义的话题随机选取一行，该文件可以是 Elin 默认文件 `Package/_Lang_Chinese/Lang/CN/Data/chara_talk.xslx`，也可以是 `LangMod/**/Data/chara_talk.xslx`。例如，`$sup` 将随机播放以下行之一：
+```
+什么？
+什么东西？
+哦？
+咦？
+喂！
+哦哦。
+咦。
+嗯？
+```
+
 ### 替换
 
 | 文本 | 替换值 |

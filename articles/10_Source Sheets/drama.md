@@ -165,6 +165,22 @@ When providing multiple parameters, they are **separated by comma(`,`) with no s
 
 ## Text
 
+Text in `text_JP`, `text_EN`, `text_XX` columns will be used as a talk event, player must click or press key to continue. You cannot combine action lines with text lines unless the action says otherwise.
+
+### Random Topic
+
+`$topic` will pick a random line from a defined topic in `chara_talk.xlsx`, either from the Elin default file at `Package/_Elona/Lang/EN/Data/chara_talk.xslx` or from `LangMod/**/Data/chara_talk.xslx`. For example, `$sup` will play one of the following lines randomly:
+```
+What?
+Huh?
+...?
+Did you need something?
+What do you want?
+What's up?
+Is something wrong?
+What is it?
+```
+
 ### Substitutions
 
 | text | value |

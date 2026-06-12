@@ -115,6 +115,22 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 
 ## テキスト
 
+`text_JP`、`text_EN`、`text_XX`列のテキストは会話イベントとして使用され、プレイヤーはクリックかキー入力で進める必要があります。アクションで特に指定がない限り、アクション行とテキスト行は結合しないでください。
+
+### ランダム話題
+
+`$topic`は`chara_talk.xlsx`に定義された話題からランダムに1行を選びます。ファイルはElinのデフォルトである`Package/_Elona/Lang/JP/Data/chara_talk.xslx`か、`LangMod/**/Data/chara_talk.xlsx`のいずれかです。例として`$sup`は以下のいずれかをランダムに再生します。
+```
+何だ？
+何か？
+おお？
+あれ？
+ねえ！
+おお。
+あれ。
+ねえ？
+```
+
 ### 置換変数
 
 | テキスト | 値 |
