@@ -40,14 +40,14 @@ tags: SourceSheet/Race
 |INT|integer|此种族的"智力"。用于判断它们是否足够聪明以自行开门。低于 `10` 则无法做到。|
 |martial|integer|游戏内用途未知。保留为 `3`（与耶尔雷斯相同）。|
 |pen|integer|游戏内用途未知。保留为 `0`。|
-|elements|elements|此种族自带的固有效果。用于添加种族专长和基础技能加成（同时也会增加基础潜力）。格式：`元素别名/数值`。|
+|elements|elements|此种族自带的固有效果。用于添加种族专长和基础技能加成（同时也会增加基础潜力）。格式： `元素别名/数值`。|
 |skill|string|游戏内用途未知。留空即可。|
 |figure|string[]|指定该种族初始拥有的身体部位。参见下方[部位参考](#部位参考)。|
 |geneCap|integer|此种族拥有的基因槽数量。|
 |material|string|此种族的构成材质。|
 |corpse|string[]|击杀该种族后掉落的尸体由什么构成。|
 |loot|string[]|此种族专属的掉落物。|
-|blood|integer|此种族血液的颜色。`2` 为正常的红色血液。*（待确认。）*|
+|blood|integer|此种族血液的颜色。`2` 为正常的红色血液。请参考官方源表中 `chara`分表的blood列来填写。依然遵循通用规则：空缺则使用默认值。|
 |meleeStyle|string|该种族的近战效果。留空则为默认近战。可选值：`Claw`、`Bite`、`Kick`、`Touch`、`Spore`、`Sting`、`Gaze`。|
 |castStyle|string|该种族的施法效果。主要用于风味文本。|
 |EQ|string[]|决定新生成的该种族角色会装备何种装备。EQ 是创建角色时启用装备分配的另一种方式，可以填入任意内容。两个常见选项为 `"all"` 和空白。|

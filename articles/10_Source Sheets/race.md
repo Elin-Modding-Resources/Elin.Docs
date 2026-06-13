@@ -47,7 +47,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |material|string|What material this race is made of.|
 |corpse|string[]|When a corpse is dropped upon killing this race, what it is made of.|
 |loot|string[]|Loot specific to this race.|
-|blood|integer|The color of the blood from this race. `2` is normal red blood. *(Needs confirmation.)*|
+|blood|integer|The color of the blood from this race. `2` is normal red blood. Please refer to the blood column in the `chara` sub-table of the official source. Still follow the general rule: if it is empty, use the default value.|
 |meleeStyle|string|The melee effect of this race. Leave blank for default melee. Options: `Claw`, `Bite`, `Kick`, `Touch`, `Spore`, `Sting`, `Gaze`.|
 |castStyle|string|The casting effect of this race. Mostly used for flavor text.|
 |EQ|string[]|Determines what kind of equipment this race spawns with. EQ is an alternate way to enable equipment assignment when creating characters; you can fill in anything. Two common options are `"all"` and blank.|
