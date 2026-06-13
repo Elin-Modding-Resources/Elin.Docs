@@ -1,5 +1,5 @@
 ---
-title: Race
+title: Race 種族
 author: Han
 description: Comments about columns of Race sheet.
 date: 2025/9/19 00:00
@@ -12,7 +12,7 @@ tags: SourceSheet/Race
 
 # 種族シート (Race)
 
-<LinkCard t="SourceCard/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+<LinkCard t="SourceChara/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
 種族シートは Chara シート内にあり、下部のタブで切り替えられます。
 

@@ -1,5 +1,5 @@
 ---
-title: Race
+title: Race 种族
 author: Han
 description: Comments about columns of Race sheet.
 date: 2025/9/19 00:00
@@ -12,7 +12,7 @@ tags: SourceSheet/Race
 
 # 种族表 (Race)
 
-<LinkCard t="SourceCard/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+<LinkCard t="SourceChara/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
 种族表存储在 Chara 表内，可通过底部的标签页切换。
 

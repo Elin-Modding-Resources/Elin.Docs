@@ -8,7 +8,7 @@ tags: SourceSheet/Chara
 
 # Chara Sheet
 
-<LinkCard t="SourceCard/Chara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
+<LinkCard t="SourceChara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
