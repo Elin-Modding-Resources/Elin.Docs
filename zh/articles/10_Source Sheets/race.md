@@ -69,7 +69,7 @@ tags: SourceSheet/Race
 |`human`|该种族可使用通用语。|
 |`fairy`|此种族为妖精。|
 |`humanSpeak`|非人形种族但可使用通用语。|
-|`gelatin`|此种族在生成时被视为噗嘀。*（待确认。）*|
+|`gelatin`| 相当于material列里填写 `jelly`，表示种族的材质是胶状物（比如波球）。注意：不建议使用 `gelatin`标签。|
 |`sand`|此种族会在沙地地图生成。|
 |`ride`|此种族骑乘适应性良好。|
 |`mofu`|此种族将无差别地遭到所有人和事物的骚扰与狂撸。|

@@ -69,7 +69,7 @@ Common tags used in the `tag` column:
 |`human`|The race speaks common.|
 |`fairy`|This race is a fairy.|
 |`humanSpeak`|Non-humanoid races that can speak common.|
-|`gelatin`|This race is considered a putit for spawning purposes. *(Needs confirmation.)*|
+|`gelatin`|Equivalent to setting `jelly` in the material column (represents a slime-like material similar to a Putit). Note: Please avoid using the `gelatin` tag.|
 |`sand`|This race will spawn in sand zones.|
 |`ride`|This race has good riding aptitude.|
 |`mofu`|This race will be incessantly harassed and fluffed without consent by everyone and everything.|
