@@ -68,6 +68,19 @@ Need to know where a specific data from the game is? Here are your answers:
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` and `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+### Mod Files
+
+> [!Important] Mod Viewer
+> :::info You can open the Mod Viewer by following these steps:
+> In-game `ESC → Tool → Mod Viewer`
+>
+> After opening the Mod Viewer, click on a mod, then click `Open in explorer`
+> to find the mod files.
+> :::
+> Mod file names containing `[Local]` are local mods located in the package folder.
+>
+> Mods subscribed from the Workshop will be in the workshop folder.
+
 ## How do I...?
 
 ### Add/Replace a portrait

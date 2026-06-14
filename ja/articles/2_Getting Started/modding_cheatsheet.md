@@ -65,6 +65,18 @@ tags: Cheatsheet
 > `Things`、`Foods`、`Recipes`、`SpawnLists`、`Categories`、`Collectables`、`KeyItems`。
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+### Modファイル
+
+> [!Important] Modビューアー
+> :::info 以下の手順でModビューアーを開くことができます：
+> ゲーム内で `ESC → ツール → Modビューアー`
+> 
+> Modビューアーを開いた後、Modをクリックし、 `エクスプローラで開く` をクリックすると、Modファイルを見つけることができます。
+> :::
+> ファイル名に `[Local]` が含まれるModは、packageフォルダ内にあるローカルModです。
+>
+> ワークショップでサブスクライブしたModは、workshopフォルダ内にあります。
+
 ## 〜する方法
 
 ### ポートレートの追加・置換

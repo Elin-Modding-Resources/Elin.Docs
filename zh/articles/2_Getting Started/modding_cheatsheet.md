@@ -18,7 +18,7 @@ tags: Cheatsheet
 
 > [!Important] %localappdata%low/Lafrontier/Elin/Player.log
 > :::info 除了按照上面的路径，你还可以按以下步骤打开：
-> 游戏内 `ESC → 设置 → 其他 → 打开报错记录 `
+> 游戏内 `ESC → 设置 → 其他 → 打开报错记录`
 >
 > 在文件夹中找到Player.log
 > :::
@@ -70,6 +70,18 @@ tags: Cheatsheet
 > [!Important]包含以下数据表:
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` 和 `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
+
+### mod文件
+
+> [!Important]mod查看器
+> :::info 你可以按以下步骤打开mod查看器：
+> 游戏内 `ESC → 工具 → mod查看`
+>
+> 打开mod查看器后，点击mod，再点击 `打开文件位置`， 即可找到mod文件
+> :::
+> 模组文件名含有 `[Local]`的，是在package文件夹的本地模组
+>
+> 创意工坊订阅来的mod，会在workshop文件夹
 
 ## 我该如何……？
 
