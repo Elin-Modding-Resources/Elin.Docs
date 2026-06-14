@@ -105,3 +105,10 @@ The `figure` column uses Kanji characters separated by pipes (`|`) to represent 
 |`腰`|Waist|
 |`脚`|Leg|
 |`足`|Foot|
+
+<!--注释
+《Elin》相关术语，英=中=日
+Bane=特攻=特攻
+Bird watching=观鸟=鳥を眺める
+语境示例: "鳥を眺めにいかない？"
+-->
