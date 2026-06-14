@@ -80,7 +80,7 @@ For the explanation of each line, please refer to the detailed explanation secti
 
 ### Modify Shadow
 
-<LinkCard t="庭院之主钢管舞" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3711895231" i="/pole.gif" />
+<LinkCard t="Keeper of Garden Pole Dance" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3711895231" i="/pole.gif" />
 
 This mod uses `shadow` in the `.pref` file to modify the shadow.
 
