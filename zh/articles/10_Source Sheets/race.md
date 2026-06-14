@@ -38,7 +38,7 @@ tags: SourceSheet/Race
 |STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|基础属性参数。|
 |ratio|—|用于估算种族强度的宏，游戏中未使用，但表中必须保留。留空即可。|
 |INT|integer|此种族的"智力"。用于判断它们是否足够聪明以自行开门。低于 `10` 则无法做到。|
-|martial|integer|游戏内用途未知。保留为 `3`（与耶尔雷斯相同）。|
+|martial|integer|游戏内用途未知。保留为 `3`（与耶鲁人相同）。|
 |pen|integer|游戏内用途未知。保留为 `0`。|
 |elements|elements|此种族自带的固有效果。用于添加种族专长和基础技能加成（同时也会增加基础潜力）。格式： `元素别名/数值`。|
 |skill|string|游戏内用途未知。留空即可。|

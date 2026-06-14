@@ -113,4 +113,5 @@ The `figure` column uses Kanji characters separated by pipes (`|`) to represent 
 3.life=生命力=生命，这是参与计算HP的生命力
 4.mana=玛娜=マナ，这是参与计算MP的玛娜
 5.vigor=活力=活力，这是参与计算SP的活力
+6.Yerles=耶鲁人=イエルス
 -->
