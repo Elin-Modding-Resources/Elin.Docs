@@ -27,9 +27,9 @@ tags: SourceSheet/Race
 |name|string|此种族的英文显示名称。其他语言使用 SourceLocalization.json。|
 |playable|integer|指定此种族在创建角色时是否可供玩家使用。`4` 及以下：可选。`5`：高阶种族。`7`–`8`：主要为 NPC 种族。`9`：通常为神/恶魔等特殊种族。|
 |tag|string[]|应用于该种族的逗号分隔标签列表。参见下方[标签参考](#标签参考)。|
-|life|integer|基础生命值；决定血量池。|
-|mana|integer|基础法力值；决定法力池。|
-|vigor|integer|基础耐力值；决定耐力池。|
+|life|integer|生命力；作为血量HP计算的基础值。|
+|mana|integer|玛娜；作为法力MP计算的基础值。|
+|vigor|integer|活力；作为黄条SP计算的基础值|
 |DV|integer|基础闪避值。赋予该种族天生的闪避能力（例如：妖精）。|
 |PV|integer|基础防护值。赋予该种族天生的防护能力（例如：魔像）。|
 |PDR|integer|物理伤害减免。来自物理来源的伤害百分比减免。|

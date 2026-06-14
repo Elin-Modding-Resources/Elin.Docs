@@ -27,9 +27,9 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |name|string|The name of this race in English. Other languages use SourceLocalization.json.|
 |playable|integer|Designates whether this race is usable by players during character creation. `4` and under: accessible. `5`: "Advanced" races. `7`–`8`: mostly NPC races. `9`: usually reserved for special races like gods/demons.|
 |tag|string[]|A comma-separated list of tags applied to this race. See [Tag Reference](#tag-reference) below for common tags.|
-|life|integer|The base life stat; determines health pool.|
-|mana|integer|The base mana stat; determines mana pool.|
-|vigor|integer|The base stamina stat; determines stamina pool.|
+|life|integer|The base life stat; determines HP pool.|
+|mana|integer|The base mana stat; determines MP pool.|
+|vigor|integer|The base vigor stat; determines stamina (SP) pool.|
 |DV|integer|The base dodge value. Gives this race built-in dodging (e.g., fairy).|
 |PV|integer|The base protection value. Gives this race built-in protection (e.g., golem).|
 |PDR|integer|Physical Damage Reduction. A percent reduction in damage taken from physical sources.|
@@ -107,8 +107,10 @@ The `figure` column uses Kanji characters separated by pipes (`|`) to represent 
 |`足`|Foot|
 
 <!--注释
-《Elin》相关术语，英=中=日
-Bane=特攻=特攻
-Bird watching=观鸟=鳥を眺める
-语境示例: "鳥を眺めにいかない？"
+《Elin》相关术语，均是英=中=日
+1.Bane=特攻=特攻
+2.Bird watching=观鸟=鳥を眺める，语境示例: "鳥を眺めにいかない？"
+3.life=生命力=生命，这是参与计算HP的生命力
+4.mana=玛娜=マナ，这是参与计算MP的玛娜
+5.vigor=活力=活力，这是参与计算SP的活力
 -->
