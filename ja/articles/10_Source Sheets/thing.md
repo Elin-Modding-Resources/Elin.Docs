@@ -29,8 +29,8 @@ tags: SourceSheet/Thing
 |_idRenderData|テキスト|地面への設置方法とクリッピングの制御です。下記の [idRenderData](#idrenderdata) を参照してください。|
 |tiles|整数|差し替えテクスチャのタイルID。複数ある場合は「正面 → 正面反転 → 背面 → 背面反転」の順。例：`123,-123,456,-456`。|
 |altTiles|整数|別状態用のバリアントタイル（例：中身が入った宝箱）。|
-|anime|整数|2つの値： `フレーム数, フレーム継続時間`。`idRenderData` 列で @obj を使用し、かつ [Sprite Animation](../articles/15_Texture%20Mods/animation) を使用する場合、この列を記入する必要はありません。|
-|skins|整数|スキンバリアントの参照。`idRenderData` 列で @obj を使用し、かつ [Sprite Variations](../articles/15_Texture%20Mods/variation) を使用する場合、この列を記入する必要はありません。|
+|anime|整数|2つの値： `フレーム数, フレーム継続時間`。`idRenderData` 列で @obj を使用し、かつ [Sprite Animation](../15_Texture%20Mods/animation) を使用する場合、この列を記入する必要はありません。|
+|skins|整数|スキンバリアントの参照。`idRenderData` 列で @obj を使用し、かつ [Sprite Variations](../15_Texture%20Mods/variation) を使用する場合、この列を記入する必要はありません。|
 |size|整数[]|大型オブジェクトのグリッドサイズ：`高さ,幅`。|
 |colorMod|整数|色の彩度補正。|
 |colorType|テキスト|色の参照元：`default`（クラフトの1番目の素材）、`alt`（2番目の素材）、または `random`。|

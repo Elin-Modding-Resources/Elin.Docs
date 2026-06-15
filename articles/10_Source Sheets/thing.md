@@ -29,8 +29,8 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |_idRenderData|string|How the object sits on the ground and its clipping. See [idRenderData](#idrenderdata) below.|
 |tiles|int|Replacement texture tile ID(s). Multiple tiles follow: front → front reversed → back → back reversed. E.g. `123,-123,456,-456`.|
 |altTiles|int|Variant tiles for alternate states (e.g. a closed chest with contents inside).|
-|anime|int[]|Two values: `frameCount,frameDuration`. When the `idRenderData` column uses the @obj and [Sprite Animation](../articles/15_Texture%20Mods/animation) is used, this column does not need to be filled in.|
-|skins|int|Skin variant reference. When the `idRenderData` column uses the @obj and [Sprite Variations](../articles/15_Texture%20Mods/variation) is used, this column does not need to be filled in.|
+|anime|int[]|Two values: `frameCount,frameDuration`. When the `idRenderData` column uses the @obj and [Sprite Animation](../15_Texture%20Mods/animation) is used, this column does not need to be filled in.|
+|skins|int|Skin variant reference. When the `idRenderData` column uses the @obj and [Sprite Variations](../15_Texture%20Mods/variation) is used, this column does not need to be filled in.|
 |size|int[]|Grid size for large objects: `height,width`.|
 |colorMod|int|Color saturation modifier.|
 |colorType|string|Color source: `default` (first crafting ingredient), `alt` (secondary), or `random`.|
