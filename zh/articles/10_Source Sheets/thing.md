@@ -29,8 +29,8 @@ tags: SourceSheet/Thing
 |_idRenderData|文本|物品在地面的放置方式与裁剪。参见下方 [idRenderData](#idrenderdata)。|
 |tiles|整数|替换纹理的图块 ID。多个图块遵循：正面 → 正面翻转 → 背面 → 背面翻转。例如：`123,-123,456,-456`。|
 |altTiles|整数|替代状态的变体图块（例如装有物品的关闭宝箱）。|
-|anime|整数[]|两个值：`帧数,每帧持续时间`。当 `idRenderData`列使用@obj 类且使用[动画贴图](../15_Texture%20Mods/animation)时，不需要填写此列。|
-|skins|整数|皮肤变体引用。当 `idRenderData`列使用@obj 类且使用[贴图变体](../15_Texture%20Mods/variation)时，不需要填写此列。|
+|anime|整数[]|两个值：`帧数,每帧持续时间`。当 `idRenderData`列使用@obj 且使用[动画贴图](../15_Texture%20Mods/animation)时，不需要填写此列。|
+|skins|整数|皮肤变体引用。当 `idRenderData`列使用@obj 且使用[贴图变体](../15_Texture%20Mods/variation)时，不需要填写此列。|
 |size|整数[]|大型物体的网格尺寸：`高度,宽度`。|
 |colorMod|整数|颜色饱和度修正。|
 |colorType|文本|颜色来源：`default`（第一个合成材料）、`alt`（第二个材料）、`random`（随机）。|
