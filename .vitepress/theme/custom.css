@@ -343,6 +343,12 @@
    [zh] Chinese 
    中文样式优化
    =========================================================================== */
+/**
+ * 例子：
+ * html[lang^="zh"]
+ *
+ * 每种语言信息密度不同，于是文本长度不同。请不要随意将其他语言的css搬运到此处。
+ */
 
 /* ------------- Navbar / 横向导航栏 ------------- */
 /**
@@ -399,6 +405,8 @@
  * e.g.
  * html[lang^="en"]
  *
+ * Information density varies across languages, so text lengths differ. Please don't casually copy CSS from other languages and use it here.
+ *
  */
 
 
@@ -410,6 +418,8 @@
 /**
  * e.g.
  * html[lang^="ja"]
+ *
+ * Information density varies across languages, so text lengths differ. Please don't casually copy CSS from other languages and use it here.
  *
  */
 
