@@ -8,7 +8,7 @@ tags: SourceSheet/Material
 
 # Material Sheet
 
-<LinkCard t="SourceGame/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
+<LinkCard t="SourceBlock/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 

@@ -8,7 +8,7 @@ tags: SourceSheet/Material
 
 # 材质表格
 
-<LinkCard t="SourceGame/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
+<LinkCard t="SourceBlock/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
 
 制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。切勿更改列的顺序。
 
