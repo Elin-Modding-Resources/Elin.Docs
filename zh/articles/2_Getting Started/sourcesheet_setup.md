@@ -26,9 +26,9 @@ tags: Guide/General
 
 ![img](./assets/mod_package_layout.png)
 
-**LangMod** 文件夹包含以语言代码命名的子文件夹，不过一开始你只需要使用 `EN` 或 `JP` 之一即可。
+**LangMod** 文件夹包含以语言代码命名的子文件夹。不过，开始使用时你只需要从 `EN` 或 `JP` 选择其中之一。
 
-在语言代码文件夹内，就是你放置模组数据的地方，比如你的 Excel 文件 (**.xlsx**)。此Excel 文件就是你的源表。
+在你选择的语言代码文件夹中，放入你的 mod 数据——例如 Excel文件。该 Excel文件将作为你的源表 (Source Sheets)。（Excel文件，也叫xlsx 文件）
 
 ## 源表 (Source Sheets)
 

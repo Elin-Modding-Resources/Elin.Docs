@@ -25,7 +25,9 @@ The complete folder structure is shown below, but you can omit any folders you d
 
 ![img](./assets/mod_package_layout.png)
 
-**LangMod** folder contains sub folders named by language codes, however, you only need to use `EN` or `JP` to begin with. Inside the language code folder, is where you put the mod data, such as your excel files (**.xlsx**).This Excel file will act as your Source Sheet.
+The **LangMod** folder contains subfolders named after language codes. However, to get started you only need to use one of them: either `EN` or `JP`. 
+
+Inside the language code folder you choose, place your mod data — for example, an xlsx file. This xlsx file will act as your Source Sheet.
 
 ## Source Sheets
 
