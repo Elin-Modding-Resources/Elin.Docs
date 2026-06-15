@@ -1,12 +1,12 @@
 ---
-title: Thing
+title: Thing シング
 author: SamInJapan
 description: Thingシートの列リファレンスです。
 date: 2025/1/10 16:00
 tags: SourceSheet/Thing
 ---
 
-# Thing シート
+# シングシート (Thing)
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
 
@@ -19,18 +19,18 @@ tags: SourceSheet/Thing
 |id|テキスト|アイテムの一意の識別子。|
 |name_JP|テキスト|日本語の表示名。|
 |name|テキスト|英語の表示名。|
-|unknown_JP|テキスト|不明。|
+|unknown_JP|テキスト|未鑑定時の高品質アイテムの日本語名。`#randomBook` や `#randomPotion` のような特殊属性になることもあります。|
 |unit_JP|テキスト|日本語の助数詞です。下記の [Unit JP](#unit-jp) を参照してください。|
 |unit|テキスト|アイテムの物理的形状です。下記の [Unit](#unit) を参照してください。|
-|unknown|テキスト|特殊プロパティやユニークアイテム名。例：`#randomBook`、`#randomPotion`。|
+|unknown|テキスト|未鑑定時の高品質アイテムの英語名。`#randomBook` や `#randomPotion` のような特殊属性になることもあります。|
 |category|テキスト|アイテムが属するカテゴリ。自動搬入やレシピメニュー（`Category` シートと連携）に使用されます。|
 |sort|整数|ソート順。例：`2200` で弓の範囲に配置されます。|
 |_tileType|テキスト|マップ上の表示方法です。下記の [Tile Type](#tile-type) を参照してください。|
 |_idRenderData|テキスト|地面への設置方法とクリッピングの制御です。下記の [idRenderData](#idrenderdata) を参照してください。|
 |tiles|整数|差し替えテクスチャのタイルID。複数ある場合は「正面 → 正面反転 → 背面 → 背面反転」の順。例：`123,-123,456,-456`。|
 |altTiles|整数|別状態用のバリアントタイル（例：中身が入った宝箱）。|
-|anime|整数[]|2つの値：`フレーム数,フレーム間隔`。|
-|skins|整数|スキンバリアントの参照。|
+|anime|整数|2つの値： `フレーム数, フレーム継続時間`。`idRenderData` 列で @obj を使用し、かつ [Sprite Animation](../articles/15_Texture%20Mods/animation) を使用する場合、この列を記入する必要はありません。|
+|skins|整数|スキンバリアントの参照。`idRenderData` 列で @obj を使用し、かつ [Sprite Variations](../articles/15_Texture%20Mods/variation) を使用する場合、この列を記入する必要はありません。|
 |size|整数[]|大型オブジェクトのグリッドサイズ：`高さ,幅`。|
 |colorMod|整数|色の彩度補正。|
 |colorType|テキスト|色の参照元：`default`（クラフトの1番目の素材）、`alt`（2番目の素材）、または `random`。|
@@ -43,7 +43,7 @@ tags: SourceSheet/Thing
 |value|整数|基本売却価格（オレン）。|
 |LV|整数|クラフトに必要なスキルレベル。|
 |chance|テキスト|生成確率の補正値。|
-|quality|整数|アイテムの品質ティア。|
+|quality|整数|アイテムの品質ティア。☆ や ★ は quality 列によって決定されます。**(追記予定)**|
 |weight|整数|アイテムの重さ。例：種 = `30`、ロッド = `500`、ベッド = `4500`、ピアノ = `85000`。|
 |electricity|整数|消費電力。負の値は電力を消費します（例：モニター = `-10`）。|
 |trait|テキスト|特殊な動作です。下記の [Trait](#trait) を参照してください。|
@@ -104,14 +104,14 @@ tags: SourceSheet/Thing
 
 ### `@obj` — カスタムテクスチャ（差し替えなし）
 
-Texture Replacement を**使用しない**カスタムアイテム用：
+テクスチャ置換を使用**しない**カスタムアイテム用です：
 - ファイル名は `id` と完全に一致させる必要があります。
 - 拡張子は小文字の `.png` を使用してください（`.PNG` は動作しません）。
 - Modの `Texture` フォルダに配置してください。
 
 ### `obj` — テクスチャ差し替え
 
-Texture Replacement を使用するアイテム用。タイルスロットを占有し、他のModと競合する可能性があります：
+テクスチャ置換（Texture Replace）を使用するアイテム用です。これはテクスチャビューアー内のタイルスロットを占有するため、他の Mod と競合する可能性があります：
 - ファイル名形式：`obj_tileID`（例：`objS_5032`）。
 - 拡張子は小文字の `.png` を使用してください。
 - Modの `Texture Replace` フォルダに配置してください。

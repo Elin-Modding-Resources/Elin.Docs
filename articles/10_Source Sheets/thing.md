@@ -19,18 +19,18 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |id|string|Unique identifier for the item.|
 |name_JP|string|Display name in Japanese.|
 |name|string|Display name in English.|
-|unknown_JP|string|Unknown.|
+|unknown_JP|string|Japanese name of high-quality items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |unit_JP|string|Japanese counter word for the object. See [Unit JP](#unit-jp) below.|
 |unit|string|Physical form of the object. See [Unit](#unit) below.|
-|unknown|string|Special property or unique item name. E.g. `#randomBook`, `#randomPotion`.|
+|unknown|string|English name of high-quality items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |category|string|Category the item belongs to. Used for auto-dumping and recipe menus (linked to the `Category` sheet).|
 |sort|int|Sort order. E.g. `2200` places it in the bow range.|
 |_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below.|
 |_idRenderData|string|How the object sits on the ground and its clipping. See [idRenderData](#idrenderdata) below.|
 |tiles|int|Replacement texture tile ID(s). Multiple tiles follow: front → front reversed → back → back reversed. E.g. `123,-123,456,-456`.|
 |altTiles|int|Variant tiles for alternate states (e.g. a closed chest with contents inside).|
-|anime|int[]|Two values: `frameCount,frameDuration`.|
-|skins|int|Skin variant reference.|
+|anime|int[]|Two values: `frameCount,frameDuration`. When the `idRenderData` column uses the @obj and [Sprite Animation](../articles/15_Texture%20Mods/animation) is used, this column does not need to be filled in.|
+|skins|int|Skin variant reference. When the `idRenderData` column uses the @obj and [Sprite Variations](../articles/15_Texture%20Mods/variation) is used, this column does not need to be filled in.|
 |size|int[]|Grid size for large objects: `height,width`.|
 |colorMod|int|Color saturation modifier.|
 |colorType|string|Color source: `default` (first crafting ingredient), `alt` (secondary), or `random`.|
@@ -43,7 +43,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |value|int|Base sell value in orens.|
 |LV|int|Crafting skill level required.|
 |chance|string|Spawn or generation chance modifier.|
-|quality|int|Item quality tier.|
+|quality|int|Item quality tier.  The ☆ and ★ are determined by the quality column. **(To be supplemented)**|
 |weight|int|Item weight. E.g. seed = `30`, rod = `500`, bed = `4500`, piano = `85000`.|
 |electricity|int|Power draw. Negative values consume electricity (e.g. monitor = `-10`).|
 |trait|string|Special behaviors. See [Trait](#trait) below.|
@@ -131,14 +131,14 @@ The `_idRenderData` column controls how the object sits on the ground and its cl
 
 ### `@obj` — Custom Texture (Non-Replacement)
 
-Use for custom items **not** using Texture Replacement:
+Used for custom items **not** using Texture Replacement:
 - File name must match the `id` exactly.
 - Use lowercase `.png` extension (`.PNG` will not work).
 - Place in the `Texture` folder of your mod.
 
 ### `obj` — Texture Replacement
 
-Use for items using Texture Replacement. This occupies a tile slot and may collide with other mods:
+Used for items using Texture Replacement. This occupies a tile slot in the Texture Viewer and may collide with other mods:
 - File name format: `obj_tileID` (e.g. `objS_5032`).
 - Use lowercase `.png` extension.
 - Place in the `Texture Replace` folder of your mod.

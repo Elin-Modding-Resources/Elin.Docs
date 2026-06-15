@@ -6,7 +6,7 @@ date: 2025/1/10 16:00
 tags: SourceSheet/Thing
 ---
 
-# Thing 表格
+# 物品表 (Thing)
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
 
@@ -19,18 +19,18 @@ tags: SourceSheet/Thing
 |id|文本|物品的唯一标识符。|
 |name_JP|文本|日文显示名称。|
 |name|文本|英文显示名称。|
-|unknown_JP|文本|未知。|
+|unknown_JP|文本|日文高品质物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
 |unit_JP|文本|日文量词（助数词）。参见下方 [Unit JP](#unit-jp)。|
 |unit|文本|物品的物理形态。参见下方 [Unit](#unit)。|
-|unknown|文本|特殊属性或唯一物品名称。例如：`#randomBook`、`#randomPotion`。|
+|unknown|文本|英文高品质物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
 |category|文本|物品所属的类别。用于自动存放和配方菜单（关联 `Category` 表）。|
 |sort|整数|排序顺序。例如 `2200` 会将其归入弓的排序范围。|
 |_tileType|文本|地图上的显示方式。参见下方 [Tile Type](#tile-type)。|
 |_idRenderData|文本|物品在地面的放置方式与裁剪。参见下方 [idRenderData](#idrenderdata)。|
 |tiles|整数|替换纹理的图块 ID。多个图块遵循：正面 → 正面翻转 → 背面 → 背面翻转。例如：`123,-123,456,-456`。|
 |altTiles|整数|替代状态的变体图块（例如装有物品的关闭宝箱）。|
-|anime|整数[]|两个值：`帧数,每帧持续时间`。|
-|skins|整数|皮肤变体引用。|
+|anime|整数[]|两个值：`帧数,每帧持续时间`。当 `idRenderData`列使用@obj 类且使用[动画贴图](../articles/15_Texture%20Mods/animation)时，不需要填写此列。|
+|skins|整数|皮肤变体引用。当 `idRenderData`列使用@obj 类且使用[贴图变体](../articles/15_Texture%20Mods/variation)时，不需要填写此列。|
 |size|整数[]|大型物体的网格尺寸：`高度,宽度`。|
 |colorMod|整数|颜色饱和度修正。|
 |colorType|文本|颜色来源：`default`（第一个合成材料）、`alt`（第二个材料）、`random`（随机）。|
@@ -43,7 +43,7 @@ tags: SourceSheet/Thing
 |value|整数|基础售价（奥伦）。|
 |LV|整数|制作所需的技能等级。|
 |chance|文本|生成概率修正值。|
-|quality|整数|物品品质等级。|
+|quality|整数|物品品质等级。☆★等都是由quality列决定的。**（待补充）**|
 |weight|整数|物品重量。例如：种子 = `30`、魔杖 = `500`、床 = `4500`、钢琴 = `85000`。|
 |electricity|整数|电力消耗。负值表示消耗电力（例如显示器 = `-10`）。|
 |trait|文本|特殊行为。参见下方 [Trait](#trait)。|
@@ -138,7 +138,7 @@ tags: SourceSheet/Thing
 
 ### `obj` — 纹理替换
 
-用于使用纹理替换的物品。这会占用精灵表的一个槽位，可能与其他 Mod 冲突：
+用于使用纹理替换的物品。这会占用纹理查看器内的一个槽位，可能与其他 Mod 冲突：
 - 文件名格式：`obj_tileID`（例如 `objS_5032`）。
 - 使用小写 `.png` 扩展名。
 - 放置在 Mod 的 `Texture Replace` 文件夹中。

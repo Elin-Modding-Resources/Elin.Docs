@@ -14,7 +14,7 @@ tags: SourceSheet/Race
 
 <LinkCard t="SourceChara/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
-种族表存储在 Chara 表内，可通过底部的标签页切换。
+官方源表中种族表（Race表），存储在 SourceChara 表内，可通过底部的标签页切换。
 
 制作源表时，请始终复制官方行的前 3 行，然后从第 4 行开始填入你的数据。不要更改列的顺序。
 
