@@ -6,10 +6,6 @@ date: 2025/9/19 00:00
 tags: SourceSheet/Race
 ---
 
-::: warning
-施工中
-:::
-
 # 种族表 (Race)
 
 <LinkCard t="SourceChara/Race" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
