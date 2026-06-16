@@ -61,7 +61,7 @@ tags: SourceSheet/Zone
 外部スプライトによるカスタムゾーンアイコンは現在サポートされていません。
 
 ::: details タイルセットビューアー
-<TilesetViewer src="./assets/world.png" />
+<TilesetViewer src="/assets/world.png" />
 :::
 
 ## カスタムゾーンタイプ

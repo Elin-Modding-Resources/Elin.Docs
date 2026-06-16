@@ -35,6 +35,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useData } from "vitepress";
 
 const props = withDefaults(
   defineProps<{
@@ -69,6 +70,15 @@ const mouseClientY = ref(0);
 const tileSize = props.tileSize;
 const magScale = props.magnifyScale;
 
+const { site } = useData();
+
+const resolvedSrc = computed(() => {
+  const s = props.src;
+  if (/^(https?:)?\/\//.test(s)) return s;
+  const path = s.replace(/^\//, "");
+  return site.value.base + path;
+});
+
 const loadImage = (): Promise<void> => {
   return new Promise((resolve) => {
     const image = new Image();
@@ -82,7 +92,7 @@ const loadImage = (): Promise<void> => {
       rows.value = Math.floor(image.naturalHeight / tileSize);
       resolve();
     };
-    image.src = props.src;
+    image.src = resolvedSrc.value;
   });
 };
 
@@ -186,7 +196,7 @@ const magnifiedStyle = computed(() => {
   return {
     width: `${tileSize * magScale}px`,
     height: `${tileSize * magScale}px`,
-    backgroundImage: `url(${props.src})`,
+    backgroundImage: `url(${resolvedSrc.value})`,
     backgroundSize: `${bgSizeW}px ${bgSizeH}px`,
     backgroundPosition: `${bgPosX}px ${bgPosY}px`,
     imageRendering: "pixelated" as const,

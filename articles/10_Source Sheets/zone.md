@@ -61,7 +61,7 @@ The `pos` column uses `x,y,icon ID` format. The third value `icon ID` is the num
 Custom zone icons from external sprites are not yet supported.
 
 ::: details Tileset Viewer
-<TilesetViewer src="./assets/world.png" />
+<TilesetViewer src="/assets/world.png" />
 :::
 
 ## Custom Zone Type

@@ -61,7 +61,7 @@ tags: SourceSheet/Zone
 目前尚未支持来自外部精灵的自定义区域图标。
 
 ::: details 图块查看器
-<TilesetViewer src="./assets/world.png" />
+<TilesetViewer src="/assets/world.png" />
 :::
 
 ## 自定义区域类型
