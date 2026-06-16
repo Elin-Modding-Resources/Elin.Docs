@@ -20,7 +20,7 @@ tags: SourceSheet/Zone
 |parent|文本|上级区域的 ID。|
 |name_JP|文本|日文显示名称。|
 |name|文本|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)。|
-|type|文本|区域的 C# 类型名称。可以使用现有的 Zone 类型或 DLL 中的 Zone 子类。|
+|type|文本|区域的 C# 类型名称。可以使用现有的 Zone 类型或 DLL 中的 Zone 子类。如果用代码（DLL）来自定义类型，请参见下方 [自定义区域类型](#自定义区域类型)。|
 |LV|整数|危险等级。|
 |chance|整数|当 `tag` 包含 `random` 时，作为随机地点生成的权重。|
 |faction|文本|该区域所属的派系 ID。|
@@ -34,12 +34,12 @@ tags: SourceSheet/Zone
 |cost|整数|未使用。|
 |dev|整数|默认区域发展等级。|
 |image|文本|未使用。|
-|pos|整数[]|区域在世界地图上的位置，格式为 `x,y,iconID`。图标 ID 的查找方法请参见下方 [世界图标ID](#世界图标id)。|
+|pos|整数[]|区域在世界地图上的位置，格式为 `x,y,iconID`。第三个值 `iconID`的查找方法请参见下方 [世界图标ID](#世界图标id)。|
 |questTag|文本|该区域可能出现的任务类型。若为玩家派系区域则忽略。|
 |textFlavor_JP|文本|进入区域时显示的描述文字（日文）。|
-|textFlavor|文本|进入区域时显示的描述文字。|
+|textFlavor|文本|进入区域时显示的描述文字（英文）。其他语言请使用 [`SourceLocalization`](./localization)。|
 |detail_JP|文本|区域的描述（日文）。|
-|detail|文本|区域的描述。|
+|detail|文本|区域的描述（英文）。其他语言请使用 [`SourceLocalization`](./localization)。|
 
 ## 标签参考
 

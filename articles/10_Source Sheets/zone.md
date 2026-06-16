@@ -20,7 +20,7 @@ When making source sheets, always copy the first 3 rows from the official source
 |parent|string|The parent zone ID.|
 |name_JP|string|Zone display name in Japanese.|
 |name|string|Zone display name in English. For other languages, use [`SourceLocalization`](./localization).|
-|type|string|Zone C# type name. This can be an existing Zone type or a Zone subclass from your DLL.|
+|type|string|Zone C# type name. This can be an existing Zone type or a Zone subclass from your DLL. To customize it via code, refer to [Custom Zone Type](#custom-zone-type) below.|
 |LV|int|Danger level.|
 |chance|int|Random site spawn chance when `tag` contains `random`.|
 |faction|string|Faction ID this zone belongs to.|
@@ -34,12 +34,12 @@ When making source sheets, always copy the first 3 rows from the official source
 |cost|int|Unused.|
 |dev|int|Default zone development level.|
 |image|string|Unused.|
-|pos|int[]|Zone position on the world map, formatted as `x,y,icon ID`. See [World Icon ID](#world-icon-id) below to find icon IDs.|
+|pos|int[]|Zone position on the world map, formatted as `x,y,icon ID`. To find the `icon ID`, see [World Icon ID](#world-icon-id) below.|
 |questTag|string|Possible quest types in this zone. Ignored when the zone belongs to the player's faction.|
 |textFlavor_JP|string|Flavor text shown when entering the zone, in Japanese.|
-|textFlavor|string|Flavor text shown when entering the zone.|
+|textFlavor|string|Flavor text shown when entering the zone, in English. For other languages, use [`SourceLocalization`](./localization).|
 |detail_JP|string|Description of the zone, in Japanese.|
-|detail|string|Description of the zone.|
+|detail|string|Description of the zone, in English. For other languages, use [`SourceLocalization`](./localization).|
 
 ## Tag Reference
 
