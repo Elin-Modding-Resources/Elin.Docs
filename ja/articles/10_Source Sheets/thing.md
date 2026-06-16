@@ -125,7 +125,7 @@ tags: SourceSheet/Thing
 |小|—|`objS_456.png`|
 |小雪|—|`objSSnow_456.png`|
 
-<LinkCard t="Sam's Notes on _idRenderData" u="/ja/articles/15_Texture%20Mods/sam_id_render_data" />
+<LinkCard t="Sam の _idRenderData ノート" u="/ja/articles/15_Texture%20Mods/sam_id_render_data" />
 
 ## Factory
 
@@ -220,7 +220,7 @@ Container,行数,列数,背景画像,特記事項
 |タグ|効果|
 |-|-|
 |`exotic`|珍しいアイテムとして扱われます。|
-|`godArtifact`|神器。见[信仰テーブル](./religion)。|
+|`godArtifact`|神器。[信仰テーブル](./religion)を参照。|
 |`noWish`|願い（wish）で入手不可。|
 |`tourism`|観光アイテムとしてカウントされます。|
 |`rareResource`|レア資源として扱われます。|

@@ -1,146 +1,146 @@
 ---
-title: Sam's Notes on _idRenderData
+title: Sam 的 _idRenderData 笔记
 author: SamInJapan
-description: _idRenderData is essential for controlling the placement of items in game.
+description: _idRenderData 对控制物品在游戏中的放置至关重要。
 date: 2024/12/20 22:00
 tags: Texture/Color
 ---
 
 # obj _idRenderData
 
-When building custom objects, using the _idRenderData strings after the obj is essential for controlling the placement of items in game.
+制作自定义物品时，在 obj 后面使用 _idRenderData 字符串对控制物品在游戏中的放置方式至关重要。
 
-Here are the ones that display uniquely (as of 12/20/2024) with examples of how they are displayed.
+以下是具有独特显示效果的 _idRenderData（截至 2024/12/20）及其显示示例。
 
-Keywords:
-+ **Focus Column:** This is the main column on the ground grid that the item (the light diamond for placing items) is being placed on.
-+ **Focus Row:** This is the main row on the ground grid that the item is being placed on.
-+ **Object Center (obj center):** These three lines, making a kind of downward arrow, shows where the object sits on the ground grid by default, without any modifiers of any kind.
-+ **Clipping Row:** This is the row on the ground grid that clips the edge of the item, giving it the appearance of sitting on the ground. Each row is numbered from the placement down.
-+ **Regular:** How the item is placed by default.
-+ **Alternate:** When you rotate or flip the item, how it displays.
+术语说明：
++ **焦点列（Focus Column）：** 物品（放置时显示的亮色菱形）所放置的地面网格主列。
++ **焦点行（Focus Row）：** 物品所放置的地面网格主行。
++ **物体中心（obj center）：** 三条线组成的向下的箭头，表示物体在没有任何修饰符时默认放置在地面网格上的位置。
++ **裁剪行（Clipping Row）：** 地面网格中裁剪物品边缘的行，使物品看起来像是放在地面上。从放置位置向下编号。
++ **常规（Regular）：** 物品默认的放置方式。
++ **替代（Alternate）：** 旋转或翻转物品后的显示方式。
 
-This example uses a 64 x 64 pixel image as a reference.
+以下示例以一张 64×64 像素的图片作为参考。
 
 ![pixel_refe](https://i.postimg.cc/XvPC9qq7/ptb.png)
 
-This reference item shows the left, right, and center of the image, as well as a smaller 32x32px grid for showing smaller items, and an offset cube to show the general floor positions.
+此参考物品标出了图像的左、右和中心，还有一个用于展示小物品的 32×32px 网格，以及一个用于显示大致地面位置的偏移立方体。
 
-For reference, Elin uses an angle of 2 pixels horizontally to 1 pixel vertically for the blocks.
+作为参考，Elin 中方块的倾斜角度为水平 2 像素对应垂直 1 像素。
 
 ## @obj ceil
 
-|ceil|notes|
+|ceil|注释|
 |-|-|
 |![](https://i.postimg.cc/VLv49QZv/r-ceil.png)|![](https://i.postimg.cc/X7PLQHt8/r-ceil-notes.png)|
 
-Obj goes up 2 rows, aligns obj center.
+物体上移 2 行，对齐物体中心。
 
 ## @obj door
 
-This is one of the most commonly used settings, so understanding it is important.
+这是最常用的设置之一，因此理解它很重要。
 
 ![r-door](https://i.postimg.cc/66YYG50F/r-door.gif)
 
-|door-regular|notes|
+|door-常规|注释|
 |-|-|
 |![](https://i.postimg.cc/Dwsr52rv/r-door-regular.png)|![](https://i.postimg.cc/HLgQhfzQ/r-door-regular-notes.png)|
-|Obj drops down slightly from the focus cell, aligns the obj center with the focus center|**Clips on Row 1**|
+|物体从焦点格略微下移，物体中心与焦点中心对齐|**裁剪于第 1 行**|
 
-|door-alternate|notes|
+|door-替代|注释|
 |-|-|
 |![](https://i.postimg.cc/mrfwGcL1/r-door-alternate.png)|![](https://i.postimg.cc/Dzrcf20j/r-door-alternate-notes.png)|
-|Obj raises up a bit, aligns obj center with the column to the right of the focus|**Clips on Row 1**|
+|物体略微上移，物体中心与焦点右侧的列对齐|**裁剪于第 1 行**|
 
-Overview:
+总览：
 
 ![r-door-both2](https://i.postimg.cc/gJ4qRNv3/r-door-both2.png)
 
 ## @obj doorcurtain
 
-|doorcurtain|notes|
+|doorcurtain|注释|
 |-|-|
 |![](https://i.postimg.cc/fyL7vmKp/r-doorcurtain.png)|![](https://i.postimg.cc/D0Mrp0pZ/r-doorcurtain-notes.png)|
-|Obj drops down slightly, aligns the obj center with the focus|**Clips on Row 2**|
+|物体略微下移，物体中心与焦点对齐|**裁剪于第 2 行**|
 
 ## @obj doorframe
 
-This placement gave me the most nightmares and inspired this whole endeavor. I still don't quite understand why it handles the way it does.
+这个放置方式曾让我做了最多的噩梦，也是我启动整个研究的起因。我至今仍不太理解它为什么会这样处理。
 
 ![r-doorframe](https://i.postimg.cc/sf64gHfr/r-doorframe.gif)
 
-|doorframe|doorframe-alternate|
+|doorframe|doorframe-替代|
 |-|-|
 |![](https://i.postimg.cc/CLRHBCdf/r-doorframe.png)|![](https://i.postimg.cc/7Yj1gCTt/r-doorframe-alt.png)|
-|Obj drops by 1 row and moves left by 1 column|Same placement but slightly raised up|
-|**Both clip on Row 1**|**Both clip on Row 1**|
+|物体下移 1 行、左移 1 列|相同位置但略微上移|
+|**均裁剪于第 1 行**|**均裁剪于第 1 行**|
 
 ## @obj eq
 
-This is designed to be handheld items so it sets up nicely on the sprite, so not really used for objects unless you have interesting use cases.
+这是为手持物品设计的，因此它在精灵图上对齐得很好，除非有特殊的用途，否则一般不用于放置物体。
 
-|eq-regular|eq|
+|eq-常规|eq|
 |-|-|
 |![](https://i.postimg.cc/Twkghh69/r-eq-regular.png)|![](https://i.postimg.cc/PqQms2V0/r-EQ.gif)|
-|Obj shifts to the left by 16px and up a little bit|**Both clip on Row 1**|
+|物体左移 16px 并略微上移|**均裁剪于第 1 行**|
 
 ## @obj flat
 
-|flat|notes|
+|flat|注释|
 |-|-|
 |![](https://i.postimg.cc/4ymtcZ4T/r-flat.png)|![](https://i.postimg.cc/MZF1SctZ/r-flat-notes.png)|
-|Obj drops down to the middle of the focus on both horizontal and vertical|**Clips on Row 1**|
+|物体在水平和垂直方向上都下移到焦点的中间位置|**裁剪于第 1 行**|
 
 ## @obj hangboard
 
-I wasn't expecting this one to be as interesting as it is, and has a lot of potential, but be aware of where the clipping happens.
+这个比我预想的更有趣，潜力很大，但要注意裁剪发生的位置。
 
-|hangboard|hangboard-placement|
+|hangboard|hangboard-位置|
 |-|-|
 |![](https://i.postimg.cc/m21C2b6Y/r-hangboard.gif)|![](https://i.postimg.cc/8CN6HLk4/r-hangboard-placement.png)|
 
-|hangboard-regular|hangboard-alternate|
+|hangboard-常规|hangboard-替代|
 |-|-|
 |![](https://i.postimg.cc/0NnJHrbs/r-hangboard-regular.png)|![](https://i.postimg.cc/Z5k3W111/r-hangboard-alternate.png)|
-|Obj shifts to the left by 16px, drops down to be 'on' Row 2|Obj shifts up slightly but keeps the center the same as regular|
-|**Clips on Row 3**|**Clips on Row 1**|
+|物体左移 16px，下移到"第 2 行"上|物体略微上移但保持中心与常规相同|
+|**裁剪于第 3 行**|**裁剪于第 1 行**|
 
 ## @obj hangroof
 
-|hangroof-placement|hangrood-notes|
+|hangroof-位置|hangroof-注释|
 |-|-|
 |![](https://i.postimg.cc/j2ww5Xvx/r-hangroof-placement.png)|![](https://i.postimg.cc/FF8k6Ms7/r-hangroof-notes.png)|
 
 ![r-hangroof](https://i.postimg.cc/TwPW8GDW/r-hangroof.gif)
 
-|hangroof-regular|hangroof-alternate|
+|hangroof-常规|hangroof-替代|
 |-|-|
 |![](https://i.postimg.cc/mkvcFH6Q/r-hangroof-regular.png)|![](https://i.postimg.cc/d1SZwX2N/r-hangroof-alternative.png)|
-|Obj shifts to the left by 1 column, down by 2 rows|Obj shifts to the left by 16px, down by 1 row|
-|**Clips on Row 3**|**Clips on Row 2**|
+|物体左移 1 列、下移 2 行|物体左移 16px、下移 1 行|
+|**裁剪于第 3 行**|**裁剪于第 2 行**|
 
 ## @obj tall
 
-|tall|notes|
+|tall|注释|
 |-|-|
 |![](https://i.postimg.cc/zXhHYxVp/r-tall.png)|![](https://i.postimg.cc/RZz6Swtm/r-tal-notesl.png)|
-|Obj shifts up by 6px or so|**Clips on Row 1**|
+|物体上移约 6px|**裁剪于第 1 行**|
 
 ## @obj vine
 
-|vine|notes|
+|vine|注释|
 |-|-|
 |![vine](https://i.postimg.cc/GmJBH9Py/r-vine.gif)|![](https://i.postimg.cc/XJhqT5WT/r-vine-regular-notes.png)|
 
-|vine-regular|vine-alternate|
+|vine-常规|vine-替代|
 |-|-|
 |![](https://i.postimg.cc/PqSPQcRf/r-vine-regular.png)|![](https://i.postimg.cc/FKrYcmGn/r-vine-alternate.png)|
-|Obj shifts right by 8px or so, and up by 8px or so|Obj shifts left by 8px or so, down by 8px or so|
-|**Clips on Row 1**|**Clips on Row 2**|
+|物体右移约 8px、上移约 8px|物体左移约 8px、下移约 8px|
+|**裁剪于第 1 行**|**裁剪于第 2 行**|
 
-## One final note:
+## 最后一点
 
-For your own items, to give you an idea of where they are positioned, you can overlay this image on a screen shot to help get an idea of where it is and where it's going to help tweak your designs.
+对于你自己的物品，你可以将这张图片叠加到游戏截图上，帮助你了解物品的位置，从而微调你的设计。
 
 ![Sprite](https://i.postimg.cc/FR11WZMy/Sprite-0010a.png)
 

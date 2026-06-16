@@ -152,7 +152,7 @@ tags: SourceSheet/Thing
 |小型|—|`objS_456.png`|
 |小型雪地|—|`objSSnow_456.png`|
 
-<LinkCard t="Sam's Notes on _idRenderData" u="/zh/articles/15_Texture%20Mods/sam_id_render_data" />
+<LinkCard t="Sam 的 _idRenderData 笔记" u="/zh/articles/15_Texture%20Mods/sam_id_render_data" />
 
 ## Factory
 
