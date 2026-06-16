@@ -9,6 +9,8 @@ import "./style.css";
 import "./custom.css";
 import "./tailwind.css";
 import { useRoute } from "vitepress";
+import { useData } from "vitepress/dist/client/index.js";
+import { toRefs } from "vue";
 
 import ArticleCard from "../components/ArticleCard.vue";
 import CardContainer from "../components/CardContainer.vue";
@@ -19,6 +21,7 @@ import CopyButton from "@cssnr/vitepress-plugin-copybutton";
 import BackToTopButton from "@miletorix/vitepress-back-to-top-button";
 import imageViewer from "vitepress-plugin-image-viewer";
 import vImageViewer from "vitepress-plugin-image-viewer/lib/vImageViewer.vue";
+import giscusTalk from "vitepress-plugin-comment-with-giscus";
 
 export default {
   extends: DefaultTheme,
@@ -34,7 +37,37 @@ export default {
     BackToTopButton(app);
   },
   setup() {
+    const { frontmatter } = toRefs(useData());
     const route = useRoute();
+
     imageViewer(route);
+
+    giscusTalk(
+      {
+        repo: "Elin-Modding-Resources/Elin.Docs",
+        repoId: "R_kgDONVRDCA",
+        category: "yQ&A",
+        categoryId: "DIC_kwDONVRDCM4C_Pz0",
+        mapping: "pathname",
+        inputPosition: "top",
+        lang: "en",
+        locales: {
+          zh: "zh-CN",
+          ja: "ja",
+          root: "en",
+        },
+        homePageShowComment: false,
+        lightTheme: "preferred_color_scheme",
+        darkTheme: "dark_dimmed",
+        loading: "lazy",
+        reactionsEnabled: "0",
+        emitMetadata: "0",
+      },
+      {
+        frontmatter,
+        route,
+      },
+      true,
+    );
   },
 } satisfies Theme;
