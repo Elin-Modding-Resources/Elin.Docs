@@ -107,7 +107,6 @@ The pref values used for this character in this mod:
 ```ini
 pivotX=0
 pivotY=-37
-
 ```
 
 Note:

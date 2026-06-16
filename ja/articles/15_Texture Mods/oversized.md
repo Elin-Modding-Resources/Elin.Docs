@@ -1,22 +1,22 @@
 ---
-title: Sprite Canvas Size
+title: スプライトのキャンバスサイズ
 author: DK
-description: Tips for creating sprites larger than 128x128
+description: 128x128 より大きなスプライトを作成するためのヒント
 date: 2026/4/9 13:00
 tags: Texture/Variation
 ---
 
-# I Need More Space
+# より大きなスペースが必要な場合
 
-Default canvas size of 128x128 may not satisfy your drawing needs. 
+デフォルトのキャンバスサイズ 128x128 では、描画のニーズを満たせない場合があります。
 
-When using a larger canvas, make sure it's center aligned (pivot at center):
+大きなキャンバスを使用する場合は、中央揃え（ピボットを中心に）してください：
 
 |**128x128**|**256*256**|
 |-|-|
 |![](./assets/128c.png)|![](./assets/256c.png)|
 
-For your characters and items to display correctly as icons and avatars, adjust `pivotX`, `pivotY`, and `scaleIcon` accordingly in the [pref file](./pref).
-+ For example, if the avatar on the resident board is misaligned, adjust the settings mentioned above.
+キャラクターやアイテムがアイコンやアバターとして正しく表示されるように、[pref ファイル](./pref) で `pivotX`、`pivotY`、`scaleIcon` を適宜調整してください。
++ 例えば、住人掲示板のアバターがずれている場合は、上記の設定を調整してください。
 
-> 256 Art by Veila
+> 256 アート by Veila

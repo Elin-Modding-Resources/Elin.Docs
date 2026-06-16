@@ -1,7 +1,7 @@
 ---
-title: Sprite Effects
+title: スプライトエフェクト
 author: DK
-description: Sprite based effect animations.
+description: スプライトベースのエフェクトアニメーション
 date: 2026/6/14 21:00
 tags: Texture/Effect
 ---

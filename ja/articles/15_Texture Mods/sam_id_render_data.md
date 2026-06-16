@@ -1,32 +1,32 @@
 ---
-title: Sam's Notes on _idRenderData
+title: Sam の _idRenderData ノート
 author: SamInJapan
-description: _idRenderData is essential for controlling the placement of items in game.
+description: _idRenderData はゲーム内でのアイテム配置を制御するために不可欠です。
 date: 2024/12/20 22:00
 tags: Texture/Color
 ---
 
 # obj _idRenderData
 
-When building custom objects, using the _idRenderData strings after the obj is essential for controlling the placement of items in game.
+カスタムオブジェクトを作成する際、obj の後に _idRenderData 文字列を使用することは、ゲーム内でのアイテム配置を制御するために不可欠です。
 
-Here are the ones that display uniquely (as of 12/20/2024) with examples of how they are displayed.
+以下は、独自の表示を持つもの（2024/12/20 現在）とその表示例です。
 
-Keywords:
-+ **Focus Column:** This is the main column on the ground grid that the item (the light diamond for placing items) is being placed on.
-+ **Focus Row:** This is the main row on the ground grid that the item is being placed on.
-+ **Object Center (obj center):** These three lines, making a kind of downward arrow, shows where the object sits on the ground grid by default, without any modifiers of any kind.
-+ **Clipping Row:** This is the row on the ground grid that clips the edge of the item, giving it the appearance of sitting on the ground. Each row is numbered from the placement down.
-+ **Regular:** How the item is placed by default.
-+ **Alternate:** When you rotate or flip the item, how it displays.
+キーワード：
++ **フォーカス列：** アイテム（配置用の明るい菱形）が配置される地上グリッドのメインの列です。
++ **フォーカス行：** アイテムが配置される地上グリッドのメインの行です。
++ **オブジェクト中心（obj center）：** この 3 本の線（下向き矢印のような形）は、修飾子なしでデフォルトでオブジェクトが地上グリッドのどこに位置するかを示します。
++ **クリッピング行：** アイテムの端をクリップして地面に置かれているように見せる地上グリッドの行です。各行は配置位置から下に向かって番号が振られています。
++ **通常：** デフォルトでのアイテムの配置方法です。
++ **代替：** アイテムを回転または反転したときの表示方法です。
 
-This example uses a 64 x 64 pixel image as a reference.
+この例では 64 x 64 ピクセルの画像をリファレンスとして使用しています。
 
 ![pixel_refe](https://i.postimg.cc/XvPC9qq7/ptb.png)
 
-This reference item shows the left, right, and center of the image, as well as a smaller 32x32px grid for showing smaller items, and an offset cube to show the general floor positions.
+このリファレンスアイテムは、画像の左、右、中央、小さなアイテム用の 32x32px グリッド、および一般的な床位置を示すオフセットキューブを示しています。
 
-For reference, Elin uses an angle of 2 pixels horizontally to 1 pixel vertically for the blocks.
+参考までに、Elin はブロックに水平 2 ピクセル対垂直 1 ピクセルの角度を使用しています。
 
 ## @obj ceil
 
@@ -34,23 +34,23 @@ For reference, Elin uses an angle of 2 pixels horizontally to 1 pixel vertically
 |-|-|
 |![](https://i.postimg.cc/VLv49QZv/r-ceil.png)|![](https://i.postimg.cc/X7PLQHt8/r-ceil-notes.png)|
 
-Obj goes up 2 rows, aligns obj center.
+オブジェクトは 2 行上に上がり、オブジェクト中心に揃います。
 
 ## @obj door
 
-This is one of the most commonly used settings, so understanding it is important.
+これは最もよく使われる設定の一つなので、理解することが重要です。
 
 ![r-door](https://i.postimg.cc/66YYG50F/r-door.gif)
 
 |door-regular|notes|
 |-|-|
 |![](https://i.postimg.cc/Dwsr52rv/r-door-regular.png)|![](https://i.postimg.cc/HLgQhfzQ/r-door-regular-notes.png)|
-|Obj drops down slightly from the focus cell, aligns the obj center with the focus center|**Clips on Row 1**|
+|オブジェクトはフォーカスセルからわずかに下がり、オブジェクト中心をフォーカス中心に揃えます|**行 1 でクリップ**|
 
 |door-alternate|notes|
 |-|-|
 |![](https://i.postimg.cc/mrfwGcL1/r-door-alternate.png)|![](https://i.postimg.cc/Dzrcf20j/r-door-alternate-notes.png)|
-|Obj raises up a bit, aligns obj center with the column to the right of the focus|**Clips on Row 1**|
+|オブジェクトは少し上がり、オブジェクト中心をフォーカスの右隣の列に揃えます|**行 1 でクリップ**|
 
 Overview:
 
@@ -61,39 +61,39 @@ Overview:
 |doorcurtain|notes|
 |-|-|
 |![](https://i.postimg.cc/fyL7vmKp/r-doorcurtain.png)|![](https://i.postimg.cc/D0Mrp0pZ/r-doorcurtain-notes.png)|
-|Obj drops down slightly, aligns the obj center with the focus|**Clips on Row 2**|
+|オブジェクトはわずかに下がり、オブジェクト中心をフォーカスに揃えます|**行 2 でクリップ**|
 
 ## @obj doorframe
 
-This placement gave me the most nightmares and inspired this whole endeavor. I still don't quite understand why it handles the way it does.
+この配置は最も悪夢を見せられ、この調査全体のきっかけとなりました。なぜこのような動作をするのか、いまだによく理解できていません。
 
 ![r-doorframe](https://i.postimg.cc/sf64gHfr/r-doorframe.gif)
 
 |doorframe|doorframe-alternate|
 |-|-|
 |![](https://i.postimg.cc/CLRHBCdf/r-doorframe.png)|![](https://i.postimg.cc/7Yj1gCTt/r-doorframe-alt.png)|
-|Obj drops by 1 row and moves left by 1 column|Same placement but slightly raised up|
-|**Both clip on Row 1**|**Both clip on Row 1**|
+|オブジェクトは 1 行下がり、1 列左に移動します|同じ配置ですが、少し上がります|
+|**両方とも行 1 でクリップ**|**両方とも行 1 でクリップ**|
 
 ## @obj eq
 
-This is designed to be handheld items so it sets up nicely on the sprite, so not really used for objects unless you have interesting use cases.
+これは手持ちアイテム用に設計されているため、スプライト上にうまく配置されます。面白い用途がない限り、オブジェクトにはあまり使われません。
 
 |eq-regular|eq|
 |-|-|
 |![](https://i.postimg.cc/Twkghh69/r-eq-regular.png)|![](https://i.postimg.cc/PqQms2V0/r-EQ.gif)|
-|Obj shifts to the left by 16px and up a little bit|**Both clip on Row 1**|
+|オブジェクトは左に 16px、少し上にずれます|**両方とも行 1 でクリップ**|
 
 ## @obj flat
 
 |flat|notes|
 |-|-|
 |![](https://i.postimg.cc/4ymtcZ4T/r-flat.png)|![](https://i.postimg.cc/MZF1SctZ/r-flat-notes.png)|
-|Obj drops down to the middle of the focus on both horizontal and vertical|**Clips on Row 1**|
+|オブジェクトは水平・垂直ともにフォーカスの中央に下がります|**行 1 でクリップ**|
 
 ## @obj hangboard
 
-I wasn't expecting this one to be as interesting as it is, and has a lot of potential, but be aware of where the clipping happens.
+これは予想以上に興味深く、多くの可能性を秘めていますが、クリッピングがどこで発生するかに注意してください。
 
 |hangboard|hangboard-placement|
 |-|-|
@@ -102,8 +102,8 @@ I wasn't expecting this one to be as interesting as it is, and has a lot of pote
 |hangboard-regular|hangboard-alternate|
 |-|-|
 |![](https://i.postimg.cc/0NnJHrbs/r-hangboard-regular.png)|![](https://i.postimg.cc/Z5k3W111/r-hangboard-alternate.png)|
-|Obj shifts to the left by 16px, drops down to be 'on' Row 2|Obj shifts up slightly but keeps the center the same as regular|
-|**Clips on Row 3**|**Clips on Row 1**|
+|オブジェクトは左に 16px ずれ、「行 2」上に下がります|オブジェクトは少し上がりますが、中心は通常と同じです|
+|**行 3 でクリップ**|**行 1 でクリップ**|
 
 ## @obj hangroof
 
@@ -116,15 +116,15 @@ I wasn't expecting this one to be as interesting as it is, and has a lot of pote
 |hangroof-regular|hangroof-alternate|
 |-|-|
 |![](https://i.postimg.cc/mkvcFH6Q/r-hangroof-regular.png)|![](https://i.postimg.cc/d1SZwX2N/r-hangroof-alternative.png)|
-|Obj shifts to the left by 1 column, down by 2 rows|Obj shifts to the left by 16px, down by 1 row|
-|**Clips on Row 3**|**Clips on Row 2**|
+|オブジェクトは左に 1 列、下に 2 行ずれます|オブジェクトは左に 16px、下に 1 行ずれます|
+|**行 3 でクリップ**|**行 2 でクリップ**|
 
 ## @obj tall
 
 |tall|notes|
 |-|-|
 |![](https://i.postimg.cc/zXhHYxVp/r-tall.png)|![](https://i.postimg.cc/RZz6Swtm/r-tal-notesl.png)|
-|Obj shifts up by 6px or so|**Clips on Row 1**|
+|オブジェクトは約 6px 上にずれます|**行 1 でクリップ**|
 
 ## @obj vine
 
@@ -135,12 +135,12 @@ I wasn't expecting this one to be as interesting as it is, and has a lot of pote
 |vine-regular|vine-alternate|
 |-|-|
 |![](https://i.postimg.cc/PqSPQcRf/r-vine-regular.png)|![](https://i.postimg.cc/FKrYcmGn/r-vine-alternate.png)|
-|Obj shifts right by 8px or so, and up by 8px or so|Obj shifts left by 8px or so, down by 8px or so|
-|**Clips on Row 1**|**Clips on Row 2**|
+|オブジェクトは右に約 8px、上に約 8px ずれます|オブジェクトは左に約 8px、下に約 8px ずれます|
+|**行 1 でクリップ**|**行 2 でクリップ**|
 
-## One final note:
+## 最後に
 
-For your own items, to give you an idea of where they are positioned, you can overlay this image on a screen shot to help get an idea of where it is and where it's going to help tweak your designs.
+自作アイテムの位置を把握するために、この画像をスクリーンショットに重ねることで、アイテムの位置を確認し、デザインの調整に役立てることができます。
 
 ![Sprite](https://i.postimg.cc/FR11WZMy/Sprite-0010a.png)
 

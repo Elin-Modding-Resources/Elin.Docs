@@ -1,18 +1,18 @@
 ---
-title: Sprite Variations
+title: スプライトバリエーション
 author: DK
-description: How to add directional, skinsets, and snow variations.
+description: 方向、スキンセット、雪バリエーションの追加方法
 date: 2026/4/9 9:00
 tags: Texture/Variation
 ---
 
-# Variation Is Not Mandatory
+# バリエーションは必須ではありません
 
-Variations are applied when provided and conditions are met, but they are not mandatory. The base sprite always works.
+バリエーションは提供され、かつ条件が満たされた場合に適用されますが、必須ではありません。基本スプライトは常に機能します。
 
-You can provide a variation by adding a corresponding suffix to your sprite filename.
+スプライトのファイル名に対応するサフィックスを追加することで、バリエーションを提供できます。
 
-For example, when `id` is `doorframe_arch` :
+例えば、`id` が `doorframe_arch` の場合：
 
 + `doorframe_arch.png`
 + `doorframe_arch_snow.png`
@@ -22,61 +22,61 @@ For example, when `id` is `doorframe_arch` :
 + `doorframe_arch_skin1_dir3_snow.png`
 + ...
 
-The variation system works with [custom skins](./skins), character sprites, and [animated sprites](./animation).
+バリエーションシステムは [カスタムスキン](./skins)、キャラクタースプライト、[アニメーションスプライト](./animation) で動作します。
 
-::: warning Don't Forget the Base Sprite
-Even if you provide variations, you still need to provide a base sprite, `myCustomID.png`.
+::: warning 基本スプライトを忘れずに
+バリエーションを提供する場合でも、基本スプライト `myCustomID.png` が必要です。
 :::
 
-The following introduces the various variations.
+以下に各種バリエーションを紹介します。
 
-## Chara Skinsets
+## キャラクタースキンセット
 
-These are gender-dependent textures in pairs, selected randomly during character creation.
+これらは性別に依存するペアのテクスチャで、キャラクター作成時にランダムに選択されます。
 
-### When Character Gender Is Random
+### キャラクターの性別がランダムの場合
 
-**Example 1: Single Skinset Pair**
+**例1：単一スキンセットペア**
 
-For example, to give `ninja` one sprite for male and a different sprite for non-male, put `0,1` into the `tiles` column in the Excel, then provide `ninja_skin0.png` and `ninja_skin1.png` as variations. (where "ninja" is the character ID)
+例えば、`ninja` に男性用と非男性用の異なるスプライトを提供するには、Excel の `tiles` 列に `0,1` を入力し、バリエーションとして `ninja_skin0.png` と `ninja_skin1.png` を提供します。（"ninja" はキャラクター ID です）
 
-**Example 2: Multiple Skinset Pairs**
+**例2：複数スキンセットペア**
 
-You can add more pairs to support additional skinsets. 
+追加のスキンセットをサポートするために、より多くのペアを追加できます。
 
-For example, to give an NPC 6 variations (3 images for male and 3 images for non-male): 
-+ provide sprites `_skin0` to `_skin5`.
-+ Then, put `0,1,2,3,4,5` into the `tiles` column in the Excel.
+例えば、NPC に 6 つのバリエーション（男性用 3 種、非男性用 3 種）を与えるには：
++ `_skin0` から `_skin5` までのスプライトを提供します。
++ 次に、Excel の `tiles` 列に `0,1,2,3,4,5` を入力します。
 
-One of the pairs will be picked randomly. Even indices are male, and odd indices are non-male (female and ???).
+ペアのいずれかがランダムに選ばれます。偶数インデックスが男性、奇数インデックスが非男性（女性と???）です。
 
-There is no limit to how many variations you can define.
+定義できるバリエーション数に制限はありません。
 
-### When Character Gender Is Fixed to One Type
+### キャラクターの性別が固定の場合
 
-If your character has a non-random gender but you still wish to provide random skin variations, you can use the same skin index in each pair. 
+キャラクターの性別がランダムでない場合でもランダムなスキンバリエーションを提供したい場合は、各ペアで同じスキンインデックスを使用できます。
 
-For example, to use three sprites ( `_skin0`, `_skin1`, `_skin2`), you need to put `0,0,1,1,2,2` into the `tiles` column of the Excel.
+例えば、3 つのスプライト（`_skin0`、`_skin1`、`_skin2`）を使用するには、Excel の `tiles` 列に `0,0,1,1,2,2` を入力する必要があります。
 
-There is no limit to how many variations you can define.
+定義できるバリエーション数に制限はありません。
 
-### Note
+### 注意
 
-Counting starts from 0.
+カウントは 0 から始まります。
 
-## Directional Sprites
+## 方向スプライト
 
-This is usually needed for furniture. You can provide up to 4 directional variations with `id_dir0.png`, `id_dir1.png`, `id_dir2.png`, and `id_dir3.png`. Each direction is optional and can be skipped.
+これは通常、家具に必要です。`id_dir0.png`、`id_dir1.png`、`id_dir2.png`、`id_dir3.png` で最大 4 つの方向バリエーションを提供できます。各方向はオプションで、スキップ可能です。
 
-Characters can also use directional sprites; however, it is not recommended.
+キャラクターも方向スプライトを使用できますが、推奨されません。
 
-## Snow Variation
+## 雪バリエーション
 
-You can provide an `id_snow.png` variation to enable automatic switching in snow zones or winter.
+`id_snow.png` バリエーションを提供することで、雪原地帯や冬季に自動切り替えが有効になります。
 
-## Suffix Order
+## サフィックスの順序
 
-The above variations can all be combined, but pay attention to the suffix order, which is as follows:
+上記のバリエーションはすべて組み合わせ可能ですが、以下のサフィックス順序に注意してください：
 
 + `_skinN_dirN_snow`
 + `_skinN_snow`

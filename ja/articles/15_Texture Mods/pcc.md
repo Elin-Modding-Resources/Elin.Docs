@@ -1,26 +1,26 @@
 ---
-title: PCC Part
+title: PCC パーツ
 author: DK
-description: How to create custom PCC parts
+description: カスタム PCC パーツの作成方法
 date: 2026/4/19 13:00
 tags: Texture/PCC
 ---
 
 # PCC
 
-The player's sprite is a PCC. Clothing, pants, eyes, and other accessories are all PCC parts.  Mounts are also stored in the PCC folder.
+プレイヤーのスプライトは PCC です。服、ズボン、目、その他のアクセサリーはすべて PCC パーツです。騎乗物も PCC フォルダに保存されます。
 
-You can create not only clothes, but also mermaid tails, fox tails, or even turn the protagonist into a slime.
+服だけでなく、人魚の尾、狐の尾、さらには主人公をスライムに変えることもできます。
 
-## PCC Canvas
+## PCC キャンバス
 
-A PCC is a sprite sheet made of 32×48 tiles. Each row represents a direction, and each column represents a frame.
+PCC は 32×48 タイルで構成されたスプライトシートです。各行が方向を表し、各列がフレームを表します。
 
 ![](./assets/pcc_body_1.png)
 
-## Layers & Path
+## レイヤーとパス
 
-PCC parts use the following layer order:
+PCC パーツは以下のレイヤー順序を使用します：
 
 * hairbk
 * mantle
@@ -40,29 +40,29 @@ PCC parts use the following layer order:
 * etc
 * mantlebk
 
-`hairbk` and `mantlebk` are the back views of their respective layers.
+`hairbk` と `mantlebk` は、それぞれのレイヤーの背面ビューです。
 
-## Naming
+## 命名規則
 
-PCC parts must follow this format:
+PCC パーツは以下の形式に従う必要があります：
 `pcc_layer_uniqueId.png`
 
-Examples:
+例：
 
 * `pcc_face_mypccmod01`
 * `pcc_cloth_customwardrobe3`
 
-The `uniqueId` must:
+`uniqueId` は以下の条件を満たす必要があります：
 
-* be unique to avoid conflicts
-* not contain underscores (`_`)
+* 競合を避けるために一意であること
+* アンダースコア（`_`）を含まないこと
 
-## File Location
+## ファイルの配置場所
 
-Place PCC files in `Actor/PCC/female` folder inside your [mod package](../2_Getting%20Started/basic_mod). Note that this path always contains female, regardless of whether the character is male or female. 
+PCC ファイルは [Mod パッケージ](../2_Getting%20Started/basic_mod) 内の `Actor/PCC/female` フォルダに配置します。このパスはキャラクターの性別に関わらず常に `female` となることに注意してください。
 
-Mount PCC files should be placed in the `Actor/PCC/ride` folder inside your [mod package](../2_Getting%20Started/basic_mod).
+騎乗物の PCC ファイルは [Mod パッケージ](../2_Getting%20Started/basic_mod) 内の `Actor/PCC/ride` フォルダに配置します。
 
-## Oversized Canvas
+## 大きいキャンバス
 
-To create tiles other than 32×48, install the [Variable Sprite Support](https://steamcommunity.com/sharedfiles/filedetails/?id=3369451909) mod.
+32×48 以外のタイルを作成するには、[Variable Sprite Support](https://steamcommunity.com/sharedfiles/filedetails/?id=3369451909) Mod をインストールしてください。

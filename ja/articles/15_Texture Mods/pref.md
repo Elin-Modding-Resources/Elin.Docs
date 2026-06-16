@@ -1,30 +1,30 @@
 ---
-title: Sprite Customization (Pref)
+title: スプライトカスタマイズ (Pref)
 author: DK
-description: Details of .pref file to customize your sprite.
+description: スプライトをカスタマイズするための .pref ファイルの詳細
 date: 2026/4/9 8:00
 tags: Texture/Pref
 ---
 
-# Pref File
+# Pref ファイル
 
-Sometimes the default rendering settings for your sprites may not be ideal. Customize them by creating a `.pref` file.
+デフォルトのレンダリング設定がスプライトに適さない場合があります。そのようなときは `.pref` ファイルを作成してカスタマイズしましょう。
 
-It can be used to fine-tune sprites, shadows, small NPC avatar icons on the resident board, icons in the adventure ranking, and more.
+スプライト、影、住人掲示板の NPC アバター用小アイコン、冒険者ランキングのアイコンなどの微調整に使用できます。
 
-To create a `.pref` file, simply create a `.txt` file and change the filename to `id.pref` (changing the extension from `.txt` to `.pref`, where `id` represents your character or item sprite ID). Open it with Notepad or any text editor.
+`.pref` ファイルを作成するには、`.txt` ファイルを作成し、ファイル名を `id.pref` に変更します（拡張子を `.txt` から `.pref` に変更し、`id` にはキャラクターまたはアイテムのスプライト ID を指定します）。メモ帳などのテキストエディタで編集できます。
 
 ::: tip
-`.pref` files are hot-loaded. This means you can preview the effect in real time after modifying values, without restarting the game.
+`.pref` ファイルはホットロードされます。つまり、値を変更した後、ゲームを再起動せずにリアルタイムで効果をプレビューできます。
 
-Therefore, you can create a `.pref` file first, and continuously test values by checking the display effect in the game.
+そのため、まず `.pref` ファイルを作成し、ゲーム内での表示効果を確認しながら値を繰り返しテストできます。
 :::
 
-## File Content
+## ファイル内容
 
-The complete file is as follows, but you may omit any unused fields.
+完全なファイルは以下の通りですが、使用しない行は省略できます。
 
-It uses INI format, and values must be integers. `;` comments can also be used.
+INI 形式で記述し、値は整数のみ使用可能です。`;` によるコメントも使用できます。
 
 ```ini
 x = 0
@@ -52,66 +52,65 @@ equipY = 0
 stackX = 0
 ```
 
-For the explanation of each line, please refer to the detailed explanation section below.
+各行の説明は、下記の詳細説明セクションを参照してください。
 
-## Detailed Explanation
+## 詳細説明
 
-+ `x`, `y`, `z` position offset
-+ `pivotX`,`pivotY` pivot offset, used on small sprites such as resident board avatar
-+ `shadow` ShadowData id (see section below)
-+ `shadowX`, `shadowY` shadow position offset
-+ `shadowRX`, `shadowRY` shadow reverse
-+ `shadowBX`, `shadowBY` shadow back
-+ `shadowBRX`, `shadowBRY` shadow back reverse
-+ `height` tile height modifier
-+ `heightFix` text component height offset (floating little widgets)
-+ `scaleIcon` icon size scaling
-+ `liquidMod` tile liquid level modifier; can be negative
-+ `liquidModMax` tile liquid level max
-+ `hatY` hat renderer y position offset
-+ `equipX`, `equipY` held position offset 
-+ `stackX` tile stacking x position offset
++ `x`, `y`, `z` 位置オフセット
++ `pivotX`, `pivotY` ピボットオフセット。住人掲示板のアバターなどの小さいスプライトで使用
++ `shadow` 影データ ID （下記セクション参照）
++ `shadowX`, `shadowY` 影の位置オフセット
++ `shadowRX`, `shadowRY` 影の反転
++ `shadowBX`, `shadowBY` 影の背面
++ `shadowBRX`, `shadowBRY` 影の背面反転
++ `height` タイルの高さ補正値
++ `heightFix` テキストコンポーネントの高さオフセット（浮遊ウィジェット用）
++ `scaleIcon` アイコンのサイズ倍率
++ `liquidMod` タイルの液体レベル補正値（負の値も可）
++ `liquidModMax` タイルの液体レベル上限
++ `hatY` 帽子レンダラーの Y 位置オフセット
++ `equipX`, `equipY` 手持ちアイテムの位置オフセット
++ `stackX` タイル積み重ねの X 位置オフセット
 
-## Shadow Data ID
+## 影データ ID
 
 <!--@include: ./assets/shadow_data.md-->
 
-## Example Mods
+## サンプル Mod
 
-### Modify Shadow
+### 影の修正
 
 <LinkCard t="Keeper of Garden Pole Dance" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3711895231" i="/pole.gif" />
 
-This mod uses `shadow` in the `.pref` file to modify the shadow.
+この Mod は `.pref` ファイルの `shadow` を使用して影を修正しています。
 
-### Small Icons
+### 小アイコン
 
 <LinkCard t="Lost Case Monster Girl Takeover" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3609895215" i="https://images.steamusercontent.com/ugc/13866943819130003260/AF709B61B8CC0DB914A09239906A08359D2B0316/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" />
 
-This mod modifies the display of the character's icon on the resident board and the adventure ranking. It uses `pivotX` and `pivotY` in the `.pref` file.
+この Mod は住人掲示板と冒険者ランキングでのキャラクターアイコンの表示を変更します。`.pref` ファイルの `pivotX` と `pivotY` を使用しています。
 
-**Before modifying the character icon:**
+**キャラクターアイコン修正前：**
 
 ![](./assets/PrefExample-before.png)
 
-<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">Left is the resident board, right is the adventure ranking</p>
+<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">左が住人掲示板、右が冒険者ランキング</p>
 
-**After modifying the character icon using the `.pref` file:**
+**`.pref` ファイルでキャラクターアイコン修正後：**
 
 ![](./assets/PrefExample-after.png)
 
-<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">Left is the resident board, right is the adventure ranking</p>
+<p align="center" style="font-size: 14px; color: var(--vp-c-text-3);">左が住人掲示板、右が冒険者ランキング</p>
 
-The pref values used for this character in this mod:
+この Mod でこのキャラクターに使用されている pref の値：
 
 ```ini
 pivotX=0
 pivotY=-37
-
 ```
 
-Note:
+注意点：
 
-* The `.pref` filename, the sprite filename, and the id column in the mod’s Excel must all match exactly.
-* `pivotX` and `pivotY` affect both the resident board and the adventure ranking simultaneously; therefore, you should take both into account when testing values.
-* Due to the hot-loaded nature of `.pref` files, you do not need to restart the game; you can preview the effect in real time, allowing for fine-tuning.
+* `.pref` のファイル名、スプライトのファイル名、Mod 読み込み用 Excel の id 列は、すべて完全に一致している必要があります。
+* `pivotX` と `pivotY` は住人掲示板と冒険者ランキングの両方に同時に影響するため、値をテストする際は両方を考慮してください。
+* `.pref` ファイルはホットロードされるため、ゲームを再起動する必要はなく、リアルタイムで効果をプレビューしながら微調整できます。

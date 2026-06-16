@@ -1,16 +1,16 @@
 ---
-title: Sam's Color Test Blocks
+title: Sam のカラーテストブロック
 author: SamInJapan
-description: See what color(s) things would render as with alt-colors/material based colors to better design your own pieces.
+description: 代替色・素材ベースの色でどのようにレンダリングされるかを確認し、独自パーツのデザインに役立てましょう。
 date: 2024/12/17 22:00
 tags: Texture/Color
 ---
 
-# Color Test Blocks
+# カラーテストブロック
 
-A great piece of reference if you want to make alt-colors/material based tiles for Elin.
+Elin 用の代替色・素材ベースのタイルを作成したい場合の優れたリファレンスです。
 
-[download the complete blocktest package](https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/5_Texture%20Mods/assets/sam_blocktest/sam_blocktest.zip)
+[完全な blocktest パッケージをダウンロード](https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/articles/5_Texture%20Mods/assets/sam_blocktest/sam_blocktest.zip)
 
 ![color_ref_01](./assets/sam_blocktest/color_ref_01.png)
 

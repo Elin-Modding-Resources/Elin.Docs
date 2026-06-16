@@ -1,39 +1,39 @@
 ---
-title: Portraits
+title: ポートレート
 author: DK
-description: How to add portraits for pc and npc.
+description: PC と NPC のポートレート追加方法
 date: 2026/4/9 15:00
 tags: Texture/Portrait
 ---
 
-# Portrait Spec
+# ポートレート仕様
 
-Portraits are `.png` files placed in the `Portrait` folder inside your [mod package](../2_Getting%20Started/basic_mod).
+ポートレートは [Mod パッケージ](../2_Getting%20Started/basic_mod) 内の `Portrait` フォルダに配置する `.png` ファイルです。
 
-+ Size: 240x320
-+ Background: Transparent
-+ Filename: **category**_**gender**-**name**.png
++ サイズ：240x320
++ 背景：透明
++ ファイル名：**カテゴリ**_**性別**-**名前**.png
 
-Categories:
-+ **`c`**, default character portraits
-+ **`foxfolk`**, Mifu and Nefu race portraits
-+ **`guard`**, guard portraits
-+ **`special`**, special portraits such as little girl, sister, exile
+カテゴリ：
++ **`c`**：デフォルトのキャラクターポートレート
++ **`foxfolk`**：ミフ・ネフ族のポートレート
++ **`guard`**：ガードのポートレート
++ **`special`**：少女、妹、流刑者などの特殊ポートレート
 
-Genders:
-+ **`m`**, male
-+ **`f`**, female
-+ **`n`**, unknown
+性別：
++ **`m`**：男性
++ **`f`**：女性
++ **`n`**：不明
 
-## Player Portraits
+## プレイヤーポートレート
 
-When adding new player portraits, you can use any category above with any name, such as `c_f-myportraits01` or `special_n-myportraits02`. Make the filename unique.
+新しいプレイヤーポートレートを追加する場合、上記の任意のカテゴリと任意の名前を組み合わせて使用できます（例：`c_f-myportraits01` や `special_n-myportraits02`）。ファイル名は一意にしてください。
 
-## NPC Portraits
+## NPC ポートレート
 
-Some hardcoded NPCs always use a fixed portrait id:
+一部のハードコードされた NPC は常に固定のポートレート ID を使用します：
 
-|Chara id|Portrait id|
+|キャラ ID|ポートレート ID|
 |-|-|
 |`shojo`|`special_f-littlegirl`|
 |`sister`|`special_f-littlesister`|
@@ -41,20 +41,20 @@ Some hardcoded NPCs always use a fixed portrait id:
 |`sister_penguin`|`special_f-littlesister`|
 |`imotoroid`|`special_f-littlesister`|
 |`imotoroid_origin`|`special_f-littlesister`|
-|`citizen_exile`|`special_n-exile` (non-random)|
+|`citizen_exile`|`special_n-exile` (非ランダム)|
 
-Unique NPCs use `UN_id` as their portrait id. For example: Fiama is `UN_fiama`, Gwen is `UN_gwen`.
+ユニーク NPC は `UN_id` をポートレート ID として使用します。例：フィアマは `UN_fiama`、グウェンは `UN_gwen` です。
 
-You can override a unique NPC's portrait by providing a portrait with the same portrait id. 
+同じポートレート ID の画像を提供することで、ユニーク NPC のポートレートを上書きできます。
 
-## Portrait for a New Character Mod
+## 新規キャラクター Mod のポートレート
 
-When creating a new character mod, the character portrait (fixed sprite) is also bound using the `UN_` prefix.
+新しいキャラクター Mod を作成する場合、キャラクターのポートレート（固定立ち絵）も `UN_` プレフィックスで紐付けられます。
 
-You should provide an image with a transparent background named `UN_id.png` as the portrait.
+透明背景の画像を `UN_id.png` という名前でポートレートとして提供する必要があります。
 
-+ **Size:** Width:Height=3:4  
-(240x320 is recommended, otherwise scaling may affect image quality.)
-+ **Background:** Transparent
-+ **File Naming:** `UN_id.png`  
-(where `id` is your character's ID, which is what you entered in the ID column of the [Character Source Sheet](../10_Source%20Sheets/character))
++ **サイズ：** 幅:高さ=3:4  
+（240x320 を推奨。それ以外の場合、拡縮により画質が低下する可能性があります。）
++ **背景：** 透明
++ **ファイル名：** `UN_id.png`  
+（`id` は [キャラクターソースシート](../10_Source%20Sheets/character) の ID 列に入力したキャラクター ID です）
