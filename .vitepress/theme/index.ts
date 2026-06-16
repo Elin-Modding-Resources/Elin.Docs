@@ -14,6 +14,7 @@ import ArticleCard from "../components/ArticleCard.vue";
 import CardContainer from "../components/CardContainer.vue";
 import LinkCard from "../components/LinkCard.vue";
 import BgmPlayer from "../components/BgmPlayer.vue";
+import TilesetViewer from "../components/TilesetViewer.vue";
 import CopyButton from "@cssnr/vitepress-plugin-copybutton";
 import BackToTopButton from "@miletorix/vitepress-back-to-top-button";
 import imageViewer from "vitepress-plugin-image-viewer";
@@ -27,6 +28,7 @@ export default {
     app.component("CardContainer", CardContainer);
     app.component("LinkCard", LinkCard);
     app.component("BgmPlayer", BgmPlayer);
+    app.component("TilesetViewer", TilesetViewer);
     app.component("vImageViewer", vImageViewer);
     app.component("C", CopyButton);
     BackToTopButton(app);
