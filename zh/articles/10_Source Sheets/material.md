@@ -48,8 +48,8 @@ tags: SourceSheet/Material
 |dice|整数|伤害计算的骰子维度修正值。|
 |bits|文本[]|防火或耐酸属性。|
 |elements|元素|作为装备材质时提供的 SourceElement 加成。|
-|altName|文本[]|可视为未使用。|
-|altName_JP|文本[]|可视为未使用。|
+|altName|文本[]|作为装备材质时的独特名字前缀。|
+|altName_JP|文本[]|作为装备材质时的独特名字前缀，日语。|
 
 ## 自定义材质
 

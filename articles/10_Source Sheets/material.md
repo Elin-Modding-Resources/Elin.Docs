@@ -48,8 +48,8 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |dice|int|Dice dimension modifier for damage calculations.|
 |bits|string[]|Proof against fire or acid.|
 |elements|elements|SourceElement bonuses when used as equipment material.|
-|altName|string[]|Consider this unused.|
-|altName_JP|string[]|Consider this unused.|
+|altName|string[]|Unique equipment name prefixes.|
+|altName_JP|string[]|Unique equipment name prefixes in Japanese.|
 
 ## Custom Material
 
@@ -64,6 +64,10 @@ The color format is **RRGGBBAA** (8 hex digits):
 - **GG**: Green (`00`–`ff`)
 - **BB**: Blue (`00`–`ff`)
 - **AA**: Alpha/opacity (`00`–`ff`)
+
+::: warning Migrating From CWL
+CWL specs used `AddCol_Main` and `addCol_Alt`, which will still function the same as before. We recommend switching to the new format.
+:::
 
 For example:
 ```

@@ -48,8 +48,8 @@ tags: SourceSheet/Material
 |dice|整数|ダメージ計算用のダイス次元補正値。|
 |bits|テキスト[]|火や酸に対する耐性。|
 |elements|エレメント|装備の素材として使用した際のSourceElementボーナス。|
-|altName|テキスト[]|未使用と見なしてください。|
-|altName_JP|テキスト[]|未使用と見なしてください。|
+|altName|テキスト[]|装備の素材の姓の接頭辞。|
+|altName_JP|テキスト[]|装備の素材の姓の接頭辞。|
 
 ## カスタムマテリアル
 
