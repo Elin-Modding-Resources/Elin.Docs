@@ -77,3 +77,10 @@ public class Zone_MyFunkHouse : Zone_Civilized
 ```
 
 The **base class** must be derived from `Zone`, and you can freely choose which `Zone` type to use.
+
+## Creating a Map!
+
+noa's original quote:
+> All map creation—such as placing NPCs, furniture, and laying out blocks—is done entirely within the in-game build mode (using dev mode). Once the map is complete, I export it using the F1 key's "Export Map" function. Then, in the Zone sheet of SourceGame.xlsx, I copy an existing zone entry, modify fields like id, name, type, and pos, and set the idFile to the filename of the map I just exported. Basically, that’s all I do to add a new map to the game.
+
+You can enter the dev mode by console command `mod.elin_dev` or launching the game with `-dev` argument.

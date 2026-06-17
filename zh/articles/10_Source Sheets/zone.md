@@ -76,3 +76,10 @@ public class Zone_MyFunkHouse : Zone_Civilized
 ```
 
 基类必须派生自 `Zone`，你可以自由选择使用哪种 `Zone` 类型。
+
+## 创建地图！
+
+noa 原话：
+> 所有地图的创建——比如放置NPC、家具，铺设方块——完全在游戏内的建造模式（开发模式）中进行。地图完成后，我使用 F1 键的 "Export Map" 功能导出。然后在 SourceGame.xlsx 的 Zone 表中复制一个已有的区域条目，修改 id、name、type、pos 等字段，并将 idFile 设为我刚导出的地图文件名。基本上，向游戏中添加新地图就只有这些步骤。
+
+你可以通过控制台命令 `mod.elin_dev` 或使用 `-dev` 参数启动游戏来进入开发模式。
