@@ -1,7 +1,7 @@
 ---
 title: Element
 author: Han
-description: Comments about columns of Element sheet.
+description: Reference for the Element source sheet columns.
 date: 2026/6/13 00:00
 tags: SourceSheet/Element
 ---
@@ -9,194 +9,118 @@ tags: SourceSheet/Element
 # Element Sheet
 
 <LinkCard t="SourceGame/Element" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1102059407#gid=1102059407" />
-The Element Sheet is stored inside the Game sheet. Should be the first one visible.
 
-## id
-`int`  
-The most important cell of an entry that distinguishes it from everything else on the SourceChara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override all the others. This value cannot have any spaces or special characters in it.
+The Element Sheet is stored inside the Game sheet. It should be the first tab visible.
 
-## alias
-`string`  
-The string alias of this Element. Usually people should be using the Id to access the element, but this gives them a string representation as well. Used by the other aliasX columns that we will cover below.
+When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
-## name_JP
-`string`  
-The name of this element in Japanese.
+## Sheet Columns
 
-## altname_JP
-`string[]`  
-A comma seperated list of values that contain alternative adjectives in Japanese for this element. Usually only for the magical elements like Fire being equated with red, burning.
-
-## altname
-`string[]`  
-A comma seperated list of values that contain alternative adjectives for this element. Usually only for the magical elements like Fire being equated with red, burning.
+|Column|Type|Description|
+|-|-|-|
+|id|int|Unique identifier for the element. If the ID matches a vanilla or another mod's entry, the last sheet loaded overrides all previous ones. Cannot contain spaces or special characters.|
+|alias|string|String alias for this element. Usually the ID is preferred for access, but this provides a string representation. Used by the other `aliasX` columns below.|
+|name_JP|string|Display name in Japanese.|
+|altname_JP|string[]|Comma-separated list of alternative Japanese adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
+|altname|string[]|Comma-separated list of alternative English adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
+|aliasParent|string|Alias of a parent element. See [aliasParent](#aliasparent) below.|
+|aliasRef|string|Alias of a reference element. See [aliasRef](#aliasref) below.|
+|aliasMtp|string|Alias of the element that acts as a multiplier for this row (e.g., `life` is multiplied by `r_life`).|
+|parentFactor|float|Multiplier used in calculations for this element (potential, spell power scaling, etc.).|
+|lvFactor|int|Value used in element-related calculations.|
+|encFactor|int|Value used when calculating this element for enchantments (e.g., random gear generation).|
+|encSlot|string|Comma-separated list of equipment slots this skill/enchantment can appear on. Examples: `weapon`, `all`, `shield`, `back`, `finger`, `waist`, `head`.|
+|mtp|int|Integer used in element calculations.|
+|LV|int|"Level" of this element. See [LV](#lv) below.|
+|chance|int|Spawn chance weight. `1000` = common; lower values = rarer; `0` = never spawns naturally.|
+|value|int|Item value modifier specific to this element (e.g., spellbook of a spell, skillbook of a skill).|
+|cost|int[]|For spells and abilities: the base cost before scaling with level.|
+|geneSlot|int|Number of gene slots this skill/feat/spell/ability occupies when gene editing. `-1` excludes it from the gene engineering pool entirely.|
+|sort|int|Sort weight. Mostly used for abilities and spells to determine order in the spell/ability list.|
+|target|string|For abilities and spells only. See [Target](#target) below.|
+|proc|string[]|One or two comma-separated strings. For abilities and spells only. See [Proc](#proc) below.|
+|type|string|The C# class this element uses. Common values: `Element`, `Ability`, `Spell`, `Feat`. **Critical for modding:** point this at your own custom class name (e.g., `MyCustomFeat` or `ActMyCustomAbility`).|
+|group|string|Broad category of the element. See [Group](#group) below.|
+|category|string|Sub-category of the element. Somewhat overlaps with `group`.|
+|categorySub|string|Further sub-classification. Used for Skills, Land Feats, Feats, Elemental attacks, Abilities, and Spells.|
+|abilityType|string[]|For abilities and spells: stores information about the kind of effect, used by the Combat AI.|
+|tag|string[]|Various tags applied to the element. Controls where spells appear, whether invisibility is maintained after use, domain associations, negative/positive effect classification, etc.|
+|thing|string|Space-separated letters for spells only: `B` = Spellbook, `S` = Scroll, `R` = Rod. Dictates which item forms the spell can appear in.|
+|eleP|int|Base elemental power. Used primarily for elemental spells/abilities when calculating elemental debuffs.|
+|cooldown|int|Cooldown applied to the character after using this element, in turns.|
+|charge|int|Base charges granted when acquiring this spell (e.g., reading a Fire Ball book grants 10 charges + bonuses).|
+|radius|float|Radius of the spell or ability (e.g., Bolts use `99` to hit everything along the line to the horizon).|
+|max|int|For feats: the maximum level attainable (e.g., Metal goes up to `999`).|
+|req|string[]|For feats and skills: prerequisite elements or element levels required to unlock (e.g., Dream Waker requires the Casting skill).|
+|idTrainer|string|For skills teachable by trainers: which trainer type teaches this skill.|
+|partySkill|int|Boolean (`0` = false, `1` = true). Dictates whether the ability can be used on the entire party.|
 
 ## aliasParent
-`string`  
-A string pointing to the alias of a parent element for this element. This is used for multiple things.  
-- It maps a specific magical element to its parent attribute (e.g. Fire -> MAG and Holy -> WIL.)  
-- It maps the resistances to a specific magical element to it's original magic element (e.g. resFire -> eleFire.)  
-- It maps specific mutations to their negative versions. (e.g. Lithe Leg which increases speed to Twisted Legs which reduces speed.)
-- It maps abilities and spells to their parent attribute for calculations (e.g. Swarm is mapped to DEX while Bladestorm is mapped to STR)
+
+The `aliasParent` column points to the alias of a parent element. It serves several purposes:
+
+- Maps a magical element to its parent attribute (e.g., Fire → MAG, Holy → WIL).
+- Maps resistance elements to their source magic element (e.g., `resFire` → `eleFire`).
+- Maps positive mutations to their negative counterparts (e.g., Lithe Leg → Twisted Legs).
+- Maps abilities and spells to their parent attribute for calculations (e.g., Swarm → DEX, Bladestorm → STR).
 
 ## aliasRef
-`string`  
-A string pointing to the alias of a reference element for this element. This is used for multiple things.
-- For Multiplier Elements (e.g. r_life, r_mana, r_DV, r_PV), these point at the element that is being multiplied.
-- For Magical Elements (e.g. eleFire) this will point at the resistance element (e.g. resFire.)
-- For abilities/spells, (e.g. Suicide Bomb) these will point at the element used for damage (e.g. eleImpact.)
-- "mold" is a special alias that can be used here that is used in the generation of spells in all magical elements. (e.g. breathe_ with mold will generate breathe_fire, breathe_cold... etc.)
 
-## aliasMtp
-`string`  
-A string pointing to the alias of the element that is a multiplier of the current row. (e.g. life is multiplied by r_life.)
+The `aliasRef` column points to the alias of a reference element. It serves several purposes:
 
-## parentFactor
-float
-A value used as a multiplier for calculations regarding this element, such as potential, spell power scaling, etc.
-
-## lvFactor
-`int`  
-A value used as part of the calculations regarding this element. Not sure how it's
-
-## encFactor
-`int`  
-A value used as part of the calculations when calculating this element for enchantments, like on random gear.
-
-## encSlot
-`string`  
-A comma seperated list of strings that represents what slots this skill or enchantment can be applied to.
-Yes, it's defined as string and is used as a string[].
-Examples include:
-- weapon
-- all
-- shield
-- body parts like back, finger, waist, head, etc.
-
-
-## mtp
-`int`  
-An int used in calculations for this element.
+- For multiplier elements (e.g., `r_life`, `r_mana`, `r_DV`, `r_PV`): points at the element being multiplied.
+- For magical elements (e.g., `eleFire`): points at the corresponding resistance element (e.g., `resFire`).
+- For abilities/spells (e.g., Suicide Bomb): points at the damage element (e.g., `eleImpact`).
+- `mold` is a special alias used to generate spells for all magical elements (e.g., `breathe_` + `mold` generates `breathe_fire`, `breathe_cold`, etc.).
 
 ## LV
-`int`  
-An int used to determine the "level" of this element.
-For some elements like spells, it dictates requirements for spawning. Earthquake is level 20, while Meteor is level 30, making them a lot harder to find at low level spell vendors than say Fire Ball which is only level 15.  
-For other elements like Enchantments, it dictates what danger level is needed for them to spawn. Finding resist fire/cold/lightning is easy at level 15 while resist cut and impact are much higher at 100 and 200 respectively.
 
-## chance
-`int`  
-An int that influences the spawn chance for RNG goodness. When it's 1000, it spawns commonly, and the lower it goes the rarer it will be, with 0 making it impossible to spawn normally.
+The `LV` column determines the "level" of this element:
 
-## value
-`int`  
-An int that influences the item value specific for this element. Such as a spellbook of a spell, or a specialized skillbook of a skill.
+- **Spells:** Dictates spawn requirements. Earthquake is level 20, Meteor is level 30 — much harder to find at low-level spell vendors than Fire Ball (level 15).
+- **Enchantments:** Dictates the danger level needed for them to spawn. Resist fire/cold/lightning are easy to find at level 15, while resist cut and impact are much higher at 100 and 200 respectively.
 
-## cost
-`int[]`  
-For spells and abilities, this influences the starting cost of the spell/abilities before scaling with level.
+## Target
 
-## geneSlot
-`int`  
-Dictates how many gene slots this skill/feat/spell/ability will take when using gene editing. If set to -1, this element will excluded from the gene engineering pool and cannot be gene edited on.
+For abilities and spells only. Determines how the action is used:
 
-## sort
-`int`  
-The int weight for sorting. Mostly used for Abilities and Spells, impacts in what order they show up in your Spell/Ability list.
+|Value|Description|
+|-|-|
+|Self|Targets the caster. Activated on click (e.g., Ball spells).|
+|Ground|Targets an empty tile (e.g., Flare spells).|
+|Neighbor|Targets an adjacent character (e.g., Hand spells).|
+|Chara|Targets a specific character within range (e.g., Arrow spells).|
+|Party|Targets the entire party (e.g., Absorb Mana).|
+|SelfParty|Applies to the player party. Used for inventory-targeting spells (e.g., enchant weapon/armor, identification) — brings up a selection screen after casting.|
+|Select|Can target either self or a specific character (e.g., Healing spells).|
+|Enemy|Can only target hostile characters.|
 
-## target
-`string`  
-For Abilities and Spells only. This column shows how the given action is used.
-- Self: This action targets the caster, so it will be activated when simply clicked, such as Ball spells.
-- Ground: This action targets an empty tile, such as Flare spells.
-- Neighbor: This action targets an adjacent character, such as Hand spells.
-- Chara: This action targets a specific character within range, such as Arrow spells.
-- Party: This action targets the entire party, such as Absorb Mana.
-- SelfParty: This action applies to the player party. This is used for spells that can target inventories, such as enchanting weapon/armor, and identification spells, and will bring up the selection screen after casting.
-- Select: This action can be used as self casting, OR targetting a specific character, such as Healing spells.
-- Enemy: This action can only be used to target characters hostile to you and your party.
+## Proc
 
-## proc
-`string[]`  
-Can either be one string or two strings separated by a comma. For Abilities and Spells only. This column has multiple uses.
-- When used with Buffs and Debuffs, this column is used by the Combat AI to understand what condition is applied with this action.  
-For example: Natures Embrace has Buff,ConHOT which tells the game this ability applies the Buff ConHOT to a character, and thus if your entire party is already affected by ConHOT, the AI will skip over this ability when evaluating what ability to use.
-- For vanilla abilities/spells, there is a large ActEffect class that handles the effect of these spells, so this column will be used as the EffectId string in that function. (e.g. Breathe maps to EffectId.Breathe.)
-- For some summon spells/abilities, this column starts with Summon, then the chara id of the entity being summoned (e.g. Summon,monster for SpSummonMonster.) However, do be careful since there is still some degree of coding with regards to scaling and elemental types involved in the ActEffect class, so when wanting to add new summoning spells this might not be as straightforward.
+For abilities and spells only. Can be one string or two comma-separated strings. Has multiple uses:
 
-## type
-`string`  
-A string pointing at the class this element uses codewise. Common ones include Element, Ability, Spell, Feat.
-VERY IMPORTANT FOR MODDING as you will have to point this at your own custom class name. (e.g. MyCustomFeat or ActMyCustomAbility.)
+- **Buffs/Debuffs:** Tells the Combat AI what condition is applied. For example, Nature's Embrace has `Buff,ConHOT` — the AI will skip this ability if the entire party already has ConHOT.
+- **Vanilla abilities/spells:** Acts as the `EffectId` string in the `ActEffect` class (e.g., `Breathe` maps to `EffectId.Breathe`).
+- **Summon spells/abilities:** Starts with `Summon`, followed by the character ID of the summoned entity (e.g., `Summon,monster` for SpSummonMonster). Note: summon scaling and elemental type handling still involves hardcoded logic in the `ActEffect` class, so adding new summon spells may not be straightforward.
 
-## group
-`string`  
-Elements in Elin cover a lot of things. You can see in the Group column what categories there are. In general they are pretty self explanatory of what the group covers.
-- ELEMENT : Card elements
-- SLOT : Body Parts.
-- SKILL : Skills 
-- ENC : Enchants.
-- FOOD : Food Effects.
-- DOMAIN : Religious Domains
-- FEAT : Feats.
-- MUTATION : Mutations.
-- FACTION : Faction Skills (The ones that can scale, like Fertility)
-- POLICY : Faction Policies (The ones that change effects when turned on/off, like Weed Pulling Campaign)
-- ABILITY : Abilities (Bladestorm, dream larva, usually cost stamina)
-- SPELL : Spells
+## Group
 
-## category
-`string`  
-Which category this element falls under, somewhat redundant with group to be honest.
+Elements in Elin cover many categories. The `group` column is generally self-explanatory:
 
-## categorySub
-`string`  
-Which subcategory this element falls under. This can be used for Skills, Land Feats, Feats, Elemental attacks, Abilities, and Spells.
-
-## abilityType
-`string[]`  
-Used for abilities and spells, this is used a bit in the Combat AI, storing information on what kind of effect this ability does.
-
-## tag
-`string[]`  
-A variety of tags that can be added to an element used for a variety of things. Can dictate where specific spells can show up, or whether they will allow you to maintain invisibility after using it. Whether this spell has a domain related to it, or whether it's a negative effect or not.
-
-## thing
-`string`  
-A list of space separated letters for Spells only. You can have B, S, or R in here, dictating if the given spell can show up as a Spellbook, Scroll, or Rod.
-
-## eleP
-`int`  
-The base elemental power of this element. Used mostly for elemental spells and abilities, used for calculating elemental debuffs.
-
-## cooldown
-`int`  
-A cooldown to add to the character when using this element in turns.
-
-## charge
-`int`  
-TODO: VERIFY
-When granting charges of this spell, this dicates how many base charges will be granted. (e.g. reading a book of Fire Ball will grant 10 charges + whatever extra you get from other bonuses.)
-
-## radius
-`float`  
-The radius of this spell or ability. (e.g. Bolts have 99 radius as they hit everything in that line that stretches to the horizons.)
-
-## max
-`int`  
-For feats, this int represents what the max level the feat can attain. (e.g. Metal goes up to 999.)
-
-## req
-`string[]`  
-For some feats or skills, they will require another element, or another element at a specific level to be unlocked. (e.g. In order to take the Dream Waker feat, you will have to have at the Casting Skill unlocked.)
-
-## idTrainer
-`string`  
-For skills teachable by trainers, this column points at what kind of trainer will teach this skill.
-
-## partySkill
-`int`  
-An int that's actually a bool. 0 for False, 1 for True. For specific spells/abilities, this dictates whether the ability can be used on the entire party.
+|Group|Description|
+|-|-|
+|ELEMENT|Card elements|
+|SLOT|Body parts|
+|SKILL|Skills|
+|ENC|Enchantments|
+|FOOD|Food effects|
+|DOMAIN|Religious domains|
+|FEAT|Feats|
+|MUTATION|Mutations|
+|FACTION|Faction skills (scalable, e.g., Fertility)|
+|POLICY|Faction policies (toggle on/off, e.g., Weed Pulling Campaign)|
+|ABILITY|Abilities (Bladestorm, Dream Larva; usually cost stamina)|
+|SPELL|Spells|
 
 ## tagTrainer
 `string`  
