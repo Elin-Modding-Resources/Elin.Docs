@@ -309,7 +309,7 @@ Within the bio file, it's simply as follows:
     "BirthLocation": "",
     "Mom": "Best Mom",
     "Dad": "Best Dad",
-    "Background": "An absolutely normal living been\nBut on ylva...",
+    "Background": "An absolutely normal living being\nBut on ylva...",
     "FavFood": "mushroom_rare",
     "FavCategory": "mushroom",
     "LikeThing": "stethoscope",
