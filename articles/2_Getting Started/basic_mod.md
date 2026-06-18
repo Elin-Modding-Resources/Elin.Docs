@@ -37,7 +37,7 @@ To proceed and make your life easier, file extensions must not be set to hidden:
 + Click the Display option and check file extensions;
 :::
 
-## Preview / Thumbnail
+## Preview / Thumbnail (preview.jpg)
 
 A preview image will be used as the thumbnail in workshop page. It has to be named `preview`, in `.jpg` format, and preferably under 1MB in size, otherwise you might encounter upload problem.
 ![preview](./assets/preview.png)
