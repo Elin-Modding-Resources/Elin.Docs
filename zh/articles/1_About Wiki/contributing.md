@@ -64,12 +64,25 @@ You should now see the wiki site served on your localhost. The site content **re
 
 + `.github`
 + `.vitepress`
-+ `articles`
++ `articles` (English content)
 + `diff`
 + `public`
++ `zh/articles` (Chinese content)
++ `ja/articles` (Japanese content)
 + `<other files>`
 
-Unless you are making changes to the wiki itself, including changing styles, modifying vue components, site configs, etc, the only folder you should care about is the `articles` folder.
+Unless you are making changes to the wiki itself, including changing styles, modifying vue components, site configs, etc, the main folders you should care about are the `articles`, `zh/articles`, and `ja/articles` folders.
+
+### Multi-Language Support
+
+The wiki supports multiple languages, utilizing different folders to separate them based on the structure shown above. 
+* The root `articles` folder is dedicated exclusively to default **English** content. 
+* The `zh/articles` folder is for **Simplified Chinese** (简体中文) content.
+* The `ja/articles` folder is for **Japanese** (日本語) content.
+
+For the site's language switching functionality to work correctly, **every `.md` article and `assets` file must exist across all language folders**, maintaining the exact same file name and directory structure. The only difference being the `zh/` or `ja/` prefix in the path.
+
+When you create a new article, please ensure you copy all your new files to the corresponding paths in both the `zh` and `ja` folders, even if the translation is not yet complete.
 
 ### Category
 
