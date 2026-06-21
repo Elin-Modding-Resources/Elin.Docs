@@ -6,7 +6,7 @@ date: 2026/5/31 18:00
 tags: SourceSheet/Religion
 ---
 
-# 信仰テーブル
+# 信仰シート (Religion)
 
 <LinkCard t="SourceGame/Religion" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_" />
 

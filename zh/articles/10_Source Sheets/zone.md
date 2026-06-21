@@ -6,7 +6,7 @@ date: 2026/6/16 01:00
 tags: SourceSheet/Zone
 ---
 
-# 区域表格
+# 区域表 (Zone)
 
 <LinkCard t="SourceGame/Zone" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_" />
 

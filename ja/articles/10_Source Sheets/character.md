@@ -6,7 +6,7 @@ date: 2026/5/2 03:00
 tags: SourceSheet/Chara
 ---
 
-# SourceChara
+# キャラシート (Chara)
 
 ## 表の説明
 

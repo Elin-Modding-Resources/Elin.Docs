@@ -6,7 +6,7 @@ date: 2026/6/14 21:00
 tags: SourceSheet/Material
 ---
 
-# マテリアルシート
+# マテリアルシート (Material)
 
 <LinkCard t="SourceBlock/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
 

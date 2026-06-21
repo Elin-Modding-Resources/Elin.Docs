@@ -6,7 +6,7 @@ date: 2026/4/8 00:00
 tags: SourceSheet/Localization
 ---
 
-# 源表
+# 源表翻译
 
 默认情况下，源表里包含英文列与日文列，比如 `name` 与 `name_JP`， `aka` 与 `aka_JP`。
 
