@@ -169,6 +169,8 @@ tags: Chara/Drama
 | `#he` | “他”或“她”（根据玩家性别） |
 | `#He` | 同上，首字母大写 |
 
+这些替换，在 `dialog.xlsx` 内也可以使用。
+
 ### 动态内容
 
 **以** `#eval <此处为 C# 脚本..>` **开头**并返回 `string` 类型的文本列，能够动态生成文本内容。
@@ -477,7 +479,9 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 | `<size=...>` `</size>` | 字号（百分比） |  `<size=150%>大</size>` |
 | `<color=...>` `</color>` | 文字颜色（英文名称/#hex） | `<color=red>红</color>` `<color=#add8e6ff>亮蓝</color>` |
 
-此外你还可以使用 `#newline` 来换行，这种换行不会进入下一个页面。而Alt + Enter的换行，会使换行后的内容需要鼠标点击一次才能出现。
+在 `drama`表内对文字使用 `Alt` + `Enter` 的换行，可以显示为一页的不同行文本；这点与 `dialog.xlsx`不同。
+
+此外你还可以使用 `#newline` 来换行。
 
 完整说明，请移步[unity 富文本标签文档](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html)
 

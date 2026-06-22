@@ -169,6 +169,8 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 | `#he` | 「彼」または「彼女」（プレイヤーの性別に応じて） |
 | `#He` | 同上、先頭文字が大文字のもの |
 
+これらの置換は `dialog.xlsx` 内でも使用できます。
+
 ### 動的コンテンツ
 
 `#eval <C#スクリプト>` で始まる記述は、C#スクリプトを実行して文字列を返します。これによりテキストを動的に生成できます。
@@ -465,6 +467,23 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 実際の式パラメータは Elin が自動変換するか、`string[]` として渡されます。自動変換可能な型には、組み込み型、`DramaValueExpression`、または `static bool TryParse(string, out T)` を持つカスタム型が含まれます。
 
 使用例は `CustomDramaExpansion` の実装を参照してください。
+
+## テキストスタイル
+
+以下のタグを使用して、テキストに太字/斜体/色などのスタイルを追加できます。
+
+| タグ | 説明 | 使用例 |
+|------|------|----------|
+| `<b>` `</b>` | 太字 | `<b>太字テキスト</b>` |
+| `<i>` `</i>` | 斜体 | `<i>斜体テキスト</i>` |
+| `<size=...>` `</size>` | フォントサイズ（パーセント） |  `<size=150%>大</size>` |
+| `<color=...>` `</color>` | テキスト色（英語の色名/#hex） | `<color=red>赤</color>` `<color=#add8e6ff>ライトブルー</color>` |
+
+`drama` シート内のテキストで `Alt` + `Enter` を使って改行すると、同じページ内で異なる行として表示させることができます。これは `dialog.xlsx` とは異なる点です。
+
+また、`#newline` を使って改行することも可能です。
+
+詳細については、[Unity リッチテキストドキュメント](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html)を参照してください。
 
 ## スクリプト
 

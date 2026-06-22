@@ -221,6 +221,8 @@ What is it?
 | `#he` | "he" or "she" (based on player gender) |
 | `#He` | same as above, but with initial capital letter |
 
+These substitutions can also be used in `dialog.xlsx`.
+
 ### Dynamic Content
 
 Text columns **starting with** `#eval <C# script here..>` that returns a `string` can evaluate text content dynamically.
@@ -462,6 +464,23 @@ Drama invoke methods must be `static`, return `bool`, and paramters start with `
 The actual expression parameters can be auto converted by Elin, or passed as `string[]`. Auto convertable parameters can be any builtin data types, `DramaValueExpression`, or custom types with `static bool TryParse(string, out T)` method.
 
 See `CustomDramaExpansion` implementation for example usages.
+
+## Text Styles
+
+You can use the following tags to add styles like bold/italic/color to the text.
+
+| Tag | Description | Example Usage |
+|------|------|----------|
+| `<b>` `</b>` | Bold | `<b>Bold Text</b>` |
+| `<i>` `</i>` | Italic | `<i>Italic Text</i>` |
+| `<size=...>` `</size>` | Font size (percentage) |  `<size=150%>Large</size>` |
+| `<color=...>` `</color>` | Text color (color name/#hex) | `<color=red>Red</color>` `<color=#add8e6ff>Light Blue</color>` |
+
+Using `Alt` + `Enter` for line breaks within the `drama` sheet text will display it as different lines on the same page; this is different from `dialog.xlsx`.
+
+Additionally, you can use `#newline` to break lines.
+
+For full details, please refer to the [Unity Rich Text documentation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html).
 
 ## Scripting
 
