@@ -58,6 +58,8 @@ Drama flow is organized into steps. Each step contains one or many lines, which 
 
 When creating a sheet, avoid creating step names starting with `_` or `flag` to prevent conflicts with internal steps.
 
+#### Builtin Steps
+
 ::: details Builtin Steps
 After executing `inject/Unique` action, a lot of builtin drama steps will be injected into the drama sheet. To use them, simply set them as the `jump` target. Some steps are already used in the default `inject/Unique` dialogues and you usually do not need to re-use them on your own.
 
@@ -120,6 +122,8 @@ After executing `inject/Unique` action, a lot of builtin drama steps will be inj
 **Action lines** (except `choice`) execute automatically without input. If both `action` and `text` are present, `text` is generally ignored.
 
 For example, an action line placed after a text line won't execute until the text line is clicked to advance.
+
+### Builtin Actions
 
 ::: details Builtin Actions
 |action|param|description|

@@ -58,6 +58,8 @@ tags: Chara/Drama
 
 创建表时请避免使用以 `_` 或 `flag` 开头的步骤名，以免与内部步骤冲突。
 
+#### 内置步骤
+
 ::: details 内置步骤
 执行 `inject/Unique` 动作后，大量内置剧情步骤将被注入当前剧情表。只需将它们设为 `jump` 目标即可使用。部分步骤已在默认 `inject/Unique` 对话中使用，通常无需重复使用。
 
@@ -178,6 +180,8 @@ tags: Chara/Drama
 **动作行**（`choice` 除外）自动执行，无需输入。若同一行同时存在 `action` 和 `text`，则通常忽略 `text`。
 
 例如，文本行后的动作行需先点击文本行才能执行。
+
+### 内置动作
 
 ::: details 内置动作
 |动作|参数|说明|
@@ -461,6 +465,21 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 实际表达式参数可由 Elin 自动转换，或以 `string[]` 形式传入。可自动转换的参数包括内置数据类型、`DramaValueExpression` 或具有 `static bool TryParse(string, out T)` 方法的自定义类型。
 
 更多示例请参阅 `CustomDramaExpansion` 的实现。
+
+## 文字样式
+
+你可以使用如下标签，给文字加上粗体/斜体/颜色 等样式
+
+| 标签 | 说明 | 用法示例 |
+|------|------|----------|
+| `<b>` `</b>` | 粗体 | `<b>粗体文本</b>` |
+| `<i>` `</i>` | 斜体 | `<i>斜体文本</i>` |
+| `<size=...>` `</size>` | 字号（百分比） |  `<size=150%>大</size>` |
+| `<color=...>` `</color>` | 文字颜色（英文名称/#hex） | `<color=red>红</color>` `<color=#add8e6ff>亮蓝</color>` |
+
+此外你还可以使用 `#newline` 来换行，这种换行不会进入下一个页面。而Alt + Enter的换行，会使换行后的内容需要鼠标点击一次才能出现。
+
+完整说明，请移步[unity 富文本标签文档](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html)
 
 ## 脚本
 
