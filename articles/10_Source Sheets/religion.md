@@ -115,3 +115,7 @@ You can define the supplementary religion data by providing a simple JSON file l
   Offering value override for specific Thing IDs, this is arithmetic expression.  
   Arguments: `base` (base price), `lv` (item level), `rarity` (item rarity)  
 * You may omit any field to use their default values.
+
+## God Favor
+
+You may optionally include a god favor feat using the Element sheet. Name it using the format `featGod_` + `YourReligionID` + `1` (for example, `featGod_custom_spaghettigod1`). Reference the [SourceElement](./element) sheet and copy one of the built-in favors, such as `featGod_element1`, as a base row to modify with.

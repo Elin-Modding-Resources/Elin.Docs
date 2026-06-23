@@ -115,3 +115,7 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
   特定事物 ID 的供品价值覆盖，使用算术表达式。
   参数：`base`（基础价格）、`lv`（物品等级）、`rarity`（物品稀有度）
 * 你可以省略任意字段以使用其默认值。
+
+## 神之加护
+
+你可以选择性地在 Element 表中添加一个神之加护专长。命名格式为 `featGod_` + `你的信仰ID` + `1`（例如 `featGod_custom_spaghettigod1`）。参考 [SourceElement](./element) 表，复制一个内置的加护（如 `featGod_element1`）作为基础行进行修改。
