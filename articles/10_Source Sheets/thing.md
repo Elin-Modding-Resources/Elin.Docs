@@ -182,20 +182,25 @@ The `components` column defines crafting ingredients.
 
 |Syntax|Meaning|Example|
 |-|-|-|
-|`tag/N`|Requires N items with the given material tag.|`rock/10` → 10 rock materials.|
+|`id`|Requires item id with id.|`log`|
+|`/N`|Requires N items. Default `1`.|`log/2`|
+|`@material`|Requires item with the given material.|`chunk@snow/10` → 10 snow chunks.|
 |`\|`|"Or" — choose one of the options.|`rock/2\|ingot` → 2 rocks or 2 ingots.|
 |`#category`|Requires choosing an item from your inventory matching the category.|`#book` → pick any book from your inventory.|
 
 ### Examples
 
 **Well:** `rock/10,rope/3,log/2`
-→ 10 rock materials, 3 ropes, 2 logs.
+→ 10 rock, 3 ropes, 2 logs.
 
 **Sickle:** `rock/2|ingot,string/1,stick/1`
 → 2 rocks OR 2 ingots, 1 string, 1 stick.
 
 **Bookshelf:** `plank/4,#book,#book`
 → 4 planks, 2 books of your choice.
+
+**generator_snowman** `chunk@snow/1`
+→ 1 snow chunk.
 
 ## Trait
 
