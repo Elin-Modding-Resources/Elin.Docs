@@ -64,6 +64,8 @@ tags: SourceSheet/Zone
 <TilesetViewer src="/assets/world.png" />
 :::
 
+此外，确定区域的 `x,y`坐标时，可使用控制台命令 `mod.get_pos`来得到当前玩家角色所处的大地图坐标。
+
 ## 自定义区域类型
 
 你可以使用在 C# DLL 中定义的自定义区域类型。

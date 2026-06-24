@@ -64,6 +64,8 @@ tags: SourceSheet/Zone
 <TilesetViewer src="/assets/world.png" />
 :::
 
+さらに、ゾーンの `x,y` 座標を決定する際に、コンソールコマンド `mod.get_pos` を使用して、現在のプレイヤーキャラクターがいるワールドマップの座標を取得することができます。
+
 ## カスタムゾーンタイプ
 
 C# DLLで定義されたカスタムゾーンタイプを使用できます。

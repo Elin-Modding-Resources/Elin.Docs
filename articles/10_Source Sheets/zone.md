@@ -64,6 +64,8 @@ Custom zone icons from external sprites are not yet supported.
 <TilesetViewer src="/assets/world.png" />
 :::
 
+In addition, when determining the `x,y` coordinates of a zone, you can use the console command `mod.get_pos` to get the world map coordinates where the current player character is located.
+
 ## Custom Zone Type
 
 You can use a custom zone type defined in a C# DLL.
