@@ -332,7 +332,7 @@ Portraits, also known as character art (tachie), are the images displayed on the
 
 Portraits should be placed in the `Portrait` folder, and this `Portrait` folder should be located within your [mod package](../2_Getting%20Started/basic_mod).
 
-For more detailed information regarding portraits, please proceed to [Portraits](../15_Texture%20Mods/portraits) and read the portrait section for character mods.
+For more detailed information regarding portraits, please proceed to [Portraits](../15_Texture%20Mods/portraits#portrait-for-a-new-character-mod) and read the portrait section for character mods.
 
 ### Texture (Sprite)
 
