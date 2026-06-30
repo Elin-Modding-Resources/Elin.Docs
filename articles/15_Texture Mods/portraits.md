@@ -49,6 +49,8 @@ You can override a unique NPC's portrait by providing a portrait with the same p
 
 ## Portrait for a New Character Mod
 
+<!-- This header is used as an anchor in character.md. -->
+
 When creating a new character mod, the character portrait (fixed sprite) is also bound using the `UN_` prefix.
 
 You should provide an image with a transparent background named `UN_id.png` as the portrait.
