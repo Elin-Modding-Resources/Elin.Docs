@@ -338,11 +338,13 @@ For more detailed information regarding portraits, please proceed to [Portraits]
 
 The texture of a character on the map is more accurately described as a Sprite.
 
+When preparing a new image to serve as a character sprite for your mod character, you must first enter `@chara` into the `_idRenderData` column of the source sheet.
+
 A character sprite is a `.png` image with a transparent background, which should be placed in the `Texture` folder. The `Texture` folder should be located in your `Game Installation Directory/Elin/Package/Your Custom Mod Folder Name` (where `Your Custom Mod Folder Name` is your [mod package](../2_Getting%20Started/basic_mod)).
 
-You can also utilize animated sprites, larger canvas sizes, and sprite variants that change depending on different conditions.
+Generally, the file name for the character sprite should be `ID.png`, with ID being the exact character ID.
 
-For further details, please navigate to the `Texture Mods` section in the main directory.<!--Menu=Main Directory=メニュー。Texture Mods=Texture Mods=テクスチャMOD--> 
+You can also utilize animated sprites, larger canvas sizes, and sprite variants that change depending on different conditions. For further details, please navigate to the `Texture Mods` section in the main directory.<!--Menu=Main Directory=メニュー。Texture Mods=Texture Mods=テクスチャMOD--> 
 
 ### Examples
 
