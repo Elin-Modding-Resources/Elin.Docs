@@ -23,7 +23,7 @@ minimumReleaseAgeExclude:
   - '@oxc-minify/binding-win32-x64-msvc@0.134.0'
   - oxc-minify@0.134.0
 overrides:
-  vite: 8.0.11
+  vite: 8.1.0
 peerDependencyRules:
   allowAny:
     - "*"
