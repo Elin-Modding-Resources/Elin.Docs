@@ -46,7 +46,7 @@ export default {
       {
         repo: "Elin-Modding-Resources/Elin.Docs",
         repoId: "R_kgDONVRDCA",
-        category: "yQ&A",
+        category: "Q&A",
         categoryId: "DIC_kwDONVRDCM4C_Pz0",
         mapping: "pathname",
         inputPosition: "top",
