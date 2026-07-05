@@ -14,9 +14,9 @@ A drama is the rich dialog that usually has options and additional actions.
 
 ## Routing
 
-To give character a default drama, place `id.xlsx` in `LangMod/**/Dialog/Drama/`, using the character's ID as the file name (e.g., `tinymita.xlsx` for `tinymita`).
+To give a character a default drama, place `id.xlsx` in `LangMod/**/Dialog/Drama/`, using the character's ID as the file name (e.g., `tinymita.xlsx` for `tinymita`). The game automatically loads the drama file whose name matches the character ID.
 
-To use a different drama file, add the tag `addDrama(DramaFileId)` to the character's source row. 
+To use a differently named drama file, such as `DramaFileId.xlsx`, additionally add the tag `addDrama(DramaFileId)` to the character's source `tag` column.
 
 You can also use C# API `chara.SetDramaOverride(DramaFileId)` or `chara.ShowDialog(DramaId, step)`.
 

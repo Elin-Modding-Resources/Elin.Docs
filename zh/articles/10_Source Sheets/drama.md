@@ -14,9 +14,9 @@ tags: Chara/Drama
 
 ## 添加剧情
 
-要为角色指定默认剧情，请将 `id.xlsx` 文件放置在 `LangMod/**/Dialog/Drama/` 文件夹下，并以角色 ID 作为文件名（例如，`tinymita` 角色对应 `tinymita.xlsx`）。
+若要为角色添加默认的剧情文件，请将 `id.xlsx` 文件放置在 `LangMod/**/Dialog/Drama/` 文件夹下，并以角色 ID 作为文件名（例如，`tinymita` 角色对应 `tinymita.xlsx`）。游戏会自动加载与角色同id的剧情文件。
 
-若要使用其他剧情文件，请在角色源表的标签列添加 `addDrama(DramaFileId)` 标签。
+若要使用其他命名的剧情文件，如 `DramaFileId.xlsx` ，请额外在角色源表的 `tag`列添加 `addDrama(DramaFileId)` 标签。
 
 你也可以使用 C# API `chara.SetDramaOverride(DramaFileId)` 或 `chara.ShowDialog(DramaId, step)`。
 

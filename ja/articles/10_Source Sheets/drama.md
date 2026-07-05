@@ -14,9 +14,9 @@ tags: Chara/Drama
 
 ## 追加方法
 
-キャラクターにデフォルトのドラマを割り当てるには、`LangMod/**/Dialog/Drama/` フォルダ内に `id.xlsx` を配置し、ファイル名をキャラクターIDにしてください（例: `tinymita` キャラクターなら `tinymita.xlsx`）。
+キャラクターにデフォルトのドラマを割り当てるには、`LangMod/**/Dialog/Drama/` フォルダ内に `id.xlsx` を配置し、ファイル名をキャラクターIDにしてください（例: `tinymita` キャラクターなら `tinymita.xlsx`）。ゲームはキャラクターIDと同名のドラマファイルを自動的に読み込みます。
 
-別のドラマファイルを使用する場合は、キャラクターのソース行に `addDrama(DramaFileId)` タグを追加します。
+別の名前のドラマファイル（例: `DramaFileId.xlsx`）を使用する場合は、キャラクターのソース行の `tag` 列に `addDrama(DramaFileId)` タグを追加してください。
 
 C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(DramaId, step)` も利用可能です。
 
