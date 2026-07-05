@@ -91,16 +91,13 @@ Possible tag actions:
 
 ### 特定のエリアへ自動生成
 
-`addZone(*)` タグを使い、`*` をエリアの **id** に置き換えると、そのエリアにキャラクターを生成できます。`*` のままにするとランダムなエリアに生成されます。
+キャラクターをエリアに生成するには、ソース行に `addZone(*)` タグを追加し、`*`（アスタリスク）をエリア **id** に置き換えます。アスタリスクのままにするとランダムなエリアに生成されます。また `@n` でエリアの階層を指定することもできます。
 
-**例**
-- `addZone(startSite)` → 起始原野に生成
-- `addZone(derphy@-1)` → テルフィ地下1階に生成
+例えば、リトルガーデンに生成するには `addZone(little_garden)` を使います。テルフィの地下にも生成したい場合は、もう一つ `addZone(derphy@-1)` タグを追加します。[SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) を確認し、**id** 列を参照してください。
 
-複数のタグを組み合わせることも可能です。
+![spawn_ex](./assets/spawn_chara.png)
 
-例：`addZone(lumiest),addZone(little_garden),addZone(specwing),addZone(*)`  
-→ 指定した3エリア＋ランダムエリアの計4箇所にそれぞれ1人ずつ生成されます。
+使用する `addZone` タグごとに、その場所にキャラクターが1体生成されます。例えば `addZone(lumiest),addZone(little_garden),addZone(specwing),addZone(*)` とすると、指定した3つのエリアに加えランダムなエリアにもこのキャラクターが（重複して）生成されます。
 
 ### 初期装備・アイテムの設定
 

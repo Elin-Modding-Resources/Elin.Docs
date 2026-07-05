@@ -91,17 +91,18 @@ CWL 格式已经从Wiki移除，它们仍然兼容，但推荐使用本文的新
 
 ### 自动生成到区域
 
-要将角色生成到某个区域，请使用标签 `addZone(*)`，并用区域 **id** 替换 `*`（星号），或者保留星号以生成到随机区域。
+要将角色生成到某个区域，请在角色源表的 `tag`列添加 `addZone(*)`，并用区域 **id** 替换 `*`（星号），或者保留星号以生成到随机区域。你也可以用 `@n` 来指定区域层级。
 
 例如，要在起始原野中生成角色，请使用 `addZone(startSite)`。要在特尔斐地下一层生成角色，请使用 `addZone(derphy@-1)`。请查看 [SourceGame/Zone](https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1819250752#gid=1819250752) 并参考 **id** 列。
 
-每一个 `addZone` 标签都会确保在该区域生成一个角色。例如，`addZone(lumiest),addZone(little_garden),addZone(specwing),addZone(*)` 将会在所选的三个区域以及随机一个区域中生成一个角色（同时存在）。
-
 ![img](./assets/spawn_chara.png)
 
-都是英语括号、英语逗号 `,`  其中英文逗号 `,`用于分割tag。
+每一个 `addZone` 标签都会确保在该区域生成一个角色。例如，`addZone(lumiest),addZone(little_garden),addZone(specwing),addZone(*)` 将会在所选的三个区域以及随机一个区域中生成一个角色（同时存在）。
 
-注意：不可以连续两个逗号且中间没有内容（如： `,,` ）；连续两个逗号会插入空值，从而导致bug。
+关于源表的 `tag`列标签：
++ 都是英语括号和英语逗号 `,`  
++ 其中英文逗号 `,`用于分割tag。
++ 不可以连续两个逗号且中间没有内容（如： `,,` ）；连续两个逗号会插入空值，从而导致bug。
 
 ### 添加初始装备/物品
 
