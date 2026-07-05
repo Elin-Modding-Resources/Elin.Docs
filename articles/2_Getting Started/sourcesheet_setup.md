@@ -141,7 +141,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 
 Let's first understand some basics, taking a column group like `name_JP` and `name` as an example:
 + The column with the `_JP` suffix in the group is the Japanese column.
-+ The column without a suffix is the English column, which also serves as the translation column.
++ The column without a suffix is the English column, but it can also be used as the translation column.
 
 ### Example
 
