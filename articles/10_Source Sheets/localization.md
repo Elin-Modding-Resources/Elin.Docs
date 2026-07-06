@@ -120,8 +120,8 @@ Let's use `name_JP` and `name` as an example of one column group:
 
 + Columns with the `_JP` suffix are the Japanese columns.
 + In the same group, the column without a suffix is the English column, but it can also be used as the translation column.
-+ Columns without a suffix that are not part of such a group are gameplay data columns or other non-translation data, so do not translate them.
 + For example, `aka_JP` and `aka` are another Japanese-plus-translation column group.
++ Columns without a suffix that are not part of such a group are gameplay data columns or other non-translation data, so do not translate them.
 
 Because of this, you can first copy the source sheets into `LangMod/XX`.
 
