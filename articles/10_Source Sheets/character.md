@@ -30,7 +30,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | tiles_snow | integer | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../15_Texture%20Mods/variation) instead. |
 | colorMod | integer | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
 | components | string | Unused in SourceChara. |
-| defMat | string | Unused in SourceChara. |
+| defMat | string | Default corpse material alias. Leave it empty to use Race's default material. |
 | LV | integer | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
 | chance | integer | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
 | quality | integer | `0–2`: regular tiers. `3`: Unique Monsters (egg obtainable; cannot befriend/capture/tame). `4`: Unique Characters (only chicken eggs; can befriend but not capture/tame). |
