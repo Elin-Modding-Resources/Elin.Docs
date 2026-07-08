@@ -39,7 +39,7 @@ tags: SourceSheet/Chara
 |tag|文本|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。|
 |trait|文本|复杂的特性列表；请参考特性文档和 `Trait*` C# 类。|
 |race|文本|从 SourceRace 的种族 ID 列中选择。|
-|job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。|
+|job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。 <!-- 表的列名为"job"，但游戏内 英语版 UI 为"class"，日语版 UI 为 クラス 或 職業。留此注释供编辑者参考。 -->|
 |tactics|文本|覆盖所分配职业的默认战术。|
 |aiIdle|文本|AI 行为的补充或覆盖。示例：`Stand`（完全静止，即使被攻击也不动）、`Root`（静止直到被攻击或招募）。|
 |aiParam|文本|三个数值：首选与敌人的距离、每回合移动到该距离的概率，以及（很少使用）再次移动的额外概率。|

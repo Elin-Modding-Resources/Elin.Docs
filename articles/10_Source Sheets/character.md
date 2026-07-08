@@ -39,7 +39,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 | tag | string | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). |
 | trait | string | Complex trait list; refer to trait documentation and `Trait*` C# classes. |
 | race | string | Select from the Race ID column of SourceRace. |
-| job | string | Select from the Job ID column of SourceJob; default is `none`. |
+| job | string | Select from the Job ID column of SourceJob; default is `none`. Job displayed in-game as "class" in English. <!-- The source sheet column is named "job", but the in-game EN UI uses "class". JP UI shows "クラス"/"職業". Keep both terms documented for modders. --> |
 | tactics | string | Overrides default tactics of assigned job. |
 | aiIdle | string | AI behavior supplement/override. Examples: `Stand` (fully stationary, even when attacked), `Root` (stationary until attacked or recruited). |
 | aiParam | string | Three values: preferred enemy distance, per-turn reposition chance to that distance, and (rarely used) bonus chance to reposition again. |
