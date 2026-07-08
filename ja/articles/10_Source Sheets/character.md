@@ -30,22 +30,22 @@ tags: SourceSheet/Chara
 |tiles_snow|整数|雪マップで使用する代替タイルIDです。MODキャラは[テクスチャバリエーション](../15_Texture%20Mods/variation)を使用してください。|
 |colorMod|整数|主に`100`と組み合わせて使用し、グレースケールのスプライトに`mainElement`の色を乗せる機能です。|
 |components|テキスト|SourceCharaでは使用していません。|
-|defMat|テキスト|デフォルトの死体素材エイリアス。空欄の場合は種族のデフォルト素材を使用します。|
+|defMat|テキスト|デフォルトの死体素材。SourceBlock 内の Material サブシートの alias 列から選択します。空欄の場合は種族のデフォルト素材を使用します。|
 |LV|整数|キャラの「危険度」。マップの危険度に応じた生成判定、選択コスト（奴隷商人・調教師）、種族/職業ごとの基礎ステータス生成に影響します。|
 |chance|整数|マップ生成確率の補正値（販売リストにも影響する可能性あり）。初期値は`100`です。|
-|quality|整数|`0–2`：通常モンスター。`3`：ユニークモンスター（卵入手可能だが友達・捕獲・調教不可）。`4`：ユニークキャラ（卵のみ。友達にはなれるが捕獲・調教不可）。|
+|quality|整数|`0–2`：通常モンスター。`3`：ユニークモンスター（卵入手可能だが友達・捕獲・調教不可）。`4`：ユニークキャラ（名前の表示時に `『』` で囲まれる；受精卵からは雞しか孵化しない；友達にはなれるが、モンスターボールでは捕獲不可）。自作アドベンチャーの場合は記入不要。|
 |hostility|テキスト|プレイヤー・味方・傍観者に対する性格。空欄だと`Hostile`（敵対）。`Neutral`は攻撃されない限り先制攻撃しない。`Friend`は味方に対して敵対的な対象を攻撃し、プレイヤーが怒っているときも攻撃します。|
 |biome|テキスト|指定した床タイプでの生成率が上昇（場合により2倍）、それ以外では低下（場合により半減）します。例：`Water`にすると水上の床を強く好みます。|
 |tag|テキスト|既知のタグ：`mini`（スプライト半分サイズ）、`noRandomProduct`（幸運の太鼓で下着が出ない可能性）、`random_color`（`colorMod=100`時に髪の色をランダム化）、`randomFish`、`staticSkin`（性別によるスプライト割り当てを固定）、`snow`（雪マップを好む）、`water`（水タイルを好む）など。|
 |trait|テキスト|複雑な特性の羅列です。特性ドキュメントと`Trait*`クラスの実装を参照してください。|
-|race|テキスト|SourceRaceの種族IDを指定します。|
-|job|テキスト|SourceJobの職業ID。省略時は`none`になります。|
+|race|テキスト|SourceRaceの種族ID列から選択します。|
+|job|テキスト|SourceJobの職業ID列から選択。省略時は`none`になります。|
 |tactics|テキスト|割り当てられた職業のデフォルト戦術を上書きします。|
 |aiIdle|テキスト|待機時のAI行動を追加・上書きします。例：`Stand`（完全に動かず攻撃されても反応しない）、`Root`（攻撃されるか勧誘されるまで動かない）。|
 |aiParam|テキスト|3つの数値（敵との理想距離、毎ターンその距離に移動する確率、まれに使う再移動確率）。|
-|actCombat|テキスト|戦闘中に使用可能なSourceElementのIDをカンマ区切りで指定。`/N`で使用確率を固定できます。バフ系は`/pt`を付けるとパーティ全体に効果（味方バフのみ）。例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。省略時は確率100。|
+|actCombat|テキスト|戦闘中に使用可能な能力・魔法を、SourceElementのエントリから選択しカンマ区切りで指定。`/N`で使用確率を固定できます。バフ系は`/pt`を付けるとパーティ全体に効果（味方バフのみ）。例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。省略時は確率100。|
 |mainElement|テキスト|主要属性親和性。`Fire`、`Cold`、`Lightning`、`Darkness`、`Nether`、`Sound`、`Chaos`、`Poison`、`Cut`、`Acid`、`Impact`から選択。|
-|elements|テキスト|受動的なSourceElementをカンマ区切りで指定。`/N`でレベル・数値を設定可能。`0`や負の値で種族からの継承を無効化・調整できます。例：`invisibility/1`（有効）、`invisibility/0`（継承無効）、`antidote/-30`（肉に毒を付与）など。|
+|elements|テキスト|受動的なもの（専門技能やエンチャントなど）を、SourceElementのエントリから選択しカンマ区切りで指定。`/N`でレベル・数値を設定可能。`0`や負の値で種族からの継承を無効化・調整できます。例：`invisibility/1`（有効）、`invisibility/0`（継承無効）、`antidote/-30`（肉に毒を付与）など。|
 |equip|テキスト|職業のランダム装備テンプレートを上書きします（**種族のEQが空でない場合のみ有効**）。例：盗賊職業に`equip=Archer`とすると弓兵装備になりますが、犬種族のように種族EQが空の場合は装備が生成されません。|
 |loot|テキスト|追加ドロップアイテム（Thing/ThingVのID）をカンマ区切りで指定。後ろに`/N`を付け、20で+1%のドロップ率になります。例：`medal/500`=25%、`medal/3000`=150%（確定1個＋50%でもう1個）。|
 |category|テキスト|ほとんどの項目はデフォルトの`chara`を使用します。|
@@ -57,8 +57,8 @@ tags: SourceSheet/Chara
 |idExtra|テキスト|SourceCharaでは使用していません。追加の描画データ。|
 |bio|テキスト|スラッシュ区切りの値（空白なし）：`gender`（`m`/`f`/`n`、必須）、`age`（任意）、`height`（任意）、`weight`（任意）、`chara_tone.xlsx`の`tone`（任意）、`chara_talk.xlsx`の`talk`（任意）。例：`f/51044/152/46/friendly\|私\|あなた`|
 |faith|テキスト|固定の信仰。設定するとゲーム内で変更できなくなります。|
-|works|テキスト|SourceHobbyのaliasを指定します。|
-|hobbies|テキスト|SourceHobbyのaliasを指定します。|
+|works|テキスト|SourceHobbyの alias 列から選択します。|
+|hobbies|テキスト|SourceHobbyの alias 列から選択します。|
 |idText|テキスト|`CharaText`テーブル内の対応するIDと紐付けます。|
 |moveAnime|テキスト|移動アニメーションの種類。`hop`または空欄。|
 |factory|テキスト|SourceCharaでは使用していません。|
