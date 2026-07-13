@@ -8,12 +8,33 @@ tags: Texture/Skin
 
 # Skin Folder
 
-The Skin folder is where you put custom textures for the resident board's **Change Skin** feature.
+Textures placed here can be used via in-game → resident board → **Change Skin**.
 
-+ Location: `%localappdata%low\Lafrontier\Elin\Custom\Skin`
-+ In-Game Access: ESC → Tool → Open My Custom Folder → Skin
-+ Size: 128×128 or 128×256
-+ Background: Transparent
-+ Filename: skinname.png
+This **Change Skin** feature only changes a single NPC's texture, not an entire type of NPC texture.
 
-You can apply [Directional Sprites](./variation#Directional-Sprites), [Snow Variation](./variation#Snow-Variation), or both to your Custom Skins.
++ **Location:** See the [Location section](#skin-folder-location) below
++ **Size:** 128×128 or 128×256
++ **Background:** Transparent
++ **File type:** png
++ **Filename:** skinname.png
+  + skinname is the custom name you choose (the part of the filename before .png). There's no format requirement, but using English letters and numbers is recommended to prevent strange bugs.
+
+You can use the [Snow Variation](./variation#Snow-Variation) and [Directional Sprites](./variation#Directional-Sprites) from the [Sprite Variations](./variation) feature together with the Skin folder. Using them together inside the Skin folder works as well.
+
+## Location {#skin-folder-location}
+
+You can store them locally:
+
++ **Location:** `%localappdata%low\Lafrontier\Elin\Custom\Skin`
++ **How to open:** In-game, press Esc → Tool → Open My Custom Folder → find the Skin folder
+
+You can also use them as a mod:
+
++ **Location:** `<ElinGamePath>/Package/<ModName>/Skin`. This requires the necessary files of a [mod package](../2_Getting%20Started/basic_mod); see the [mod package](../2_Getting%20Started/basic_mod) page for details.
+
+## Compatibility
+
+If you use the Texture Expand mod / Provisional TextureExpand mod (hereafter "TE"):
+
++ For characters configured with TE, using the resident board's **Change Skin** feature may cause bugs
++ As an alternative, you can write your own TE rule. See the manual included with the TE mod for details
