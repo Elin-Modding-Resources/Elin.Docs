@@ -19,12 +19,17 @@ E.g.
 
 ## Archived Diffs
 
-### EA 23.42 - EA 23.133  
-Nov 28, 2024 - May 5, 2025
+### EA 23.230 - EA 23.318
+Nov 3, 2025 - June 18, 2026
 
-<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_42_23_133.tar" download>23_42_23_133.tar</a>
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_230_23_318.tar" download>23_230_23_318.tar</a>
 
 ### EA 23.134 - EA 23.228
 May 7, 2025 - October 30, 2025
 
 <a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_134_23_228.tar" download>23_134_23_228.tar</a>
+
+### EA 23.42 - EA 23.133  
+Nov 28, 2024 - May 5, 2025
+
+<a href="https://github.com/Elin-Modding-Resources/Elin.Docs/raw/refs/heads/master/diff/23_42_23_133.tar" download>23_42_23_133.tar</a>
