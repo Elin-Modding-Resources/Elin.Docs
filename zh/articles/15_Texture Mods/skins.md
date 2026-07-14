@@ -30,7 +30,7 @@ tags: Texture/Skin
 
 也可以，以mod形式使用
 
-+ **位置：** `<ElinGamePath>/Package/<ModName>/Skin` ，这需要准备[模组包](../2_Getting%20Started/basic_mod)的必需文件，详情请移步[模组包](../2_Getting%20Started/basic_mod)页面。
++ **位置：** `<游戏安装目录>/Package/<ModName>/Skin` ，这需要准备[模组包](../2_Getting%20Started/basic_mod)的必需文件，详情请移步[模组包](../2_Getting%20Started/basic_mod)页面。
 
 ## 兼容性
 

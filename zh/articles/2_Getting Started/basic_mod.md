@@ -12,7 +12,7 @@ Elin 支持多种模组类型，本文介绍创建一个基础示例模组的步
 
 ## Mod文件夹
 
-你本地开发的模组应该放在 `游戏安装目录/Elin/Package/<ModName>` 文件夹下。
+你本地开发的模组应该放在 `<游戏安装目录>/Elin/Package/<ModName>` 文件夹下。
 
 **打开方式：** 在 Steam 库中右键点击 Elin，选择 **“属性”** > **“已安装文件”**：
 ![browse local](./assets/browse.png)
