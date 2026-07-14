@@ -2,13 +2,13 @@
 title: Custom Skins
 author: DK
 description: How to add custom skins
-date: 2026/4/9 16:00
+date: 2026/7/14 00:00
 tags: Texture/Skin
 ---
 
 # Skin Folder
 
-Textures placed here can be used via in-game → resident board → **Change Skin**.
+Textures placed in the Skin folder can be used via in-game → resident board → **Change Skin**.
 
 This **Change Skin** feature only changes a single NPC's texture, not an entire type of NPC texture.
 
