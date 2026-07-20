@@ -26,7 +26,7 @@ tags: SourceSheet/Material
 |goods|文本[]|可视为未使用。|
 |minerals|文本[]|可视为未使用。|
 |decal|整数|贴花/血迹叠加 ID。参见 [Decal](#decal)。|
-|decay|整数|使用该材质制作的物品的衰减速率。|
+|decay|整数|使用该材质制作的物品的腐败速率。|
 |grass|整数|可视为未使用。|
 |defFloor|整数|默认 SourceFloor 图块 ID。|
 |defBlock|整数|默认 SourceBlock 图块 ID。|
