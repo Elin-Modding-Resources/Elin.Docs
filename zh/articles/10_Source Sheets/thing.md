@@ -19,10 +19,10 @@ tags: SourceSheet/Thing
 |id|文本|物品的唯一标识符。|
 |name_JP|文本|日文显示名称。|
 |name|文本|英文显示名称。|
-|unknown_JP|文本|日文高品质物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
+|unknown_JP|文本|日文稀有度较高的物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
 |unit_JP|文本|日文量词（助数词）。参见下方 [Unit JP](#unit-jp)。|
 |unit|文本|物品的物理形态。参见下方 [Unit](#unit)。|
-|unknown|文本|英文高品质物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
+|unknown|文本|英文稀有度较高的物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
 |category|文本|物品所属的类别。用于自动存放和配方菜单（关联 `Category` 表）。|
 |sort|整数|排序顺序。例如 `2200` 会将其归入弓的排序范围。|
 |_tileType|文本|地图上的显示方式。参见下方 [Tile Type](#tile-type)。|
@@ -43,7 +43,7 @@ tags: SourceSheet/Thing
 |value|整数|基础售价（奥伦）。|
 |LV|整数|制作所需的技能等级。|
 |chance|文本|生成概率修正值。|
-|quality|整数|物品品质等级。☆★等都是由quality列决定的。**（待补充）**|
+|quality|整数|物品稀有度等级。☆★等都是由quality列决定的。**（待补充）**|
 |weight|整数|物品重量。例如：种子 = `30`、魔杖 = `500`、床 = `4500`、钢琴 = `85000`。|
 |electricity|整数|电力消耗。负值表示消耗电力（例如显示器 = `-10`）。|
 |trait|文本|特殊行为。参见下方 [Trait](#trait)。|

@@ -19,10 +19,10 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |id|string|Unique identifier for the item.|
 |name_JP|string|Display name in Japanese.|
 |name|string|Display name in English.|
-|unknown_JP|string|Japanese name of high-quality items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
+|unknown_JP|string|Japanese name of higher-rarity items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |unit_JP|string|Japanese counter word for the object. See [Unit JP](#unit-jp) below.|
 |unit|string|Physical form of the object. See [Unit](#unit) below.|
-|unknown|string|English name of high-quality items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
+|unknown|string|English name of higher-rarity items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |category|string|Category the item belongs to. Used for auto-dumping and recipe menus (linked to the `Category` sheet).|
 |sort|int|Sort order. E.g. `2200` places it in the bow range.|
 |_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below.|
@@ -43,7 +43,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |value|int|Base sell value in orens.|
 |LV|int|Crafting skill level required.|
 |chance|string|Spawn or generation chance modifier.|
-|quality|int|Item quality tier.  The ☆ and ★ are determined by the quality column. **(To be supplemented)**|
+|quality|int|Item rarity tier. The ☆ and ★ are determined by the quality column. **(To be supplemented)**|
 |weight|int|Item weight. E.g. seed = `30`, rod = `500`, bed = `4500`, piano = `85000`.|
 |electricity|int|Power draw. Negative values consume electricity (e.g. monitor = `-10`).|
 |trait|string|Special behaviors. See [Trait](#trait) below.|
