@@ -12,6 +12,8 @@ tags: SourceSheet/Material
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
+An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `thing` to `chunk`, `decal` to `2`, `defFloor`/`defBlock` to `1`, `ramp` to `6`, `hardness` to `1`, `chance` to `1000`, `weight` and `value` to `100`, `quality` to `1` and `dice` to `100`.
+
 ## Sheet Columns
 
 |Column|Type|Description|
@@ -20,7 +22,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |alias|string|Material alias, used for referencing in other sheets (e.g. Thing's `defMat` column).|
 |name_JP|string|Display name in Japanese.|
 |name|string|Display name in English. Other languages use [`SourceLocalization`](./localization).|
-|category|string|Material category (e.g. `metal`, `wood`, `stone`, `leather`, `cloth`).|
+|category|string|Material category. Vanilla uses `gem`, `soil`, `wood`, `ore`, `fiber`, `rock`, `crystal`, `water`, `grass`, `skin`, `organic` and `bone`. Note that metal and leather are not categories — they are values of the `groups` column.|
 |tag|string[]|Tags for special behaviors. Use `addColorMain(RRGGBBAA)` and `addColorAlt(RRGGBBAA)` to define custom material colors. See [Custom Material](#custom-material) below.|
 |thing|string|Associated Thing ID for this material when dismantled.|
 |goods|string[]|Consider this unused.|

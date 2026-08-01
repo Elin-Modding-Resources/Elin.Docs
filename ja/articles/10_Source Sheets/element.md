@@ -14,6 +14,8 @@ tags: SourceSheet/Element
 
 ソースシートを作成する際は、必ず公式行の先頭3行をコピーし、4行目からデータを記入してください。列の順序は変更しないでください。
 
+空のセルは「空の値」ではなく、3行目のデフォルト値にフォールバックします。このシートの既定値は `type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5 です。
+
 ## 列の説明
 
 |列名|型|説明|
@@ -21,8 +23,9 @@ tags: SourceSheet/Element
 |id|int|エレメントの一意識別子。IDがバニラや他のModのエントリと重複した場合、最後に読み込まれたシートがそれ以前のすべてを上書きします。スペースや特殊文字は使用できません。|
 |alias|string|このエレメントの文字列エイリアス。通常はIDでのアクセスが推奨されますが、これにより文字列表現も提供されます。下記の他の `aliasX` 列で使用されます。|
 |name_JP|string|日本語表示名。|
-|altname_JP|string[]|このエレメントの代替日本語形容詞のカンマ区切りリスト。主に魔法エレメントで使用されます（例：Fire → 赤、燃焼）。|
-|altname|string[]|このエレメントの代替英語形容詞のカンマ区切りリスト。主に魔法エレメントで使用されます（例：Fire → red, burning）。|
+|name|string|英語表示名。その他の言語については [`SourceLocalization`](./localization) を使用してください。|
+|altname_JP|string|このエレメントの代替日本語形容詞のカンマ区切りリスト。主に魔法エレメントで使用されます（例：Fire → 赤、燃焼）。|
+|altname|string|このエレメントの代替英語形容詞のカンマ区切りリスト。主に魔法エレメントで使用されます（例：Fire → red, burning）。|
 |aliasParent|string|親エレメントのエイリアス。下記の[aliasParent](#aliasparent)を参照してください。|
 |aliasRef|string|参照エレメントのエイリアス。下記の[aliasRef](#aliasref)を参照してください。|
 |aliasMtp|string|この行の倍率として機能するエレメントのエイリアス（例：`life` は `r_life` によって倍率がかかります）。|
@@ -121,3 +124,83 @@ Elinのエレメントは多くのカテゴリをカバーしています。`gro
 |POLICY|勢力政策（オン/オフ切り替え、例：Weed Pulling Campaign）|
 |ABILITY|アビリティ（Bladestorm、Dream Larva；通常スタミナを消費）|
 |SPELL|呪文|
+
+## tagTrainer
+`string`  
+廃止されたようです。
+
+## levelBonus_JP
+`string`  
+このエレメントが特定のレベルで得られる追加ボーナスの説明（日本語）。例えば盾スキルはレベル5と10で追加効果があります。
+
+## levelBonus
+`string`  
+このエレメントが特定のレベルで得られる追加ボーナスの説明（英語）。
+
+## foodEffect
+`string[]`  
+このエレメントを持つアイテムを食べたときに付与されるエレメントを指します。例えば `cat` エレメントを持つものを食べるとカルマが下がります——猫を食べないでください。
+
+## note
+`string`  
+ゲームはこの列を読み込みません（2行目に型の指定がありません）。シート内のメモとして使えます。
+
+## langAct
+`string[]`  
+langGeneral のエントリを指し、そのアビリティ使用時に表示されるテキストを差し替えます。
+
+## detail_JP
+`string`  
+このエレメントの詳細（日本語）。
+
+## detail
+`string`  
+このエレメントの詳細（英語）。
+
+## textPhase_JP
+`string`  
+フレーバーテキスト（日本語）。エレメントにカーソルを合わせたときに表示される追加情報で、`\n` で改行すれば多段階の特技にも対応できます。
+
+## textPhase
+`string`  
+フレーバーテキスト（英語）。
+
+## textExtra_JP
+`string`  
+追加のフレーバーテキスト（日本語）。特技の場合、この文字列は textPhase の右側と、カーソルを合わせたときの textPhase の下に表示されます。
+
+## textExtra
+`string`  
+追加のフレーバーテキスト（英語）。
+
+## textInc_JP
+`string`  
+特定のエレメントを獲得するという稀な場面で、メッセージログに表示されるテキスト（日本語）。例：カニバルになったとき。
+
+## textInc
+`string`  
+特定のエレメントを獲得するという稀な場面で、メッセージログに表示されるテキスト（英語）。
+
+## textDec_JP
+`string`  
+textInc_JP の逆で、特定のエレメントを失ったときに表示されます（日本語）。
+
+## textDec
+`string`  
+textInc の逆で、特定のエレメントを失ったときに表示されます（英語）。
+
+## textAlt_JP
+`string[]`  
+要検証。langList のデータと重複しているように見え、特定のレベルに別名を追加するものです（日本語）。
+
+## textAlt
+`string[]`  
+要検証。langList のデータと重複しているように見え、特定のレベルに別名を追加するものです（英語）。
+
+## adjective_JP
+`string[]`  
+廃止されたようです。
+
+## adjective
+`string[]`  
+廃止されたようです。

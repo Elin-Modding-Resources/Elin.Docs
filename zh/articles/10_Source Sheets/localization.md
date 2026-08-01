@@ -10,7 +10,9 @@ tags: SourceSheet/Localization
 
 默认情况下，源表里包含英文列与日文列，比如 `name` 与 `name_JP`， `aka` 与 `aka_JP`。
 
-源表应放入 `EN` 或 `JP` 文件夹。
+源表应放入 `EN` 或 `JP` 文件夹。游戏其实没有这个硬性要求——一个 mod 完全可以把唯一的一份源表放在 `CN` 里、`name` 列直接写中文——但 `EN` / `JP` 是大家默认会去找的地方。
+
+另外，`SourceLocalization.json` 永远盖过源表里的列，`EN` 和 `JP` 也不例外。如果某条文本在 json 里已经有了，改源表的 `name` 会看起来毫无反应。
 
 ## 为您的 Mod 添加翻译
 
@@ -78,7 +80,7 @@ drama 表与 `dialog.xlsx` 不使用 `json` 来翻译，而是直接翻译对应
 
 1. 将原 Mod 的 drama 表与 `dialog.xlsx` 复制到目标语言文件夹的对应路径。（例如从 `EN` 或 `JP` 复制到 `CN`。）
 2. 新增对应语言列，例如中文新增 `text_CN`。可以参考上章节的 Tiny Mita 示例Mod与文章。
-3. 删除 `text_EN` 与 `text_JP`，但保留 `text` 列。
+3. 删除 `text_EN` 与 `text_JP`，但保留 `text` 列。删之前先确认每一行都填了 `id`：没有 `id` 的行只会读 `text_JP`，删掉那一列它就一个字都不显示了。
 
 ## 扩展知识
 

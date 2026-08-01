@@ -25,13 +25,13 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 |name|string|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)|
 |name2_JP|string[]|领域名称、简称（日文）|
 |name2|string[]|领域名称、简称（英文）|
-|type|string|自定义信仰请使用 `ReligionCustom`，或填写你自定义的 C# Religion 类型的完整名称|
+|type|string|自定义信仰请使用 `ReligionCustom`，或填写你自定义的 C# Religion 类型的完整名称。**不要留空**——该列的默认值是 `Faction`，不是 `ReligionCustom`|
 |idMaterial|string|祭坛的材质别名|
 |faith|string|未使用|
 |domain|string|未使用|
-|tax|int|信仰税百分比|
-|relation|int|初始关系值|
-|elements|int[]|给予角色的信仰元素加成|
+|tax|int|信仰税百分比。留空为 `100`|
+|relation|int|初始关系值。留空为 `50`|
+|elements|elements|给予角色的信仰元素加成，格式 `元素别名/数值`|
 |cat_offer|string[]|供品类别|
 |rewards|string[]|礼物等级 1 和 2 的奖励|
 |textType_JP|string|头像类型（日文）|

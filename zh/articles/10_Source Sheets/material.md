@@ -12,6 +12,8 @@ tags: SourceSheet/Material
 
 制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。切勿更改列的顺序。
 
+空格子不等于空值——游戏会回落到第 3 行的默认值。本表的默认值有：`thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100。
+
 ## 表格列
 
 |列|类型|描述|
@@ -20,7 +22,7 @@ tags: SourceSheet/Material
 |alias|文本|材质别名，用于在其他表格中引用（例如 Thing 的 `defMat` 列）。|
 |name_JP|文本|日文显示名称。|
 |name|文本|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)。|
-|category|文本|材质类别（例如 `metal`、`wood`、`stone`、`leather`、`cloth`）。|
+|category|文本|材质类别。本体在用的取值有 `gem`、`soil`、`wood`、`ore`、`fiber`、`rock`、`crystal`、`water`、`grass`、`skin`、`organic`、`bone`。注意金属和皮革不在这里——它们是 `groups` 列的值。|
 |tag|文本[]|特殊行为标签。使用 `addColorMain(RRGGBBAA)` 和 `addColorAlt(RRGGBBAA)` 定义自定义材质的颜色。参见下方 [自定义材质](#自定义材质)。|
 |thing|文本|该材质拆解时关联的 Thing ID。|
 |goods|文本[]|可视为未使用。|

@@ -12,6 +12,8 @@ tags: SourceSheet/Zone
 
 When making source sheets, always copy the first 3 rows from the official source sheet and start your data at the 4th row. Do not alter the column order.
 
+An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `type` to `Zone`, `LV` to `1`, `chance` to `100`, `idBiome` to `Plain`, `dev` to `0` and `image` to `default`.
+
 ## Sheet Columns
 
 |Column|Type|Description|
@@ -26,16 +28,16 @@ When making source sheets, always copy the first 3 rows from the official source
 |faction|string|Faction ID this zone belongs to.|
 |value|int|Zone value used in the home ranking list.|
 |idProfile|string|Zone profile ID; determines how the map is generated.|
-|idFile|string|Map file name placed in the **Maps** folder. If empty, a random map will be used.|
+|idFile|string[]|Map file name placed in the **Maps** folder. If empty, a random map will be used.|
 |idBiome|string|Biome type.|
 |idGen|string|Dungeon generator type. Unused.|
 |idPlaylist|string|Playlist. CWL is required for custom playlists currently.|
-|tag|string|A comma-separated list of tags applied to this zone. See [Tag Reference](#tag-reference) below for common tags.|
+|tag|string[]|A comma-separated list of tags applied to this zone. See [Tag Reference](#tag-reference) below for common tags.|
 |cost|int|Unused.|
 |dev|int|Default zone development level.|
-|image|string|Unused.|
+|image|string|Name of the picture shown in the zone selection UI, taken from the game's built-in images. Blank means `default`. Custom images are not supported yet.|
 |pos|int[]|Zone position on the world map, formatted as `x,y,icon ID`. To find the `icon ID`, see [World Icon ID](#world-icon-id) below.|
-|questTag|string|Possible quest types in this zone. Ignored when the zone belongs to the player's faction.|
+|questTag|string[]|Possible quest types in this zone. Ignored when the zone belongs to the player's faction.|
 |textFlavor_JP|string|Flavor text shown when entering the zone, in Japanese.|
 |textFlavor|string|Flavor text shown when entering the zone, in English. For other languages, use [`SourceLocalization`](./localization).|
 |detail_JP|string|Description of the zone, in Japanese.|

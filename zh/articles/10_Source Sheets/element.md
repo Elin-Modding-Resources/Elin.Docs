@@ -14,6 +14,8 @@ tags: SourceSheet/Element
 
 制作源表时，请始终复制官方行的前 3 行，然后从第 4 行开始填入你的数据。不要更改列的顺序。
 
+空格子不等于空值——游戏会回落到第 3 行的默认值。本表的默认值有：`type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5。
+
 ## 列说明
 
 |列名|类型|描述|
@@ -21,8 +23,9 @@ tags: SourceSheet/Element
 |id|int|元素的唯一标识符。如果 ID 与官方或其它 Mod 的条目重复，最后加载的表将覆盖之前的所有条目。不能包含空格或特殊字符。|
 |alias|string|此元素的字符串别名。通常推荐使用 ID 来访问，但这里提供了字符串表示。供下方的其它 `aliasX` 列使用。|
 |name_JP|string|日文显示名称。|
-|altname_JP|string[]|此元素的替代日文形容词，逗号分隔。主要用于魔法元素（例如：Fire → 赤、燃烧）。|
-|altname|string[]|此元素的替代英文形容词，逗号分隔。主要用于魔法元素（例如：Fire → red, burning）。|
+|name|string|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)。|
+|altname_JP|string|此元素的替代日文形容词，逗号分隔。主要用于魔法元素（例如：Fire → 赤、燃烧）。|
+|altname|string|此元素的替代英文形容词，逗号分隔。主要用于魔法元素（例如：Fire → red, burning）。|
 |aliasParent|string|父元素的别名。参见下方[aliasParent](#aliasparent)。|
 |aliasRef|string|引用元素的别名。参见下方[aliasRef](#aliasref)。|
 |aliasMtp|string|作为本行倍率元素的别名（例如：`life` 受 `r_life` 倍率影响）。|
@@ -121,3 +124,83 @@ Elin 中的元素涵盖众多类别。`group` 列基本一目了然：
 |POLICY|势力政策（可开关，例如：Weed Pulling Campaign）|
 |ABILITY|能力（Bladestorm、Dream Larva；通常消耗体力）|
 |SPELL|法术|
+
+## tagTrainer
+`string`  
+似乎已废弃。
+
+## levelBonus_JP
+`string`  
+说明该元素在特定等级上提供的额外加成（日文）。例如盾牌技能在 5 级和 10 级各有额外效果。
+
+## levelBonus
+`string`  
+说明该元素在特定等级上提供的额外加成（英文）。
+
+## foodEffect
+`string[]`  
+指向一组元素：吃下带有本元素的物品时会施加它们。例如吃下带 `cat` 元素的东西会掉业力——别吃猫。
+
+## note
+`string`  
+游戏不读这一列（第 2 行没有类型标注），可以当成表内备注。
+
+## langAct
+`string[]`  
+指向 langGeneral 里的一条，用来改变使用该能力时显示的文本。
+
+## detail_JP
+`string`  
+该元素的详细说明（日文）。
+
+## detail
+`string`  
+该元素的详细说明（英文）。
+
+## textPhase_JP
+`string`  
+风味文本（日文）。鼠标悬停在元素上时显示的额外信息，可以用 `\n` 分行，供多阶段专长使用。
+
+## textPhase
+`string`  
+风味文本（英文）。
+
+## textExtra_JP
+`string`  
+补充风味文本（日文）。对专长而言，这段文字会显示在 textPhase 的右侧，悬停时也会显示在其下方。
+
+## textExtra
+`string`  
+补充风味文本（英文）。
+
+## textInc_JP
+`string`  
+在少数「获得某个元素」的场合，消息栏里显示的文本（日文），例如变成食人者时。
+
+## textInc
+`string`  
+在少数「获得某个元素」的场合，消息栏里显示的文本（英文）。
+
+## textDec_JP
+`string`  
+与 textInc_JP 相反，失去某个元素时显示（日文）。
+
+## textDec
+`string`  
+与 textInc 相反，失去某个元素时显示（英文）。
+
+## textAlt_JP
+`string[]`  
+待验证。看起来与 langList 里的数据重复，用于为特定等级追加名称（日文）。
+
+## textAlt
+`string[]`  
+待验证。看起来与 langList 里的数据重复，用于为特定等级追加名称（英文）。
+
+## adjective_JP
+`string[]`  
+似乎已废弃。
+
+## adjective
+`string[]`  
+似乎已废弃。

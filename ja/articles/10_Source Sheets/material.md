@@ -12,6 +12,8 @@ tags: SourceSheet/Material
 
 ソーステーブルを作成するときは、**必ず公式ソーステーブルの最初の3行をそのままコピー**して、4行目以降にデータを入力してください。列の順番は絶対に変えないでください。
 
+空のセルは「空の値」ではなく、3行目のデフォルト値にフォールバックします。このシートの既定値は `thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100 です。
+
 ## シートの列
 
 |列|タイプ|説明|
@@ -20,7 +22,7 @@ tags: SourceSheet/Material
 |alias|テキスト|マテリアルのエイリアス。他のシート（例：Thingの `defMat` 列）での参照に使用されます。|
 |name_JP|テキスト|日本語の表示名。|
 |name|テキスト|英語の表示名。その他の言語については [`SourceLocalization`](./localization) を使用してください。|
-|category|テキスト|マテリアルのカテゴリ（例：`metal`、`wood`、`stone`、`leather`、`cloth`）。|
+|category|テキスト|マテリアルのカテゴリ。バニラで使われているのは `gem`、`soil`、`wood`、`ore`、`fiber`、`rock`、`crystal`、`water`、`grass`、`skin`、`organic`、`bone` です。金属や革はここには入りません——それらは `groups` 列の値です。|
 |tag|テキスト[]|特殊な動作のためのタグ。カスタムマテリアルの色を定義するには、`addColorMain(RRGGBBAA)` と `addColorAlt(RRGGBBAA)` を使用します。下記の [カスタムマテリアル](#カスタムマテリアル) を参照してください。|
 |thing|テキスト|このマテリアルを解体した際の関連Thing ID。|
 |goods|テキスト[]|未使用と見なしてください。|

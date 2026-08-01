@@ -14,6 +14,8 @@ The Race Sheet is stored inside the Chara sheet; change the tab at the bottom.
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
+An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `vigor` to `100`, `DV`/`PV` to `0`, `geneCap` to `3`, `material` to `meat`, `corpse` to `_meat,20`, `blood` to `2`, `age` to `8,50` and `food` to `100`.
+
 ## Sheet Columns
 
 |Column|Type|Description|
@@ -21,7 +23,7 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |id|string|The most important cell of an entry that distinguishes it from everything else on the SourceChara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override all the others. This value cannot have any spaces or special characters in it.|
 |name_JP|string|The name of this race in Japanese.|
 |name|string|The name of this race in English. Other languages use SourceLocalization.json.|
-|playable|integer|Designates whether this race is usable by players during character creation. `4` and under: accessible. `5`: "Advanced" races. `7`–`8`: mostly NPC races. `9`: usually reserved for special races like gods/demons.|
+|playable|integer|Designates whether this race is usable by players during character creation. `1`: available by default. `2`–`6`: requires the "extra races" option. `7`–`8`: requires the "all races" option. `9`: never selectable, usually reserved for special races like gods/demons.|
 |tag|string[]|A comma-separated list of tags applied to this race. See [Tag Reference](#tag-reference) below for common tags.|
 |life|integer|The base life stat; determines HP pool.|
 |mana|integer|The base mana stat; determines MP pool.|
@@ -34,11 +36,11 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|Base attribute parameters.|
 |ratio|—|Macro to approximate the race strength; unused in-game but must be present in the sheet. Leave blank.|
 |INT|integer|The "intelligence" of this race. Used to determine whether they are smart enough to open a door on their own. Less than `10` means they cannot.|
-|martial|integer|Game usage unknown. Leave as `3` (same as Yerles).|
-|pen|integer|Game usage unknown. Leave as `0`.|
+|martial|integer|Unused by the game. Keep the column; the value does not matter.|
+|pen|integer|Unused by the game. Keep the column; the value does not matter.|
 |elements|elements|Inherent elements added to this race. Used to add racial feats and base skill bonuses (which also add base potential). Format: `element_alias/value`.|
-|skill|string|Game usage unknown. Leave blank.|
-|figure|string[]|Dictates what body parts this race starts with. See [Figure Reference](#figure-reference) below.|
+|skill|string|Unused by the game. What vanilla puts here are author notes (`●`, or skill names separated by spaces) and is never read; `elements` is the column that actually applies skills.|
+|figure|string|Dictates what body parts this race starts with. See [Figure Reference](#figure-reference) below.|
 |geneCap|integer|How many gene slots this race has.|
 |material|string|What material this race is made of.|
 |corpse|string[]|When a corpse is dropped upon killing this race, what it is made of.|
@@ -47,11 +49,11 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |meleeStyle|string|The melee effect of this race. Leave blank for default melee. Options: `Claw`, `Bite`, `Kick`, `Touch`, `Spore`, `Sting`, `Gaze`.|
 |castStyle|string|The casting effect of this race. Mostly used for flavor text.|
 |EQ|string[]|Determines what kind of equipment this race spawns with. EQ is an alternate way to enable equipment assignment when creating characters; you can fill in anything. Two common options are `"all"` and blank.|
-|sex|integer|Determines the spawning gender. `0` = female only. Values `50`–`56` also exist but usage is unclear.|
+|sex|integer|Unused by the game (gender comes from the first segment of the Chara sheet's `bio` column). Keep the column; the value does not matter.|
 |age|integer[]|The age range used when spawning this race, as comma-separated `start,end`. For example, `8,50` means they spawn between ages 8 and 50.|
 |height|integer|The average height of this race.|
 |breeder|integer|Whether this race is good for breeding. Used when this race is set as livestock to determine production rates.|
-|food|integer[]|A multiplier for how good the meat of this race is.|
+|food|string[]|A multiplier for how good the meat of this race is.|
 |fur|string|A set of strings in `category/material` format that dictate what happens when you shave this race.|
 |detail_JP|string|The details/backstory of this race in Japanese.|
 |detail|string|The details/backstory of this race in English.|
@@ -87,7 +89,7 @@ Common tags used in the `tag` column:
 
 ## Figure Reference
 
-The `figure` column uses Kanji characters separated by pipes (`|`) to represent body parts:
+The `figure` column uses Kanji characters separated by pipes (`|`) to represent body parts. A part can repeat, and each repetition is one more slot — `手|手|指|指` means two hands and two finger slots. Most vanilla humanoids use `頭|首|体|背|手|手|指|指|腕|腰|脚|足|`.
 
 |Character|Body Part|
 |-|-|

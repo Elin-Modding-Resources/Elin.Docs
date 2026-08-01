@@ -25,13 +25,13 @@ CWLフォーマットはWikiから削除されました。CWL仕様のModも `cw
 |name|string|英語表示名。その他の言語については [`SourceLocalization`](./localization) を使用してください|
 |name2_JP|string[]|領域名・略称（日本語）|
 |name2|string[]|領域名・略称（英語）|
-|type|string|カスタム信仰の場合は `ReligionCustom` を使用するか、カスタムC# Religionクラスの完全修飾名を入力してください|
+|type|string|カスタム信仰の場合は `ReligionCustom` を使用するか、カスタムC# Religionクラスの完全修飾名を入力してください。**空欄にしないでください**——この列の既定値は `ReligionCustom` ではなく `Faction` です|
 |idMaterial|string|祭壇のマテリアルエイリアス|
 |faith|string|未使用|
 |domain|string|未使用|
-|tax|int|信仰税のパーセンテージ|
-|relation|int|初期関係値|
-|elements|int[]|キャラクターに付与する信仰エレメントボーナス|
+|tax|int|信仰税のパーセンテージ。空欄なら `100`|
+|relation|int|初期関係値。空欄なら `50`|
+|elements|elements|キャラクターに付与する信仰エレメントボーナス。`エレメントエイリアス/値` 形式|
 |cat_offer|string[]|供物のカテゴリ|
 |rewards|string[]|贈り物レベル1と2の報酬|
 |textType_JP|string|アバタータイプ（日本語）|

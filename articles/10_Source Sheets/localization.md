@@ -10,7 +10,9 @@ tags: SourceSheet/Localization
 
 Source sheets contain English and Japanese columns by default, such as `name` and `name_JP`, or `aka` and `aka_JP`.
 
-Source sheets should be placed in the `EN` or `JP` folders.
+Source sheets should be placed in the `EN` or `JP` folders. The game does not actually require this — a mod can keep its only source sheet in `CN` and write the `name` column in Chinese — but `EN` / `JP` is where everyone expects to find it.
+
+Note that `SourceLocalization.json` always wins over the sheet columns, `EN` and `JP` included. If a mod already has a json entry for a text, editing `name` in the sheet will look like it does nothing.
 
 ## Adding Translations to Your Mod
 
@@ -79,7 +81,7 @@ For translating someone else's mod:
 
 1. Copy the original mod's drama sheets and `dialog.xlsx` into the matching path under the target language folder. For example, copy them from `EN` or `JP` to `CN`.
 2. Add the matching language columns. For example, for Chinese you would add `text_CN`. You can use the Tiny Mita example mod and the articles above as references.
-3. Delete `text_EN` and `text_JP`, but keep the `text` column.
+3. Delete `text_EN` and `text_JP`, but keep the `text` column. Make sure every line has an `id` first: a line without an `id` is only ever read from `text_JP`, so deleting that column leaves it with no text at all.
 
 ## Additional Notes
 

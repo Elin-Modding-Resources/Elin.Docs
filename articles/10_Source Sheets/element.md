@@ -14,6 +14,8 @@ The Element Sheet is stored inside the Game sheet. It should be the first tab vi
 
 When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
 
+An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `type` to `Element`, `chance` to `1000`, `encFactor` to `100`, `mtp` to `1`, `LV` to `1`, `cost` to `0`, `geneSlot` to `1`, `eleP` to `50`, `charge` to `10` and `radius` to `5`.
+
 ## Sheet Columns
 
 |Column|Type|Description|
@@ -21,8 +23,9 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |id|int|Unique identifier for the element. If the ID matches a vanilla or another mod's entry, the last sheet loaded overrides all previous ones. Cannot contain spaces or special characters.|
 |alias|string|String alias for this element. Usually the ID is preferred for access, but this provides a string representation. Used by the other `aliasX` columns below.|
 |name_JP|string|Display name in Japanese.|
-|altname_JP|string[]|Comma-separated list of alternative Japanese adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
-|altname|string[]|Comma-separated list of alternative English adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
+|name|string|Display name in English. Other languages use [`SourceLocalization`](./localization).|
+|altname_JP|string|Comma-separated list of alternative Japanese adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
+|altname|string|Comma-separated list of alternative English adjectives for this element. Mostly used for magical elements (e.g., Fire → red, burning).|
 |aliasParent|string|Alias of a parent element. See [aliasParent](#aliasparent) below.|
 |aliasRef|string|Alias of a reference element. See [aliasRef](#aliasref) below.|
 |aliasMtp|string|Alias of the element that acts as a multiplier for this row (e.g., `life` is multiplied by `r_life`).|
@@ -137,6 +140,10 @@ A description that shows information on extra bonuses provided by this element i
 ## foodEffect
 `string[]`  
 Points at elements that get applied when an item that has this element is consumed (e.g. eating items with the "cat" element will cause a karma loss. Don't eat cats.)
+
+## note
+`string`  
+The game does not read this column (row 2 has no type on it). Use it for notes inside the sheet.
 
 ## langAct
 `string[]`  

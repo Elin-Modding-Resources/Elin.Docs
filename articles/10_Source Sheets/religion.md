@@ -25,13 +25,13 @@ CWL specs are removed from the wiki, mods using CWL spec are still compatible, s
 |name|string|Display name in English. For other languages, use [`SourceLocalization`](./localization)|
 |name2_JP|string[]|Domain name, short name, in Japanese|
 |name2|string[]|Domain name, short name, in English|
-|type|string|Use `ReligionCustom` for custom religions. Or your own C# Religion type's full name|
+|type|string|Use `ReligionCustom` for custom religions. Or your own C# Religion type's full name. **Do not leave it blank** — the column defaults to `Faction`, not `ReligionCustom`|
 |idMaterial|string|Material alias of the altar|
 |faith|string|Unused|
 |domain|string|Unused|
-|tax|int|Religion tax percentage|
-|relation|int|Starting relation|
-|elements|int[]|Religion elements bonus given to chara|
+|tax|int|Religion tax percentage. Blank means `100`|
+|relation|int|Starting relation. Blank means `50`|
+|elements|elements|Religion elements bonus given to chara, as `element_alias/value`|
 |cat_offer|string[]|Offering category|
 |rewards|string[]|Gift rank 1 & 2 rewards|
 |textType_JP|string|Avatar type in Japanese|
