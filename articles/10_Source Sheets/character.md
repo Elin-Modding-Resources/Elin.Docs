@@ -10,7 +10,17 @@ tags: SourceSheet/Chara
 
 <LinkCard t="SourceChara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
+When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row.
+
+::: warning About columns and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns.
+
+**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+
+An empty cell is **not** an empty value either — the game falls back to the default on row 3. `race` defaults to `norland`, `job` to `none`, `category` to `chara`, `_idRenderData` to `chara`, `LV` to `1`, `chance` to `100`, `tiles` and `colorMod` to `0`.
+
+You can change your default row 3 values to apply it to all other rows.
+:::
 
 ## Sheet Columns
 
@@ -22,50 +32,73 @@ When making source sheets, always copy the first 3 rows from official rows and s
 |name|string|The Chara's in-game display name in English. Other languages use SourceLocalization.json. |
 |aka_JP|string|The Chara's in-name alias/title in Japanese.|
 |aka|string|The Chara's in-game alias/title in English. Other languages use SourceLocalization.json. |
-| idActor | string | Controls whether the Chara uses PCC-part rendering. Example: `pcc,unique,jure` loads PCC parts from `pcc/unique/jure`. |
-| sort | string | Unused in SourceChara. |
-| size | string | Tile dimensions occupied by the Chara; usually empty. Example: `2,2` makes the Chara occupy 2×2 tiles and prevents shoving. |
-| _idRenderData | string | Controls sprite sheet referencing. `chara`/`chara_L`... uses tile IDs from `tiles` with textures in **Texture Replace** (limited slots, can be overridden). `@chara` uses same-ID texture from **Texture** (**mandatory** for modded Chara). |
-| tiles | integer | tile IDs for sprite sheet, or [skinset](../15_Texture%20Mods/skins) for modded Chara. |
-| tiles_snow | integer | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../15_Texture%20Mods/variation) instead. |
+| idActor | string[] | Controls whether the Chara uses PCC-part rendering. Example: `pcc,unique,jure` loads PCC parts from `pcc/unique/jure`. |
+| sort | int | Unused in SourceChara. |
+| size | int[] | Tile dimensions occupied by the Chara; usually empty. Example: `2,2` makes the Chara occupy 2×2 tiles and prevents shoving. |
+| _idRenderData | string | Controls sprite sheet referencing. `chara`/`chara_L`... uses tile IDs from `tiles` with textures in **Texture Replace** (limited slots, can be overridden). `@chara` uses same-ID texture from **Texture** (**mandatory** for modded Chara). Note that leaving this blank does **not** mean "no render data": it falls back to the row-3 default `chara`, i.e. the tile-sheet mode — which is why a modded Chara without `@chara` shows the wrong sprite. |
+| tiles | int[] | tile IDs for sprite sheet, or [skinset](../15_Texture%20Mods/skins) for modded Chara. |
+| tiles_snow | int[] | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../15_Texture%20Mods/variation) instead. |
 | colorMod | integer | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
-| components | string | Unused in SourceChara. |
+| components | string[] | Unused in SourceChara. |
 | defMat | string | Default corpse material, selected from the alias column of the Material sub-sheet within SourceBlock. Leave it empty to use Race's default material. |
 | LV | integer | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
 | chance | integer | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
-| quality | integer | `0–2`: regular tiers. `3`: Unique Monsters (egg obtainable; cannot befriend/capture/tame). `4`: Unique Characters (whose name are displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). Not required for custom adventurers. |
-| hostility | string | Temperament toward player/allies/bystanders. Blank: `Hostile`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
+| quality | integer | `0–2`: regular tiers. `3`: Unique Monsters (egg obtainable; cannot befriend/capture/tame). `4`: Unique Characters (whose name are displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). Not required for custom adventurers. The value maps to rarity, so `3` is Mythical and `4` is Artifact. |
+| hostility | string | Temperament toward player/allies/bystanders. Accepts `Enemy` / `Neutral` / `Friend` / `Ally` — note that hostile is spelled `Enemy`, not `Hostile`. Blank is treated as `Enemy`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
 | biome | string | Increases (possibly doubles) spawn chance on specified floor type, decreases (possibly halves) on others. Example: `Water` strongly favors water-floor spawning. |
-| tag | string | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). |
-| trait | string | Complex trait list; refer to trait documentation and `Trait*` C# classes. |
-| race | string | Select from the Race ID column of SourceRace. |
+| tag | string[] | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). |
+| trait | string[] | Complex trait list; refer to trait documentation and `Trait*` C# classes. |
+| race | string | Select from the Race ID column of SourceRace. Defaults to `norland` when left blank — a Chara with no race is a Norlander, not a Chara without a race. |
 | job | string | Select from the Job ID column of SourceJob; default is `none`. This defines your character's class (job). |
 | tactics | string | Overrides default tactics of assigned job. |
 | aiIdle | string | AI behavior supplement/override. Examples: `Stand` (fully stationary, even when attacked), `Root` (stationary until attacked or recruited). |
-| aiParam | string | Three values: preferred enemy distance, per-turn reposition chance to that distance, and (rarely used) bonus chance to reposition again. |
-| actCombat | string | Active abilities/spells usable in combat, selected from SourceElement entries and comma-separated. Add `/N` for fixed use chance. For buffs, add `/pt` to target whole party (ally state only). Example: `ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`. Default chance is 100. |
-| mainElement | string | Primary elemental affinity: `Fire`, `Cold`, `Lightning`, `Darkness`, `Nether`, `Sound`, `Chaos`, `Poison`, `Cut`, `Acid`, `Impact`. |
+| aiParam | int[] | Three values: preferred enemy distance, per-turn reposition chance to that distance, and (rarely used) bonus chance to reposition again. |
+| actCombat | string[] | Active abilities/spells usable in combat, selected from SourceElement entries and comma-separated. Add `/N` for fixed use chance. For buffs, add `/pt` to target whole party (ally state only). Example: `ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`. Default chance is 100. |
+| mainElement | string[] | Primary elemental affinity: `Fire`, `Cold`, `Lightning`, `Darkness`, `Mind`, `Nether`, `Nerve`, `Sound`, `Chaos`, `Poison`, `Holy`, `Cut`, `Acid`, `Impact`. You may list **several**, comma-separated — the game picks one at random, weighted by the Chara's `LV` against each element's `eleP`. Add `/N` to set the element level (default `10`), e.g. `Poison/80`. The value is looked up as `ele` + the name (`Fire` → `eleFire`) in SourceElement's alias column, so a typo throws on spawn. |
 | elements | string | Passives, such as feats/enchantments, selected from SourceElement entries and comma-separated. Add `/N` for level/value where applicable. `0` or negative can modify inherited race elements. Examples: `invisibility/1` enables, `invisibility/0` disables inherited; `antidote/-30` makes meat poisonous, `antidote/30` cures poison or offsets racial `-30`. |
-| equip | string | Overrides randomized job equipment template, **only if race EQ is not empty**. Example: a Thief-job unit with `equip=Archer` gets Archer gear; Dog-race units with empty race EQ still won’t spawn with equipment even if `equip` is set. |
-| loot | string | Extra drops (Thing/ThingV IDs), comma-separated, each with `/N`. Every 20 = +1% drop chance. Example: `medal/500` = 25%; `medal/3000` = 150% (guaranteed 1 + 50% for another). |
+| equip | string | Overrides the randomized job equipment template. Blank follows the job (the `equip` column on the Job sheet); `none` skips equipment generation entirely. Only three values actually do anything, and they are **case-sensitive** and lowercase: `archer` (bow/crossbow), `inquisitor` and `gunner` (gun). A non-empty value also triggers equipment generation on its own, even when the race's EQ is empty. |
+| loot | string[] | Extra drops (Thing/ThingV IDs), comma-separated, **each one must carry `/N`** — leaving it out is an error. `N` is per **mille**: below 1000 it is the chance to drop one (`medal/500` = 50%), 1000 and above always drops, with `N / 1000` as the guaranteed count and the remainder as the per-mille chance of one extra (`medal/3000` = always 3; `medal/2500` = 2, plus 50% for a third). Nothing drops for PC-faction charas or in user-made zones. |
 | category | string | Most entries use default `chara`. |
-| filter | string | Unused in SourceChara. |
-| gachaFilter | string | Gacha picks a category (e.g., resident/livestock/Unique/default), then selects eligible Chara by this filter. Example: livestock results only include entries tagged for livestock. |
-| tone | string | Dialogue modifiers for Japanese text. |
-| actIdle | string | Out-of-combat behavior instructions. Examples: `readBook` (generates/reads/removes random book), `buffMage` (periodically casts buffs like `spResElement` or `spHero`). |
-| lightData | string | Unused in SourceChara. The color emitted from light. |
-| idExtra | string | Unused in SourceChara. Extra renderdata. |
-| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`, required), `age` (optional), `height` (optional), `weight` (optional), `tone` from `chara_tone.xlsx` (optional), `talk` from `chara_talk.xlsx` (optional). Example: `f/51044/152/46/friendly\|私\|あなた`. |
+| filter | string[] | Unused in SourceChara. |
+| gachaFilter | string[] | Gacha picks a category (e.g., resident/livestock/Unique/default), then selects eligible Chara by this filter. Example: livestock results only include entries tagged for livestock. |
+| tone | string | **This column is read in and then never used**, so filling it in has no effect. The tone that actually applies is the 5th segment of `bio`. |
+| actIdle | string[] | Out-of-combat behavior instructions. Examples: `readBook` (generates/reads/removes random book), `buffMage` (periodically casts buffs like `spResElement` or `spHero`). |
+| lightData | string | The color emitted from light. It works for Chara too — vanilla uses `wisp`, `wisp_bright` and `fireplace` here. |
+| idExtra | string | Extra renderdata. Also works for Chara (vanilla: `deep_jellyfish`). |
+| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`, required), `age`, `height`, `weight`, `tone` from `chara_tone.xlsx`, `talk` from `chara_talk.xlsx`. Example: `f/51044/152/46/friendly\|私\|あなた`. Optional segments may only be dropped **from the tail** — see [The bio Column](#the-bio-column). |
 | faith | string | Fixed religion. Setting this will prevent changing in game. |
-| works | string | Select from the alias column of SourceHobby. |
-| hobbies | string | Select from the alias column of SourceHobby. |
+| works | string[] | Select from the alias column of SourceHobby. |
+| hobbies | string[] | Select from the alias column of SourceHobby. |
 | idText | string | Links to an entry in `CharaText` sheet. |
 | moveAnime | string | Move animation type. `hop` or blank. |
-| factory | string | Unused in SourceChara. |
-| components | string | Unused in SourceChara; This is a duplicate column. |
-| recruitItems | string | Special recruit dialog items, only used by mani right now. |
+| factory | string[] | Unused in SourceChara. |
+| components | string[] | Unused in SourceChara; This is a duplicate column. When a sheet has two columns of the same name, the **later** one wins. |
+| recruitItems | string[] | Special recruit dialog items, only used by mani right now. |
 | detail_JP | string | Unused in SourceChara; can be used for notes. |
 | detail | string | Unused in SourceChara; can be used for notes. |
+
+## The bio Column
+
+```
+gender/age/height/weight/tone/talk
+```
+
+Only `gender` (`m` / `f` / `n`) is truly required, and **the optional segments may only be dropped from the tail**. `f////friendly` does not work.
+
+Two more things that are invisible from the sheet:
+
+- **`age` is an age, not a year.** The game derives the birth year from it (birth year = current year − age). `height` and `weight` have no unit attached — they are just two numbers the game shows as-is.
+- **Filling in `age` turns off the random portrait**, unless the Chara has the `randomPortrait` tag. Writing an age also makes the game look for `Data/PCC/<id>.txt` but that can be ignored.
+
+The `tone` segment can itself be split with `|`:
+
+```
+toneId|firstPerson|secondPerson
+```
+
+`toneId` is an id from `chara_tone.xlsx` (blank behaves as `default`). The other two replace the first and second person pronouns in the Chara's lines, but that substitution **only happens in Japanese** — they do nothing in any other language.
+
+This column has nothing to do with `addBio(ID)` and `bio_ID.json` further below: this one is the set of parameters used to *generate* the Chara, the other one is the biography text shown in the character sheet.
 
 ## Allow Human Speak
 

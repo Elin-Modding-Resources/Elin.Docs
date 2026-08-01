@@ -10,7 +10,17 @@ tags: SourceSheet/Thing
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
 
-制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。切勿更改列的顺序。
+制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。
+
+::: warning 关于列与空行
+**缺少的列会被静默填成空值**，不会有任何报错——所以请把官方表的表头整行复制过来，不要删列。
+
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+
+另外，空格子**不等于空值**——游戏会回落到第 3 行的默认值，`components` 默认是 `log`、`defMat` 默认是 `oak`、`category` 默认是 `other`。你也可以改第 3 行的默认值，让它作用到其余所有行。
+
+官方 Thing 表里有**两个 `sort` 列**，实际生效的是靠后的那一个（同名列以最后一个为准）。原样复制表头即可，不要精简。
+:::
 
 ## 表格列
 
@@ -23,46 +33,47 @@ tags: SourceSheet/Thing
 |unit_JP|文本|日文量词（助数词）。参见下方 [Unit JP](#unit-jp)。|
 |unit|文本|物品的物理形态。参见下方 [Unit](#unit)。|
 |unknown|文本|英文稀有度较高的物品未鉴定时的名称。也可能是特殊属性，例如：`#randomBook`、`#randomPotion`。|
+|naming|文本|堆叠时名字怎么显示。`m` = 「材质 + 物品名 (数量)」；`ma` = 只显示材质名 (数量)，用于原材料；留空 = 只显示物品名 (数量)。|
 |category|文本|物品所属的类别。用于自动存放和配方菜单（关联 `Category` 表）。|
 |sort|整数|排序顺序。例如 `2200` 会将其归入弓的排序范围。|
-|_tileType|文本|地图上的显示方式。参见下方 [Tile Type](#tile-type)。|
+|_tileType|文本|地图上的显示方式。参见下方 [Tile Type](#tile-type)。必须是游戏认识的类型名——**写错会让整张源表加载失败**。|
 |_idRenderData|文本|物品在地面的放置方式与裁剪。参见下方 [idRenderData](#idrenderdata)。|
-|tiles|整数|替换纹理的图块 ID。多个图块遵循：正面 → 正面翻转 → 背面 → 背面翻转。例如：`123,-123,456,-456`。|
-|altTiles|整数|替代状态的变体图块（例如装有物品的关闭宝箱）。|
+|tiles|整数[]|替换纹理的图块 ID。多个图块遵循：正面 → 正面翻转 → 背面 → 背面翻转。例如：`123,-123,456,-456`。|
+|altTiles|整数[]|替代状态的变体图块（例如装有物品的关闭宝箱）。|
 |anime|整数[]|两个值：`帧数,每帧持续时间`。当 `idRenderData`列使用@obj 且使用[动画贴图](../15_Texture%20Mods/animation)时，不需要填写此列。|
-|skins|整数|皮肤变体引用。当 `idRenderData`列使用@obj 且使用[贴图变体](../15_Texture%20Mods/variation)时，不需要填写此列。|
-|size|整数[]|大型物体的网格尺寸：`高度,宽度`。|
-|colorMod|整数|颜色饱和度修正。|
+|skins|整数[]|皮肤变体引用。填几个值就有几种可选外观（加上基础外观共 N+1 种，建造菜单与配方菜单据此列出）。当 `idRenderData`列使用@obj 且使用[贴图变体](../15_Texture%20Mods/variation)时，不需要填写此列。|
+|size|整数[]|大型物体的网格尺寸：`宽度,高度`。|
+|colorMod|整数|颜色饱和度修正。`0` 表示不着色。|
 |colorType|文本|颜色来源：`default`（第一个合成材料）、`alt`（第二个材料）、`random`（随机）。|
-|recipeKey|文本|配方获取方式：`*` = 默认已知；角色 ID = 由该角色出售。|
-|factory|文本|制作该物品的工作台。参见下方 [Factory](#factory)。|
-|components|文本|合成材料。参见下方 [Components](#components)。|
-|disassemble|文本|分解后产出的物品。|
-|defMat|文本|默认材质（例如 `oak`）。决定图标/预览的颜色。|
+|recipeKey|文本[]|配方获取方式：`*` = 默认已知；`-` = 不进入随机配方池；角色 ID = 由该角色出售。|
+|factory|文本[]|制作该物品的工作台。参见下方 [Factory](#factory)。|
+|components|文本[]|合成材料。参见下方 [Components](#components)。|
+|disassemble|文本[]|分解后产出的物品。|
+|defMat|文本|默认材质（例如 `oak`）。决定图标/预览的颜色。加前缀 `!`（如 `!oak`）表示**锁定材质**，物品不会再随等级或生成方式换材质。填了不存在的材质时游戏会静默回落到 `granite`。|
 |tierGroup|文本|升级/进阶的层级分组。|
 |value|整数|基础售价（奥伦）。|
 |LV|整数|制作所需的技能等级。|
-|chance|文本|生成概率修正值。|
-|quality|整数|物品稀有度等级。☆★等都是由quality列决定的。**（待补充）**|
+|chance|整数|生成概率修正值。|
+|quality|整数|物品稀有度等级：`-1` Crude（粗制品）、`0` Normal（凡品）、`1` Superior（优质品）、`2` Legendary（奇迹）、`3` Mythical（神器）、`4` Artifact（特殊物品）。☆★等都是由该列决定的。它还决定 `offense` / `defense` 是否原样生效，参见下方 [攻击与防御数值](#攻击与防御数值)。|
 |weight|整数|物品重量。例如：种子 = `30`、魔杖 = `500`、床 = `4500`、钢琴 = `85000`。|
 |electricity|整数|电力消耗。负值表示消耗电力（例如显示器 = `-10`）。|
-|trait|文本|特殊行为。参见下方 [Trait](#trait)。|
+|trait|文本[]|特殊行为。参见下方 [Trait](#trait)。|
 |elements|文本|来自 `Element` 表的别名，附带 `/等级`。例如 `lumberjack/4` 在游戏中显示为 `Lumberjack [****]`。|
 |range|整数|武器射程（格数）。例如：短弓 = `1`、弓 = `3`、电磁炮 = `5`。|
 |attackType|文本|伤害/武器类型：`Blunt`、`Bow`、`Cane`、`Claw`、`Gun`、`Pierce`、`Punch`、`Slash`。|
-|offense|整数[4]|攻击属性（4 个数值）。|
-|substats|整数|副属性修正。|
-|defense|整数[2]|防御属性：`DV,PV`。|
+|offense|整数[4]|攻击属性：`骰子数,骰面,伤害加成,命中加成`。例如 `2,8,5,4` 即 2d8、+5 伤害、+4 命中。参见下方 [攻击与防御数值](#攻击与防御数值)。|
+|substats|整数[]|副属性修正。本体源表里都只填了一个数值。|
+|defense|整数[2]|防御属性：`DV,PV`。参见下方 [攻击与防御数值](#攻击与防御数值)。|
 |lightData|文本|发光预设。参见下方 [Light Data](#light-data)。|
 |idExtra|文本|额外渲染数据引用。|
 |idToggleExtra|文本|可切换的渲染数据（例如开关灯）。|
 |idActorEx|文本|物体周围的环境效果。参见下方 [Ambient Effects](#ambient-effects)。|
 |idSound|文本|制作时的音效：`glass`、`money`、`paper` 等。|
-|tag|文本|内置行为标志。参见下方 [Tags](#tags)。|
+|tag|文本[]|内置行为标志。参见下方 [Tags](#tags)。|
 |workTag|文本|工作相关标签。|
-|filter|文本|合成以外的获取途径：`fish`、`gacha`、`supply` 等。游戏通过 `CreateFromFilter` 随机生成物品。|
-|roomNameJP|文本|房间类型定义（日文）。多个条目用逗号分隔。|
-|roomName|文本|房间类型定义（英文）。例如：`Bedroom` 或 `Kitchen,Dining Room`。|
+|filter|文本[]|合成以外的获取途径：`fish`、`gacha`、`supply` 等。游戏通过 `CreateFromFilter` 随机生成物品。|
+|roomName_JP|文本[]|房间类型定义（日文）。多个条目用逗号分隔。|
+|roomName|文本[]|房间类型定义（英文）。例如：`Bedroom` 或 `Kitchen,Dining Room`。|
 |detail_JP|文本|物品描述（日文）。在游戏中显示于属性信息上方。|
 |detail|文本|物品描述（英文）。在游戏中显示于属性信息上方。|
 
@@ -108,7 +119,7 @@ tags: SourceSheet/Thing
 |rod|set|signboard|
 |spellbook|staff|statue|
 |syringe|tree|tuft|
-|whip|whistle|
+|whip|whistle||
 
 ## Tile Type
 
@@ -134,7 +145,9 @@ tags: SourceSheet/Thing
 用于**不使用**纹理替换的自定义物品：
 - 文件名必须与 `id` 完全一致。
 - 使用小写 `.png` 扩展名（`.PNG` 无效）。
-- 放置在 Mod 的 `Texture` 文件夹中。
+- 放置在 Mod 的 `Texture` 文件夹中。放在 `Texture/Item/` 下也可以——游戏找不到 `<id>` 时会再找一次 `Item/<id>`。**其他子目录不会被找到**，除非 `id` 本身就带那个前缀。
+
+`@` 的作用是让游戏按图片的实际尺寸把整张图居中摆放，所以自定义的一整张贴图才需要它。还可以写成 `@obj#其他物品ID`，`#` 后面那段表示借用该物品的 pref（放置、碰撞那组属性）。
 
 ### `obj` — 纹理替换
 
@@ -185,6 +198,12 @@ tags: SourceSheet/Thing
 |`@材质`|需要指定材质的物品。|`chunk@snow/10` → 10 个雪块。|
 |`\|`|「或」— 选择其中一种。|`rock/2\|ingot` → 2 个岩石或 2 个锭。|
 |`#类别`|从背包中选择匹配该类别的物品。|`#book` → 选择任意一本书。|
+|`+`|**可选材料**，不放也能制作。|`+rune` → 可以额外放一枚符文。|
+|`$`|该项决定成品的**颜色**。|`$log/2`|
+
+前缀可以叠加，顺序不限，例如 `+#book`。
+
+整列只写一个 `-`（`components` = `-`）表示使用默认配料表，而不是「不需要材料」。留空则会落到该列的默认值 `log`，也就是「1 根原木」——想让物品不可制作，请把 `factory` 留空。
 
 ### 示例
 
@@ -199,7 +218,9 @@ tags: SourceSheet/Thing
 
 ## Trait
 
-`trait` 列定义特殊行为。对于容器类物体，使用以下格式：
+`trait` 列定义特殊行为。它的格式统一是**逗号分隔的一串**：第一段是特性名（游戏会去找名为 `Trait<这一段>` 的类），其余各段是传给该特性的参数，**参数的含义因特性而异**。
+
+对于容器类物体：
 
 ```
 Container,行数,列数,背景图片,特殊说明
@@ -209,6 +230,31 @@ Container,行数,列数,背景图片,特殊说明
 |-|-|
 |`beekeep,2,2,crate,honey`|2×2 容器（木箱背景），存放蜂蜜。|
 |`ChestPractice,7,5,crate`|7×5 容器（木箱背景）。|
+
+其他常见特性的参数：
+
+|示例|含义|
+|-|-|
+|`Workbench,blacksmith`|工作台，所需技能（留空为 `handicraft`）。|
+|`Light,3`|光源，发光半径。|
+|`ToolRangeGun,12,4`|枪械，弹匣容量、装填回合数。|
+|`Harvest,gathering,1`|可采集，采集技能、数量。|
+|`Drink,DrinkWater,10`|可饮用，效果 ID、数值。|
+|`Altar,ehekatl`|祭坛，所属神明 ID。|
+|`RecipeCat,food`|配方书，配方类别。|
+
+参数一律可以省略，省略时用该特性自己的默认值。
+
+## 攻击与防御数值
+
+`offense` 是四个值：`骰子数,骰面,伤害加成,命中加成`。`2,8,5,4` 读作「2d8，+5 伤害，+4 命中」。`defense` 是两个值：`DV,PV`。
+
+**这两列填的数字，只有 `quality` = `4`（神器）时才会原样进入游戏。** 其余品质下，游戏会按**材质**和**稀有度**重新换算，还带一点随机：
+
+- 稀有度基准：Crude 150、Normal 120、Superior 100、Legendary 及以上 80，数值越低成品越强；
+- 骰面 ≈ `骰面 × 材质的 dice ÷ 基准值`，伤害加成 ≈ `伤害加成 × 材质的 atk × 9 ÷ 基准值`（`dice` 与 `atk` 都是 Material 表里的列），防御同理按材质换算。
+
+也就是说，普通装备在表里填的是**基准值**而不是最终值——调数值时要连 `defMat` 和 `quality` 一起看，否则会觉得「填了没用」。
 
 ## Light Data
 
@@ -260,6 +306,8 @@ Container,行数,列数,背景图片,特殊说明
 |`noShop`|在对应类型的商店中不生成。|
 |`fixedElement`|固定elements附魔数值。|
 |`randomElement`|浮动elements附魔数值。|
+|`randomSkin`|生成时从 `skins` 里随机挑一种外观。|
+|`noSkinRecipe`|配方菜单里不提供外观选择。|
 
 ## 导入远程武器数据
 

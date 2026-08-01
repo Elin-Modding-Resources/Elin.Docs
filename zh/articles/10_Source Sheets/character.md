@@ -12,7 +12,17 @@ tags: SourceSheet/Chara
 
 <LinkCard t="SourceChara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
-制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。切勿更改列的顺序。
+制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。
+
+::: warning 关于列与空格子
+**缺少的列会被静默填成空值**，不会有任何报错——所以请把官方表的表头整行复制过来，不要删列。
+
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+
+另外，空格子**不等于空值**——游戏会回落到第 3 行的默认值。`race` 默认 `norland`、`job` 默认 `none`、`category` 默认 `chara`、`_idRenderData` 默认 `chara`、`LV` 默认 `1`、`chance` 默认 `100`、`tiles` 与 `colorMod` 默认 `0`。
+
+你也可以改第 3 行的默认值，让它作用到其余所有行。
+:::
 
 |列|类型|描述|
 |-|-|-|
@@ -22,50 +32,73 @@ tags: SourceSheet/Chara
 |name|文本|角色的游戏内显示的英文名称。其他语言使用  [SourceLocalization.json](./localization) 。|
 |aka_JP|文本|角色的游戏内别名/称号的日文名称。|
 |aka|文本|角色的游戏内别名/称号的英文名称。其他语言使用  [SourceLocalization.json](./localization) 。|
-|idActor|文本|控制角色是否使用 PCC 部件渲染。示例：`pcc,unique,jure` 会从 `pcc/unique/jure` 加载 PCC 部件。|
-|sort|文本|在 SourceChara 中未使用。|
-|size|文本|角色占用的图块尺寸；通常为空。示例：`2,2` 会使角色占用 2×2 图块并防止被推挤。|
-|_idRenderData|文本|控制精灵表引用。`chara`/`chara_L` 等使用 **Texture Replace** 中的纹理和 `tiles` 中的图块 ID（插槽有限，可被覆盖）。`@chara` 使用 **Texture** 中相同 ID 的纹理。模组角色**必须**使用`@chara`。|
-|tiles|整数|精灵表的图块 ID，或模组角色的 [skinset](../15_Texture%20Mods/skins)。|
-|tiles_snow|整数|在雪地地图上使用的替代图块序列。模组角色改为使用 [贴图变体](../15_Texture%20Mods/variation)。|
+|idActor|文本[]|控制角色是否使用 PCC 部件渲染。示例：`pcc,unique,jure` 会从 `pcc/unique/jure` 加载 PCC 部件。|
+|sort|整数|在 SourceChara 中未使用。|
+|size|整数[]|角色占用的图块尺寸；通常为空。示例：`2,2` 会使角色占用 2×2 图块并防止被推挤。|
+|_idRenderData|文本|控制精灵表引用。`chara`/`chara_L` 等使用 **Texture Replace** 中的纹理和 `tiles` 中的图块 ID（插槽有限，可被覆盖）。`@chara` 使用 **Texture** 中相同 ID 的纹理。模组角色**必须**使用`@chara`。注意留空**不等于没有渲染数据**：它会回落到第 3 行的默认值 `chara`，也就是图集模式——模组角色不写 `@chara` 时贴图不对，正是这个原因。|
+|tiles|整数[]|精灵表的图块 ID，或模组角色的 [skinset](../15_Texture%20Mods/skins)。|
+|tiles_snow|整数[]|在雪地地图上使用的替代图块序列。模组角色改为使用 [贴图变体](../15_Texture%20Mods/variation)。|
 |colorMod|整数|目前主要与 `100` 配合使用，允许灰度精灵继承 `mainElement` 的颜色。|
-|components|文本|在 SourceChara 中未使用。|
+|components|文本[]|在 SourceChara 中未使用。|
 |defMat|文本|默认尸体材质，从 SourceBlock 内 Material 分表的 alias 列中选择。留空则使用种族的默认材质。|
 |LV|整数|角色的“危险等级”；影响根据地图危险度生成的生成阈值、选择成本（奴隶主/驯兽师）以及基于种族/职业特征的基础属性生成。|
 |chance|整数|地图生成几率的修正值（可能也影响销售列表）。默认值为 `100`。|
-|quality|整数|`0–2`：普通等级。`3`：独特怪物（可获得蛋；无法成为朋友/捕捉/驯服）。`4`：独特角色（名字显示时外部带有 `『』`；受精卵仅能孵化出鸡；可以成为朋友但无法使用精灵球捕捉）。自定义冒险者无需填写。|
-|hostility|文本|对玩家/盟友/旁观者的性情。留空为 `Hostile`（敌对）。`Neutral`：除非被攻击否则不会主动攻击。`Friend`：会攻击任何对友方单位敌对的目标，若玩家被激怒也会攻击。|
+|quality|整数|`0–2`：普通等级。`3`：独特怪物（可获得蛋；无法成为朋友/捕捉/驯服）。`4`：独特角色（名字显示时外部带有 `『』`；受精卵仅能孵化出鸡；可以成为朋友但无法使用精灵球捕捉）。自定义冒险者无需填写。这一列对应稀有度，`3` 即 Mythical（神器）、`4` 即 Artifact（特殊物品）。|
+|hostility|文本|对玩家/盟友/旁观者的性情。可填 `Enemy` / `Neutral` / `Friend` / `Ally`——注意敌对写作 `Enemy`，不是 `Hostile`。留空按 `Enemy`（敌对）处理。`Neutral`：除非被攻击否则不会主动攻击。`Friend`：会攻击任何对友方单位敌对的目标，若玩家被激怒也会攻击。|
 |biome|文本|在指定地板类型上增加（可能翻倍）生成几率，在其他类型上减少（可能减半）。示例：`Water` 会强烈偏好在水面地板生成。|
-|tag|文本|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。|
-|trait|文本|复杂的特性列表；请参考特性文档和 `Trait*` C# 类。|
-|race|文本|从 SourceRace 的种族 ID 列中选择。|
+|tag|文本[]|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。|
+|trait|文本[]|复杂的特性列表；请参考特性文档和 `Trait*` C# 类。|
+|race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为 `norland`——没填种族的角色是诺兰人，而不是「没有种族的角色」。|
 |job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。|
 |tactics|文本|覆盖所分配职业的默认战术。|
 |aiIdle|文本|AI 行为的补充或覆盖。示例：`Stand`（完全静止，即使被攻击也不动）、`Root`（静止直到被攻击或招募）。|
-|aiParam|文本|三个数值：首选与敌人的距离、每回合移动到该距离的概率，以及（很少使用）再次移动的额外概率。|
-|actCombat|文本|战斗中可使用的主动能力/魔法，从 SourceElement 条目中选择，用半角逗号分隔。添加 `/N` 可设置固定使用概率。增益效果可添加 `/pt` 使其作用于整个队伍（仅限友方状态）。示例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。默认概率为 100。|
-|mainElement|文本|主要元素亲和力：`Fire`、`Cold`、`Lightning`、`Darkness`、`Nether`、`Sound`、`Chaos`、`Poison`、`Cut`、`Acid`、`Impact`。|
+|aiParam|整数[]|三个数值：首选与敌人的距离、每回合移动到该距离的概率，以及（很少使用）再次移动的额外概率。|
+|actCombat|文本[]|战斗中可使用的主动能力/魔法，从 SourceElement 条目中选择，用半角逗号分隔。添加 `/N` 可设置固定使用概率。增益效果可添加 `/pt` 使其作用于整个队伍（仅限友方状态）。示例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。默认概率为 100。|
+|mainElement|文本[]|主要元素亲和力：`Fire`、`Cold`、`Lightning`、`Darkness`、`Mind`、`Nether`、`Nerve`、`Sound`、`Chaos`、`Poison`、`Holy`、`Cut`、`Acid`、`Impact`。**可以用逗号填多个**，游戏会按角色 `LV` 与各元素的 `eleP` 加权随机挑一个。加 `/N` 可指定元素等级（不写为 `10`），例如 `Poison/80`。填的值会被拼上 `ele` 前缀（`Fire` → `eleFire`）去 SourceElement 的 alias 列查找，**写错会在角色生成时抛异常**。|
 |elements|文本|被动如专长/附魔，从 SourceElement 条目中选择，用半角逗号分隔。使用时添加 `/N` 表示等级/数值。`0` 或负值可修改继承自种族的元素。示例：`invisibility/1` 为启用，`invisibility/0` 为禁用继承效果；`antidote/-30` 会让肉带毒，`antidote/30` 可解毒或抵消种族的 `-30`。|
-|equip|文本|覆盖随机的职业装备模板，**仅在种族 EQ 不为空时生效**。示例：盗贼职业单位若设置 `equip=Archer`，则会获得弓箭手装备；但狗种族若种族 EQ 为空，即使设置 `equip` 也不会生成装备。|
-|loot|文本|额外掉落物（Thing/ThingV ID），用逗号分隔，每个后面跟 `/N`。每 20 点相当于 +1% 掉落率。示例：`medal/500` = 25%；`medal/3000` = 150%（必定掉 1 个 + 50% 概率再掉 1 个）。|
+|equip|文本|覆盖随机的职业装备模板。留空则跟随职业（Job 表的 `equip` 列）；填 `none` 会完全跳过装备生成。真正有效果的取值只有三个，且**区分大小写、均为小写**：`archer`（弓/弩）、`inquisitor` 与 `gunner`（枪）。另外只要这一列非空，就会触发装备生成——即使种族的 EQ 为空。|
+|loot|文本[]|额外掉落物（Thing/ThingV ID），用逗号分隔，**每一项都必须带 `/N`**，漏写会直接出错。`N` 是**千分制**：小于 1000 时表示掉 1 个的概率（`medal/500` = 50%）；大于等于 1000 必定掉落，`N / 1000` 是保底个数，余数是再多掉一个的千分概率（`medal/3000` = 必定 3 个；`medal/2500` = 2 个，另有 50% 概率第 3 个）。玩家阵营的角色和自建地图里不掉落。|
 |category|文本|大多数条目使用默认的 `chara`。|
-|filter|文本|在 SourceChara 中未使用。|
-|gachaFilter|文本|扭蛋先选择类别（例如 resident/livestock/Unique/default），再根据此过滤器挑选符合条件的角色。示例：livestock 结果只会包含标记为 livestock 的条目。|
-|tone|文本|日文文本的对话语气修饰符。|
-|actIdle|文本|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
-|lightData|文本|在 SourceChara 中未使用。发出的光颜色。|
-|idExtra|文本|在 SourceChara 中未使用。额外的渲染数据。|
-|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`age`（可选）、`height`（可选）、`weight`（可选）、来自 `chara_tone.xlsx` 的 `tone`（可选）、来自 `chara_talk.xlsx` 的 `talk`（可选）。示例：`f/51044/152/46/friendly\|私\|あなた`。|
+|filter|文本[]|在 SourceChara 中未使用。|
+|gachaFilter|文本[]|扭蛋先选择类别（例如 resident/livestock/Unique/default），再根据此过滤器挑选符合条件的角色。示例：livestock 结果只会包含标记为 livestock 的条目。|
+|tone|文本|**这一列被读进去之后就再没有用到**，填了不会有任何效果。真正生效的语气是 `bio` 的第 5 段。|
+|actIdle|文本[]|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
+|lightData|文本|发出的光颜色。对角色同样生效——本体就用了 `wisp`、`wisp_bright`、`fireplace`。|
+|idExtra|文本|额外的渲染数据。对角色同样生效（本体：`deep_jellyfish`）。|
+|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`age`、`height`、`weight`、来自 `chara_tone.xlsx` 的 `tone`、来自 `chara_talk.xlsx` 的 `talk`。示例：`f/51044/152/46/friendly\|私\|あなた`。可选的段**只能从尾部省略**，详见 [bio 列](#bio-列)。|
 |faith|文本|固定的宗教。设置后游戏内无法更改。|
-|works|文本|从 SourceHobby 的 alias 列中选择。|
-|hobbies|文本|从 SourceHobby 的 alias 列中选择。|
+|works|文本[]|从 SourceHobby 的 alias 列中选择。|
+|hobbies|文本[]|从 SourceHobby 的 alias 列中选择。|
 |idText|文本|链接到 `CharaText` 表格中的对应条目。|
 |moveAnime|文本|移动动画类型。`hop` 或留空。|
-|factory|文本|在 SourceChara 中未使用。|
-|components|文本|在 SourceChara 中未使用；此列为重复列。|
-|recruitItems|文本|特殊招募对话物品，目前仅 mani 使用。|
+|factory|文本[]|在 SourceChara 中未使用。|
+|components|文本[]|在 SourceChara 中未使用；此列为重复列。表里出现同名列时，**靠后的那个才生效**。|
+|recruitItems|文本[]|特殊招募对话物品，目前仅 mani 使用。|
 |detail_JP|文本|在 SourceChara 中未使用；可用于备注。|
 |detail|文本|在 SourceChara 中未使用；可用于备注。|
+
+## bio 列
+
+```
+性别 / 年龄 / 身高 / 体重 / 语气 / 话题
+```
+
+真正必填的只有性别（`m` / `f` / `n`），而可选的那几段**只能从尾部省略**。`f////friendly` 是不行的。
+
+另外两件从表上看不出来的事：
+
+- **年龄填的是岁数，不是年份。** 游戏拿它反推出生年（出生年 = 当前年 − 年龄）。身高体重没有明确单位，游戏就是原样显示这两个数。
+- **填了年龄会关掉随机立绘**，除非角色带 `randomPortrait` 标签。填了年龄还会让游戏去找 `Data/PCC/<id>.txt`，不过那个可以不管。
+
+语气那一段自己还能再用 `|` 分成三节：
+
+```
+语气id|第一人称|第二人称
+```
+
+`语气id` 取自 `chara_tone.xlsx`，留空按 `default` 处理。后两节用来替换台词里的第一人称和第二人称，但这个替换**只在日文下进行**——其他语言下填了完全没有效果。
+
+这一列和下文的 `addBio(ID)` / `bio_ID.json` 是两回事：这里是**生成**角色时用的参数，那边是角色资料页里显示的传记文本。
 
 ## 使用人类对话
 
