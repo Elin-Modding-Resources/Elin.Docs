@@ -134,11 +134,33 @@ A few of these have a well-defined effect on Charas:
 |`mini`|Height becomes one tenth.|
 |`humanSpeak`|Talks without parentheses, see the next section.|
 |`randomPortrait`|Keeps the random portrait even when `bio` has an age (writing an age otherwise turns it off).|
-|`water`|**Aquatic behavior, not a spawn preference**: the Chara heads for deep water when idle, and will not wander out of deep water onto land. To restrict where it spawns, use the `biome` column.|
+|`water`|**Aquatic behavior**: the Chara heads for deep water when idle, and will not wander out of deep water onto land. It is also a spawn filter tag, see below.|
 
-::: warning Tags that used to be listed here
-`randomFish` and `snow` **do not exist** in the game and have no effect at all. To make a Chara prefer snow or water, use the `biome` column.
-:::
+### The other kind of tag: spawn filters
+
+The tags above are read directly by the game code. There is a second kind that **never appears
+in the code at all** — spawn lists select on them by name, along the chain
+"biome → spawn list → tag":
+
+```
+Snow (biome)  →  spawn list c_snow  →  requires tag snow, excludes tag neutral
+```
+
+Filtering looks at **both the Chara's own `tag` and the `tag` of its Race**; either one counts.
+The common ones are:
+
+|Tag|Effect|
+|-|-|
+|`snow`|Joins the snow biome's spawn pool; also excluded from the wilderness and dungeon lists.|
+|`sand`|Joins the sand biome's spawn pool.|
+|`water`|Joins the water biome's spawn pool.|
+|`randomFish`|Joins the pool of things you can catch while fishing.|
+|`neutral`|Joins the neutral spawn pool (guests, townsfolk). The most used tag in the base game.|
+|`pawn`|Joins the pawn spawn pool.|
+
+Leave it blank and the Chara joins no tag-filtered list. This family is defined by data, so a mod
+can ship its own spawn lists and invent its own tag names — the table above is only what the base
+game uses.
 
 ## Allow Human Speak
 
