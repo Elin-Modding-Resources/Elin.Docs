@@ -44,25 +44,25 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|Base attribute parameters.|
 |ratio|—|Macro to approximate the race strength; unused in-game but must be present in the sheet. Leave blank.|
 |INT|integer|The "intelligence" of this race. Used to determine whether they are smart enough to open a door on their own. Less than `10` means they cannot.|
-|martial|integer|Unused by the game. Keep the column; the value does not matter.|
+|martial|integer|The starting level of the Martial Arts skill. Like the nine attributes, it is part of what the race grants and is applied when a character is generated.|
 |pen|integer|Unused by the game. Keep the column; the value does not matter.|
 |elements|elements|Inherent elements added to this race. Used to add racial feats and base skill bonuses (which also add base potential). Format: `element_alias/value`.|
 |skill|string|Unused by the game. What vanilla puts here are author notes (`●`, or skill names separated by spaces) and is never read; `elements` is the column that actually applies skills.|
 |figure|string|Dictates what body parts this race starts with. See [Figure Reference](#figure-reference) below.|
 |geneCap|integer|How many gene slots this race has.|
 |material|string|What material this race is made of.|
-|corpse|string[]|When a corpse is dropped upon killing this race, what it is made of.|
+|corpse|string[]|The corpse drop, formatted as `itemID,chance`. The chance is a numerator over 1500, so the default `_meat,20` is about 1.3%. **Both parts are required**; a missing chance fails when the drop is rolled.|
 |loot|string[]|Loot specific to this race.|
-|blood|integer|The color of the blood from this race. `2` is normal red blood. Please refer to the blood column in the `chara` sub-table of the official source. Still follow the general rule: if it is empty, use the default value.|
-|meleeStyle|string|The melee effect of this race. Leave blank for default melee. Options: `Claw`, `Bite`, `Kick`, `Touch`, `Spore`, `Sting`, `Gaze`.|
+|blood|integer|The blood decal this race leaves when wounded, using the same numbering as the material table's `decal` column. `2` is normal red blood. Please refer to the blood column in the `chara` sub-table of the official source. Still follow the general rule: if it is empty, use the default value.|
+|meleeStyle|string|The attack type used when this race attacks **unarmed** (with a weapon in hand the weapon's own type applies, except for martial-arts weapons). Leave blank to randomise between punch and kick each time. Options: `Slash`, `Pierce`, `Blunt`, `Punch`, `Kick`, `Bow`, `Gun`, `Claw`, `Bite`, `Spore`, `Gaze`, `Sting`, `Touch`, `Cane` — **not case sensitive**. A word outside this list fails when the character attacks unarmed rather than being ignored.|
 |castStyle|string|The casting effect of this race. Mostly used for flavor text.|
 |EQ|string[]|Determines what kind of equipment this race spawns with. EQ is an alternate way to enable equipment assignment when creating characters; you can fill in anything. Two common options are `"all"` and blank.|
 |sex|integer|Unused by the game (gender comes from the first segment of the Chara sheet's `bio` column). Keep the column; the value does not matter.|
 |age|integer[]|The age range used when spawning this race, as comma-separated `start,end`. For example, `8,50` means they spawn between ages 8 and 50.|
-|height|integer|The average height of this race.|
-|breeder|integer|Whether this race is good for breeding. Used when this race is set as livestock to determine production rates.|
-|food|string[]|A multiplier for how good the meat of this race is.|
-|fur|string|A set of strings in `category/material` format that dictate what happens when you shave this race.|
+|height|integer|The average height of this race. Generated characters vary by about 20% around it. It also has two effects that are easy to miss: corpse weight is derived from height, and characters shorter than 500 without the `webfree` tag can be caught in spider webs.|
+|breeder|integer|The breeding chance while kept as livestock, rolled against a baseline of 2500 — higher values breed more often (breeding policies lower the baseline and so raise the chance). **`0` does not mean never**: it still breeds at roughly 1/2500, even though the ranch screen shows 0%.|
+|food|string[]|A multiplier for how good the meat of this race is, as a percentage. Only the first entry is read.|
+|fur|string|The shearing yield, formatted as `itemID/materialAlias` (for example `fiber/wool`). **A non-empty value is what makes the race shearable**, so a half-filled value fails at shearing time. Leave it blank if the race cannot be sheared.|
 |detail_JP|string|The details/backstory of this race in Japanese.|
 |detail|string|The details/backstory of this race in English.|
 

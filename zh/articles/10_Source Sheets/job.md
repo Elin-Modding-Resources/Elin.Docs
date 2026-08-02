@@ -25,8 +25,8 @@ tags: SourceSheet/Job
 |STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|此职业为角色提供的额外属性加成。|
 |ratio|—|用于估算职业强度的宏，游戏中未使用，但表中必须保留。留空即可。|
 |elements|elements|此职业自带的固有效果。用于添加职业专长和基础技能加成。格式：`元素别名/数值`。|
-|weapon|string[]|武器物品名称列表。在生成角色时用于装备武器。例如，默认战士职业的 NPC 将随机获得以下之一：`sword`、`axe`、`blunt`、`polearm`、`scythe`。|
+|weapon|string[]|武器**分类**列表，生成装备时从中随机抽一项。例如默认战士职业的 NPC 会随机获得 `sword`、`axe`、`blunt`、`polearm`、`scythe` 之一。**这里填的是物品分类而不是物品 ID**；填写不存在的分类会在生成装备时出错。注意只有该角色确实会生成装备时本列才起作用——即种族的 `EQ` 列非空，或角色表的 `equip` 列非空。|
 |equip|string|远程武器的装备模板。实际有效果的只有三个值，且**区分大小写、均为小写**：`archer`（弓/弩）、`inquisitor` 与 `gunner`（枪）；填 `none` 则该职业完全不生成装备。其余装备由 `weapon` 列和种族的 EQ 决定，与本列无关。|
-|domain|elements|此职业初始拥有的领域，填元素别名（例如 `eleFire,eleCold,eleLightning`）。**留空不代表没有领域**——该列默认值就是 `eleFire,eleCold,eleLightning`。|
+|domain|elements|此职业初始拥有的领域，填元素别名（例如 `eleFire,eleCold,eleLightning`）。**只对玩家角色生效**，NPC 的这一列不产生任何效果；也**只读取元素别名，写在后面的数值会被忽略**。**留空不代表没有领域**——该列默认值就是 `eleFire,eleCold,eleLightning`。|
 |detail_JP|string|此职业的日文详情/背景故事。|
 |detail|string|此职业的英文详情/背景故事。|
