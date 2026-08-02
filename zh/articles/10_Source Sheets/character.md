@@ -51,7 +51,7 @@ tags: SourceSheet/Chara
 |race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为 `norland`——没填种族的角色是北地之民，而不是「没有种族的角色」。|
 |job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。|
 |tactics|文本|覆盖所分配职业的默认战术。|
-|aiIdle|文本|AI 待机行为的补充或覆盖。可填 `stand`（完全静止）或 `root`（静止直到被攻击或招募）。**必须全小写**——写成 `Stand` 不会生效，角色照常随机走动，而且不会有任何报错。|
+|aiIdle|文本|空闲时的移动方式。留空时每回合有小概率随机走动；`stand` 不再随机走动；`root` 在此之上还不跟随主人、不追赶队长。**必须全小写**——写成 `Stand` 不会生效，角色照常随机走动，而且不会有任何报错。|
 |aiParam|整数[]|三个数值：首选与敌人的距离、每回合移动到该距离的概率，以及（很少使用）再次移动的额外概率。|
 |actCombat|文本[]|战斗中可使用的主动能力/魔法，从 SourceElement 条目中选择，用半角逗号分隔。添加 `/N` 可设置固定使用概率。增益效果可添加 `/pt` 使其作用于整个队伍（仅限友方状态）。示例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。默认概率为 100。|
 |mainElement|文本[]|主要元素亲和力：`Fire`、`Cold`、`Lightning`、`Darkness`、`Mind`、`Nether`、`Nerve`、`Sound`、`Chaos`、`Poison`、`Holy`、`Cut`、`Acid`、`Impact`。**可以用逗号填多个**，游戏会按角色 `LV` 与各元素的 `eleP` 加权随机挑一个。加 `/N` 可指定元素等级（不写为 `10`），例如 `Poison/80`。填的值会被拼上 `ele` 前缀（`Fire` → `eleFire`）去 SourceElement 的 alias 列查找，**写错会在角色生成时抛异常**。|
@@ -62,7 +62,7 @@ tags: SourceSheet/Chara
 |filter|文本[]|在 SourceChara 中未使用。|
 |gachaFilter|文本[]|决定这个角色能不能被扭蛋抽到。**这一列只认两个值：`resident` 与 `livestock`**，可以同时填。扭蛋自身的类别（居民 / 家畜 / 独特）是另一回事：抽居民时要求含 `resident`，抽家畜时要求含 `livestock`，而抽独特时要求含 `resident` **且** `quality` 为 `4`——没有名为 `Unique` 或 `default` 的过滤值。|
 |tone|文本|**这一列被读进去之后就再没有用到**，填了不会有任何效果。真正生效的语气是 `bio` 的第 5 段。|
-|actIdle|文本[]|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
+|actIdle|文本[]|非战斗时的行为。**可以用逗号填多个，游戏每次随机取一个**。`readBook`、`buffMage` / `buffThief` / `buffGuildWatch` / `buffHealer`、`torture_snail` / `janitor` / `cast`、`bartender`、`baker`、`butcher`、`banker`、`fisher`。|
 |lightData|文本|发出的光颜色。对角色同样生效——本体就用了 `wisp`、`wisp_bright`、`fireplace`。|
 |idExtra|文本|额外的渲染数据。对角色同样生效（本体：`deep_jellyfish`）。|
 |bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`）、`age`、`height`、`weight`、来自 `chara_tone.xlsx` 的 `tone`、来自 `chara_talk.xlsx` 的 `talk`。示例：`f/51044/152/46/friendly\|私\|あなた`。可选的段**只能从尾部省略**，详见 [bio 列](#bio-列)。|

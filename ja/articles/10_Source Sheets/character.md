@@ -51,7 +51,7 @@ tags: SourceSheet/Chara
 |race|テキスト|SourceRaceの種族ID列から選択します。空欄の場合は `norland` になります——種族を書かなかったキャラは「種族なし」ではなくノーランドです。|
 |job|テキスト|SourceJobの職業ID列から選択。省略時は`none`になります。|
 |tactics|テキスト|割り当てられた職業のデフォルト戦術を上書きします。|
-|aiIdle|テキスト|待機時のAI行動を追加・上書きします。指定できるのは `stand`（完全に動かない）と `root`（攻撃されるか勧誘されるまで動かない）です。**すべて小文字である必要があります**——`Stand` と書いても適用されず、キャラはいつも通りランダムに歩き回ります。エラーも出ません。|
+|aiIdle|テキスト|待機中の移動の仕方です。未記入だと毎ターン低確率でランダムに歩き回り、`stand` はそれをやめ、`root` はさらに主人に付いていくことも隊長を追いかけることもしなくなります。**すべて小文字である必要があります**——`Stand` と書いても適用されず、キャラはいつも通りランダムに歩き回ります。エラーも出ません。|
 |aiParam|整数[]|3つの数値（敵との理想距離、毎ターンその距離に移動する確率、まれに使う再移動確率）。|
 |actCombat|テキスト[]|戦闘中に使用可能な能力・魔法を、SourceElementのエントリから選択しカンマ区切りで指定。`/N`で使用確率を固定できます。バフ系は`/pt`を付けるとパーティ全体に効果（味方バフのみ）。例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。省略時は確率100。|
 |mainElement|テキスト[]|主要属性親和性。`Fire`、`Cold`、`Lightning`、`Darkness`、`Mind`、`Nether`、`Nerve`、`Sound`、`Chaos`、`Poison`、`Holy`、`Cut`、`Acid`、`Impact`から選択。**カンマ区切りで複数指定でき**、その場合はキャラの `LV` と各属性の `eleP` による重み付けでランダムに1つ選ばれます。`/N` を付けると属性レベルを指定できます（省略時は `10`）。例：`Poison/80`。値は先頭に `ele` を付けて（`Fire` → `eleFire`）SourceElement の alias 列から検索されるため、**綴りを間違えるとキャラ生成時に例外になります**。|
@@ -62,7 +62,7 @@ tags: SourceSheet/Chara
 |filter|テキスト[]|SourceCharaでは使用していません。|
 |gachaFilter|テキスト[]|このキャラがガチャで引けるかどうかを決めます。**この列が受け付ける値は `resident` と `livestock` の2つだけです**（両方を並べても構いません）。ガチャ側のカテゴリは別の話で、住民を引くときは `resident`、家畜を引くときは `livestock`、ユニークを引くときは `resident` **かつ** `quality` が `4` であることが条件です——`Unique` や `default` というフィルター値は存在しません。|
 |tone|テキスト|**この列は読み込まれた後、どこでも使われません。** 書いても効果はありません。実際に効くトーンは `bio` の5番目のセグメントです。|
-|actIdle|テキスト[]|非戦闘時の特殊行動。例：`readBook`（ランダム本を生成・読書・削除）、`buffMage`（定期的に`spResElement`や`spHero`などのバフ魔法を唱える）など。|
+|actIdle|テキスト[]|非戦闘時の行動。**カンマ区切りで複数指定でき、ゲームは毎回そのうち一つをランダムに選びます**。`readBook`、`buffMage` / `buffThief` / `buffGuildWatch` / `buffHealer`、`torture_snail` / `janitor` / `cast`、`bartender`、`baker`、`butcher`、`banker`、`fisher`。|
 |lightData|テキスト|発光色を設定できます。キャラでも有効で、バニラでも `wisp` / `wisp_bright` / `fireplace` が使われています。|
 |idExtra|テキスト|追加の描画データ。キャラでも有効です（バニラ：`deep_jellyfish`）。|
 |bio|テキスト|スラッシュ区切りの値（空白なし）：`gender`（`m`/`f`/`n`）、`age`、`height`、`weight`、`chara_tone.xlsx`の`tone`、`chara_talk.xlsx`の`talk`。例：`f/51044/152/46/friendly\|私\|あなた`。任意のセグメントは**末尾からのみ**省略できます。詳しくは [bio 列](#bio-列) を参照してください。|
