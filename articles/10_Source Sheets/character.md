@@ -38,7 +38,7 @@ You can change your default row 3 values to apply it to all other rows.
 | _idRenderData | string | Controls sprite sheet referencing. `chara`/`chara_L`... uses tile IDs from `tiles` with textures in **Texture Replace** (limited slots, can be overridden). `@chara` uses same-ID texture from **Texture** (**mandatory** for modded Chara). Note that leaving this blank does **not** mean "no render data": it falls back to the row-3 default `chara`, i.e. the tile-sheet mode — which is why a modded Chara without `@chara` shows the wrong sprite. |
 | tiles | int[] | tile IDs for sprite sheet, or [skinset](../15_Texture%20Mods/skins) for modded Chara. |
 | tiles_snow | int[] | Replacement tile sequence when on snowy maps. Modded Chara use [variation](../15_Texture%20Mods/variation) instead. |
-| colorMod | integer | Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. |
+| colorMod | integer | Color saturation modifier. Currently mainly used with `100`, allowing grayscale sprites to inherit `mainElement` color. `0` means no tinting. |
 | components | string[] | Unused in SourceChara. |
 | defMat | string | Default corpse material, selected from the alias column of the Material sub-sheet within SourceBlock. Leave it empty to use Race's default material. |
 | LV | integer | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
@@ -65,7 +65,7 @@ You can change your default row 3 values to apply it to all other rows.
 | actIdle | string[] | Out-of-combat behavior instructions. Examples: `readBook` (generates/reads/removes random book), `buffMage` (periodically casts buffs like `spResElement` or `spHero`). |
 | lightData | string | The color emitted from light. It works for Chara too — vanilla uses `wisp`, `wisp_bright` and `fireplace` here. |
 | idExtra | string | Extra renderdata. Also works for Chara (vanilla: `deep_jellyfish`). |
-| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`, required), `age`, `height`, `weight`, `tone` from `chara_tone.xlsx`, `talk` from `chara_talk.xlsx`. Example: `f/51044/152/46/friendly\|私\|あなた`. Optional segments may only be dropped **from the tail** — see [The bio Column](#the-bio-column). |
+| bio | string | Slash-separated values (no spaces): `gender` (`m`/`f`/`n`), `age`, `height`, `weight`, `tone` from `chara_tone.xlsx`, `talk` from `chara_talk.xlsx`. Example: `f/51044/152/46/friendly\|私\|あなた`. Optional segments may only be dropped **from the tail** — see [The bio Column](#the-bio-column). |
 | faith | string | Fixed religion. Setting this will prevent changing in game. |
 | works | string[] | Select from the alias column of SourceHobby. |
 | hobbies | string[] | Select from the alias column of SourceHobby. |
@@ -83,7 +83,12 @@ You can change your default row 3 values to apply it to all other rows.
 gender/age/height/weight/tone/talk
 ```
 
-Only `gender` (`m` / `f` / `n`) is truly required, and **the optional segments may only be dropped from the tail**. `f////friendly` does not work.
+No segment is strictly required, and **the optional segments may only be dropped from the tail**. `f////friendly` does not work.
+
+`gender` (`m` / `f` / `n`) deserves a note of its own, because "blank" means two different things:
+
+- **Leave the whole column empty** and everything is rolled at random, gender included. This is a perfectly normal way to define a Chara.
+- **Leave only the first segment empty** — `/17/152/46` — and it is *not* random. The game always reads that segment when the column is non-empty, and anything that is neither `n` nor `f` falls through to **male**. An empty gender, or a typo such as `M`, silently produces a male Chara.
 
 Two more things that are invisible from the sheet:
 

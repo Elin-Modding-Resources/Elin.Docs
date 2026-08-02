@@ -38,7 +38,7 @@ tags: SourceSheet/Chara
 |_idRenderData|文本|控制精灵表引用。`chara`/`chara_L` 等使用 **Texture Replace** 中的纹理和 `tiles` 中的图块 ID（插槽有限，可被覆盖）。`@chara` 使用 **Texture** 中相同 ID 的纹理。模组角色**必须**使用`@chara`。注意留空**不等于没有渲染数据**：它会回落到第 3 行的默认值 `chara`，也就是图集模式——模组角色不写 `@chara` 时贴图不对，正是这个原因。|
 |tiles|整数[]|精灵表的图块 ID，或模组角色的 [skinset](../15_Texture%20Mods/skins)。|
 |tiles_snow|整数[]|在雪地地图上使用的替代图块序列。模组角色改为使用 [贴图变体](../15_Texture%20Mods/variation)。|
-|colorMod|整数|目前主要与 `100` 配合使用，允许灰度精灵继承 `mainElement` 的颜色。|
+|colorMod|整数|颜色饱和度修正。目前主要与 `100` 配合使用，允许灰度精灵继承 `mainElement` 的颜色。`0` 表示不着色。|
 |components|文本[]|在 SourceChara 中未使用。|
 |defMat|文本|默认尸体材质，从 SourceBlock 内 Material 分表的 alias 列中选择。留空则使用种族的默认材质。|
 |LV|整数|角色的“危险等级”；影响根据地图危险度生成的生成阈值、选择成本（奴隶主/驯兽师）以及基于种族/职业特征的基础属性生成。|
@@ -65,7 +65,7 @@ tags: SourceSheet/Chara
 |actIdle|文本[]|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
 |lightData|文本|发出的光颜色。对角色同样生效——本体就用了 `wisp`、`wisp_bright`、`fireplace`。|
 |idExtra|文本|额外的渲染数据。对角色同样生效（本体：`deep_jellyfish`）。|
-|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`，必填）、`age`、`height`、`weight`、来自 `chara_tone.xlsx` 的 `tone`、来自 `chara_talk.xlsx` 的 `talk`。示例：`f/51044/152/46/friendly\|私\|あなた`。可选的段**只能从尾部省略**，详见 [bio 列](#bio-列)。|
+|bio|文本|用斜杠分隔的值（无空格）：`gender`（`m`/`f`/`n`）、`age`、`height`、`weight`、来自 `chara_tone.xlsx` 的 `tone`、来自 `chara_talk.xlsx` 的 `talk`。示例：`f/51044/152/46/friendly\|私\|あなた`。可选的段**只能从尾部省略**，详见 [bio 列](#bio-列)。|
 |faith|文本|固定的宗教。设置后游戏内无法更改。|
 |works|文本[]|从 SourceHobby 的 alias 列中选择。|
 |hobbies|文本[]|从 SourceHobby 的 alias 列中选择。|
@@ -83,7 +83,12 @@ tags: SourceSheet/Chara
 性别 / 年龄 / 身高 / 体重 / 语气 / 话题
 ```
 
-真正必填的只有性别（`m` / `f` / `n`），而可选的那几段**只能从尾部省略**。`f////friendly` 是不行的。
+没有哪一段是硬性必填的，而可选的那几段**只能从尾部省略**。`f////friendly` 是不行的。
+
+性别（`m` / `f` / `n`）需要单独说一句，因为「留空」有两种完全不同的含义：
+
+- **整列留空**，则包括性别在内的所有内容都随机生成。这是完全正常的写法。
+- **只把第一段留空** —— 比如 `/17/152/46` —— 并**不是**随机。只要这一列非空，游戏就一定会读第一段，而既不是 `n` 也不是 `f` 的值会落到兜底分支，得到**男性**。留空、或者写成 `M` 这种大小写错误，都会静默产出一个男性角色。
 
 另外两件从表上看不出来的事：
 
