@@ -52,6 +52,10 @@ export function makeNavBar(
         : "https://code.elin-modding.net/",
     },
     {
+      text: "ModMaker",
+      link: "https://modmaker.elin-modding.net/",
+    },
+    {
       text: getText("sources"),
       items: [
         {

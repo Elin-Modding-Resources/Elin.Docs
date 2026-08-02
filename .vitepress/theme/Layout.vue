@@ -1,12 +1,17 @@
 <template>
-  <DefaultTheme.Layout />
+  <DefaultTheme.Layout>
+    <template #doc-before>
+      <ModMakerTip v-if="showModMakerTip" />
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
 import { useData, useRouter, inBrowser } from "vitepress";
-import { watch, onMounted } from "vue";
+import { watch, onMounted, computed } from "vue";
 import data from "../data/redirects.json";
+import ModMakerTip from "../components/ModMakerTip.vue";
 
 type Language = "en" | "zh" | "ja" | string;
 type RedirectRule = string | Partial<Record<Language, string>>;
@@ -17,6 +22,11 @@ interface Redirects {
 const redirects = data as Redirects;
 const { page, lang } = useData();
 const router = useRouter();
+
+const MODMAKER_SHEETS =
+  /^(?:zh\/|ja\/)?articles\/10_Source Sheets\/(character|race|job|drama|localization)\.md$/;
+
+const showModMakerTip = computed(() => MODMAKER_SHEETS.test(page.value.relativePath));
 
 function cleanTrailingBrace(path: string): string {
   return path.endsWith("%7D") ? path.slice(0, -3) : path;
