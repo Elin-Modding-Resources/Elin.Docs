@@ -45,13 +45,13 @@ tags: SourceSheet/Chara
 |chance|整数|地图生成几率的修正值（可能也影响销售列表）。默认值为 `100`。|
 |quality|整数|`0–2`：普通等级。`3`：具名怪物（名字显示时外部带有 `《》`；受精蛋可孵化出同类；可以成为朋友但无法使用精灵球捕捉）。`4`：独特角色（名字显示时外部带有 `『』`；受精蛋仅能孵化出鸡；可以成为朋友但无法使用精灵球捕捉）。自定义冒险者无需填写此列。|
 |hostility|文本|对玩家/盟友/旁观者的性情。可填 `Enemy` / `Neutral` / `Friend` / `Ally`——注意敌对写作 `Enemy`，不是 `Hostile`。留空按 `Enemy`（敌对）处理。`Neutral`：除非被攻击否则不会主动攻击。`Friend`：会攻击任何对友方单位敌对的目标，若玩家被激怒也会攻击。|
-|biome|文本|在指定地板类型上增加（可能翻倍）生成几率，在其他类型上减少（可能减半）。示例：`Water` 会强烈偏好在水面地板生成。|
-|tag|文本[]|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。其余标签，请参阅[使用人类对话](#使用人类对话)章节以及之后的几个章节|
-|trait|文本[]|复杂的特性列表。若您的角色为冒险者，请阅读 [创建冒险者](#创建冒险者)章节。其余特性请参考Elin原版角色的SourceChara，或者参考特性文档和 `Trait*` C# 类。|
-|race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为默认值 `norland`——没填种族的角色是北地之民，而不是「没有种族的角色」。|
+|biome|文本|把随机生成限制在某一种生态里。填了这一列，角色就只在同名的生态中出现；留空则不限生态。这是一个**是/否过滤**，不是几率加权。填生态的名字（如 `Water`、`Sand`、`Plain`），**区分大小写**。|
+|tag|文本[]|同时承担**行为标签**（裸词）与**生成配置**（带参数，见下文）两件事。行为标签的取值是一份固定清单，写法必须完全一致且**区分大小写**，详见 [行为标签](#行为标签)。|
+|trait|文本[]|角色的特性，对应 `Trait*` C# 类（填写时省略 `Trait` 前缀）。**这一列虽然能填多个，但只有第一个生效**，其余的会被静默忽略。|
+|race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为 `norland`——没填种族的角色是诺兰人，而不是「没有种族的角色」。|
 |job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。|
 |tactics|文本|覆盖所分配职业的默认战术。|
-|aiIdle|文本|AI 行为的补充或覆盖。示例：`Stand`（完全静止，即使被攻击也不动）、`Root`（静止直到被攻击或招募）。|
+|aiIdle|文本|AI 待机行为的补充或覆盖。可填 `stand`（完全静止）或 `root`（静止直到被攻击或招募）。**必须全小写**——写成 `Stand` 不会生效，角色照常随机走动，而且不会有任何报错。|
 |aiParam|整数[]|三个数值：首选与敌人的距离、每回合移动到该距离的概率，以及（很少使用）再次移动的额外概率。|
 |actCombat|文本[]|战斗中可使用的主动能力/魔法，从 SourceElement 条目中选择，用半角逗号分隔。添加 `/N` 可设置固定使用概率。增益效果可添加 `/pt` 使其作用于整个队伍（仅限友方状态）。示例：`ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`。默认概率为 100。|
 |mainElement|文本[]|主要元素亲和力：`Fire`、`Cold`、`Lightning`、`Darkness`、`Mind`、`Nether`、`Nerve`、`Sound`、`Chaos`、`Poison`、`Holy`、`Cut`、`Acid`、`Impact`。**可以用逗号填多个**，游戏会按角色 `LV` 与各元素的 `eleP` 加权随机挑一个。加 `/N` 可指定元素等级（不写为 `10`），例如 `Poison/80`。填的值会被拼上 `ele` 前缀（`Fire` → `eleFire`）去 SourceElement 的 alias 列查找，**写错会在角色生成时抛异常**。|
@@ -60,7 +60,7 @@ tags: SourceSheet/Chara
 |loot|文本[]|额外掉落物（Thing/ThingV ID），用逗号分隔，**每一项都必须带 `/N`**，漏写会直接出错。`N` 是**千分制**：小于 1000 时表示掉 1 个的概率（`medal/500` = 50%）；大于等于 1000 必定掉落，`N / 1000` 是保底个数，余数是再多掉一个的千分概率（`medal/3000` = 必定 3 个；`medal/2500` = 2 个，另有 50% 概率第 3 个）。玩家阵营的角色和自建地图里不掉落。|
 |category|文本|大多数条目使用默认的 `chara`。|
 |filter|文本[]|在 SourceChara 中未使用。|
-|gachaFilter|文本[]|扭蛋先选择类别（例如 resident/livestock/Unique/default），再根据此过滤器挑选符合条件的角色。示例：livestock 结果只会包含标记为 livestock 的条目。|
+|gachaFilter|文本[]|决定这个角色能不能被扭蛋抽到。**这一列只认两个值：`resident` 与 `livestock`**，可以同时填。扭蛋自身的类别（居民 / 家畜 / 独特）是另一回事：抽居民时要求含 `resident`，抽家畜时要求含 `livestock`，而抽独特时要求含 `resident` **且** `quality` 为 `4`——没有名为 `Unique` 或 `default` 的过滤值。|
 |tone|文本|**这一列被读进去之后就再没有用到**，填了不会有任何效果。真正生效的语气是 `bio` 的第 5 段。|
 |actIdle|文本[]|非战斗时的行为指令。示例：`readBook`（生成/阅读/移除随机书籍）、`buffMage`（定期施放 `spResElement` 或 `spHero` 等增益魔法）。|
 |lightData|文本|发出的光颜色。对角色同样生效——本体就用了 `wisp`、`wisp_bright`、`fireplace`。|
@@ -104,6 +104,40 @@ tags: SourceSheet/Chara
 `语气id` 取自 `chara_tone.xlsx`，留空按 `default` 处理。后两节用来替换台词里的第一人称和第二人称，但这个替换**只在日文下进行**——其他语言下填了完全没有效果。
 
 这一列和下文的 `addBio(ID)` / `bio_ID.json` 是两回事：这里是**生成**角色时用的参数，那边是角色资料页里显示的传记文本。
+
+## 行为标签
+
+`tag` 列里不带括号的裸词就是行为标签。可用的标签是下面这份固定清单，写法必须完全一致，
+**区分大小写**——差一个字母就等于这个标签不存在，而且不会有任何报错。
+
+::: warning 这份清单与物品共用
+清单由物品与角色共用，所以其中有不少取值（`seed`、`gift`、`currency`、`dish_bonus` 等）
+只对物品有意义，写在角色上不会有任何效果。
+:::
+
+```
+important, repeatSwing, nonHold, nonPick, canMelee, boss, currency, randomName,
+noDrop, hidden, wilds, neg, replica, seed, rareSeed, gift, ignoreUse,
+throwWeapon, throwWeaponEnemy, notHumanMeat, noRandomProduct, suicide, kamikaze,
+randomSkin, noPortrait, randomPortrait, rareResource, tourism, staticSkin,
+godArtifact, noWish, dish_bonus, dish_fail, random_color, noRandomEnc, noMix,
+bigFish, noSkinRecipe, animal, human, undead, machine, horror, fish, fairy, god,
+dragon, plant, antiSpider, shield, humanSpeak, throwBall, alwaysDropCorpse,
+allowDevour, noRide, ride, allowIngredient
+```
+
+其中几个对角色的效果是明确的：
+
+|标签|效果|
+|-|-|
+|`mini`|身高变成十分之一。|
+|`humanSpeak`|对话时不使用括号，详见下一节。|
+|`randomPortrait`|即使填了 `bio` 的年龄，仍然随机分配立绘（填了年龄默认会关掉随机立绘）。|
+|`water`|**水生行为，不是生成偏好**：待机时会主动游向深水，随机走动时也不会从深水走上岸。想限制生成地点请用 `biome` 列。|
+
+::: warning 曾经写在这里的几个标签
+`randomFish` 与 `snow` 在游戏里**并不存在**，写了不会有任何效果。想让角色偏好雪地或水面，请用 `biome` 列。
+:::
 
 ## 使用人类对话
 
@@ -222,6 +256,11 @@ CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本
 }
 ```
 
+::: tip 字段名的大小写不重要
+游戏读取时不区分字段名的大小写，所以 `Items` 与 `items`、`Id` 与 `id` 都能读。
+本文统一按首字母大写书写，现有 mod 里两种风格都有，沿用哪种都可以。
+:::
+
 * `Items` 是一个包含库存物品的数组。
 * `Id`  
   物品（Thing）的 ID。此字段**必需**。  
@@ -232,6 +271,9 @@ CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本
 * `Num`  
   物品数量。  
   默认值：`1`
+* `Lv`  
+  物品等级。留 `-1` 则跟随商店等级，填其他值则覆盖它。  
+  默认值：`-1`
 * `Restock`  
   决定物品是否会补货。  
   设置为 `false` 表示该物品为限量，只能购买一次。  
@@ -273,13 +315,13 @@ CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本
 |-|-|
 |Item|标准物品。支持材质、等级和堆叠数量。|
 |Block|可放置的方块物品，由方块别名和材质生成。|
-|Cassette|音乐磁带。`Id` BGM 数字 ID。|
+|Cassette|音乐磁带。`Id` BGM 数字 ID。**填了不存在的 ID 不会报错，会静默换成一首随机 BGM。**|
 |Currency|货币物品。`Id` 可以是 `money`、`money2`、`plat`、`medal`、`influence`、`casino_coin`、`ecopo`。`Num` 表示金额。|
 |Category|从类别生成。`Id` 是类别名称。|
 |Filter|从过滤器生成。`Id` 是过滤器名称。|
 |Tag|从标签生成。`Id` 是标签名称。|
 |Letter|信件物品。`Id` 为信件 ID，txt文本放置于 `LangMod/XX/Text/Scroll`中。|
-|Obj|Obj 对象。`Id` 为对象别名。|
+|Map|地图物品。`Id` 为地图 ID。|
 |Perfume|香水。`Id` 为元素别名或 ID。|
 |Plan|计划书。`Id` 为元素别名或 ID。|
 |Potion|药水物品。`Id` 为元素别名或 ID|

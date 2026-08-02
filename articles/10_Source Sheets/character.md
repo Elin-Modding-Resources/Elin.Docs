@@ -45,13 +45,13 @@ You can change your default row 3 values to apply it to all other rows.
 | chance | integer | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
 | quality | integer | `0–2`: regular tiers. `3`: Named Monsters (name displayed with `《》` around it; fertilized eggs hatch into the same species; can befriend but cannot be captured with a monster ball). `4`: Unique Characters (name displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). Not required for custom adventurers. |
 | hostility | string | Temperament toward player/allies/bystanders. Accepts `Enemy` / `Neutral` / `Friend` / `Ally` — note that hostile is spelled `Enemy`, not `Hostile`. Blank is treated as `Enemy`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
-| biome | string | Increases (possibly doubles) spawn chance on specified floor type, decreases (possibly halves) on others. Example: `Water` strongly favors water-floor spawning. |
-| tag | string[] | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). For other tags, see the [Allow Human Speak](#allow-human-speak) section and the sections after it. |
-| trait | string[] | Complex trait list. If your character is an adventurer, read the [Adventurer](#adventurer) section. For other traits, refer to the SourceChara, or to the trait documentation and `Trait*` C# classes. |
+| biome | string | Restricts random spawning to a single biome. Set it and the Chara only appears in the matching biome; leave it blank for no restriction. This is a **yes/no filter, not a weight**. Write the biome name (`Water`, `Sand`, `Plain`, …); it is **case-sensitive**. |
+| tag | string[] | Serves two purposes: **behavior tags** (bare words) and **spawn settings** (parameterized, see below). Behavior tags come from a fixed list and must be spelled exactly, **case included** — see [Behavior Tags](#behavior-tags). |
+| trait | string[] | The Chara's trait, mapping to a `Trait*` C# class (omit the `Trait` prefix). **This column can hold several entries, but only the first one takes effect** — the rest are silently ignored. |
 | race | string | Select from the Race ID column of SourceRace. Defaults to `norland` when left blank — a Chara with no race is a Norlander, not a Chara without a race. |
 | job | string | Select from the Job ID column of SourceJob; default is `none`. This defines your character's class (job). |
 | tactics | string | Overrides default tactics of assigned job. |
-| aiIdle | string | AI behavior supplement/override. Examples: `Stand` (fully stationary, even when attacked), `Root` (stationary until attacked or recruited). |
+| aiIdle | string | Supplements or overrides idle AI behavior. Accepts `stand` (fully stationary) or `root` (stationary until attacked or recruited). **Must be lowercase** — `Stand` simply does not apply, the Chara wanders as usual, and nothing is reported. |
 | aiParam | int[] | Three values: preferred enemy distance, per-turn reposition chance to that distance, and (rarely used) bonus chance to reposition again. |
 | actCombat | string[] | Active abilities/spells usable in combat, selected from SourceElement entries and comma-separated. Add `/N` for fixed use chance. For buffs, add `/pt` to target whole party (ally state only). Example: `ActThrowPotion/30,SpWeakness,SpSpeedDown,SpWisdom/50/pt`. Default chance is 100. |
 | mainElement | string[] | Primary elemental affinity: `Fire`, `Cold`, `Lightning`, `Darkness`, `Mind`, `Nether`, `Nerve`, `Sound`, `Chaos`, `Poison`, `Holy`, `Cut`, `Acid`, `Impact`. You may list **several**, comma-separated — the game picks one at random, weighted by the Chara's `LV` against each element's `eleP`. Add `/N` to set the element level (default `10`), e.g. `Poison/80`. The value is looked up as `ele` + the name (`Fire` → `eleFire`) in SourceElement's alias column, so a typo throws on spawn. |
@@ -60,7 +60,7 @@ You can change your default row 3 values to apply it to all other rows.
 | loot | string[] | Extra drops (Thing/ThingV IDs), comma-separated, **each one must carry `/N`** — leaving it out is an error. `N` is per **mille**: below 1000 it is the chance to drop one (`medal/500` = 50%), 1000 and above always drops, with `N / 1000` as the guaranteed count and the remainder as the per-mille chance of one extra (`medal/3000` = always 3; `medal/2500` = 2, plus 50% for a third). Nothing drops for PC-faction charas or in user-made zones. |
 | category | string | Most entries use default `chara`. |
 | filter | string[] | Unused in SourceChara. |
-| gachaFilter | string[] | Gacha picks a category (e.g., resident/livestock/Unique/default), then selects eligible Chara by this filter. Example: livestock results only include entries tagged for livestock. |
+| gachaFilter | string[] | Decides whether this Chara can be drawn from the gacha. **This column accepts only two values: `resident` and `livestock`** (both may be listed). The gacha's own category is a separate thing: drawing citizens requires `resident`, drawing livestock requires `livestock`, and drawing uniques requires `resident` **and** a `quality` of `4` — there is no `Unique` or `default` filter value. |
 | tone | string | **This column is read in and then never used**, so filling it in has no effect. The tone that actually applies is the 5th segment of `bio`. |
 | actIdle | string[] | Out-of-combat behavior instructions. Examples: `readBook` (generates/reads/removes random book), `buffMage` (periodically casts buffs like `spResElement` or `spHero`). |
 | lightData | string | The color emitted from light. It works for Chara too — vanilla uses `wisp`, `wisp_bright` and `fireplace` here. |
@@ -104,6 +104,41 @@ toneId|firstPerson|secondPerson
 `toneId` is an id from `chara_tone.xlsx` (blank behaves as `default`). The other two replace the first and second person pronouns in the Chara's lines, but that substitution **only happens in Japanese** — they do nothing in any other language.
 
 This column has nothing to do with `addBio(ID)` and `bio_ID.json` further below: this one is the set of parameters used to *generate* the Chara, the other one is the biography text shown in the character sheet.
+
+## Behavior Tags
+
+Bare words in the `tag` column — the ones without parentheses — are behavior tags. The usable tags are
+the fixed list below, and the spelling has to match exactly, **case included**; one wrong letter
+simply means the tag is not there, and nothing is reported.
+
+::: warning This list is shared with items
+The same list is used by items and Charas, so quite a few of the values below (`seed`, `gift`,
+`currency`, `dish_bonus`, …) only mean something on items and do nothing on a Chara.
+:::
+
+```
+important, repeatSwing, nonHold, nonPick, canMelee, boss, currency, randomName,
+noDrop, hidden, wilds, neg, replica, seed, rareSeed, gift, ignoreUse,
+throwWeapon, throwWeaponEnemy, notHumanMeat, noRandomProduct, suicide, kamikaze,
+randomSkin, noPortrait, randomPortrait, rareResource, tourism, staticSkin,
+godArtifact, noWish, dish_bonus, dish_fail, random_color, noRandomEnc, noMix,
+bigFish, noSkinRecipe, animal, human, undead, machine, horror, fish, fairy, god,
+dragon, plant, antiSpider, shield, humanSpeak, throwBall, alwaysDropCorpse,
+allowDevour, noRide, ride, allowIngredient
+```
+
+A few of these have a well-defined effect on Charas:
+
+|Tag|Effect|
+|-|-|
+|`mini`|Height becomes one tenth.|
+|`humanSpeak`|Talks without parentheses, see the next section.|
+|`randomPortrait`|Keeps the random portrait even when `bio` has an age (writing an age otherwise turns it off).|
+|`water`|**Aquatic behavior, not a spawn preference**: the Chara heads for deep water when idle, and will not wander out of deep water onto land. To restrict where it spawns, use the `biome` column.|
+
+::: warning Tags that used to be listed here
+`randomFish` and `snow` **do not exist** in the game and have no effect at all. To make a Chara prefer snow or water, use the `biome` column.
+:::
 
 ## Allow Human Speak
 
@@ -219,6 +254,10 @@ Within the stock JSON file, the structure is as follows:
 }
 ```
 
+::: tip Field name casing does not matter
+The game reads these field names case-insensitively, so both `Items` and `items`, `Id` and `id`, work fine. This page capitalizes them consistently; existing mods use both styles, and either is fine to keep.
+:::
+
 * `Items` is an array of items in the stock.
 * `Id`  
   The ID of the item (Thing). This field is **required**.  
@@ -229,6 +268,9 @@ Within the stock JSON file, the structure is as follows:
 * `Num`  
   The number of items.  
   Default value: `1`
+* `Lv`  
+  The item level. Leave it at `-1` to follow the shop level, or set a value to override it.  
+  Default value: `-1`
 * `Restock`  
   Determines whether the item restocks.    
   Set to `false` for limited items that can only be purchased once.  
@@ -276,6 +318,7 @@ Within the stock JSON file, the structure is as follows:
 |Filter|Spawn from filter. `Id` is the filter name.|
 |Tag|Spawn from tag. `Id` is the tag name.|
 |Letter|A letter item. `Id` is the txt id in `LangMod/XX/Text/Scroll`.|
+|Map|A map item. `Id` is the map id.|
 |Perfume|A perfume. `Id` is the element alias or id.|
 |Plan|A plan. `Id` is the element alias or id.|
 |Potion|A potion item. `Id` is the element alias or id. `Num` defines stack size.|
