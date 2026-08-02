@@ -43,11 +43,11 @@ You can change your default row 3 values to apply it to all other rows.
 | defMat | string | Default corpse material, selected from the alias column of the Material sub-sheet within SourceBlock. Leave it empty to use Race's default material. |
 | LV | integer | Chara “Danger Level”; affects spawn threshold by map danger, selection cost (slave master/animal tamer), and base stat generation from race/job characteristics. |
 | chance | integer | Modifier for map spawn chance (and possibly sale lists). Default `100`. |
-| quality | integer | `0–2`: regular tiers. `3`: Named Monsters (name displayed with `《》` around it; fertilized eggs hatch into the same species; can befriend but cannot be captured with a monster ball). `4`: Unique Characters (name displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). This column corresponds to rarity in the code, so `3` is Mythical and `4` is Artifact. Not required for custom adventurers. |
+| quality | integer | `0–2`: regular tiers. `3`: Named Monsters (name displayed with `《》` around it; fertilized eggs hatch into the same species; can befriend but cannot be captured with a monster ball). `4`: Unique Characters (name displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). Not required for custom adventurers. |
 | hostility | string | Temperament toward player/allies/bystanders. Accepts `Enemy` / `Neutral` / `Friend` / `Ally` — note that hostile is spelled `Enemy`, not `Hostile`. Blank is treated as `Enemy`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
 | biome | string | Increases (possibly doubles) spawn chance on specified floor type, decreases (possibly halves) on others. Example: `Water` strongly favors water-floor spawning. |
-| tag | string[] | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). |
-| trait | string[] | Complex trait list; refer to trait documentation and `Trait*` C# classes. |
+| tag | string[] | Known tags: `mini` (half sprite size), `noRandomProduct` (no panties from Fortune Drum; possibly no doujin), `random_color` (assigns hair color to grayscale regions when `colorMod=100`), `randomFish`, `staticSkin` (overrides gender-based sprite assignment), `snow` (prefers snow tiles), `water` (prefers water tiles). For other tags, see the [Allow Human Speak](#allow-human-speak) section and the sections after it. |
+| trait | string[] | Complex trait list. If your character is an adventurer, read the [Adventurer](#adventurer) section. For other traits, refer to the SourceChara, or to the trait documentation and `Trait*` C# classes. |
 | race | string | Select from the Race ID column of SourceRace. Defaults to `norland` when left blank — a Chara with no race is a Norlander, not a Chara without a race. |
 | job | string | Select from the Job ID column of SourceJob; default is `none`. This defines your character's class (job). |
 | tactics | string | Overrides default tactics of assigned job. |
@@ -69,7 +69,7 @@ You can change your default row 3 values to apply it to all other rows.
 | faith | string | Fixed religion. Setting this will prevent changing in game. |
 | works | string[] | Select from the alias column of SourceHobby. |
 | hobbies | string[] | Select from the alias column of SourceHobby. |
-| idText | string | Links to an entry in `CharaText` sheet. |
+| idText | string | Links to an entry in `CharaText` sheet. For the bubbles that appear above a character's head, see the [Barks (Popup)](#barks-popup) section. |
 | moveAnime | string | Move animation type. `hop` or blank. |
 | factory | string[] | Unused in SourceChara. |
 | components | string[] | Unused in SourceChara; This is a duplicate column. When a sheet has two columns of the same name, the **later** one wins. |
@@ -127,6 +127,8 @@ Possible tag actions:
 + `addStock(StockFileId)`
 + `addDrama(DramaFileId)`
 
+Detailed explanations are given below.
+
 ### Zone Spawn
 
 To spawn the character to a zone, add tag `addZone(*)` to the SourceChara row and replace the `*` (asterisk) with **zone id** or keep the asterisk for a random zone. You may also specify zone level with `@n`.
@@ -165,7 +167,7 @@ addThing(padoru_gift#10),addThing(1174#5)
 CWL specs used `AdventurerBacker`, which will still function the same as before. We recommend switching to the new format.
 :::
 
-If your character has trait **`AdventurerCustom`**, the character will be imported as an adventurer, which will appear on the adventurer ranking list.
+If your character's trait column is filled in with **`AdventurerCustom`**, the character will be imported as an adventurer, which will appear on the adventurer ranking list.
 
 ## Merchant Stock
 

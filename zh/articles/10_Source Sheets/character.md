@@ -43,12 +43,12 @@ tags: SourceSheet/Chara
 |defMat|文本|默认尸体材质，从 SourceBlock 内 Material 分表的 alias 列中选择。留空则使用种族的默认材质。|
 |LV|整数|角色的“危险等级”；影响根据地图危险度生成的生成阈值、选择成本（奴隶主/驯兽师）以及基于种族/职业特征的基础属性生成。|
 |chance|整数|地图生成几率的修正值（可能也影响销售列表）。默认值为 `100`。|
-|quality|整数|`0–2`：普通等级。`3`：具名怪物（名字显示时外部带有 `《》`；受精蛋可孵化出同类；可以成为朋友但无法使用精灵球捕捉）。`4`：独特角色（名字显示时外部带有 `『』`；受精蛋仅能孵化出鸡；可以成为朋友但无法使用精灵球捕捉）。这一列对应代码中稀有度，`3` 即 Mythical（神器）、`4` 即 Artifact（特殊物品）。自定义冒险者无需填写此列。|
+|quality|整数|`0–2`：普通等级。`3`：具名怪物（名字显示时外部带有 `《》`；受精蛋可孵化出同类；可以成为朋友但无法使用精灵球捕捉）。`4`：独特角色（名字显示时外部带有 `『』`；受精蛋仅能孵化出鸡；可以成为朋友但无法使用精灵球捕捉）。自定义冒险者无需填写此列。|
 |hostility|文本|对玩家/盟友/旁观者的性情。可填 `Enemy` / `Neutral` / `Friend` / `Ally`——注意敌对写作 `Enemy`，不是 `Hostile`。留空按 `Enemy`（敌对）处理。`Neutral`：除非被攻击否则不会主动攻击。`Friend`：会攻击任何对友方单位敌对的目标，若玩家被激怒也会攻击。|
 |biome|文本|在指定地板类型上增加（可能翻倍）生成几率，在其他类型上减少（可能减半）。示例：`Water` 会强烈偏好在水面地板生成。|
-|tag|文本[]|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。|
-|trait|文本[]|复杂的特性列表；请参考特性文档和 `Trait*` C# 类。|
-|race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为 `norland`——没填种族的角色是诺兰人，而不是「没有种族的角色」。|
+|tag|文本[]|已知标签包括：`mini`（精灵尺寸减半）、`noRandomProduct`（Fortune Drum 不会出内裤；可能也不会出同人志）、`random_color`（当 `colorMod=100` 时为灰度区域随机分配头发颜色）、`randomFish`、`staticSkin`（覆盖基于性别的精灵分配）、`snow`（偏好雪地图块）、`water`（偏好水图块）。其余标签，请参阅[使用人类对话](#使用人类对话)章节以及之后的几个章节|
+|trait|文本[]|复杂的特性列表。若您的角色为冒险者，请阅读 [创建冒险者](#创建冒险者)章节。其余特性请参考Elin原版角色的SourceChara，或者参考特性文档和 `Trait*` C# 类。|
+|race|文本|从 SourceRace 的种族 ID 列中选择。留空时回落为默认值 `norland`——没填种族的角色是北地之民，而不是「没有种族的角色」。|
 |job|文本|从 SourceJob 的职业 ID 列中选择；默认为 `none`。|
 |tactics|文本|覆盖所分配职业的默认战术。|
 |aiIdle|文本|AI 行为的补充或覆盖。示例：`Stand`（完全静止，即使被攻击也不动）、`Root`（静止直到被攻击或招募）。|
@@ -69,7 +69,7 @@ tags: SourceSheet/Chara
 |faith|文本|固定的宗教。设置后游戏内无法更改。|
 |works|文本[]|从 SourceHobby 的 alias 列中选择。|
 |hobbies|文本[]|从 SourceHobby 的 alias 列中选择。|
-|idText|文本|链接到 `CharaText` 表格中的对应条目。|
+|idText|文本|链接到 `CharaText` 表格中的对应条目。涉及游戏中角色头顶的情景气泡发言，详见 [情景气泡](#情景气泡) 章节|
 |moveAnime|文本|移动动画类型。`hop` 或留空。|
 |factory|文本[]|在 SourceChara 中未使用。|
 |components|文本[]|在 SourceChara 中未使用；此列为重复列。表里出现同名列时，**靠后的那个才生效**。|
@@ -127,6 +127,8 @@ CWL 格式已经从Wiki移除，它们仍然兼容，但推荐使用本文的新
 + `addStock(StockFileId)`
 + `addDrama(DramaFileId)`
 
+详细说明见下文
+
 ### 自动生成到区域
 
 要将角色生成到某个区域，请在角色源表的 `tag`列添加 `addZone(*)`，并用区域 **id** 替换 `*`（星号），或者保留星号以生成到随机区域。你也可以用 `@n` 来指定区域层级。
@@ -166,7 +168,7 @@ addThing(padoru_gift#10),addThing(1174#5)
 CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本文的新格式。
 :::
 
-如果您的角色 trait 设定为 **`AdventurerCustom`**，将登录该角色为冒险者，并出现在冒险者排名列表中。
+如果您的角色的 trait 列填写为 **`AdventurerCustom`**，将登录该角色为冒险者，并出现在冒险者排行列表中。
 
 如果不想您的冒险者角色随机移动，使用标签 `addFlag(StayHomeZone)`。
 
