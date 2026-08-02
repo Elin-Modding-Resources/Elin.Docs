@@ -10,11 +10,19 @@ tags: SourceSheet/Element
 
 <LinkCard t="SourceGame/Element" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1102059407#gid=1102059407" />
 
-元素表存储在 Game 表内，是第一个可见的标签页。
+Element表存储在 Game 表内，是第一个可见的标签页。基本上所有的属性/技能/专长/法术/能力都存放在这里。
 
-制作源表时，请始终复制官方行的前 3 行，然后从第 4 行开始填入你的数据。不要更改列的顺序。
+**制作源表时，必须完整复制官方源表的前三行，并将你的数据从第四行开始录入。**
 
-空格子不等于空值——游戏会回落到第 3 行的默认值。本表的默认值有：`type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5。
+::: details 关于列、空行和空格子
+**缺少的列会被静默填成空值**，不会有任何报错——所以请把官方表的表头整行复制过来，不要删列，也不要改变列的顺序。
+
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+
+**空格子不等于空值**——游戏会回落到第 3 行的默认值。本表的默认值有：`type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5。
+
+你也可以改第 3 行的默认值，让它作用到其余所有行。你的数据应从第 4 行开始录入。
+:::
 
 ## 列说明
 

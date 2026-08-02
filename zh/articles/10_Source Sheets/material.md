@@ -10,9 +10,17 @@ tags: SourceSheet/Material
 
 <LinkCard t="SourceBlock/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
 
-制作源表时，请务必复制官方源表的前三行，并将数据录入始于第四行。切勿更改列的顺序。
+**制作源表时，必须完整复制官方源表的前三行，并将你的数据从第四行开始录入。**
 
-空格子不等于空值——游戏会回落到第 3 行的默认值。本表的默认值有：`thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100。
+::: details 关于列、空行和空格子
+**缺少的列会被静默填成空值**，不会有任何报错——所以请把官方表的表头整行复制过来，不要删列，也不要改变列的顺序。
+
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+
+**空格子不等于空值**——游戏会回落到第 3 行的默认值。本表的默认值有：`thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100。
+
+你也可以改第 3 行的默认值，让它作用到其余所有行。你的数据应从第 4 行开始录入。
+:::
 
 ## 表格列
 
