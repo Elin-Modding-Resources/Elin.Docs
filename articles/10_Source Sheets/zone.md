@@ -10,9 +10,17 @@ tags: SourceSheet/Zone
 
 <LinkCard t="SourceGame/Zone" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_" />
 
-When making source sheets, always copy the first 3 rows from the official source sheet and start your data at the 4th row. Do not alter the column order.
+**When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
-An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `type` to `Zone`, `LV` to `1`, `chance` to `100`, `idBiome` to `Plain`, `dev` to `0` and `image` to `default`.
+::: details About columns, empty rows and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+
+**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+
+**An empty cell is not an empty value** — the game falls back to the default on row 3. This sheet defaults `type` to `Zone`, `LV` to `1`, `chance` to `100`, `idBiome` to `Plain`, `dev` to `0` and `image` to `default`.
+
+You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+:::
 
 ## Sheet Columns
 

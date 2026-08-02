@@ -10,9 +10,17 @@ tags: SourceSheet/Material
 
 <LinkCard t="SourceBlock/Material" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110" />
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
+**When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
-An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `thing` to `chunk`, `decal` to `2`, `defFloor`/`defBlock` to `1`, `ramp` to `6`, `hardness` to `1`, `chance` to `1000`, `weight` and `value` to `100`, `quality` to `1` and `dice` to `100`.
+::: details About columns, empty rows and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+
+**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+
+**An empty cell is not an empty value** — the game falls back to the default on row 3. This sheet defaults `thing` to `chunk`, `decal` to `2`, `defFloor`/`defBlock` to `1`, `ramp` to `6`, `hardness` to `1`, `chance` to `1000`, `weight` and `value` to `100`, `quality` to `1` and `dice` to `100`.
+
+You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+:::
 
 ## Sheet Columns
 

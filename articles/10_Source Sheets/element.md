@@ -10,11 +10,19 @@ tags: SourceSheet/Element
 
 <LinkCard t="SourceGame/Element" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1102059407#gid=1102059407" />
 
-The Element Sheet is stored inside the Game sheet. It should be the first tab visible.
+The Element Sheet is stored inside the Game sheet. It should be the first tab visible. Basically, all attributes/skills/feats/spells/abilities are stored here.
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
+**When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
-An empty cell is not an empty value — the game falls back to the default on row 3. This sheet defaults `type` to `Element`, `chance` to `1000`, `encFactor` to `100`, `mtp` to `1`, `LV` to `1`, `cost` to `0`, `geneSlot` to `1`, `eleP` to `50`, `charge` to `10` and `radius` to `5`.
+::: details About columns, empty rows and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+
+**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+
+**An empty cell is not an empty value** — the game falls back to the default on row 3. This sheet defaults `type` to `Element`, `chance` to `1000`, `encFactor` to `100`, `mtp` to `1`, `LV` to `1`, `cost` to `0`, `geneSlot` to `1`, `eleP` to `50`, `charge` to `10` and `radius` to `5`.
+
+You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+:::
 
 ## Sheet Columns
 

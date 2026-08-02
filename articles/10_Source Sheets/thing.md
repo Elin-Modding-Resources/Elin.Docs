@@ -10,14 +10,16 @@ tags: SourceSheet/Thing
 
 <LinkCard t="SourceCard/Thing" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=654432269#gid=654432269" />
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row.
+**When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
-::: warning About columns and empty rows
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns.
+::: details About columns, empty rows and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
-An empty cell is **not** an empty value either — the game falls back to the default on row 3, where `components` defaults to `log`, `defMat` to `oak` and `category` to `other`. You can change your default row 3 values to apply it to all other rows.
+**An empty cell is not an empty value** — the game falls back to the default on row 3, where `components` defaults to `log`, `defMat` to `oak` and `category` to `other`.
+
+You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
 
 The official Thing sheet has **two `sort` columns**; the later one is the one that takes effect (for duplicate names the last one wins). Just copy the header as-is.
 :::
@@ -35,7 +37,7 @@ The official Thing sheet has **two `sort` columns**; the later one is the one th
 |unknown|string|English name of higher-rarity items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |naming|string|How the name is composed when stacked. `m` = "material + item name (count)"; `ma` = material name only (count), used for raw materials; blank = item name only (count).|
 |category|string|Category the item belongs to. Used for auto-dumping and recipe menus (linked to the `Category` sheet).|
-|sort|int|Sort order. E.g. `2200` places it in the bow range.|
+|sort|int|Sort order. E.g. `2200` places it in the bow range. There are two `sort` columns; the later one takes effect (for duplicate names the last one wins), but note that you should not delete either of them.|
 |_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below. Must be a tile type the game knows — **a typo here makes the whole source sheet fail to load**.|
 |_idRenderData|string|How the object sits on the ground and its clipping. See [idRenderData](#idrenderdata) below.|
 |tiles|int[]|Replacement texture tile ID(s). Multiple tiles follow: front → front reversed → back → back reversed. E.g. `123,-123,456,-456`.|

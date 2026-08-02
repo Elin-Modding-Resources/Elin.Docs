@@ -10,16 +10,16 @@ tags: SourceSheet/Chara
 
 <LinkCard t="SourceChara" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn/edit?gid=1953808581#gid=1953808581" />
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row.
+**When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
-::: warning About columns and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns.
+::: details About columns, empty rows and empty cells
+**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
-An empty cell is **not** an empty value either — the game falls back to the default on row 3. `race` defaults to `norland`, `job` to `none`, `category` to `chara`, `_idRenderData` to `chara`, `LV` to `1`, `chance` to `100`, `tiles` and `colorMod` to `0`.
+**An empty cell is not an empty value** — the game falls back to the default on row 3. `race` defaults to `norland`, `job` to `none`, `category` to `chara`, `_idRenderData` to `chara`, `LV` to `1`, `chance` to `100`, `tiles` and `colorMod` to `0`.
 
-You can change your default row 3 values to apply it to all other rows.
+You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
 :::
 
 ## Sheet Columns
@@ -46,9 +46,9 @@ You can change your default row 3 values to apply it to all other rows.
 | quality | integer | `0–2`: regular tiers. `3`: Named Monsters (name displayed with `《》` around it; fertilized eggs hatch into the same species; can befriend but cannot be captured with a monster ball). `4`: Unique Characters (name displayed with `『』` around them; fertilized eggs hatch only into chickens; can befriend but cannot be captured with a monster ball). Not required for custom adventurers. |
 | hostility | string | Temperament toward player/allies/bystanders. Accepts `Enemy` / `Neutral` / `Friend` / `Ally` — note that hostile is spelled `Enemy`, not `Hostile`. Blank is treated as `Enemy`. `Neutral`: does not attack unless attacked. `Friend`: attacks anyone hostile to Friend units, including player if provoked. |
 | biome | string | Restricts random spawning to a single biome. Set it and the Chara only appears in the matching biome; leave it blank for no restriction. This is a **yes/no filter, not a weight**. Write the biome name (`Water`, `Sand`, `Plain`, …); it is **case-sensitive**. |
-| tag | string[] | Serves two purposes: **behavior tags** (bare words) and **spawn settings** (parameterized, see below). Behavior tags come from a fixed list and must be spelled exactly, **case included** — see [Behavior Tags](#behavior-tags). |
-| trait | string[] | The Chara's trait, mapping to a `Trait*` C# class (omit the `Trait` prefix). **This column can hold several entries, but only the first one takes effect** — the rest are silently ignored. |
-| race | string | Select from the Race ID column of SourceRace. Defaults to `norland` when left blank — a Chara with no race is a Norlander, not a Chara without a race. |
+| tag | string[] | Serves two purposes: **behavior tags** (bare words) and **spawn settings** (parameterized, see below). Behavior tags come from a fixed list and must be spelled exactly, **case included** — see the [Behavior Tags](#behavior-tags) section and the sections that follow it. |
+| trait | string[] | The Chara's trait, mapping to a `Trait*` C# class (omit the `Trait` prefix). If your Chara is an adventurer, read the [Adventurer](#adventurer) section. **This column can hold several entries, but only the first one takes effect** — the rest are silently ignored. |
+| race | string | Select from the Race ID column of SourceRace. Defaults to `norland` when left blank — a Chara with no race is a norland, not a Chara without a race. |
 | job | string | Select from the Job ID column of SourceJob; default is `none`. This defines your character's class (job). |
 | tactics | string | Overrides default tactics of assigned job. |
 | aiIdle | string | Supplements or overrides idle AI behavior. Accepts `stand` (fully stationary) or `root` (stationary until attacked or recruited). **Must be lowercase** — `Stand` simply does not apply, the Chara wanders as usual, and nothing is reported. |
