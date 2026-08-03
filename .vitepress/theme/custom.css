@@ -48,14 +48,16 @@
 .VPContent.has-sidebar {
   background-position: 50%;
   background-size: 20px 20px;
-  background-image: linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
+  background-image:
+    linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
     linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
 }
 
 .dark .VPContent.has-sidebar {
   background-position: 50%;
   background-size: 20px 20px;
-  background-image: linear-gradient(90deg, #93b1c108 3%, transparent 0),
+  background-image:
+    linear-gradient(90deg, #93b1c108 3%, transparent 0),
     linear-gradient(1turn, #93b1c108 3%, transparent 0);
 }
 
@@ -238,89 +240,81 @@
   opacity: 0.9 !important;
 }
 
-
-
-/* ==========================================================================
-   Adaptive Navbar Menu
-   导航栏自适应折叠
-   ========================================================================== */
-/*
-   The center nav menu is rendered by .vitepress/components/AdaptiveNavMenu.vue,
-   which measures the actual available width at runtime and moves items that
-   don't fit into a "⋯" flyout.
-
-   This replaces the previous approach of hiding the whole menu between
-   768px and 1536px. That approach could not work reliably, because two of the
-   inputs are not known at author time:
-     - the diffVer item's text comes from diff frontmatter and can reach ~300px
-       (e.g. "EA 23.229 Stable 1st Anniversary Patch 2 🎉🎉🎉🌌");
-     - Japanese full-width items are ~60px wider than their English equivalents.
-   Any hard-coded breakpoint eventually gets overrun by one of them.
-
-   中间导航菜单改由 .vitepress/components/AdaptiveNavMenu.vue 渲染，
-   它在运行时测量真实可用宽度，把放不下的项收进「⋯」下拉。
-
-   本段取代了此前「768px–1536px 之间整体隐藏菜单、强制汉堡菜单」的做法。
-   那个做法无法稳定成立，因为有两个变量在写样式时是未知的：
-     - diffVer 项的文本取自 diff frontmatter，最长可达约 300px
-      （例如 "EA 23.229 Stable 1st Anniversary Patch 2 🎉🎉🎉🌌"）；
-     - 日语全角项（アーカイブ / ソースシート）比英文宽约 60px。
-   任何硬编码断点最终都会被其中之一撑破。
-
-   现在 768px 以上均显示自适应菜单，右侧控件与汉堡菜单回到 VitePress 默认断点行为。
-*/
-
-/* Hide the built-in menu. It stays in the DOM on purpose: VitePress draws the
-   divider before .translations via the `.menu + .translations::before` sibling
-   selector, which still matches a display:none element.
-   隐藏内置菜单。它仍需保留在 DOM 中：VitePress 用 `.menu + .translations::before`
-   这一相邻兄弟选择器绘制分隔线，而 display:none 不影响相邻关系。 */
-.VPNavBar .VPNavBarMenu.menu {
+@media (min-width: 768px) {
+  .VPNavBarExtra.extra {
     display: none;
-}
+  }
 
-/* AdaptiveNavMenu is injected through the nav-bar-content-before slot, so it
-   lands before the search box in the DOM. Reorder to keep the original layout:
-   search → menu → translations → appearance → social → extra → hamburger.
-   AdaptiveNavMenu 经 nav-bar-content-before 插槽注入，DOM 上位于搜索框之前。
-   用 order 还原原有视觉顺序：搜索 → 菜单 → 语言 → 外观 → 社交 → 三点 → 汉堡。 */
-.VPNavBar .content-body > .VPNavBarSearch {
-    order: 1;
-}
+  .VPNavBarTranslations.translations,
+  .VPNavBarAppearance.appearance,
+  .VPNavBarSocialLinks.social-links {
+    display: flex;
+    align-items: center;
+    height: var(--vp-nav-height);
+  }
 
-.VPNavBar .content-body > .AdaptiveNavMenu {
-    order: 2;
-}
-
-.VPNavBar .content-body > .translations {
-    order: 3;
-}
-
-.VPNavBar .content-body > .appearance {
-    order: 4;
-}
-
-.VPNavBar .content-body > .social-links {
-    order: 5;
-}
-
-.VPNavBar .content-body > .extra {
-    order: 6;
-}
-
-.VPNavBar .content-body > .hamburger {
-    order: 7;
-}
-
-/* Lock pseudo-element divider position
-   锁定伪元素分隔线位置（夜间模式前面的竖线） */
-.VPNavBarAppearance::before,
-.VPNavBarSocialLinks::before,
-.VPNavBarTranslations::before {
+  .VPNavBarTranslations::before,
+  .VPNavBarAppearance::before,
+  .VPNavBarSocialLinks::before {
     align-self: center;
+  }
+
+  .VPNavBarHamburger {
+    display: flex !important;
+  }
+
+  .VPNavScreen {
+    display: block !important;
+  }
+
+  .VPNavBar .content-body .VPNavBarHamburger {
+    width: auto;
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .VPNavBar .content-body .VPNavBarHamburger .container {
+    width: 16px;
+    flex: none;
+  }
+
+  .VPNavBarHamburger::after {
+    content: "More";
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--vp-c-text-1);
+    white-space: nowrap;
+    transition: color 0.25s;
+  }
+
+  html[lang^="zh"] .VPNavBarHamburger::after {
+    content: "更多";
+  }
+
+  html[lang^="ja"] .VPNavBarHamburger::after {
+    content: "その他";
+  }
+
+  .VPNavBarHamburger:hover::after {
+    color: var(--vp-c-brand-1);
+  }
 }
 
+@media (min-width: 768px) and (max-width: 1099.98px) {
+  .VPNavBar .VPNavBarMenu.menu {
+    display: none;
+  }
+}
 
+@media (min-width: 1100px) and (max-width: 1535.98px) {
+  .VPNavBar
+    .VPNavBarMenu.menu
+    > *:not(.visually-hidden):not(.VPNavBarMenuLink[href*="modmaker"]):not(
+      .VPNavBarMenuGroup:has(a[href*="docs.google.com/spreadsheets"])
+    ) {
+    display: none;
+  }
+}
 
 /* ══════════════════════════════════════════════════════════════════════════
     Language-Specific Styles (Place near the end of custom.css for priority)
@@ -355,23 +349,23 @@
 
 /* ① 当屏幕 >= 1536px 时 */
 @media (min-width: 1536px) {
-    html[lang^="zh"] .AdaptiveNavMenu {
-        gap: 0.5rem;      /* 增加导航项间距 */
-    }
+  html[lang^="zh"] .VPNavBarMenu.menu {
+    gap: 0.5rem; /* 增加导航项间距 */
+  }
 }
 
 /* ② 当屏幕 >= 1600px 时 */
 @media (min-width: 1600px) {
-    html[lang^="zh"] .AdaptiveNavMenu {
-        gap: 1rem;      /* 增加导航项间距，比 1536px 更大 */
-    }
+  html[lang^="zh"] .VPNavBarMenu.menu {
+    gap: 1rem; /* 增加导航项间距，比 1536px 更大 */
+  }
 
-    /* 汉字间距增加 */
-    html[lang^="zh"] .VPNavBarMenuLink[href*="/articles/archive"],
-    html[lang^="zh"] .VPNavBarMenuLink[href*="code.elin-modding.net"],
-    html[lang^="zh"] .VPNavBarMenuGroup .button .text > span:first-child {
-        letter-spacing: 0.03em;
-    }
+  /* 汉字间距增加 */
+  html[lang^="zh"] .VPNavBarMenuLink[href*="/articles/archive"],
+  html[lang^="zh"] .VPNavBarMenuLink[href*="code.elin-modding.net"],
+  html[lang^="zh"] .VPNavBarMenuGroup .button .text > span:first-child {
+    letter-spacing: 0.03em;
+  }
 }
 
 
@@ -379,10 +373,10 @@
 
 /* 当屏幕 >= 1600px 时 */
 @media (min-width: 1600px) {
-    /* 仅定位左侧目录的外层标题（快速入门、模组文档等） */
-    html[lang^="zh"] #VPSidebarNav.nav h2 {
-        letter-spacing: 0.02em; /* 增加汉字字间距 */
-    }
+  /* 仅定位左侧目录的外层标题（快速入门、模组文档等） */
+  html[lang^="zh"] #VPSidebarNav.nav h2 {
+    letter-spacing: 0.02em; /* 增加汉字字间距 */
+  }
 }
 /**
  * 总目录-设计思路：
@@ -391,6 +385,43 @@
  * 不建议去掉h2
  */
 
+.diff-single-page .vp-doc {
+  max-width: 100%;
+}
+
+.diff-single-page .vp-doc p:has(> a[href*="#L"]) {
+  margin: 1.75rem 0 0;
+  line-height: 1;
+}
+
+.diff-single-page .vp-doc a[href*="#L"] {
+  text-decoration: none;
+}
+
+.diff-single-page .vp-doc a[href*="#L"] > code {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--vp-code-block-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+.diff-single-page .vp-doc a[href*="#L"]:hover > code {
+  color: var(--emr-text-indigo);
+}
+
+.diff-single-page .vp-doc p:has(> a[href*="#L"]) + div[class*="language-"] {
+  margin-top: 0;
+  border-top-left-radius: 0;
+}
+
+.diff-single-page .vp-doc h3 + div[class*="language-"] {
+  margin: 0.5rem 0 1rem;
+}
 
 /* ===========================================================================
    [en] English
@@ -402,6 +433,7 @@
  * Information density varies across languages, so text lengths differ. Please don't casually copy CSS from other languages and use it here.
  *
  */
+
 
 
 /* ===========================================================================
@@ -416,4 +448,3 @@
  * Information density varies across languages, so text lengths differ. Please don't casually copy CSS from other languages and use it here.
  *
  */
-

@@ -1,6 +1,9 @@
-import { readdirSync, readFileSync } from "fs";
+import { closeSync, openSync, readdirSync, readFileSync, readSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { anchorSlug } from "./slug";
+
+const FRONTMATTER_PROBE_BYTES = 4096;
 
 export async function makeSidebar(locale: string = "en") {
   const base = locale === "en" ? "" : `/${locale}`;
@@ -120,6 +123,47 @@ function buildSidebarItems(
   return items;
 }
 
+function readFrontmatter(file: string): Record<string, any> {
+  const fd = openSync(file, "r");
+  try {
+    const buf = Buffer.alloc(FRONTMATTER_PROBE_BYTES);
+    const read = readSync(fd, buf, 0, FRONTMATTER_PROBE_BYTES, 0);
+    const head = buf.subarray(0, read).toString("utf-8");
+
+    if (head.startsWith("---")) {
+      const end = head.indexOf("\n---", 3);
+      if (end !== -1) {
+        return matter(`${head.slice(0, end + 4)}\n`).data;
+      }
+    }
+  } finally {
+    closeSync(fd);
+  }
+
+  return matter.read(file).data;
+}
+
+function parseEAVersion(text: string): [number, number, number] {
+  const version = text.match(/EA\s+(\d+)\.(\d+)/);
+  const patch = text.match(/Patch\s+(\d+)/i);
+  return [
+    parseInt(version?.[1] ?? "0", 10),
+    parseInt(version?.[2] ?? "0", 10),
+    parseInt(patch?.[1] ?? "0", 10),
+  ];
+}
+
+function byVersionDesc(a: { text: string }, b: { text: string }) {
+  const versionA = parseEAVersion(a.text);
+  const versionB = parseEAVersion(b.text);
+
+  for (let i = 0; i < 3; i++) {
+    if (versionA[i] > versionB[i]) return -1;
+    if (versionA[i] < versionB[i]) return 1;
+  }
+  return b.text.localeCompare(a.text);
+}
+
 function getDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
   const diffs = readdirSync(diffDir, { withFileTypes: true })
@@ -130,8 +174,12 @@ function getDiff() {
 
   let sidebar: any[] = [];
   for (const diff of diffs) {
-    const { data } = matter.read(path.join(diffDir, diff));
-    const files = data.changes.split("/");
+    const data = readFrontmatter(path.join(diffDir, diff));
+    if (!data.version || !data.changes) {
+      console.warn(`[Sidebar] diff/${diff} 缺少 version/changes，已跳过`);
+      continue;
+    }
+    const files = String(data.changes).split("/");
 
     let items: any[] = [
       {
@@ -140,13 +188,9 @@ function getDiff() {
       },
     ];
     for (const file of files) {
-      const normalized = (file as string)
-        .toLowerCase()
-        .replace(/[+-]/g, "")
-        .replace(/[\s_.]/g, "-");
       items.push({
         text: file,
-        link: `/diff/${diff}#${normalized}`,
+        link: `/diff/${diff}#${anchorSlug(file)}`,
       });
     }
 
@@ -159,44 +203,31 @@ function getDiff() {
     });
   }
 
-  sidebar.sort((a, b) => {
-    const parseEAVersion = (text: string) => {
-      const afterEA = (text.split("EA ")[1] || "").trim();
-      const versions = afterEA.match(/\d+/g) || [];
-      return [
-        parseInt(versions[0] || "0", 10),
-        parseInt(versions[1] || "0", 10),
-        parseInt(versions[2] || "0", 10),
-      ];
-    };
+  if (sidebar.length === 0) {
+    return { diff: [], latest: "Diff" };
+  }
 
-    const versionA = parseEAVersion(a.text);
-    const versionB = parseEAVersion(b.text);
+  sidebar.sort(byVersionDesc);
 
-    for (let i = 0; i < 3; i++) {
-      if (versionA[i] > versionB[i]) return -1;
-      if (versionA[i] < versionB[i]) return 1;
-    }
-    return b.text.localeCompare(a.text);
-  });
-
-  // merge children changes
-  let grouped = sidebar.filter((version) => !version.text.startsWith("+"));
+  const grouped = sidebar.filter((version) => !version.text.startsWith("+"));
   for (const change of sidebar) {
     const parentVersion = change.text.match(/\+(.+?)(?= -)/);
     if (!parentVersion) continue;
 
-    const parent = grouped.filter(
-      (version) => version.text === parentVersion[1],
-    );
-    if (parent.length == 0) continue;
+    const parent = grouped.find((version) => version.text === parentVersion[1]);
+    if (parent) {
+      parent.items.splice(0, 0, {
+        text: change.text.split(" ").at(-1),
+        items: change.items,
+        collapsed: true,
+      });
+      continue;
+    }
 
-    parent[0].items.splice(0, 0, {
-      text: change.text.split(" ").at(-1),
-      items: change.items,
-      collapsed: true,
-    });
+    change.text = change.text.replace(/^\+/, "");
+    grouped.push(change);
   }
+  grouped.sort(byVersionDesc);
 
   const versionIcons = [
     { pattern: /anni/i, color: "text-pink-400", icon: "🎉🎉🎉" },
@@ -205,21 +236,38 @@ function getDiff() {
     { pattern: /stable/i, color: "text-orange-400", icon: "🌌" },
   ];
 
-  for (const version of grouped) {
-    let matchedEmojis = new Set<string>();
-    let text = version.text.replace(/\b\w+\b/g, (word: string) => {
+  let latest = "Diff";
+
+  grouped.forEach((version, index) => {
+    const matchedEmojis = new Set<string>();
+    let color = "";
+    for (const word of version.text.match(/\b\w+\b/g) ?? []) {
       for (const mapping of versionIcons) {
         if (mapping.pattern.test(word)) {
           matchedEmojis.add(mapping.icon);
-          return `<span class="${mapping.color} font-semibold">${word}</span>`;
+          color ||= mapping.color;
         }
       }
-      return word;
-    });
-    version.text = text + " " + Array.from(matchedEmojis).join("");
-  }
+    }
 
-  (grouped[0] as any).collapsed = false;
+    const emojis = Array.from(matchedEmojis).join("");
+    const paint = (s: string) =>
+      color
+        ? s.replace(
+            /(\d[\d.]*)/,
+            `<span class="${color} font-semibold">$1</span>`,
+          )
+        : s;
 
-  return { diff: grouped, latest: grouped[0].text };
+    if (index === 0) {
+      const short = version.text.match(/EA\s+[\d.]+/)?.[0] ?? version.text;
+      latest = `${paint(short)} ${emojis}`.trim();
+    }
+
+    version.text = paint(version.text) + " " + emojis;
+  });
+
+  grouped[0].collapsed = false;
+
+  return { diff: grouped, latest };
 }

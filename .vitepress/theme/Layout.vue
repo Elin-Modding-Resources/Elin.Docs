@@ -1,10 +1,5 @@
 <template>
   <DefaultTheme.Layout>
-    <!-- 顶部导航菜单：替换默认的 VPNavBarMenu，改为按可用宽度自适应折叠。
-         默认组件已在 custom.css 中隐藏；视觉顺序由 CSS order 还原。 -->
-    <template #nav-bar-content-before>
-      <AdaptiveNavMenu />
-    </template>
     <template #doc-before>
       <ModMakerTip v-if="showModMakerTip" />
     </template>
@@ -17,7 +12,6 @@ import { useData, useRouter, inBrowser } from "vitepress";
 import { watch, onMounted, computed } from "vue";
 import data from "../data/redirects.json";
 import ModMakerTip from "../components/ModMakerTip.vue";
-import AdaptiveNavMenu from "../components/AdaptiveNavMenu.vue";
 
 type Language = "en" | "zh" | "ja" | string;
 type RedirectRule = string | Partial<Record<Language, string>>;

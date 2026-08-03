@@ -1,6 +1,22 @@
 import { readdirSync, writeFileSync } from "fs";
 import path from "path";
-import parseGitDiff, { AnyLineChange } from "parse-git-diff";
+import parseGitDiff, { type AnyLineChange } from "parse-git-diff";
+import { anchorSlug } from "./slug";
+
+const SOURCE_REPO = "Elin-Modding-Resources/Elin-Decompiled";
+
+const MAX_WHOLE_FILE_LINES = 100;
+
+function githubHeaders(accept = "application/vnd.github+json") {
+  const headers: Record<string, string> = {
+    "User-Agent": "Elin-Modding-Resources-Diff-Maker/1.0",
+    Accept: accept,
+  };
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+  return headers;
+}
 
 export async function generateDiff() {
   const diffDir = path.join(process.cwd(), "/diff");
@@ -10,27 +26,42 @@ export async function generateDiff() {
     .filter((d) => d.name != "diffview.md")
     .map((f) => f.name);
 
-  const commits = await (
-    await fetch(
-      "https://api.github.com/repos/Elin-Modding-Resources/Elin-Decompiled/commits"
-    )
-  ).json();
+  let commits: unknown;
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${SOURCE_REPO}/commits`,
+      { headers: githubHeaders() },
+    );
+    if (!res.ok) {
+      return;
+    }
+    commits = await res.json();
+  } catch (e) {
+    return;
+  }
+
+  if (!Array.isArray(commits)) {
+    return;
+  }
 
   for (const commit of commits.slice(0, 10)) {
     const message = commit.commit.message;
-    if (/^(?!EA|\+EA)/.test(message.trim())) {
+    if (!/^\+?EA/.test(message.trim())) {
       continue;
     }
     if (files.some((f) => f.startsWith(commit.sha))) {
       continue;
     }
 
-    const content = await generateDiffForCommit(commit);
+    try {
+      const content = await generateDiffForCommit(commit);
+      if (!content) {
+        continue;
+      }
 
-    const diffFile = path.join(diffDir, `${commit.sha}.md`);
-    writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
-
-    continue;
+      const diffFile = path.join(diffDir, `${commit.sha}.md`);
+      writeFileSync(diffFile, content.join("\n"), { flag: "w+" });
+    } catch (e) {}
   }
 }
 
@@ -40,11 +71,11 @@ async function generateDiffForCommit(commit: {
   commit: { committer: { date: string }; message: string };
 }) {
   const rawDiff = await fetch(commit.url, {
-    headers: {
-      "User-Agent": "Elin-Modding-Resources-Diff-Maker/1.0",
-      Accept: "application/vnd.github.v3.diff",
-    },
+    headers: githubHeaders("application/vnd.github.v3.diff"),
   });
+  if (!rawDiff.ok) {
+    return null;
+  }
   const diffs = parseGitDiff(await rawDiff.text());
 
   let content: string[] = [];
@@ -79,7 +110,7 @@ async function generateDiffForCommit(commit: {
         filename = `-${filename}`;
         break;
       case "RenamedFile":
-        totalRemoved++;
+        totalRenamed++;
         filename = `~${filename}`;
         break;
       default:
@@ -88,7 +119,10 @@ async function generateDiffForCommit(commit: {
 
     changes.push(filename);
     content.push(`## ${filename}\n`);
-    const sourceLink = `https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/${commit.sha}/${entry}`;
+    if (diff.type === "RenamedFile") {
+      content.push(`\`${diff.pathBefore}\` → \`${diff.pathAfter}\`\n`);
+    }
+    const sourceLink = `https://github.com/${SOURCE_REPO}/blob/${commit.sha}/${entry}`;
 
     breaking.push({
       file: filename,
@@ -102,52 +136,44 @@ async function generateDiffForCommit(commit: {
 
       switch (diff.type) {
         case "AddedFile":
-          content.push("::: details File Created", "```cs");
-          for (const change of chunk.changes) {
-            content.push(change.content);
-          }
-          content.push("```\n", ":::");
-          break;
         case "DeletedFile":
-          content.push("::: details File Removed", "```cs");
-          for (const change of chunk.changes) {
-            content.push(change.content);
-          }
-          content.push("```\n", ":::");
-          break;
         case "RenamedFile":
-          content.push("::: details File Renamed", "```cs");
-          for (const change of chunk.changes) {
-            content.push(change.content);
-          }
-          content.push("```\n", ":::");
+          content.push(
+            `::: details ${WHOLE_FILE_LABEL[diff.type]}`,
+            ...renderWholeFile(chunk.changes, sourceLink),
+          );
           break;
-        case "ChangedFile":
-          const first = chunk.changes[0];
+        case "ChangedFile": {
+          const changes = trimBlankEdges(chunk.changes);
+          if (changes.length === 0) {
+            break;
+          }
+
+          const first = changes[0];
           const ln = getLine(first);
 
-          const chunkLink = `${sourceLink}#L${ln}-L${getLine(
-            chunk.changes.at(-1)
-          )}`;
+          const chunkLink = `${sourceLink}#L${ln}-L${getLine(changes.at(-1))}`;
           content.push(
-            `[\`${chunk.context ?? chunk.changes[0].content}\`](${chunkLink})`,
-            "```cs" + `:line-numbers=${ln}`
+            `[\`${formatContext(chunk.context ?? first.content)}\`](${chunkLink})`,
+            "```cs" + `:line-numbers=${ln}`,
           );
 
-          // replace tabs
-          let tabs = (first.content.match(/\t/) || []).length;
-          for (const change of chunk.changes) {
-            tabs = Math.min(tabs, (change.content.match(/\t/) || []).length);
-          }
+          const indented = changes.filter((c) => c.content.trim() !== "");
+          const indent = indented.length
+            ? Math.min(
+                ...indented.map((c) => c.content.match(/^\t*/)![0].length),
+              )
+            : 0;
+          const dedent = new RegExp(`^\\t{${indent}}`);
 
           const methodSig =
             /^(?!.*=>.*).*(public|protected|internal|private)\b.*\(.*\).*/;
           const partialSig = /.*(public|protected|internal|private)\b.*\(/;
           let lastDeletion = "";
-          for (let i = 0; i < chunk.changes.length; ++i) {
-            const change = chunk.changes[i];
+          for (let i = 0; i < changes.length; ++i) {
+            const change = changes[i];
 
-            let line = change.content.replace("\t".repeat(tabs), "");
+            let line = change.content.replace(dedent, "");
             if (change.type === "DeletedLine") {
               line += " // [!code --]";
               if (methodSig.test(line)) {
@@ -176,6 +202,8 @@ async function generateDiffForCommit(commit: {
           }
 
           content.push("```\n");
+          break;
+        }
         default:
           break;
       }
@@ -188,27 +216,20 @@ async function generateDiffForCommit(commit: {
       year: "numeric",
       month: "long",
       day: "numeric",
-    }
+    },
   );
 
-  const totalModified = diffs.files.length - totalAdded - totalRemoved;
-  let description = `${totalModified} file${
-    totalModified > 1 ? "s" : ""
-  } modified.`;
+  const totalModified =
+    changes.length - totalAdded - totalRemoved - totalRenamed;
+  let description = `${totalModified} ${plural(totalModified)} modified.`;
   if (totalAdded != 0) {
-    description += ` ${totalAdded} new file${
-      totalAdded > 1 ? "s" : ""
-    } created.`;
+    description += ` ${totalAdded} new ${plural(totalAdded)} created.`;
   }
   if (totalRemoved != 0) {
-    description += ` ${totalRemoved} file${
-      totalRemoved > 1 ? "s" : ""
-    } removed.`;
+    description += ` ${totalRemoved} ${plural(totalRemoved)} removed.`;
   }
   if (totalRenamed != 0) {
-    description += ` ${totalRenamed} file${
-      totalRenamed > 1 ? "s" : ""
-    } renamed.`;
+    description += ` ${totalRenamed} ${plural(totalRenamed)} renamed.`;
   }
   const header: string[] = [
     "---",
@@ -232,10 +253,9 @@ async function generateDiffForCommit(commit: {
     .filter((change) => change.changes.length !== 0)
     .map((change) => {
       return (
-        `### [${change.file} (${change.changes.length})](#${change.file
-          .toLowerCase()
-          .replace(/[+-]/g, "")
-          .replace(/[\s_.]/g, "-")})\n` +
+        `### [${change.file} (${change.changes.length})](#${anchorSlug(
+          change.file,
+        )})\n` +
         change.changes
           .map((detail) => {
             return [
@@ -252,13 +272,54 @@ async function generateDiffForCommit(commit: {
   if (foundBreaking.length > 0) {
     header.push(
       "Possible breaking changes. Click the filename to view the chunk.",
-      ...foundBreaking
+      ...foundBreaking,
     );
   } else {
     header.push("**None.**");
   }
 
   return header.concat(content);
+}
+
+const WHOLE_FILE_LABEL = {
+  AddedFile: "File Created",
+  DeletedFile: "File Removed",
+  RenamedFile: "File Renamed",
+} as const;
+
+function plural(n: number) {
+  return n === 1 ? "file" : "files";
+}
+
+function trimBlankEdges(changes: readonly AnyLineChange[]) {
+  let start = 0;
+  let end = changes.length;
+  while (start < end && changes[start].content.trim() === "") start++;
+  while (end > start && changes[end - 1].content.trim() === "") end--;
+  return changes.slice(start, end);
+}
+
+function renderWholeFile(
+  changes: readonly AnyLineChange[],
+  sourceLink: string,
+) {
+  const lines = trimBlankEdges(changes).map((c) => c.content);
+  const shown = lines.slice(0, MAX_WHOLE_FILE_LINES);
+  const omitted = lines.length - shown.length;
+
+  const block = ["```cs", ...shown, "```\n"];
+  if (omitted > 0) {
+    block.push(`… [File](${sourceLink})\n`);
+  }
+  block.push(":::");
+  return block;
+}
+
+function formatContext(raw: string) {
+  const text = raw.trim();
+  const opened = (text.match(/\(/g) || []).length;
+  const closed = (text.match(/\)/g) || []).length;
+  return opened > closed ? `${text}…)` : text;
 }
 
 function getLine(line: AnyLineChange | undefined) {
