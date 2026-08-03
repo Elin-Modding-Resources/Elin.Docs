@@ -23,12 +23,6 @@
   }
 }
 
-@media (max-width: 1280px) {
-  .VPNavBarHamburger {
-    display: flex !important;
-  }
-}
-
 @media (min-width: 960px) {
   :root {
     --vp-home-hero-image-filter: blur(68px);
@@ -247,85 +241,83 @@
 
 
 /* ==========================================================================
-   Medium Screen Navbar Layout Optimization
-   中等屏幕下导航栏（Navbar）显示优化——响应式折叠
+   Adaptive Navbar Menu
+   导航栏自适应折叠
    ========================================================================== */
 /*
-   1024px and 1280px are the most critical compression zones, where center navigation items
-   are most likely to overlap with right-side controls.
+   The center nav menu is rendered by .vitepress/components/AdaptiveNavMenu.vue,
+   which measures the actual available width at runtime and moves items that
+   don't fit into a "⋯" flyout.
 
-   768px must also be included to ensure the layout transition remains consistent
-   between mobile and desktop navigation behavior.
+   This replaces the previous approach of hiding the whole menu between
+   768px and 1536px. That approach could not work reliably, because two of the
+   inputs are not known at author time:
+     - the diffVer item's text comes from diff frontmatter and can reach ~300px
+       (e.g. "EA 23.229 Stable 1st Anniversary Patch 2 🎉🎉🎉🌌");
+     - Japanese full-width items are ~60px wider than their English equivalents.
+   Any hard-coded breakpoint eventually gets overrun by one of them.
 
-   1536px is intentionally excluded to make testing easier.
+   中间导航菜单改由 .vitepress/components/AdaptiveNavMenu.vue 渲染，
+   它在运行时测量真实可用宽度，把放不下的项收进「⋯」下拉。
 
-   All !important declarations must be kept. Removing them may cause mysterious layout bugs.
-   Without !important, DK (gottyduke) encountered this issue, although I could not reproduce it.
+   本段取代了此前「768px–1536px 之间整体隐藏菜单、强制汉堡菜单」的做法。
+   那个做法无法稳定成立，因为有两个变量在写样式时是未知的：
+     - diffVer 项的文本取自 diff frontmatter，最长可达约 300px
+      （例如 "EA 23.229 Stable 1st Anniversary Patch 2 🎉🎉🎉🌌"）；
+     - 日语全角项（アーカイブ / ソースシート）比英文宽约 60px。
+   任何硬编码断点最终都会被其中之一撑破。
 
-   必须包含 768px、1024px 和 1280px
-
-   其中，1024px 和 1280px 是加入本段样式之前最容易发生导航栏挤压冲突的区间，
-   中间导航项最容易遮挡右侧功能按钮。
-
-   同时也必须包含 768px，以确保移动端与桌面端导航切换过程中的
-   布局行为保持一致。
-
-   不含 1536，以便于测试。
-   所有的 !important 都必须保留，否则可能有神秘 bug，
-   无 !important 的话，DK（gottyduke）遇到了此神秘 bug，但我不能复现。
+   现在 768px 以上均显示自适应菜单，右侧控件与汉堡菜单回到 VitePress 默认断点行为。
 */
-@media (min-width: 768px) and (max-width: 1535.98px) {
 
-    /* Force hide center navigation items
-       (e.g. Sources, Decompiled)
-       强制隐藏中间导航项（源表、反编译等） */
-    .VPNavBarMenu {
-        display: none !important;
-    }
+/* Hide the built-in menu. It stays in the DOM on purpose: VitePress draws the
+   divider before .translations via the `.menu + .translations::before` sibling
+   selector, which still matches a display:none element.
+   隐藏内置菜单。它仍需保留在 DOM 中：VitePress 用 `.menu + .translations::before`
+   这一相邻兄弟选择器绘制分隔线，而 display:none 不影响相邻关系。 */
+.VPNavBar .VPNavBarMenu.menu {
+    display: none;
+}
 
-    /* Keep right-side utility controls visible
-       (e.g. language switcher, appearance toggle)
-       显示右侧功能组件
-      （语言切换、夜间模式、Github、Discord）
-       若出问题，考虑删除align-items和height试试 */
-    .VPNavBarAppearance.appearance,
-    .VPNavBarSocialLinks.social-links,
-    .VPNavBarTranslations.translations {
-        display: flex;
-        align-items: center;
-        height: var(--vp-nav-height);
-    }
+/* AdaptiveNavMenu is injected through the nav-bar-content-before slot, so it
+   lands before the search box in the DOM. Reorder to keep the original layout:
+   search → menu → translations → appearance → social → extra → hamburger.
+   AdaptiveNavMenu 经 nav-bar-content-before 插槽注入，DOM 上位于搜索框之前。
+   用 order 还原原有视觉顺序：搜索 → 菜单 → 语言 → 外观 → 社交 → 三点 → 汉堡。 */
+.VPNavBar .content-body > .VPNavBarSearch {
+    order: 1;
+}
 
-    /* Hide the "three dots" overflow menu
-       隐藏“三个点”收纳菜单
-      （内含：语言及其右侧按钮，不含源表等。上面已经显示，因此“三个点”没用了） */
-    .VPNavBarExtra.extra {
-        display: none;
-    }
+.VPNavBar .content-body > .AdaptiveNavMenu {
+    order: 2;
+}
 
-    /* Force show hamburger menu button
-       强制显示汉堡菜单按钮 */
-    .VPNavBarHamburger {
-        display: flex !important;
-    }
+.VPNavBar .content-body > .translations {
+    order: 3;
+}
 
-    /* Force show the mobile dropdown panel
-       for hamburger menu
-       强制显示汉堡菜单对应的移动端下拉面板
-       下拉内含源表、反编译等 */
-    /*   VPNavScreen的!important 必须保留：用于覆盖框架 768px+ 环境下对面板的硬编码隐藏。
-         因组件菜单关闭时 DOM 物理不存在，故此处强制显示无副作用。 此注释也应当保留 */
-    .VPNavScreen {
-        display: block !important;
-    }
+.VPNavBar .content-body > .appearance {
+    order: 4;
+}
 
-    /* Lock pseudo-element divider position
-       锁定伪元素分隔线位置（夜间模式前面的竖线） */
-    .VPNavBarAppearance::before,
-    .VPNavBarSocialLinks::before,
-    .VPNavBarTranslations::before {
-        align-self: center;
-    }
+.VPNavBar .content-body > .social-links {
+    order: 5;
+}
+
+.VPNavBar .content-body > .extra {
+    order: 6;
+}
+
+.VPNavBar .content-body > .hamburger {
+    order: 7;
+}
+
+/* Lock pseudo-element divider position
+   锁定伪元素分隔线位置（夜间模式前面的竖线） */
+.VPNavBarAppearance::before,
+.VPNavBarSocialLinks::before,
+.VPNavBarTranslations::before {
+    align-self: center;
 }
 
 
@@ -359,16 +351,18 @@
  *    如果改了rem或navbar字号，可能还要微调一下这段
  */
 
+/* 注：gap 会被 AdaptiveNavMenu 的测量逻辑读取并计入总宽，不会导致折叠算错。 */
+
 /* ① 当屏幕 >= 1536px 时 */
 @media (min-width: 1536px) {
-    html[lang^="zh"] .VPNavBarMenu {
+    html[lang^="zh"] .AdaptiveNavMenu {
         gap: 0.5rem;      /* 增加导航项间距 */
     }
 }
 
 /* ② 当屏幕 >= 1600px 时 */
 @media (min-width: 1600px) {
-    html[lang^="zh"] .VPNavBarMenu {
+    html[lang^="zh"] .AdaptiveNavMenu {
         gap: 1rem;      /* 增加导航项间距，比 1536px 更大 */
     }
 
