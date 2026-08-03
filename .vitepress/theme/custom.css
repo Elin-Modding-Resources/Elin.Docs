@@ -240,17 +240,24 @@
   opacity: 0.9 !important;
 }
 
+.VPNavBar .content {
+  container-type: inline-size;
+  container-name: navbar;
+}
+
 @media (min-width: 768px) {
   .VPNavBarExtra.extra {
     display: none;
   }
 
-  .VPNavBarTranslations.translations,
-  .VPNavBarAppearance.appearance,
-  .VPNavBarSocialLinks.social-links {
-    display: flex;
-    align-items: center;
-    height: var(--vp-nav-height);
+  .VPNavBar .content-body .VPNavBarSearch {
+    padding-left: 1rem;
+  }
+
+  /* 12px → 10px：*/
+  .VPNavBar .VPNavBarMenu.menu .VPNavBarMenuLink,
+  .VPNavBar .VPNavBarMenu.menu .VPNavBarMenuGroup .button {
+    padding: 0 0.625rem;
   }
 
   .VPNavBarTranslations::before,
@@ -300,18 +307,56 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1099.98px) {
-  .VPNavBar .VPNavBarMenu.menu {
+@container navbar (min-width: 900px) {
+  .VPNavBar .content-body .VPNavBarTranslations.translations,
+  .VPNavBar .content-body .VPNavBarAppearance.appearance,
+  .VPNavBar .content-body .VPNavBarSocialLinks.social-links {
+    display: flex;
+    align-items: center;
+    height: var(--vp-nav-height);
+  }
+
+  .VPNavBar .content-body .VPNavBarHamburger {
+    display: none !important;
+  }
+}
+
+@container navbar (max-width: 899.98px) {
+  .VPNavBar .content-body .VPNavBarTranslations.translations,
+  .VPNavBar .content-body .VPNavBarAppearance.appearance,
+  .VPNavBar .content-body .VPNavBarSocialLinks.social-links {
     display: none;
   }
 }
 
-@media (min-width: 1100px) and (max-width: 1535.98px) {
+@container navbar (max-width: 759.98px) {
+  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuLink[href*="/commits/"] {
+    display: none;
+  }
+}
+
+@container navbar (max-width: 659.98px) {
   .VPNavBar
     .VPNavBarMenu.menu
-    > *:not(.visually-hidden):not(.VPNavBarMenuLink[href*="modmaker"]):not(
-      .VPNavBarMenuGroup:has(a[href*="docs.google.com/spreadsheets"])
-    ) {
+    > .VPNavBarMenuGroup:has(a[href*="docs.google.com/spreadsheets"]) {
+    display: none;
+  }
+}
+
+@container navbar (max-width: 539.98px) {
+  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuGroup:has(a[href*="modmaker"]) {
+    display: none;
+  }
+}
+
+@container navbar (max-width: 469.98px) {
+  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuLink[href*="/articles/archive"] {
+    display: none;
+  }
+}
+
+@container navbar (max-width: 379.98px) {
+  .VPNavBar .VPNavBarMenu.menu {
     display: none;
   }
 }
@@ -323,7 +368,6 @@
 
     言語ごとの専用スタイル（優先的に適用されるよう、custom.css の末尾付近に配置推奨）
    ══════════════════════════════════════════════════════════════════════════ */
-
 
 /* ===========================================================================
    [zh] Chinese 
@@ -345,7 +389,9 @@
  *    如果改了rem或navbar字号，可能还要微调一下这段
  */
 
-/* 注：gap 会被 AdaptiveNavMenu 的测量逻辑读取并计入总宽，不会导致折叠算错。 */
+/* 注：这里只在 >=1536px 才加 gap，那时导航可用宽度已远超上面折叠断点的最大值
+   （900px），加宽间距不会把任何一项挤进 More 抽屉。若要把 gap 下放到更窄的
+   屏幕，记得同步抬高上面 @container navbar 的各级阈值。 */
 
 /* ① 当屏幕 >= 1536px 时 */
 @media (min-width: 1536px) {
@@ -367,7 +413,6 @@
     letter-spacing: 0.03em;
   }
 }
-
 
 /* ------------- Menu / 总目录 ------------- */
 
@@ -433,8 +478,6 @@
  * Information density varies across languages, so text lengths differ. Please don't casually copy CSS from other languages and use it here.
  *
  */
-
-
 
 /* ===========================================================================
    [ja] Japanese

@@ -13,16 +13,19 @@ export function makeNavBar(
         archive: "Archive",
         decompiled: "Decompiled",
         sources: "Sources",
+        external: "External",
       },
       ja: {
         archive: "アーカイブ",
         decompiled: "Decompiled",
         sources: "ソースシート",
+        external: "外部",
       },
       zh: {
         archive: "归档",
         decompiled: "反编译",
         sources: "源表",
+        external: "工具",
       },
     };
 
@@ -46,14 +49,19 @@ export function makeNavBar(
       activeMatch: `${base}/diff/`,
     },
     {
-      text: getText("decompiled"),
-      link: isCI_GitHub
-        ? "https://elin-modding-resources.github.io/Elin-Decompiled/"
-        : "https://code.elin-modding.net/",
-    },
-    {
-      text: "ModMaker",
-      link: "https://modmaker.elin-modding.net/",
+      text: getText("external"),
+      items: [
+        {
+          text: getText("decompiled"),
+          link: isCI_GitHub
+            ? "https://elin-modding-resources.github.io/Elin-Decompiled/"
+            : "https://code.elin-modding.net/",
+        },
+        {
+          text: "ModMaker",
+          link: "https://modmaker.elin-modding.net/",
+        },
+      ],
     },
     {
       text: getText("sources"),
