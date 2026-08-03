@@ -200,7 +200,7 @@ function getDiff() {
 
   const versionIcons = [
     { pattern: /anni/i, color: "text-pink-400", icon: "🎉🎉🎉" },
-    { pattern: /nya/i, color: "text-green-400", icon: "😺" },
+    { pattern: /nya|mya/i, color: "text-green-400", icon: "😺" }, // ?!
     { pattern: /nightly/i, color: "text-blue-400", icon: "🌙" },
     { pattern: /stable/i, color: "text-orange-400", icon: "🌌" },
   ];
