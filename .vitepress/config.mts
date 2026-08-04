@@ -2,9 +2,13 @@ import { defineConfig, HeadConfig, TransformContext } from "vitepress";
 import { makeSidebar } from "./data/sidebar";
 import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";
+import { makeLangRedirectScript } from "./data/langRedirect";
 import tailwindcss from "@tailwindcss/vite";
 
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
+const base = isCI_GitHub
+  ? `/${process.env.GITHUB_REPOSITORY!.split("/")[1]}/`
+  : "/";
 
 if (isCI_GitHub) {
   await generateDiff();
@@ -35,7 +39,7 @@ export default defineConfig({
   title: "Elin Modding Wiki",
   description: "Elin Modding Community Compendium",
 
-  base: isCI_GitHub ? `/${process.env.GITHUB_REPOSITORY!.split("/")[1]}/` : "/",
+  base,
   cleanUrls: true,
   lastUpdated: true,
 
@@ -141,6 +145,7 @@ export default defineConfig({
   },
 
   head: [
+    ["script", {}, makeLangRedirectScript(base)],
     [
       "script",
       {

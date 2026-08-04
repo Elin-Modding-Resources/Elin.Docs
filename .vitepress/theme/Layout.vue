@@ -8,9 +8,10 @@
 
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
-import { useData, useRouter, inBrowser } from "vitepress";
+import { useData, useRoute, useRouter, inBrowser } from "vitepress";
 import { watch, onMounted, computed } from "vue";
 import data from "../data/redirects.json";
+import { LANG_STORAGE_KEY, normalizeRoute, splitLocalePath } from "../data/lang";
 import ModMakerTip from "../components/ModMakerTip.vue";
 
 type Language = "en" | "zh" | "ja" | string;
@@ -20,7 +21,8 @@ interface Redirects {
 }
 
 const redirects = data as Redirects;
-const { page, lang } = useData();
+const { page, lang, site } = useData();
+const route = useRoute();
 const router = useRouter();
 
 const MODMAKER_SHEETS =
@@ -95,4 +97,20 @@ function goToRedirect() {
 watch(() => page.value.isNotFound, goToRedirect, { immediate: true });
 
 onMounted(goToRedirect);
+
+watch(
+  () => route.path,
+  (next, prev) => {
+    if (!inBrowser || !prev || next === prev) return;
+
+    const from = splitLocalePath(prev, site.value.base);
+    const to = splitLocalePath(next, site.value.base);
+    if (from.lang === to.lang) return;
+    if (normalizeRoute(from.rest) !== normalizeRoute(to.rest)) return;
+
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, to.lang);
+    } catch {}
+  },
+);
 </script>
