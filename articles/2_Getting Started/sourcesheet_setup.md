@@ -139,6 +139,8 @@ Modders who plan on adding extensive new content should get used to this file, b
 
 ### Before You Begin
 
+In source sheets, multi-language support is provided through columns that control localized text.
+
 Let's first understand some basics, taking a column group like `name_JP` and `name` as an example:
 + The column with the `_JP` suffix in the group is the Japanese column.
 + The column without a suffix is the English column, but it can also be used as the translation column.

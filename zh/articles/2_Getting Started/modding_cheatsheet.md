@@ -51,7 +51,11 @@ tags: Cheatsheet
 <!-- prettier-ignore -->
 > [!Important] (Steam安装路径)/Elin/Package/_Elona/Portraits
 
-### 游戏数据（源表）
+### 游戏数据
+
+Elin以**源表**记录大部分的游戏数据。
+
+关于源表的详细说明，请移步总目录的 `源表` 分区。
 
 #### Source Game
 
