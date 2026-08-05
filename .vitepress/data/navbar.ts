@@ -45,8 +45,8 @@ export function makeNavBar(
     },
     {
       text: diffVer,
-      link: `${base}/diff/diffview`,
-      activeMatch: `${base}/diff/`,
+      link: `/diff/diffview`,
+      activeMatch: `/diff/`,
     },
     {
       text: getText("external"),
