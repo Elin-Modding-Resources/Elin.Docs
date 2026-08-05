@@ -65,7 +65,26 @@ tags: Cheatsheet
 > `Things`、`Foods`、`Recipes`、`SpawnLists`、`Categories`、`Collectables`、`KeyItems`。
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### ソースシートを手動でエクスポートする方法
+
+> [!Important] ソースシートを手動でエクスポートする方法
+> Steamで `-exportsource` パラメータを設定して起動すると、Elinは自動的にソースシートのデータをCSVファイルとしてエクスポートし、(SteamPath)/Elin/SourceExport ディレクトリに保存します。
+>
+> ::: details 詳細な手順とトラブルシューティング
+> 1. SteamでElinを右クリックし、「プロパティ」をクリックします
+> 2. 起動オプションに `-exportsource` と入力します
+> 3. ゲームを起動すると、(SteamPath)/Elin/SourceExport ディレクトリにCSVファイルが生成されます
+>
+> トラブルシューティング：
+> 
+> エクスポートに失敗した場合は、すべてのModを無効化してゲームを再起動してみてください。[Modビューアー](#modビューアー) で全Modを一括で無効化できます。
+> 
+> 文字化けが発生する場合は、まず [Excel で CSV UTF-8 ファイルを正しく開く](https://support.microsoft.com/ja-JP/excel/opening-csv-utf-8-files-correctly-in-excel) をご確認ください。
+> :::
+
 ### Modファイル
+
+#### Modビューアー
 
 > [!Important] Modビューアー
 > :::info 以下の手順でModビューアーを開くことができます：

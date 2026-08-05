@@ -71,7 +71,26 @@ tags: Cheatsheet
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` 和 `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### 手动导出源表的方法
+
+> [!Important]手动导出源表的方法
+> 在steam以 `-exportsource` 参数启动时，Elin 会自动将源表数据导出为 CSV 文件，保存到 (Steam安装路径)/Elin/SourceExport 目录。
+>
+> ::: details  详细步骤与故障排查
+> 1. 在steam里右键elin，点击属性
+> 2. 启动选项里输入`-exportsource`
+> 3. 启动游戏后，(Steam路径)/Elin/SourceExport 目录会出现csv文件
+>
+> 故障排查：
+> 
+> 若导出失败，请尝试关闭所有mod后重启游戏，[mod查看器](#mod查看器) 可以一键关闭所有mod。
+> 
+> 若有乱码，请先查看[在 Excel 中正确打开 CSV UTF-8 文件](https://support.microsoft.com/zh-CN/Excel/opening-csv-utf-8-files-correctly-in-excel)
+> :::
+
 ### mod文件
+
+#### mod查看器
 
 > [!Important]mod查看器
 > :::info 你可以按以下步骤打开mod查看器：

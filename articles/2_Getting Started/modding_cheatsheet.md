@@ -68,7 +68,26 @@ Need to know where a specific data from the game is? Here are your answers:
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` and `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### Exporting Source Sheets Manually
+
+> [!Important] Exporting Source Sheets Manually
+> When launched with the `-exportsource` parameter in Steam, Elin will automatically export the source sheet data into CSV files and save them to the (SteamPath)/Elin/SourceExport directory.
+>
+> ::: details Detailed Steps and Troubleshooting
+> 1. Right-click Elin in Steam, then click Properties
+> 2. Enter `-exportsource` in Launch Options
+> 3. After launching the game, CSV files will appear in the (SteamPath)/Elin/SourceExport directory
+>
+> Troubleshooting:
+> 
+> If the export fails, please try disabling all mods and restarting the game. The [Mod Viewer](#mod-viewer) allows you to disable all mods with one click.
+> 
+> If text appears garbled, please see [Opening CSV UTF-8 files correctly in Excel](https://support.microsoft.com/Excel/opening-csv-utf-8-files-correctly-in-excel)
+> :::
+
 ### Mod Files
+
+#### Mod Viewer
 
 > [!Important] Mod Viewer
 > :::info You can open the Mod Viewer by following these steps:
