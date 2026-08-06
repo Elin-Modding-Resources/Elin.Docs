@@ -133,6 +133,34 @@ For detailed instructions on Source Sheets, please head over to the `Source Shee
 > Eg.: `Texture Replace/objC_2115.png` will replace the sprite of the adventurer Gaki.
 > ::: info You can find the spritesheet names and tile numbers in [**Texture Viewer**](#sprites)  
 
-For the complete content, please head over to the `Texture Mods` section in the Menu.  <!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD--> 
+For the complete content, please head over to the `Texture Mods` section in the Menu.  <!--Menu=总目录=メニュー。Texture Mods=贴图模组=テクスチャMOD-->
 
+### Force update game and mods
 
+You can **verify integrity of game files** to force update Elin files and mods. Even if you have auto-update enabled, Steam might not update your mods, or files might be missing during an update, which can cause bugs.
+
+How to verify integrity:
+1. Close the game
+2. In Steam: `Right-click Elin -> Properties -> Installed Files -> Verify integrity of game files`
+
+Once the progress bar completes, your game and mods will be updated to the latest version. When encountering strange bugs, verifying integrity should be your first step.
+
+### Making a mod
+
+#### ModMaker
+
+You can use [ModMaker](https://modmaker.elin-modding.net/) to create mods. Currently, ModMaker supports:
++ Creating new characters
++ Writing drama
++ New races
++ New jobs
+
+Note: You should use ModMaker on a PC with Elin installed.
+
+#### Manually filling out Source Sheets
+
+Currently, ModMaker has limitations. When it has issues or lacks features, you can fill out Source Sheets manually.
+
+For details, please head over to [Basic Elin Sheet Modding and You](../2_Getting%20Started/sourcesheet_setup.md).
+
+You can also read articles in the `Making A Source Sheet Mod` section of the Menu.
