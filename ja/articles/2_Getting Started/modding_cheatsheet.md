@@ -60,7 +60,7 @@ Elinは大部分のゲームデータを**ソースシート**で記録してい
 #### Source Chara
 
 > [!Important] 以下のシートを含みます：
-> `Characters(Chara)`、`Barks (CharaTalk)`、`Tactics`、`Races`、`Jobs`、`Hobbies`。
+> `Characters(Chara)`、`Barks (CharaText)`、`Tactics`、`Races`、`Jobs`、`Hobbies`。
 > <LinkCard t="SourceChara.xlsx" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn"/>
 
 #### Source Card
@@ -69,15 +69,21 @@ Elinは大部分のゲームデータを**ソースシート**で記録してい
 > `Things`、`Foods`、`Recipes`、`SpawnLists`、`Categories`、`Collectables`、`KeyItems`。
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### Source Block
+
+> [!Important] 以下のシートを含みます：
+> `GlobalTiles`、`Blocks`、`Floors`、`Objs`、`Decos`、`CellEffects`、`Materials`。
+> <LinkCard t="SourceBlock.xlsx" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v"/>
+
 #### ソースシートを手動でエクスポートする方法
 
 > [!Important] ソースシートを手動でエクスポートする方法
-> Steamで `-exportsource` パラメータを設定して起動すると、Elinは自動的にソースシートのデータをCSVファイルとしてエクスポートし、(SteamPath)/Elin/SourceExport ディレクトリに保存します。
+> Steamで `-exportsource` パラメータを設定して起動すると、Elinは自動的にソースシートのデータをCSVファイルとしてエクスポートし、(SteamPath)/Elin/SourceExport/(ゲームバージョン) ディレクトリに保存します。
 >
 > ::: details 詳細な手順とトラブルシューティング
 > 1. SteamでElinを右クリックし、「プロパティ」をクリックします
 > 2. 起動オプションに `-exportsource` と入力します
-> 3. ゲームを起動すると、(SteamPath)/Elin/SourceExport ディレクトリにCSVファイルが生成されます
+> 3. ゲームを起動すると、(SteamPath)/Elin/SourceExport/(ゲームバージョン) ディレクトリにCSVファイルが生成されます
 >
 > トラブルシューティング：
 > 

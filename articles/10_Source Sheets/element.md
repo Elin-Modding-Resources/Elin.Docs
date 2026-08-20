@@ -15,7 +15,7 @@ The Element Sheet is stored inside the Game sheet. It should be the first tab vi
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
@@ -28,7 +28,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 
 |Column|Type|Description|
 |-|-|-|
-|id|int|Unique identifier for the element. If the ID matches a vanilla or another mod's entry, the last sheet loaded overrides all previous ones. Cannot contain spaces or special characters.|
+|id|int|Unique numeric identifier for the element. If the ID matches a vanilla or another mod's entry, the last sheet loaded overrides all previous ones.|
 |alias|string|String alias for this element. Usually the ID is preferred for access, but this provides a string representation. Used by the other `aliasX` columns below.|
 |name_JP|string|Display name in Japanese.|
 |name|string|Display name in English. Other languages use [`SourceLocalization`](./localization).|
@@ -45,7 +45,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |LV|int|"Level" of this element. See [LV](#lv) below.|
 |chance|int|Spawn chance weight. `1000` = common; lower values = rarer; `0` = never spawns naturally.|
 |value|int|Item value modifier specific to this element (e.g., spellbook of a spell, skillbook of a skill).|
-|cost|int[]|For spells and abilities: the base cost before scaling with level.|
+|cost|int[]|For spells and abilities: the base cost before scaling with level. The first value is also used as the feat point cost for feats, and factors into gene value and faction policy costs.|
 |geneSlot|int|Number of gene slots this skill/feat/spell/ability occupies when gene editing. `-1` excludes it from the gene engineering pool entirely.|
 |sort|int|Sort weight. Mostly used for abilities and spells to determine order in the spell/ability list.|
 |target|string|For abilities and spells only. See [Target](#target) below.|
@@ -56,15 +56,15 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |categorySub|string|Further sub-classification. Used for Skills, Land Feats, Feats, Elemental attacks, Abilities, and Spells.|
 |abilityType|string[]|For abilities and spells: stores information about the kind of effect, used by the Combat AI.|
 |tag|string[]|Various tags applied to the element. Controls where spells appear, whether invisibility is maintained after use, domain associations, negative/positive effect classification, etc.|
-|thing|string|Space-separated letters for spells only: `B` = Spellbook, `S` = Scroll, `R` = Rod. Dictates which item forms the spell can appear in.|
+|thing|string|Letter flags for spells only: `B` = Spellbook, `S` = Scroll, `R` = Rod, `P` = Potion, `F` = Perfume. Dictates which item forms the spell can appear in. Matched by `Contains`, so vanilla rows keep the letters at fixed positions (e.g. `B SR`).|
 |eleP|int|Base elemental power. Used primarily for elemental spells/abilities when calculating elemental debuffs.|
 |cooldown|int|Cooldown applied to the character after using this element, in turns.|
 |charge|int|Base charges granted when acquiring this spell (e.g., reading a Fire Ball book grants 10 charges + bonuses).|
 |radius|float|Radius of the spell or ability (e.g., Bolts use `99` to hit everything along the line to the horizon).|
 |max|int|For feats: the maximum level attainable (e.g., Metal goes up to `999`).|
 |req|string[]|For feats and skills: prerequisite elements or element levels required to unlock (e.g., Dream Waker requires the Casting skill).|
-|idTrainer|string|For skills teachable by trainers: which trainer type teaches this skill.|
-|partySkill|int|Boolean (`0` = false, `1` = true). Dictates whether the ability can be used on the entire party.|
+|idTrainer|string|Unused — nothing in the game reads this column. Whether a trainer teaches a skill is decided by the element's `categorySub` matching the trainer's type.|
+|partySkill|int|Unused — nothing in the game reads this column. Whether an ability targets the whole party is decided by the `target` column (`Party`, `SelfParty`).|
 
 ## aliasParent
 
@@ -89,7 +89,7 @@ The `aliasRef` column points to the alias of a reference element. It serves seve
 The `LV` column determines the "level" of this element:
 
 - **Spells:** Dictates spawn requirements. Earthquake is level 20, Meteor is level 30 — much harder to find at low-level spell vendors than Fire Ball (level 15).
-- **Enchantments:** Dictates the danger level needed for them to spawn. Resist fire/cold/lightning are easy to find at level 15, while resist cut and impact are much higher at 100 and 200 respectively.
+- **Enchantments:** Dictates the danger level needed for them to spawn — an enchantment can only roll on gear whose level is at or above its `LV` (e.g. resist fire has `LV` 1, so it can appear anywhere; note resist cut and impact have `chance` 0 and never spawn randomly).
 
 ## Target
 
@@ -187,11 +187,11 @@ For feats, this string in this column is shown to the right of the textPhase fla
 
 ## textInc_JP
 `string`  
-In the rare case of gaining a specific element, this Japanese text is shown in in the message log. (e.g. becoming a cannibal.) 
+In the rare case of gaining a specific element, this Japanese text is shown in the message log. (e.g. becoming a cannibal.) 
 
 ## textInc
 `string`  
-In the rare case of gaining a specific element, this Japanese text is shown in in the message log. (e.g. becoming a cannibal.) 
+In the rare case of gaining a specific element, this English text is shown in the message log. (e.g. becoming a cannibal.) 
 
 ## textDec_JP
 `string`  
@@ -203,13 +203,11 @@ Opposite of textInc, when losing a specific element.
 
 ## textAlt_JP
 `string[]`
-TODO: Need validation
-This kind of feels like it duplicates the data found in langList, where it adds extra names for specific levels of a trait in Japanese.
+Alternative Japanese display names by value tier, used when displaying trait/food enchantments: entry `value/10 + 1` is picked (clamped to the list), then formatted via the `altEnc` lang string.
 
 ## textAlt
 `string[]`  
-TODO: Need validation
-This kind of feels like it duplicates the data found in langList, where it adds extra names for specific levels of a trait in English.
+Alternative English display names by value tier, used when displaying trait/food enchantments: entry `value/10 + 1` is picked (clamped to the list), then formatted via the `altEnc` lang string.
 
 ## adjective_JP
 `string[]`  

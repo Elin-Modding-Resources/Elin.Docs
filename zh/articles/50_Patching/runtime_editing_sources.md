@@ -14,7 +14,10 @@ A patch that changes the Thing's sources at runtime is hence preferred.
 
 # Patching
 
-You can patch `SourceManger.Init` with a prefix that can edit the Thing you want to edit. `SourceManger` inits its sources after `OnStartCore`, and before `Start`, so the patch has to be injected on Awake. 
+You can patch `SourceManager.Init` with a prefix that can edit the Thing you want to edit. `SourceManager` inits its sources after `OnStartCore`, and before `Start`, so the patch has to be injected on Awake.
+
+> [!Note]
+> The base game now also publishes the `EVENT.SourceImporting` / `EVENT.SourceImported` events (see [ModUtil & Events](../5_Elin%20API/modutil)). Subscribing to `EVENT.SourceImported` needs no Harmony at all, runs after **all** sheets (including other mods') are imported and initialized, and re-runs whenever sources are reloaded — prefer it for new code. A prefix on `SourceManager.Init` only sees base-game rows, because mod sheets are imported inside `Init` itself.
 
 You can make a method that uses attributes and has a Prepare method, which only inits the patch if it returns true.
 ```cs
@@ -27,13 +30,12 @@ internal class PatchSomeRows
         return HasModConfigOptionEnabled;
     }
 
-    //These attributes indicate that it is a prefix for SourceManager.Init and that it should run after CWL.
-    [HarmonyAfter("dk.elinplugins.customdialogloader")]
+    //These attributes indicate that it is a prefix for SourceManager.Init.
     [HarmonyPrefix]
     [HarmonyPatch(typeof(SourceManager), nameof(SourceManager.Init))]
     internal static void Thingy()
     {
-        SourceManager sources = EMono.sources; //defines our sources variable, which is usually in EMono. There's also Core.Instance but CWL patches on EMono.
+        SourceManager sources = EMono.sources; //defines our sources variable, which is usually in EMono. There's also Core.Instance.
         SourceThing.Row row = sources.things.rows.Find((SourceThing.Row x) => x.id == "bone"); // Gets our row and tries to find an item with the id "bone"
         //Your changes here
         row.name = "Things"; //Example change, renames the bone item to "Things"
@@ -51,12 +53,11 @@ Use Reflection to get the method to patch and the patching method. This defines 
 ```cs
 private void Awake()
 {
-    var harmonyPrefix = new HarmonyMethod(SymbolExtensions.GetMethodInfo(() => PatchSomeRows.Thingy()))
+    var harmonyPrefix = new HarmonyMethod(SymbolExtensions.GetMethodInfo(() => SourceManagerPrefix.ExampleMethod()))
     {
         priority = Priority.Low,
-        after = ["dk.elinplugins.customdialogloader"],
     };
-    harmony.Patch(AccessTools.Method(typeof(SourceManager), "Init"), prefix: harmonyPostfix);
+    harmony.Patch(AccessTools.Method(typeof(SourceManager), "Init"), prefix: harmonyPrefix);
 }
 ```
 We can now make our patching method
@@ -66,7 +67,7 @@ class SourceManagerPrefix
 {
     public static void ExampleMethod()
     {
-        SourceManager sources = EMono.sources; //defines our sources variable, which is usually in EMono. There's also Core.Instance but CWL patches on EMono.
+        SourceManager sources = EMono.sources; //defines our sources variable, which is usually in EMono. There's also Core.Instance.
         SourceThing.Row row = sources.things.rows.Find((SourceThing.Row x) => x.id == "bone"); // Gets our row and tries to find an item with the id "bone"
 
         //Your changes here
@@ -96,27 +97,26 @@ As you can see, the name of the Thing was changed to "Things".
 Note that some Things, such as `poop` may not be editable. Food (`SourceFood`) is also not editable this way
 
 # Race Editing
-Races can be edited also like Things. One part that's different from Things is that patching on OnStartCore is limited, but patching on SourceManager.Init has none of these limitations. However, instead of using SourceThing rows, you use SourceRace rows.
+Races can be edited also like Things — instead of SourceThing rows, you use SourceRace rows.
+
+One caveat: **derived data such as `elementMap` cannot be edited from a prefix.** `elementMap` is rebuilt from the `elements` column by `SourceRace.OnInit` during `Init` — before the first `Init` it is still `null`, and after it your prefix edit would be overwritten. Subscribe to `EVENT.SourceImported` instead, which fires after all sources are initialized and re-fires on every source reload:
 
 ```cs
-[HarmonyPatch]
-internal class PatchSomeRows
+private void Awake()
 {
-    [HarmonyAfter("dk.elinplugins.customdialogloader")]
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(SourceManager), nameof(SourceManager.Init))]
-    internal static void Thingy()
+    BaseModManager.SubscribeEvent(EVENT.SourceImported, () =>
     {
-        SourceManager sources = EMono.sources; 
-		SourceRace.Row c = sources.races.rows.Find((SourceRace.Row x) => x.id == "mifu"); // Gets our row and tries to find a race with the id "mifu"
+        SourceManager sources = EMono.sources;
+        SourceRace.Row c = sources.races.rows.Find((SourceRace.Row x) => x.id == "mifu"); // Gets our row and tries to find a race with the id "mifu"
         //Your changes here
-        c.elementMap.Add(1512,3);// Add Sharp Eye mutation level 3
+        c.elementMap.Add(1512, 3);// Add Sharp Eye mutation level 3
         c.name = "test race";// Rename race to "test race"
         c.playable = 1;// Set race so that its shown without extra races enabled.
-        return;
-    }
+    });
 }
 ```
+
+Plain serialized fields (`name`, `playable`, …) can still be edited from a `SourceManager.Init` prefix like Things above; only the runtime-derived fields need the event.
 
 You can go and make a new game to display the race overview during character creation. As you can see, the rename, Element addition, and playable flag changes were applied.
 

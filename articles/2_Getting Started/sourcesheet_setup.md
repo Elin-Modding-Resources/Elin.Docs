@@ -62,7 +62,7 @@ Supported `SourceData` are:
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
-GlobalTile, Block, Floor, Obj, CellEffect, Material
+GlobalTile, Block, Floor, Obj, Deco, CellEffect, Material
 ```
 
 Supported `SourceLang` are: 
@@ -132,6 +132,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 - Block - Blocks, Walls, Roofs, Stairs. For building with.
 - Floor - Floor data. Self explanatory.
 - Obj - Object data.
+- Deco - Decoration tiles (wall/floor decorations).
 - CellEffect - Extra effects applied to the tile.
 - Material - What materials are made available in the game.
 

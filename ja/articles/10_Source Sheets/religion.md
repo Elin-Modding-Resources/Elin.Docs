@@ -25,7 +25,7 @@ CWLフォーマットはWikiから削除されました。CWL仕様のModも `cw
 |name|string|英語表示名。その他の言語については [`SourceLocalization`](./localization) を使用してください|
 |name2_JP|string[]|領域名・略称（日本語）|
 |name2|string[]|領域名・略称（英語）|
-|type|string|カスタム信仰の場合は `ReligionCustom` を使用するか、カスタムC# Religionクラスの完全修飾名を入力してください。**空欄にしないでください**——この列の既定値は `ReligionCustom` ではなく `Faction` です|
+|type|string|表示分類のみ：ファクション一覧/ログで `("sub_" + type)` の言語エントリとして表示されます。信仰がカスタム扱いになるかは id のプレフィックス（`custom`）で決まり、カスタム信仰は常に `ReligionCustom` としてインスタンス化されます——この列で C# クラスを選ぶことはできません。カスタム `Religion` サブクラスは `RegisterCustomReligion` によるコード登録が必要です|
 |idMaterial|string|祭壇のマテリアルエイリアス|
 |faith|string|未使用|
 |domain|string|未使用|
@@ -52,7 +52,7 @@ CWLフォーマットはWikiから削除されました。CWL仕様のModも `cw
 
 ## 神会話
 
-信仰を正常に動作させるには、`LangMod/**/Data` フォルダに `god_talk.xlsx` テーブルを配置する必要があります。ゲーム本体のテーブルを参考にしてください：**Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**。
+`LangMod/**/Data` フォルダに配置する `god_talk.xlsx` テーブルは神のセリフを提供します。無くても信仰自体は正常に機能しますが、神の会話が空になります。ゲーム本体のテーブルを参考にしてください：**Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**。
 
 ![](./assets/god_talk.png)
 
@@ -108,12 +108,12 @@ CWLフォーマットはWikiから削除されました。CWL仕様のModも `cw
 * `Elements`
   その信仰がアクティブな場合にのみ神器に適用されるエレメントエイリアスのリスト。`religion_elements.json` の旧規約を使用するCWL Modは自動的に追加されます。
 * `GodAbilities`
-  神の能力として扱われるエレメントエイリアスのリスト。発動時に `ability` タイプの神会話がトリガーされます。`godAbility,religion_id` の旧タグ規約を使用するCWL Modは自動的に追加されます。
+  神の能力として扱われるエレメントエイリアスのリスト。発動時に `ability` タイプの神会話がトリガーされます。トリガーには、そのエレメント行の tag に `godAbility` が含まれている必要があります。`godAbility,religion_id` の旧タグ規約を使用するCWL Modは自動的に追加されます。
 * `OfferingMtp`
   特定のアイテムIDに対する供物倍率の上書き。`religion_offerings.json` の旧規約を使用するCWL Modは自動的に追加されます。
 * `OfferingValue`
   特定のアイテムIDに対する供物価値の上書き。算術式を使用します。
-  パラメータ：`base`（基本価格）、`lv`（アイテムレベル）、`rarity`（アイテムレアリティ）
+  パラメータ：`base`（ゲーム本体がアイテムの重量/カテゴリから算出する基本供物価値）、`lv`（アイテムレベル）、`rarity`（アイテムレアリティ）
 * 任意のフィールドを省略してデフォルト値を使用できます。
 
 

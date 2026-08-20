@@ -13,7 +13,7 @@ tags: SourceSheet/Material
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
@@ -32,7 +32,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |name|string|Display name in English. Other languages use [`SourceLocalization`](./localization).|
 |category|string|Material category. Vanilla uses `gem`, `soil`, `wood`, `ore`, `fiber`, `rock`, `crystal`, `water`, `grass`, `skin`, `organic` and `bone`. Note that metal and leather are not categories — they are values of the `groups` column.|
 |tag|string[]|Tags for special behaviors. Use `addColorMain(RRGGBBAA)` and `addColorAlt(RRGGBBAA)` to define custom material colors. See [Custom Material](#custom-material) below.|
-|thing|string|Associated Thing ID for this material when dismantled.|
+|thing|string|The raw-material item of this material (default `chunk`), created e.g. when digging virgin ground or gathering on the world map.|
 |goods|string[]|Consider this unused.|
 |minerals|string[]|Consider this unused.|
 |decal|int|Decal/blood overlay id. See [Decal](#decal)|
@@ -44,17 +44,17 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |ramp|int|Ramp block tile ID.|
 |idSound|string|Impact sound ID. Custom sounds are placed in `Sound/Material/` folder.|
 |soundFoot|string|Footstep sound ID. Custom sounds are placed in `Sound/Footstep/` folder.|
-|hardness|int|Material hardness; affects the tools needed to mine or process this material.|
+|hardness|int|Material hardness; affects work speed when mining/processing and several combat formulas. Also auto-added as a `hardness` element on import.|
 |groups|string[]|Material tier group (e.g. `metal`, `leather`).|
 |tier|int|Material tier in the tier group.|
 |chance|int|Random chance weight within the tier group.|
-|weight|int|Material self weight.|
-|value|int|Material value.|
+|weight|int|Weight multiplier in percent applied to the item's base weight (`100` = unchanged).|
+|value|int|Value multiplier in percent applied to the item's price (`100` = neutral).|
 |quality|int|Material quality modifier.|
-|atk|int|Attack bonus provided when used as equipment material.|
-|dmg|int|Damage bonus provided when used as equipment material.|
-|dv|int|DV bonus provided when used as equipment material.|
-|pv|int|PV bonus provided when used as equipment material.|
+|atk|int|Hit multiplier in percent (`100` = neutral) applied to the equipment's base hit bonus.|
+|dmg|int|Damage multiplier in percent (`100` = neutral) applied to the equipment's base damage bonus.|
+|dv|int|DV multiplier in percent (`100` = neutral) applied to the equipment's base DV.|
+|pv|int|PV multiplier in percent (`100` = neutral) applied to the equipment's base PV.|
 |dice|int|Dice dimension modifier for damage calculations.|
 |bits|string[]|Proof against fire or acid.|
 |elements|elements|SourceElement bonuses when used as equipment material.|
@@ -63,7 +63,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 
 ## Custom Material
 
-By default, the game cannot load custom materials because there is no color mapping for them. To make your custom material display properly, you must define its colors in the `tag` column.
+A custom material without a color mapping still loads — the game auto-creates a default (gray) entry and logs it — but it will not display with your intended colors. To make your custom material display properly, define its colors in the `tag` column.
 
 ### Color Tags
 
@@ -76,7 +76,7 @@ The color format is **RRGGBBAA** (8 hex digits):
 - **AA**: Alpha/opacity (`00`–`ff`)
 
 ::: warning Migrating From CWL
-CWL specs used `AddCol_Main` and `addCol_Alt`, which will still function the same as before. We recommend switching to the new format.
+CWL specs used `addCol_Main` and `addCol_Alt` (case-sensitive), which will still function the same as before. We recommend switching to the new format.
 :::
 
 For example:

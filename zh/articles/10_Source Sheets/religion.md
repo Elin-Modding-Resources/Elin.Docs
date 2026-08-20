@@ -25,7 +25,7 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 |name|string|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)|
 |name2_JP|string[]|领域名称、简称（日文）|
 |name2|string[]|领域名称、简称（英文）|
-|type|string|自定义信仰请使用 `ReligionCustom`，或填写你自定义的 C# Religion 类型的完整名称。**不要留空**——该列的默认值是 `Faction`，不是 `ReligionCustom`|
+|type|string|仅用于显示分类：在阵营列表/日志中显示为 `("sub_" + type)` 语言条目。信仰是否按自定义处理由 id 前缀（`custom`）决定，且自定义信仰恒以 `ReligionCustom` 实例化——该列不用于选择 C# 类型。自定义 `Religion` 子类需通过 `RegisterCustomReligion` 以代码注册|
 |idMaterial|string|祭坛的材质别名|
 |faith|string|未使用|
 |domain|string|未使用|
@@ -52,7 +52,7 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 
 ## 神对话
 
-必须在 `LangMod/**/Data` 放置 `god_talk.xlsx` 表格，信仰才能正常运行。你可以参考游戏本体表格：**Elin/Package/_Elona/\_Lang\_Chinese/Lang/CN/Data/god_talk.xlsx**。
+在 `LangMod/**/Data` 放置的 `god_talk.xlsx` 表格提供神明的语音台词；没有它信仰依然正常运作，只是神明对话为空。你可以参考游戏本体表格：**Elin/Package/_Elona/\_Lang\_Chinese/Lang/CN/Data/god_talk.xlsx**。
 
 ![](./assets/god_talk.png)
 
@@ -108,12 +108,12 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 * `Elements`
   仅在该信仰激活时对神器生效的元素别名列表。使用 `religion_elements.json` 旧规范的 CWL 模组会自动添加。
 * `GodAbilities`
-  视为神明能力的元素别名列表，施放时会触发 `ability` 类型的神明对话。使用 `godAbility,religion_id` 旧标签规范的 CWL 模组会自动添加。
+  视为神明能力的元素别名列表，施放时会触发 `ability` 类型的神明对话。触发的前提是该元素行的 tag 含有 `godAbility`。使用 `godAbility,religion_id` 旧标签规范的 CWL 模组会自动添加。
 * `OfferingMtp`
   特定事物 ID 的供品倍率覆盖。使用 `religion_offerings.json` 旧规范的 CWL 模组会自动添加。
 * `OfferingValue`
   特定事物 ID 的供品价值覆盖，使用算术表达式。
-  参数：`base`（基础价格）、`lv`（物品等级）、`rarity`（物品稀有度）
+  参数：`base`（游戏本体按物品重量/类别计算出的基础供品价值）、`lv`（物品等级）、`rarity`（物品稀有度）
 * 你可以省略任意字段以使用其默认值。
 
 ## 神之加护

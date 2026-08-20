@@ -66,7 +66,7 @@ Elin以**源表**记录大部分的游戏数据。
 #### Source Chara
 
 > [!Important]包含以下数据表:
-> `Characters(Chara)`, `Barks (CharaTalk)`, `Tactics`, `Races`, `Jobs` 和 `Hobbies`.
+> `Characters(Chara)`, `Barks (CharaText)`, `Tactics`, `Races`, `Jobs` 和 `Hobbies`.
 > <LinkCard t="SourceChara.xlsx" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn"/>
 
 #### Source Card
@@ -75,15 +75,21 @@ Elin以**源表**记录大部分的游戏数据。
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` 和 `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### Source Block
+
+> [!Important]包含以下数据表:
+> `GlobalTiles`, `Blocks`, `Floors`, `Objs`, `Decos`, `CellEffects` 和 `Materials`.
+> <LinkCard t="SourceBlock.xlsx" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v"/>
+
 #### 手动导出源表的方法
 
 > [!Important]手动导出源表的方法
-> 在steam以 `-exportsource` 参数启动时，Elin 会自动将源表数据导出为 CSV 文件，保存到 (Steam安装路径)/Elin/SourceExport 目录。
+> 在steam以 `-exportsource` 参数启动时，Elin 会自动将源表数据导出为 CSV 文件，保存到 (Steam安装路径)/Elin/SourceExport/(游戏版本号) 目录。
 >
 > ::: details  详细步骤与故障排查
 > 1. 在steam里右键elin，点击属性
 > 2. 启动选项里输入`-exportsource`
-> 3. 启动游戏后，(Steam路径)/Elin/SourceExport 目录会出现csv文件
+> 3. 启动游戏后，(Steam路径)/Elin/SourceExport/(游戏版本号) 目录会出现csv文件
 >
 > 故障排查：
 > 

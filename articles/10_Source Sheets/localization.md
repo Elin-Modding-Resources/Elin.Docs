@@ -18,8 +18,8 @@ Note that `SourceLocalization.json` always wins over the sheet columns, `EN` and
 
 To add translations for your mod's source sheets in languages other than English and Japanese:
 
-1. Switch the game to the target language.
-2. Restart the game to export the translatable entries.
+1. Make sure the mod is in your local `Package` folder (workshop copies do not auto-export).
+2. Switch the game to the target language — the translatable entries are exported on the spot (restarting also works).
 
 A `SourceLocalization.json` file should now appear in your mod's `LangMod/XX` folder, where `XX` is the current language code, such as `CN` for Simplified Chinese.
 
@@ -58,7 +58,7 @@ When the original mod updates:
 2. Put your existing `SourceLocalization.json` back into the original mod's `LangMod/XX` folder.
 3. Start the game.
 
-The game will automatically append any newly added, untranslated source-sheet entries to `SourceLocalization.json`.
+The game will automatically append any newly added, untranslated source-sheet entries to `SourceLocalization.json`, and remove entries whose source rows no longer exist.
 
 After translating the new entries, update your mod. For update instructions, see [Elin Mod Package](../2_Getting%20Started/basic_mod), especially the `Upload & Update` section.
 
@@ -89,7 +89,7 @@ For translating someone else's mod:
 
 ::: details Click to expand
 
-Under normal circumstances, starting the game only appends newly added untranslated entries to `SourceLocalization.json`.
+Under normal circumstances, starting the game only appends newly added untranslated entries to `SourceLocalization.json` (and removes ones whose source rows no longer exist).
 
 If you need to re-export the entire file:
 
@@ -101,14 +101,14 @@ If you need to re-export the entire file:
 <!-- This button label in Chinese / English / Japanese:
 导出本地化文本
 Export texts for localization
-ローカライゼーション用のテキストをエクスポート -->
+ローカライゼーション用のテキストをエキスポート -->
 
 ![](./assets/localization_export_json.png)
 
 The game will regenerate `LangMod/XX/SourceLocalization.json`.
 
 > [!WARNING] Warning
-> This will overwrite your existing `SourceLocalization.json`, so back it up first.
+> This rewrites the whole `SourceLocalization.json`. Loaded translations are preserved, but any hand-edits made after the game last loaded the file are lost — back it up first.
 :::
 
 ### Another Way to Translate Source Sheets

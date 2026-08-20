@@ -25,6 +25,12 @@ tags: API/Scripting/C#
   + `System.Text`
   + `System.Text.RegularExpressions`
   + `System.Reflection`
+  + `HarmonyLib`
+  + `EModding`
+  + `EModding.API`
+  + `EModding.Helper`
+  + `EModding.Helper.Runtime`
+  + `EModding.Helper.Runtime.Exceptions`
   + `UnityEngine`
   + `UnityEngine.UI`
   + `ReflexCLI.Attributes`
@@ -71,7 +77,7 @@ cs.eval <ここにコードを入力>
 スクリプトはフルパスまたは相対パスで読み込むことも可能です。相対パスの場合はゲーム本体の `Elin` フォルダか、任意のMOD内の `Exec` フォルダを参照します。
 ```
 cs.file D:/MyScript/DoStuff.cs
-cs.file /exporters/DoStuff
+cs.file exporters/DoStuff
 ```
 
 ### API
@@ -82,7 +88,7 @@ string EScript.EvaluateScript(string script)
 スクリプトを実行し、整形された結果を返します。このメソッドはスクリプトをキャッシュせず、呼び出すたびに再コンパイルします。
 
 ```cs
-object? EScript.EvaluateAsCSharp(this string script, 
+object? EScript.EvaluateAsCsharp(this string script, 
                                  object? globals = null,
                                  string useState = null, 
                                  bool useCache = true, 
@@ -91,7 +97,7 @@ object? EScript.EvaluateAsCSharp(this string script,
 スクリプトを実行し、実際の戻り値を返します。
 
 + `globals`：スクリプト内から直接アクセスできるオブジェクト（publicフィールドのみ）
-+ `useState`：スクリプトの状態を識別するID。同じIDを使うことで、複数回の実行間でデータを保持できます
++ `useState`：既存のスクリプト状態のID（事前にコンソールコマンド `cs.state push <id>` で作成）。状態は特殊なグローバルオブジェクトで、`Script["key"]` インデクサを通じて複数回の実行間でデータを保持できます。未登録のIDを渡した場合は毎回使い捨ての一時状態になり、データは保持されません
 + `useCache`：コンパイル済みスクリプトをキャッシュして再利用（ゲーム再起動で無効化）
 + `throwOnError`：コンパイルエラー時に `EScriptCompilationException` を投げる
 
@@ -110,11 +116,10 @@ EScriptSubmission EScriptSubmission.Create(string submissionKey)
 ### コンパイル
 
 ```cs
-EScriptRunner EScriptSubmission.Compile<T>(string script)
+Func<T, object> EScriptSubmission.Compile<T>(string script)
 ```
-スクリプトをコンパイル（または既存キャッシュから読み込み）し、`EScriptRunner` デリゲートを返します。既に同じ提出グループ内に存在する場合は再コンパイルせずキャッシュを利用します。
+スクリプトをコンパイル（または既存キャッシュから読み込み）し、スクリプト呼び出しデリゲートを返します。既に同じ提出グループ内に存在する場合は再コンパイルせずキャッシュを利用します。
 
-+ `EScriptRunner`：`Func<object?, object?>` のエイリアス
 + `T`：グローバルオブジェクトの型
 
 ### 実行
@@ -161,6 +166,8 @@ void EScript.SetProvider(IScriptProvider provider = null)
 ### API
 
 ```cs
+public delegate object EScriptRunner(object globals);
+
 public interface IScriptProvider 
 {
 	bool IsAvailable { get; }

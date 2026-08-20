@@ -61,7 +61,7 @@ When creating a sheet, avoid creating step names starting with `_` or `flag` to 
 #### Builtin Steps
 
 ::: details Builtin Steps
-After executing `inject/Unique` action, a lot of builtin drama steps will be injected into the drama sheet. To use them, simply set them as the `jump` target. Some steps are already used in the default `inject/Unique` dialogues and you usually do not need to re-use them on your own.
+The builtin drama steps below are always injected when the drama loads. To use them, simply set them as the `jump` target. The `inject/Unique` action additionally inserts the default talk options ("Let's Talk" etc.) that reference these steps, so you usually do not need to re-use them on your own.
 
 |step name|usage|
 |-|-|
@@ -133,7 +133,7 @@ For example, an action line placed after a text line won't execute until the tex
 |`choice/bye`||Insert a default bye choice|
 |`cancel`||Set right click / escape key behavior. Requires `jump`, usually set to `end`|
 |`setFlag`|flag name,value(optional)|Set a flag with value or default 1 if not provided|
-|`reload`||Reload the drama so any flag changes made in the current drama can be applied. Requires `jump`, usually set to `main`. Don't confuse this with hot reload during development - for that you only need to save the changes and it will be reloaded next time you start the drama|
+|`reload`||Reload the drama so any flag changes made in the current drama can be applied. `jump` is optional and usually set to `main`; when omitted, execution continues in place. Don't confuse this with hot reload during development - for that you only need to save the changes and it will be reloaded next time you start the drama|
 |`enableTone`||Enable dialog tone for the entire drama|
 |`addActor`||Add a drama actor to use later, `text` can be used to set a name override. This is done automatically when you fill in new id in `actor` cell. Requires [character id][character-id-link] in `actor`|
 |`invoke`|method name|Call a method. All of them are hardcoded for specific use.|
@@ -154,7 +154,7 @@ For example, an action line placed after a text line won't execute until the tex
 |`drop`|[item id][item-id-link]|Drop an item as reward at player's position|
 |`addResource`|[resource name](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md),count|Add home resource by count|
 |`shake`||Shake the screen|
-|`slap`||Slap the drama owner character|
+|`slap`||The drama owner character slaps the **player** (executes after the dialog closes, player takes minor damage)|
 |`destroyItem`|[item id][item-id-link]|Find and destroy the item with id from player's inventory|
 |`focus`||Immediately move and focus camera to the drama owner character|
 |`focusChara`|[character id][character-id-link],speed(optional)|Move and focus camera to the character with id **on the same map**|
@@ -217,7 +217,7 @@ What is it?
 | `#brother` | random term for brother/sister (randomly from `bro` or `sis` list) |
 | `#onii2` | random term for older brother/sister (from `onii2`/`onee2` lists) |
 | `#onii` | random term for older brother/sister (from `onii`/`onee` lists) |
-| `#gender` | random term based on player gender (from `gendersDrama` list) |
+| `#gender` | term for player gender (indexed into `gendersDrama` list by gender) |
 | `#he` | "he" or "she" (based on player gender) |
 | `#He` | same as above, but with initial capital letter |
 
@@ -289,6 +289,8 @@ The pseudocode syntax is simple, set `action` to `invoke*` or `i*`, and `param` 
 
 This invokes a method called `honk_honk` with 2 parameters, `arg1` and `arg2`.
 
+Shorthand prefixes are available for condition composition: `!expr` = `not(expr)`, `&expr` = `and(expr)`, `?expr` = `or(expr)`.
+
 ### Parameter
 
 Parameters are separated by comma `, ` and written within the parentheses of the expansion method, similar to code syntax. If there're no parameters, use empty `()` parentheses. 
@@ -316,15 +318,18 @@ Examples:
 |`>=20`|Check if greater than or equal to `20`|
 |`<5`|Check if less than `5`|
 |`<=3`|Check if less than or equal to `3`|
+|`++`|Increase original value by `1`|
+|`--`|Decrease original value by `1`|
+|`x10`|Multiply original value by `10` (alias of `*`)|
 
 ### Expanded Actions
 
 |method|param|description|jump|
 |-|-|-|-|
-|`add_item`|[item id][item-id-link], [material alias][material-alias-link](optional), level(optional), count(optional)|Add the item with id to `actor`, default random material, auto level, and count of `1`|always|
-|`equip_item`|[item id][item-id-link], [material alias][material-alias-link](optional), level(optional)|Equip the item with id on `actor`, default random material, auto level|always|
-|`destroy_item`|[item id][item-id-link], count(optional)|Destroy items with id on `actor`, default of 1|always|
-|`join_faith`|[religion id][religion-id-link](optional)|Make `actor` join the specific religion with id or leave the current religion with empty religion id|If success|
+|`add_item`|[item id][item-id-link], [material alias][material-alias-link](optional), level(optional), count(optional)|Add the item with id to `actor`, default item material, auto level, and count of `1`|always|
+|`equip_item`|[item id][item-id-link]|Create and equip the item with id on `actor`|always|
+|`destroy_item`|[item id][item-id-link], count(optional)|Destroy items with id on `actor`, default `-1` which destroys **all** matching items|always|
+|`join_faith`|[religion id][religion-id-link](optional)|Make `actor` join the specific religion with id or leave the current religion with empty religion id|always|
 |`join_party`||Make `actor` join player party unconditionally|always|
 |`apply_condition`|[condition alias][condition-alias-link], power|Apply a condition with id to `actor`, default power `100`|always|
 |`remove_condition`|[condition alias][condition-alias-link]|Remove the condition on `actor`|always|
@@ -333,7 +338,7 @@ Examples:
 
 |method|param|description|jump|
 |-|-|-|-|
-|`move_next_to`|[character id][character-id-link]|Move `actor` next to the character with id **on the same map**|always|
+|`move_next_to`|[character id][character-id-link]|Move `actor` next to the character with id **on the same map**|If target found|
 |`move_tile`|x offset, y offset|Move `actor` with the **relative** tile offset, such as `1, 1` or `2, -1`|always|
 |`move_to`|x, y|Move `actor` to the **absolute** tile position on the map, such as `64, 44` or `12, 0`|always|
 |`move_zone`|[zone id][zone-id-link], level(optional)|Move `actor` to a specific zone with id, and specific level, default level `0`|if success|
@@ -341,10 +346,10 @@ Examples:
 |`play_anime`|[anime id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|Play animation on `actor`|always|
 |`play_effect`|[effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|Play effect on `actor`|always|
 |`play_effect_at`|[effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md), x, y|Play effect at tile position on the map|always|
-|`play_emote`|[emote id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|Play emote on `actor`|always|
+|`play_emote`|[emote id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), duration(optional)|Play emote on `actor`, default duration `1` second|always|
 |`play_screen_effect`|[screen effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|Play screen effect|always|
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
-|`set_portrait`|portrait id(optional)|Set `actor` portrait used during dialog to a specific one or reset with empty id, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|always|
+|`set_portrait`|portrait id(optional)|Set `actor` portrait used during dialog to a specific one or reset with empty id, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|If actor found|
 |`set_portrait_override`|portrait id(optional)|Set `actor` portrait used outside of dialog to a specific one or reset with empty id, from **Portrait** folder. Must be full id. This does not affect current dialog portrait(as changed above)|always|
 |`set_sprite`|texture id(optional)|Set the custom sprite override for `actor` or reset with empty id, from **Texture** folder|always|
 |`show_book`|category/book id|Open a book, supports **LangMod/_*_*/Text** folder, for example, use `Book/ok` for `Text/Book/ok.txt`|If success|
@@ -353,12 +358,12 @@ Examples:
 
 |method|param|description|jump|
 |-|-|-|-|
-|`mod_affinity`|value expression|Modify `actor` affinity with value expression|If success|
+|`mod_affinity`|value expression|Modify `actor` affinity with value expression|always|
 |`mod_currency`|currency type, value expression|Modify `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|always|
-|`mod_element`|[element alias][element-alias-link], power(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default power `1`. Different types of elements use different power scaling|always|
-|`mod_element_exp`|[element alias][element-alias-link], value expression|Modifies the exp of a specified element for the `actor`|If success|
+|`mod_element`|[element alias][element-alias-link], value(optional), potential(optional)|Modifies a specified element (feat/resistance/skill, etc.) for the `actor`, default value `1` and potential `100`. Different types of elements use different value scaling|always|
+|`mod_element_exp`|[element alias][element-alias-link], value expression|Modifies the exp of a specified element for the `actor`|always|
 |`mod_fame`|value expression|Modify player fame with value expression|always|
-|`mod_flag`|flag, value expression|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`. This supports non player character|always|
+|`mod_flag`|flag, value expression(optional)|Modify the flag value from `actor` with value expression, such as `+1`, `=1`, `0`, default `=1`. This supports non player character. Note: these per-character flags are stored separately from the `setFlag`/`hasFlag` dialog flags|always|
 |`mod_keyitem`|[keyitem alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), value expression(optional)|Modify player's keyitem value with expression, default `=1`|If success|
 
 ### Expanded Conditions
@@ -368,12 +373,12 @@ These are still expansion methods that uses `invoke*` action same as above, but 
 |method|param|description|jump|
 |-|-|-|-|
 |`if_affinity`|value expression|Check `actor` affinity with expression, such as `<5`, `>=90`, `!=0`|If satisfies|
-|`if_condition`|[condition alias][condition-alias-link]|Check if `actor` has active condition with alias|If active|
+|`if_condition`|[condition alias][condition-alias-link], value expression(optional)|Check if `actor` has active condition with alias, optionally checking its power with expression, default `>=1`|If active|
 |`if_currency`|currency type, value expression|Check `actor` currency with value expression. `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|If satisfies|
 |`if_element`|[element alias][element-alias-link], value expression|Check `actor` element with expression|If satisfies|
-|`if_faith`|[religion id][religion-id-link], reward rank(optional)|Check if `actor` is certain religion and above reward rank, default `>0`|If satisfies|
+|`if_faith`|[religion id][religion-id-link], reward rank(optional)|Check if `actor` is certain religion and meets reward rank, default `>=0`|If satisfies|
 |`if_fame`|value expression|Check player's fame with value expression|If satisfies|
-|`if_flag`|flag name, value expression|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`|If satisfies|
+|`if_flag`|flag name, value expression(optional)|Check `actor` flag value with expression, such as `=5`, `1`, `!=0`, default `>=1`. Reads the same per-character flags as `mod_flag`, not the `setFlag`/`hasFlag` dialog flags|If satisfies|
 |`if_lv`|value expression|Check `actor` level with value expression|If satisfies|
 |`if_has_item`|[item id][item-id-link], value expression(optional)|Checks if `actor` possesses a quantity of the item that meets the expression, default `>=1`|If satisfies|
 |`if_hostility`|hostility value expression|Checks if `actor` meets a specific hostility, such as `=Ally` or `>Enemy`. Value in ascending order: `Enemy`, `Neutral`, `Friend`, `Ally`|If satisfies|
@@ -459,7 +464,7 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 
 :::
 
-Drama invoke methods must be `static`, return `bool`, and paramters start with `DramaManager dm, Dictionary<string, string> line`. 
+Drama invoke methods must be `static`, return `bool`, and parameters start with `DramaManager dm, Dictionary<string, string> line`. 
 
 The actual expression parameters can be auto converted by Elin, or passed as `string[]`. Auto convertable parameters can be any builtin data types, `DramaValueExpression`, or custom types with `static bool TryParse(string, out T)` method.
 
@@ -473,7 +478,7 @@ You can use the following tags to add styles like bold/italic/color to the text.
 |------|------|----------|
 | `<b>` `</b>` | Bold | `<b>Bold Text</b>` |
 | `<i>` `</i>` | Italic | `<i>Italic Text</i>` |
-| `<size=...>` `</size>` | Font size (percentage) |  `<size=150%>Large</size>` |
+| `<size=...>` `</size>` | Font size (pixels) |  `<size=22>Large</size>` |
 | `<color=...>` `</color>` | Text color (color name/#hex) | `<color=red>Red</color>` `<color=#add8e6ff>Light Blue</color>` |
 
 Using `Alt` + `Enter` for line breaks within the `drama` sheet text will display it as different lines on the same page; this is different from `dialog.xlsx`.
@@ -519,7 +524,7 @@ var value = (int)Script["random_value"];
 |-|-|
 |Jump to step               |`dm.Goto("my_new_step");`|
 |Add "Let's chat!" option   |`dm.InjectUniqueRumor();`|
-|Add temporary talk         |`dm.AddTempTalk("topic", "actor", "jump");`|
+|Add temporary talk         |`dm.AddTempTalk("text", "actor", "jump");`|
 |Get Chara instance         |`var chara = dm.GetChara("tg");`|
 |Recruit to party           |`chara.MakeAlly();`|
 |Modify level               |`chara.SetLv(chara.LV + 5);`|

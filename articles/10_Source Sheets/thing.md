@@ -13,7 +13,7 @@ tags: SourceSheet/Thing
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
@@ -38,7 +38,7 @@ The official Thing sheet has **two `sort` columns**; the later one is the one th
 |naming|string|How the name is composed when stacked. `m` = "material + item name (count)"; `ma` = material name only (count), used for raw materials; blank = item name only (count).|
 |category|string|Category the item belongs to. Used for auto-dumping and recipe menus (linked to the `Category` sheet).|
 |sort|int|Sort order. E.g. `2200` places it in the bow range. There are two `sort` columns; the later one takes effect (for duplicate names the last one wins), but note that you should not delete either of them.|
-|_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below. Must be a tile type the game knows — **a typo here makes the whole source sheet fail to load**.|
+|_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below. Must be a tile type the game knows — **an unknown value throws during card initialization and interrupts loading of all card rows**. Left blank it defaults to `Obj`.|
 |_idRenderData|string|How the object sits on the ground and its clipping. See [idRenderData](#idrenderdata) below.|
 |tiles|int[]|Replacement texture tile ID(s). Multiple tiles follow: front → front reversed → back → back reversed. E.g. `123,-123,456,-456`.|
 |altTiles|int[]|Variant tiles for alternate states (e.g. a closed chest with contents inside).|
@@ -46,25 +46,26 @@ The official Thing sheet has **two `sort` columns**; the later one is the one th
 |skins|int[]|Skin variant reference. The number of values is the number of alternate looks (N+1 including the base one); the build and craft menus list them accordingly. When the `idRenderData` column uses the @obj and [Sprite Variations](../15_Texture%20Mods/variation) is used, this column does not need to be filled in.|
 |size|int[]|Grid size for large objects: `width,height`.|
 |colorMod|int|Color saturation modifier. `0` means no tinting.|
-|colorType|string|Color source: `default` (first crafting ingredient), `alt` (secondary), or `random`.|
-|recipeKey|string[]|How the recipe is acquired: `*` = known by default; `-` = excluded from the random recipe pool; a character ID = sold by that character.|
+|colorType|string|Color source: `default` (main color of the coloring material), `alt` (the material's alt color), or `random`.|
+|recipeKey|string[]|How the recipe is acquired: `*` = known by default; `-` = excluded from the random recipe pool; a shop type name (`ShopType` enum, e.g. `Farris`) = sold by merchants of that shop type.|
 |factory|string[]|Crafting station where the item is made. See [Factory](#factory) below.|
 |components|string[]|Crafting ingredients. See [Components](#components) below.|
 |disassemble|string[]|Items produced when disassembled.|
-|defMat|string|Default material (e.g. `oak`). Determines the icon/preview color. Prefix it with `!` (e.g. `!oak`) to **lock the material**, so the item never rolls a different one. An unknown material silently falls back to `granite`.|
+|defMat|string|Default material (e.g. `oak`). Determines the icon/preview color. Prefix it with `!` (e.g. `!oak`) to **lock the material**, so the item never rolls a different one. An unknown material falls back to `granite` with an error logged.|
 |tierGroup|string|Tier grouping for upgrade/progression.|
 |value|int|Base sell value in orens.|
-|LV|int|Crafting skill level required.|
+|LV|int|Item level. Also used as the crafting skill level required.|
 |chance|int|Spawn or generation chance modifier.|
 |quality|int|Item rarity tier: `-1` Crude, `0` Normal, `1` Superior, `2` Legendary, `3` Mythical, `4` Artifact. The ☆ and ★ are determined by this column. It also decides whether `offense` / `defense` are used as-is — see [Offense and Defense](#offense-and-defense) below.|
+|HP|int|Item HP. Default `100`.|
 |weight|int|Item weight. E.g. seed = `30`, rod = `500`, bed = `4500`, piano = `85000`.|
 |electricity|int|Power draw. Negative values consume electricity (e.g. monitor = `-10`).|
 |trait|string[]|Special behaviors. See [Trait](#trait) below.|
 |elements|string|Element aliases from the `Element` sheet with `/level`. E.g. `lumberjack/4` displays as `Lumberjack [****]`.|
-|range|int|Weapon range in tiles. E.g. short bow = `1`, bow = `3`, rail gun = `5`.|
+|range|int|Best effective range in tiles for ranged weapons — accuracy falls off away from this distance. E.g. short bow = `1`, bow = `3`, rail gun = `5`.|
 |attackType|string|Damage/weapon type: `Blunt`, `Bow`, `Cane`, `Claw`, `Gun`, `Pierce`, `Punch`, `Slash`.|
-|offense|int[4]|Offensive stats: `diceCount,diceFaces,damageBonus,hitBonus`. E.g. `2,8,5,4` means 2d8, +5 damage, +4 hit. See [Offense and Defense](#offense-and-defense) below.|
-|substats|int[]|Sub-stat modifiers. Official rows only ever use a single value.|
+|offense|int[4]|Offensive stats: `diceCount,diceFaces,hitBonus,damageBonus`. E.g. `2,8,5,4` means 2d8, +5 hit, +4 damage. See [Offense and Defense](#offense-and-defense) below.|
+|substats|int[]|Sub-stat modifiers; the first value is used as penetration. Official rows only ever use a single value.|
 |defense|int[2]|Defensive stats: `DV,PV`. See [Offense and Defense](#offense-and-defense) below.|
 |lightData|string|Light emission preset. See [Light Data](#light-data) below.|
 |idExtra|string|Additional render data reference.|
@@ -132,8 +133,8 @@ The `_tileType` column controls how the object is displayed on the map.
 |ObjBig|Blocks movement.|
 |ObjHuge|Blocks movement.|
 |Door|Requires a wall; acts as a door/opening.|
-|Slope|Changes movement speed when traversing up/down.|
-|Stairs|Like Slope but with a more dramatic speed/height change.|
+|Slope|Ramp that can be traversed up/down.|
+|Stairs|Like Slope with different rendering and build rules.|
 |Paint|Requires a wall to attach to.|
 |WallHang|Requires a wall to attach to.|
 |Window|Requires a wall; hides when windows are hidden (e.g. when inside the building).|
@@ -188,8 +189,8 @@ The `factory` column defines where the item is crafted. Leave blank if the item 
 |Glassmaker's Table|`factory_glass`|
 |Accessory Table|`factory_accessory`|
 |Loom|`loom`|
-|Writing Tool|`tool_writing`|
-|Stove|`stove`|
+|Writing Tool|`tool_writting`| <!-- sic: double t, matches the game id -->
+|Cooker|`stove`|
 
 ## Components
 
@@ -205,7 +206,7 @@ The `components` column defines crafting ingredients.
 |`+`|**Optional** ingredient — the item can be crafted without it.|`+rune` → an extra rune may be added.|
 |`$`|This ingredient determines the **color** of the result.|`$log/2`|
 
-Prefixes can be combined in any order, e.g. `+#book`.
+Only the `+` prefix can be stacked in front of another prefix, e.g. `+#book` or `+$log`; `$` and `#` cannot be combined with each other.
 
 A `components` column containing just `-` means "use the default ingredient list", not "no ingredients". Leaving it blank falls back to the column default `log`, i.e. one log — to make an item non-craftable, leave `factory` blank instead.
 
@@ -230,20 +231,23 @@ The `trait` column defines special behaviors. The format is always a comma-separ
 For container-type objects, use the format:
 
 ```
-Container,rows,columns,backgroundImage,specialNotes
+Container,width,height,backgroundImage,idContainer
 ```
+
+`idContainer` is optional: an item/category/spawnlist id whose contents are pre-spawned inside the container when it is first opened.
 
 |Example|Meaning|
 |-|-|
-|`beekeep,2,2,crate,honey`|2×2 container with crate background, holds honey.|
-|`ChestPractice,7,5,crate`|7×5 container with crate background.|
+|`beekeep,2,2,crate,honey`|2×2 container with crate background, pre-spawns honey.|
+|`ChestPractice,7,5,crate`|7 wide × 5 tall container with crate background.|
 
 Parameters of some other common traits:
 
 |Example|Meaning|
 |-|-|
 |`Workbench,blacksmith`|Workbench; required skill (defaults to `handicraft`).|
-|`Light,3`|Light source; light radius.|
+|`Light`|Placed light source; appearance/radius comes from the `lightData` preset, takes no parameters.|
+|`LightSource,4`|Equippable light source; light radius.|
 |`ToolRangeGun,12,4`|Gun; max ammo, reload turns.|
 |`Harvest,gathering,1`|Harvestable; harvest skill, amount.|
 |`Drink,DrinkWater,10`|Drinkable; effect id, value.|
@@ -254,12 +258,12 @@ Parameters can always be omitted, in which case the trait's own default is used.
 
 ## Offense and Defense
 
-`offense` holds four values: `diceCount,diceFaces,damageBonus,hitBonus`. So `2,8,5,4` reads as "2d8, +5 damage, +4 hit". `defense` holds two: `DV,PV`.
+`offense` holds four values: `diceCount,diceFaces,hitBonus,damageBonus`. So `2,8,5,4` reads as "2d8, +5 hit, +4 damage". `defense` holds two: `DV,PV`.
 
 **These numbers are only used as-is when `quality` is `4` (Artifact).** For every other quality the game rescales them by **material** and **rarity**, with a bit of randomness on top:
 
 - rarity baseline: Crude 150, Normal 120, Superior 100, Legendary and above 80 — the lower the baseline, the stronger the result;
-- dice faces ≈ `diceFaces × the material's dice ÷ baseline`, damage bonus ≈ `damageBonus × the material's atk × 9 ÷ baseline` (`dice` and `atk` are columns on the Material sheet), and defense is rescaled by the material the same way.
+- dice faces ≈ `diceFaces × the material's dice ÷ baseline`, hit bonus ≈ `hitBonus × the material's atk × 9 ÷ baseline`, damage bonus ≈ `damageBonus × the material's dmg × 5 ÷ baseline` (`dice`, `atk` and `dmg` are columns on the Material sheet); DV ≈ `DV × the material's dv × 7 ÷ baseline` and PV ≈ `PV × the material's pv × 9 ÷ baseline`.
 
 In other words, for ordinary equipment the sheet holds **baseline values**, not final ones — tune them together with `defMat` and `quality`, or it will look like your edits do nothing.
 
@@ -275,7 +279,7 @@ The `lightData` column defines the light emission appearance.
 |`fridge`|
 |`gacha`|
 |`general`|
-|`kiln`|
+|`klin`| <!-- sic: game-side spelling -->
 |`lamp_sun`|
 |`lamp_table`|
 |`light_floor`|
@@ -302,13 +306,12 @@ The `tag` column assigns built-in behavior flags.
 Some tags, not all:
 |Tag|Effect|
 |-|-|
-|`exotic`|Considered an exotic item.|
+|`exotic`|Present on vanilla exotic goods; no direct code effect found.|
 |`godArtifact`|Treated as a god artifact. See [Religion](./religion)|
 |`noWish`|Cannot be obtained via wishing.|
 |`tourism`|Counts as a tourism item.|
 |`rareResource`|Considered a rare resource.|
-|`snowTile`|Prefers snow tiles (optional if snow obj variants are set up).|
-|`throwWeapon`|Returns after being thrown (like a boomerang).|
+|`throwWeapon`|Marks a dedicated throwing weapon (thrown on auto-attack, throwing bonuses apply). To make it return like a boomerang, add the `throwReturn` element in `elements` instead.|
 |`noCopy`|Cannot be copied.|
 |`noShop`|Does not appear in the corresponding type of shop.|
 |`fixedElement`|Fixed elements enchantment value.|
@@ -350,7 +353,7 @@ Here are the existing gun data in game:
 
 + `Num` is the number of shots in a burst. 
 + `Delay` is the animation delay in seconds. 
-+ `IdEffect` is the [ID of the muzzle effect](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md). You may use [Custom Effect](../15_Texture%20Mods/effects). Default value is `gunfire`. Lasers and canes don't use this value.
++ `IdEffect` is the [ID of the muzzle effect](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md). You may use [Custom Effect](../15_Texture%20Mods/effects). Default value is `gunfire`. Canes don't use this value; energy (laser) guns still play it.
 + `IdSprite` is the name of the projectile texture, which needs to be an existing texture in the game or a texture you placed in the **Texture** folder. Lasers don't use this value.
 + `IdSound` is the ID of the firing sound. You may use [Custom Sound](../20_Sound%20Mods/0_sound). This can be set for all types of guns.
 + `IdSoundEject` is the ID of the ejecting sound. You may use [Custom Sound](../20_Sound%20Mods/0_sound). This can be set for all types of guns.
@@ -359,7 +362,7 @@ Here are the existing gun data in game:
 + `CaneColor` is the optional tint override for cane type weapons, leave blank to use weapon's default element's color. The format is `RRGGBB` hex string. Only guns with trait `ToolRangeCane` can use this value.
 + `CaneColorBlend` enables default color and override color blending for cane type weapons. Only guns with trait `ToolRangeCane` can use this value.
 + `ForceLaser` forces the gun to use laser animation(added in 23.206 Nightly). This is not needed if gun has trait `ToolRangeGunEnergy`.
-+ `ForceRail` forces the gun to use railgun animation. **This is no longer the default behaviour for guns with trait `ToolRangeGunEnergy`.**
++ `ForceRail` forces the gun to use railgun animation. Only takes effect on laser-type guns (trait `ToolRangeGunEnergy` or `ForceLaser`). **This is no longer the default behaviour for guns with trait `ToolRangeGunEnergy`.**
 
 Any value that you wish to use default for, can be omitted.
 

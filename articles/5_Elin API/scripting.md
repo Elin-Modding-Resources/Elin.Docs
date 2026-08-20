@@ -25,6 +25,12 @@ This assembly contains the `EScript` class and its API definitions for runtime C
   + `System.Text`
   + `System.Text.RegularExpressions`
   + `System.Reflection`
+  + `HarmonyLib`
+  + `EModding`
+  + `EModding.API`
+  + `EModding.Helper`
+  + `EModding.Helper.Runtime`
+  + `EModding.Helper.Runtime.Exceptions`
   + `UnityEngine`
   + `UnityEngine.UI`
   + `ReflexCLI.Attributes`
@@ -71,7 +77,7 @@ cs.eval <code here>
 Script can also be loaded from a file using full path, or relative path under `Elin` game folder or any mod's `Exec` folder.
 ```
 cs.file D:/MyScript/DoStuff.cs
-cs.file /exporters/DoStuff
+cs.file exporters/DoStuff
 ```
 
 ### API
@@ -82,7 +88,7 @@ string EScript.EvaluateScript(string script)
 Evaluate and get the pretty formatted result. This does not cache the script, meaning each invocation will go through the compilation process.
 
 ```cs
-object? EScript.EvaluateAsCSharp(this string script, 
+object? EScript.EvaluateAsCsharp(this string script, 
                                  object? globals = null,
                                  string useState = null, 
                                  bool useCache = true, 
@@ -91,7 +97,7 @@ object? EScript.EvaluateAsCSharp(this string script,
 Evaluate and get the actual return value.
 
 + `globals`: an object that all public fields can be accessed inside the script directly.
-+ `useState`: id of the script state to use or create, it is a special globals object that exposes a `Dictionary<string, object> Script` that script can use to persist values in between evaluations.
++ `useState`: id of an existing script state, created beforehand via console command `cs.state push <id>`. The state is a special globals object exposing an indexer `Script["key"]` that scripts can use to persist values in between evaluations. Passing an unregistered id gives a fresh throwaway state on each call, so nothing persists.
 + `useCache`: cache the compiled script so the following invocations of the same script can skip compilation to speed up time. This does not persist through game restarts.
 + `throwOnError`: throw `EScriptCompilationException` if the script has compilation errors.
 
@@ -110,11 +116,10 @@ A batch groups all scripts by `submissionKey`, for example, in Drama sheet scrip
 ### Compile
 
 ```cs
-EScriptRunner EScriptSubmission.Compile<T>(string script)
+Func<T, object> EScriptSubmission.Compile<T>(string script)
 ```
-Compile or load a `EScriptRunner` delegate from this batch. If the script already exists in the batch, it will be loaded using existing chunk instead of new compilation.
+Compile or load a script call delegate from this batch. If the script already exists in the batch, it will be loaded using existing chunk instead of new compilation.
 
-+ `EScriptRunner`: alias of `Func<object?, object?>` delegate.
 + `T`: type of globals object.
 
 ### Execute
@@ -161,6 +166,8 @@ Set the new provider, or disable with `null`.
 ### API
 
 ```cs
+public delegate object EScriptRunner(object globals);
+
 public interface IScriptProvider 
 {
 	bool IsAvailable { get; }

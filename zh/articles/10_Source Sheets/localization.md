@@ -18,8 +18,8 @@ tags: SourceSheet/Localization
 
 若要为您的mod源表添加，除英语和日语以外的翻译：
 
-1. 将游戏切换至目标语言。
-2. 重启游戏以导出可翻译的条目。
+1. 确保 Mod 位于本地 `Package` 文件夹中（创意工坊副本不会自动导出）。
+2. 将游戏切换至目标语言——可翻译条目会当场导出（重启游戏同样有效）。
 
 此时，您的模组的 `LangMod/XX` 文件夹中，会出现 `SourceLocalization.json` 文件（  `XX` 是当前语言的代码，比如中文是 `CN` ）。
 
@@ -57,7 +57,7 @@ tags: SourceSheet/Localization
 2. 将您已有的 `SourceLocalization.json` 放回原 Mod 的 `LangMod/XX` 文件夹。
 3. 启动游戏。
 
-游戏会自动向 `SourceLocalization.json` 中追加新增但尚未翻译的源表条目。
+游戏会自动向 `SourceLocalization.json` 中追加新增但尚未翻译的源表条目，并移除源表中已不存在的条目。
 
 完成新增内容的翻译后，更新您的mod即可。关于如何更新，请参阅：[模组包](../2_Getting%20Started/basic_mod) 页面的上传与更新章节。
 
@@ -88,7 +88,7 @@ drama 表与 `dialog.xlsx` 不使用 `json` 来翻译，而是直接翻译对应
 
 ::: details 点击展开
 
-正常情况下，启动游戏只会向 `SourceLocalization.json` 添加尚未翻译的新条目。
+正常情况下，启动游戏只会向 `SourceLocalization.json` 添加尚未翻译的新条目（并移除源表中已不存在的条目）。
 
 如果需要重新导出整个文件，可以：
 
@@ -100,14 +100,14 @@ drama 表与 `dialog.xlsx` 不使用 `json` 来翻译，而是直接翻译对应
 <!-- 此按钮的中英日语版本：
 导出本地化文本
 Export texts for localization
-ローカライゼーション用のテキストをエクスポート -->
+ローカライゼーション用のテキストをエキスポート -->
 
 ![](./assets/localization_export_json.png)
 
 系统会重新生成 `LangMod/XX/SourceLocalization.json`。
 
 > [!WARNING] 注意
-> 此操作会覆盖已有的 `SourceLocalization.json`，请提前备份。
+> 此操作会整体重写 `SourceLocalization.json`。已加载的翻译会被保留，但游戏上次读取该文件之后手工编辑的内容会丢失——请提前备份。
 :::
 
 ### 另一种方法翻译源表

@@ -15,7 +15,7 @@ The Race Sheet is stored inside the Chara sheet; change the tab at the bottom.
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
@@ -42,8 +42,8 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |EDR|integer|Elemental Damage Reduction. A percent reduction in damage taken from elemental sources.|
 |EP|integer|Evade Perfect. This race has an additional protection layer via perfect evasion, which is a separate evasion roll.|
 |STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|Base attribute parameters.|
-|ratio|—|Macro to approximate the race strength; unused in-game but must be present in the sheet. Leave blank.|
-|INT|integer|The "intelligence" of this race. Used to determine whether they are smart enough to open a door on their own. Less than `10` means they cannot.|
+|ratio|—|Macro to approximate the race strength; unused in-game. Leave blank.|
+|INT|integer|The "intelligence" of this race. A character with INT less than `10` cannot open **locked** doors on its own; regular doors have no INT requirement.|
 |martial|integer|The starting level of the Martial Arts skill. Like the nine attributes, it is part of what the race grants and is applied when a character is generated.|
 |pen|integer|Unused by the game. Keep the column; the value does not matter.|
 |elements|elements|Inherent elements added to this race. Used to add racial feats and base skill bonuses (which also add base potential). Format: `element_alias/value`.|
@@ -56,7 +56,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |blood|integer|The blood decal this race leaves when wounded, using the same numbering as the material table's `decal` column. `2` is normal red blood. Please refer to the blood column in the `chara` sub-table of the official source. Still follow the general rule: if it is empty, use the default value.|
 |meleeStyle|string|The attack type used when this race attacks **unarmed** (with a weapon in hand the weapon's own type applies, except for martial-arts weapons). Leave blank to randomise between punch and kick each time. Options: `Slash`, `Pierce`, `Blunt`, `Punch`, `Kick`, `Bow`, `Gun`, `Claw`, `Bite`, `Spore`, `Gaze`, `Sting`, `Touch`, `Cane` — **not case sensitive**. A word outside this list fails when the character attacks unarmed rather than being ignored.|
 |castStyle|string|The casting effect of this race. Mostly used for flavor text.|
-|EQ|string[]|Determines what kind of equipment this race spawns with. EQ is an alternate way to enable equipment assignment when creating characters; you can fill in anything. Two common options are `"all"` and blank.|
+|EQ|string[]|Any non-empty value enables equipment generation when a character of this race is created; the content itself is never read — the actual equipment comes from the Chara sheet's `equip` column or the job's `equip`/`weapon`. Vanilla uses `"all"` or blank.|
 |sex|integer|Unused by the game (gender comes from the first segment of the Chara sheet's `bio` column). Keep the column; the value does not matter.|
 |age|integer[]|The age range used when spawning this race, as comma-separated `start,end`. For example, `8,50` means they spawn between ages 8 and 50.|
 |height|integer|The average height of this race. Generated characters vary by about 20% around it. It also has two effects that are easy to miss: corpse weight is derived from height, and characters shorter than 500 without the `webfree` tag can be caught in spider webs.|
@@ -75,7 +75,7 @@ Common tags used in the `tag` column:
 |`human`|The race speaks common.|
 |`fairy`|This race is a fairy.|
 |`humanSpeak`|Non-humanoid races that can speak common.|
-|`gelatin`|Equivalent to setting `jelly` in the material column (represents a slime-like material similar to a Putit). Note: Please avoid using the `gelatin` tag.|
+|`gelatin`|Present on slime-like vanilla races (e.g. Putit); no direct code effect found — the slime material comes from the `material` column (`jelly`). Please avoid using the `gelatin` tag.|
 |`sand`|This race will spawn in sand zones.|
 |`ride`|This race has good riding aptitude.|
 |`mofu`|This race will be incessantly harassed and fluffed without consent by everyone and everything.|
@@ -85,7 +85,7 @@ Common tags used in the `tag` column:
 |`animal`|This race is considered an animal. Used for Bane; can show up in Animal Tamers.|
 |`sleepBeside`|This race will try to sleep alongside you if it's in your faction and zone.|
 |`noRide`|This race has bad riding aptitude.|
-|`insect`|This race is considered an insect.|
+|`insect`|Present on insect vanilla races; no direct code effect found (can still be matched by SpawnList tag filters).|
 |`plant`|This race is considered a plant. Can be dominated by Kumiromi.|
 |`filth`|Usage unclear.|
 |`dragon`|This race is considered a dragon.|
@@ -109,7 +109,7 @@ The `figure` column uses Kanji characters separated by pipes (`|`) to represent 
 |`指`|Finger|
 |`腕`|Arm|
 |`腰`|Waist|
-|`脚`|Leg|
+|`脚`|Leg — **currently disabled in code**; the entry is skipped and creates no slot (vanilla rows still contain it)|
 |`足`|Foot|
 
 <!--注释

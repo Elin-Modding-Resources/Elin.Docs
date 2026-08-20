@@ -25,7 +25,7 @@ CWL specs are removed from the wiki, mods using CWL spec are still compatible, s
 |name|string|Display name in English. For other languages, use [`SourceLocalization`](./localization)|
 |name2_JP|string[]|Domain name, short name, in Japanese|
 |name2|string[]|Domain name, short name, in English|
-|type|string|Use `ReligionCustom` for custom religions. Or your own C# Religion type's full name. **Do not leave it blank** — the column defaults to `Faction`, not `ReligionCustom`|
+|type|string|Display category only: shown as the `("sub_" + type)` lang entry in faction lists/logs. Whether a religion is treated as custom is decided by the id prefix (`custom`), and custom religions are always instantiated as `ReligionCustom` — this column does not pick a C# type. A custom `Religion` subclass requires code registration via `RegisterCustomReligion`|
 |idMaterial|string|Material alias of the altar|
 |faith|string|Unused|
 |domain|string|Unused|
@@ -52,7 +52,7 @@ To create an optional custom portrait for your religion, put a **.png** image in
 
 ## God Talks
 
-A god talk sheet placed at `LangMod/**/Data/god_talk.xlsx` is necessary for the religion to function. You may reference the base game sheet at **Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**.
+A god talk sheet placed at `LangMod/**/Data/god_talk.xlsx` provides the god's voice lines; without it the religion still functions, but god talks are simply blank. You may reference the base game sheet at **Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**.
 
 ![](./assets/god_talk.png)
 
@@ -108,12 +108,12 @@ You can define the supplementary religion data by providing a simple JSON file l
 * `Elements`  
   List of Element aliases that only works on the artifact when the religion is active. CWL mods that used `religion_elements.json` spec will be added automatically.  
 * `GodAbilities`  
-  List of Element aliases that count as god abilities, which will trigger `ability` god talk upon performing. CWL mods that used `godAbility,religion_id` tag spec will be added automatically.  
+  List of Element aliases that count as god abilities, which will trigger `ability` god talk upon performing. The element's row must also carry the `godAbility` tag for the trigger to fire. CWL mods that used `godAbility,religion_id` tag spec will be added automatically.  
 * `OfferingMtp`  
   Offering multiplier override for specific Thing IDs. CWL mods that used `religion_offerings.json` spec will be added automatically.  
 * `OfferingValue`  
   Offering value override for specific Thing IDs, this is arithmetic expression.  
-  Arguments: `base` (base price), `lv` (item level), `rarity` (item rarity)  
+  Arguments: `base` (the offering value computed by the base game, from item weight/category), `lv` (item level), `rarity` (item rarity)  
 * You may omit any field to use their default values.
 
 ## God Favor

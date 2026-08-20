@@ -15,7 +15,7 @@ tags: SourceSheet/Chara
 **制作源表时，必须完整复制官方源表的前三行，并将你的数据从第四行开始录入。**
 
 ::: details 关于列、空行和空格子
-**缺少的列会被静默填成空值**，不会有任何报错——所以请把官方表的表头整行复制过来，不要删列，也不要改变列的顺序。
+**缺少的列会被填成空值**——游戏会在日志（Player.log）里输出 `#source ill-format` 警告并继续加载；列顺序被打乱时会按表头名自动重新映射。尽管如此，还是建议把官方表头整行原样复制，从源头避免这两种情况。
 
 **`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
 
@@ -310,23 +310,14 @@ CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本
   决定物品的祝福状态。  
   可选值：`Doomed`、`Cursed`、`Normal`、`Blessed`  
   默认值：`Normal`
-* `NoCopy`  
-  无法被复制。  
-  默认值：`false`
-* `NoRandomSocket`  
-  不生成随机的远程枪械插槽。  
-  默认值：`false`
-* `Sockets`  
-  要作为插槽附加的远程枪械附魔别名列表。空字符串表示空插槽。  
 * `PriceCalc`  
   用于覆盖物品价格的算术计算表达式。  
   参数：`base`（基础价格）、`lv`（物品等级）、`rarity`（物品稀有度）  
   示例：`"base * 0.2 + lv * 5"`
-* `MapStr`  
-  物品创建后要合并进来的附加 mapStr 值。
-* `MapInt`  
-  物品创建后要合并进来的附加 mapInt 值。
 * 你可以省略任意字段以使用其默认值。
+
+> [!Note]
+> `NoCopy`、`NoRandomSocket`、`Sockets`、`MapStr`、`MapInt` 属于已注册的 Thing 内容（Thing 表 `tag` 列）的属性，不会应用到商店库存生成的物品上。
 
 ### 库存物品类型
 
@@ -335,7 +326,7 @@ CWL 格式使用了 `AdventurerBacker`，它们仍然兼容，但推荐使用本
 |Item|标准物品。支持材质、等级和堆叠数量。|
 |Block|可放置的方块物品，由方块别名和材质生成。|
 |Cassette|音乐磁带。`Id` BGM 数字 ID。**填了不存在的 ID 不会报错，会静默换成一首随机 BGM。**|
-|Currency|货币物品。`Id` 可以是 `money`、`money2`、`plat`、`medal`、`influence`、`casino_coin`、`ecopo`。`Num` 表示金额。|
+|Currency|货币物品。`Id` 可以是 `money`、`money2`、`plat`、`medal`、`casino_coin`、`ecopo`。`Num` 表示金额。|
 |Category|从类别生成。`Id` 是类别名称。|
 |Filter|从过滤器生成。`Id` 是过滤器名称。|
 |Tag|从标签生成。`Id` 是标签名称。|

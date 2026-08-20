@@ -25,6 +25,12 @@ tags: API/Scripting/C#
   + `System.Text`
   + `System.Text.RegularExpressions`
   + `System.Reflection`
+  + `HarmonyLib`
+  + `EModding`
+  + `EModding.API`
+  + `EModding.Helper`
+  + `EModding.Helper.Runtime`
+  + `EModding.Helper.Runtime.Exceptions`
   + `UnityEngine`
   + `UnityEngine.UI`
   + `ReflexCLI.Attributes`
@@ -71,7 +77,7 @@ cs.eval <在此输入代码>
 脚本也可以通过完整路径或相对路径加载，相对路径支持 `Elin` 游戏目录或任意模组的 `Exec` 文件夹。
 ```
 cs.file D:/MyScript/DoStuff.cs
-cs.file /exporters/DoStuff
+cs.file exporters/DoStuff
 ```
 
 ### API
@@ -82,7 +88,7 @@ string EScript.EvaluateScript(string script)
 执行脚本并返回格式化后的结果。该方法不缓存脚本，每次调用都会重新编译。
 
 ```cs
-object? EScript.EvaluateAsCSharp(this string script, 
+object? EScript.EvaluateAsCsharp(this string script, 
                                  object? globals = null,
                                  string useState = null, 
                                  bool useCache = true, 
@@ -91,7 +97,7 @@ object? EScript.EvaluateAsCSharp(this string script,
 执行脚本并返回实际返回值。
 
 + `globals`：一个对象，其所有公共字段可在脚本中直接访问。
-+ `useState`：脚本状态的 ID，用于创建或复用一个特殊的全局对象，该对象包含一个 `Dictionary<string, object> Script`，可用于在多次执行间持久化数据。
++ `useState`：已存在的脚本状态 ID（需先用控制台命令 `cs.state push <id>` 创建）。该状态是一个特殊的全局对象，提供 `Script["key"]` 索引器用于在多次执行间持久化数据。传入未注册的 ID 时，每次调用都会得到一个一次性的临时状态，数据不会保留。
 + `useCache`：缓存编译后的脚本，后续相同脚本可跳过编译以提升性能（重启游戏后失效）。
 + `throwOnError`：当脚本存在编译错误时抛出 `EScriptCompilationException`。
 
@@ -110,11 +116,10 @@ EScriptSubmission EScriptSubmission.Create(string submissionKey)
 ### 编译
 
 ```cs
-EScriptRunner EScriptSubmission.Compile<T>(string script)
+Func<T, object> EScriptSubmission.Compile<T>(string script)
 ```
-编译或从该提交组中加载一个 `EScriptRunner` 委托。若脚本已存在于提交组中，则会直接使用已有缓存，而非重新编译。
+编译或从该提交组中加载一个脚本调用委托。若脚本已存在于提交组中，则会直接使用已有缓存，而非重新编译。
 
-+ `EScriptRunner`：`Func<object?, object?>` 委托的别名。
 + `T`：全局对象的类型。
 
 ### 执行
@@ -161,6 +166,8 @@ void EScript.SetProvider(IScriptProvider provider = null)
 ### API
 
 ```cs
+public delegate object EScriptRunner(object globals);
+
 public interface IScriptProvider 
 {
 	bool IsAvailable { get; }

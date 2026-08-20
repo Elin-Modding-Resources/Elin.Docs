@@ -10,6 +10,12 @@ tags: API/ModUtil/C#
 
 Events in Elin can be registered via `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)`. Some of them also offer attribute usages allowing automatic subscription.
 
+## Mod
+
++ `EVENT.ModsActivated`
+
+No parameter. Published after all mod packages have been activated.
+
 ## Game IO
 
 + `EVENT.PreLoad`, `[ElinPreLoad]`
@@ -19,6 +25,15 @@ Events in Elin can be registered via `BaseModManager.SubscribeEvent<T>(EventId, 
 + `EVENT.PostSave`, `[ElinPostSave]`
 
 Parameter: `GameIOContext`
+
++ `[ElinGameIOProperty("chunkName")]`
+
+Marks a **static property** to be automatically saved to and loaded from the save file under the given chunk name. The property must have both a getter and a static setter.
+
+```cs
+[ElinGameIOProperty("my_counter")]
+public static int MyCounter { get; set; }
+```
 
 ## Game System
 
@@ -31,13 +46,22 @@ Parameter: `Chara` or `Thing`
 
 Parameter: `Act` that just performed
 
++ `EVENT.FeatApply`
+
+Parameter: `EVENT.ElinFeatApplyEventArgs` (`feat`, `owner`, `hint`), published when a feat is being applied.
+
++ `EVENT.ReligionImporting`
+
+Parameter: `List<Religion>` that is being registered.
+
 + `ModUtil.AddContextMenuEntry`, `[ElinContextMenuEntry]`
 
-Parameter: `string langEntry, string langDisplay = ""`
+Attribute parameter: `string langEntry, string langDisplay = ""`
+Manual API: `ModUtil.AddContextMenuEntry(Action onClick, string menuEntry, string displayName = "")`
 Registers a context menu entry, such as `SubGroup/ModButton1`.
 
-+ `EVENT.PreSceneInit`
-+ `EVENT.PostSceneInit`
++ `EVENT.PreSceneInit`, `[ElinPreSceneInit]`
++ `EVENT.PostSceneInit`, `[ElinPostSceneInit]`
 
 Parameter: `Scene.Mode`
 
@@ -45,7 +69,12 @@ Parameter: `Scene.Mode`
 
 + `EVENT.SourceImporting`
 + `EVENT.SourceImported`
+
+No parameter. Published before/after importing source sheets.
+
 + `EVENT.SourceLangSet`
+
+Parameter: `string langCode`
 
 ## Drama
 

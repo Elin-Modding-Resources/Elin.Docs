@@ -237,7 +237,7 @@ Serpent Constricted is a condition that's added on the Naga themselves when the 
 | `alias` | ConSerpentConstricting |
 | `name` | Serpent Constricting |
 | `type` | ConSerpentConstricting |
-| `group` | Stance |
+| `group` | Stance <!-- note: the C# class below overrides Type to Debuff, which takes priority over this column --> |
 | `duration` | 1 |
 | `elements` | DV,-100 |
 | `colors` | stance |
@@ -406,7 +406,7 @@ public class ConSerpentConstriction : BaseDebuff
             (owner.Evalue(SKILL.STR) > constrictor.Evalue(SKILL.STR) || EClass.rnd(4) == 0))
         {
             // They have successfully broken free! End this condition.
-            CC.Say("serpentine_constriction_escape".langGame(owner.NameSimple, constrictor.NameSimple));
+            Msg.SayRaw("serpentine_constriction_escape".langGame(owner.NameSimple, constrictor.NameSimple));
             this.Kill();
         }
         else
@@ -414,7 +414,7 @@ public class ConSerpentConstriction : BaseDebuff
             // Whoops, looks like they're still being choked. Real Shame.
             // Force Apply ConEntangle to the victim.
             owner.AddCondition<ConEntangle>(this.power, force: true);
-            CC.Say("serpentine_constriction_damage".langGame(owner.NameSimple));
+            Msg.SayRaw("serpentine_constriction_damage".langGame(owner.NameSimple));
             // They will take choking damage relevant to their Max HP.
             owner.DamageHP(10 + owner.MaxHP / 20, AttackSource.Condition);   
         }
@@ -469,8 +469,8 @@ public class ConSerpentConstricting : BaseDebuff
             return;
         }
         
-        // Let's give the Naga a little big of exp in the Constricting Skill for continually choking someone.
-        owner.elements.ModExp(891179, 20f);
+        // Let's give the Naga a little bit of exp in the Serpentine Constrict ability for continually choking someone.
+        owner.elements.ModExp(89062103, 20f); // Constants.ActSerpentineConstriction
     }
 }
 ```
@@ -482,6 +482,7 @@ public class ConSerpentConstricting : BaseDebuff
 <summary>Serpentine Constriction Ability Code</summary>
 
 ```C#
+using MyMod.Common;
 using MyMod.Stats;
 namespace MyMod.Elements;
 
@@ -562,7 +563,7 @@ public class MyFeat : Feat
     public override List<string> Apply(int a, ElementContainer owner, bool hint = false)
     {
         // For my purposes, I don't need any hint text outside the ones I defined in textPhase and textExtra above. So I go ahead and return immediately if this is a hint.
-        if (hint) return;
+        if (hint) return null;
         
         // I add two skeleton sections, one to handle if I am adding the feat...
         if (a == 1)
@@ -572,6 +573,8 @@ public class MyFeat : Feat
         else if (a == -1)
         {
         }
+
+        return null;
     }
 }
 ```
@@ -608,17 +611,17 @@ public class FeatNaga : Feat
 {
     public override List<string> Apply(int a, ElementContainer owner, bool hint = false)
     {
-        if (hint) return;
+        if (hint) return null;
         
-        if (a)
+        if (a == 1)
         {
             // Players and NPCs are slightly different when gaining abilities.
             // The NPCs maintain a list of abilities they can use, while Players are dependent more on the Element Container.
             // So when this Feat is added, I need to change the behavior on how it is applied to the character depending on whether the character is player controlled or not.
             if (owner.Chara.IsPC)
             {
-                if (!owner.Chara.HasElement(Constants.ActSerpentineConstriction)) owner.Chara.AddElement(Constants.ActSerpentineConstriction);
-                if (!owner.Chara.HasElement(Constants.ActSerpentineAgility)) owner.Chara.AddElement(Constants.ActSerpentineAgility);
+                if (!owner.Chara.HasElement(Constants.ActSerpentineConstriction)) owner.Chara.elements.ModBase(Constants.ActSerpentineConstriction, 1);
+                if (!owner.Chara.HasElement(Constants.ActSerpentineAgility)) owner.Chara.elements.ModBase(Constants.ActSerpentineAgility, 1);
 
                 // This is the process used to add a permanent spell to the PC.
                 owner.Chara._listAbility ??= new List<int>();
@@ -641,8 +644,8 @@ public class FeatNaga : Feat
                 owner.Chara.elements.Remove(Constants.ActSerpentineAgility);
 
                 // This is the process to remove a permanent spell from the PC.
-                owner.Chara._listAbility.Remove(id);
-                if (owner.Chara._listAbility.Count == 0) owner.Chara._listAbility = (List<int>) null;
+                owner.Chara._listAbility?.Remove(SPELL.weapon_Poison);
+                if (owner.Chara._listAbility?.Count == 0) owner.Chara._listAbility = (List<int>) null;
             }
             else
             {
@@ -650,6 +653,8 @@ public class FeatNaga : Feat
                 if (owner.Chara.ability.Has(Constants.ActSerpentineAgility)) owner.Chara.ability.Remove(Constants.ActSerpentineAgility);
             }
         }
+
+        return null;
     }
 }
 ```
@@ -682,7 +687,7 @@ A very important column to call out is the `tag` column. You can read more detai
 | `chance` | 0 |
 | `quality` | 4 |
 | `hostility` | Friend |
-| `tag` | addZone(specwing),addBio(simiril),addThing(instrument_violin),addThing(martial_chakram#Superior),addThing(cloak_feather#Normal),addThing(sword_nagawhip) |
+| `tag` | addZone(specwing),addBio(simiril),addThing(instrument_violin),addEq(martial_chakram#Superior),addEq(cloak_feather#Normal),addThing(sword_nagawhip) |
 | `trait` | AdventurerCustom |
 | `race` | naga |
 | `job` | pianist |
@@ -708,7 +713,7 @@ A very important column to call out is the `tag` column. You can read more detai
     "BirthLocation": "Kjaraht",
     "Mom": "Temple Guardian",
     "Dad": "Temple Guardian",
-    "Background": "A traveling musician from a far away desert region. Although initially people are frightened by her monstrous body, they are quickly won over when witnessing her enchanting performance of dance and song. Her presence is a welcome one for any bar, bringing up the spirits all the patrons.
+    "Background": "A traveling musician from a far away desert region. Although initially people are frightened by her monstrous body, they are quickly won over when witnessing her enchanting performance of dance and song. Her presence is a welcome one for any bar, bringing up the spirits all the patrons.",
     "FavFood": "yakiimo",
     "FavCategory": "booze",
     "LikeThing": "goods_charm",

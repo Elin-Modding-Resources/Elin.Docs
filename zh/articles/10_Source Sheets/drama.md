@@ -61,7 +61,7 @@ tags: Chara/Drama
 #### 内置步骤
 
 ::: details 内置步骤
-执行 `inject/Unique` 动作后，大量内置剧情步骤将被注入当前剧情表。只需将它们设为 `jump` 目标即可使用。部分步骤已在默认 `inject/Unique` 对话中使用，通常无需重复使用。
+以下内置剧情步骤会在剧情加载时始终注入。只需将它们设为 `jump` 目标即可使用。`inject/Unique` 动作额外插入引用这些步骤的默认对话选项（“聊聊天”等），因此通常无需自行重复使用。
 
 |步骤名|用途|
 |-|-|
@@ -165,7 +165,7 @@ tags: Chara/Drama
 | `#brother` | 兄弟/姐妹随机称呼（`bro` 或 `sis` 列表随机） |
 | `#onii2` | 哥哥/姐姐随机称呼（列表 `onii2`/`onee2`） |
 | `#onii` | 哥哥/姐姐随机称呼（列表 `onii`/`onee`） |
-| `#gender` | 玩家性别对应的随机称呼（`gendersDrama` 列表） |
+| `#gender` | 玩家性别对应的称呼（按性别索引 `gendersDrama` 列表） |
 | `#he` | “他”或“她”（根据玩家性别） |
 | `#He` | 同上，首字母大写 |
 
@@ -193,7 +193,7 @@ tags: Chara/Drama
 |`choice/bye`||插入默认告别选项|
 |`cancel`||设置右键/ESC 键行为。需配合 `jump`，通常设为 `end`|
 |`setFlag`|flag 名称,值(可选)|设置 flag 值，未提供值时默认为 1|
-|`reload`||重新加载剧情，以便应用当前剧情中所做的 flag 更改。需配合 `jump`，通常设为 `main`。**这不是指热重载，开发时热重载只需保存文件更改并再次打开对话即可**|
+|`reload`||重新加载剧情，以便应用当前剧情中所做的 flag 更改。`jump` 可选，通常设为 `main`；省略时在原地继续执行。**这不是指热重载，开发时热重载只需保存文件更改并再次打开对话即可**|
 |`enableTone`||为整个剧情启用对话语气转换|
 |`addActor`||添加剧情角色以供后续使用，`text` 可用于设置名称覆盖。当你在 `actor` 单元格填写新 ID 时会自动触发。`actor` 需填写[角色 ID][character-id-link]|
 |`invoke`|方法名|调用方法。全部为本体Elin特定用途。|
@@ -214,7 +214,7 @@ tags: Chara/Drama
 |`drop`|[物品 ID][item-id-link]|在玩家位置掉落奖励物品|
 |`addResource`|[资源名称](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md),数量|添加家园资源|
 |`shake`||屏幕震动|
-|`slap`||扇剧情所有者角色|
+|`slap`||剧情所有者角色扇**玩家**（在对话关闭后执行，玩家受到少量伤害）|
 |`destroyItem`|[物品 ID][item-id-link]|从玩家背包中查找并销毁指定物品|
 |`focus`||立即将镜头聚焦到剧情所有者角色|
 |`focusChara`|[角色 ID][character-id-link],速度(可选)|将镜头移动并聚焦到**同地图角色**|
@@ -289,6 +289,8 @@ tags: Chara/Drama
 
 这将调用名为 `honk_honk` 的方法，传入 `arg1` 和 `arg2` 两个参数。
 
+条件组合可使用简写前缀：`!expr` = `not(expr)`、`&expr` = `and(expr)`、`?expr` = `or(expr)`。
+
 ### 参数
 
 参数用半角逗号 `,` 分隔，并写在拓展方法的括号内，类似代码语法。若无参数，请使用空括号 `()`。
@@ -317,15 +319,18 @@ tags: Chara/Drama
 |`>=20`|判断是否大于等于 `20`|
 |`<5`|判断是否小于 `5`|
 |`<=3`|判断是否小于等于 `3`|
+|`++`|在原值基础上增加 `1`|
+|`--`|在原值基础上减少 `1`|
+|`x10`|在原值基础上乘以 `10`（`*` 的别名）|
 
 ### 拓展动作
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`add_item`|[物品 ID][item-id-link], [材质 alias][material-alias-link](可选), 等级(可选), 数量(可选)|为 `actor` 添加指定物品，默认随机材质、自动等级、数量 `1`|总是|
-|`equip_item`|[物品 ID][item-id-link], [材质 alias][material-alias-link](可选), 等级(可选)|为 `actor` 装备指定物品，默认随机材质、自动等级|总是|
-|`destroy_item`|[物品 ID][item-id-link], 数量(可选)|从 `actor` 销毁指定物品，默认数量 `1`|总是|
-|`join_faith`|[信仰 ID][religion-id-link](可选)|使 `actor` 加入指定信仰，留空则退出当前信仰|成功时|
+|`add_item`|[物品 ID][item-id-link], [材质 alias][material-alias-link](可选), 等级(可选), 数量(可选)|为 `actor` 添加指定物品，默认物品自身材质、自动等级、数量 `1`|总是|
+|`equip_item`|[物品 ID][item-id-link]|创建指定物品并装备到 `actor`|总是|
+|`destroy_item`|[物品 ID][item-id-link], 数量(可选)|从 `actor` 销毁指定物品，默认 `-1`，即销毁**全部**同 ID 物品|总是|
+|`join_faith`|[信仰 ID][religion-id-link](可选)|使 `actor` 加入指定信仰，留空则退出当前信仰|总是|
 |`join_party`||无条件使 `actor` 加入玩家队伍|总是|
 |`apply_condition`|[状态 alias][condition-alias-link], 强度|为 `actor` 施加状态，默认强度 `100`|总是|
 |`remove_condition`|[状态 alias][condition-alias-link]|移除 `actor` 的状态|总是|
@@ -334,7 +339,7 @@ tags: Chara/Drama
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`move_next_to`|[角色 ID][character-id-link]|使 `actor` 移动到**同地图角色**身旁|总是|
+|`move_next_to`|[角色 ID][character-id-link]|使 `actor` 移动到**同地图角色**身旁|找到目标时|
 |`move_tile`|X 偏移, Y 偏移|使 `actor` 进行**相对坐标**移动，例如 `1,1` 或 `2,-1`|总是|
 |`move_to`|X, Y|使 `actor` 进行**绝对坐标**移动，例如 `64,44` 或 `12,0`|总是|
 |`move_zone`|[区域 ID][zone-id-link], 层数(可选)|传送 `actor` 到指定区域，默认 `0` 层|成功时|
@@ -342,10 +347,10 @@ tags: Chara/Drama
 |`play_anime`|[动画 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|使 `actor` 执行动画|总是|
 |`play_effect`|[特效 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|使 `actor` 播放特效|总是|
 |`play_effect_at`|[特效 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md), X, Y|在地图指定位置播放特效|总是|
-|`play_emote`|[表情 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|使 `actor` 显示表情|总是|
+|`play_emote`|[表情 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), 时长(可选)|使 `actor` 显示表情，默认时长 `1` 秒|总是|
 |`play_screen_effect`|[屏幕特效 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
 |`pop_text`|文本|使 `actor` 发出喊叫文本（气泡框）|总是|
-|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹自定义头像，例如 `UN_myChara_happy.png` 可使用 `happy` 或 `UN_myChara_happy`|总是|
+|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹自定义头像，例如 `UN_myChara_happy.png` 可使用 `happy` 或 `UN_myChara_happy`|找到 actor 时|
 |`set_portrait_override`|头像 ID(可选)|设置 `actor` 对话外使用的头像，留空则重置。支持 **Portrait** 文件夹自定义头像，必须使用全名。此设置不会影响当前对话头像|总是|
 |`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹获取|总是|
 |`show_book`|分类/书籍 ID|打开一本书，支持 **LangMod/_*_*/Text** 文件夹，例如使用 `Book/ok` 对应 `Text/Book/ok.txt`|成功时|
@@ -354,12 +359,12 @@ tags: Chara/Drama
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`mod_affinity`|数值表达式|使用数值表达式调整 `actor` 好感度|成功时|
+|`mod_affinity`|数值表达式|使用数值表达式调整 `actor` 好感度|总是|
 |`mod_currency`|货币种类, 数值表达式|使用数值表达式修改 `actor` 的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|总是|
 |`mod_element`|[元素 alias][element-alias-link], 强度(可选), 潜能(可选)|为 `actor` 修改指定元素（特质/抗性/技能等），默认强度 `1`，潜能 `100`。不同类型元素的强度缩放规则不同|总是|
-|`mod_element_exp`|[元素 alias][element-alias-link], 数值表达式|修改 `actor` 指定元素的经验值|成功时|
+|`mod_element_exp`|[元素 alias][element-alias-link], 数值表达式|修改 `actor` 指定元素的经验值|总是|
 |`mod_fame`|数值表达式|使用数值表达式修改玩家声望|总是|
-|`mod_flag`|flag, 数值表达式|使用数值表达式修改 `actor` 的 flag 值，例如 `+1`、`=1`、`0`。支持非玩家角色|总是|
+|`mod_flag`|flag, 数值表达式(可选)|使用数值表达式修改 `actor` 的 flag 值，例如 `+1`、`=1`、`0`，默认 `=1`。支持非玩家角色。注意：此类逐角色 flag 与 `setFlag`/`hasFlag` 的对话 flag 是两套独立存储|总是|
 |`mod_keyitem`|[关键物品 alias](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数值表达式(可选)|使用表达式修改玩家关键物品值，默认 `=1`|成功时|
 
 ### 拓展条件
@@ -369,12 +374,12 @@ tags: Chara/Drama
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
 |`if_affinity`|数值表达式|使用表达式检查 `actor` 好感度，例如 `<5`、`>=90`、`!=0`|满足时|
-|`if_condition`|[状态 alias][condition-alias-link]|检查 `actor` 是否拥有指定状态|拥有时|
+|`if_condition`|[状态 alias][condition-alias-link], 数值表达式(可选)|检查 `actor` 是否拥有指定状态，可用表达式检查其强度，默认 `>=1`|拥有时|
 |`if_currency`|货币种类, 数值表达式|使用表达式检查 `actor` 的货币。`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`|满足时|
 |`if_element`|[元素 alias][element-alias-link], 数值表达式|使用表达式检查 `actor` 的元素|满足时|
-|`if_faith`|[信仰 ID][religion-id-link], 奉献等级(可选)|检查 `actor` 是否加入特定信仰且等级不低于指定值，默认 `>0`|满足时|
+|`if_faith`|[信仰 ID][religion-id-link], 奉献等级(可选)|检查 `actor` 是否加入特定信仰且满足奉献等级，默认 `>=0`|满足时|
 |`if_fame`|数值表达式|使用表达式检查玩家声望|满足时|
-|`if_flag`|flag 名称, 数值表达式|使用表达式检查 `actor` 的 flag 值，例如 `=5`、`1`、`!=0`|满足时|
+|`if_flag`|flag 名称, 数值表达式(可选)|使用表达式检查 `actor` 的 flag 值，例如 `=5`、`1`、`!=0`，默认 `>=1`。读取的是与 `mod_flag` 相同的逐角色 flag，而非 `setFlag`/`hasFlag` 的对话 flag|满足时|
 |`if_lv`|数值表达式|使用表达式检查 `actor` 的等级|满足时|
 |`if_has_item`|[物品 ID][item-id-link], 数值表达式(可选)|检查 `actor` 是否拥有符合表达式的物品数量，默认 `>=1`|满足时|
 |`if_hostility`|阵营数值表达式|检查 `actor` 是否符合特定阵营，例如 `=Ally` 或 `>Enemy`。阵营值从小到大依次为 `Enemy`、`Neutral`、`Friend`、`Ally`|满足时|
@@ -476,7 +481,7 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 |------|------|----------|
 | `<b>` `</b>` | 粗体 | `<b>粗体文本</b>` |
 | `<i>` `</i>` | 斜体 | `<i>斜体文本</i>` |
-| `<size=...>` `</size>` | 字号（百分比） |  `<size=150%>大</size>` |
+| `<size=...>` `</size>` | 字号（像素） |  `<size=22>大</size>` |
 | `<color=...>` `</color>` | 文字颜色（英文名称/#hex） | `<color=red>红</color>` `<color=#add8e6ff>亮蓝</color>` |
 
 在 `drama`表内对文字使用 `Alt` + `Enter` 的换行，可以显示为一页的不同行文本；这点与 `dialog.xlsx`不同。
@@ -522,7 +527,7 @@ var value = (int)Script["random_value"];
 |-|-|
 |跳转到指定步骤|`dm.Goto("my_new_step");`|
 |添加“来聊聊吧！”选项|`dm.InjectUniqueRumor();`|
-|添加临时对话|`dm.AddTempTalk("topic", "actor", "jump");`|
+|添加临时对话|`dm.AddTempTalk("text", "actor", "jump");`|
 |获取 Chara 实例|`var chara = dm.GetChara("tg");`|
 |招募到队伍|`chara.MakeAlly();`|
 |修改等级|`chara.SetLv(chara.LV + 5);`|

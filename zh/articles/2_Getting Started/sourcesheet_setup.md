@@ -69,7 +69,7 @@ tags: Guide/General
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
-GlobalTile, Block, Floor, Obj, CellEffect, Material
+GlobalTile, Block, Floor, Obj, Deco, CellEffect, Material
 ```
 
 支持的 `SourceLang` 有： 
@@ -140,6 +140,7 @@ General, Game, List, Word, Note
 - Block - 方块、墙壁、屋顶、楼梯。用于建造。
 - Floor - 地板数据。不言自明。
 - Obj - 物体数据。
+- Deco - 装饰图块（墙面/地面装饰）。
 - CellEffect - 应用于图块的额外效果。
 - Material - 游戏中提供哪些材质。
 

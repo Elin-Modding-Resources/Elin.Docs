@@ -61,7 +61,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 #### 組み込みステップ
 
 ::: details 組み込みステップ
-`inject/Unique` アクションを実行すると、多くの組み込みドラマステップが現在のドラマシートに挿入されます。これらを使用するには、単に `jump` ターゲットとして指定するだけです。一部のステップは既定の `inject/Unique` ダイアログで既に使用されているため、通常は自分で再利用する必要はありません。
+以下の組み込みドラマステップはドラマの読み込み時に常に挿入されます。これらを使用するには、単に `jump` ターゲットとして指定するだけです。`inject/Unique` アクションはこれらのステップを参照する既定の会話選択肢（「話をしよう」など）を追加で挿入するため、通常は自分で再利用する必要はありません。
 
 |ステップ名|用途|
 |-|-|
@@ -165,7 +165,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 | `#brother` | 兄弟/姉妹のランダムな呼称（`bro` または `sis` リストからランダム） |
 | `#onii2` | お兄ちゃん/お姉ちゃんのランダムな呼称（リスト `onii2` / `onee2`） |
 | `#onii` | お兄ちゃん/お姉ちゃんのランダムな呼称（リスト `onii` / `onee`） |
-| `#gender` | プレイヤーの性別に対応するランダムな呼称（`gendersDrama` リスト） |
+| `#gender` | プレイヤーの性別に対応する呼称（性別で `gendersDrama` リストを参照） |
 | `#he` | 「彼」または「彼女」（プレイヤーの性別に応じて） |
 | `#He` | 同上、先頭文字が大文字のもの |
 
@@ -193,7 +193,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |`choice/bye`||既定の別れ選択肢を挿入|
 |`cancel`||右クリック／ESC キーの動作を設定。`jump` が必要（通常は `end`）|
 |`setFlag`|フラグ名,値(省略可)|フラグを設定。値省略時は 1|
-|`reload`||ドラマを再読み込みしてフラグ変更を反映。`jump` が必要（通常は `main`）。開発時のホットリロードとは異なります|
+|`reload`||ドラマを再読み込みしてフラグ変更を反映。`jump` は省略可（通常は `main`）。省略時はその場で続行。開発時のホットリロードとは異なります|
 |`enableTone`||ドラマ全体で会話トーン変換を有効化|
 |`addActor`||後で使用するドラマキャラクターを追加。`text` で名前を上書き可能。`actor` セルに新しい ID を入力すると自動実行。`actor` には[キャラクターID][character-id-link]が必要|
 |`invoke`|メソッド名|メソッドを呼び出す（すべて本体側でハードコード）|
@@ -214,7 +214,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |`drop`|[アイテム ID][item-id-link]|プレイヤー位置に報酬アイテムをドロップ|
 |`addResource`|[リソース名](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-homeresource-md),数量|ホームリソースを追加|
 |`shake`||画面を振動|
-|`slap`||ドラマ所有者キャラクターを平手打ち|
+|`slap`||ドラマ所有者キャラクターが**プレイヤー**を平手打ち（ダイアログを閉じた後に実行、プレイヤーは小ダメージ）|
 |`destroyItem`|[アイテム ID][item-id-link]|プレイヤー所持品から指定アイテムを破棄|
 |`focus`||即座にカメラをドラマ所有者キャラクターにフォーカス|
 |`focusChara`|[キャラクター ID][character-id-link],速度(省略可)|**同一マップのキャラクター**にカメラを移動・フォーカス|
@@ -289,6 +289,8 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 
 これは `honk_honk` メソッドを `arg1`・`arg2` の 2 引数で呼び出します。
 
+条件の組み合わせには省略記法が使えます：`!expr` = `not(expr)`、`&expr` = `and(expr)`、`?expr` = `or(expr)`。
+
 ### パラメータ
 
 パラメータは半角カンマ `,` で区切り、拡張メソッドの括弧内に記述します。引数がない場合は空の `()` を使用してください。
@@ -317,15 +319,18 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |`>=20`|`20` 以上か判定|
 |`<5`|`5` より小さいか判定|
 |`<=3`|`3` 以下か判定|
+|`++`|元の値に `1` 加算|
+|`--`|元の値から `1` 減算|
+|`x10`|元の値に `10` 乗算（`*` のエイリアス）|
 
 ### 拡張アクション
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
-|`add_item`|[アイテムID][item-id-link], [素材エイリアス][material-alias-link](省略可), レベル(省略可), 数量(省略可)|`actor` にアイテムを追加（既定: ランダム素材・自動レベル・数量1）|常時|
-|`equip_item`|[アイテムID][item-id-link], [素材エイリアス][material-alias-link](省略可), レベル(省略可)|`actor` にアイテムを装備（既定: ランダム素材・自動レベル）|常時|
-|`destroy_item`|[アイテムID][item-id-link], 数量(省略可)|`actor` のアイテムを破棄（既定: 1）|常時|
-|`join_faith`|[信仰ID][religion-id-link](省略可)|`actor` を指定信仰に加入（空欄で脱退）|成功時|
+|`add_item`|[アイテムID][item-id-link], [素材エイリアス][material-alias-link](省略可), レベル(省略可), 数量(省略可)|`actor` にアイテムを追加（既定: アイテム標準素材・自動レベル・数量1）|常時|
+|`equip_item`|[アイテムID][item-id-link]|アイテムを新規作成して `actor` に装備|常時|
+|`destroy_item`|[アイテムID][item-id-link], 数量(省略可)|`actor` のアイテムを破棄（既定: `-1` = 同IDの**すべて**を破棄）|常時|
+|`join_faith`|[信仰ID][religion-id-link](省略可)|`actor` を指定信仰に加入（空欄で脱退）|常時|
 |`join_party`||`actor` をプレイヤーパーティに無条件加入|常時|
 |`apply_condition`|[状態エイリアス][condition-alias-link], 強度|状態を付与（既定強度 100）|常時|
 |`remove_condition`|[状態エイリアス][condition-alias-link]|状態を解除|常時|
@@ -334,7 +339,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
-|`move_next_to`|[キャラクターID][character-id-link]|`actor` を**同一マップのキャラクター**の隣へ移動|常時|
+|`move_next_to`|[キャラクターID][character-id-link]|`actor` を**同一マップのキャラクター**の隣へ移動|対象発見時|
 |`move_tile`|Xオフセット, Yオフセット|`actor` を**相対座標**で移動（例: `1,1`、`2,-1`）|常時|
 |`move_to`|X, Y|`actor` を**絶対座標**で移動（例: `64,44`、`12,0`）|常時|
 |`move_zone`|[エリアID][zone-id-link], 階層(省略可)|指定エリアへ移動（既定階層 0）|成功時|
@@ -342,10 +347,10 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |`play_anime`|[アニメID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|`actor` にアニメーションを再生|常時|
 |`play_effect`|[エフェクトID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md)|`actor` にエフェクトを再生|常時|
 |`play_effect_at`|[エフェクトID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-effects-md), X, Y|指定位置にエフェクトを再生|常時|
-|`play_emote`|[エモートID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md)|`actor` にエモートを表示|常時|
+|`play_emote`|[エモートID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), 秒数(省略可)|`actor` にエモートを表示（既定: `1` 秒）|常時|
 |`play_screen_effect`|[画面エフェクトID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|画面エフェクトを再生|常時|
 |`pop_text`|テキスト|`actor` の頭上にテキストを表示|常時|
-|`set_portrait`|ポートレートID(省略可)|ダイアログ時のポートレートを設定（空欄でリセット）。**Portrait** フォルダ対応|常時|
+|`set_portrait`|ポートレートID(省略可)|ダイアログ時のポートレートを設定（空欄でリセット）。**Portrait** フォルダ対応|actor 発見時|
 |`set_portrait_override`|ポートレートID(省略可)|ダイアログ外のポートレートを設定（空欄でリセット）。完全ID必須|常時|
 |`set_sprite`|テクスチャID(省略可)|`actor` のカスタムスプライトを設定（空欄でリセット）。**Texture** フォルダから取得|常時|
 |`show_book`|分類/書籍ID|本を開く（**LangMod/_*_*/Text** フォルダ対応）|成功時|
@@ -354,12 +359,12 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
-|`mod_affinity`|数値式|`actor` の好感度を数値式で変更|成功時|
+|`mod_affinity`|数値式|`actor` の好感度を数値式で変更|常時|
 |`mod_currency`|通貨種別, 数値式|`actor` の通貨を数値式で変更（`money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`）|常時|
-|`mod_element`|[要素エイリアス][element-alias-link], 強度(省略可)|`actor` の要素（特性・耐性・スキル等）を変更（既定強度 1）|常時|
-|`mod_element_exp`|[要素エイリアス][element-alias-link], 数値式|`actor` の要素経験値を変更|成功時|
+|`mod_element`|[要素エイリアス][element-alias-link], 値(省略可), 潜在値(省略可)|`actor` の要素（特性・耐性・スキル等）を変更（既定値 `1`、潜在値 `100`）。要素の種類によって値のスケーリングが異なります|常時|
+|`mod_element_exp`|[要素エイリアス][element-alias-link], 数値式|`actor` の要素経験値を変更|常時|
 |`mod_fame`|数値式|プレイヤーの名声を数値式で変更|常時|
-|`mod_flag`|フラグ, 数値式|`actor` のフラグ値を数値式で変更（非プレイヤーキャラクターも対応）|常時|
+|`mod_flag`|フラグ, 数値式(省略可)|`actor` のフラグ値を数値式で変更（既定 `=1`、非プレイヤーキャラクターも対応）。注意：このキャラクター単位のフラグは `setFlag`/`hasFlag` のダイアログフラグとは別の保存領域です|常時|
 |`mod_keyitem`|[重要アイテムエイリアス](https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=836018107#gid=836018107), 数値式(省略可)|重要アイテム値を数値式で変更（既定 `=1`）|成功時|
 
 ### 拡張条件
@@ -369,12 +374,12 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |メソッド|パラメータ|説明|ジャンプ条件|
 |-|-|-|-|
 |`if_affinity`|数値式|`actor` の好感度を式で判定（例: `<5`、`>=90`、`!=0`）|条件成立時|
-|`if_condition`|[状態エイリアス][condition-alias-link]|`actor` が指定状態を持っているか判定|所持時|
+|`if_condition`|[状態エイリアス][condition-alias-link], 数値式(省略可)|`actor` が指定状態を持っているか判定。数値式で強度も判定可（既定 `>=1`）|所持時|
 |`if_currency`|通貨種別, 数値式|`actor` の通貨を式で判定|条件成立時|
 |`if_element`|[要素エイリアス][element-alias-link], 数値式|`actor` の要素を式で判定|条件成立時|
-|`if_faith`|[信仰ID][religion-id-link], 奉献ランク(省略可)|指定信仰に所属しランク以上か判定（既定 `>0`）|条件成立時|
+|`if_faith`|[信仰ID][religion-id-link], 奉献ランク(省略可)|指定信仰に所属し奉献ランクを満たすか判定（既定 `>=0`）|条件成立時|
 |`if_fame`|数値式|プレイヤーの名声を式で判定|条件成立時|
-|`if_flag`|フラグ名, 数値式|`actor` のフラグ値を式で判定|条件成立時|
+|`if_flag`|フラグ名, 数値式(省略可)|`actor` のフラグ値を式で判定（既定 `>=1`）。`mod_flag` と同じキャラクター単位のフラグを参照し、`setFlag`/`hasFlag` のダイアログフラグとは別物です|条件成立時|
 |`if_lv`|数値式|`actor` のレベルを式で判定|条件成立時|
 |`if_has_item`|[アイテムID][item-id-link], 数値式(省略可)|アイテム所持数を式で判定（既定 `>=1`）|条件成立時|
 |`if_hostility`|陣営数値式|`actor` の陣営を判定（例: `=Ally`、`>Enemy`）|条件成立時|
@@ -476,7 +481,7 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 |------|------|----------|
 | `<b>` `</b>` | 太字 | `<b>太字テキスト</b>` |
 | `<i>` `</i>` | 斜体 | `<i>斜体テキスト</i>` |
-| `<size=...>` `</size>` | フォントサイズ（パーセント） |  `<size=150%>大</size>` |
+| `<size=...>` `</size>` | フォントサイズ（ピクセル） |  `<size=22>大</size>` |
 | `<color=...>` `</color>` | テキスト色（英語の色名/#hex） | `<color=red>赤</color>` `<color=#add8e6ff>ライトブルー</color>` |
 
 `drama` シート内のテキストで `Alt` + `Enter` を使って改行すると、同じページ内で異なる行として表示させることができます。これは `dialog.xlsx` とは異なる点です。
@@ -522,7 +527,7 @@ var value = (int)Script["random_value"];
 |-|-|
 |指定ステップへジャンプ|`dm.Goto("my_new_step");`|
 |「話そう」オプションを追加|`dm.InjectUniqueRumor();`|
-|一時的な会話行を追加|`dm.AddTempTalk("topic", "actor", "jump");`|
+|一時的な会話行を追加|`dm.AddTempTalk("text", "actor", "jump");`|
 |Chara インスタンスを取得|`var chara = dm.GetChara("tg");`|
 |パーティに勧誘|`chara.MakeAlly();`|
 |レベルを変更|`chara.SetLv(chara.LV + 5);`|

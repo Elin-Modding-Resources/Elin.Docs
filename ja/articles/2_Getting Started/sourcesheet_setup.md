@@ -62,7 +62,7 @@ MOD全体で、内部にさまざまなシートを含む単一の `Source.xlsx`
 Chara, CharaText, Tactics, Race, Job, Hobby
 Thing, ThingV, Food, Recipe, SpawnList, Category, Collectible, KeyItem
 Element, Calc, Stat, Check, Faction, Religion, Zone, ZoneAffix, Quest, Area, HomeResource, Research, Person
-GlobalTile, Block, Floor, Obj, CellEffect, Material
+GlobalTile, Block, Floor, Obj, Deco, CellEffect, Material
 ```
 
 サポートされている `SourceLang` は以下の通りです： 
@@ -131,6 +131,7 @@ General, Game, List, Word, Note
 - Block - ブロック、壁、屋根、階段。建築用。
 - Floor - 床データ。文字通りの意味です。
 - Obj - オブジェクトデータ。
+- Deco - 装飾タイル（壁・床の装飾）。
 - CellEffect - タイルに適用される追加エフェクト。
 - Material - ゲーム内で利用可能になる素材（マテリアル）。
 

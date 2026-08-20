@@ -13,7 +13,7 @@ tags: SourceSheet/Chara
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are silently filled with empty values** with no error at all — so copy the whole official header row and do not delete columns or change their order.
+**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
 **A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
 
@@ -310,23 +310,14 @@ The game reads these field names case-insensitively, so both `Items` and `items`
   Determines the blessed state of the item.  
   Possible values: `Doomed`, `Cursed`, `Normal`, `Blessed`  
   Default value: `Normal`
-* `NoCopy`  
-  Cannot by copied.  
-  Default value: `false`
-* `NoRandomSocket`  
-  Does not generate random ranged gun sockets.  
-  Default value: `false`
-* `Sockets`  
-  List of ranged gun enchant aliases to attach as socket. Empty string for empty socket.  
 * `PriceCalc`  
   Arithmetic calc expression to override the item price.  
   Arguments: `base` (base price), `lv` (item level), `rarity` (item rarity)  
   Example: `"base * 0.2 + lv * 5"`
-* `MapStr`  
-  Additional mapStr values to merge into the item after creation.
-* `MapInt`  
-  Additional mapInt values to merge into the item after creation.
 * You can omit any fields to use their default values.
+
+> [!Note]
+> `NoCopy`, `NoRandomSocket`, `Sockets`, `MapStr` and `MapInt` are properties of registered Thing profiles (Thing sheet `tag` column), and are not applied to stock-generated items.
 
 ### Stock Item Types
 
@@ -335,7 +326,7 @@ The game reads these field names case-insensitively, so both `Items` and `items`
 |Item|A standard item. Supports material, level, and stack count.|
 |Block|A placeable block item created from a block alias and material.|
 |Cassette|A music cassette. If the bgm id is invalid, a random track will be used.|
-|Currency|Currency item. Id can be `money` `money2` `plat` `medal` `influence` `casino_coin` `ecopo`. `Num` defines the amount.|
+|Currency|Currency item. Id can be `money` `money2` `plat` `medal` `casino_coin` `ecopo`. `Num` defines the amount.|
 |Category|Spawn from category. `Id` is the category name.|
 |Filter|Spawn from filter. `Id` is the filter name.|
 |Tag|Spawn from tag. `Id` is the tag name.|

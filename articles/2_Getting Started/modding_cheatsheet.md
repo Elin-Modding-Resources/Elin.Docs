@@ -63,7 +63,7 @@ For detailed instructions on Source Sheets, please head over to the `Source Shee
 #### Source Chara
 
 > [!Important]Contains the sheets for:
-> `Characters(Chara)`, `Barks (CharaTalk)`, `Tactics`, `Races`, `Jobs` and `Hobbies`.
+> `Characters(Chara)`, `Barks (CharaText)`, `Tactics`, `Races`, `Jobs` and `Hobbies`.
 > <LinkCard t="SourceChara.xlsx" u="https://docs.google.com/spreadsheets/d/1CJqsXFF2FLlpPz710oCpNFYF4W_5yoVn"/>
 
 #### Source Card
@@ -72,15 +72,21 @@ For detailed instructions on Source Sheets, please head over to the `Source Shee
 > `Things`, `Foods`, `Recipes`, `SpawnLists`, `Categories`, `Collectables` and `KeyItems`.
 > <LinkCard t="SourceCard.xlsx" u="https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z"/>
 
+#### Source Block
+
+> [!Important] Contains the sheets for:
+> `GlobalTiles`, `Blocks`, `Floors`, `Objs`, `Decos`, `CellEffects` and `Materials`.
+> <LinkCard t="SourceBlock.xlsx" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v"/>
+
 #### Exporting Source Sheets Manually
 
 > [!Important] Exporting Source Sheets Manually
-> When launched with the `-exportsource` parameter in Steam, Elin will automatically export the source sheet data into CSV files and save them to the (SteamPath)/Elin/SourceExport directory.
+> When launched with the `-exportsource` parameter in Steam, Elin will automatically export the source sheet data into CSV files and save them to the (SteamPath)/Elin/SourceExport/(game version) directory.
 >
 > ::: details Detailed Steps and Troubleshooting
 > 1. Right-click Elin in Steam, then click Properties
 > 2. Enter `-exportsource` in Launch Options
-> 3. After launching the game, CSV files will appear in the (SteamPath)/Elin/SourceExport directory
+> 3. After launching the game, CSV files will appear in the (SteamPath)/Elin/SourceExport/(game version) directory
 >
 > Troubleshooting:
 > 
