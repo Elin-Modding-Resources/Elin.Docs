@@ -1,7 +1,7 @@
 <template>
   <DefaultTheme.Layout>
     <template #doc-before>
-      <ModMakerTip v-if="showModMakerTip" />
+      <component v-for="id in docTips" :key="id" :is="TIP_COMPONENTS[id]" />
     </template>
   </DefaultTheme.Layout>
 </template>
@@ -9,9 +9,10 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
 import { useData, useRoute, useRouter, inBrowser } from "vitepress";
-import { watch, onMounted, computed } from "vue";
+import { watch, onMounted, computed, type Component } from "vue";
 import data from "../data/redirects.json";
 import { LANG_STORAGE_KEY, normalizeRoute, splitLocalePath } from "../data/lang";
+import { resolveDocTips, type DocTipId } from "../data/docTips";
 import ModMakerTip from "../components/ModMakerTip.vue";
 
 type Language = "en" | "zh" | "ja" | string;
@@ -25,10 +26,11 @@ const { page, lang, site } = useData();
 const route = useRoute();
 const router = useRouter();
 
-const MODMAKER_SHEETS =
-  /^(?:zh\/|ja\/)?articles\/10_Source Sheets\/(character|race|job|drama|localization)\.md$/;
+const TIP_COMPONENTS: Record<DocTipId, Component> = {
+  modmaker: ModMakerTip,
+};
 
-const showModMakerTip = computed(() => MODMAKER_SHEETS.test(page.value.relativePath));
+const docTips = computed(() => resolveDocTips(page.value.relativePath));
 
 function cleanTrailingBrace(path: string): string {
   return path.endsWith("%7D") ? path.slice(0, -3) : path;
