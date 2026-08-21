@@ -106,7 +106,7 @@ Modders who plan on adding extensive new content should get used to this file, b
 
 ### SourceChara
 - Chara - Character entries.
-- CharaText - Bark Text that the characters would say over their heads, or in the log based on the scenario.
+- CharaText - Barks (Popup).Sometimes you want the character to banter/bark at certain conditions. The barks pop up above character's head in a speech bubble.
 - Tactics - Combat AI. Weights on what kind of action each tactic style would take in a given turn.
 - Race - Character Races.
 - Job - Character Jobs. Can be referred to as Classes as well.

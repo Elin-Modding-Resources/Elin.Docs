@@ -114,7 +114,7 @@ General, Game, List, Word, Note
 
 ### SourceChara
 - Chara - 角色条目。
-- CharaText - 角色头顶上弹出的短语（Bark Text），或根据情景出现在日志中的文本。
+- CharaText - 情景气泡。在某些情景下，角色会触发特定的台词，并以气泡形式显示在其头顶。
 - Tactics - 战斗 AI。决定每种战术风格在给定回合中采取哪种行动的权重。
 - Race - 角色种族。
 - Job - 角色职业。也可以被称为 Classes。
