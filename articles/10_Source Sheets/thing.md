@@ -148,7 +148,7 @@ The `_idRenderData` column controls how the object sits on the ground and its cl
 Used for custom items **not** using Texture Replacement:
 - File name must match the `id` exactly.
 - Use lowercase `.png` extension (`.PNG` will not work).
-- Place in the `Texture` folder of your mod. `Texture/Item/` works too — when `<id>` is not found the game looks up `Item/<id>` as well. **Other subfolders are not found**, unless the `id` itself carries that prefix.
+- Place it directly in the `Texture` folder of your mod. **Subfolders are not found**, unless the `id` itself carries that prefix.
 
 The `@` makes the game center the whole image according to its actual size, which is exactly what a full custom sprite needs. You may also write `@obj#otherItemId`: the part after `#` borrows that item's pref (placement and collision properties).
 
