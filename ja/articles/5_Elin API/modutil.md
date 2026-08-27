@@ -1,84 +1,84 @@
 ---
 title: ModUtil
 author: DK
-description: Plugins.Modding and ModUtil explained.
+description: Plugins.Modding と ModUtil の解説
 date: 2026/6/9 19:00
 tags: API/ModUtil/C#
 ---
 
-# ModUtil & Events
+# ModUtil とイベント
 
-Events in Elin can be registered via `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)`. Some of them also offer attribute usages allowing automatic subscription.
+Elin のイベントは `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)` で登録できます。一部のイベントにはアトリビュートも用意されており、自動的に購読させることが可能です。
 
 ## Mod
 
 + `EVENT.ModsActivated`
 
-No parameter. Published after all mod packages have been activated.
+パラメータなし。すべての Mod パッケージが有効化された後に発行されます。
 
-## Game IO
+## GameIO セーブ/ロード
 
-+ `EVENT.PreLoad`, `[ElinPreLoad]`
-+ `EVENT.PostLoad`, `[ElinPostLoad]`
-+ `EVENT.NewGame`, `[ElinPostLoad]` // <- Same attribute
-+ `EVENT.PreSave`, `[ElinPreSave]`
-+ `EVENT.PostSave`, `[ElinPostSave]`
++ `EVENT.PreLoad`、`[ElinPreLoad]`
++ `EVENT.PostLoad`、`[ElinPostLoad]`
++ `EVENT.NewGame`、`[ElinPostLoad]` // <- 同じアトリビュート
++ `EVENT.PreSave`、`[ElinPreSave]`
++ `EVENT.PostSave`、`[ElinPostSave]`
 
-Parameter: `GameIOContext`
+パラメータ：`GameIOContext`
 
 + `[ElinGameIOProperty("chunkName")]`
 
-Marks a **static property** to be automatically saved to and loaded from the save file under the given chunk name. The property must have both a getter and a static setter.
+**静的プロパティ**に付けると、指定したチャンク名でセーブデータへ自動的に保存・読み込みされます。対象のプロパティには getter と静的な setter の両方が必要です。
 
 ```cs
 [ElinGameIOProperty("my_counter")]
 public static int MyCounter { get; set; }
 ```
 
-## Game System
+## ゲームシステム
 
-+ `EVENT.CharaCreated`, `[ElinCharaOnCreate]`
-+ `EVENT.ThingCreated`, `[ElinThingOnCreate]`
++ `EVENT.CharaCreated`、`[ElinCharaOnCreate]`
++ `EVENT.ThingCreated`、`[ElinThingOnCreate]`
 
-Parameter: `Chara` or `Thing`
+パラメータ：`Chara` または `Thing`
 
-+ `EVENT.ActPerformed`, `[ElinActPerform]`
++ `EVENT.ActPerformed`、`[ElinActPerform]`
 
-Parameter: `Act` that just performed
+パラメータ：実行され終えた `Act`
 
 + `EVENT.FeatApply`
 
-Parameter: `EVENT.ElinFeatApplyEventArgs` (`feat`, `owner`, `hint`), published when a feat is being applied.
+パラメータ：`EVENT.ElinFeatApplyEventArgs`（`feat`、`owner`、`hint`）。Feat が適用される際に発行されます。
 
 + `EVENT.ReligionImporting`
 
-Parameter: `List<Religion>` that is being registered.
+パラメータ：登録中の `List<Religion>`
 
-+ `ModUtil.AddContextMenuEntry`, `[ElinContextMenuEntry]`
++ `ModUtil.AddContextMenuEntry`、`[ElinContextMenuEntry]`
 
-Attribute parameter: `string langEntry, string langDisplay = ""`
-Manual API: `ModUtil.AddContextMenuEntry(Action onClick, string menuEntry, string displayName = "")`
-Registers a context menu entry, such as `SubGroup/ModButton1`.
+アトリビュートのパラメータ：`string langEntry, string langDisplay = ""`
+手動 API：`ModUtil.AddContextMenuEntry(Action onClick, string menuEntry, string displayName = "")`
+`SubGroup/ModButton1` のようなコンテキストメニュー項目を登録します。
 
-+ `EVENT.PreSceneInit`, `[ElinPreSceneInit]`
-+ `EVENT.PostSceneInit`, `[ElinPostSceneInit]`
++ `EVENT.PreSceneInit`、`[ElinPreSceneInit]`
++ `EVENT.PostSceneInit`、`[ElinPostSceneInit]`
 
-Parameter: `Scene.Mode`
+パラメータ：`Scene.Mode`
 
-## Source
+## ソースデータ
 
 + `EVENT.SourceImporting`
 + `EVENT.SourceImported`
 
-No parameter. Published before/after importing source sheets.
+パラメータなし。ソースシートのインポート前 / 後に発行されます。
 
 + `EVENT.SourceLangSet`
 
-Parameter: `string langCode`
+パラメータ：`string langCode`
 
-## Drama
+## ドラマ
 
 + `[ElinDramaActionInvoke]`
 + `[ElinDramaActionParser]`
 
-See [Drama API](../10_Source%20Sheets/drama.md#api)
+[Drama API](../10_Source%20Sheets/drama.md#api) を参照してください。

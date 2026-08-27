@@ -10,7 +10,7 @@ tags: API/Scripting/C#
 
 `Elin/Elin_Data/Managed/Plugins.Scripting.dll`
 
-このアセンブリには `EScript` クラスとそのAPIが含まれており、Roslynコンパイラ（バージョン5.3.0）を使ってゲーム実行中にC#スクリプトをコンパイル・実行できます。
+このアセンブリには `EScript` クラスとそのAPI定義が含まれており、[Roslynコンパイラ 5.3.0](https://www.nuget.org/packages/Microsoft.CodeAnalysis.CSharp.Scripting/5.3.0) を使ってゲーム実行中に C# スクリプトをコンパイル・実行できます。
 
 ## ランタイムの仕様
 
@@ -111,7 +111,7 @@ object? EScript.EvaluateAsCsharp(this string script,
 EScriptSubmission EScriptSubmission.Create(string submissionKey)
 ```
 
-`submissionKey` でスクリプト提出をグループ化できます。Dramaの各テーブルごとに一意のバッチを割り当てる、といった使い方が可能です。
+バッチは `submissionKey` によってすべてのスクリプトをグループ化します。例えば Drama シートのスクリプティングでは、各 Drama シートに一意のバッチが割り当てられます。
 
 ### コンパイル
 

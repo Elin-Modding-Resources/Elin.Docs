@@ -1,84 +1,84 @@
 ---
 title: ModUtil
 author: DK
-description: Plugins.Modding and ModUtil explained.
+description: Plugins.Modding 与 ModUtil 详解
 date: 2026/6/9 19:00
 tags: API/ModUtil/C#
 ---
 
-# ModUtil & Events
+# ModUtil 与事件
 
-Events in Elin can be registered via `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)`. Some of them also offer attribute usages allowing automatic subscription.
+Elin 的事件可以通过 `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)` 注册。部分事件同时提供了特性（Attribute）写法，可自动完成订阅。
 
-## Mod
+## 模组
 
 + `EVENT.ModsActivated`
 
-No parameter. Published after all mod packages have been activated.
+无参数。在所有模组包激活完成后发布。
 
-## Game IO
+## GameIO 存档读写
 
-+ `EVENT.PreLoad`, `[ElinPreLoad]`
-+ `EVENT.PostLoad`, `[ElinPostLoad]`
-+ `EVENT.NewGame`, `[ElinPostLoad]` // <- Same attribute
-+ `EVENT.PreSave`, `[ElinPreSave]`
-+ `EVENT.PostSave`, `[ElinPostSave]`
++ `EVENT.PreLoad`、`[ElinPreLoad]`
++ `EVENT.PostLoad`、`[ElinPostLoad]`
++ `EVENT.NewGame`、`[ElinPostLoad]` // <- 同一个特性
++ `EVENT.PreSave`、`[ElinPreSave]`
++ `EVENT.PostSave`、`[ElinPostSave]`
 
-Parameter: `GameIOContext`
+参数：`GameIOContext`
 
 + `[ElinGameIOProperty("chunkName")]`
 
-Marks a **static property** to be automatically saved to and loaded from the save file under the given chunk name. The property must have both a getter and a static setter.
+标记一个**静态属性**，使其以给定的块名自动保存到存档、并从存档中读回。该属性必须同时具有 getter 和静态 setter。
 
 ```cs
 [ElinGameIOProperty("my_counter")]
 public static int MyCounter { get; set; }
 ```
 
-## Game System
+## 游戏系统
 
-+ `EVENT.CharaCreated`, `[ElinCharaOnCreate]`
-+ `EVENT.ThingCreated`, `[ElinThingOnCreate]`
++ `EVENT.CharaCreated`、`[ElinCharaOnCreate]`
++ `EVENT.ThingCreated`、`[ElinThingOnCreate]`
 
-Parameter: `Chara` or `Thing`
+参数：`Chara` 或 `Thing`
 
-+ `EVENT.ActPerformed`, `[ElinActPerform]`
++ `EVENT.ActPerformed`、`[ElinActPerform]`
 
-Parameter: `Act` that just performed
+参数：刚刚执行完毕的 `Act`
 
 + `EVENT.FeatApply`
 
-Parameter: `EVENT.ElinFeatApplyEventArgs` (`feat`, `owner`, `hint`), published when a feat is being applied.
+参数：`EVENT.ElinFeatApplyEventArgs`（`feat`、`owner`、`hint`），在专长被应用时发布。
 
 + `EVENT.ReligionImporting`
 
-Parameter: `List<Religion>` that is being registered.
+参数：正在被注册的 `List<Religion>`
 
-+ `ModUtil.AddContextMenuEntry`, `[ElinContextMenuEntry]`
++ `ModUtil.AddContextMenuEntry`、`[ElinContextMenuEntry]`
 
-Attribute parameter: `string langEntry, string langDisplay = ""`
-Manual API: `ModUtil.AddContextMenuEntry(Action onClick, string menuEntry, string displayName = "")`
-Registers a context menu entry, such as `SubGroup/ModButton1`.
+特性参数：`string langEntry, string langDisplay = ""`
+手动 API：`ModUtil.AddContextMenuEntry(Action onClick, string menuEntry, string displayName = "")`
+注册一个上下文菜单项，例如 `SubGroup/ModButton1`。
 
-+ `EVENT.PreSceneInit`, `[ElinPreSceneInit]`
-+ `EVENT.PostSceneInit`, `[ElinPostSceneInit]`
++ `EVENT.PreSceneInit`、`[ElinPreSceneInit]`
++ `EVENT.PostSceneInit`、`[ElinPostSceneInit]`
 
-Parameter: `Scene.Mode`
+参数：`Scene.Mode`
 
-## Source
+## 源数据
 
 + `EVENT.SourceImporting`
 + `EVENT.SourceImported`
 
-No parameter. Published before/after importing source sheets.
+无参数。在导入源表之前 / 之后发布。
 
 + `EVENT.SourceLangSet`
 
-Parameter: `string langCode`
+参数：`string langCode`
 
-## Drama
+## 剧情
 
 + `[ElinDramaActionInvoke]`
 + `[ElinDramaActionParser]`
 
-See [Drama API](../10_Source%20Sheets/drama.md#api)
+参见 [Drama API](../10_Source%20Sheets/drama.md#api)

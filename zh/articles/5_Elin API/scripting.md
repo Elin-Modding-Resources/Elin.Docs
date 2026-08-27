@@ -111,7 +111,7 @@ object? EScript.EvaluateAsCsharp(this string script,
 EScriptSubmission EScriptSubmission.Create(string submissionKey)
 ```
 
-通过 `submissionKey` 对脚本提交进行分组，例如在 Drama 剧情表格中，每个 Drama 剧情表格会分配一个唯一的 batch。
+提交组按 `submissionKey` 把所有脚本归到一起，例如在 Drama 剧情表的脚本中，每张 Drama 表都会分配到一个唯一的提交组。
 
 ### 编译
 
