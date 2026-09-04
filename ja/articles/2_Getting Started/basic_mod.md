@@ -102,7 +102,9 @@ Mod を識別するための一意の ID を指定します。
 
 Mod の読み込み順を指定します。
 
-任意の数値（0 以上など）を入力してください。値が小さい Mod ほど先に読み込まれます。
+任意の数値を入力してください。値が小さい Mod ほど先に読み込まれます。値は `-999` ... `999` の範囲に丸められ、数値として解釈できない場合は既定値の `100` になります。
+
+`loadPriority` が効くのは、ゲームがその Mod を**初めて**認識したときの位置だけです。Mod 一覧で並べ替えたり有効・無効を切り替えたりすると `loadorder.txt` に記録され、以後は保存された順序が優先されます。
 
 例: `<loadPriority>100</loadPriority>`
 
@@ -163,6 +165,60 @@ Mod の説明文を入力します。
 このタグを省略した場合、デフォルトで `Public` としてアップロードされます。
 
 例: `<visibility>Unlisted</visibility>`
+
+### オプション: dependency
+
+自分の Mod より先に読み込まれる必要がある Mod を宣言します。対象 Mod の id は `id` **属性**に書きます。タグ内に書いたテキストは無視されます。
+
+```xml
+<dependency id="dk.elinplugins.customwhateverloader" />
+```
+
++ id は前後の空白が除去され、大文字小文字は区別されません。`id=" Foo.Bar "` と `foo.bar` は同じ Mod を指します。
++ 1 つの属性にカンマ（`,`）区切りで複数の id を書いた場合、**そのうちどれか 1 つ**を満たせば条件成立です： `<dependency id="mod.a,mod.b" />`
++ **すべて**必要な場合はタグを複数回書いてください：
+  ```xml
+  <dependency id="mod.a" />
+  <dependency id="mod.b" />
+  ```
++ dependency は `loadAfter` も兼ねます。対象 Mod は自動的に自分より前に並べられます。
++ 条件を満たせない場合、その Mod は**読み込まれません**。Mod 一覧には不足している Mod が表示されます。
+
+::: warning 組み込みパッケージへの依存は不可
+組み込みパッケージ（`_Elona`、`_Lang_Chinese`、`_ModdingKit`、`Mod_Slot`）は依存先として指定できません。指定すると自分の Mod が読み込まれなくなります。
+:::
+
+例: `<dependency id="dk.elinplugins.customwhateverloader" />`
+
+### オプション: incompatible
+
+自分の Mod と同時に読み込んではいけない Mod を宣言します。書式は `dependency` と同じです。
+
+```xml
+<incompatible id="some.other.mod" />
+```
+
++ この宣言は**双方向**に働きます。どちらか一方が宣言していれば十分です。
++ **先に読み込まれた**ほうが優先され、もう一方はブロックされます。Mod 一覧にはどの Mod にブロックされたかが表示されます。
++ 自分自身の id の宣言は無視されます。組み込みパッケージの宣言も無視されます。
++ 互換性の無い 2 つの Mod の間では `loadAfter` / `loadBefore` は効きません。
+
+例: `<incompatible id="mod.a,mod.b" />`
+
+### オプション: loadAfter / loadBefore
+
+並び順のヒントのみを与えます。`dependency` と違い、読み込み自体を止めることはありません。
+
+```xml
+<loadAfter id="mod.that.loads.first" />
+<loadBefore id="mod.that.loads.later" />
+```
+
++ `id` 属性の書式は `dependency` と同じです（カンマ区切り、複数回記述可）。
++ 未インストールの対象は無視されるため、任意の Mod を指定しても安全です。
++ 組み込みパッケージは対象に指定できません。
+
+例: `<loadAfter id="dk.elinplugins.customwhateverloader" />`
 
 ## アップロードと更新
 

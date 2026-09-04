@@ -93,7 +93,9 @@ Elin 支持多种模组类型，本文介绍创建一个基础示例模组的步
 
 ### loadPriority
 
-模组加载的顺序。请输入任意数字（例如0或更大的数值）。数字越小的模组会越先加载。
+模组加载的顺序。请输入任意数字，数字越小的模组会越先加载。取值会被限制在 `-999` ... `999` 之间，无法解析为数字时回退到默认值 `100`。
+
+`loadPriority` 只决定游戏**第一次**见到这个模组时把它放在哪里。一旦模组被记入 `loadorder.txt`（在模组列表里调整过顺序或启用状态就会记入），保存下来的顺序优先。
 
 例子： `<loadPriority>100</loadPriority>`
 
@@ -146,6 +148,60 @@ Elin 支持多种模组类型，本文介绍创建一个基础示例模组的步
 如果省略此标签，模组默认将以 `Public` （公开）上传。
 
 例子： `<visibility>Unlisted</visibility>`
+
+### 可选: dependency
+
+声明另一个必须先于本模组加载的模组。目标模组的 id 写在 `id` **属性**里，写在标签内部的文本会被忽略。
+
+```xml
+<dependency id="dk.elinplugins.customwhateverloader" />
+```
+
++ id 会去掉首尾空格并忽略大小写，因此 `id=" Foo.Bar "` 和 `foo.bar` 指的是同一个模组。
++ 一个属性里用英文逗号(`,`)分隔多个 id，表示**满足其中任意一个即可**：`<dependency id="mod.a,mod.b" />`
++ 需要**同时满足**多个依赖时，请重复书写该标签：
+  ```xml
+  <dependency id="mod.a" />
+  <dependency id="mod.b" />
+  ```
++ 依赖同时隐含了 `loadAfter`：被依赖的模组会自动排到你的模组前面。
++ 依赖未满足时你的模组**不会被加载**，模组列表里会显示缺少的模组。
+
+::: warning 不要依赖内置包
+内置包（`_Elona`、`_Lang_Chinese`、`_ModdingKit`、`Mod_Slot`）不能作为依赖目标，否则你的模组永远不会被加载。
+:::
+
+例子： `<dependency id="dk.elinplugins.customwhateverloader" />`
+
+### 可选: incompatible
+
+声明绝不能与本模组同时加载的模组，语法与 `dependency` 相同。
+
+```xml
+<incompatible id="some.other.mod" />
+```
+
++ 该声明**双向生效**——两个模组中只要有一方声明即可。
++ **先加载的**一方获胜，另一方会被拦下，模组列表里会显示是被谁拦下的。
++ 声明自己的 id 会被忽略，声明内置包同样会被忽略。
++ 互不兼容的两个模组之间的 `loadAfter` / `loadBefore` 不会生效。
+
+例子： `<incompatible id="mod.a,mod.b" />`
+
+### 可选: loadAfter / loadBefore
+
+纯粹的排序提示。与 `dependency` 不同，它们不会阻止模组加载。
+
+```xml
+<loadAfter id="mod.that.loads.first" />
+<loadBefore id="mod.that.loads.later" />
+```
+
++ `id` 属性的写法与 `dependency` 相同（逗号分隔、可重复书写）。
++ 未安装的目标会被忽略，所以指向可选模组是安全的。
++ 内置包不能作为目标。
+
+例子： `<loadAfter id="dk.elinplugins.customwhateverloader" />`
 
 ## 上传与更新
 

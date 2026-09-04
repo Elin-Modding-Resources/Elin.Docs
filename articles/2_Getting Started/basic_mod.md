@@ -89,7 +89,9 @@ Example: `<author>Me, Myself, and I</author>`
 
 ### loadPriority
 
-Specifies the order in which mods are loaded. Enter any number (e.g., 0 or higher). Mods with lower numbers are loaded first.
+Specifies the default order in which mods are loaded. Enter any number, mods with lower numbers are loaded first. The value is clamped to `-999` ... `999`, and anything that is not a number falls back to the default `100`.
+
+`loadPriority` only decides where a mod lands the **first** time the game sees it. As soon as the mod is listed in `loadorder.txt` - which happens the moment you reorder or toggle mods in the Mod list - the saved order wins instead. 
 
 Example: `<loadPriority>100</loadPriority>`
 
@@ -136,6 +138,60 @@ Specifies the visibility of the uploaded mod. Possible values are:
 If this tag is omitted, the mod will be uploaded as `Public` by default.
 
 Example: `<visibility>Unlisted</visibility>`
+
+### optional: dependency
+
+Declares another mod that has to be loaded before yours. The target mod's id goes into the `id` **attribute** - text written inside the element is ignored.
+
+```xml
+<dependency id="dk.elinplugins.customwhateverloader" />
+```
+
++ Ids are trimmed and matched case-insensitively, so `id=" Foo.Bar "` and `foo.bar` are the same mod.
++ Several ids in one attribute, separated by commas(`,`), mean **any one of them** is enough: `<dependency id="mod.a,mod.b" />`
++ Repeat the element when you need **all** of them:
+  ```xml
+  <dependency id="mod.a" />
+  <dependency id="mod.b" />
+  ```
++ A dependency also implies `loadAfter`: the target is sorted before your mod automatically.
++ When the requirement is not met your mod is **not loaded**, and the Mod list shows what is missing.
+
+::: warning Do not depend on builtin packages
+Builtin packages (`_Elona`, `_Lang_Chinese`, `_ModdingKit`, `Mod_Slot`) can not be used as a dependency target - your mod would never load.
+:::
+
+Example: `<dependency id="dk.elinplugins.customwhateverloader" />`
+
+### optional: incompatible
+
+Declares mods that must never be loaded together with yours. Same syntax as `dependency`.
+
+```xml
+<incompatible id="some.other.mod" />
+```
+
++ The declaration works **both ways** - only one of the two mods needs to declare it.
++ The mod that loads **first** wins, the other one is blocked and the Mod list shows which mod blocked it.
++ Declaring your own id is ignored, and so is declaring a builtin package.
++ `loadAfter` / `loadBefore` between two incompatible mods have no effect.
+
+Example: `<incompatible id="mod.a,mod.b" />`
+
+### optional: loadAfter / loadBefore
+
+Ordering hints. Unlike `dependency` they never stop a mod from loading.
+
+```xml
+<loadAfter id="mod.that.loads.first" />
+<loadBefore id="mod.that.loads.later" />
+```
+
++ Same `id` attribute syntax as `dependency` (comma separated, repeatable).
++ Targets that are not installed are ignored, so it is safe to point at optional mods.
++ Builtin packages can not be used as a target.
+
+Example: `<loadAfter id="dk.elinplugins.customwhateverloader" />`
 
 ## Upload & Update
 
