@@ -28,11 +28,17 @@ Elin のイベントは `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)` �
 
 + `[ElinGameIOProperty("chunkName")]`
 
-**静的プロパティ**に付けると、指定したチャンク名でセーブデータへ自動的に保存・読み込みされます。対象のプロパティには getter と静的な setter の両方が必要です。
+**静的プロパティ**に付けると、指定したチャンク名でセーブデータへ自動的に保存・読み込みされます。対象のプロパティには静的な getter と setter の両方が必要です。チャンク名は宣言した型ごとのスコープなので、別々のクラスがどちらも `"my_data"` を使っても衝突しません。
+
+推奨されるのは、mod が保存するデータをひとつのシリアライズ可能なクラスにまとめ、null 許容の静的インスタンスだけを公開する形です：
 
 ```cs
-[ElinGameIOProperty("my_counter")]
-public static int MyCounter { get; set; }
+public class MySaveData {
+	public int Counter;
+
+	[ElinGameIOProperty("my_data")]
+	public static MySaveData? Singleton { get; set; }
+}
 ```
 
 ## ゲームシステム

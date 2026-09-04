@@ -28,11 +28,17 @@ Elin 的事件可以通过 `BaseModManager.SubscribeEvent<T>(EventId, Action<T>)
 
 + `[ElinGameIOProperty("chunkName")]`
 
-标记一个**静态属性**，使其以给定的块名自动保存到存档、并从存档中读回。该属性必须同时具有 getter 和静态 setter。
+标记一个**静态属性**，使其以给定的块名自动保存到存档、并从存档中读回。该属性必须同时具有静态 getter 和静态 setter。块名以声明类型为作用域，两个类各自使用 `"my_data"` 也不会冲突。
+
+推荐的写法是把 mod 要存的所有数据放进一个可序列化的类，只暴露一个可null的静态实例：
 
 ```cs
-[ElinGameIOProperty("my_counter")]
-public static int MyCounter { get; set; }
+public class MySaveData {
+	public int Counter;
+
+	[ElinGameIOProperty("my_data")]
+	public static MySaveData? Singleton { get; set; }
+}
 ```
 
 ## 游戏系统

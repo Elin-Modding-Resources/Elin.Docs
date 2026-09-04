@@ -28,11 +28,17 @@ Parameter: `GameIOContext`
 
 + `[ElinGameIOProperty("chunkName")]`
 
-Marks a **static property** to be automatically saved to and loaded from the save file under the given chunk name. The property must have both a getter and a static setter.
+Marks a **static property** to be automatically saved to and loaded from the save file under the given chunk name. The property must have both a static getter and a static setter. Chunk names are scoped to the declaring type, so two classes can both use `"my_data"` without clashing.
+
+The recommended shape is a single class holding everything your mod saves, exposed as one nullable static instance:
 
 ```cs
-[ElinGameIOProperty("my_counter")]
-public static int MyCounter { get; set; }
+public class MySaveData {
+	public int Counter;
+
+	[ElinGameIOProperty("my_data")]
+	public static MySaveData? Singleton { get; set; }
+}
 ```
 
 ## Game System
