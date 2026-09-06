@@ -44,6 +44,7 @@ shadowBRY = 0
 height = 0
 heightFix = 0
 scaleIcon = -40
+scaleTex = 100
 liquidMod = 0
 liquidModMax = 0
 hatY = 0
@@ -66,11 +67,42 @@ For the explanation of each line, please refer to the detailed explanation secti
 + `height` tile height modifier
 + `heightFix` text component height offset (floating little widgets)
 + `scaleIcon` icon size scaling
++ `scaleTex` pixel density of the texture, as a percentage of the default (see section below); `0` and `100` both mean the default
 + `liquidMod` tile liquid level modifier; can be negative
 + `liquidModMax` tile liquid level max
 + `hatY` hat renderer y position offset
 + `equipX`, `equipY` held position offset 
 + `stackX` tile stacking x position offset
+
+## High Resolution Sprites
+
+By default a sprite is rendered at 100 pixels per world unit, so a texture with more pixels simply renders **bigger** rather than sharper. `scaleTex` tells the game how dense your texture is, letting you ship a higher resolution sprite that occupies exactly the same space in game.
+
+The whole rule is one formula — keep the world size unchanged:
+
+```
+world size = canvas pixels / scaleTex * 100
+```
+
+| Original | High resolution | scaleTex | World height | Result |
+| --- | --- | --- | --- | --- |
+| 128x256 | 256x512 | 200 | 2.56 | same size, 2x sharper |
+| 128x256 | 512x1024 | 400 | 2.56 | same size, 4x sharper |
+| 128x128 | 384x384 | 300 | 1.28 | same size, 3x sharper |
+
+Every other value in your `.pref` — `y`, `heightFix`, `pivotY`, `shadowX`, `equipY` and the rest — is expressed in world units. Once the world size is unchanged, **they all stay valid and need no readjustment**. That is the point of `scaleTex`: swapping in a sharper texture should not cost you the positioning you already tuned.
+
+::: warning
+`scaleTex` must match a texture you actually scaled up. Setting `scaleTex = 200` while keeping the original texture halves the world size, so the sprite becomes smaller **and appears to float above the ground** — sprites are anchored at their center, so shrinking one lifts its bottom edge.
+
+If your sprite floats after setting `scaleTex`, it almost always means the texture was not enlarged to match.
+:::
+
+::: tip
+Prefer whole multiples (`200`, `300`, `400`). Textures are sampled with nearest neighbour filtering, so a fractional density such as `scaleTex = 80` makes some pixel rows one screen pixel wide and others two, producing uneven edges.
+:::
+
+Note that tiles and objects are already drawn at 50 pixels per world unit, meaning they are displayed at 2x magnification today. For those, `scaleTex = 200` gives a genuine 1:1 pixel mapping on screen — the sharpest possible result with no resampling at all.
 
 ## Shadow Data ID
 
