@@ -159,6 +159,10 @@ tags: SourceSheet/Thing
 - 使用小写 `.png` 扩展名。
 - 放置在 Mod 的 `Texture Replace` 文件夹中。
 
+::: tip 新增的 Block / Floor / Obj 行不需要槽位号
+瓦片行（Block、Floor、Obj、Deco、CellEffect）可以把自己的 PNG 放在 `Texture/<表名>/<alias>.png`，游戏启动时会在精灵表里自动分给它一个空格，不会和其他 Mod 冲突。见[纹理替换与瓦片贴图](/zh/articles/15_Texture%20Mods/replacement)。
+:::
+
 ### 雪地变体
 
 |类型|非替换 (`@obj`)|替换 (`obj`)|

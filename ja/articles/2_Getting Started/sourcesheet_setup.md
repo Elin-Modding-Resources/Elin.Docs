@@ -135,6 +135,8 @@ General, Game, List, Word, Note
 - CellEffect - タイルに適用される追加エフェクト。
 - Material - ゲーム内で利用可能になる素材（マテリアル）。
 
+列リファレンス：Block / Floor / Obj / Deco / CellEffect は [タイル](/ja/articles/10_Source%20Sheets/tile)、素材は [マテリアル](/ja/articles/10_Source%20Sheets/material) を参照してください。
+
 ## 日英以外の言語について
 
 ### 前提知識

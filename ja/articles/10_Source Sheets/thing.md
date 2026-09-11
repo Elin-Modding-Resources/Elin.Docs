@@ -146,6 +146,10 @@ tags: SourceSheet/Thing
 - 拡張子は小文字の `.png` を使用してください。
 - Modの `Texture Replace` フォルダに配置してください。
 
+::: tip 新規の Block / Floor / Obj 行にはスロット番号は不要です
+タイル行（Block、Floor、Obj、Deco、CellEffect）は `Texture/<テーブル名>/<alias>.png` として独自の PNG を同梱でき、起動時にスプライトシートの空きセルが自動で割り当てられるため、他の Mod と衝突しません。[テクスチャ差し替えとタイルテクスチャ](/ja/articles/15_Texture%20Mods/replacement) を参照してください。
+:::
+
 ### 雪バリアント
 
 |種類|差し替えなし (`@obj`)|差し替えあり (`obj`)|

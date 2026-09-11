@@ -144,6 +144,8 @@ General, Game, List, Word, Note
 - CellEffect - 应用于图块的额外效果。
 - Material - 游戏中提供哪些材质。
 
+列参考：Block / Floor / Obj / Deco / CellEffect 见[瓦片](/zh/articles/10_Source%20Sheets/tile)，材质见[材质](/zh/articles/10_Source%20Sheets/material)。
+
 ## 除日语英语外的其他语言
 
 ### 前置知识

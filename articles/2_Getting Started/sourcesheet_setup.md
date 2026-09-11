@@ -136,6 +136,8 @@ Modders who plan on adding extensive new content should get used to this file, b
 - CellEffect - Extra effects applied to the tile.
 - Material - What materials are made available in the game.
 
+Column references: [Tile](/articles/10_Source%20Sheets/tile) for Block / Floor / Obj / Deco / CellEffect, [Material](/articles/10_Source%20Sheets/material) for materials.
+
 ## Languages Other Than Japanese and English
 
 ### Before You Begin

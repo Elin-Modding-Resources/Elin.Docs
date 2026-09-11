@@ -159,6 +159,10 @@ Used for items using Texture Replacement. This occupies a tile slot in the Textu
 - Use lowercase `.png` extension.
 - Place in the `Texture Replace` folder of your mod.
 
+::: tip New Block / Floor / Obj rows do not need a slot
+Tile rows (Block, Floor, Obj, Deco, CellEffect) can ship their own PNG as `Texture/<Table>/<alias>.png`; the game gives them a free cell in the sprite sheet at startup, so they never collide with other mods. See [Texture Replace & Tile Textures](/articles/15_Texture%20Mods/replacement).
+:::
+
 ### Snow Variants
 
 |Type|Non-Replacement (`@obj`)|Replacement (`obj`)|

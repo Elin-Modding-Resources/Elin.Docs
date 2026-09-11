@@ -61,6 +61,10 @@ export function makeNavBar(
           text: "ModMaker",
           link: "https://modmaker.elin-modding.net/",
         },
+        {
+          text: "Elin MCP",
+          link: "https://mcp.elin-modding.net/",
+        },
       ],
     },
     {
