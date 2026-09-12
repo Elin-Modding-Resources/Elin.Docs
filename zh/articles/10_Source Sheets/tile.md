@@ -44,7 +44,7 @@ tags: SourceSheet/Tile
 |tiles|整数[]|精灵表里的格子号（`行*100+列`，就是纹理查看器显示的数字）。放了 `Texture/<表名>/<alias>.png` 就留空，游戏会自己填。负数表示水平翻转。|
 |anime|整数[]|`帧数,毫秒[,循环[,音效]]` 动画。只对 Floor / Deco / CellEffect 有效；Obj 行会忽略它。|
 |snowTile|整数|Block：保持默认（屋顶积雪）。Obj：`>0` 时被雪盖住不显示，改显示一种雪地地面。|
-|colorMod|整数|材质颜色对美术的染色强度。`100` = 和 vanilla 一样染色，`0` = 原样显示（手绘作物请用 `0`）。|
+|colorMod|整数|材质颜色对美术的染色强度。`100` = 和 Elin原版 一样染色，`0` = 原样显示（手绘作物请用 `0`）。|
 |colorType|文本|Block / Obj：`alt` 改用材质的第二种颜色染色，`random` 随机取色。|
 |value|整数|基础价值。|
 |LV|整数|需要的制作技能等级。|
@@ -108,7 +108,7 @@ Block / Floor / Obj 行满足以下全部条件才会出现在建造菜单：
 
 + **阶段**：植物会随时间推进阶段；大多数类型的最后一个阶段是枯萎。
 + **收获**得到 `收获物`（物品 id，或 `#分类` 表示该分类的随机物品），1 到 `最大数量` 个。铲掉植物会掉落 `components` 的最后一项。
-+ **种子**不需要单独的物品行：vanilla 的 `seed` 物品会记住它种的是哪个 Obj。往 `tag` 加 `seed`（想要食物加成就把 `objType` 设为 `crop`），`vals` 填种子图标，`chance` 填随机种子池权重。`rareSeed` 会把它排除在随机池之外。
++ **种子**不需要单独的物品行：Elin原版 的 `seed` 物品会记住它种的是哪个 Obj。往 `tag` 加 `seed`（想要食物加成，就把 `objType` 设为 `crop`），`vals` 填种子图标，`chance` 填随机种子池权重。`rareSeed` 会把它排除在随机池之外。
 + **贴图**：把各阶段画成一条条带放在 `Texture/Obj/<alias>.png`，`阶段帧` / `收获帧` 填条带里的帧号（从 0 起）。各类型的帧排布见[纹理替换与瓦片贴图](/zh/articles/15_Texture%20Mods/replacement#growth)。如果你用的是纹理替换槽位，这两项就是槽位号。
 
 带 7 帧条带的最小小麦型作物：
@@ -119,7 +119,7 @@ Block / Floor / Obj 行满足以下全部条件才会出现在建造菜单：
 
 ## 材质
 
-材质是单独一张表，自己没有贴图；见[材质](/zh/articles/10_Source%20Sheets/material)。新矿石只需要一行 Material：`category` = `ore`、`tier`、`chance` 和颜色 tag——vanilla 的矿脉会自动使用它并染色。
+材质是单独一张表，自己没有贴图；见[材质](/zh/articles/10_Source%20Sheets/material)。新矿石只需要一行 Material：`category` = `ore`、`tier`、`chance` 和颜色 tag——Elin原版 的矿脉会自动使用它并染色。
 
 ## 本地化
 
@@ -127,8 +127,8 @@ Block / Floor / Obj 行满足以下全部条件才会出现在建造菜单：
 
 ## 常见坑
 
-+ 你表里的第 3 行是默认行。从官方表复制过来。
-+ 贴图和种子都必须有 `alias`；vanilla 很多行留空，你不要留空。
++ 你表里的第 3 行是默认行。应从官方表复制过来。
++ 贴图和种子都必须有 `alias`；Elin原版 很多行 `alias`留空，但你不要留空。
 + `factory` 必须是存在的物品 id，`components` 必须写对；否则配方会消失。
 + `defBlock` / `bridgeBlock` / `autoFloor` 必须是存在的 alias；写错会换成兜底值。
 + 不要给 Obj 行写 `anime`；自带 PNG 的行不要自己填 `tiles`。
