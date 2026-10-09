@@ -10,16 +10,16 @@ tags: SourceSheet/Localization
 
 Source sheets contain English and Japanese columns by default, such as `name` and `name_JP`, or `aka` and `aka_JP`.
 
-Source sheets should be placed in the `EN` or `JP` folders. The game does not actually require this — a mod can keep its only source sheet in `CN` and write the `name` column in Chinese — but `EN` / `JP` is where everyone expects to find it.
+Source sheets should be placed in the `EN` or `JP` folders. The game does not require this (a mod can keep its only source sheet in `CN` and write the `name` column in Chinese), but `EN` / `JP` is where everyone expects to find it.
 
-Note that `SourceLocalization.json` always wins over the sheet columns, `EN` and `JP` included. If a mod already has a json entry for a text, editing `name` in the sheet will look like it does nothing.
+`SourceLocalization.json` always wins over the sheet columns, `EN` and `JP` included. If a mod already has a json entry for a text, editing `name` in the sheet will look like it does nothing.
 
 ## Adding Translations to Your Mod
 
 To add translations for your mod's source sheets in languages other than English and Japanese:
 
 1. Make sure the mod is in your local `Package` folder (workshop copies do not auto-export).
-2. Switch the game to the target language — the translatable entries are exported on the spot (restarting also works).
+2. Switch the game to the target language. The translatable entries are exported on the spot (restarting also works).
 
 A `SourceLocalization.json` file should now appear in your mod's `LangMod/XX` folder, where `XX` is the current language code, such as `CN` for Simplified Chinese.
 
@@ -67,20 +67,18 @@ After translating the new entries, update your mod. For update instructions, see
 
 ## Translating Drama Sheets and `dialog.xlsx` {#drama-and-dialog}
 
-Drama sheets and `dialog.xlsx` are not translated through `json`. Instead, you translate the sheets directly. Strictly speaking, they are not source sheets either.
+Drama sheets and `dialog.xlsx` are not translated through `json`; you translate the sheets directly. Strictly speaking, they are not source sheets either.
 
-For adding translations to your own mod:
-
-You can use the Tiny Mita example mod below as a reference:
+To add translations to your own mod, use the Tiny Mita example mod below as a reference:
 
 <LinkCard t="CWL Example: Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />
 
 For more information, see [Chara](../10_Source%20Sheets/character) and [Drama](../10_Source%20Sheets/drama).
 
-For translating someone else's mod:
+To translate someone else's mod:
 
 1. Copy the original mod's drama sheets and `dialog.xlsx` into the matching path under the target language folder. For example, copy them from `EN` or `JP` to `CN`.
-2. Add the matching language columns. For example, for Chinese you would add `text_CN`. You can use the Tiny Mita example mod and the articles above as references.
+2. Add the matching language columns. For Chinese, add `text_CN`. You can use the Tiny Mita example mod and the articles above as references.
 3. Delete `text_EN` and `text_JP`, but keep the `text` column. Make sure every line has an `id` first: a line without an `id` is only ever read from `text_JP`, so deleting that column leaves it with no text at all.
 
 ## Additional Notes
@@ -108,7 +106,7 @@ Export texts for localization
 The game will regenerate `LangMod/XX/SourceLocalization.json`.
 
 > [!WARNING] Warning
-> This rewrites the whole `SourceLocalization.json`. Loaded translations are preserved, but any hand-edits made after the game last loaded the file are lost — back it up first.
+> This rewrites the whole `SourceLocalization.json`. Loaded translations are preserved, but any hand-edits made after the game last loaded the file are lost. Back it up first.
 :::
 
 ### Another Way to Translate Source Sheets
@@ -118,7 +116,7 @@ The game will regenerate `LangMod/XX/SourceLocalization.json`.
 
 Besides translating directly inside the `json` file as described above, you can also translate inside the source sheets first and then export the result as a `json` file.
 
-Let's use `name_JP` and `name` as an example of one column group:
+Take `name_JP` and `name` as an example of a column group:
 
 + Columns with the `_JP` suffix are the Japanese columns.
 + In the same group, the column without a suffix is the English column, but it can also be used as the translation column.

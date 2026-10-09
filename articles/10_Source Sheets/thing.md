@@ -13,15 +13,15 @@ tags: SourceSheet/Thing
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
+**Missing columns are filled with empty values.** The game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
-**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+**A row with an empty `id` aborts the rest of the sheet**: every row after it is skipped, with no warning. Do not use blank rows to group your data unless you intend to.
 
-**An empty cell is not an empty value** — the game falls back to the default on row 3, where `components` defaults to `log`, `defMat` to `oak` and `category` to `other`.
+**An empty cell is not an empty value.** The game falls back to the default on row 3, where `components` defaults to `log`, `defMat` to `oak` and `category` to `other`.
 
-You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+You can change the defaults on row 3 to apply them to all other rows.
 
-The official Thing sheet has **two `sort` columns**; the later one is the one that takes effect (for duplicate names the last one wins). Just copy the header as-is.
+The official Thing sheet has **two `sort` columns**; the later one takes effect (for duplicate names the last one wins). Copy the header as-is.
 :::
 
 ## Sheet Columns
@@ -37,13 +37,13 @@ The official Thing sheet has **two `sort` columns**; the later one is the one th
 |unknown|string|English name of higher-rarity items when unidentified. Can also be a special property, e.g.: `#randomBook`, `#randomPotion`.|
 |naming|string|How the name is composed when stacked. `m` = "material + item name (count)"; `ma` = material name only (count), used for raw materials; blank = item name only (count).|
 |category|string|Category the item belongs to. Used for auto-dumping and recipe menus (linked to the `Category` sheet).|
-|sort|int|Sort order. E.g. `2200` places it in the bow range. There are two `sort` columns; the later one takes effect (for duplicate names the last one wins), but note that you should not delete either of them.|
-|_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below. Must be a tile type the game knows — **an unknown value throws during card initialization and interrupts loading of all card rows**. Left blank it defaults to `Obj`.|
+|sort|int|Sort order. E.g. `2200` places it in the bow range. There are two `sort` columns; the later one takes effect (for duplicate names the last one wins), but do not delete either of them.|
+|_tileType|string|How the object is displayed on the map. See [Tile Type](#tile-type) below. Must be a tile type the game knows: **an unknown value throws during card initialization and interrupts loading of all card rows**. Left blank, it defaults to `Obj`.|
 |_idRenderData|string|How the object sits on the ground and its clipping. See [idRenderData](#idrenderdata) below.|
 |tiles|int[]|Replacement texture tile ID(s). Multiple tiles follow: front → front reversed → back → back reversed. E.g. `123,-123,456,-456`.|
 |altTiles|int[]|Variant tiles for alternate states (e.g. a closed chest with contents inside).|
-|anime|int[]|Two values: `frameCount,frameDuration`. When the `idRenderData` column uses the @obj and [Sprite Animation](../15_Texture%20Mods/animation) is used, this column does not need to be filled in.|
-|skins|int[]|Skin variant reference. The number of values is the number of alternate looks (N+1 including the base one); the build and craft menus list them accordingly. When the `idRenderData` column uses the @obj and [Sprite Variations](../15_Texture%20Mods/variation) is used, this column does not need to be filled in.|
+|anime|int[]|Two values: `frameCount,frameDuration`. If the `idRenderData` column uses @obj and you use [Sprite Animation](../15_Texture%20Mods/animation), you can leave this column empty.|
+|skins|int[]|Skin variant reference. The number of values is the number of alternate looks (N+1 including the base one); the build and craft menus list them accordingly. If the `idRenderData` column uses @obj and you use [Sprite Variations](../15_Texture%20Mods/variation), you can leave this column empty.|
 |size|int[]|Grid size for large objects: `width,height`.|
 |colorMod|int|Color saturation modifier. `0` means no tinting.|
 |colorType|string|Color source: `default` (main color of the coloring material), `alt` (the material's alt color), or `random`.|
@@ -51,18 +51,18 @@ The official Thing sheet has **two `sort` columns**; the later one is the one th
 |factory|string[]|Crafting station where the item is made. See [Factory](#factory) below.|
 |components|string[]|Crafting ingredients. See [Components](#components) below.|
 |disassemble|string[]|Items produced when disassembled.|
-|defMat|string|Default material (e.g. `oak`). Determines the icon/preview color. Prefix it with `!` (e.g. `!oak`) to **lock the material**, so the item never rolls a different one. An unknown material falls back to `granite` with an error logged.|
+|defMat|string|Default material (e.g. `oak`). Determines the icon/preview color. Prefix it with `!` (e.g. `!oak`) to lock the material, so the item never rolls a different one. An unknown material falls back to `granite` with an error logged.|
 |tierGroup|string|Tier grouping for upgrade/progression.|
 |value|int|Base sell value in orens.|
 |LV|int|Item level. Also used as the crafting skill level required.|
 |chance|int|Spawn or generation chance modifier.|
-|quality|int|Item rarity tier: `-1` Crude, `0` Normal, `1` Superior, `2` Legendary, `3` Mythical, `4` Artifact. The ☆ and ★ are determined by this column. It also decides whether `offense` / `defense` are used as-is — see [Offense and Defense](#offense-and-defense) below.|
+|quality|int|Item rarity tier: `-1` Crude, `0` Normal, `1` Superior, `2` Legendary, `3` Mythical, `4` Artifact. This column determines the ☆ and ★, and whether `offense` / `defense` are used as-is. See [Offense and Defense](#offense-and-defense) below.|
 |HP|int|Item HP. Default `100`.|
 |weight|int|Item weight. E.g. seed = `30`, rod = `500`, bed = `4500`, piano = `85000`.|
 |electricity|int|Power draw. Negative values consume electricity (e.g. monitor = `-10`).|
 |trait|string[]|Special behaviors. See [Trait](#trait) below.|
 |elements|string|Element aliases from the `Element` sheet with `/level`. E.g. `lumberjack/4` displays as `Lumberjack [****]`.|
-|range|int|Best effective range in tiles for ranged weapons — accuracy falls off away from this distance. E.g. short bow = `1`, bow = `3`, rail gun = `5`.|
+|range|int|Best effective range in tiles for ranged weapons; accuracy falls off away from this distance. E.g. short bow = `1`, bow = `3`, rail gun = `5`.|
 |attackType|string|Damage/weapon type: `Blunt`, `Bow`, `Cane`, `Claw`, `Gun`, `Pierce`, `Punch`, `Slash`.|
 |offense|int[4]|Offensive stats: `diceCount,diceFaces,hitBonus,damageBonus`. E.g. `2,8,5,4` means 2d8, +5 hit, +4 damage. See [Offense and Defense](#offense-and-defense) below.|
 |substats|int[]|Sub-stat modifiers; the first value is used as penetration. Official rows only ever use a single value.|
@@ -150,7 +150,7 @@ Used for custom items **not** using Texture Replacement:
 - Use lowercase `.png` extension (`.PNG` will not work).
 - Place it directly in the `Texture` folder of your mod. **Subfolders are not found**, unless the `id` itself carries that prefix.
 
-The `@` makes the game center the whole image according to its actual size, which is exactly what a full custom sprite needs. You may also write `@obj#otherItemId`: the part after `#` borrows that item's pref (placement and collision properties).
+The `@` makes the game center the whole image according to its actual size, which is what a full custom sprite needs. You may also write `@obj#otherItemId`: the part after `#` borrows that item's pref (placement and collision properties).
 
 ### `obj` — Texture Replacement
 
@@ -202,17 +202,17 @@ The `components` column defines crafting ingredients.
 
 |Syntax|Meaning|Example|
 |-|-|-|
-|`id`|Requires item id with id.|`log`|
+|`id`|Requires the item with this id.|`log`|
 |`/N`|Requires N items. Default `1`.|`log/2`|
 |`@material`|Requires item with the given material.|`chunk@snow/10` → 10 snow chunks.|
-|`\|`|"Or" — choose one of the options.|`rock/2\|ingot` → 2 rocks or 2 ingots.|
+|`\|`|"Or": choose one of the options.|`rock/2\|ingot` → 2 rocks or 2 ingots.|
 |`#category`|Requires choosing an item from your inventory matching the category.|`#book` → pick any book from your inventory.|
-|`+`|**Optional** ingredient — the item can be crafted without it.|`+rune` → an extra rune may be added.|
-|`$`|This ingredient determines the **color** of the result.|`$log/2`|
+|`+`|Optional ingredient; the item can be crafted without it.|`+rune` → an extra rune may be added.|
+|`$`|This ingredient determines the color of the result.|`$log/2`|
 
 Only the `+` prefix can be stacked in front of another prefix, e.g. `+#book` or `+$log`; `$` and `#` cannot be combined with each other.
 
-A `components` column containing just `-` means "use the default ingredient list", not "no ingredients". Leaving it blank falls back to the column default `log`, i.e. one log — to make an item non-craftable, leave `factory` blank instead.
+A `components` column containing just `-` means "use the default ingredient list", not "no ingredients". Leaving it blank falls back to the column default `log`, i.e. one log. To make an item non-craftable, leave `factory` blank instead.
 
 ### Examples
 
@@ -230,7 +230,7 @@ A `components` column containing just `-` means "use the default ingredient list
 
 ## Trait
 
-The `trait` column defines special behaviors. The format is always a comma-separated list: the first entry is the trait name (the game looks for a class called `Trait<name>`), and the remaining entries are its parameters. **What those parameters mean depends on the trait.**
+The `trait` column defines special behaviors. The format is always a comma-separated list: the first entry is the trait name (the game looks for a class called `Trait<name>`), and the remaining entries are its parameters. What those parameters mean depends on the trait.
 
 For container-type objects, use the format:
 
@@ -250,7 +250,7 @@ Parameters of some other common traits:
 |Example|Meaning|
 |-|-|
 |`Workbench,blacksmith`|Workbench; required skill (defaults to `handicraft`).|
-|`Light`|Placed light source; appearance/radius comes from the `lightData` preset, takes no parameters.|
+|`Light`|Placed light source; takes no parameters. Appearance and radius come from the `lightData` preset.|
 |`LightSource,4`|Equippable light source; light radius.|
 |`ToolRangeGun,12,4`|Gun; max ammo, reload turns.|
 |`Harvest,gathering,1`|Harvestable; harvest skill, amount.|
@@ -264,12 +264,12 @@ Parameters can always be omitted, in which case the trait's own default is used.
 
 `offense` holds four values: `diceCount,diceFaces,hitBonus,damageBonus`. So `2,8,5,4` reads as "2d8, +5 hit, +4 damage". `defense` holds two: `DV,PV`.
 
-**These numbers are only used as-is when `quality` is `4` (Artifact).** For every other quality the game rescales them by **material** and **rarity**, with a bit of randomness on top:
+**These numbers are only used as-is when `quality` is `4` (Artifact).** For every other quality the game rescales them by material and rarity, with a bit of randomness on top:
 
-- rarity baseline: Crude 150, Normal 120, Superior 100, Legendary and above 80 — the lower the baseline, the stronger the result;
+- rarity baseline: Crude 150, Normal 120, Superior 100, Legendary and above 80 (the lower the baseline, the stronger the result);
 - dice faces ≈ `diceFaces × the material's dice ÷ baseline`, hit bonus ≈ `hitBonus × the material's atk × 9 ÷ baseline`, damage bonus ≈ `damageBonus × the material's dmg × 5 ÷ baseline` (`dice`, `atk` and `dmg` are columns on the Material sheet); DV ≈ `DV × the material's dv × 7 ÷ baseline` and PV ≈ `PV × the material's pv × 9 ÷ baseline`.
 
-In other words, for ordinary equipment the sheet holds **baseline values**, not final ones — tune them together with `defMat` and `quality`, or it will look like your edits do nothing.
+For ordinary equipment, then, the sheet holds baseline values rather than final ones. Tune them together with `defMat` and `quality`, or your edits will seem to do nothing.
 
 ## Light Data
 
@@ -307,7 +307,7 @@ The `idActorEx` column defines ambient effects around the object.
 
 The `tag` column assigns built-in behavior flags.
 
-Some tags, not all:
+A partial list:
 |Tag|Effect|
 |-|-|
 |`exotic`|Present on vanilla exotic goods; no direct code effect found.|
@@ -325,7 +325,7 @@ Some tags, not all:
 
 ## Ranged Weapon
 
-Sometimes you want to customize some data for your ranged weapon. The gun data is a JSON file located in your `LangMod/**/Data/` folder, named `EffectSetting.guns.json`.
+Ranged weapons can have custom gun data, stored in a JSON file named `EffectSetting.guns.json` in your `LangMod/**/Data/` folder.
 ```json
 {
     "biubiu_gun": {
@@ -348,9 +348,9 @@ Sometimes you want to customize some data for your ranged weapon. The gun data i
 }
 ```
 
-This will import a gun data named `biubiu_gun`, which should match your ranged weapon ID. You can also use an existing weapon ID in the game to override it.
+This adds gun data named `biubiu_gun`; the name should match your ranged weapon ID. Using the ID of an existing weapon in the game overrides that weapon's data.
 
-Here are the existing gun data in game:
+The game's existing gun data:
 ::: details Gun Data
 <<< ./assets/guns.json
 :::
@@ -365,12 +365,12 @@ Here are the existing gun data in game:
 + `FirePos` is the position offset of the muzzle effect relative to the center of the weapon. This can be set for all types of guns.
 + `CaneColor` is the optional tint override for cane type weapons, leave blank to use weapon's default element's color. The format is `RRGGBB` hex string. Only guns with trait `ToolRangeCane` can use this value.
 + `CaneColorBlend` enables default color and override color blending for cane type weapons. Only guns with trait `ToolRangeCane` can use this value.
-+ `ForceLaser` forces the gun to use laser animation(added in 23.206 Nightly). This is not needed if gun has trait `ToolRangeGunEnergy`.
++ `ForceLaser` forces the gun to use laser animation (added in 23.206 Nightly). This is not needed if gun has trait `ToolRangeGunEnergy`.
 + `ForceRail` forces the gun to use railgun animation. Only takes effect on laser-type guns (trait `ToolRangeGunEnergy` or `ForceLaser`). **This is no longer the default behaviour for guns with trait `ToolRangeGunEnergy`.**
 
-Any value that you wish to use default for, can be omitted.
+Omit any value you want left at its default.
 
-You may add as many gun data as you want in this file, simply separate them by `,` comma, such as:
+The file can hold any number of gun entries, separated by `,` commas:
 ```json
 {
     "biubiu_gun": { 
@@ -384,6 +384,6 @@ You may add as many gun data as you want in this file, simply separate them by `
 
 ### Gun Sockets
 
-You can specify gun sockets by using the tag `addSocket` and `addSocket(enchant_alias)` in the Thing sheet. For example, `addSocket,addSocket,addSocket(bane_god)` will ensure 2 empty sockets and 1 socket with enchant `God Bane` will be added.
+You can specify gun sockets by using the tag `addSocket` and `addSocket(enchant_alias)` in the Thing sheet. For example, `addSocket,addSocket,addSocket(bane_god)` guarantees 2 empty sockets and 1 socket with enchant `God Bane`.
 
-You can also use `noRandomSocket` tag to remove all random generated sockets before applying your own.
+The `noRandomSocket` tag removes all randomly generated sockets before your own are applied.

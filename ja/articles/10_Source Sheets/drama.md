@@ -353,7 +353,7 @@ C# API の `chara.SetDramaOverride(DramaFileId)` または `chara.ShowDialog(Dra
 |`set_portrait`|ポートレートID(省略可)|ダイアログ時のポートレートを設定（空欄でリセット）。**Portrait** フォルダ対応|actor 発見時|
 |`set_portrait_override`|ポートレートID(省略可)|ダイアログ外のポートレートを設定（空欄でリセット）。完全ID必須|常時|
 |`set_sprite`|テクスチャID(省略可)|`actor` のカスタムスプライトを設定（空欄でリセット）。**Texture** フォルダから取得|常時|
-|`show_book`|分類/書籍ID|本を開く（**LangMod/_*_*/Text** フォルダ対応）|成功時|
+|`show_book`|分類/書籍ID|本を開く（`LangMod/**/Text` フォルダ対応）|成功時|
 
 ### 拡張変更
 

@@ -10,18 +10,18 @@ tags: SourceSheet/Element
 
 <LinkCard t="SourceGame/Element" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1102059407#gid=1102059407" />
 
-The Element Sheet is stored inside the Game sheet. It should be the first tab visible. Basically, all attributes/skills/feats/spells/abilities are stored here.
+The Element Sheet is stored inside the Game sheet. It should be the first tab visible. It holds essentially all attributes, skills, feats, spells and abilities.
 
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
+**Missing columns are filled with empty values.** The game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
-**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+**A row with an empty `id` aborts the rest of the sheet**: every row after it is skipped, with no warning. Do not use blank rows to group your data unless you intend to.
 
-**An empty cell is not an empty value** — the game falls back to the default on row 3. This sheet defaults `type` to `Element`, `chance` to `1000`, `encFactor` to `100`, `mtp` to `1`, `LV` to `1`, `cost` to `0`, `geneSlot` to `1`, `eleP` to `50`, `charge` to `10` and `radius` to `5`.
+**An empty cell is not an empty value**: the game falls back to the default on row 3. This sheet defaults `type` to `Element`, `chance` to `1000`, `encFactor` to `100`, `mtp` to `1`, `LV` to `1`, `cost` to `0`, `geneSlot` to `1`, `eleP` to `50`, `charge` to `10` and `radius` to `5`.
 
-You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+You can change the defaults on row 3 to apply them to all other rows.
 :::
 
 ## Sheet Columns
@@ -50,7 +50,7 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |sort|int|Sort weight. Mostly used for abilities and spells to determine order in the spell/ability list.|
 |target|string|For abilities and spells only. See [Target](#target) below.|
 |proc|string[]|One or two comma-separated strings. For abilities and spells only. See [Proc](#proc) below.|
-|type|string|The C# class this element uses. Common values: `Element`, `Ability`, `Spell`, `Feat`. **Critical for modding:** point this at your own custom class name (e.g., `MyCustomFeat` or `ActMyCustomAbility`).|
+|type|string|The C# class this element uses. Common values: `Element`, `Ability`, `Spell`, `Feat`. **For a modded element, point this at your own custom class name** (e.g., `MyCustomFeat` or `ActMyCustomAbility`).|
 |group|string|Broad category of the element. See [Group](#group) below.|
 |category|string|Sub-category of the element. Somewhat overlaps with `group`.|
 |categorySub|string|Further sub-classification. Used for Skills, Land Feats, Feats, Elemental attacks, Abilities, and Spells.|
@@ -63,12 +63,12 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |radius|float|Radius of the spell or ability (e.g., Bolts use `99` to hit everything along the line to the horizon).|
 |max|int|For feats: the maximum level attainable (e.g., Metal goes up to `999`).|
 |req|string[]|For feats and skills: prerequisite elements or element levels required to unlock (e.g., Dream Waker requires the Casting skill).|
-|idTrainer|string|Unused — nothing in the game reads this column. Whether a trainer teaches a skill is decided by the element's `categorySub` matching the trainer's type.|
-|partySkill|int|Unused — nothing in the game reads this column. Whether an ability targets the whole party is decided by the `target` column (`Party`, `SelfParty`).|
+|idTrainer|string|Unused; nothing in the game reads this column. Whether a trainer teaches a skill is decided by the element's `categorySub` matching the trainer's type.|
+|partySkill|int|Unused; nothing in the game reads this column. Whether an ability targets the whole party is decided by the `target` column (`Party`, `SelfParty`).|
 
 ## aliasParent
 
-The `aliasParent` column points to the alias of a parent element. It serves several purposes:
+The `aliasParent` column points to the alias of a parent element. It has several uses:
 
 - Maps a magical element to its parent attribute (e.g., Fire → MAG, Holy → WIL).
 - Maps resistance elements to their source magic element (e.g., `resFire` → `eleFire`).
@@ -77,7 +77,7 @@ The `aliasParent` column points to the alias of a parent element. It serves seve
 
 ## aliasRef
 
-The `aliasRef` column points to the alias of a reference element. It serves several purposes:
+The `aliasRef` column points to the alias of a reference element. It has several uses:
 
 - For multiplier elements (e.g., `r_life`, `r_mana`, `r_DV`, `r_PV`): points at the element being multiplied.
 - For magical elements (e.g., `eleFire`): points at the corresponding resistance element (e.g., `resFire`).
@@ -88,8 +88,8 @@ The `aliasRef` column points to the alias of a reference element. It serves seve
 
 The `LV` column determines the "level" of this element:
 
-- **Spells:** Dictates spawn requirements. Earthquake is level 20, Meteor is level 30 — much harder to find at low-level spell vendors than Fire Ball (level 15).
-- **Enchantments:** Dictates the danger level needed for them to spawn — an enchantment can only roll on gear whose level is at or above its `LV` (e.g. resist fire has `LV` 1, so it can appear anywhere; note resist cut and impact have `chance` 0 and never spawn randomly).
+- **Spells:** Dictates spawn requirements. Earthquake is level 20 and Meteor is level 30, so both are much harder to find at low-level spell vendors than Fire Ball (level 15).
+- **Enchantments:** Dictates the danger level needed for them to spawn: an enchantment can only roll on gear whose level is at or above its `LV` (e.g. resist fire has `LV` 1, so it can appear anywhere; resist cut and impact, however, have `chance` 0 and never spawn randomly).
 
 ## Target
 
@@ -102,7 +102,7 @@ For abilities and spells only. Determines how the action is used:
 |Neighbor|Targets an adjacent character (e.g., Hand spells).|
 |Chara|Targets a specific character within range (e.g., Arrow spells).|
 |Party|Targets the entire party (e.g., Absorb Mana).|
-|SelfParty|Applies to the player party. Used for inventory-targeting spells (e.g., enchant weapon/armor, identification) — brings up a selection screen after casting.|
+|SelfParty|Applies to the player party. Used for inventory-targeting spells (e.g., enchant weapon/armor, identification), which bring up a selection screen after casting.|
 |Select|Can target either self or a specific character (e.g., Healing spells).|
 |Enemy|Can only target hostile characters.|
 
@@ -110,9 +110,9 @@ For abilities and spells only. Determines how the action is used:
 
 For abilities and spells only. Can be one string or two comma-separated strings. Has multiple uses:
 
-- **Buffs/Debuffs:** Tells the Combat AI what condition is applied. For example, Nature's Embrace has `Buff,ConHOT` — the AI will skip this ability if the entire party already has ConHOT.
+- **Buffs/Debuffs:** Tells the Combat AI what condition is applied. For example, Nature's Embrace has `Buff,ConHOT`, so the AI skips this ability if the entire party already has ConHOT.
 - **Vanilla abilities/spells:** Acts as the `EffectId` string in the `ActEffect` class (e.g., `Breathe` maps to `EffectId.Breathe`).
-- **Summon spells/abilities:** Starts with `Summon`, followed by the character ID of the summoned entity (e.g., `Summon,monster` for SpSummonMonster). Note: summon scaling and elemental type handling still involves hardcoded logic in the `ActEffect` class, so adding new summon spells may not be straightforward.
+- **Summon spells/abilities:** Starts with `Summon`, followed by the character ID of the summoned entity (e.g., `Summon,monster` for SpSummonMonster). Summon scaling and elemental type handling still involve hardcoded logic in the `ActEffect` class, so adding new summon spells may not be straightforward.
 
 ## Group
 
@@ -139,15 +139,15 @@ Seems to be deprecated.
 
 ## levelBonus_JP
 `string`  
-A description that shows information on extra bonuses provided by this element in Japanese (e.g. the Shield Skill gives extra effects at level 5 and 10.)
+Japanese description of the extra bonuses this element provides (e.g. the Shield Skill gives extra effects at level 5 and 10).
 
 ## levelBonus
 `string`  
-A description that shows information on extra bonuses provided by this element in English (e.g. the Shield Skill gives extra effects at level 5 and 10.)
+English description of the extra bonuses this element provides (e.g. the Shield Skill gives extra effects at level 5 and 10).
 
 ## foodEffect
 `string[]`  
-Points at elements that get applied when an item that has this element is consumed (e.g. eating items with the "cat" element will cause a karma loss. Don't eat cats.)
+Points at elements that get applied when an item with this element is consumed (e.g. eating items with the "cat" element causes a karma loss. Don't eat cats.)
 
 ## note
 `string`  
@@ -155,7 +155,7 @@ The game does not read this column (row 2 has no type on it). Use it for notes i
 
 ## langAct
 `string[]`  
-Points at an entry in the langGeneral to change what text is shown when using this ability.
+Points at an entry in langGeneral to change the text shown when using this ability.
 
 ## detail_JP
 `string`  
@@ -168,30 +168,30 @@ The details of this element in English.
 ## textPhase_JP
 `string`  
 Flavor text in Japanese.
-This will show extra data when hovering over the element and can be separated with \\n to add extra lines for multi-stage feats.
+Shown as extra data when hovering over the element. Separate it with \\n to add extra lines for multi-stage feats.
 
 ## textPhase
 `string`  
 Flavor text in English.
-This will show extra data when hovering over the element and can be separated with \\n to add extra lines for multi-stage feats.
+Shown as extra data when hovering over the element. Separate it with \\n to add extra lines for multi-stage feats.
 
 ## textExtra_JP
 `string`  
-More Flavor text in Japanese.
-For feats, this string in this column is shown to the right of the textPhase flavor text as well as under the textPhase flavor text when hovering.
+More flavor text in Japanese.
+For feats, this text is shown to the right of the textPhase flavor text as well as under it when hovering.
 
 ## textExtra
 `string`  
-More Flavor text in English.
-For feats, this string in this column is shown to the right of the textPhase flavor text as well as under the textPhase flavor text when hovering.
+More flavor text in English.
+For feats, this text is shown to the right of the textPhase flavor text as well as under it when hovering.
 
 ## textInc_JP
 `string`  
-In the rare case of gaining a specific element, this Japanese text is shown in the message log. (e.g. becoming a cannibal.) 
+In the rare case of gaining a specific element, this Japanese text is shown in the message log (e.g. becoming a cannibal).
 
 ## textInc
 `string`  
-In the rare case of gaining a specific element, this English text is shown in the message log. (e.g. becoming a cannibal.) 
+In the rare case of gaining a specific element, this English text is shown in the message log (e.g. becoming a cannibal).
 
 ## textDec_JP
 `string`  
@@ -211,11 +211,11 @@ Alternative English display names by value tier, used when displaying trait/food
 
 ## adjective_JP
 `string[]`  
-Appears to be Deprecated
+Appears to be deprecated.
 
 ## adjective
 `string[]`  
-Appears to be Deprecated
+Appears to be deprecated.
 
 <style scoped>
 .vp-doc h1,

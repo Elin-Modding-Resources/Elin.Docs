@@ -103,6 +103,7 @@ CWLフォーマットはWikiから削除されました。CWL仕様のModも `cw
   デフォルト値：`false`
 * `NoPunishTakeover`
   乗っ取り時にペナルティを適用しないかどうか。
+  デフォルト値：`false`
 * `Artifacts`
   神器として扱うアイテムIDのリスト。`godArtifact,religion_id` タグ規約を使用するCWL Modは自動的に追加されます。
 * `Elements`

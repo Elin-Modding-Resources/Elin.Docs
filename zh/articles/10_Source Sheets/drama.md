@@ -8,15 +8,15 @@ tags: Chara/Drama
 
 # 剧情
 
-剧情是通过多选项对话和附加动作构成的丰富交互系统。
+剧情是由多选项对话和附加动作组成的交互系统。
 
 ![](./assets/drama_eg.png)
 
 ## 添加剧情
 
-若要为角色添加默认的剧情文件，请将 `id.xlsx` 文件放置在 `LangMod/**/Dialog/Drama/` 文件夹下，并以角色 ID 作为文件名（例如，`tinymita` 角色对应 `tinymita.xlsx`）。游戏会自动加载与角色同id的剧情文件。
+要给角色添加默认剧情文件，把 `id.xlsx` 放到 `LangMod/**/Dialog/Drama/` 文件夹下，以角色 ID 作为文件名（例如 `tinymita` 角色对应 `tinymita.xlsx`）。游戏会自动加载与角色同 ID 的剧情文件。
 
-若要使用其他命名的剧情文件，如 `DramaFileId.xlsx` ，请额外在角色源表的 `tag`列添加 `addDrama(DramaFileId)` 标签。
+如果剧情文件用了别的名字，例如 `DramaFileId.xlsx`，需要在角色源表的 `tag` 列额外添加 `addDrama(DramaFileId)` 标签。
 
 你也可以使用 C# API `chara.SetDramaOverride(DramaFileId)` 或 `chara.ShowDialog(DramaId, step)`。
 
@@ -25,14 +25,14 @@ tags: Chara/Drama
 <LinkCard t="CWL 示例：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />
 
 ::: tip 热重载
-剧情表可在游戏运行时编辑。更改将在下次打开对话时自动生效。
+剧情表可以在游戏运行时编辑，改动会在下次打开对话时自动生效。
 :::
 
 ## 定义
 
 ### 行
 
-剧情表按从上至下顺序读取，由多行构成。每行包含以下字段（由首行定义）：
+剧情表由多行组成，按从上到下的顺序读取。每行包含以下字段（由首行定义）：
 
 * **step**：标记步骤起点；后续行均属于该步骤，直到出现下一个 `step`。
 * **jump**：本行执行后跳转的目标步骤。
@@ -45,7 +45,7 @@ tags: Chara/Drama
   * `narrator`：默认旁白。
   * `pc`：玩家。
 * **id**：唯一标识，`text` 和 `choice` 行<span style="color: red;">必须</span>填写。其他行无需填写。
-* **text_XX / text_JP / text_EN / text**：对话内容。`XX` 为语言代码（例如 `text_CN`、`text_ZHTW`）。若缺少对应非内置语言，则使用 `text` 作为备选。`text_JP` 和 `text_EN` 是必须填写的，但你可以不提供翻译。
+* **text_XX / text_JP / text_EN / text**：对话内容。`XX` 为语言代码（例如 `text_CN`、`text_ZHTW`）。缺少对应的非内置语言时，改用 `text`。`text_JP` 和 `text_EN` 必须填写，但不一定要翻译。
 
 （点击放大）
 ![img](./assets/drama.png)
@@ -61,7 +61,7 @@ tags: Chara/Drama
 #### 内置步骤
 
 ::: details 内置步骤
-以下内置剧情步骤会在剧情加载时始终注入。只需将它们设为 `jump` 目标即可使用。`inject/Unique` 动作额外插入引用这些步骤的默认对话选项（“聊聊天”等），因此通常无需自行重复使用。
+剧情加载时总会注入以下内置步骤，把它们设为 `jump` 目标即可使用。`inject/Unique` 动作还会插入引用这些步骤的默认对话选项（“聊聊天”等），所以通常不必自己重复添加。
 
 |步骤名|用途|
 |-|-|
@@ -80,7 +80,7 @@ tags: Chara/Drama
 |`_suck`|`tg` 吸血或吸猫。**优先吸血，其次吸猫**|
 |`_insult`|切换 `tg` 嘲讽状态|
 |`_makeHome`|将当前区域分支设为 `tg` 的家|
-|`_invite`|尝试邀请 `tg` 成为同伴，会检查玩家属性和 `tg` 可邀请状态。无条件邀请入队请使用拓展动作 [`join_party()`](#拓展动作)|
+|`_invite`|尝试邀请 `tg` 成为同伴，会检查玩家属性和 `tg` 是否可邀请。要无条件邀请入队，请使用拓展动作 [`join_party()`](#拓展动作)|
 |`_Guide`|引导玩家前往一系列地点|
 |`_tail`|纯洁的肉体关系|
 |`_whore`|有金钱交易的肉体关系|
@@ -89,21 +89,21 @@ tags: Chara/Drama
 |`_buyPlan`|从 `tg` 购买研究图纸|
 |`_give`|给 `tg` 物品|
 |`_blessing`|对队伍施加祝福|
-|`_train`|与 `tg` 进行技能训练|
+|`_train`|跟 `tg` 训练技能|
 |`_changeDomain`|改变 `tg` 的领域|
 |`_revive`|复活死亡的同伴|
 |`_buySlave`|从 `tg` 购买奴隶|
 |`_trade`|与 `tg` 交换物品|
-|`_identify`|与 `tg` 鉴定物品|
-|`_identifyAll`|与 `tg` 鉴定所有物品|
-|`_identifySP`|与 `tg` 使用高级技能鉴定物品|
+|`_identify`|让 `tg` 鉴定物品|
+|`_identifyAll`|让 `tg` 鉴定所有物品|
+|`_identifySP`|让 `tg` 用高级技能鉴定物品|
 |`_bout`|发起决斗|
 |`_news`|在地图上生成随机地城|
 |`_heal`|治疗玩家|
 |`_food`|从 `tg` 购买食物|
 |`_deposit`|向 `tg` 存款|
 |`_withdraw`|向 `tg` 取款|
-|`_copyItem`|与 `tg` 复制物品|
+|`_copyItem`|让 `tg` 复制物品|
 |`_extraTax`|缴纳额外税金|
 |`_upgradeHearth`|升级炉石|
 |`_sellFame`|出售声望|
@@ -117,11 +117,11 @@ tags: Chara/Drama
 
 ## 文本
 
-在 `text_JP`、`text_EN`、`text_XX` 列中的文本将用作对话事件，玩家必须点击或按键才能继续。除非动作另有说明，否则不能将动作行与文本行合并。
+`text_JP`、`text_EN`、`text_XX` 列中的文本会作为对话事件，玩家必须点击或按键才能继续。除非动作另有说明，动作行不能和文本行合并。
 
 ### 随机话题
 
-`$topic` 将从 `chara_talk.xlsx` 中定义的话题随机选取一行，该文件可以是 Elin 默认文件 `Package/_Lang_Chinese/Lang/CN/Data/chara_talk.xlsx`，也可以是 `LangMod/**/Data/chara_talk.xlsx`。例如，`$sup` 将随机播放以下行之一：
+`$topic` 会从 `chara_talk.xlsx` 定义的话题中随机选取一行。这个文件可以是 Elin 默认的 `Package/_Lang_Chinese/Lang/CN/Data/chara_talk.xlsx`，也可以是 `LangMod/**/Data/chara_talk.xlsx`。例如，`$sup` 会随机选用以下行之一：
 ```
 什么？
 什么东西？
@@ -169,19 +169,19 @@ tags: Chara/Drama
 | `#he` | “他”或“她”（根据玩家性别） |
 | `#He` | 同上，首字母大写 |
 
-这些替换，在 `dialog.xlsx` 内也可以使用。
+这些替换在 `dialog.xlsx` 里也能用。
 
 ### 动态内容
 
-**以** `#eval <此处为 C# 脚本..>` **开头**并返回 `string` 类型的文本列，能够动态生成文本内容。
+文本列以 `#eval <此处为 C# 脚本..>` 开头并返回 `string` 时，可以动态生成文本内容。
 
 ## 动作
 
-**文本行** 最常见，仅包含 `id`、`text` 列（可选 `if` 条件）。执行时需要玩家输入（点击或按键）才能继续。
+**文本行**最常见，只包含 `id`、`text` 列（可选 `if` 条件），执行时需要玩家输入（点击或按键）才能继续。
 
-**动作行**（`choice` 除外）自动执行，无需输入。若同一行同时存在 `action` 和 `text`，则通常忽略 `text`。
+**动作行**（`choice` 除外）自动执行，无需输入。若同一行同时存在 `action` 和 `text`，通常会忽略 `text`。
 
-例如，文本行后的动作行需先点击文本行才能执行。
+例如，紧跟在文本行后面的动作行，要等玩家点过文本行才会执行。
 
 ### 内置动作
 
@@ -193,10 +193,10 @@ tags: Chara/Drama
 |`choice/bye`||插入默认告别选项|
 |`cancel`||设置右键/ESC 键行为。需配合 `jump`，通常设为 `end`|
 |`setFlag`|flag 名称,值(可选)|设置 flag 值，未提供值时默认为 1|
-|`reload`||重新加载剧情，以便应用当前剧情中所做的 flag 更改。`jump` 可选，通常设为 `main`；省略时在原地继续执行。**这不是指热重载，开发时热重载只需保存文件更改并再次打开对话即可**|
+|`reload`||重新加载剧情，让当前剧情里改过的 flag 生效。`jump` 可选，通常设为 `main`；省略时在原地继续执行。**这与热重载无关，开发时热重载只需保存文件并重新打开对话**|
 |`enableTone`||为整个剧情启用对话语气转换|
-|`addActor`||添加剧情角色以供后续使用，`text` 可用于设置名称覆盖。当你在 `actor` 单元格填写新 ID 时会自动触发。`actor` 需填写[角色 ID][character-id-link]|
-|`invoke`|方法名|调用方法。全部为本体Elin特定用途。|
+|`addActor`||添加剧情角色供后续使用，`text` 可以用来覆盖名称。在 `actor` 单元格填写新 ID 时会自动触发。`actor` 需填写[角色 ID][character-id-link]|
+|`invoke`|方法名|调用方法。可用方法均为 Elin 本体专用。|
 |`setBG`|图片名(可选)|设置背景图，留空则清除。支持在 **Texture** 文件夹提供自定义 png|
 |`BGM`|BGM ID|切换至指定 BGM。自定义 BGM 详见 [音频/BGM 页面](../20_Sound%20Mods/0_sound)|
 |`stopBGM`||停止 BGM 且不继续|
@@ -260,7 +260,7 @@ tags: Chara/Drama
 
 ### 动态条件
 
-若要让某行能够动态启用或禁用，请使用：
+要动态启用或禁用某行，可以使用：
 - `invoke*` 条件表达式，或
 - 返回 `bool` 的 `eval` 动作
 
@@ -268,7 +268,7 @@ tags: Chara/Drama
 
 ## 分支
 
-将 `jump` 设置为剧情步骤即可跳转至该步骤。
+把 `jump` 设为某个剧情步骤，即可跳转到该步骤。
 
 将 `jump` 设置为 `eval_result`，并使用返回 `string` 的 `eval` 动作，可动态选择跳转目标。
 
@@ -281,23 +281,23 @@ tags: Chara/Drama
 
 ### 语法
 
-伪代码语法简单：将 `action` 设为 `invoke*` 或 `i*`，`param` 设为有效方法之一：
+这套伪代码的语法很简单：把 `action` 设为 `invoke*` 或 `i*`，`param` 填一个有效方法：
 
 |动作|参数|actor|
 |-|-|-|
 |`invoke*`/`i*`|`honk_honk(arg1, arg2)`|`pc`|
 
-这将调用名为 `honk_honk` 的方法，传入 `arg1` 和 `arg2` 两个参数。
+这会调用名为 `honk_honk` 的方法，并传入 `arg1`、`arg2` 两个参数。
 
 条件组合可使用简写前缀：`!expr` = `not(expr)`、`&expr` = `and(expr)`、`?expr` = `or(expr)`。
 
 ### 参数
 
-参数用半角逗号 `,` 分隔，并写在拓展方法的括号内，类似代码语法。若无参数，请使用空括号 `()`。
+参数写在拓展方法的括号内，用半角逗号 `,` 分隔，和代码写法类似。没有参数时写空括号 `()`。
 
-大多数方法还会将 `actor` 单元格作为目标角色执行，例如 `pc`、`tg`（剧情目标角色）或任何有效的[角色 ID][character-id-link]。默认值为 `tg`。
+大多数方法会以 `actor` 单元格指定的角色为目标，例如 `pc`、`tg`（剧情目标角色）或任何有效的[角色 ID][character-id-link]。默认值为 `tg`。
 
-若同一行中的 `jump` 单元格有值，则拓展方法的返回值将决定是否执行该 `jump`。返回 `true` 时执行跳转，否则不执行。
+若同一行的 `jump` 单元格有值，拓展方法的返回值决定是否执行该 `jump`：返回 `true` 时跳转，否则不跳转。
 
 ### 数值表达式语法
 
@@ -327,9 +327,9 @@ tags: Chara/Drama
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
-|`add_item`|[物品 ID][item-id-link], [材质 alias][material-alias-link](可选), 等级(可选), 数量(可选)|为 `actor` 添加指定物品，默认物品自身材质、自动等级、数量 `1`|总是|
+|`add_item`|[物品 ID][item-id-link], [材质 alias][material-alias-link](可选), 等级(可选), 数量(可选)|为 `actor` 添加指定物品，默认使用物品自身材质、自动等级、数量 `1`|总是|
 |`equip_item`|[物品 ID][item-id-link]|创建指定物品并装备到 `actor`|总是|
-|`destroy_item`|[物品 ID][item-id-link], 数量(可选)|从 `actor` 销毁指定物品，默认 `-1`，即销毁**全部**同 ID 物品|总是|
+|`destroy_item`|[物品 ID][item-id-link], 数量(可选)|从 `actor` 销毁指定物品，默认数量 `-1`，即销毁**全部**同 ID 物品|总是|
 |`join_faith`|[信仰 ID][religion-id-link](可选)|使 `actor` 加入指定信仰，留空则退出当前信仰|总是|
 |`join_party`||无条件使 `actor` 加入玩家队伍|总是|
 |`apply_condition`|[状态 alias][condition-alias-link], 强度|为 `actor` 施加状态，默认强度 `100`|总是|
@@ -340,8 +340,8 @@ tags: Chara/Drama
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
 |`move_next_to`|[角色 ID][character-id-link]|使 `actor` 移动到**同地图角色**身旁|找到目标时|
-|`move_tile`|X 偏移, Y 偏移|使 `actor` 进行**相对坐标**移动，例如 `1,1` 或 `2,-1`|总是|
-|`move_to`|X, Y|使 `actor` 进行**绝对坐标**移动，例如 `64,44` 或 `12,0`|总是|
+|`move_tile`|X 偏移, Y 偏移|让 `actor` 按**相对坐标**移动，例如 `1,1` 或 `2,-1`|总是|
+|`move_to`|X, Y|让 `actor` 按**绝对坐标**移动，例如 `64,44` 或 `12,0`|总是|
 |`move_zone`|[区域 ID][zone-id-link], 层数(可选)|传送 `actor` 到指定区域，默认 `0` 层|成功时|
 |`move_zone_2`|区域全名|使用区域全名语法传送 `actor`，例如 `derphy@-1`|成功时|
 |`play_anime`|[动画 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-animeid-md)|使 `actor` 执行动画|总是|
@@ -350,10 +350,10 @@ tags: Chara/Drama
 |`play_emote`|[表情 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), 时长(可选)|使 `actor` 显示表情，默认时长 `1` 秒|总是|
 |`play_screen_effect`|[屏幕特效 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
 |`pop_text`|文本|使 `actor` 发出喊叫文本（气泡框）|总是|
-|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹自定义头像，例如 `UN_myChara_happy.png` 可使用 `happy` 或 `UN_myChara_happy`|找到 actor 时|
-|`set_portrait_override`|头像 ID(可选)|设置 `actor` 对话外使用的头像，留空则重置。支持 **Portrait** 文件夹自定义头像，必须使用全名。此设置不会影响当前对话头像|总是|
-|`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹获取|总是|
-|`show_book`|分类/书籍 ID|打开一本书，支持 **LangMod/_*_*/Text** 文件夹，例如使用 `Book/ok` 对应 `Text/Book/ok.txt`|成功时|
+|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，例如 `UN_myChara_happy.png` 可以写作 `happy` 或 `UN_myChara_happy`|找到 actor 时|
+|`set_portrait_override`|头像 ID(可选)|设置 `actor` 对话外使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，必须使用全名。不会影响当前对话的头像|总是|
+|`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹读取|总是|
+|`show_book`|分类/书籍 ID|打开一本书，支持 `LangMod/**/Text` 文件夹，例如使用 `Book/ok` 对应 `Text/Book/ok.txt`|成功时|
 
 ### 拓展修改
 
@@ -369,7 +369,7 @@ tags: Chara/Drama
 
 ### 拓展条件
 
-这些也是通过 `invoke*` 动作调用的拓展方法，但返回值具有特殊意义。
+这些同样是通过 `invoke*` 动作调用的拓展方法，只是返回值有特殊含义。
 
 |方法|参数|说明|跳转条件|
 |-|-|-|-|
@@ -402,11 +402,11 @@ tags: Chara/Drama
 
 ### API
 
-Elin 提供了简单的 API，允许你从自己的脚本 DLL 中添加自定义拓展方法。
+Elin 提供了一套简单的 API，可以从你自己的脚本 DLL 添加自定义拓展方法。
 
 #### 动作解析器
 
-解析器在加载剧情时被调用，负责处理非内置的已注册动作行，并创建事件。
+解析器在加载剧情时调用，负责处理已注册的非内置动作行并创建事件。
 
 ```cs
 [ElinDramaActionParser("my_action")]
@@ -425,7 +425,7 @@ CustomDramaExpansion.AddDramaActionParser("my_action", ExampleParser);
 
 #### 动作调用
 
-调用方法会自动编译为 `invoke*` 表达式，并在剧情执行该行时被调用。
+调用方法会自动编译成 `invoke*` 表达式，剧情执行到该行时调用。
 
 ::: code-group
 ```cs [自动转换参数]
@@ -475,7 +475,7 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 
 ## 文字样式
 
-你可以使用如下标签，给文字加上粗体/斜体/颜色 等样式
+可以用下面这些标签给文字加上粗体、斜体、颜色等样式：
 
 | 标签 | 说明 | 用法示例 |
 |------|------|----------|
@@ -484,17 +484,17 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 | `<size=...>` `</size>` | 字号（像素） |  `<size=22>大</size>` |
 | `<color=...>` `</color>` | 文字颜色（英文名称/#hex） | `<color=red>红</color>` `<color=#add8e6ff>亮蓝</color>` |
 
-在 `drama`表内对文字使用 `Alt` + `Enter` 的换行，可以显示为一页的不同行文本；这点与 `dialog.xlsx`不同。
+在 `drama` 表里用 `Alt` + `Enter` 换行，文字会在同一页内分行显示，这一点与 `dialog.xlsx` 不同。
 
-此外你还可以使用 `#newline` 来换行。
+也可以用 `#newline` 换行。
 
-完整说明，请移步[unity 富文本标签文档](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html)
+完整说明见 [Unity 富文本标签文档](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/StyledText.html)
 
 ## 脚本
 
-你可以在剧情表中使用 `eval` 动作直接运行 **C# 代码**。
+你可以在剧情表中使用 `eval` 动作直接运行 C# 代码。
 
-它提供与常规 C# 相同的脚本能力，但存在以下差异：
+脚本能力与常规 C# 相同，区别在于：
 
 - 脚本状态与当前剧情实例绑定（会持续到剧情结束，然后自动重置）。
 - 快捷方式：`dm` = DramaManager，`line` = 当前行（`Dictionary<string, string>`），`tg` = 目标 `Chara`，`pc` = 玩家 `Chara`。
@@ -504,9 +504,9 @@ public static bool console_cmd(DramaManager dm, Dictionary<string, string> line,
 **返回值行为：**
 - 返回 `bool` + 有效的 `jump` 目标 → 决定是否执行跳转。
 - 返回 `string` + `jump` 单元格设置为 `eval_result` → 使用该字符串作为新的跳转目标。
-- 没有返回值 → 被视为普通动作执行。
+- 没有返回值 → 按普通动作执行。
 
-可使用以下方式从同一文件夹导入脚本文件：`<<<script_snippet.cs`
+从同一文件夹导入脚本文件的写法：`<<<script_snippet.cs`
 
 ### 传递变量
 
@@ -532,7 +532,7 @@ var value = (int)Script["random_value"];
 |招募到队伍|`chara.MakeAlly();`|
 |修改等级|`chara.SetLv(chara.LV + 5);`|
 
-需要帮助？请在 Elona Discord 上联系：**@freshcloth** 或 [通过邮件](mailto:dk@elin-modding.net)。
+需要帮助可以在 Elona Discord 上联系 **@freshcloth**，或[发邮件](mailto:dk@elin-modding.net)。
 
 [item-id-link]: https://docs.google.com/spreadsheets/d/175DaEeB-8qU3N4iBTnaal1ZcP5SU6S_Z/edit?gid=1479265439#gid=1479265439
 [material-alias-link]: https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit?gid=580505110#gid=580505110

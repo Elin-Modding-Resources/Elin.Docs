@@ -10,22 +10,22 @@ tags: SourceSheet/Religion
 
 <LinkCard t="SourceGame/Religion" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_" />
 
-When making source sheets, always copy the first 3 rows from official rows and start your data at the 4th row. Do not alter the column order.
+When making source sheets, always copy the first 3 rows from the official sheet and start your data at the 4th row. Do not alter the column order.
 
 ::: warning Migrating From CWL
-CWL specs are removed from the wiki, mods using CWL spec are still compatible, such as `cwl_xxx#minor#cannot`. We recommend switching to the new format.
+CWL specs have been removed from the wiki, but mods using a CWL spec (such as `cwl_xxx#minor#cannot`) are still compatible. We recommend switching to the new format.
 :::
 
 ## Sheet Columns
 
 |Column|Type|Description|
 |-|-|-|
-|id|string|Custom religion ID must begin with **custom**, for example: **custom_spaghettigod**|
+|id|string|Custom religion ID must begin with **custom**, for example: custom_spaghettigod|
 |name_JP|string|Display name in Japanese|
 |name|string|Display name in English. For other languages, use [`SourceLocalization`](./localization)|
 |name2_JP|string[]|Domain name, short name, in Japanese|
 |name2|string[]|Domain name, short name, in English|
-|type|string|Display category only: shown as the `("sub_" + type)` lang entry in faction lists/logs. Whether a religion is treated as custom is decided by the id prefix (`custom`), and custom religions are always instantiated as `ReligionCustom` — this column does not pick a C# type. A custom `Religion` subclass requires code registration via `RegisterCustomReligion`|
+|type|string|Display category only: shown as the `("sub_" + type)` lang entry in faction lists/logs. Whether a religion is treated as custom is decided by the id prefix (`custom`), and custom religions are always instantiated as `ReligionCustom`; this column does not pick a C# type. A custom `Religion` subclass requires code registration via `RegisterCustomReligion`|
 |idMaterial|string|Material alias of the altar|
 |faith|string|Unused|
 |domain|string|Unused|
@@ -46,19 +46,19 @@ CWL specs are removed from the wiki, mods using CWL spec are still compatible, s
 
 ## Portrait
 
-To create an optional custom portrait for your religion, put a **.png** image in the **Texture** folder using the same religion ID as the file name, such as **custom_spaghettigod.png**.
+To create an optional custom portrait for your religion, put a .png image named after the religion ID in the **Texture** folder, such as **custom_spaghettigod.png**.
 
 ![](./assets/religion_portrait.png)
 
 ## God Talks
 
-A god talk sheet placed at `LangMod/**/Data/god_talk.xlsx` provides the god's voice lines; without it the religion still functions, but god talks are simply blank. You may reference the base game sheet at **Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**.
+A god talk sheet placed at `LangMod/**/Data/god_talk.xlsx` provides the god's voice lines; without it the religion still functions, but god talks are blank. For reference, the base game sheet is at **Elin/Package/_Elona/Lang/EN/Data/god_talk.xlsx**.
 
 ![](./assets/god_talk.png)
 
 ## Religion Data
 
-You can define the supplementary religion data by providing a simple JSON file located in your `LangMod/**/Data/` folder, named `religion_data.json`.
+Supplementary religion data goes in a JSON file named `religion_data.json` in your `LangMod/**/Data/` folder.
 ```json
 {
     "custom_spaghettigod": {
@@ -103,19 +103,20 @@ You can define the supplementary religion data by providing a simple JSON file l
   Default value: `false`  
 * `NoPunishTakeover`  
   No punishment when taking over.  
+  Default value: `false`  
 * `Artifacts`  
-  List of Thing IDs as the artifact. CWL mods that used `godArtifact,religion_id` tag spec will be added automatically.  
+  List of Thing IDs that are this religion's artifacts. Entries from CWL mods that used the `godArtifact,religion_id` tag spec are added automatically.  
 * `Elements`  
-  List of Element aliases that only works on the artifact when the religion is active. CWL mods that used `religion_elements.json` spec will be added automatically.  
+  List of Element aliases that only work on the artifact while the religion is active. Entries from CWL mods that used the `religion_elements.json` spec are added automatically.  
 * `GodAbilities`  
-  List of Element aliases that count as god abilities, which will trigger `ability` god talk upon performing. The element's row must also carry the `godAbility` tag for the trigger to fire. CWL mods that used `godAbility,religion_id` tag spec will be added automatically.  
+  List of Element aliases that count as god abilities; performing one triggers the `ability` god talk. The element's row must also carry the `godAbility` tag for the trigger to fire. Entries from CWL mods that used the `godAbility,religion_id` tag spec are added automatically.  
 * `OfferingMtp`  
-  Offering multiplier override for specific Thing IDs. CWL mods that used `religion_offerings.json` spec will be added automatically.  
+  Offering multiplier override for specific Thing IDs. Entries from CWL mods that used the `religion_offerings.json` spec are added automatically.  
 * `OfferingValue`  
-  Offering value override for specific Thing IDs, this is arithmetic expression.  
+  Offering value override for specific Thing IDs, written as an arithmetic expression.  
   Arguments: `base` (the offering value computed by the base game, from item weight/category), `lv` (item level), `rarity` (item rarity)  
-* You may omit any field to use their default values.
+* Omit any field to use its default value.
 
 ## God Favor
 
-You may optionally include a god favor feat using the Element sheet. Name it using the format `featGod_` + `YourReligionID` + `1` (for example, `featGod_custom_spaghettigod1`). Reference the [SourceElement](./element) sheet and copy one of the built-in favors, such as `featGod_element1`, as a base row to modify with.
+You can add an optional god favor feat in the Element sheet. Name it using the format `featGod_` + `YourReligionID` + `1` (for example, `featGod_custom_spaghettigod1`). Reference the [SourceElement](./element) sheet and copy one of the built-in favors, such as `featGod_element1`, as a base row to modify.

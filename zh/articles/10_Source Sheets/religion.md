@@ -10,10 +10,10 @@ tags: SourceSheet/Religion
 
 <LinkCard t="SourceGame/Religion" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_" />
 
-在制作源表格时，请始终从官方行复制前三行，并从第四行开始填写数据。不要更改列的顺序。
+制作源表时，请始终复制官方表的前三行，从第四行开始填写数据。不要更改列的顺序。
 
 ::: warning 从 CWL 迁移
-CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xxx#minor#cannot`）仍可兼容。我们建议您切换至新格式。
+CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xxx#minor#cannot`）仍然兼容。建议切换到新格式。
 :::
 
 ## 表格解释
@@ -25,7 +25,7 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 |name|string|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)|
 |name2_JP|string[]|领域名称、简称（日文）|
 |name2|string[]|领域名称、简称（英文）|
-|type|string|仅用于显示分类：在阵营列表/日志中显示为 `("sub_" + type)` 语言条目。信仰是否按自定义处理由 id 前缀（`custom`）决定，且自定义信仰恒以 `ReligionCustom` 实例化——该列不用于选择 C# 类型。自定义 `Religion` 子类需通过 `RegisterCustomReligion` 以代码注册|
+|type|string|仅用于显示分类：在阵营列表/日志中显示为 `("sub_" + type)` 语言条目。信仰是否按自定义处理由 id 前缀（`custom`）决定，自定义信仰总是以 `ReligionCustom` 实例化；该列不用于选择 C# 类型。自定义 `Religion` 子类需要在代码里通过 `RegisterCustomReligion` 注册|
 |idMaterial|string|祭坛的材质别名|
 |faith|string|未使用|
 |domain|string|未使用|
@@ -46,19 +46,19 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
 
 ## 肖像
 
-如需为信仰创建可选的自定义肖像，请在 **Texture** 文件夹中放置一个 **.png** 图像，文件名与信仰 ID 相同，例如 **custom_spaghettigod.png**。
+信仰可以有自定义肖像（可选）：在 Texture 文件夹中放一张 .png 图片，文件名与信仰 ID 相同，例如 **custom_spaghettigod.png**。
 
 ![](./assets/religion_portrait.png)
 
 ## 神对话
 
-在 `LangMod/**/Data` 放置的 `god_talk.xlsx` 表格提供神明的语音台词；没有它信仰依然正常运作，只是神明对话为空。你可以参考游戏本体表格：**Elin/Package/_Elona/\_Lang\_Chinese/Lang/CN/Data/god_talk.xlsx**。
+放在 `LangMod/**/Data` 的 `god_talk.xlsx` 提供神明的语音台词；没有这张表，信仰依然正常运作，只是神明对话为空。可以参考游戏本体的表格：**Elin/Package/_Elona/\_Lang\_Chinese/Lang/CN/Data/god_talk.xlsx**。
 
 ![](./assets/god_talk.png)
 
 ## 信仰数据
 
-你可以通过在 `LangMod/**/Data/` 文件夹中提供一个简单的 JSON 文件来定义补充信仰数据，文件名为 `religion_data.json`。
+补充的信仰数据写在 `LangMod/**/Data/` 文件夹下的 JSON 文件中，文件名为 `religion_data.json`。
 ```json
 {
     "custom_spaghettigod": {
@@ -103,19 +103,20 @@ CWL 规范已从 Wiki 中移除，但使用 CWL 规范的模组（例如 `cwl_xx
   默认值：`false`
 * `NoPunishTakeover`
   接管时是否不施加惩罚。
+  默认值：`false`
 * `Artifacts`
-  作为神器的事物 ID 列表。使用 `godArtifact,religion_id` 标签规范的 CWL 模组会自动添加。
+  作为神器的物品 ID 列表。使用 `godArtifact,religion_id` 标签规范的 CWL 模组会自动添加。
 * `Elements`
   仅在该信仰激活时对神器生效的元素别名列表。使用 `religion_elements.json` 旧规范的 CWL 模组会自动添加。
 * `GodAbilities`
   视为神明能力的元素别名列表，施放时会触发 `ability` 类型的神明对话。触发的前提是该元素行的 tag 含有 `godAbility`。使用 `godAbility,religion_id` 旧标签规范的 CWL 模组会自动添加。
 * `OfferingMtp`
-  特定事物 ID 的供品倍率覆盖。使用 `religion_offerings.json` 旧规范的 CWL 模组会自动添加。
+  特定物品 ID 的供品倍率覆盖。使用 `religion_offerings.json` 旧规范的 CWL 模组会自动添加。
 * `OfferingValue`
-  特定事物 ID 的供品价值覆盖，使用算术表达式。
+  特定物品 ID 的供品价值覆盖，使用算术表达式。
   参数：`base`（游戏本体按物品重量/类别计算出的基础供品价值）、`lv`（物品等级）、`rarity`（物品稀有度）
-* 你可以省略任意字段以使用其默认值。
+* 省略的字段使用默认值。
 
 ## 神之加护
 
-你可以选择性地在 Element 表中添加一个神之加护专长。命名格式为 `featGod_` + `你的信仰ID` + `1`（例如 `featGod_custom_spaghettigod1`）。参考 [SourceElement](./element) 表，复制一个内置的加护（如 `featGod_element1`）作为基础行进行修改。
+可以在 Element 表中为信仰添加神之加护专长（可选）。命名格式为 `featGod_` + `你的信仰ID` + `1`（例如 `featGod_custom_spaghettigod1`）。参考 [SourceElement](./element) 表，复制一个内置加护（如 `featGod_element1`）作为基础行修改。

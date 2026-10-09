@@ -15,20 +15,20 @@ The Race Sheet is stored inside the Chara sheet; change the tab at the bottom.
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
 ::: details About columns, empty rows and empty cells
-**Missing columns are filled with empty values** — the game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
+**Missing columns are filled with empty values.** The game logs a `#source ill-format` warning (visible in Player.log) and keeps loading. Reordered columns are re-mapped by header name automatically. Still, copy the whole official header row as-is; it avoids both paths entirely.
 
-**A row with an empty `id` aborts the rest of the sheet**, every row after it is skipped, again with no warning. Do not use blank rows to group your data unless intentionally.
+**A row with an empty `id` aborts the rest of the sheet**: every row after it is skipped, with no warning. Do not use blank rows to group your data unless you intend to.
 
-**An empty cell is not an empty value** — the game falls back to the default on row 3. This sheet defaults `vigor` to `100`, `DV`/`PV` to `0`, `geneCap` to `3`, `material` to `meat`, `corpse` to `_meat,20`, `blood` to `2`, `age` to `8,50` and `food` to `100`.
+**An empty cell is not an empty value**: the game falls back to the default on row 3. This sheet defaults `vigor` to `100`, `DV`/`PV` to `0`, `geneCap` to `3`, `material` to `meat`, `corpse` to `_meat,20`, `blood` to `2`, `age` to `8,50` and `food` to `100`.
 
-You can change your default row 3 values to apply it to all other rows. Your data should start at the 4th row.
+You can change the defaults on row 3 to apply them to all other rows.
 :::
 
 ## Sheet Columns
 
 |Column|Type|Description|
 |-|-|-|
-|id|string|The most important cell of an entry that distinguishes it from everything else on the SourceChara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override all the others. This value cannot have any spaces or special characters in it.|
+|id|string|The most important cell of an entry that distinguishes it from everything else on the SourceChara sheet. If the ID matches a vanilla entry's or another mod's entry's ID, the last sheet to load will override all the others. This value cannot contain spaces or special characters.|
 |name_JP|string|The name of this race in Japanese.|
 |name|string|The name of this race in English. Other languages use SourceLocalization.json.|
 |playable|integer|Designates whether this race is usable by players during character creation. `1`: available by default. `2`–`6`: requires the "extra races" option. `7`–`8`: requires the "all races" option. `9`: never selectable, usually reserved for special races like gods/demons.|
@@ -47,20 +47,20 @@ You can change your default row 3 values to apply it to all other rows. Your dat
 |martial|integer|The starting level of the Martial Arts skill. Like the nine attributes, it is part of what the race grants and is applied when a character is generated.|
 |pen|integer|Unused by the game. Keep the column; the value does not matter.|
 |elements|elements|Inherent elements added to this race. Used to add racial feats and base skill bonuses (which also add base potential). Format: `element_alias/value`.|
-|skill|string|Unused by the game. What vanilla puts here are author notes (`●`, or skill names separated by spaces) and is never read; `elements` is the column that actually applies skills.|
+|skill|string|Unused by the game. Vanilla puts author notes here (`●`, or skill names separated by spaces), which are never read; `elements` is the column that actually applies skills.|
 |figure|string|Dictates what body parts this race starts with. See [Figure Reference](#figure-reference) below.|
 |geneCap|integer|How many gene slots this race has.|
 |material|string|What material this race is made of.|
 |corpse|string[]|The corpse drop, formatted as `itemID,chance`. The chance is a numerator over 1500, so the default `_meat,20` is about 1.3%. **Both parts are required**; a missing chance fails when the drop is rolled.|
 |loot|string[]|Loot specific to this race.|
-|blood|integer|The blood decal this race leaves when wounded, using the same numbering as the material table's `decal` column. `2` is normal red blood. Please refer to the blood column in the `chara` sub-table of the official source. Still follow the general rule: if it is empty, use the default value.|
-|meleeStyle|string|The attack type used when this race attacks **unarmed** (with a weapon in hand the weapon's own type applies, except for martial-arts weapons). Leave blank to randomise between punch and kick each time. Options: `Slash`, `Pierce`, `Blunt`, `Punch`, `Kick`, `Bow`, `Gun`, `Claw`, `Bite`, `Spore`, `Gaze`, `Sting`, `Touch`, `Cane` — **not case sensitive**. A word outside this list fails when the character attacks unarmed rather than being ignored.|
+|blood|integer|The blood decal this race leaves when wounded, using the same numbering as the material table's `decal` column. `2` is normal red blood. For reference, see the blood column in the `chara` sub-table of the official source. As with other columns, an empty cell uses the default value.|
+|meleeStyle|string|The attack type used when this race attacks **unarmed** (with a weapon in hand the weapon's own type applies, except for martial-arts weapons). Leave blank to randomise between punch and kick each time. Options: `Slash`, `Pierce`, `Blunt`, `Punch`, `Kick`, `Bow`, `Gun`, `Claw`, `Bite`, `Spore`, `Gaze`, `Sting`, `Touch`, `Cane` (**not case sensitive**). A word outside this list is not ignored; it fails when the character attacks unarmed.|
 |castStyle|string|The casting effect of this race. Mostly used for flavor text.|
-|EQ|string[]|Any non-empty value enables equipment generation when a character of this race is created; the content itself is never read — the actual equipment comes from the Chara sheet's `equip` column or the job's `equip`/`weapon`. Vanilla uses `"all"` or blank.|
+|EQ|string[]|Any non-empty value enables equipment generation when a character of this race is created; the content itself is never read. The actual equipment comes from the Chara sheet's `equip` column or the job's `equip`/`weapon`. Vanilla uses `"all"` or blank.|
 |sex|integer|Unused by the game (gender comes from the first segment of the Chara sheet's `bio` column). Keep the column; the value does not matter.|
 |age|integer[]|The age range used when spawning this race, as comma-separated `start,end`. For example, `8,50` means they spawn between ages 8 and 50.|
 |height|integer|The average height of this race. Generated characters vary by about 20% around it. It also has two effects that are easy to miss: corpse weight is derived from height, and characters shorter than 500 without the `webfree` tag can be caught in spider webs.|
-|breeder|integer|The breeding chance while kept as livestock, rolled against a baseline of 2500 — higher values breed more often (breeding policies lower the baseline and so raise the chance). **`0` does not mean never**: it still breeds at roughly 1/2500, even though the ranch screen shows 0%.|
+|breeder|integer|The breeding chance while kept as livestock, rolled against a baseline of 2500; higher values breed more often (breeding policies lower the baseline and so raise the chance). **`0` does not mean never**: it still breeds at roughly 1/2500, even though the ranch screen shows 0%.|
 |food|string[]|A multiplier for how good the meat of this race is, as a percentage. Only the first entry is read.|
 |fur|string|The shearing yield, formatted as `itemID/materialAlias` (for example `fiber/wool`). **A non-empty value is what makes the race shearable**, so a half-filled value fails at shearing time. Leave it blank if the race cannot be sheared.|
 |detail_JP|string|The details/backstory of this race in Japanese.|
@@ -75,7 +75,7 @@ Common tags used in the `tag` column:
 |`human`|The race speaks common.|
 |`fairy`|This race is a fairy.|
 |`humanSpeak`|Non-humanoid races that can speak common.|
-|`gelatin`|Present on slime-like vanilla races (e.g. Putit); no direct code effect found — the slime material comes from the `material` column (`jelly`). Please avoid using the `gelatin` tag.|
+|`gelatin`|Present on slime-like vanilla races (e.g. Putit); no direct code effect found; the slime material comes from the `material` column (`jelly`). Avoid using the `gelatin` tag.|
 |`sand`|This race will spawn in sand zones.|
 |`ride`|This race has good riding aptitude.|
 |`mofu`|This race will be incessantly harassed and fluffed without consent by everyone and everything.|
@@ -97,7 +97,7 @@ Common tags used in the `tag` column:
 
 ## Figure Reference
 
-The `figure` column uses Kanji characters separated by pipes (`|`) to represent body parts. A part can repeat, and each repetition is one more slot — `手|手|指|指` means two hands and two finger slots. Most vanilla humanoids use `頭|首|体|背|手|手|指|指|腕|腰|脚|足|`.
+The `figure` column uses Kanji characters separated by pipes (`|`) to represent body parts. A part can repeat, and each repetition adds one more slot: `手|手|指|指` means two hands and two finger slots. Most vanilla humanoids use `頭|首|体|背|手|手|指|指|腕|腰|脚|足|`.
 
 |Character|Body Part|
 |-|-|
@@ -109,7 +109,7 @@ The `figure` column uses Kanji characters separated by pipes (`|`) to represent 
 |`指`|Finger|
 |`腕`|Arm|
 |`腰`|Waist|
-|`脚`|Leg — **currently disabled in code**; the entry is skipped and creates no slot (vanilla rows still contain it)|
+|`脚`|Leg. **Currently disabled in code**: the entry is skipped and creates no slot (vanilla rows still contain it)|
 |`足`|Foot|
 
 <!--注释

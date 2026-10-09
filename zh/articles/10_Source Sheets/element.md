@@ -10,18 +10,18 @@ tags: SourceSheet/Element
 
 <LinkCard t="SourceGame/Element" u="https://docs.google.com/spreadsheets/d/16-LkHtVqjuN9U0rripjBn-nYwyqqSGg_/edit?gid=1102059407#gid=1102059407" />
 
-Element表存储在 Game 表内，是第一个可见的标签页。基本上所有的属性/技能/专长/法术/能力都存放在这里。
+Element 表位于 Game 表内，是第一个可见的标签页。属性、技能、专长、法术、能力基本都存放在这里。
 
 **制作源表时，必须完整复制官方源表的前三行，并将你的数据从第四行开始录入。**
 
 ::: details 关于列、空行和空格子
-**缺少的列会被填成空值**——游戏会在日志（Player.log）里输出 `#source ill-format` 警告并继续加载；列顺序被打乱时会按表头名自动重新映射。尽管如此，还是建议把官方表头整行原样复制，从源头避免这两种情况。
+**缺少的列会被填成空值**，游戏会在日志（Player.log）里输出 `#source ill-format` 警告并继续加载；列顺序被打乱时会按表头名自动重新映射。尽管如此，还是建议把官方表头整行原样复制，从源头避免这两种情况。
 
-**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会载入，而且没有任何提示。除非你是有意为之，否则不要用空行给数据分组。
 
-**空格子不等于空值**——游戏会回落到第 3 行的默认值。本表的默认值有：`type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5。
+**空格子不等于空值**：游戏会改用第 3 行的默认值。本表的默认值有：`type`=`Element`、`chance`=1000、`encFactor`=100、`mtp`=1、`LV`=1、`cost`=0、`geneSlot`=1、`eleP`=50、`charge`=10、`radius`=5。
 
-你也可以改第 3 行的默认值，让它作用到其余所有行。你的数据应从第 4 行开始录入。
+你也可以改第 3 行的默认值，让它作用到其余所有行。
 :::
 
 ## 列说明
@@ -29,67 +29,67 @@ Element表存储在 Game 表内，是第一个可见的标签页。基本上所�
 |列名|类型|描述|
 |-|-|-|
 |id|int|元素的唯一标识符。如果 ID 与官方或其它 Mod 的条目重复，最后加载的表将覆盖之前的所有条目。|
-|alias|string|此元素的字符串别名。通常推荐使用 ID 来访问，但这里提供了字符串表示。供下方的其它 `aliasX` 列使用。|
+|alias|string|元素的字符串别名。通常推荐用 ID 访问，别名是它的字符串形式，供下方其他 `aliasX` 列引用。|
 |name_JP|string|日文显示名称。|
 |name|string|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)。|
-|altname_JP|string|此元素的替代日文形容词，逗号分隔。主要用于魔法元素（例如：Fire → 赤、燃烧）。|
-|altname|string|此元素的替代英文形容词，逗号分隔。主要用于魔法元素（例如：Fire → red, burning）。|
+|altname_JP|string|元素的替代日文形容词，逗号分隔。主要用于魔法元素（例如：Fire → 赤、燃烧）。|
+|altname|string|元素的替代英文形容词，逗号分隔。主要用于魔法元素（例如：Fire → red, burning）。|
 |aliasParent|string|父元素的别名。参见下方[aliasParent](#aliasparent)。|
 |aliasRef|string|引用元素的别名。参见下方[aliasRef](#aliasref)。|
-|aliasMtp|string|作为本行倍率元素的别名（例如：`life` 受 `r_life` 倍率影响）。|
-|parentFactor|float|此元素相关计算（潜力、法术威力缩放等）中使用的倍率。|
+|aliasMtp|string|为本行提供倍率的元素别名（例如：`life` 受 `r_life` 倍率影响）。|
+|parentFactor|float|与本元素相关的计算（潜力、法术威力缩放等）中使用的倍率。|
 |lvFactor|int|元素相关计算中使用的值。|
-|encFactor|int|为此元素计算附魔（如随机装备生成）时使用的值。|
-|encSlot|string|此技能/附魔可出现的装备槽位，逗号分隔。例如：`weapon`、`all`、`shield`、`back`、`finger`、`waist`、`head`。|
+|encFactor|int|计算本元素的附魔（如随机装备生成）时使用的值。|
+|encSlot|string|技能/附魔可出现的装备槽位，逗号分隔。例如：`weapon`、`all`、`shield`、`back`、`finger`、`waist`、`head`。|
 |mtp|int|元素计算中使用的整数值。|
-|LV|int|此元素的"等级"。参见下方[LV](#lv)。|
+|LV|int|元素的"等级"。参见下方[LV](#lv)。|
 |chance|int|出现概率权重。`1000` = 常见，越低越稀有，`0` = 不会自然生成。|
-|value|int|此元素专属的物品价值修正（例如：法术的魔法书、技能的专业书）。|
+|value|int|本元素专属的物品价值修正（例如：法术的魔法书、技能的专业书）。|
 |cost|int[]|法术与能力在等级缩放之前的基础消耗。第一个值同时用作特性（feat）的特性点消耗，并参与基因价值与派系政策花费的计算。|
-|geneSlot|int|基因编辑时此技能/专长/法术/能力占用的基因槽数。设为 `-1` 则完全排除在基因工程池之外。|
+|geneSlot|int|技能/专长/法术/能力在基因编辑中占用的基因槽数。设为 `-1` 则完全排除在基因工程池之外。|
 |sort|int|排序权重。主要用于能力和法术，决定在法术/能力列表中的显示顺序。|
 |target|string|仅限能力和法术。参见下方[Target](#target)。|
 |proc|string[]|一个或逗号分隔的两个字符串。仅限能力和法术。参见下方[Proc](#proc)。|
-|type|string|此元素在代码中使用的 C# 类。常见值：`Element`、`Ability`、`Spell`、`Feat`。**Mod 开发的关键：** 请将其指向你自己的自定义类名（例如：`MyCustomFeat` 或 `ActMyCustomAbility`）。|
+|type|string|元素在代码中对应的 C# 类。常见值：`Element`、`Ability`、`Spell`、`Feat`。做 Mod 时，**这里要填你自己的自定义类名**（例如：`MyCustomFeat` 或 `ActMyCustomAbility`）。|
 |group|string|元素的大致类别。参见下方[Group](#group)。|
 |category|string|元素的子类别。与 `group` 有些重叠。|
 |categorySub|string|更细分的子类。用于技能、领地专长、专长、元素攻击、能力和法术。|
-|abilityType|string[]|用于能力和法术：存储效果种类的信息，供战斗 AI 使用。|
-|tag|string[]|应用于元素的各种标签。控制法术的出现位置、使用后是否保持隐身、领域关联、负面/正面效果分类等。|
-|thing|string|仅限法术。字母标志：`B` = 魔法书，`S` = 卷轴，`R` = 魔杖，`P` = 药水，`F` = 香水。指定法术可以以何种物品形态出现。匹配方式是 `Contains`，所以本体行的字母保持固定位置（如 `B SR`）。|
+|abilityType|string[]|用于能力和法术，记录效果种类，供战斗 AI 使用。|
+|tag|string[]|元素的各种标签，控制法术的出现位置、使用后是否保持隐身、领域关联、负面/正面效果分类等。|
+|thing|string|仅限法术。字母标志：`B` = 魔法书，`S` = 卷轴，`R` = 魔杖，`P` = 药水，`F` = 香水。决定法术能以哪些物品形态出现。匹配方式是 `Contains`，所以本体行的字母保持固定位置（如 `B SR`）。|
 |eleP|int|基础元素威力。主要用于元素法术/能力，计算元素减益时使用。|
-|cooldown|int|使用此元素后施加给角色的冷却时间（回合数）。|
+|cooldown|int|使用该元素后角色的冷却时间（回合数）。|
 |charge|int|获得该法术时给予的基础充能数（例如：阅读 Fire Ball 的魔法书可获得 10 充能 + 额外加成）。|
 |radius|float|法术或能力的半径（例如：Bolts 使用 `99` 来命中直线上直到地平线的所有目标）。|
 |max|int|专长专用：可达到的最高等级（例如：Metal 最高可达 `999`）。|
 |req|string[]|专长或技能专用：解锁所需的前置元素或元素等级（例如：Dream Waker 需要 Casting 技能）。|
-|idTrainer|string|未使用——游戏中没有任何代码读取该列。训练师能否教授某技能由元素的 `categorySub` 与训练师类型匹配决定。|
-|partySkill|int|未使用——游戏中没有任何代码读取该列。能力是否作用于全队由 `target` 列（`Party`、`SelfParty`）决定。|
+|idTrainer|string|未使用，游戏中没有任何代码读取该列。训练师能否教授某技能，取决于元素的 `categorySub` 是否与训练师类型匹配。|
+|partySkill|int|未使用，游戏中没有任何代码读取该列。能力是否作用于全队由 `target` 列（`Party`、`SelfParty`）决定。|
 
 ## aliasParent
 
-`aliasParent` 列指向父元素的别名，有以下多种用途：
+`aliasParent` 列指向父元素的别名，用途有以下几种：
 
-- 将魔法元素映射到其父属性（例如：Fire → MAG，Holy → WIL）。
-- 将抗性元素映射到其源魔法元素（例如：`resFire` → `eleFire`）。
-- 将正面突变映射到其负面版本（例如：Lithe Leg → Twisted Legs）。
-- 将能力和法术映射到其计算用的父属性（例如：Swarm → DEX，Bladestorm → STR）。
+- 把魔法元素映射到父属性（例如：Fire → MAG，Holy → WIL）。
+- 把抗性元素映射到对应的魔法元素（例如：`resFire` → `eleFire`）。
+- 把正面突变映射到它的负面版本（例如：Lithe Leg → Twisted Legs）。
+- 把能力和法术映射到计算用的父属性（例如：Swarm → DEX，Bladestorm → STR）。
 
 ## aliasRef
 
-`aliasRef` 列指向引用元素的别名，有以下多种用途：
+`aliasRef` 列指向引用元素的别名，用途有以下几种：
 
-- 对于倍率元素（例如：`r_life`、`r_mana`、`r_DV`、`r_PV`）：指向被倍率计算的目标元素。
-- 对于魔法元素（例如：`eleFire`）：指向对应的抗性元素（例如：`resFire`）。
-- 对于能力/法术（例如：Suicide Bomb）：指向伤害元素（例如：`eleImpact`）。
+- 倍率元素（例如：`r_life`、`r_mana`、`r_DV`、`r_PV`）：指向受倍率影响的目标元素。
+- 魔法元素（例如：`eleFire`）：指向对应的抗性元素（例如：`resFire`）。
+- 能力/法术（例如：Suicide Bomb）：指向伤害元素（例如：`eleImpact`）。
 - `mold` 是一个特殊别名，用于生成所有魔法元素的法术（例如：`breathe_` + `mold` 会生成 `breathe_fire`、`breathe_cold` 等）。
 
 ## LV
 
-`LV` 列决定此元素的"等级"：
+`LV` 列是元素的"等级"：
 
 - **法术：** 决定出现条件。Earthquake 等级为 20，Meteor 等级为 30，比等级仅为 15 的 Fire Ball 在低等级法术商贩处更难遇到。
-- **附魔：** 决定出现所需的危险等级——附魔只会出现在等级不低于其 `LV` 的装备上（例如火抗的 `LV` 为 1，随处可见；注意斩击/冲击抗性的 `chance` 为 0，不会随机生成）。
+- **附魔：** 决定出现所需的危险等级：附魔只会出现在等级不低于其 `LV` 的装备上（例如火抗的 `LV` 为 1，随处可见；注意斩击/冲击抗性的 `chance` 为 0，不会随机生成）。
 
 ## Target
 
@@ -108,15 +108,15 @@ Element表存储在 Game 表内，是第一个可见的标签页。基本上所�
 
 ## Proc
 
-仅限能力和法术。可为一个或逗号分隔的两个字符串。有多种用途：
+仅限能力和法术。可以填一个字符串，或用逗号分隔的两个字符串，用途有以下几种：
 
-- **增益/减益：** 告知战斗 AI 将施加何种状态。例如，Nature's Embrace 带有 `Buff,ConHOT`——若全队已拥有 ConHOT，AI 将跳过此能力。
+- **增益/减益：** 告诉战斗 AI 会施加哪种状态。例如 Nature's Embrace 填的是 `Buff,ConHOT`，全队都已有 ConHOT 时，AI 会跳过这个能力。
 - **原版能力/法术：** 作为 `ActEffect` 类中的 `EffectId` 字符串使用（例如：`Breathe` 对应 `EffectId.Breathe`）。
-- **召唤法术/能力：** 以 `Summon` 开头，后接被召唤实体的角色 ID（例如：SpSummonMonster 对应 `Summon,monster`）。注意：召唤的缩放和元素类型处理仍在 `ActEffect` 类中有硬编码逻辑，因此添加新的召唤法术可能并非简单直接。
+- **召唤法术/能力：** 以 `Summon` 开头，后接被召唤实体的角色 ID（例如：SpSummonMonster 对应 `Summon,monster`）。注意：召唤的缩放和元素类型处理仍硬编码在 `ActEffect` 类中，所以新增召唤法术可能没那么简单。
 
 ## Group
 
-Elin 中的元素涵盖众多类别。`group` 列基本一目了然：
+Elin 的元素分很多类。`group` 列的取值基本一看就懂：
 
 |Group|描述|
 |-|-|
@@ -147,7 +147,7 @@ Elin 中的元素涵盖众多类别。`group` 列基本一目了然：
 
 ## foodEffect
 `string[]`  
-指向一组元素：吃下带有本元素的物品时会施加它们。例如吃下带 `cat` 元素的东西会掉业力——别吃猫。
+指向一组元素：吃下带有本元素的物品时会施加它们。例如吃下带 `cat` 元素的东西会掉业力，所以别吃猫。
 
 ## note
 `string`  
@@ -175,7 +175,7 @@ Elin 中的元素涵盖众多类别。`group` 列基本一目了然：
 
 ## textExtra_JP
 `string`  
-补充风味文本（日文）。对专长而言，这段文字会显示在 textPhase 的右侧，悬停时也会显示在其下方。
+补充风味文本（日文）。专长的这段文字会显示在 textPhase 右侧，悬停时也会显示在它下方。
 
 ## textExtra
 `string`  

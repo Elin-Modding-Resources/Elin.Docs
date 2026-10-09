@@ -13,37 +13,37 @@ tags: SourceSheet/Material
 **制作源表时，必须完整复制官方源表的前三行，并将你的数据从第四行开始录入。**
 
 ::: details 关于列、空行和空格子
-**缺少的列会被填成空值**——游戏会在日志（Player.log）里输出 `#source ill-format` 警告并继续加载；列顺序被打乱时会按表头名自动重新映射。尽管如此，还是建议把官方表头整行原样复制，从源头避免这两种情况。
+**缺少的列会被填成空值**，游戏会在日志（Player.log）里输出 `#source ill-format` 警告，然后继续加载；列顺序打乱时，游戏会按表头名自动重新映射。不过还是建议把官方表头整行原样复制，这两种情况就都不会出现。
 
-**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会被载入，同样没有提示。除非你是有意为之，否则不要用空行给数据分组。
+**`id` 留空的那一行会中止整张表的读取**，它之后的所有行都不会载入，而且没有任何提示。除非你是有意为之，否则不要用空行给数据分组。
 
-**空格子不等于空值**——游戏会回落到第 3 行的默认值。本表的默认值有：`thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100。
+**空格子不等于空值**：游戏会改用第 3 行的默认值。本表的默认值有：`thing`=`chunk`、`decal`=2、`defFloor`/`defBlock`=1、`ramp`=6、`hardness`=1、`chance`=1000、`weight`=100、`value`=100、`quality`=1、`dice`=100。
 
-你也可以改第 3 行的默认值，让它作用到其余所有行。你的数据应从第 4 行开始录入。
+你也可以改第 3 行的默认值，让它作用到其余所有行。
 :::
 
 ## 表格列
 
 |列|类型|描述|
 |-|-|-|
-|id|整数|材质的唯一数字标识符。若与官方条目或其他模组的条目 ID 相同，最后加载的表格将覆盖之前的。请使用足够大且唯一的值以避免冲突。|
+|id|整数|材质的唯一数字标识符。若与官方条目或其他模组的条目 ID 相同，最后加载的表格会覆盖之前的。请用足够大且不重复的值，避免冲突。|
 |alias|文本|材质别名，用于在其他表格中引用（例如 Thing 的 `defMat` 列）。|
 |name_JP|文本|日文显示名称。|
 |name|文本|英文显示名称。其他语言请使用 [`SourceLocalization`](./localization)。|
-|category|文本|材质类别。本体在用的取值有 `gem`、`soil`、`wood`、`ore`、`fiber`、`rock`、`crystal`、`water`、`grass`、`skin`、`organic`、`bone`。注意金属和皮革不在这里——它们是 `groups` 列的值。|
+|category|文本|材质类别。本体在用的取值有 `gem`、`soil`、`wood`、`ore`、`fiber`、`rock`、`crystal`、`water`、`grass`、`skin`、`organic`、`bone`。注意金属和皮革不在其中，它们是 `groups` 列的值。|
 |tag|文本[]|特殊行为标签。使用 `addColorMain(RRGGBBAA)` 和 `addColorAlt(RRGGBBAA)` 定义自定义材质的颜色。参见下方 [自定义材质](#自定义材质)。|
 |thing|文本|该材质对应的原料物品（默认 `chunk`），例如挖掘生地面或大地图采集时会生成它。|
 |goods|文本[]|可视为未使用。|
 |minerals|文本[]|可视为未使用。|
 |decal|整数|贴花/血迹叠加 ID。参见 [Decal](#decal)。|
-|decay|整数|使用该材质制作的物品的腐烂速率。|
+|decay|整数|用该材质制作的物品的腐烂速率。|
 |grass|整数|可视为未使用。|
 |defFloor|整数|默认 SourceFloor 图块 ID。|
 |defBlock|整数|默认 SourceBlock 图块 ID。|
 |edge|整数|可视为未使用。|
 |ramp|整数|斜坡方块图块 ID。|
-|idSound|文本|撞击音效 ID。自定义音效放置在 `Sound/Material/` 文件夹中。|
-|soundFoot|文本|脚步声 ID。自定义音效放置在 `Sound/Footstep/` 文件夹中。|
+|idSound|文本|撞击音效 ID。自定义音效放在 `Sound/Material/` 文件夹中。|
+|soundFoot|文本|脚步声 ID。自定义音效放在 `Sound/Footstep/` 文件夹中。|
 |hardness|整数|材质硬度；影响挖掘/加工的作业速度以及多处战斗公式。导入时还会自动追加为 `hardness` 元素。|
 |groups|文本[]|材质层级组（例如 `metal`、`leather`）。|
 |tier|整数|层级组中的材质等级。|
@@ -55,19 +55,19 @@ tags: SourceSheet/Material
 |dmg|整数|伤害百分比乘数（`100` = 中性），乘在装备基础伤害加成上。|
 |dv|整数|DV 百分比乘数（`100` = 中性），乘在装备基础 DV 上。|
 |pv|整数|PV 百分比乘数（`100` = 中性），乘在装备基础 PV 上。|
-|dice|整数|伤害计算的骰子维度修正值。|
+|dice|整数|乘在装备骰面（`offense` 的第二个值）上的系数。参见 [攻击与防御数值](./thing#攻击与防御数值)。|
 |bits|文本[]|防火或耐酸属性。|
 |elements|元素|作为装备材质时提供的 SourceElement 加成。|
 |altName|文本[]|作为装备材质时的独特名字前缀。|
-|altName_JP|文本[]|作为装备材质时的独特名字前缀，日语。|
+|altName_JP|文本[]|作为装备材质时的独特名字前缀（日文）。|
 
 ## 自定义材质
 
-没有颜色映射的自定义材质仍然可以加载——游戏会自动创建一个默认（灰色）颜色条目并记录日志——但显示不出你想要的颜色。要让自定义材质正确显示，请在 `tag` 列中定义其颜色。
+没有颜色映射的自定义材质也能加载（游戏会自动创建一个默认的灰色颜色条目并记录日志），但显示不出你想要的颜色。要让自定义材质正确显示，请在 `tag` 列中定义颜色。
 
 ### 颜色标签
 
-在材质行的 `tag` 列中使用 **`addColorMain(color_hex)`** 和 **`addColorAlt(color_hex)`** 来定义材质的主颜色和替代颜色。
+在材质行的 `tag` 列中用 `addColorMain(color_hex)` 和 `addColorAlt(color_hex)` 定义材质的主颜色和替代颜色。
 
 颜色格式为 **RRGGBBAA**（8 位十六进制）：
 - **RR**：红色（`00`–`ff`）
@@ -80,7 +80,7 @@ tags: SourceSheet/Material
 addColorMain(ffff00ff),addColorAlt(ff0000ff)
 ```
 
-这将主颜色设为黄色（完全不透明），替代颜色设为红色（完全不透明）。
+这会把主颜色设为黄色，替代颜色设为红色，两者都完全不透明。
 
 ::: warning 颜色格式
 颜色十六进制字符串**不区分大小写**，且**不能**以 `#` 或 `0x` 开头。
