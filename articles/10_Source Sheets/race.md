@@ -72,19 +72,19 @@ Common tags used in the `tag` column:
 
 |Tag|Description|
 |-|-|
-|`human`|The race speaks common.|
+|`human`|This race is a humanoid (including humans) and speaks common.|
 |`fairy`|This race is a fairy.|
-|`humanSpeak`|Non-humanoid races that can speak common.|
+|`humanSpeak`|Not a humanoid, but can speak common. Speaking common means let the character talk without parentheses.|
 |`gelatin`|Present on slime-like vanilla races (e.g. Putit); no direct code effect found; the slime material comes from the `material` column (`jelly`). Avoid using the `gelatin` tag.|
 |`sand`|This race will spawn in sand zones.|
 |`ride`|This race has good riding aptitude.|
-|`mofu`|This race will be incessantly harassed and fluffed without consent by everyone and everything.|
+|`noRide`|This race has bad riding aptitude.|
+|`mofu`|This race will be indiscriminately cuddled (petted) and vigorously fluffed by everyone and everything.|
 |`fish`|This race is considered a fish. Used for Bane.|
 |`undead`|This race is considered undead. Used for Bane. Cannot be detected with Telepathy.|
-|`god`|This race is considered a god. Do not watch birds with.|
+|`god`|This race is considered a god. Used for Bane. Do not watch birds with.|
 |`animal`|This race is considered an animal. Used for Bane; can show up in Animal Tamers.|
 |`sleepBeside`|This race will try to sleep alongside you if it's in your faction and zone.|
-|`noRide`|This race has bad riding aptitude.|
 |`insect`|Present on insect vanilla races; no direct code effect found (can still be matched by SpawnList tag filters).|
 |`plant`|This race is considered a plant. Can be dominated by Kumiromi.|
 |`filth`|Usage unclear.|
@@ -92,8 +92,8 @@ Common tags used in the `tag` column:
 |`webfree`|This race can freely move through webs; used for spiders.|
 |`cat`|This race is a cat. Do not eat.|
 |`water`|This race will spawn in water zones.|
-|`machine`|This race is considered a machine. Can be dominated by Mani. Can be upgraded by Mani Shotgun Faction effect.|
-|`horror`|This race is considered a horror. Cannot be detected with Telepathy.|
+|`machine`|This race is considered a machine. Used for Bane. Can be dominated by Mani. Can be upgraded by Mani Shotgun Faction effect.|
+|`horror`|This race is considered a horror. Cannot be detected with Telepathy. Races such as Yith have this tag.|
 
 ## Figure Reference
 
