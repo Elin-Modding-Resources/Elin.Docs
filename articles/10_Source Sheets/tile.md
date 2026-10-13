@@ -10,7 +10,7 @@ tags: SourceSheet/Tile
 
 <LinkCard t="SourceBlock (Block / Floor / Obj / Deco / CellEffect / Material)" u="https://docs.google.com/spreadsheets/d/13oxL_cQEqoTUlcWsjKZyNuAaITFGK56v/edit" />
 
-The five tile sheets share most of their columns. Everything that sits on a map cell — a wall, a floor, a crop, a carpet, a decoration, a liquid effect — is a row in one of them.
+The five tile sheets share most of their columns. Everything that sits on a map cell (a wall, a floor, a crop, a carpet, a decoration, a liquid effect) is a row in one of them.
 
 **When making source sheets, you must copy the first 3 rows of the official source sheet completely and start your data at the 4th row.**
 
@@ -51,7 +51,7 @@ Use any positive number as `id`. **256–65535** is the sweet spot: it keeps sav
 |recipeKey|string[]|`*` = learned automatically the first time the player opens the matching workbench; `-` = never shows up as a random recipe; a shop name (`Starter`, `Loytel`, …) = sold there as a recipe scroll.|
 |factory|string[]|Item id of the workbench: `factory_wall`, `factory_block`, `factory_floor`, `workbench`. `self` = quick craft, `x` = never listed, `none` = not craftable. An id that is not an item disables the recipe.|
 |components|string[]|Ingredients: `id[/count]`; `,` between ingredients; `\|` for alternatives; `id@tag` requires a tag (`chunk@soil/1`); `$` marks the ingredient that gives the color; `#` names a category; `+` marks optional. Empty or `-` = one log. A malformed entry drops the recipe.|
-|defMat|string|Material alias used for the icon and for map generation. `!alias` locks the material. **Not** the material of what the player builds — that comes from the ingredient they pick.|
+|defMat|string|Material alias used for the icon and for map generation. `!alias` locks the material. **Not** the material of what the player builds; that comes from the ingredient they pick.|
 |category|string|Build menu tab: `wall`, `fence` → Wall; `foundation`; `floor`, `floor_field` → Floor; `obj`; `deco`. Unknown values fall back to `obj`.|
 |tag|string[]|Flags. Floor: `noFloor`, `noBridge`, `noSnow`, `noTransition`, `beach`, `snowtile`, `nonGradient`. Obj: `autotile`, `seed`, `crop`, `rareSeed`, `crime`. Any: `hiddenRecipe`, `oneblock_only`.|
 |detail_JP / detail|string|Description text.|
@@ -83,9 +83,9 @@ Every floor row also gets a bridge recipe, unless `tag` contains `noBridge` or `
 
 |Column|Type|Description|
 |-|-|-|
-|_growth|string[]|`Class,stageFrame,harvestFrame,harvestThing,maxCount` — see [Growth](#growth).|
+|_growth|string[]|`Class,stageFrame,harvestFrame,harvestThing,maxCount`. See [Growth](#growth).|
 |costSoil|int|Soil cost when planted.|
-|objType|string|`resource`, `crop`, `tree`, `plant`. Only `crop` changes anything (seed food bonuses); the others are just labels.|
+|objType|string|`resource`, `crop`, `tree`, `plant`. Only `crop` changes anything (seed food bonuses); the others are labels only.|
 |vals|int[]|`vals[0]` = which seed icon to use (a number from the seed item's skin list).|
 |valType|string|`None`, `Growth` or `Material`. A typo is treated as `None`.|
 |matCategory|string|Random material pool for map generation only.|
@@ -104,7 +104,7 @@ A Block / Floor / Obj row shows up in the build menu when all of these hold:
 
 ## Growth {#growth}
 
-`_growth = Class,stageFrame,harvestFrame,harvestThing,maxCount` turns an Obj into a crop, tree or weed. `Class` is the growth type: `Crop`, `Wheat`, `Rice`, `Tree`, `Weed`, `Flower`, `Herb`, `Rose`, `Cactus`, `Cha`, `Kinoko`, `Berry`, `Pasture`, `Seaweed`, … With an unknown class the row simply does not grow.
+`_growth = Class,stageFrame,harvestFrame,harvestThing,maxCount` turns an Obj into a crop, tree or weed. `Class` is the growth type: `Crop`, `Wheat`, `Rice`, `Tree`, `Weed`, `Flower`, `Herb`, `Rose`, `Cactus`, `Cha`, `Kinoko`, `Berry`, `Pasture`, `Seaweed`, … With an unknown class the row does not grow.
 
 + **Stages**: the plant moves through its stages over time; for most types the last stage is withered.
 + **Harvest** gives `harvestThing` (an item id, or `#category` for a random item of that category), 1 to `maxCount` pieces. Digging the plant up drops the last entry of `components`.
@@ -119,7 +119,7 @@ Minimal wheat-style crop with a 7-frame strip:
 
 ## Materials
 
-Materials are a separate sheet and have no texture of their own; see [Material](/articles/10_Source%20Sheets/material). A new ore only needs a Material row with `category` = `ore`, `tier`, `chance` and a color tag — the vanilla ore vein picks it up and tints itself.
+Materials are a separate sheet and have no texture of their own; see [Material](/articles/10_Source%20Sheets/material). A new ore only needs a Material row with `category` = `ore`, `tier`, `chance` and a color tag; the vanilla ore vein picks it up and tints itself.
 
 ## Localization
 
@@ -128,8 +128,8 @@ Materials are a separate sheet and have no texture of their own; see [Material](
 ## Pitfalls
 
 + Row 3 of your sheet is the default row. Copy it from the official sheet.
-+ `alias` is mandatory for textures and seeds; vanilla leaves it empty on many rows, you should not.
++ `alias` is mandatory for textures and seeds. Vanilla leaves it empty on many rows; yours should not.
 + `factory` must be an existing item id and `components` must be well-formed; otherwise the recipe disappears.
 + `defBlock` / `bridgeBlock` / `autoFloor` must name existing aliases; wrong names are replaced by a fallback.
 + Do not put `anime` on Obj rows, and do not fill in `tiles` yourself when you ship a PNG.
-+ Everything is rebuilt when the game starts; after editing the xlsx or the PNGs, just restart.
++ Everything is rebuilt when the game starts, so restart after editing the xlsx or the PNGs.
