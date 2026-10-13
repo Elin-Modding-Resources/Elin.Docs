@@ -87,13 +87,25 @@ watch(lang, () => {
   outline: none;
 }
 
-/* 与上方「Meanwhile on Ylva…」标题左对齐，而不是自己居中成一行 */
+/* Elin：与上方「Meanwhile on Ylva…」标题左对齐；经典皮肤保持原版的居中（classic.css 设 --pager-align） */
 .pager-row {
   display: flex;
-  justify-content: flex-start;
+  justify-content: var(--pager-align, flex-start);
 }
 
 .pager-row :deep(.pagination) {
-  justify-content: flex-start;
+  justify-content: var(--pager-align, flex-start);
+}
+</style>
+
+<!--
+  经典皮肤的覆盖写在不带 scoped 的块里：scoped 样式中的 :global(X) .foo 会被 Vue 整条替换成 X，
+  选择器后半截直接丢掉（样式会落到 <html> 上）。这里的选择器都以 :root[data-skin="classic"] 开头，
+  特异度比对应的 scoped 规则（多一个 [data-v-…]）恰好高一级。
+-->
+<style>
+/* 经典皮肤是一张张卡片，不需要列表顶上那道线 */
+:root[data-skin="classic"] .journal {
+  border-top: 0;
 }
 </style>

@@ -128,3 +128,37 @@ const paginationItems = computed(() => {
   font-variant-numeric: tabular-nums;
 }
 </style>
+
+<!--
+  经典皮肤的覆盖写在不带 scoped 的块里：scoped 样式中的 :global(X) .foo 会被 Vue 整条替换成 X，
+  选择器后半截直接丢掉（样式会落到 <html> 上）。这里的选择器都以 :root[data-skin="classic"] 开头，
+  特异度比对应的 scoped 规则（多一个 [data-v-…]）恰好高一级。
+-->
+<style>
+/* ── 经典皮肤：改版前的圆角数字按钮。当前页原版是 blue-500 + 白字（3.7:1），加深到 blue-600（5.2:1） ── */
+:root[data-skin="classic"] .page-button {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+:root[data-skin="classic"] .page-button:hover {
+  background-color: var(--vp-c-default-soft);
+  color: var(--vp-c-text-1);
+}
+
+:root[data-skin="classic"] .page-button.current {
+  border: 0;
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+/* VitePress 默认的 text-3 在白底上只有 3.1:1，原版这里是 gray-500（约 4.8:1） */
+:root[data-skin="classic"] .page-count {
+  color: var(--vp-c-text-2);
+}
+</style>

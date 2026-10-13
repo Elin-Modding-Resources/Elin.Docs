@@ -1,0 +1,353 @@
+/**
+ * 经典皮肤 —— 改版前的靛蓝原版（<html data-skin="classic">，由导航栏外观菜单切换）
+ *
+ * 保留原版的配色与风格：VitePress 默认的靛蓝品牌色、靛蓝标题 + 3px 下划线、内容区网格底纹、
+ * 带引号装饰的靛蓝引用块、靛蓝表头、紫→青渐变标题与光晕、天蓝主按钮、卡片式文章流、Inter 字体、
+ * GitHub 代码配色。
+ *
+ * 相对原版修掉的问题（对照 git 历史里改版前的 style.css / custom.css）：
+ *   - 主按钮白字压天蓝底只有 2.1:1 → 同一天蓝底配深色字（6.5:1）
+ *   - 浅色下渐变标题的青色端 #47caff 只有 1.9:1 → 收到 #1a8fc4（3.6:1，大字够用），色相不变
+ *   - 标题 text-transform: capitalize 会把 idRenderData、_tileType 这类标识符改写 → 去掉
+ *   - h1 悬停时右侧 padding 变宽，标题会跳一下 → 去掉
+ *   - h2 的 width: fit-content 把 VitePress 的顶部分隔线截成一小段，margin-top 10px 也贴得太紧 → 去掉那道短线，恢复段前距
+ *   - h5 用半透明色（#241f1f6e）只有约 3:1 → 次级文字色
+ *   - 链接悬停变成另一种蓝（#3b82f6），与靛蓝品牌色打架 → 用品牌色的悬停档
+ *   - 表格 12px 太小 → 14px
+ *   - 窄屏下 .vp-doc 额外 18px 左右内边距，正文被挤窄 → 去掉（属于版面，见 custom.css）
+ *   - 侧边栏版本号用 Tailwind 的 *-400 色，白底上只有 2:1 左右 → 浅色用 700 档、深色保留 400 档
+ *   - 深色下文章卡片是一圈浅灰边、日期用 gray-600（2.3:1）→ 改用随明暗变化的描边与次级文字色（见 ArticleCard.vue）
+ *   - 中日文标题沿用 0.1em 字距会显得松散 → 中日文收到 0.02em
+ *
+ * 结构与 custom.css 的 Elin 段相同：变量写在 :root[data-skin="classic"]（特异度要高过 VitePress 的 :root），
+ * 元素样式整段包在 :where(:root[data-skin="classic"]) 里，以 <html> 为锚的选择器写成 &.dark …。
+ */
+
+/* ── 字体：原版用 VitePress 自带的 Inter；主题改从 theme-without-fonts 引入后，这里用 fontsource 的 Inter
+   （文件名不同，不会触发 VitePress 给 Inter 加的全站预加载；只有切到经典皮肤时浏览器才去下载） ── */
+html[lang][data-skin="classic"] {
+  --vp-font-family-base:
+    "Inter Variable", "Inter", var(--elin-cjk-sans), -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif, var(--elin-emoji);
+  --elin-font-display: var(--vp-font-family-base);
+  --elin-font-heading: var(--vp-font-family-base);
+}
+
+/* ── 变量：浅色 ─────────────────────────────────────────────────────────── */
+:root[data-skin="classic"] {
+  --emr-text-indigo: #3a5ccc;
+  --emr-text-indigo-plus: #3451b2;
+  --emr-border-indigo: #3e63dd;
+  --emr-bg-indigo: #f0f4ff;
+
+  /* 主按钮：原版的天蓝，字改成深色 */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #082f49;
+  --vp-button-brand-bg: #38bdf8;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #082f49;
+  --vp-button-brand-hover-bg: #0ea5e9;
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #082f49;
+  --vp-button-brand-active-bg: #0ea5e9;
+
+  /* 首页：紫→青渐变标题 + 光晕（浅色下青色端加深，见文件头） */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7f78e3 30%,
+    #1a8fc4
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #3691af 50%,
+    #7f78e3 50%
+  );
+  --vp-home-hero-image-filter: blur(56px);
+
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: var(--vp-c-text-1);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+
+  /* 组件共用的语义变量（名字沿用 --elin-*，值取原版的靛蓝体系） */
+  --elin-paper: var(--vp-c-bg);
+  --elin-paper-raised: var(--vp-c-bg-soft);
+  --elin-paper-2: var(--vp-c-bg-alt);
+  --elin-paper-sunk: var(--emr-bg-indigo);
+  --elin-ink: var(--vp-c-text-1);
+  --elin-ink-2: var(--vp-c-text-2);
+  --elin-ink-3: var(--vp-c-text-2);
+  --elin-header: var(--emr-text-indigo);
+  --elin-highlight: var(--vp-c-brand-1);
+  --elin-highlight-2: var(--vp-c-brand-2);
+  --elin-highlight-soft: var(--vp-c-brand-soft);
+  --elin-gold: var(--emr-border-indigo);
+  --elin-gold-soft: color-mix(in srgb, var(--emr-border-indigo) 35%, transparent);
+  --elin-line: var(--vp-c-divider);
+  --elin-line-soft: var(--vp-c-divider);
+  --elin-button-bg: var(--vp-c-brand-3);
+  --elin-button-bg-hover: var(--vp-c-brand-2);
+  --elin-button-border: transparent;
+  --elin-button-text: #ffffff;
+  --elin-button-bevel: transparent;
+  --elin-paper-texture: none;
+  --elin-good: var(--vp-c-green-1);
+  --elin-great: var(--vp-c-brand-1);
+  --elin-warn: var(--vp-c-yellow-1);
+  --elin-warn-line: var(--vp-c-yellow-3);
+  --elin-bad: var(--vp-c-red-1);
+  --elin-myth: var(--vp-c-purple-1);
+  --elin-inline-code: var(--vp-c-brand-1);
+
+  /* 首页文章流的分页条：原版居中（Elin 皮肤左对齐，见 CardContainer.vue） */
+  --pager-align: center;
+
+  /* 侧边栏 / 导航栏里的版本号：原版色相，浅色取 700 档 */
+  --classic-ver-nightly: #2563eb;
+  --classic-ver-stable: #c2410c;
+  --classic-ver-nya: #15803d;
+  --classic-ver-anni: #be185d;
+}
+
+/* ── 变量：深色 ─────────────────────────────────────────────────────────── */
+:root[data-skin="classic"].dark {
+  --emr-text-indigo: #99a2ff;
+  --emr-text-indigo-plus: #dddffe;
+  --emr-border-indigo: #99a2ff;
+  --emr-bg-indigo: #5e637863;
+
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7f78e3 30%,
+    #47caff
+  );
+
+  --classic-ver-nightly: #60a5fa;
+  --classic-ver-stable: #fb923c;
+  --classic-ver-nya: #4ade80;
+  --classic-ver-anni: #f472b6;
+}
+
+@media (max-width: 639px) {
+  :root[data-skin="classic"] {
+    --vp-home-hero-image-filter: blur(80px);
+  }
+}
+
+/* ── 元素样式 ───────────────────────────────────────────────────────────── */
+:where(:root[data-skin="classic"]) {
+  /* 代码：GitHub 配色（shiki 的 classic-light / classic-dark 两套，见 config.mts）。
+     要盖过 VitePress 的 html:not(.dark) .shiki span（0,2,2），这里写成 (0,3,2) */
+  &:not(.dark) .shiki span,
+  &:not(.dark) .shiki span[style] {
+    color: var(--shiki-classic-light, inherit);
+  }
+
+  &.dark .shiki span,
+  &.dark .shiki span[style] {
+    color: var(--shiki-classic-dark, inherit);
+  }
+
+  /* 内容区网格底纹 */
+  .VPContent.has-sidebar {
+    background-position: 50%;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
+      linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
+  }
+
+  &.dark .VPContent.has-sidebar {
+    background-image:
+      linear-gradient(90deg, #93b1c108 3%, transparent 0),
+      linear-gradient(1turn, #93b1c108 3%, transparent 0);
+  }
+
+  /* 标题：靛蓝 + 宽字距，h1 / h2 带 3px 下划线 */
+  .vp-doc :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--emr-text-indigo);
+    letter-spacing: 0.08em;
+  }
+
+  &:is([lang^="zh"], [lang^="ja"]) .vp-doc :is(h1, h2, h3, h4, h5, h6) {
+    letter-spacing: 0.02em;
+  }
+
+  .vp-doc h1 {
+    width: fit-content;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--emr-border-indigo);
+  }
+
+  .vp-doc h2 {
+    width: fit-content;
+    margin-top: 40px;
+    padding-top: 0;
+    padding-bottom: 4px;
+    border-top: 0;
+    border-bottom: 3px solid var(--emr-border-indigo);
+  }
+
+  .vp-doc h5 {
+    color: var(--vp-c-text-2);
+  }
+
+  /* 引用：靛蓝淡底 + 左边线 + 引号装饰 */
+  .vp-doc blockquote {
+    position: relative;
+    margin: 2em 0;
+    padding: 24px 32px;
+    background: var(--emr-bg-indigo);
+    border-left: 2px solid var(--emr-border-indigo);
+  }
+
+  .vp-doc blockquote::before,
+  .vp-doc blockquote::after {
+    position: absolute;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--emr-text-indigo-plus);
+    opacity: 0.7;
+  }
+
+  .vp-doc blockquote::before {
+    content: "❝";
+    top: 8px;
+    left: 8px;
+    font-weight: 700;
+  }
+
+  .vp-doc blockquote::after {
+    content: "❞";
+    right: 8px;
+    bottom: 0;
+  }
+
+  .vp-doc blockquote > p {
+    color: var(--emr-text-indigo-plus);
+  }
+
+  .vp-doc li::marker {
+    color: var(--emr-text-indigo);
+  }
+
+  /* 表格：靛蓝隔行底色。原版给 thead 设了靛蓝底，但被 VitePress 的 th 底色盖住，实际表头是浅灰 —— 照实际效果保留 */
+  .vp-doc table {
+    display: inline-block !important;
+    width: auto;
+    max-width: 100%;
+    overflow: auto;
+    font-size: 14px;
+  }
+
+  .vp-doc thead {
+    background: var(--emr-bg-indigo);
+    color: var(--emr-text-indigo);
+    text-align: left;
+  }
+
+  .vp-doc tr:nth-child(2n) {
+    background: var(--emr-bg-indigo);
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* 大纲 */
+  .VPDocAsideOutline .outline-marker {
+    width: 4px;
+  }
+
+  .VPDocAsideOutline .content .root li .active {
+    color: var(--emr-text-indigo);
+    font-weight: 600;
+  }
+
+  /* 上一页 / 下一页 */
+  .VPDocFooter .prev-next .pager-link {
+    background: rgb(250 250 250 / 0.7);
+  }
+
+  &.dark .VPDocFooter .prev-next .pager-link {
+    background: rgb(24 24 27 / 0.8);
+  }
+
+  .vp-doc hr {
+    border-color: var(--emr-border-indigo);
+  }
+
+  /* 链接：悬停用品牌色的悬停档，不再换成另一种蓝 */
+  .vp-doc a:hover {
+    color: var(--vp-c-brand-2);
+  }
+
+  /* 按键 */
+  .vp-doc kbd {
+    display: inline-block;
+    padding: 0.15em 0.45em;
+    font-size: 0.82em;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--vp-c-text-1);
+    background: linear-gradient(180deg, #ffffff 0%, #f4f4f6 100%);
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    box-shadow:
+      0 2px 0 #cbd5e1,
+      0 1px 2px rgb(0 0 0 / 0.08);
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+
+  &.dark .vp-doc kbd {
+    background: linear-gradient(180deg, #27272a 0%, #18181b 100%);
+    border-color: #3f3f46;
+    box-shadow:
+      0 2px 0 #09090b,
+      0 1px 3px rgb(0 0 0 / 0.5);
+  }
+
+  /* 首页「Meanwhile on Ylva…」：现在是 h2（标题层级修正），外观照原版那个 h3 —— 20px、无下划线 */
+  .VPHome .vp-doc h2 {
+    width: auto;
+    margin-top: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  /* 标签：靛蓝细边的圆角小标签（原版 ArticleCard 的样子） */
+  .elin-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--vp-c-text-1);
+    border: 1px solid #a5b4fc;
+    border-radius: 8px;
+  }
+
+  &.dark .elin-tag {
+    border-color: #6366f1;
+  }
+
+  .elin-ver-nightly {
+    color: var(--classic-ver-nightly);
+  }
+  .elin-ver-stable {
+    color: var(--classic-ver-stable);
+  }
+  .elin-ver-nya {
+    color: var(--classic-ver-nya);
+  }
+  .elin-ver-anni {
+    color: var(--classic-ver-anni);
+  }
+}

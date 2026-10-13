@@ -49,6 +49,8 @@
                 :class="{ active: currentPlaylist?.name === playlist.name }"
                 :aria-pressed="currentPlaylist?.name === playlist.name"
               >
+                <!-- 文件夹图标只在经典皮肤里显示（原版样式），Elin 皮肤下由 CSS 隐藏 -->
+                <span class="bgm-folder text-xl shrink-0" aria-hidden="true">📁</span>
                 <span
                   class="font-medium min-w-0"
                   :class="[
@@ -198,8 +200,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, nextTick } from "vue";
+import { ref, onMounted, onUnmounted, computed, nextTick, watch } from "vue";
 import { useData } from "vitepress";
+import { useSkin, type Skin } from "../theme/skin";
 import "aplayer/dist/APlayer.min.css";
 import bgmItemsRaw from "/playlist/bgm_items.json";
 
@@ -295,6 +298,18 @@ const currentTracks = computed(() => {
 const getOriginalIndex = (track: any) =>
   currentTracks.value.findIndex((t: any) => t.id === track.id);
 
+// 播放器的主题色（播放按钮底色、进度条）。白色播放图标压在上面要 ≥ 3:1：
+// Elin 的金 #bda068 只有 2.5:1，取同色相更深的一档；经典皮肤沿用原版的 violet-500（4.2:1）
+const PLAYER_THEME: Record<Skin, string> = { elin: "#8a6c33", classic: "#8b5cf6" };
+const { skin, syncSkinFromDom } = useSkin();
+
+watch(skin, (s) => {
+  if (!aplayer) return;
+  aplayer.options.theme = PLAYER_THEME[s];
+  // 第三个参数 false：不写进当前曲目自己的 theme，之后切歌仍然读 options.theme
+  aplayer.theme(PLAYER_THEME[s], aplayer.list.index, false);
+});
+
 const initPlayer = async () => {
   await nextTick();
   if (!playerRef.value) return;
@@ -302,8 +317,7 @@ const initPlayer = async () => {
 
   aplayer = new APlayer({
     container: playerRef.value,
-    // 白色播放图标压在这个色上要 ≥ 3:1，#bda068（金）只有 2.5:1，取同色相更深的一档
-    theme: "#8a6c33",
+    theme: PLAYER_THEME[skin.value],
     repeat: "all",
     order: "list",
     preload: "auto",
@@ -358,6 +372,7 @@ const switchPlaylist = (playlist: any) => {
 };
 
 onMounted(async () => {
+  syncSkinFromDom();
   updateIsMobile();
   window.addEventListener("resize", updateIsMobile);
 
@@ -618,6 +633,103 @@ onUnmounted(() => {
 .bgm-window :focus-visible {
   outline: 2px solid #a9c6e4;
   outline-offset: -2px;
+}
+
+/* Elin 皮肤不显示文件夹 emoji */
+.bgm-folder {
+  display: none;
+}
+
+/* ── 经典皮肤：改版前的深色播放器（锌灰 + 紫） ────────────────────────────
+   相对原版的修正：次级文字从 zinc-500（3.7–4.1:1）提到 zinc-400；
+   底部 APlayer 不再是一条纯白（见上方 .player-footer 的说明）；列表项改成了可聚焦的按钮。 */
+html[data-skin="classic"] .bgm-window {
+  --bgm-frame: #09090b;
+  --bgm-side: #18181b;
+  --bgm-main: #09090b;
+  --bgm-bar: #18181b;
+  --bgm-rim: #27272a;
+  --bgm-rim-soft: #27272a;
+  --bgm-ink: #e4e4e7;
+  --bgm-ink-2: #d4d4d8;
+  --bgm-ink-3: #a1a1aa;
+  --bgm-gold: #a78bfa;
+
+  border: 1px solid var(--bgm-rim);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+html[data-skin="classic"].dark .bgm-window {
+  --bgm-frame: #171717;
+  --bgm-side: #0a0a0a;
+  --bgm-main: #171717;
+  --bgm-bar: #171717;
+  --bgm-rim: #404040;
+  --bgm-rim-soft: #404040;
+}
+
+html[data-skin="classic"] .bgm-folder {
+  display: inline;
+}
+
+html[data-skin="classic"] .bgm-heading {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bgm-ink-3);
+}
+
+html[data-skin="classic"] .bgm-title {
+  font-family: inherit;
+  font-weight: 600;
+  color: #f4f4f5;
+}
+
+html[data-skin="classic"] .bgm-item,
+html[data-skin="classic"] .bgm-track {
+  border-radius: 16px;
+}
+
+html[data-skin="classic"] .bgm-item.active {
+  color: #ffffff;
+  background-color: #8b5cf6;
+  box-shadow: 0 4px 6px -1px rgb(139 92 246 / 0.3);
+}
+
+html[data-skin="classic"] .bgm-track.current {
+  background-color: rgb(139 92 246 / 0.12);
+}
+
+html[data-skin="classic"] .bgm-search {
+  border-color: #3f3f46;
+  border-radius: 16px;
+  background-color: #27272a;
+}
+
+html[data-skin="classic"] .bgm-search:focus {
+  border-color: #8b5cf6;
+}
+
+html[data-skin="classic"] .bgm-count {
+  border-radius: 9999px;
+  background-color: #27272a;
+}
+
+html[data-skin="classic"] .aplayer-title {
+  color: #c4b5fd !important;
+}
+
+html[data-skin="classic"] .player-footer .aplayer .aplayer-info .aplayer-music .aplayer-author,
+html[data-skin="classic"] .player-footer .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  color: #a1a1aa;
+}
+
+html[data-skin="classic"] .bgm-window .custom-scroll::-webkit-scrollbar-thumb,
+html[data-skin="classic"] .bgm-window .player-body-viewport::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 170, 0.35);
 }
 
 /* 滚动条美化 */

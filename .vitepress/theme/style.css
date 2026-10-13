@@ -1,6 +1,12 @@
 /**
  * Elin 皮肤 —— 色板与字体
  *
+ * 站点有两套皮肤（<html data-skin>，由导航栏的外观菜单切换，见 theme/skin.ts）：
+ *   - elin（默认，data-skin 缺省时也按它渲染）：本文件 + custom.css
+ *   - classic：改版前的靛蓝原版，见 classic.css
+ * 所以这里的色板、字体、--vp-* 映射全部写在 :root:not([data-skin="classic"]) 下；
+ * 特异度 (0,2,0) 也正好高过 VitePress 自己的 :root / .dark。
+ *
  * 浅色 = 游戏的 Main Paper 皮肤（羊皮纸），深色 = Main Dark 皮肤（石板灰 + 金边）。
  * 色值不是凭感觉取的，来源有两处：
  *   - 文字/语义色：Resources/UI/Skin/Color/SkinColor Main Paper.asset、SkinColor Main Dark.asset
@@ -53,7 +59,7 @@ html[lang^="ja"] {
 
 /* 用 html[lang] 而非 :root：VitePress 在 [lang]:lang(zh, ja) 上另设了一套字体，
    同等特异度下要靠选择器更具体才能稳定盖过它 */
-html[lang] {
+html[lang]:not([data-skin="classic"]) {
   /* display：导航标题、侧边栏分组、按钮这类界面文字；中日文落到黑体，小字号下才清楚 */
   --elin-font-display: "Ylva Latin", var(--elin-cjk-sans), system-ui, sans-serif;
   /* heading：正文标题。英文同样是 Ylva Latin，中日文见下方按语言覆盖 */
@@ -68,20 +74,20 @@ html[lang] {
 
 /* 游戏的 GenEi LateMin 本身是明朝体，日文标题用系统明朝与之对应；
    中文用宋体系（macOS 有宋体-简，Windows 默认没有可用的宋体粗体，会落回微软雅黑）。 */
-html[lang^="ja"] {
+html[lang^="ja"]:not([data-skin="classic"]) {
   --elin-font-heading:
     "Ylva Latin", "Yu Mincho", YuMincho, "Hiragino Mincho ProN",
     "Noto Serif JP", "Noto Serif CJK JP", var(--elin-cjk-sans), serif;
 }
 
-html[lang^="zh"] {
+html[lang^="zh"]:not([data-skin="classic"]) {
   --elin-font-heading:
     "Ylva Latin", "Noto Serif SC", "Source Han Serif SC", "Songti SC",
     var(--elin-cjk-sans), sans-serif;
 }
 
 /* ── 色板：Main Paper（浅色） ─────────────────────────────────────────────── */
-:root {
+:root:not([data-skin="classic"]) {
   /* 纸面：light inner 贴图均值 #dbcbaf 提亮后的三档 */
   --elin-paper: #efe6d5;
   --elin-paper-raised: #f5efe3;
@@ -127,7 +133,7 @@ html[lang^="zh"] {
 }
 
 /* ── 色板：Main Dark（深色） ─────────────────────────────────────────────── */
-.dark {
+:root:not([data-skin="classic"]).dark {
   /* 石板：dark inner #4f5257 / old bg dark #474a4a 压暗，保留其冷灰色相 */
   --elin-paper: #2b2d30;
   --elin-paper-raised: #34373b;
@@ -170,8 +176,8 @@ html[lang^="zh"] {
 }
 
 /* ── 映射到 VitePress ─────────────────────────────────────────────────────── */
-:root,
-.dark {
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
   --vp-c-bg: var(--elin-paper);
   --vp-c-bg-alt: var(--elin-paper-2);
   --vp-c-bg-elv: var(--elin-paper-raised);
@@ -247,7 +253,7 @@ html[lang^="zh"] {
   --vp-shadow-5: 0 18px 56px rgb(60 40 20 / 0.2), 0 4px 12px rgb(60 40 20 / 0.12);
 }
 
-.dark {
+:root:not([data-skin="classic"]).dark {
   --vp-c-default-soft: rgb(221 214 201 / 0.07);
   --vp-backdrop-bg-color: rgb(0 0 0 / 0.6);
   --vp-shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);
@@ -260,7 +266,7 @@ html[lang^="zh"] {
 /* ── 代码 ──────────────────────────────────────────────────────────────────
  * 代码块底色必须与 codeThemes.ts 里的 editor.background 一致，
  * 那边的 token 对比度是按这个底色算的。 */
-:root {
+:root:not([data-skin="classic"]) {
   --vp-code-color: var(--elin-inline-code);
   --vp-code-bg: rgb(75 47 25 / 0.07);
   --vp-code-link-color: var(--elin-highlight);
@@ -282,15 +288,15 @@ html[lang^="zh"] {
   --vp-code-tab-active-bar-color: var(--elin-gold);
 }
 
-.dark {
+:root:not([data-skin="classic"]).dark {
   --vp-code-bg: rgb(221 214 201 / 0.08);
   --vp-code-block-bg: #26282b;
   --vp-code-line-highlight-color: rgb(189 160 104 / 0.14);
 }
 
 /* ── 按钮（首页 Hero 等 VPButton） ────────────────────────────────────────── */
-:root,
-.dark {
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
   --vp-button-brand-border: var(--elin-button-border);
   --vp-button-brand-text: var(--elin-button-text);
   --vp-button-brand-bg: var(--elin-button-bg);
@@ -313,8 +319,8 @@ html[lang^="zh"] {
 }
 
 /* ── 首页 Hero ────────────────────────────────────────────────────────────── */
-:root,
-.dark {
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
   --vp-home-hero-name-color: var(--elin-header);
   --vp-home-hero-name-background: none;
   --vp-home-hero-image-background-image: none;
@@ -322,8 +328,8 @@ html[lang^="zh"] {
 }
 
 /* ── 提示块 ──────────────────────────────────────────────────────────────── */
-:root,
-.dark {
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
   --vp-custom-block-font-size: 15px;
   --vp-custom-block-code-font-size: 13.5px;
 

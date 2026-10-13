@@ -5,6 +5,8 @@ import { generateDiff } from "./data/diff";
 import { makeLangRedirectScript } from "./data/langRedirect";
 import tailwindcss from "@tailwindcss/vite";
 import { elinPaper, elinDark } from "./data/codeThemes";
+import { SKIN_BOOT_SCRIPT } from "./theme/skin";
+import { fileURLToPath, URL } from "node:url";
 
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 const base = isCI_GitHub
@@ -130,7 +132,19 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
-    theme: { light: elinPaper, dark: elinDark },
+    // light / dark 给 Elin 皮肤；另外两套给经典皮肤（改版前的 VitePress 默认配色）。
+    // shiki 会给每个 token 同时写上 --shiki-light / --shiki-dark / --shiki-classic-light / --shiki-classic-dark，
+    // 由 CSS 按 <html data-skin> 选用（见 theme/classic.css）。
+    // VitePress 只预加载 light / dark 两套，另外两套在 shikiSetup 里补装。
+    theme: {
+      light: elinPaper,
+      dark: elinDark,
+      "classic-light": "github-light",
+      "classic-dark": "github-dark",
+    } as { light: typeof elinPaper; dark: typeof elinDark },
+    async shikiSetup(highlighter) {
+      await highlighter.loadTheme("github-light", "github-dark");
+    },
   },
 
   themeConfig: {
@@ -164,10 +178,30 @@ export default defineConfig({
       noExternal: ["aplayer"],
     },
     plugins: [tailwindcss()],
+    resolve: {
+      // 用自己的组件替换 VitePress 内置的明暗开关：导航栏里是下拉菜单，移动端抽屉里是平铺的选项，
+      // 可在「Elin 风格 / 经典」两套皮肤 × 浅色 / 深色之间切换
+      alias: [
+        {
+          find: /^.*\/VPNavBarAppearance\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/AppearanceMenu.vue", import.meta.url),
+          ),
+        },
+        {
+          find: /^.*\/VPNavScreenAppearance\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/AppearanceScreen.vue", import.meta.url),
+          ),
+        },
+      ],
+    },
   },
 
   head: [
     ["script", {}, makeLangRedirectScript(base)],
+    // 皮肤要在首次绘制前定下来，所以也是同步内联脚本；排在语言跳转之后（那段必须是 head 第一项）
+    ["script", {}, SKIN_BOOT_SCRIPT],
     [
       "script",
       {

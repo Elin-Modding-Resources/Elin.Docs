@@ -149,3 +149,107 @@ defineProps<{
   max-width: none;
 }
 </style>
+
+<!--
+  经典皮肤的覆盖写在不带 scoped 的块里：scoped 样式中的 :global(X) .foo 会被 Vue 整条替换成 X，
+  选择器后半截直接丢掉（样式会落到 <html> 上）。这里的选择器都以 :root[data-skin="classic"] 开头，
+  特异度比对应的 scoped 规则（多一个 [data-v-…]）恰好高一级。
+-->
+<style>
+/* ── 经典皮肤：改版前的卡片 ───────────────────────────────────────────────
+   同一份标记，用网格把各块摆回原来的位置：标题 / 作者 / 摘要 / 日期 + 标签。
+   .entry-body、.entry-meta 设成 display: contents，让里面的元素直接成为卡片网格的格子。
+   相对原版的修正：深色下的描边与日期颜色（原来是浅灰边 + 2.3:1 的 gray-600）。 */
+:root[data-skin="classic"] .journal-entry {
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title title"
+    "author author"
+    "desc desc"
+    "date tags";
+  gap: 0 16px;
+  margin: 16px 0;
+  padding: 24px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+:root[data-skin="classic"].dark .journal-entry {
+  border-color: #3f3f46;
+  box-shadow: none;
+}
+
+:root[data-skin="classic"] .journal-entry:hover {
+  transform: translateY(-4px);
+  border-color: #a5b4fc;
+}
+
+:root[data-skin="classic"].dark .journal-entry:hover {
+  border-color: #6366f1;
+}
+
+:root[data-skin="classic"] .journal-entry::before {
+  display: none;
+}
+
+:root[data-skin="classic"] .entry-body,
+:root[data-skin="classic"] .entry-meta {
+  display: contents;
+}
+
+:root[data-skin="classic"] .vp-doc .entry-title {
+  grid-area: title;
+  width: fit-content;
+  margin-bottom: 8px;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--emr-border-indigo);
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+
+:root[data-skin="classic"] .vp-doc .entry-link {
+  color: var(--emr-text-indigo);
+  font-weight: 600;
+}
+
+:root[data-skin="classic"] .journal-entry:hover .entry-link {
+  text-decoration: none;
+}
+
+:root[data-skin="classic"] .entry-link::after {
+  inset: 0;
+  border-radius: 8px;
+}
+
+:root[data-skin="classic"] .entry-author {
+  grid-area: author;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--vp-c-text-2);
+}
+
+:root[data-skin="classic"] .vp-doc .entry-desc {
+  grid-area: desc;
+  margin: 12px 0 16px;
+  color: var(--vp-c-text-1);
+}
+
+:root[data-skin="classic"] .entry-date {
+  grid-area: date;
+  align-self: center;
+  padding: 0;
+  color: var(--vp-c-text-2);
+}
+
+:root[data-skin="classic"] .vp-doc .entry-tags {
+  grid-area: tags;
+  justify-content: flex-end;
+}
+</style>
