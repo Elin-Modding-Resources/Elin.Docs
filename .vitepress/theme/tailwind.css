@@ -2,3 +2,11 @@
 
 /* Tailwind v4 的 dark: 默认跟随系统 prefers-color-scheme；本站明暗由 VitePress 在 <html> 上切 .dark 类 */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* VitePress 2.0.0-alpha.19 起正文字体设在 html 上（@layer __vitepress_base），而 Tailwind 的 preflight
+   也在 html 上设 font-family，且所在的 @layer base 声明得更晚、优先级更高——不改的话两套皮肤的正文
+   都会退回 Tailwind 的系统字体栈。让 preflight 直接取 VitePress 的字体变量，两边结果一致 */
+@theme {
+  --default-font-family: var(--vp-font-family-base);
+  --default-mono-font-family: var(--vp-font-family-mono);
+}

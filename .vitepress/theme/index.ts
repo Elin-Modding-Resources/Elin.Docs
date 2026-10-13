@@ -15,7 +15,7 @@ import "./classic.css";
 import "./tailwind.css";
 import { useRoute } from "vitepress";
 import { useData } from "vitepress/dist/client/index.js";
-import { onMounted, onUnmounted, toRefs } from "vue";
+import { onMounted, onUnmounted } from "vue";
 
 import ArticleCard from "../components/ArticleCard.vue";
 import CardContainer from "../components/CardContainer.vue";
@@ -56,7 +56,9 @@ export default {
     BackToTopButton(app, { progressColor: "var(--elin-gold)" });
   },
   setup() {
-    const { frontmatter } = toRefs(useData());
+    // useData() 返回的是由 ref 组成的普通对象，frontmatter 本身就是插件要的 Ref；
+    // 不要再套 toRefs —— 对普通对象 toRefs 拿到的 .value 是 ref 本身，插件读不到页面的 comment 开关
+    const { frontmatter } = useData();
     const route = useRoute();
 
     imageViewer(route);

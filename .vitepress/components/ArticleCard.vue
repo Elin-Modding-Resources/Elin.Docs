@@ -44,6 +44,9 @@ defineProps<{
   gap: 4px 28px;
   padding: 20px 0;
   border-bottom: 1px solid var(--elin-line-soft);
+  /* VitePress 2.0.0-alpha.20 起 body 不再写死 24px 行高（改为继承 html 的 1.5）；
+     没单独定行高的作者名等仍按原来的 24px 排 */
+  line-height: 24px;
 }
 
 /* 悬停底色向两侧各溢出 12px，分隔线仍与上方标题左右对齐 */

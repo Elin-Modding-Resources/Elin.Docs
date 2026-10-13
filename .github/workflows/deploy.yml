@@ -22,24 +22,18 @@ jobs:
     name: Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/setup@v3
         with:
-          version: 11.11.0
-          run_install: true
           cache: true
-      - name: Setup Node.JS
-        uses: actions/setup-node@v6
-        with:
-          node-version: latest
-          cache: "pnpm"
+          runtime: node@latest
       - name: Build vitepress
         run: pnpm docs:build
       - name: Update diff
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           message: "ci: update diff"
           default_author: github_actions
@@ -60,4 +54,4 @@ jobs:
     steps:
       - name: Deploy Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

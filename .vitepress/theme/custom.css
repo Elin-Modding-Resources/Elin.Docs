@@ -1,7 +1,7 @@
 @import "./tailwind.css";
 
 /* 色板与字体见 style.css（Elin）与 classic.css（经典）；这里只写版面与元素样式。
-   结构：版面 → 两套皮肤共用的修正 → Elin 皮肤（整段限定在非经典皮肤下）→ 导航栏折叠 / 语言 / diff 页（共用）。
+   结构：版面 → 两套皮肤共用的修正 → Elin 皮肤（整段限定在非经典皮肤下）→ 导航栏 / 语言 / diff 页（共用）。
    --elin-* 是两套皮肤都定义了的语义变量（经典皮肤里取靛蓝原版的颜色），组件可以放心引用。 */
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -502,6 +502,11 @@
     line-height: 1.7;
   }
 
+  /* VitePress 2.0.0-alpha.19 给带标题的提示块单独加了 padding-top: 16px，选择器同形才盖得住 */
+  .custom-block:has(> .custom-block-title, > summary) {
+    padding-top: 14px;
+  }
+
   .vp-doc .custom-block p {
     line-height: 1.7;
   }
@@ -852,127 +857,31 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   导航栏自适应折叠
+   导航栏
    ══════════════════════════════════════════════════════════════════════════ */
 
-.VPNavBar .content {
-  container-type: inline-size;
-  container-name: navbar;
-}
-
-@media (min-width: 768px) {
-  .VPNavBarExtra.extra {
-    display: none;
-  }
-
+/* 放不下时收哪一项由 VitePress 的折叠引擎决定（vitepress/…/composables/nav-overflow）：按实测宽度，
+   依次把社交链接 → 外观 → 语言 → 菜单项（从右往左）收进 ⋯ 菜单；窄于 48rem 时整排改由汉堡抽屉承载。
+   这里只调间距，改了导航文案、内边距或字号都不用重算阈值，引擎会重新量。
+   但间距只能加在 li 自身（padding）或更里面：引擎把每个 li 的 offsetWidth 相加来判断放不放得下，
+   加在 .list 上的 gap 不算在内，会在临界宽度把导航栏撑出界 */
+@media (min-width: 48rem) {
   .VPNavBar .content-body .VPNavBarSearch {
     padding-left: 1rem;
   }
 
-  /* 12px → 10px：*/
+  /* 12px → 10px */
   .VPNavBar .VPNavBarMenu.menu .VPNavBarMenuLink,
   .VPNavBar .VPNavBarMenu.menu .VPNavBarMenuGroup .button {
     padding: 0 0.625rem;
   }
-
-  .VPNavBarTranslations::before,
-  .VPNavBarAppearance::before,
-  .VPNavBarSocialLinks::before {
-    align-self: center;
-  }
-
-  .VPNavBarHamburger {
-    display: flex !important;
-  }
-
-  .VPNavScreen {
-    display: block !important;
-  }
-
-  .VPNavBar .content-body .VPNavBarHamburger {
-    width: auto;
-    padding: 0 0.75rem;
-    gap: 0.5rem;
-  }
-
-  .VPNavBar .content-body .VPNavBarHamburger .container {
-    width: 16px;
-    flex: none;
-  }
-
-  .VPNavBarHamburger::after {
-    content: "More";
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--vp-c-text-1);
-    white-space: nowrap;
-    transition: color 0.25s;
-  }
-
-  html[lang^="zh"] .VPNavBarHamburger::after {
-    content: "更多";
-  }
-
-  html[lang^="ja"] .VPNavBarHamburger::after {
-    content: "その他";
-  }
-
-  .VPNavBarHamburger:hover::after {
-    color: var(--vp-c-brand-1);
-  }
 }
 
-@container navbar (min-width: 900px) {
-  .VPNavBar .content-body .VPNavBarTranslations.translations,
-  .VPNavBar .content-body .VPNavBarAppearance.appearance,
-  .VPNavBar .content-body .VPNavBarSocialLinks.social-links {
-    display: flex;
-    align-items: center;
-    height: var(--vp-nav-height);
-  }
-
-  .VPNavBar .content-body .VPNavBarHamburger {
-    display: none !important;
-  }
-}
-
-@container navbar (max-width: 899.98px) {
-  .VPNavBar .content-body .VPNavBarTranslations.translations,
-  .VPNavBar .content-body .VPNavBarAppearance.appearance,
-  .VPNavBar .content-body .VPNavBarSocialLinks.social-links {
-    display: none;
-  }
-}
-
-@container navbar (max-width: 759.98px) {
-  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuLink[href*="/commits/"] {
-    display: none;
-  }
-}
-
-@container navbar (max-width: 659.98px) {
-  .VPNavBar
-    .VPNavBarMenu.menu
-    > .VPNavBarMenuGroup:has(a[href*="docs.google.com/spreadsheets"]) {
-    display: none;
-  }
-}
-
-@container navbar (max-width: 539.98px) {
-  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuGroup:has(a[href*="modmaker"]) {
-    display: none;
-  }
-}
-
-@container navbar (max-width: 469.98px) {
-  .VPNavBar .VPNavBarMenu.menu > .VPNavBarMenuLink[href*="/articles/archive"] {
-    display: none;
-  }
-}
-
-@container navbar (max-width: 379.98px) {
-  .VPNavBar .VPNavBarMenu.menu {
-    display: none;
+/* 本站把 --vp-layout-max-width 收窄成了 88vw（见「版面」），导航栏的 .container 拿它当最大宽度居中，
+   而侧边栏要到 90rem 才跟着居中、之前一直贴左 —— 不放开的话这一段里标题和搜索框会比侧边栏右偏一截 */
+@media (60rem <= width < 90rem) {
+  .VPNavBar.has-sidebar .container {
+    max-width: none;
   }
 }
 
@@ -1004,21 +913,20 @@
  *    如果改了rem或navbar字号，可能还要微调一下这段
  */
 
-/* 注：这里只在 >=1536px 才加 gap，那时导航可用宽度已远超上面折叠断点的最大值
-   （900px），加宽间距不会把任何一项挤进 More 抽屉。若要把 gap 下放到更窄的
-   屏幕，记得同步抬高上面 @container navbar 的各级阈值。 */
+/* 注：间距写成 li 的 padding-left 而不是 .list 的 gap —— 折叠引擎量得到 padding，量不到 gap，
+   见上方「导航栏」一节。 */
 
 /* ① 当屏幕 >= 1536px 时 */
 @media (min-width: 1536px) {
-  html[lang^="zh"] .VPNavBarMenu.menu {
-    gap: 0.5rem; /* 增加导航项间距 */
+  html[lang^="zh"] .VPNavBarMenu.menu > .list > li + li {
+    padding-left: 0.5rem; /* 增加导航项间距 */
   }
 }
 
 /* ② 当屏幕 >= 1600px 时 */
 @media (min-width: 1600px) {
-  html[lang^="zh"] .VPNavBarMenu.menu {
-    gap: 1rem; /* 增加导航项间距，比 1536px 更大 */
+  html[lang^="zh"] .VPNavBarMenu.menu > .list > li + li {
+    padding-left: 1rem; /* 增加导航项间距，比 1536px 更大 */
   }
 
   /* 汉字间距增加 */

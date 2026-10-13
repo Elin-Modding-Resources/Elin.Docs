@@ -83,6 +83,8 @@ const paginationItems = computed(() => {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  /* VitePress 2.0.0-alpha.20 起 body 不再写死 24px 行高（改为继承 html 的 1.5），按钮按原来的 24px 排的 */
+  line-height: 24px;
 }
 
 /* 游戏里的方形按钮（bg button square）：米色填充、细描边；

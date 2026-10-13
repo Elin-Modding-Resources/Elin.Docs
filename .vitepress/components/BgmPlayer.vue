@@ -522,6 +522,9 @@ onUnmounted(() => {
     inset 0 0 0 3px var(--bgm-frame),
     var(--vp-shadow-3);
   color: var(--bgm-ink);
+  /* VitePress 2.0.0-alpha.20 起 body 不再写死 24px 行高（改为继承 html 的 1.5）；
+     播放器里没单独定行高的文字仍按原来的 24px 排 */
+  line-height: 24px;
 }
 
 .bgm-sidebar {

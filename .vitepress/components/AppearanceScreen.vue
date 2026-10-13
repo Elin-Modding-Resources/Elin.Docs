@@ -1,13 +1,6 @@
 <template>
-  <!-- 替换 VitePress 内置的 VPNavScreenAppearance（移动端 / 「更多」抽屉里的外观一栏） -->
-  <div
-    v-if="
-      site.appearance &&
-      site.appearance !== 'force-dark' &&
-      site.appearance !== 'force-auto'
-    "
-    class="VPNavScreenAppearance"
-  >
+  <!-- 移动端汉堡抽屉里的外观一栏（NavAppearance.vue 在 row + screen 时渲染它） -->
+  <div class="VPNavAppearance VPNavScreenAppearance">
     <p :id="titleId" class="text">{{ title }}</p>
 
     <div class="groups" role="group" :aria-labelledby="titleId">
@@ -47,10 +40,8 @@
 
 <script setup lang="ts">
 import { useId } from "vue";
-import { useData } from "vitepress";
 import { useAppearance } from "../theme/appearance";
 
-const { site } = useData();
 const { title, groups, current, apply } = useAppearance();
 
 const uid = useId();

@@ -61,6 +61,7 @@ export default defineConfig({
         outline: { label: "On this page", level: [2, 3] },
         docFooter: { prev: "Previous page", next: "Next page" },
         sidebarMenuLabel: "Menu",
+        extraMenuLabel: "More",
         lastUpdated: { text: "Last updated" },
         notFound: {
           title: "Page not found",
@@ -85,6 +86,7 @@ export default defineConfig({
         outline: { label: "このページの内容", level: [2, 3] },
         docFooter: { prev: "前のページ", next: "次のページ" },
         sidebarMenuLabel: "メニュー",
+        extraMenuLabel: "その他",
         lastUpdated: { text: "最終更新日" },
         notFound: {
           title: "ページが見つかりません",
@@ -114,6 +116,7 @@ export default defineConfig({
         outline: { label: "本页目录", level: [2, 3] },
         docFooter: { prev: "上一页", next: "下一页" },
         sidebarMenuLabel: "总目录",
+        extraMenuLabel: "更多",
         lastUpdated: { text: "最后更新" },
         notFound: {
           title: "页面不存在",
@@ -179,19 +182,13 @@ export default defineConfig({
     },
     plugins: [tailwindcss()],
     resolve: {
-      // 用自己的组件替换 VitePress 内置的明暗开关：导航栏里是下拉菜单，移动端抽屉里是平铺的选项，
-      // 可在「Elin 风格 / 经典」两套皮肤 × 浅色 / 深色之间切换
+      // 用自己的组件替换 VitePress 内置的明暗开关：导航栏里是下拉菜单，⋯ 菜单与移动端抽屉里是平铺的选项，
+      // 可在「Elin 风格 / 经典」两套皮肤 × 浅色 / 深色之间切换。三处都引用同一个 VPNavAppearance，由它按 props 分派
       alias: [
         {
-          find: /^.*\/VPNavBarAppearance\.vue$/,
+          find: /^.*\/VPNavAppearance\.vue$/,
           replacement: fileURLToPath(
-            new URL("./components/AppearanceMenu.vue", import.meta.url),
-          ),
-        },
-        {
-          find: /^.*\/VPNavScreenAppearance\.vue$/,
-          replacement: fileURLToPath(
-            new URL("./components/AppearanceScreen.vue", import.meta.url),
+            new URL("./components/NavAppearance.vue", import.meta.url),
           ),
         },
       ],
