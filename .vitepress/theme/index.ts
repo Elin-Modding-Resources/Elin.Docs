@@ -1,10 +1,12 @@
 // https://vitepress.dev/guide/custom-theme
 import type { Theme } from "vitepress";
-import DefaultTheme from "vitepress/theme";
+// theme-without-fonts：正文与标题字体由 style.css 自带，VitePress 默认会额外预加载并下载 Inter（约 72KB）
+import DefaultTheme from "vitepress/theme-without-fonts";
 import Layout from "./Layout.vue";
 import "viewerjs/dist/viewer.min.css";
 import "@cssnr/vitepress-plugin-copybutton/style.css";
 import "@miletorix/vitepress-back-to-top-button/style.css";
+import "@fontsource-variable/source-sans-3/wght.css";
 import "./style.css";
 import "./custom.css";
 import "./tailwind.css";
@@ -34,7 +36,7 @@ export default {
     app.component("TilesetViewer", TilesetViewer);
     app.component("vImageViewer", vImageViewer);
     app.component("C", CopyButton);
-    BackToTopButton(app);
+    BackToTopButton(app, { progressColor: "var(--elin-gold)" });
   },
   setup() {
     const { frontmatter } = toRefs(useData());
@@ -57,7 +59,9 @@ export default {
           root: "en",
         },
         homePageShowComment: false,
-        lightTheme: "preferred_color_scheme",
+        // gruvbox_light 是 giscus 内置主题里唯一的暖色纸面，和羊皮纸底最接近；
+        // dark_dimmed 的冷灰与 Main Dark 的石板色相近
+        lightTheme: "gruvbox_light",
         darkTheme: "dark_dimmed",
         loading: "lazy",
         reactionsEnabled: "0",

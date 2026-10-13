@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+/* Tailwind v4 的 dark: 默认跟随系统 prefers-color-scheme；本站明暗由 VitePress 在 <html> 上切 .dark 类 */
+@custom-variant dark (&:where(.dark, .dark *));

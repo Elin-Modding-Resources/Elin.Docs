@@ -122,9 +122,7 @@ tags: Hello/Just a Thought/Okay
 ```
 
 And it would look like this:  
-<span class="border border-indigo-300 px-2 py-1 text-xs rounded-lg inline-block cursor-pointer" v-for="(tag, index) in ['Hello', 'Just a Thought', 'Okay']" :key="index">
-<b>{{ tag }}</b>
-</span>
+<span class="elin-tag mr-1.5" v-for="(tag, index) in ['Hello', 'Just a Thought', 'Okay']" :key="index">{{ tag }}</span>
 
 ### Formatting & Snippets
 

@@ -23,5 +23,5 @@ hero:
       link: /ja/
 ---
 
-<h3>Meanwhile on Ylva...</h3>
+<h2>Meanwhile on Ylva...</h2>
 <CardContainer/>

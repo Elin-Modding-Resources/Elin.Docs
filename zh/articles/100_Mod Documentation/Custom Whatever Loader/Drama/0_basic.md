@@ -20,7 +20,7 @@ CWL 规范不再维护，但仍然兼容；请在此查看由 Elin 本体支持�
 
 自定义剧情表必须放置在 `LangMod/**/Dialog/Drama/` 文件夹下, 且名称需与标签匹配。例如：使用 `addDrama_drama_example` 标签时需对应`Dialog/Drama/drama_example.xlsx`文件。其中`drama_example`换成你的剧情表名称（英语+数字），此外名称请足够独特。
 
-**<span class="text-amber-300">重要</span>**: 您只需提供 **1** 份剧情表，它可以放置在任何语言子文件夹中。CWL支持在同一表格内提供多语言的本地化。
+**<span class="text-amber-800 dark:text-amber-300">重要</span>**: 您只需提供 **1** 份剧情表，它可以放置在任何语言子文件夹中。CWL支持在同一表格内提供多语言的本地化。
 
 制作时可参考游戏内置剧情表 **Elin/Package/_Elona/Lang/_Dialog/Drama**, 或含有模板的Tiny Mita范例：
 <LinkCard t="CWL范例：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />

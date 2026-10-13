@@ -21,7 +21,7 @@ CWL 仕様はもはや保守されていませんが、互換性は維持され�
 カスタムドラマテーブルは `LangMod/**/Dialog/Drama/` フォルダ内に配置し、ファイル名はタグ名と一致させる必要があります。
 例：`addDrama_drama_example` を使用する場合は、`Dialog/Drama/drama_example.xlsx` ファイルに対応させます。
 
-**<span class="text-amber-300">重要</span>**: ドラマテーブルは **1つだけ** 提供してください。どの言語のサブフォルダに置いても構いません。CWLは同一テーブル内で多言語ローカライズに対応しています。
+**<span class="text-amber-800 dark:text-amber-300">重要</span>**: ドラマテーブルは **1つだけ** 提供してください。どの言語のサブフォルダに置いても構いません。CWLは同一テーブル内で多言語ローカライズに対応しています。
 
 制作時はゲーム内蔵のドラマテーブル **Elin/Package/_Elona/Lang/_Dialog/Drama** を参考にしてください。また、テンプレート付きのサンプル「Tiny Mita」も非常に参考になります：
 <LinkCard t="CWLサンプル：Tiny Mita" u="https://steamcommunity.com/sharedfiles/filedetails/?id=3396774199" i="https://raw.githubusercontent.com/gottyduke/Elin.Plugins/refs/heads/master/CwlExamples/TinyMita/preview.jpg" />

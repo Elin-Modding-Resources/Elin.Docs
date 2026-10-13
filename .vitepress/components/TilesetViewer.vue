@@ -3,7 +3,7 @@
     <div class="canvas-wrapper">
       <canvas
         ref="canvasRef"
-        class="block max-w-full h-auto border border-gray-200 dark:border-gray-700 rounded-lg"
+        class="tileset-canvas block max-w-full h-auto"
         @mousemove="onMouseMove"
         @mouseleave="onMouseLeave"
       ></canvas>
@@ -16,15 +16,15 @@
         :style="previewPosition"
       >
         <div
-          class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl p-2"
+          class="tileset-tooltip-box p-2"
         >
           <div
-            class="text-xs font-mono font-semibold text-center mb-1.5 text-gray-600 dark:text-gray-300 select-none"
+            class="tileset-tooltip-label text-xs font-semibold text-center mb-1.5 select-none"
           >
             ID: {{ currentTile.id }}
           </div>
           <div
-            class="rounded-sm border border-gray-400 dark:border-gray-500"
+            class="tileset-tooltip-tile"
             :style="magnifiedStyle"
           ></div>
         </div>
@@ -133,12 +133,18 @@ const draw = (): void => {
     const x = col * tileSize;
     const y = row * tileSize;
 
-    ctx.strokeStyle = "rgba(99, 102, 241, 0.85)";
+    // 选中框沿用主题的高亮蓝（游戏里按钮选中的描边色），随明暗模式变化
+    const highlight =
+      getComputedStyle(canvas).getPropertyValue("--elin-highlight").trim() ||
+      "#3b5582";
+    ctx.strokeStyle = highlight;
     ctx.lineWidth = 2;
     ctx.strokeRect(x, y, tileSize, tileSize);
 
-    ctx.fillStyle = "rgba(99, 102, 241, 0.15)";
+    ctx.globalAlpha = 0.18;
+    ctx.fillStyle = highlight;
     ctx.fillRect(x, y, tileSize, tileSize);
+    ctx.globalAlpha = 1;
   }
 };
 
@@ -246,3 +252,27 @@ onUnmounted(() => {
   resizeObserver?.disconnect();
 });
 </script>
+
+<style scoped>
+.tileset-canvas {
+  border: 1px solid var(--elin-line);
+  border-radius: 4px;
+}
+
+.tileset-tooltip-box {
+  background-color: var(--elin-paper-raised);
+  border: 1px solid var(--elin-line);
+  border-radius: 6px;
+  box-shadow: var(--vp-shadow-3);
+}
+
+.tileset-tooltip-label {
+  color: var(--vp-c-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.tileset-tooltip-tile {
+  border: 1px solid var(--elin-line);
+  border-radius: 2px;
+}
+</style>

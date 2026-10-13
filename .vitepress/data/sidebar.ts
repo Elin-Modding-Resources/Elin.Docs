@@ -229,11 +229,12 @@ function getDiff() {
   }
   grouped.sort(byVersionDesc);
 
+  // 颜色类定义在 theme/custom.css 的「版本号」一节，随明暗主题切换
   const versionIcons = [
-    { pattern: /anni/i, color: "text-pink-400", icon: "🎉🎉🎉" },
-    { pattern: /nya|mya/i, color: "text-green-400", icon: "😺" }, // ?!
-    { pattern: /nightly/i, color: "text-blue-400", icon: "🌙" },
-    { pattern: /stable/i, color: "text-orange-400", icon: "🌌" },
+    { pattern: /anni/i, color: "elin-ver-anni", icon: "🎉🎉🎉" },
+    { pattern: /nya|mya/i, color: "elin-ver-nya", icon: "😺" }, // ?!
+    { pattern: /nightly/i, color: "elin-ver-nightly", icon: "🌙" },
+    { pattern: /stable/i, color: "elin-ver-stable", icon: "🌌" },
   ];
 
   let latest = "Diff";

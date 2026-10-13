@@ -1,12 +1,24 @@
 @import "./tailwind.css";
 
+/* 色板与字体见 style.css；这里只写版面与元素样式。
+   游戏专有的颜色（金边、按钮描边、羊皮纸纹）用 --elin-*，其余一律走 --vp-*。 */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   版面
+   ══════════════════════════════════════════════════════════════════════════ */
+
 :root {
   --vp-layout-max-width: clamp(760px, 88vw, 1760px);
   --vp-sidebar-width: 20rem;
   --vp-content-max-width: 860px;
+
+  /* 正文段落的行长：约 80 个拉丁字符 / 36 个汉字（按 17px 正文算）。
+     用 px 而不是 em：em 跟着各元素自己的字号走，提示块里 15px 的段落会被算得更窄。
+     只限制顶层的段落和列表；表格、代码块、提示块、链接卡片等「方块」照旧铺满整栏，
+     这样所有方块的右边缘对齐，参差的只有文字本身的行尾。 */
+  --elin-measure: 612px;
 }
 
-/* container */
 .VPDoc .container,
 .VPDoc .content-container {
   max-width: var(--vp-layout-max-width) !important;
@@ -23,260 +35,804 @@
   }
 }
 
-@media (min-width: 960px) {
-  :root {
-    --vp-home-hero-image-filter: blur(68px);
-  }
-}
-
 @media (max-width: 768px) {
   :root {
     --vp-layout-max-width: 100% !important;
   }
   .vp-doc {
     max-width: 100% !important;
-    padding: 0 18px;
   }
 }
 
-@media (min-width: 640px) {
-  :root {
-    --vp-home-hero-image-filter: blur(56px);
+/* ══════════════════════════════════════════════════════════════════════════
+   底面：羊皮纸
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 纸纹取自游戏 light inner 贴图，噪点压到原图的 55%（亮度标准差约 2 级，个别颗粒 ±10 级），均值与 --elin-paper 相同，
+   所以和导航栏等纯色块拼接处看不出接缝。深色模式下 --elin-paper-texture 为 none。 */
+body {
+  background-color: var(--vp-c-bg);
+  background-image: var(--elin-paper-texture);
+  background-size: 512px 512px;
+}
+
+/* 只给页面主滚动条上色。scrollbar-color 会继承，而 Chrome 121+ 在设了它的元素上
+   会忽略 ::-webkit-scrollbar 规则（侧边栏的隐藏滚动条、BGM 播放器的滚动条样式都靠后者），
+   所以在 body 上还原成 auto */
+html {
+  scrollbar-color: color-mix(in srgb, var(--elin-ink) 26%, transparent)
+    transparent;
+}
+
+body {
+  scrollbar-color: auto;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--elin-highlight) 26%, transparent);
+}
+
+/* 游戏里「选中」一律是那圈蓝色描边（bg button highlight），键盘焦点沿用同一语言 */
+:focus-visible {
+  outline: 2px solid var(--elin-highlight);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   导航栏 / 侧边栏 / 大纲
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.VPNavBarTitle .title {
+  font-family: var(--elin-font-display);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--elin-header);
+}
+
+/* Ylva Latin 比原来的 Inter 宽，320–360px 的窄屏上标题会压到右侧的搜索按钮 */
+@media (max-width: 379px) {
+  .VPNavBarTitle .title {
+    font-size: 15px;
   }
 }
 
-.VPContent.has-sidebar {
-  background-position: 50%;
-  background-size: 20px 20px;
-  background-image:
-    linear-gradient(90deg, #3c0a1e0a 3%, transparent 0),
-    linear-gradient(1turn, #3c0a1e0a 3%, transparent 0);
+.VPSidebar {
+  box-shadow: inset -1px 0 0 var(--elin-line-soft);
 }
 
-.dark .VPContent.has-sidebar {
-  background-position: 50%;
-  background-size: 20px 20px;
-  background-image:
-    linear-gradient(90deg, #93b1c108 3%, transparent 0),
-    linear-gradient(1turn, #93b1c108 3%, transparent 0);
+.VPSidebar {
+  scrollbar-width: none;
 }
 
-/* h */
-.vp-doc h1,
-.vp-doc h2,
-.vp-doc h3,
-.vp-doc h4,
-.vp-doc h5,
-.vp-doc h6 {
-  color: var(--emr-text-indigo);
-  letter-spacing: 0.1em;
-  text-transform: capitalize;
-}
-
-.vp-doc h1 {
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--emr-border-indigo);
-  width: fit-content;
-  transition: all 0.3s ease;
-}
-
-.vp-doc h1:hover {
-  padding-right: 1.75rem;
-}
-
-.vp-doc h2 {
-  margin-top: 10px;
-  border-bottom: 3px solid var(--emr-border-indigo);
-  width: fit-content;
-  padding-bottom: 4px;
-}
-
-.vp-doc h5 {
-  color: var(--emr-text-indigo-light);
-}
-
-/* blockquote */
-.vp-doc blockquote {
-  margin: 2em 0;
-  padding: 24px 32px;
-  background: var(--emr-bg-indigo);
-  border-left: 2px solid var(--emr-border-indigo);
-  position: relative;
-}
-
-.vp-doc blockquote::before {
-  content: "❝";
-  top: 8px;
-  left: 8px;
-  color: var(--emr-text-indigo-plus);
-  font-size: 30px;
-  line-height: 1;
-  font-weight: 700;
-  position: absolute;
-  opacity: 0.7;
-}
-
-.vp-doc blockquote::after {
-  content: "❞";
-  font-size: 30px;
-  position: absolute;
-  right: 8px;
-  bottom: 0;
-  color: var(--emr-text-indigo-plus);
-  opacity: 0.7;
-}
-
-.vp-doc blockquote > p {
-  color: var(--emr-text-indigo-plus);
-}
-
-/* t */
-.vp-doc li::marker {
-  color: var(--emr-text-indigo);
-}
-
-.vp-doc table {
-  display: inline-block !important;
-  font-size: 12px;
-  width: auto;
-  max-width: 100%;
-  overflow: auto;
-}
-
-.vp-doc thead {
-  background: var(--emr-bg-indigo);
-  color: var(--emr-text-indigo);
-  text-align: left;
-}
-
-.vp-doc tr:nth-child(2n) {
-  background: var(--emr-bg-indigo);
-}
-
-.vp-doc th,
-.vp-doc td {
-  padding: 12px 7px;
-  line-height: 24px;
-}
-
-.vp-doc td {
-  min-width: 120px;
-}
-
-/* aside */
-.VPDocAsideOutline .outline-marker {
-  width: 4px;
-}
-.VPDocAsideOutline .content .root li .active {
-  color: var(--emr-text-indigo);
-  font-weight: 600;
-}
-
-/* footer */
-.VPDocFooter .prev-next .pager-link {
-  background: rgb(250 250 250 / 0.7);
-}
-
-.dark .VPDocFooter .prev-next .pager-link {
-  background: rgb(24 24 27 / 0.8);
-}
-
-/* hr */
-.vp-doc hr {
-  border-color: var(--emr-border-indigo);
-}
-
-/* a */
-.vp-doc a {
-  transition: color 0.2s;
-}
-
-.vp-doc a:hover {
-  color: #3b82f6;
-}
-
-.dark .vp-doc a:hover {
-  color: #60a5fa;
-}
-
-/* kbd标签 */
-:root {
-  --vp-kbd-bg: linear-gradient(180deg, #ffffff 0%, #f4f4f6 100%);
-  --vp-kbd-text: var(--vp-c-text-1, #1f2937);
-  --vp-kbd-border: #cbd5e1;
-  --vp-kbd-shadow: 0 2px 0 #cbd5e1, 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.dark {
-  --vp-kbd-bg: linear-gradient(180deg, #27272a 0%, #18181b 100%);
-  --vp-kbd-text: var(--vp-c-text-1, #f4f4f5);
-  --vp-kbd-border: #3f3f46;
-  --vp-kbd-shadow: 0 2px 0 #09090b, 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.vp-doc kbd {
-  display: inline-block;
-  padding: 0.15em 0.45em;
-  font-size: 0.82em;
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--vp-kbd-text);
-  background: var(--vp-kbd-bg);
-  border: 1px solid var(--vp-kbd-border);
-  border-radius: 5px;
-  box-shadow: var(--vp-kbd-shadow);
-  vertical-align: baseline;
-  white-space: nowrap;
-}
-
-.vp-doc kbd kbd {
-  padding: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-}
-
-
-/* stripe */
-.bg-stripe:hover {
-  background-image: repeating-linear-gradient(
-    45deg,
-    hsl(0 0% 100%),
-    hsl(0 0% 100%) 13px,
-    hsl(0 0% 95%) 13px,
-    hsl(0 0% 95%) 14px
-  );
-}
-
-.dark .bg-stripe:hover {
-  background-image: repeating-linear-gradient(
-    45deg,
-    hsl(202, 80%, 24%),
-    hsl(202, 80%, 24%) 13px,
-    hsl(200, 80%, 20%) 13px,
-    hsl(200, 80%, 20%) 14px
-  );
-}
-
-/* scroll */
 .VPSidebar::-webkit-scrollbar {
   display: none;
 }
 
-/* zoom */
-.medium-zoom-overlay {
-  backdrop-filter: blur(5rem);
-  background-color: var(--vp-c-bg) !important;
-  z-index: 2147483646;
+/* 一级分组标题用游戏字体，与正文标题同一套层级语言 */
+.VPSidebarItem.level-0 > .item > .text,
+.VPSidebarItem.level-0 > .item > .link > .text {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  color: var(--elin-header);
 }
 
-.medium-zoom-overlay ~ img {
-  z-index: 2147483647;
+.VPSidebarItem.level-0.is-active > .item > .link > .text {
+  color: var(--vp-c-brand-1);
 }
 
-.medium-zoom--opened .medium-zoom-overlay {
-  opacity: 0.9 !important;
+.VPSidebarItem .indicator {
+  width: 2px;
 }
+
+.VPSidebarItem.is-active > .item .link > .text {
+  font-weight: 600;
+}
+
+.VPDocAsideOutline .outline-title {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  color: var(--elin-header);
+}
+
+.VPDocAsideOutline .outline-marker {
+  width: 2px;
+  background-color: var(--elin-gold);
+}
+
+.VPDocAsideOutline .content .root li .active {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+/* 上一页 / 下一页：游戏里的方形按钮，悬停时描边变成高亮蓝 */
+.VPDocFooter .prev-next .pager-link {
+  background-color: var(--elin-paper-raised);
+  border-color: var(--elin-line);
+  border-radius: 6px;
+}
+
+.VPDocFooter .prev-next .pager-link:hover {
+  border-color: var(--elin-highlight);
+}
+
+.VPDocFooter .prev-next .pager-link .title {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+}
+
+.VPFooter {
+  background-color: var(--elin-paper-2) !important;
+  border-top-color: var(--elin-line-soft) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   正文
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.vp-doc {
+  font-size: 17px;
+}
+
+.vp-doc :is(p, li) {
+  line-height: 1.75;
+}
+
+/* .vp-doc > div 是 markdown 正文的根；只限制它的直接子级，提示块、表格里的段落不受影响 */
+.vp-doc
+  > div
+  > :where(
+    p:not(:has(img, video, iframe, canvas, picture)),
+    ul:not(:has(img, video, iframe, canvas, picture, pre, table)),
+    ol:not(:has(img, video, iframe, canvas, picture, pre, table)),
+    blockquote:not(:has(img, pre, table))
+  ) {
+  max-width: var(--elin-measure);
+}
+
+/* 插在正文前后、但不在 .vp-doc 里的东西（ModMakerTip 等 doc-before 插槽、上下页、评论区）
+   与正文同宽同中线，否则宽屏下会比正文更宽、左边缘错开 */
+.VPDoc .content-container > :not(.main) {
+  max-width: var(--vp-content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 用 :is() 而不是 :where()：VitePress 的 .vp-doc h1 { font-weight: 600 } 特异度是 (0,1,1)，
+   :where() 压不过它 */
+.vp-doc :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--elin-font-heading);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--elin-header);
+  /* VitePress 在 body 上设了 font-synthesis: style，禁掉了合成粗体；
+     Ylva Latin 只有 Medium，标题里的 **粗体** 要靠合成才看得出强调，这里单独放开 */
+  font-synthesis: weight style;
+}
+
+/* 中日文标题用 600：让标题比正文里的粗体更重，层级才不会倒挂。
+   这里关掉合成粗体：汉字用字体自带的 SemiBold / Bold，同一标题里的拉丁字母保持 Ylva 原版 Medium ——
+   合成加粗的拉丁字母会比明朝 / 宋体的 SemiBold 汉字更黑，反而不协调 */
+html:is([lang^="zh"], [lang^="ja"]) .vp-doc :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+  font-synthesis: style;
+}
+
+.vp-doc :is(h4, h5, h6) {
+  color: var(--vp-c-text-1);
+}
+
+/* 页面标题下的分隔线：一道细线，起点压一颗金色菱形 —— 取自游戏窗口标题栏的收尾 */
+.vp-doc h1 {
+  position: relative;
+  font-size: 34px;
+  line-height: 1.25;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--elin-line);
+}
+
+.vp-doc h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+  background-color: var(--elin-gold);
+  transform: rotate(45deg);
+}
+
+.vp-doc h2 {
+  font-size: 25px;
+  line-height: 1.35;
+  border-top-color: var(--elin-line-soft);
+}
+
+.vp-doc h3 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.vp-doc .header-anchor {
+  color: var(--elin-header);
+  font-weight: 400;
+}
+
+/* 链接：游戏里可交互的东西都是高亮蓝；下划线细一点，避开汉字的下沿 */
+.vp-doc a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  /* 链接与正文墨色的明度差不大，下划线要够实，不能只靠色相区分 */
+  text-decoration-color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.vp-doc a:hover {
+  text-decoration-color: currentColor;
+}
+
+.vp-doc li::marker {
+  color: var(--elin-gold);
+}
+
+.vp-doc ol > li::marker {
+  color: var(--vp-c-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.vp-doc strong {
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc :is(h1, h2, h3, h4, h5, h6) strong {
+  color: inherit;
+}
+
+/* 引用：游戏里物品说明那种「风味文字」，靠左侧金线和次级墨色区分，不加引号装饰 */
+.vp-doc blockquote {
+  margin: 20px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid var(--elin-gold-soft);
+}
+
+.vp-doc blockquote > p {
+  font-size: inherit;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc hr {
+  margin: 32px 0;
+  border-top-color: var(--elin-line);
+}
+
+/* ── 表格 ─────────────────────────────────────────────────────────────────── */
+
+.vp-doc table {
+  display: inline-block !important;
+  width: auto;
+  max-width: 100%;
+  overflow: auto;
+  font-size: 14px;
+  border: 1px solid var(--elin-line);
+  border-radius: 6px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.vp-doc tr {
+  background-color: transparent;
+  border-top: 0;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: color-mix(in srgb, var(--elin-ink) 3.5%, transparent);
+}
+
+.vp-doc th,
+.vp-doc td {
+  padding: 9px 12px;
+  line-height: 1.6;
+  border: 0;
+  border-bottom: 1px solid var(--elin-line-soft);
+  border-right: 1px solid var(--elin-line-soft);
+}
+
+.dark .vp-doc th {
+  border-bottom-color: var(--elin-gold-soft);
+}
+
+.vp-doc tr > :last-child {
+  border-right: 0;
+}
+
+.vp-doc tbody tr:last-child > td {
+  border-bottom: 0;
+}
+
+/* 顶对齐：说明列常常好几行，字段名居中时扫读要上下找。
+   列宽：字段名、类型这些短列按内容收窄，最后一列（通常是说明）至少 12em。
+   旧样式给每列都设 120px 下限，三列的源表说明表在 1440 宽的正文栏里会被撑出横向滚动。 */
+.vp-doc td {
+  min-width: 0;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.vp-doc td:last-child {
+  min-width: 12em;
+}
+
+.vp-doc th {
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  background-color: var(--elin-paper-sunk);
+  border-bottom-color: var(--elin-line);
+  white-space: nowrap;
+}
+
+/* ── 代码 ─────────────────────────────────────────────────────────────────── */
+
+/* 正文字号改成 17px 后，代码块仍按 16px 的 0.875em（= 14px）计算，避免长行更早溢出。
+   代码块底色只比纸面深一点（token 对比度是按这个底色调的，不能再加深），
+   所以靠一道实一些的描边把它从纸面上分出来 */
+.vp-doc div[class*="language-"] {
+  font-size: 16px;
+  border: 1px solid var(--elin-line);
+  border-radius: 6px;
+}
+
+/* diff 行：左侧一道语义色细条，增删一眼可辨，不只靠底色淡染 */
+.vp-doc [class*="language-"] code .diff.add {
+  box-shadow: inset 3px 0 0 var(--elin-good);
+}
+
+.vp-doc [class*="language-"] code .diff.remove {
+  box-shadow: inset 3px 0 0 var(--elin-bad);
+  /* VitePress 默认把删除行压到 0.7 透明度，token 会掉到 3:1 以下；有左侧色条和底色就够区分了 */
+  opacity: 1;
+}
+
+/* [!code focus]：VitePress 默认对其余行做模糊 + 0.7 透明度，只有悬停才清楚。
+   保留淡化以示主次，但去掉模糊，读其余代码时不必先把鼠标挪上去 */
+.vp-doc [class*="language-"] code.has-focused-lines .line:not(.has-focus),
+.vp-doc [class*="language-"]:has(code.has-focused-lines) .line:not(.has-focus) {
+  filter: none;
+  opacity: 0.85;
+}
+
+/* 代码组的标签是隐藏的 radio，键盘聚焦时 VitePress 没有任何可见反馈 */
+.vp-doc .vp-code-group .tabs input:focus-visible + label {
+  outline: 2px solid var(--elin-highlight);
+  outline-offset: -4px;
+  border-radius: 4px;
+}
+
+.vp-doc .vp-code-group .tabs {
+  border-radius: 6px 6px 0 0;
+  border: 1px solid var(--elin-line-soft);
+  border-bottom: 0;
+}
+
+.vp-doc .vp-code-group div[class*="language-"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* 窄屏上 VitePress 让代码块左右贴边（margin: 0 -24px），描边和圆角也要跟着去掉 */
+@media (max-width: 639px) {
+  .vp-doc div[class*="language-"],
+  .vp-doc .vp-code-group .tabs {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+
+  .vp-doc li div[class*="language-"] {
+    border-left: 1px solid var(--elin-line-soft);
+    border-radius: 6px 0 0 6px;
+  }
+}
+
+.vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
+  border-radius: 4px;
+}
+
+/* ── 提示块（::: tip 与 GitHub 风格 > [!NOTE]） ─────────────────────────────
+   底色是语义色的淡染，左侧一道实色边 —— 对应游戏消息日志里的颜色分类：
+   tip = textGood，note = textGreat，important = textMyth，warning = textWarning，danger = textBad */
+.custom-block {
+  border-width: 0 0 0 3px;
+  border-style: solid;
+  border-radius: 2px 6px 6px 2px;
+  padding: 14px 18px 8px;
+  line-height: 1.7;
+}
+
+.vp-doc .custom-block p {
+  line-height: 1.7;
+}
+
+.custom-block .custom-block-title {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+}
+
+.custom-block.tip .custom-block-title {
+  color: var(--vp-c-tip-1);
+}
+.custom-block.note .custom-block-title,
+.custom-block.info .custom-block-title {
+  color: var(--vp-c-note-1);
+}
+.custom-block.important .custom-block-title {
+  color: var(--vp-c-important-1);
+}
+.custom-block.warning .custom-block-title {
+  color: var(--vp-c-warning-1);
+}
+.custom-block.danger .custom-block-title,
+.custom-block.caution .custom-block-title {
+  color: var(--vp-c-danger-1);
+}
+
+.custom-block.info {
+  border-left-color: var(--elin-line);
+}
+
+/* 提示块里的行内代码保持与正文同一个色，不跟着语义色变 —— 那样在淡染底上对比度不够 */
+.custom-block :not(pre) > code {
+  color: var(--vp-code-color) !important;
+}
+
+/* 折叠块：无语义色，做成一块略深的纸面 */
+.custom-block.details {
+  border-width: 1px;
+  border-color: var(--elin-line);
+  border-radius: 6px;
+}
+
+.custom-block.details summary {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  color: var(--elin-header);
+}
+
+.custom-block.details[open] summary {
+  margin-bottom: 10px;
+}
+
+/* ── 标签 ─────────────────────────────────────────────────────────────────────
+   文章标签的统一样式：ArticleCard 与「关于 Wiki / 贡献」页里的标签示例共用 */
+.elin-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+  background-color: var(--elin-paper-2);
+  border: 1px solid var(--elin-line);
+  border-radius: 3px;
+}
+
+/* ── 其他 ─────────────────────────────────────────────────────────────────── */
+
+.vp-doc kbd {
+  display: inline-block;
+  padding: 0.1em 0.45em;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.82em;
+  line-height: 1.3;
+  color: var(--vp-c-text-1);
+  background: var(--elin-paper-raised);
+  border: 1px solid var(--elin-line);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 var(--elin-line);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   首页
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.VPHome .VPHero .name,
+.VPHome .VPHero .text {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.VPHome .VPHero .text {
+  color: var(--vp-c-text-2);
+}
+
+/* 副标题压到一行：比标题小一档半，不与标题抢层级 */
+.VPHome .VPHero .text {
+  font-size: 24px;
+  line-height: 34px;
+}
+
+@media (min-width: 640px) {
+  .VPHome .VPHero .text {
+    font-size: 30px;
+    line-height: 42px;
+  }
+}
+
+/* 立绘装进游戏窗口：深一档的纸面 + 金色双线框，左右上角压游戏里的金色角花（corner1）。
+   窗框比立绘的 max-height 高 34px 左右，留出上下边距；三档尺寸要成对改。 */
+.VPHome .VPHero .image-bg {
+  border-radius: 3px;
+  width: 204px;
+  height: 252px;
+  background-color: var(--elin-paper-2);
+  background-image: var(--elin-paper-texture);
+  background-size: 512px 512px;
+  border: 2px solid var(--elin-gold);
+  box-shadow:
+    inset 0 0 0 4px var(--elin-paper-2),
+    inset 0 0 0 5px var(--elin-gold-soft),
+    var(--vp-shadow-2);
+  filter: none;
+}
+
+/* 角花贴图 96×56：主枝条在 y≈20、竖向枝干在 x≈15。
+   把这两处压在窗框外线上（边框 2px，伪元素相对内边距盒定位），枝条才像是从框上长出来的，
+   而不是悬在框外。只按 1 倍原尺寸贴；pixelated 只在整数倍屏上开，
+   1.25 / 1.5 倍缩放下最近邻会得到粗细不均的台阶。 */
+.VPHome .VPHero .image-bg::before,
+.VPHome .VPHero .image-bg::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  width: 96px;
+  height: 56px;
+  background: url("./assets/corner-filigree.png") no-repeat;
+  pointer-events: none;
+}
+
+@media (resolution >= 2dppx) {
+  .VPHome .VPHero .image-bg::before,
+  .VPHome .VPHero .image-bg::after {
+    image-rendering: pixelated;
+  }
+}
+
+.VPHome .VPHero .image-bg::before {
+  left: -17px;
+}
+
+.VPHome .VPHero .image-bg::after {
+  right: -17px;
+  transform: scaleX(-1);
+}
+
+/* 窄屏时立绘在标题上方：角花伸出窗框 22px，要给导航栏留出空隙；
+   VitePress 给 .image 的 -48px 下边距是为原来那团光晕准备的，实心窗框会被标题压住，收回一些 */
+@media (max-width: 959px) {
+  .VPHome .VPHero .image-container {
+    margin-top: 28px;
+  }
+
+  .VPHome .VPHero .image {
+    margin-bottom: -16px;
+  }
+}
+
+.VPHome .VPHero .image-src {
+  max-width: 188px;
+  max-height: 218px;
+  filter: drop-shadow(0 6px 10px rgb(60 40 20 / 0.18));
+}
+
+@media (min-width: 640px) {
+  .VPHome .VPHero .image-bg {
+    width: 268px;
+    height: 330px;
+  }
+
+  .VPHome .VPHero .image-src {
+    max-width: 248px;
+    max-height: 292px;
+  }
+}
+
+/* 桌面端：VitePress 默认把图片容器往左上平移 32px，并且高度只跟随文字栏；
+   窗框比原来的光晕高，照搬会顶进导航栏，所以去掉平移并给出最小高度 */
+@media (min-width: 960px) {
+  .VPHome .VPHero .image-container {
+    transform: none;
+    min-height: 440px;
+  }
+
+  .VPHome .VPHero.has-image .main {
+    align-self: center;
+  }
+
+  .VPHome .VPHero .image-bg {
+    width: 320px;
+    height: 392px;
+  }
+
+  .VPHome .VPHero .image-src {
+    max-width: 300px;
+    max-height: 352px;
+  }
+}
+
+/* 960–1099px：图片栏只有约 240px 宽，大号窗框会向左伸进副标题；
+   窗框沿用 640 档的尺寸，副标题也收小一号，两者之间才留得出空隙 */
+@media (min-width: 960px) and (max-width: 1099px) {
+  .VPHome .VPHero .text {
+    font-size: 26px;
+    line-height: 36px;
+  }
+
+  .VPHome .VPHero .image-bg {
+    width: 268px;
+    height: 330px;
+  }
+
+  .VPHome .VPHero .image-src {
+    max-width: 248px;
+    max-height: 292px;
+  }
+}
+
+.dark .VPHome .VPHero .image-src {
+  filter: drop-shadow(0 6px 12px rgb(0 0 0 / 0.45));
+}
+
+/* 主按钮直接用游戏的按钮贴图做九宫格：
+   浅色 = bg button（米色 + 深橄榄粗边），悬停 / 聚焦换成 bg button highlight（蓝边），
+   深色 = Main Dark 皮肤的 bg_button dark1（深棕 + 铜框 + 四角点饰，192px 贴图按 0.5 倍切）。
+   选择器写到 .VPHero .VPButton.brand.medium（0,4,0）：VitePress 组件内的
+   .VPButton.medium[data-v-…] { border-radius: 20px } 是 (0,3,0)，同特异度时只能靠样式表先后顺序取胜，不可靠。 */
+.VPHero .VPButton.brand.medium {
+  border: 2px solid transparent;
+  border-radius: 0;
+  border-image: url("./assets/button.png") 12 fill / 12px;
+  background: none;
+  font-weight: 600;
+  color: var(--elin-button-text);
+}
+
+.VPHero .VPButton.brand.medium:hover,
+.VPHero .VPButton.brand.medium:focus-visible {
+  border-image-source: url("./assets/button-highlight.png");
+  color: var(--elin-button-text);
+}
+
+.dark .VPHero .VPButton.brand.medium {
+  border-image: url("./assets/button-dark.png") 24 fill / 12px;
+}
+
+.dark .VPHero .VPButton.brand.medium:hover,
+.dark .VPHero .VPButton.brand.medium:focus-visible {
+  border-image-source: url("./assets/button-dark.png");
+  filter: brightness(1.15);
+}
+
+.VPHero .VPButton.alt.medium {
+  border-radius: 6px;
+}
+
+.VPButton {
+  font-family: var(--vp-font-family-base);
+}
+
+/* 首页「Meanwhile on Ylva…」：列表的区块标题，下面的条目标题是 h3 */
+.VPHome .vp-doc h2 {
+  margin: 0 0 16px;
+  padding-top: 0;
+  border-top: 0;
+  font-size: 24px;
+}
+
+/* ── 404 ─────────────────────────────────────────────────────────────────── */
+
+.NotFound .code {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  color: var(--elin-header);
+}
+
+.NotFound .title {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--elin-header);
+}
+
+.NotFound .divider {
+  background-color: var(--elin-gold);
+}
+
+.NotFound .link {
+  padding: 6px 22px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  border-image: url("./assets/button.png") 12 fill / 12px;
+  color: var(--elin-button-text);
+  font-weight: 600;
+}
+
+.NotFound .link:hover,
+.NotFound .link:focus-visible {
+  border-image-source: url("./assets/button-highlight.png");
+  color: var(--elin-button-text);
+}
+
+.dark .NotFound .link {
+  border-image: url("./assets/button-dark.png") 24 fill / 12px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   版本号（diff 侧边栏与导航栏，类名由 data/sidebar.ts 的 versionIcons 生成）
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.elin-ver-nightly {
+  color: var(--elin-great);
+}
+.elin-ver-stable {
+  color: var(--elin-warn);
+}
+.elin-ver-nya {
+  color: var(--elin-good);
+}
+.elin-ver-anni {
+  color: var(--elin-myth);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   插件
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 回到顶部按钮：插件把底色写死成纯白 / #1e1e1e 内联变量，只能用 !important 盖 */
+.back-to-top-button {
+  background-color: var(--elin-paper-raised) !important;
+  color: var(--vp-c-text-2) !important;
+  box-shadow:
+    0 0 0 1px var(--elin-line),
+    var(--vp-shadow-2) !important;
+}
+
+.back-to-top-button .progress-bg {
+  stroke: var(--elin-line-soft) !important;
+}
+
+.back-to-top-button .progress-bar {
+  stroke: var(--elin-gold) !important;
+}
+
+.back-to-top-button .progress-text,
+.back-to-top-button .progress-icon,
+.back-to-top-button .progress-icon svg {
+  color: var(--vp-c-text-2) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Windows 高对比度等强制配色模式：纸纹图会在文字背后留下斑驳的底，去掉 */
+@media (forced-colors: active) {
+  body {
+    background-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   导航栏自适应折叠
+   ══════════════════════════════════════════════════════════════════════════ */
 
 .VPNavBar .content {
   container-type: inline-size;
@@ -473,6 +1029,8 @@
 }
 
 .diff-single-page .vp-doc p:has(> a[href*="#L"]) {
+  /* flex 而不是行盒：行内块在行盒里会在下方留出空隙，签名标签就贴不到代码块上 */
+  display: flex;
   margin: 1.75rem 0 0;
   line-height: 1;
 }
@@ -484,8 +1042,12 @@
 .diff-single-page .vp-doc a[href*="#L"] > code {
   display: inline-block;
   vertical-align: top;
+  position: relative;
+  z-index: 2;
   padding: 0.3rem 0.7rem;
-  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--elin-line-soft);
+  border-bottom-color: var(--vp-code-block-bg);
+  border-radius: 6px 6px 0 0;
   background-color: var(--vp-code-block-bg);
   color: var(--vp-c-text-2);
   font-size: 0.78rem;
@@ -494,11 +1056,11 @@
 }
 
 .diff-single-page .vp-doc a[href*="#L"]:hover > code {
-  color: var(--emr-text-indigo);
+  color: var(--vp-c-brand-1);
 }
 
 .diff-single-page .vp-doc p:has(> a[href*="#L"]) + div[class*="language-"] {
-  margin-top: 0;
+  margin-top: -1px;
   border-top-left-radius: 0;
 }
 

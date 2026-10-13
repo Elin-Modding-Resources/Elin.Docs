@@ -23,7 +23,7 @@ To give character a default drama, place `id.xlsx` in `LangMod/**/Dialog/Drama/`
 
 To use a different drama file, use the tag `addDrama_DramaFileName` to the character's source row. CWL will automatically reroute to `Dialog/Drama/DramaFileName.xlsx` (e.g., `addDrama_MyCharaDrama` with `MyCharaDrama.xlsx`).
 
-**<span class="text-amber-300">Important</span>**: Only one copy of the sheet is needed. It can be in any language folder, CWL supports in-file localization.
+**<span class="text-amber-800 dark:text-amber-300">Important</span>**: Only one copy of the sheet is needed. It can be in any language folder, CWL supports in-file localization.
 
 Refer to the game's sheets in `Elin/Package/_Elona/Lang/_Dialog/Drama`, or the Tiny Mita example for a template.
 
