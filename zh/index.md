@@ -23,5 +23,5 @@ hero:
       link: /ja/
 ---
 
-<h3>在伊尔瓦大陆上...</h3>
+<h2>在伊尔瓦大陆上...</h2>
 <CardContainer/>

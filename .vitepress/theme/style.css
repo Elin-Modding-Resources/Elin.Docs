@@ -1,145 +1,380 @@
 /**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ * Elin 皮肤 —— 色板与字体
+ *
+ * 站点有两套皮肤（<html data-skin>，由导航栏的外观菜单切换，见 theme/skin.ts）：
+ *   - elin（默认，data-skin 缺省时也按它渲染）：本文件 + custom.css
+ *   - classic：改版前的靛蓝原版，见 classic.css
+ * 所以这里的色板、字体、--vp-* 映射全部写在 :root:not([data-skin="classic"]) 下；
+ * 特异度 (0,2,0) 也正好高过 VitePress 自己的 :root / .dark。
+ *
+ * 浅色 = 游戏的 Main Paper 皮肤（羊皮纸），深色 = Main Dark 皮肤（石板灰 + 金边）。
+ * 色值不是凭感觉取的，来源有两处：
+ *   - 文字/语义色：Resources/UI/Skin/Color/SkinColor Main Paper.asset、SkinColor Main Dark.asset
+ *     （textHeader、textGood、textBad、textWarning、textMyth、buttonGeneral……）
+ *   - 底色与描边：Using/Atlas/UI/Skin 下 light inner / old bg dark / bg button 等贴图的取样
+ * 为了长时间阅读，底色比游戏里提亮了一档、正文墨色加深了一档；
+ * 每一对前景/背景都按 WCAG 核对过（正文 ≥ 7:1，次要文字与链接 ≥ 4.5:1）。
+ * 改色时连同 .vitepress/data/codeThemes.ts 一起核对，代码高亮与这里同源。
+ *
+ * 只在这里定义 --elin-*，再映射到 VitePress 的 --vp-* 变量；
+ * 组件与 custom.css 优先用 --vp-*，确实需要游戏专有颜色（金边、羊皮纸纹）时才直接用 --elin-*。
  */
 
-/**
- * Colors
- *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
- * 
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
- *
- * - `XXX-2`: The color used mainly for hover state of the button.
- *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
- *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
- *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-c-default-1: var(--vp-c-gray-1);
-  --vp-c-default-2: var(--vp-c-gray-2);
-  --vp-c-default-3: var(--vp-c-gray-3);
-  --vp-c-default-soft: var(--vp-c-gray-soft);
-
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
-
-  --vp-c-tip-1: var(--vp-c-brand-1);
-  --vp-c-tip-2: var(--vp-c-brand-2);
-  --vp-c-tip-3: var(--vp-c-brand-3);
-  --vp-c-tip-soft: var(--vp-c-brand-soft);
-
-  --vp-c-warning-1: var(--vp-c-yellow-1);
-  --vp-c-warning-2: var(--vp-c-yellow-2);
-  --vp-c-warning-3: var(--vp-c-yellow-3);
-  --vp-c-warning-soft: var(--vp-c-yellow-soft);
-
-  --vp-c-danger-1: var(--vp-c-red-1);
-  --vp-c-danger-2: var(--vp-c-red-2);
-  --vp-c-danger-3: var(--vp-c-red-3);
-  --vp-c-danger-soft: var(--vp-c-red-soft);
+/* ── 字体 ────────────────────────────────────────────────────────────────────
+ * Ylva Latin：游戏英文界面所用 GenEi LateMin P v2 的拉丁子集（约 22KB）。
+ *   原字体为 SIL OFL 1.1 且声明了保留字体名 'GenEi' / 'Source'，
+ *   子集属于修改版，所以改名后发布；许可证见 ./fonts/OFL.txt。
+ *   原字体只有 Medium 一个字重，声明为单值 500：≤500 都用原版字形；
+ *   ≥600（标题里的 **粗体**、中日文标题的 600）由浏览器合成加粗 ——
+ *   前提是该元素允许 font-synthesis: weight（VitePress 在 body 上关掉了，custom.css 只在正文标题上放开）。
+ * 正文：Source Sans 3（在 index.ts 里引入）。它与思源黑体同源，
+ *   而 GenEi 的日文字形正是从思源派生的，三者笔画气质一致。
+ */
+@font-face {
+  font-family: "Ylva Latin";
+  src: url("./fonts/ylva-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0020-007E, U+00A0-00FF, U+0152-0153, U+2013-2014, U+2018-201E,
+    U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+20AC, U+2122,
+    U+2190-2193, U+2212, U+2215;
 }
 
 :root {
-  --emr-text-indigo: #3a5ccc;
-  --emr-text-indigo-plus: #3451b2;
-  --emr-text-indigo-light: #241f1f6e;
-  --emr-border-indigo: #3e63dd;
-  --emr-bg-indigo: #f0f4ff;
+  --elin-cjk-sans:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    "Source Han Sans SC";
+  --elin-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
 }
 
-.dark {
-  --emr-text-indigo: #99a2ff;
-  --emr-text-indigo-plus: #dddffe;
-  --emr-text-indigo-light: #71b6b66e;
-  --emr-border-indigo: #99a2ff;
-  --emr-bg-indigo: #5e637863;
+html[lang^="ja"] {
+  /* 日文汉字要优先落到日文字体上，否则会混进简体字形 */
+  --elin-cjk-sans:
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
+    "Noto Sans CJK JP", "Source Han Sans JP", Meiryo, "Yu Gothic";
 }
 
-/**
- * Component: Button
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-button-brand-border: transparent;
-  --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand-3);
-  --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
-  --vp-button-brand-active-border: transparent;
-  --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+/* 用 html[lang] 而非 :root：VitePress 在 [lang]:lang(zh, ja) 上另设了一套字体，
+   同等特异度下要靠选择器更具体才能稳定盖过它 */
+html[lang]:not([data-skin="classic"]) {
+  /* display：导航标题、侧边栏分组、按钮这类界面文字；中日文落到黑体，小字号下才清楚 */
+  --elin-font-display: "Ylva Latin", var(--elin-cjk-sans), system-ui, sans-serif;
+  /* heading：正文标题。英文同样是 Ylva Latin，中日文见下方按语言覆盖 */
+  --elin-font-heading: var(--elin-font-display);
+  --vp-font-family-base:
+    "Source Sans 3 Variable", var(--elin-cjk-sans), -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif, var(--elin-emoji);
+  --vp-font-family-mono:
+    ui-monospace, "Cascadia Mono", "SFMono-Regular", Menlo, Consolas,
+    "Liberation Mono", var(--elin-cjk-sans), monospace;
 }
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #7f78e3 30%,
-    #47caff
-  );
-
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #3691af 50%,
-    #7f78e3 50%
-  );
-  --vp-home-hero-image-filter: blur(80px);
-
-  --vp-button-brand-bg: #38bdf8;
-  --vp-button-brand-hover-bg: #0ea5e9;
+/* 游戏的 GenEi LateMin 本身是明朝体，日文标题用系统明朝与之对应；
+   中文用宋体系（macOS 有宋体-简，Windows 默认没有可用的宋体粗体，会落回微软雅黑）。 */
+html[lang^="ja"]:not([data-skin="classic"]) {
+  --elin-font-heading:
+    "Ylva Latin", "Yu Mincho", YuMincho, "Hiragino Mincho ProN",
+    "Noto Serif JP", "Noto Serif CJK JP", var(--elin-cjk-sans), serif;
 }
 
-/**
- * Component: Custom Block
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-custom-block-tip-border: transparent;
-  --vp-custom-block-tip-text: var(--vp-c-text-1);
-  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
-  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+html[lang^="zh"]:not([data-skin="classic"]) {
+  --elin-font-heading:
+    "Ylva Latin", "Noto Serif SC", "Source Han Serif SC", "Songti SC",
+    var(--elin-cjk-sans), sans-serif;
 }
 
-/**
- * Component: Algolia
- * -------------------------------------------------------------------------- */
+/* ── 色板：Main Paper（浅色） ─────────────────────────────────────────────── */
+:root:not([data-skin="classic"]) {
+  /* 纸面：light inner 贴图均值 #dbcbaf 提亮后的三档 */
+  --elin-paper: #efe6d5;
+  --elin-paper-raised: #f5efe3;
+  --elin-paper-2: #e7dbc4;
+  --elin-paper-sunk: #ddcfb4;
 
+  /* 墨色：textDefault #736657 加深，保证长文对比度 */
+  --elin-ink: #3b3027;
+  --elin-ink-2: #5e5040;
+  --elin-ink-3: #6b5b47;
+
+  --elin-header: #80523a; /* textHeader */
+  --elin-highlight: #3b5582; /* 按钮高亮蓝（bg button highlight / buttonGeneral） */
+  --elin-highlight-2: #2b4470;
+  --elin-highlight-soft: rgb(59 85 130 / 0.12);
+
+  /* 金边：old bg dark 的描边 #bda068；纸面上用更深的一档 */
+  --elin-gold: #9a7a3c;
+  --elin-gold-soft: rgb(154 122 60 / 0.35);
+
+  /* 描边：colorLine #4b2f19 */
+  --elin-line: rgb(75 47 25 / 0.24);
+  --elin-line-soft: rgb(75 47 25 / 0.13);
+
+  /* 游戏的「按钮」：bg button 贴图的米色填充 + 深橄榄描边 */
+  --elin-button-bg: #e3d7b4;
+  --elin-button-bg-hover: #ebe2c6;
+  --elin-button-border: #6e5728;
+  --elin-button-text: #3b3027;
+  --elin-button-bevel: rgb(255 250 235 / 0.7);
+
+  --elin-paper-texture: url("./assets/paper.webp");
+
+  /* 语义色：textGood / textGreat / textWarning / textBad / textMyth */
+  --elin-good: #3c6149;
+  --elin-great: #245b76;
+  --elin-warn: #6e5800;
+  --elin-warn-line: #a88a1c;
+  --elin-bad: #8c3734;
+  --elin-myth: #434d9c;
+
+  --elin-inline-code: #74402c;
+}
+
+/* ── 色板：Main Dark（深色） ─────────────────────────────────────────────── */
+:root:not([data-skin="classic"]).dark {
+  /* 石板：dark inner #4f5257 / old bg dark #474a4a 压暗，保留其冷灰色相 */
+  --elin-paper: #2b2d30;
+  --elin-paper-raised: #34373b;
+  --elin-paper-2: #303235;
+  --elin-paper-sunk: #3a3d41;
+
+  /* textIdentified #d9d3c7 / textDefault #b4aa9f */
+  --elin-ink: #ddd6c9;
+  --elin-ink-2: #b4aa9f;
+  --elin-ink-3: #aea598;
+
+  --elin-header: #e3cf9f; /* textHeader #e2d5ae 与 textTopic #ddbe87 之间 */
+  --elin-highlight: #a9c6e4; /* textTag */
+  --elin-highlight-2: #cfe0f2;
+  --elin-highlight-soft: rgb(169 198 228 / 0.14);
+
+  --elin-gold: #bda068;
+  --elin-gold-soft: rgb(189 160 104 / 0.4);
+
+  /* Main Dark 的窗口都是金色细边：描边统一取金色的透明度变体 */
+  --elin-line: rgb(189 160 104 / 0.3);
+  --elin-line-soft: rgb(189 160 104 / 0.15);
+
+  --elin-button-bg: #3a3d41;
+  --elin-button-bg-hover: #43464b;
+  --elin-button-border: #bda068;
+  --elin-button-text: #f0e2c0;
+  --elin-button-bevel: rgb(255 255 255 / 0.06);
+
+  --elin-paper-texture: none;
+
+  --elin-good: #94c39c;
+  --elin-great: #8cd3e2;
+  --elin-warn: #e9b45a;
+  --elin-warn-line: #e9b45a;
+  --elin-bad: #e48a7c;
+  --elin-myth: #adb4ff;
+
+  --elin-inline-code: #e6c890;
+}
+
+/* ── 映射到 VitePress ─────────────────────────────────────────────────────── */
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
+  --vp-c-bg: var(--elin-paper);
+  --vp-c-bg-alt: var(--elin-paper-2);
+  --vp-c-bg-elv: var(--elin-paper-raised);
+  --vp-c-bg-soft: var(--elin-paper-2);
+
+  --vp-c-border: var(--elin-line);
+  --vp-c-divider: var(--elin-line-soft);
+  --vp-c-gutter: var(--elin-line-soft);
+
+  --vp-c-text-1: var(--elin-ink);
+  --vp-c-text-2: var(--elin-ink-2);
+  --vp-c-text-3: var(--elin-ink-3);
+
+  --vp-c-default-1: var(--elin-ink-2);
+  --vp-c-default-2: var(--elin-paper-sunk);
+  --vp-c-default-3: var(--elin-paper-sunk);
+  --vp-c-default-soft: color-mix(in srgb, var(--elin-ink) 7%, transparent);
+
+  --vp-c-brand-1: var(--elin-highlight);
+  --vp-c-brand-2: var(--elin-highlight-2);
+  --vp-c-brand-3: var(--elin-highlight);
+  --vp-c-brand-soft: var(--elin-highlight-soft);
+
+  --vp-c-tip-1: var(--elin-good);
+  --vp-c-tip-2: var(--elin-good);
+  --vp-c-tip-3: var(--elin-good);
+  --vp-c-tip-soft: color-mix(in srgb, var(--elin-good) 10%, transparent);
+
+  --vp-c-note-1: var(--elin-great);
+  --vp-c-note-2: var(--elin-great);
+  --vp-c-note-3: var(--elin-great);
+  --vp-c-note-soft: color-mix(in srgb, var(--elin-great) 9%, transparent);
+
+  --vp-c-success-1: var(--elin-good);
+  --vp-c-success-2: var(--elin-good);
+  --vp-c-success-3: var(--elin-good);
+  --vp-c-success-soft: color-mix(in srgb, var(--elin-good) 14%, transparent);
+
+  --vp-c-important-1: var(--elin-myth);
+  --vp-c-important-2: var(--elin-myth);
+  --vp-c-important-3: var(--elin-myth);
+  --vp-c-important-soft: color-mix(in srgb, var(--elin-myth) 9%, transparent);
+
+  --vp-c-warning-1: var(--elin-warn);
+  --vp-c-warning-2: var(--elin-warn);
+  --vp-c-warning-3: var(--elin-warn-line);
+  --vp-c-warning-soft: color-mix(in srgb, var(--elin-warn-line) 13%, transparent);
+
+  --vp-c-danger-1: var(--elin-bad);
+  --vp-c-danger-2: var(--elin-bad);
+  --vp-c-danger-3: var(--elin-bad);
+  --vp-c-danger-soft: color-mix(in srgb, var(--elin-bad) 10%, transparent);
+
+  --vp-c-caution-1: var(--elin-bad);
+  --vp-c-caution-2: var(--elin-bad);
+  --vp-c-caution-3: var(--elin-bad);
+  --vp-c-caution-soft: color-mix(in srgb, var(--elin-bad) 10%, transparent);
+
+  --vp-nav-bg-color: var(--elin-paper);
+  --vp-nav-screen-bg-color: var(--elin-paper);
+  --vp-local-nav-bg-color: var(--elin-paper);
+  --vp-sidebar-bg-color: var(--elin-paper-2);
+  --vp-backdrop-bg-color: rgb(30 24 18 / 0.55);
+
+  --vp-input-border-color: var(--elin-line);
+  --vp-input-bg-color: var(--elin-paper-raised);
+  --vp-input-switch-bg-color: var(--elin-paper-sunk);
+
+  --vp-shadow-1: 0 1px 2px rgb(60 40 20 / 0.08);
+  --vp-shadow-2: 0 3px 12px rgb(60 40 20 / 0.1), 0 1px 4px rgb(60 40 20 / 0.06);
+  --vp-shadow-3: 0 12px 32px rgb(60 40 20 / 0.14), 0 2px 6px rgb(60 40 20 / 0.08);
+  --vp-shadow-4: 0 14px 44px rgb(60 40 20 / 0.16), 0 3px 9px rgb(60 40 20 / 0.1);
+  --vp-shadow-5: 0 18px 56px rgb(60 40 20 / 0.2), 0 4px 12px rgb(60 40 20 / 0.12);
+}
+
+:root:not([data-skin="classic"]).dark {
+  --vp-c-default-soft: rgb(221 214 201 / 0.07);
+  --vp-backdrop-bg-color: rgb(0 0 0 / 0.6);
+  --vp-shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);
+  --vp-shadow-2: 0 3px 12px rgb(0 0 0 / 0.35);
+  --vp-shadow-3: 0 12px 32px rgb(0 0 0 / 0.4);
+  --vp-shadow-4: 0 14px 44px rgb(0 0 0 / 0.45);
+  --vp-shadow-5: 0 18px 56px rgb(0 0 0 / 0.5);
+}
+
+/* ── 代码 ──────────────────────────────────────────────────────────────────
+ * 代码块底色必须与 codeThemes.ts 里的 editor.background 一致，
+ * 那边的 token 对比度是按这个底色算的。 */
+:root:not([data-skin="classic"]) {
+  --vp-code-color: var(--elin-inline-code);
+  --vp-code-bg: rgb(75 47 25 / 0.07);
+  --vp-code-link-color: var(--elin-highlight);
+  --vp-code-link-hover-color: var(--elin-highlight-2);
+  --vp-code-block-bg: #e9dfcb;
+  --vp-code-block-color: var(--elin-ink);
+  --vp-code-block-divider-color: var(--elin-line-soft);
+  --vp-code-lang-color: var(--elin-ink-3);
+  --vp-code-line-number-color: var(--elin-ink-3);
+  --vp-code-line-highlight-color: rgb(154 122 60 / 0.16);
+  --vp-code-copy-code-border-color: var(--elin-line);
+  --vp-code-copy-code-bg: var(--elin-paper-raised);
+  --vp-code-copy-code-hover-border-color: var(--elin-highlight);
+  --vp-code-copy-code-hover-bg: var(--elin-paper-raised);
+  --vp-code-copy-code-active-text: var(--elin-ink-2);
+  --vp-code-tab-text-color: var(--elin-ink-2);
+  --vp-code-tab-hover-text-color: var(--elin-ink);
+  --vp-code-tab-active-text-color: var(--elin-ink);
+  --vp-code-tab-active-bar-color: var(--elin-gold);
+}
+
+:root:not([data-skin="classic"]).dark {
+  --vp-code-bg: rgb(221 214 201 / 0.08);
+  --vp-code-block-bg: #26282b;
+  --vp-code-line-highlight-color: rgb(189 160 104 / 0.14);
+}
+
+/* ── 按钮（首页 Hero 等 VPButton） ────────────────────────────────────────── */
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
+  --vp-button-brand-border: var(--elin-button-border);
+  --vp-button-brand-text: var(--elin-button-text);
+  --vp-button-brand-bg: var(--elin-button-bg);
+  --vp-button-brand-hover-border: var(--elin-highlight);
+  --vp-button-brand-hover-text: var(--elin-button-text);
+  --vp-button-brand-hover-bg: var(--elin-button-bg-hover);
+  --vp-button-brand-active-border: var(--elin-highlight);
+  --vp-button-brand-active-text: var(--elin-button-text);
+  --vp-button-brand-active-bg: var(--elin-button-bg);
+
+  --vp-button-alt-border: var(--elin-line);
+  --vp-button-alt-text: var(--elin-ink-2);
+  --vp-button-alt-bg: transparent;
+  --vp-button-alt-hover-border: var(--elin-highlight);
+  --vp-button-alt-hover-text: var(--elin-ink);
+  --vp-button-alt-hover-bg: var(--elin-paper-raised);
+  --vp-button-alt-active-border: var(--elin-highlight);
+  --vp-button-alt-active-text: var(--elin-ink);
+  --vp-button-alt-active-bg: var(--elin-paper-2);
+}
+
+/* ── 首页 Hero ────────────────────────────────────────────────────────────── */
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
+  --vp-home-hero-name-color: var(--elin-header);
+  --vp-home-hero-name-background: none;
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
+}
+
+/* ── 提示块 ──────────────────────────────────────────────────────────────── */
+:root:not([data-skin="classic"]),
+:root:not([data-skin="classic"]).dark {
+  --vp-custom-block-font-size: 15px;
+  --vp-custom-block-code-font-size: 13.5px;
+
+  --vp-custom-block-info-border: var(--elin-line);
+  --vp-custom-block-info-text: var(--elin-ink);
+  --vp-custom-block-info-bg: color-mix(in srgb, var(--elin-ink) 4.5%, transparent);
+  --vp-custom-block-info-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-note-border: var(--elin-great);
+  --vp-custom-block-note-text: var(--elin-ink);
+  --vp-custom-block-note-bg: var(--vp-c-note-soft);
+  --vp-custom-block-note-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-tip-border: var(--elin-good);
+  --vp-custom-block-tip-text: var(--elin-ink);
+  --vp-custom-block-tip-bg: var(--vp-c-tip-soft);
+  --vp-custom-block-tip-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-important-border: var(--elin-myth);
+  --vp-custom-block-important-text: var(--elin-ink);
+  --vp-custom-block-important-bg: var(--vp-c-important-soft);
+  --vp-custom-block-important-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-warning-border: var(--elin-warn-line);
+  --vp-custom-block-warning-text: var(--elin-ink);
+  --vp-custom-block-warning-bg: var(--vp-c-warning-soft);
+  --vp-custom-block-warning-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-danger-border: var(--elin-bad);
+  --vp-custom-block-danger-text: var(--elin-ink);
+  --vp-custom-block-danger-bg: var(--vp-c-danger-soft);
+  --vp-custom-block-danger-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-caution-border: var(--elin-bad);
+  --vp-custom-block-caution-text: var(--elin-ink);
+  --vp-custom-block-caution-bg: var(--vp-c-caution-soft);
+  --vp-custom-block-caution-code-bg: var(--vp-code-bg);
+
+  --vp-custom-block-details-border: var(--elin-line);
+  --vp-custom-block-details-text: var(--elin-ink);
+  --vp-custom-block-details-bg: var(--elin-paper-2);
+  --vp-custom-block-details-code-bg: var(--vp-code-bg);
+}
+
+/* ── Algolia ─────────────────────────────────────────────────────────────── */
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }

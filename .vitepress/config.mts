@@ -4,6 +4,9 @@ import { makeNavBar } from "./data/navbar";
 import { generateDiff } from "./data/diff";
 import { makeLangRedirectScript } from "./data/langRedirect";
 import tailwindcss from "@tailwindcss/vite";
+import { elinPaper, elinDark } from "./data/codeThemes";
+import { SKIN_BOOT_SCRIPT } from "./theme/skin";
+import { fileURLToPath, URL } from "node:url";
 
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 const base = isCI_GitHub
@@ -59,6 +62,13 @@ export default defineConfig({
         docFooter: { prev: "Previous page", next: "Next page" },
         sidebarMenuLabel: "Menu",
         lastUpdated: { text: "Last updated" },
+        notFound: {
+          title: "Page not found",
+          quote:
+            "This page may have been moved or renamed. Try the search, or start again from the home page.",
+          linkText: "Back to home",
+          linkLabel: "Go to the home page",
+        },
       },
     },
     ja: {
@@ -76,6 +86,13 @@ export default defineConfig({
         docFooter: { prev: "前のページ", next: "次のページ" },
         sidebarMenuLabel: "メニュー",
         lastUpdated: { text: "最終更新日" },
+        notFound: {
+          title: "ページが見つかりません",
+          quote:
+            "このページは移動したか、名前が変わった可能性があります。検索するか、トップページから探してください。",
+          linkText: "トップページへ",
+          linkLabel: "トップページへ移動",
+        },
         returnToTopLabel: "トップに戻る",
         darkModeSwitchLabel: "外観",
         darkModeSwitchTitle: "ダークモードに切り替える",
@@ -98,6 +115,12 @@ export default defineConfig({
         docFooter: { prev: "上一页", next: "下一页" },
         sidebarMenuLabel: "总目录",
         lastUpdated: { text: "最后更新" },
+        notFound: {
+          title: "页面不存在",
+          quote: "这个页面可能已被移动或改名。试试搜索，或者回到首页重新找。",
+          linkText: "返回首页",
+          linkLabel: "前往首页",
+        },
         returnToTopLabel: "回到顶部",
         darkModeSwitchLabel: "外观",
         darkModeSwitchTitle: "切换到深色模式",
@@ -109,6 +132,19 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
+    // light / dark 给 Elin 皮肤；另外两套给经典皮肤（改版前的 VitePress 默认配色）。
+    // shiki 会给每个 token 同时写上 --shiki-light / --shiki-dark / --shiki-classic-light / --shiki-classic-dark，
+    // 由 CSS 按 <html data-skin> 选用（见 theme/classic.css）。
+    // VitePress 只预加载 light / dark 两套，另外两套在 shikiSetup 里补装。
+    theme: {
+      light: elinPaper,
+      dark: elinDark,
+      "classic-light": "github-light",
+      "classic-dark": "github-dark",
+    } as { light: typeof elinPaper; dark: typeof elinDark },
+    async shikiSetup(highlighter) {
+      await highlighter.loadTheme("github-light", "github-dark");
+    },
   },
 
   themeConfig: {
@@ -142,10 +178,30 @@ export default defineConfig({
       noExternal: ["aplayer"],
     },
     plugins: [tailwindcss()],
+    resolve: {
+      // 用自己的组件替换 VitePress 内置的明暗开关：导航栏里是下拉菜单，移动端抽屉里是平铺的选项，
+      // 可在「Elin 风格 / 经典」两套皮肤 × 浅色 / 深色之间切换
+      alias: [
+        {
+          find: /^.*\/VPNavBarAppearance\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/AppearanceMenu.vue", import.meta.url),
+          ),
+        },
+        {
+          find: /^.*\/VPNavScreenAppearance\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/AppearanceScreen.vue", import.meta.url),
+          ),
+        },
+      ],
+    },
   },
 
   head: [
     ["script", {}, makeLangRedirectScript(base)],
+    // 皮肤要在首次绘制前定下来，所以也是同步内联脚本；排在语言跳转之后（那段必须是 head 第一项）
+    ["script", {}, SKIN_BOOT_SCRIPT],
     [
       "script",
       {

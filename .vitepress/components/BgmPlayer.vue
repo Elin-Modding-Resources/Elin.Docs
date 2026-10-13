@@ -1,31 +1,24 @@
 <template>
-  <div
-    class="bgm-player flex flex-col h-160 bg-zinc-950 dark:bg-neutral-900 rounded-3xl overflow-hidden border border-zinc-800 dark:border-neutral-700 shadow-2xl"
-  >
+  <!-- 外观照游戏 Main Dark 皮肤的窗口（old bg dark）：石板灰底、金色细边、小圆角 -->
+  <div class="bgm-player bgm-window flex flex-col h-160 overflow-hidden">
     <!-- 主体区域 -->
     <div class="flex-1 min-h-0 overflow-hidden">
       <div class="player-body-viewport h-full">
         <!-- 左列 -->
-        <div
-          class="player-sidebar bg-zinc-900 dark:bg-neutral-950 flex flex-col border-r border-zinc-800 dark:border-neutral-700 min-h-0"
-        >
-          <div class="px-4 md:px-6 pt-4 md:pt-6 shrink-0">
-            <div
-              class="text-xs font-semibold tracking-widest text-zinc-500 dark:text-neutral-400 mb-3"
-            >
+        <div class="player-sidebar bgm-sidebar flex flex-col min-h-0">
+          <div class="px-4 md:px-5 pt-4 md:pt-5 shrink-0">
+            <div class="bgm-heading mb-2">
               {{ t("library") }}
             </div>
 
-            <div
+            <button
+              type="button"
               @click="switchToAll"
-              class="nav-item flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer transition-all mb-1"
-              :class="
-                currentView === 'all'
-                  ? 'bg-violet-500 text-white shadow-md shadow-violet-500/30'
-                  : 'hover:bg-zinc-800 dark:hover:bg-neutral-800 text-zinc-300 dark:text-neutral-300'
-              "
+              class="bgm-item nav-item flex items-center gap-3 px-3 py-2.5 mb-1"
+              :class="{ active: currentView === 'all' }"
+              :aria-pressed="currentView === 'all'"
             >
-              <span class="text-xl shrink-0">♪</span>
+              <span class="text-lg shrink-0" aria-hidden="true">♪</span>
               <span
                 class="font-medium"
                 :class="[
@@ -36,31 +29,28 @@
               >
                 {{ t("allTracks") }} ({{ bgmItems.length }})
               </span>
-            </div>
+            </button>
           </div>
 
-          <div class="flex-1 flex flex-col min-h-0 px-4 md:px-6 pt-4 md:pt-5">
-            <div
-              class="text-xs font-semibold tracking-widest text-zinc-500 dark:text-neutral-400 mb-3 shrink-0"
-            >
+          <div class="flex-1 flex flex-col min-h-0 px-4 md:px-5 pt-4">
+            <div class="bgm-heading mb-2 shrink-0">
               {{ t("playlists") }}
             </div>
 
             <div
               class="flex-1 overflow-y-auto overflow-x-hidden custom-scroll space-y-1 pr-2 min-h-0"
             >
-              <div
+              <button
                 v-for="playlist in playlists"
                 :key="playlist.name"
+                type="button"
                 @click="switchPlaylist(playlist)"
-                class="nav-item flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer transition-all text-sm"
-                :class="
-                  currentPlaylist?.name === playlist.name
-                    ? 'bg-violet-500 text-white shadow-md shadow-violet-500/30'
-                    : 'hover:bg-zinc-800 dark:hover:bg-neutral-800 text-zinc-300 dark:text-neutral-300'
-                "
+                class="bgm-item nav-item flex items-center gap-3 px-3 py-2.5 text-sm"
+                :class="{ active: currentPlaylist?.name === playlist.name }"
+                :aria-pressed="currentPlaylist?.name === playlist.name"
               >
-                <span class="text-xl shrink-0">📁</span>
+                <!-- 文件夹图标只在经典皮肤里显示（原版样式），Elin 皮肤下由 CSS 隐藏 -->
+                <span class="bgm-folder text-xl shrink-0" aria-hidden="true">📁</span>
                 <span
                   class="font-medium min-w-0"
                   :class="[
@@ -71,21 +61,17 @@
                 >
                   {{ playlist.name }}
                 </span>
-              </div>
+              </button>
             </div>
           </div>
         </div>
 
         <!-- 右列 -->
-        <div
-          class="player-main flex flex-col bg-zinc-950 dark:bg-neutral-900 min-h-0"
-        >
+        <div class="player-main bgm-main flex flex-col min-h-0">
           <!-- 顶部信息区：标题一行，搜索/数量下一行 -->
-          <div
-            class="border-b border-zinc-800 dark:border-neutral-700 bg-zinc-900/70 dark:bg-neutral-900/70 px-4 py-3 shrink-0"
-          >
+          <div class="bgm-toolbar px-4 py-3 shrink-0">
             <div
-              class="font-semibold text-zinc-100 dark:text-neutral-100 text-base leading-6 text-left"
+              class="bgm-title text-base leading-6 text-left"
               :class="[
                 isMobile
                   ? 'whitespace-nowrap'
@@ -98,7 +84,8 @@
             <div class="mt-3 flex flex-wrap items-center gap-2 justify-start">
               <div class="relative w-full sm:w-72 md:w-80 max-w-full">
                 <div
-                  class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                  class="bgm-muted absolute left-3 top-1/2 -translate-y-1/2"
+                  aria-hidden="true"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -119,20 +106,21 @@
                   v-model="searchQuery"
                   type="text"
                   :placeholder="t('searchPlaceholder')"
-                  class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl pl-9 pr-9 py-2 text-sm text-zinc-100 focus:outline-none focus:border-violet-500 transition-colors"
+                  :aria-label="t('searchPlaceholder')"
+                  class="bgm-search w-full pl-9 pr-9 py-2 text-sm"
                 />
                 <button
                   v-if="searchQuery"
+                  type="button"
                   @click="searchQuery = ''"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-200 text-xl leading-none"
+                  :aria-label="t('clear')"
+                  class="bgm-muted absolute right-3 top-1/2 -translate-y-1/2 text-xl leading-none"
                 >
                   ×
                 </button>
               </div>
 
-              <div
-                class="text-xs px-3 py-2 rounded-full bg-zinc-800 dark:bg-neutral-800 text-zinc-400 whitespace-nowrap"
-              >
+              <div class="bgm-count text-xs px-2.5 py-1.5 whitespace-nowrap">
                 {{ filteredTracks.length }} {{ t("tracks") }}
               </div>
             </div>
@@ -140,31 +128,24 @@
 
           <!-- 列表区 -->
           <div
-            class="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-1 custom-scroll min-h-0"
+            class="flex-1 overflow-y-auto overflow-x-hidden p-2 space-y-0.5 custom-scroll min-h-0"
           >
-            <div
+            <button
               v-for="(track, index) in filteredTracks"
               :key="track.id"
+              type="button"
               @click="playTrack(index)"
-              class="group flex items-center gap-4 px-4 md:px-5 py-3.5 rounded-2xl cursor-pointer transition-all hover:bg-zinc-900 dark:hover:bg-neutral-800"
-              :class="{
-                'bg-violet-500/10 dark:bg-violet-500/15': isCurrentTrack(track),
-              }"
+              class="bgm-track group flex items-center gap-4 px-3 md:px-4 py-3"
+              :class="{ current: isCurrentTrack(track) }"
             >
-              <div
-                class="w-8 shrink-0 text-right font-mono text-sm text-zinc-500 dark:text-neutral-500 group-hover:text-violet-400 transition-colors"
-                :class="{ 'text-violet-400': isCurrentTrack(track) }"
-              >
+              <div class="bgm-index w-8 shrink-0 text-right text-sm">
                 {{ (getOriginalIndex(track) + 1).toString().padStart(2, "0") }}
               </div>
 
               <div class="flex-1 min-w-0">
                 <div
-                  class="text-sm font-medium text-zinc-200 dark:text-neutral-200"
+                  class="bgm-track-name text-sm font-medium"
                   :class="[
-                    isCurrentTrack(track)
-                      ? 'text-violet-300 dark:text-violet-400'
-                      : '',
                     isMobile
                       ? 'whitespace-nowrap'
                       : 'whitespace-normal break-words',
@@ -173,7 +154,7 @@
                   {{ track.name }}
                 </div>
                 <div
-                  class="text-xs text-zinc-500 dark:text-neutral-500"
+                  class="bgm-muted text-xs"
                   :class="[
                     isMobile
                       ? 'whitespace-nowrap'
@@ -187,22 +168,20 @@
 
               <div
                 v-if="isCurrentTrack(track)"
-                class="flex items-center gap-2 text-violet-400 shrink-0"
+                class="bgm-playing flex items-center gap-2 shrink-0"
               >
-                <div
-                  class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"
-                ></div>
-                <span class="text-xs font-medium whitespace-nowrap"
-                  >PLAYING</span
-                >
+                <div class="bgm-playing-dot w-2 h-2 rounded-full"></div>
+                <span class="text-xs font-medium whitespace-nowrap">{{
+                  t("playing")
+                }}</span>
               </div>
-            </div>
+            </button>
 
             <div
               v-if="filteredTracks.length === 0"
-              class="text-center py-12 text-zinc-500"
+              class="bgm-muted text-center py-12"
             >
-              NONE
+              {{ t("empty") }}
             </div>
           </div>
         </div>
@@ -210,9 +189,7 @@
     </div>
 
     <!-- 底部播放器 -->
-    <div
-      class="player-footer shrink-0 border-t border-zinc-800 dark:border-neutral-700 bg-zinc-900 dark:bg-neutral-950 flex items-center"
-    >
+    <div class="player-footer bgm-footer shrink-0 flex items-center">
       <ClientOnly>
         <div ref="playerRef" class="flex-1 min-w-0"></div>
       </ClientOnly>
@@ -223,8 +200,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, nextTick } from "vue";
+import { ref, onMounted, onUnmounted, computed, nextTick, watch } from "vue";
 import { useData } from "vitepress";
+import { useSkin, type Skin } from "../theme/skin";
 import "aplayer/dist/APlayer.min.css";
 import bgmItemsRaw from "/playlist/bgm_items.json";
 
@@ -246,21 +224,30 @@ const i18n = {
     allTracks: "全部曲目",
     playlists: "播放列表",
     tracks: "首",
-    searchPlaceholder: "搜索...",
+    searchPlaceholder: "搜索曲名、作者或编号",
+    clear: "清除搜索",
+    playing: "播放中",
+    empty: "没有匹配的曲目",
   },
   en: {
-    library: "LIBRARY",
-    allTracks: "All Tracks",
-    playlists: "PLAYLISTS",
+    library: "Library",
+    allTracks: "All tracks",
+    playlists: "Playlists",
     tracks: "tracks",
-    searchPlaceholder: "Search...",
+    searchPlaceholder: "Search by title, artist or ID",
+    clear: "Clear search",
+    playing: "Playing",
+    empty: "No matching tracks",
   },
   ja: {
     library: "音楽ライブラリ",
     allTracks: "全曲",
     playlists: "プレイリスト",
     tracks: "曲",
-    searchPlaceholder: "検索...",
+    searchPlaceholder: "曲名・作者・番号で検索",
+    clear: "検索をクリア",
+    playing: "再生中",
+    empty: "該当する曲がありません",
   },
 } as const;
 
@@ -311,6 +298,18 @@ const currentTracks = computed(() => {
 const getOriginalIndex = (track: any) =>
   currentTracks.value.findIndex((t: any) => t.id === track.id);
 
+// 播放器的主题色（播放按钮底色、进度条）。白色播放图标压在上面要 ≥ 3:1：
+// Elin 的金 #bda068 只有 2.5:1，取同色相更深的一档；经典皮肤沿用原版的 violet-500（4.2:1）
+const PLAYER_THEME: Record<Skin, string> = { elin: "#8a6c33", classic: "#8b5cf6" };
+const { skin, syncSkinFromDom } = useSkin();
+
+watch(skin, (s) => {
+  if (!aplayer) return;
+  aplayer.options.theme = PLAYER_THEME[s];
+  // 第三个参数 false：不写进当前曲目自己的 theme，之后切歌仍然读 options.theme
+  aplayer.theme(PLAYER_THEME[s], aplayer.list.index, false);
+});
+
 const initPlayer = async () => {
   await nextTick();
   if (!playerRef.value) return;
@@ -318,7 +317,7 @@ const initPlayer = async () => {
 
   aplayer = new APlayer({
     container: playerRef.value,
-    theme: "#8b5cf6",
+    theme: PLAYER_THEME[skin.value],
     repeat: "all",
     order: "list",
     preload: "auto",
@@ -373,6 +372,7 @@ const switchPlaylist = (playlist: any) => {
 };
 
 onMounted(async () => {
+  syncSkinFromDom();
   updateIsMobile();
   window.addEventListener("resize", updateIsMobile);
 
@@ -410,7 +410,7 @@ onUnmounted(() => {
 
 <style>
 .aplayer-title {
-  color: blueviolet !important;
+  color: #ddbe87 !important;
 }
 
 /**
@@ -501,6 +501,237 @@ onUnmounted(() => {
   }
 }
 
+/* ── 窗口外观：游戏 Main Dark 皮肤 ────────────────────────────────────────
+   不跟随页面明暗：游戏里的深色窗口本来就会叠在羊皮纸界面上。 */
+.bgm-window {
+  --bgm-frame: #474a4a; /* old bg dark 的底色 */
+  --bgm-side: #3c3f42;
+  --bgm-main: #2f3134;
+  --bgm-bar: #35383b;
+  --bgm-rim: #bda068;
+  --bgm-rim-soft: rgb(189 160 104 / 0.3);
+  --bgm-ink: #ddd6c9;
+  --bgm-ink-2: #b4aa9f;
+  --bgm-ink-3: #a39a8d;
+  --bgm-gold: #ddbe87;
+
+  background-color: var(--bgm-frame);
+  border: 2px solid var(--bgm-rim);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 0 3px var(--bgm-frame),
+    var(--vp-shadow-3);
+  color: var(--bgm-ink);
+}
+
+.bgm-sidebar {
+  background-color: var(--bgm-side);
+  border-right: 1px solid var(--bgm-rim-soft);
+}
+
+.bgm-main {
+  background-color: var(--bgm-main);
+}
+
+.bgm-toolbar {
+  background-color: var(--bgm-bar);
+  border-bottom: 1px solid var(--bgm-rim-soft);
+}
+
+.bgm-heading,
+.bgm-title {
+  font-family: var(--elin-font-display);
+  font-weight: 500;
+  color: var(--bgm-gold);
+}
+
+.bgm-heading {
+  font-size: 14px;
+}
+
+.bgm-muted {
+  color: var(--bgm-ink-3);
+}
+
+/* 列表项：选中项照游戏里按钮的选中态 —— 金色描边，而不是整块填色 */
+.bgm-item,
+.bgm-track {
+  width: 100%;
+  text-align: left;
+  color: var(--bgm-ink-2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.bgm-item:hover,
+.bgm-track:hover {
+  background-color: rgb(255 255 255 / 0.05);
+  color: var(--bgm-ink);
+}
+
+.bgm-item.active {
+  color: #f0e2c0;
+  background-color: rgb(189 160 104 / 0.16);
+  box-shadow: inset 0 0 0 1px var(--bgm-rim);
+}
+
+.bgm-track.current {
+  background-color: rgb(189 160 104 / 0.1);
+}
+
+.bgm-track-name {
+  color: var(--bgm-ink);
+}
+
+.bgm-track.current .bgm-track-name,
+.bgm-track.current .bgm-index,
+.bgm-track:hover .bgm-index {
+  color: var(--bgm-gold);
+}
+
+.bgm-index {
+  color: var(--bgm-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.bgm-playing {
+  color: var(--bgm-gold);
+}
+
+.bgm-playing-dot {
+  background-color: var(--bgm-gold);
+}
+
+.bgm-search {
+  color: var(--bgm-ink);
+  background-color: #26282b;
+  border: 1px solid var(--bgm-rim-soft);
+  border-radius: 4px;
+}
+
+.bgm-search::placeholder {
+  color: var(--bgm-ink-3);
+}
+
+.bgm-search:focus {
+  outline: none;
+  border-color: var(--bgm-rim);
+}
+
+.bgm-count {
+  color: var(--bgm-ink-2);
+  background-color: #26282b;
+  border-radius: 4px;
+}
+
+.bgm-footer {
+  background-color: var(--bgm-side);
+  border-top: 1px solid var(--bgm-rim-soft);
+}
+
+.bgm-window :focus-visible {
+  outline: 2px solid #a9c6e4;
+  outline-offset: -2px;
+}
+
+/* Elin 皮肤不显示文件夹 emoji */
+.bgm-folder {
+  display: none;
+}
+
+/* ── 经典皮肤：改版前的深色播放器（锌灰 + 紫） ────────────────────────────
+   相对原版的修正：次级文字从 zinc-500（3.7–4.1:1）提到 zinc-400；
+   底部 APlayer 不再是一条纯白（见上方 .player-footer 的说明）；列表项改成了可聚焦的按钮。 */
+html[data-skin="classic"] .bgm-window {
+  --bgm-frame: #09090b;
+  --bgm-side: #18181b;
+  --bgm-main: #09090b;
+  --bgm-bar: #18181b;
+  --bgm-rim: #27272a;
+  --bgm-rim-soft: #27272a;
+  --bgm-ink: #e4e4e7;
+  --bgm-ink-2: #d4d4d8;
+  --bgm-ink-3: #a1a1aa;
+  --bgm-gold: #a78bfa;
+
+  border: 1px solid var(--bgm-rim);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+html[data-skin="classic"].dark .bgm-window {
+  --bgm-frame: #171717;
+  --bgm-side: #0a0a0a;
+  --bgm-main: #171717;
+  --bgm-bar: #171717;
+  --bgm-rim: #404040;
+  --bgm-rim-soft: #404040;
+}
+
+html[data-skin="classic"] .bgm-folder {
+  display: inline;
+}
+
+html[data-skin="classic"] .bgm-heading {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bgm-ink-3);
+}
+
+html[data-skin="classic"] .bgm-title {
+  font-family: inherit;
+  font-weight: 600;
+  color: #f4f4f5;
+}
+
+html[data-skin="classic"] .bgm-item,
+html[data-skin="classic"] .bgm-track {
+  border-radius: 16px;
+}
+
+html[data-skin="classic"] .bgm-item.active {
+  color: #ffffff;
+  background-color: #8b5cf6;
+  box-shadow: 0 4px 6px -1px rgb(139 92 246 / 0.3);
+}
+
+html[data-skin="classic"] .bgm-track.current {
+  background-color: rgb(139 92 246 / 0.12);
+}
+
+html[data-skin="classic"] .bgm-search {
+  border-color: #3f3f46;
+  border-radius: 16px;
+  background-color: #27272a;
+}
+
+html[data-skin="classic"] .bgm-search:focus {
+  border-color: #8b5cf6;
+}
+
+html[data-skin="classic"] .bgm-count {
+  border-radius: 9999px;
+  background-color: #27272a;
+}
+
+html[data-skin="classic"] .aplayer-title {
+  color: #c4b5fd !important;
+}
+
+html[data-skin="classic"] .player-footer .aplayer .aplayer-info .aplayer-music .aplayer-author,
+html[data-skin="classic"] .player-footer .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  color: #a1a1aa;
+}
+
+html[data-skin="classic"] .bgm-window .custom-scroll::-webkit-scrollbar-thumb,
+html[data-skin="classic"] .bgm-window .player-body-viewport::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 170, 0.35);
+}
+
 /* 滚动条美化 */
 .custom-scroll::-webkit-scrollbar,
 .player-body-viewport::-webkit-scrollbar {
@@ -515,17 +746,19 @@ onUnmounted(() => {
 
 .custom-scroll::-webkit-scrollbar-thumb,
 .player-body-viewport::-webkit-scrollbar-thumb {
-  background: rgba(161, 161, 170, 0.35);
+  background: rgb(189 160 104 / 0.35);
   border-radius: 9999px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover,
 .player-body-viewport::-webkit-scrollbar-thumb:hover {
-  background: rgba(161, 161, 170, 0.55);
+  background: rgb(189 160 104 / 0.6);
 }
 
-/* 让 APlayer 贴合底部风格 */
-.player-footer :deep(.aplayer) {
+/* 让 APlayer 贴合底部风格。
+   这个 <style> 不是 scoped，:deep() 在这里不生效 —— 以前 APlayer 因此保留了自带的纯白底，
+   在深色播放器里是一整条白块。改用普通后代选择器。 */
+.player-footer .aplayer {
   margin: 0;
   border-radius: 0;
   border: none;
@@ -533,8 +766,21 @@ onUnmounted(() => {
   background: transparent;
 }
 
-.player-footer :deep(.aplayer-info),
-.player-footer :deep(.aplayer-lrc) {
-  color: inherit;
+.player-footer .aplayer .aplayer-info,
+.player-footer .aplayer .aplayer-lrc {
+  color: #ddd6c9;
+}
+
+.player-footer .aplayer .aplayer-info .aplayer-music .aplayer-author,
+.player-footer .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  color: #c2b9ad;
+}
+
+.player-footer .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
+  fill: #c2b9ad;
+}
+
+.player-footer .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path {
+  fill: #f4f4f5;
 }
 </style>

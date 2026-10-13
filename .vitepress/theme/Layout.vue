@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme from "vitepress/theme-without-fonts";
 import { useData, useRoute, useRouter, inBrowser } from "vitepress";
 import { watch, onMounted, computed, type Component } from "vue";
 import data from "../data/redirects.json";
