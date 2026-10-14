@@ -993,7 +993,8 @@
 }
 
 .diff-single-page .vp-doc h3 + div[class*="language-"] {
-  margin: 0.5rem 0 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 /* ===========================================================================
