@@ -1,12 +1,16 @@
-// 代码高亮主题：配色直接取自游戏 UI 皮肤的消息色
+// 代码高亮主题：色相取自游戏 UI 皮肤的消息色
 // （Resources/UI/Skin/Color/SkinColor Main Paper.asset 与 SkinColor Main Dark.asset），
 // 和 theme/style.css 里的 --elin-* 色板同源。
 //
-// 现成的 shiki 浅色主题都是按白底调的，放到羊皮纸底上大半 token 掉到 4.5:1 以下；
-// 这里每个前景色都按 style.css 里的 --vp-code-block-bg 核对过对比度（浅色 #e9dfcb、
-// 深色 #26282b），并且叠上 diff 增删行和 {n} 高亮行的淡染底色后仍 ≥ 4.5:1 ——
-// 所以比单看纯底色时更深一档。改代码块底色或那几种淡染时要回来重新核对。
+// 每个强调色只保留游戏色的色相（允许偏 ±22°），明度与饱和度在 OKLCH 里重新求：
+//   - 对比度：按 style.css 里的 --vp-code-block-bg（浅色 #faf7f1、深色 #1d1f22）
+//     以及叠上 {n} 高亮行、diff 增删行、warning/error 行淡染后的底色，全部 ≥ 4.5:1；
+//   - 区分度：C# 里挨在一起出现的几类（正文、关键字、类型、方法、字符串、数字）两两拉开，
+//     OKLab ΔE 浅色 ≥ 13、深色 ≥ 15（原来最低只有 5 左右，类型和方法几乎同色）；
+//   - 明度也分了档：浅色里方法最深、类型最浅，深色里方法压低一档，不只靠色相区分。
+// 改代码块底色、那几种淡染，或换某一类的颜色时，要回来重新核对这两项。
 //
+// 属性（JSON / XML / INI 的键）复用方法的蓝：这些语言里没有方法，C# 的特性名走的是类型。
 // 注释不用斜体：注释里常有中日文，CJK 的伪斜体很难看。
 
 type Rule = { scope: string[]; settings: { foreground?: string; fontStyle?: string } };
@@ -62,39 +66,40 @@ function theme(name: string, type: "light" | "dark", bg: string, p: Palette) {
   };
 }
 
-// Main Paper：textBad 作关键字、textGreat 作类型、textBlue 作方法、textGood 作字符串、
-// textMyth 作数值、textWarning 作属性、textHeader 作标签/节标题、textFlavor 作注释。
-export const elinPaper = theme("elin-paper", "light", "#e9dfcb", {
+// Main Paper：textBad 作关键字、textGreat 作类型、按钮高亮蓝作方法、textGood 作字符串、
+// textMyth（偏紫）作数值、textHeader 作标签/节标题、textFlavor 作注释。
+export const elinPaper = theme("elin-paper", "light", "#faf7f1", {
   fg: "#3b3027",
   muted: "#5e5040",
   comment: "#615440",
-  keyword: "#8c3734",
-  type: "#245b76",
-  func: "#1e4889",
-  string: "#355a42",
-  number: "#434d9c",
-  attr: "#655000",
-  escape: "#005f6a",
-  tag: "#80523a",
+  keyword: "#8e1b1f",
+  type: "#006887",
+  func: "#003d90",
+  string: "#005d2f",
+  number: "#614eb0",
+  attr: "#003d90",
+  escape: "#703400",
+  tag: "#994200",
   heading: "#80523a",
   inserted: "#3c6149",
   deleted: "#8c3734",
 });
 
-// Main Dark：textTopic（金）作关键字、textGreat 作类型、textTag 作方法、textGood 作字符串、
-// textWarning 作数值、textFlavor 作属性、textHeader 作标签/节标题。
-export const elinDark = theme("elin-dark", "dark", "#26282b", {
+// Main Dark：textTopic（金）作关键字、textGreat 作类型、textMyth 作方法、textGood 作字符串、
+// textBad 作数值（原来的琥珀和关键字的金撞色）、textTag 作属性、textHeader 作标签/节标题、
+// textWarning 作转义（嵌在绿色字符串里，要和它拉开）。
+export const elinDark = theme("elin-dark", "dark", "#1d1f22", {
   fg: "#ddd6c9",
   muted: "#b4aa9f",
   comment: "#aaa194",
-  keyword: "#ddbe87",
-  type: "#8cd3e2",
-  func: "#b1cee9",
-  string: "#94c39c",
-  number: "#e9b45a",
-  attr: "#e9dba0",
-  escape: "#8cd3e2",
-  tag: "#e3cf9f",
+  keyword: "#d6ac43",
+  type: "#3ed9f7",
+  func: "#9aa4fe",
+  string: "#57be83",
+  number: "#f78c9a",
+  attr: "#b8daff",
+  escape: "#fcc464",
+  tag: "#e6be56",
   heading: "#e3cf9f",
   inserted: "#94c39c",
   deleted: "#e48a7c",

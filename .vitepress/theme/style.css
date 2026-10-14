@@ -265,13 +265,15 @@ html[lang^="zh"]:not([data-skin="classic"]) {
 
 /* ── 代码 ──────────────────────────────────────────────────────────────────
  * 代码块底色必须与 codeThemes.ts 里的 editor.background 一致，
- * 那边的 token 对比度是按这个底色算的。 */
+ * 那边的 token 对比度是按这个底色算的。
+ * 浅色比纸面亮一档、深色比石板暗一档（与页面的 OKLab ΔE 约 5–6）：
+ * 既把代码块从页面上分出来，也给 token 留出更宽的明度区间，颜色才饱和得起来。 */
 :root:not([data-skin="classic"]) {
   --vp-code-color: var(--elin-inline-code);
   --vp-code-bg: rgb(75 47 25 / 0.07);
   --vp-code-link-color: var(--elin-highlight);
   --vp-code-link-hover-color: var(--elin-highlight-2);
-  --vp-code-block-bg: #e9dfcb;
+  --vp-code-block-bg: #faf7f1;
   --vp-code-block-color: var(--elin-ink);
   --vp-code-block-divider-color: var(--elin-line-soft);
   --vp-code-lang-color: var(--elin-ink-3);
@@ -290,7 +292,7 @@ html[lang^="zh"]:not([data-skin="classic"]) {
 
 :root:not([data-skin="classic"]).dark {
   --vp-code-bg: rgb(221 214 201 / 0.08);
-  --vp-code-block-bg: #26282b;
+  --vp-code-block-bg: #1d1f22;
   --vp-code-line-highlight-color: rgb(189 160 104 / 0.14);
 }
 
