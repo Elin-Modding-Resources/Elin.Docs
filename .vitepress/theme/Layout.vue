@@ -9,11 +9,12 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme-without-fonts";
 import { useData, useRoute, useRouter, inBrowser } from "vitepress";
-import { watch, onMounted, computed, type Component } from "vue";
+import { watch, onMounted, computed, h, type Component } from "vue";
 import data from "../data/redirects.json";
 import { LANG_STORAGE_KEY, normalizeRoute, splitLocalePath } from "../data/lang";
 import { resolveDocTips, type DocTipId } from "../data/docTips";
 import ModMakerTip from "../components/ModMakerTip.vue";
+import type { ModMakerTipKind } from "../data/modmaker";
 
 type Language = "en" | "zh" | "ja" | string;
 type RedirectRule = string | Partial<Record<Language, string>>;
@@ -26,8 +27,15 @@ const { page, lang, site } = useData();
 const route = useRoute();
 const router = useRouter();
 
+const modmakerTip = (kind: ModMakerTipKind): Component => () => h(ModMakerTip, { kind });
+
 const TIP_COMPONENTS: Record<DocTipId, Component> = {
-  modmaker: ModMakerTip,
+  "modmaker-sheet": modmakerTip("sheet"),
+  "modmaker-drama": modmakerTip("drama"),
+  "modmaker-l10n": modmakerTip("l10n"),
+  "modmaker-zone": modmakerTip("zone"),
+  "modmaker-texture": modmakerTip("texture"),
+  "modmaker-pref": modmakerTip("pref"),
 };
 
 const docTips = computed(() => resolveDocTips(page.value.relativePath));

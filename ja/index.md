@@ -23,5 +23,7 @@ hero:
       link: /
 ---
 
+<ModMakerSpotlight/>
+
 <h2>その頃、イルヴァでは……</h2>
 <CardContainer/>

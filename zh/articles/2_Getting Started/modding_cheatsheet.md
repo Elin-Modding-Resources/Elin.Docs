@@ -162,13 +162,13 @@ NPC的小人贴图，即精灵图（Sprite）
 
 #### ModMaker
 
-你可以使用[ModMaker](https://modmaker.elin-modding.net/)来制作mod。目前ModMaker功能如下：
-+ 制作新角色
-+ 编写剧情
-+ 新种族
-+ 新职业（job）
+[ModMaker](https://modmaker.elin-modding.net/)是在浏览器里运行的Elin模组编辑器，可以新建mod，也可以打开已有的mod。目前可以编辑：
++ 角色、种族、职业、台词与剧情
++ 物品、食物、配方、信仰与元素
++ 材质、瓦片（Block、Floor、Obj）与区域
++ 精灵图、立绘、`.pref`文件和各语言文本
 
-注意：你应当在安装了Elin的电脑端，使用ModMaker。
+注意：ModMaker需要桌面版Chrome或Edge。这两个浏览器都打不开Program Files下的文件夹，而Steam默认把Elin装在那里。可以把Elin移到其他驱动器的Steam库，或者在别处编辑mod，完成后复制进`Package`。
 
 #### 手动填写源表
 

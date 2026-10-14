@@ -23,5 +23,7 @@ hero:
       link: /ja/
 ---
 
+<ModMakerSpotlight/>
+
 <h2>在伊尔瓦大陆上...</h2>
 <CardContainer/>

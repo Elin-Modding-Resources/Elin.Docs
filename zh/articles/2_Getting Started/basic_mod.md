@@ -10,6 +10,8 @@ tags: Guide/Mod
 
 Elin 支持多种模组类型，本文介绍创建一个基础示例模组的步骤。
 
+<ModMakerTip kind="package"/>
+
 ## Mod文件夹
 
 你本地开发的模组应该放在 `<游戏安装目录>/Elin/Package/<ModName>` 文件夹下。

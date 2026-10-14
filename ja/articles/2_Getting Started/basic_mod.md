@@ -10,6 +10,8 @@ tags: Guide/Mod
 
 Elin はさまざまな種類の Mod をサポートしています。ここでは、基本的なサンプル Mod を作成する手順を紹介します。
 
+<ModMakerTip kind="package"/>
+
 ## Mod フォルダ
 
 ローカルで開発する Mod は `<ElinGamePath>/Package/<ModName>` フォルダ内に配置してください。

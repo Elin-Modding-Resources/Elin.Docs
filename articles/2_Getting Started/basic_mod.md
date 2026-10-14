@@ -10,6 +10,8 @@ tags: Guide/Mod
 
 Elin supports a variety of mod types, let's walk through the steps of creating a basic example mod.
 
+<ModMakerTip kind="package"/>
+
 ## Mod Folder
 
 Your locally developed mod should be placed under `<ElinGamePath>/Package/<ModName>` folder.

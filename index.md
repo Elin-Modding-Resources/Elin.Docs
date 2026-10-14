@@ -23,5 +23,7 @@ hero:
       link: /ja/
 ---
 
+<ModMakerSpotlight/>
+
 <h2>Meanwhile on Ylva...</h2>
 <CardContainer/>

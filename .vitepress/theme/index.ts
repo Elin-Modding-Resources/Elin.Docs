@@ -22,6 +22,8 @@ import CardContainer from "../components/CardContainer.vue";
 import LinkCard from "../components/LinkCard.vue";
 import BgmPlayer from "../components/BgmPlayer.vue";
 import TilesetViewer from "../components/TilesetViewer.vue";
+import ModMakerTip from "../components/ModMakerTip.vue";
+import ModMakerSpotlight from "../components/ModMakerSpotlight.vue";
 import CopyButton from "@cssnr/vitepress-plugin-copybutton";
 import BackToTopButton from "@miletorix/vitepress-back-to-top-button";
 import imageViewer from "vitepress-plugin-image-viewer";
@@ -51,6 +53,8 @@ export default {
     app.component("LinkCard", LinkCard);
     app.component("BgmPlayer", BgmPlayer);
     app.component("TilesetViewer", TilesetViewer);
+    app.component("ModMakerTip", ModMakerTip);
+    app.component("ModMakerSpotlight", ModMakerSpotlight);
     app.component("vImageViewer", vImageViewer);
     app.component("C", CopyButton);
     BackToTopButton(app, { progressColor: "var(--elin-gold)" });

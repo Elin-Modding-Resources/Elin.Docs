@@ -59,6 +59,14 @@
   margin-right: auto;
 }
 
+/* doc-before 插的 ModMaker 提示：ModMaker 在手机上打不开，手机上不让它压在标题前面。
+   basic_mod 正文里那份在 .vp-doc 里，不受影响 */
+@media (max-width: 767px) {
+  .VPDoc .content-container > .modmaker-tip {
+    display: none;
+  }
+}
+
 /* 表格：顶对齐 —— 说明列常常好几行，字段名居中时扫读要上下找。
    列宽：字段名、类型这些短列按内容收窄，最后一列（通常是说明）至少 12em。
    旧样式给每列都设 120px 下限，三列的源表说明表在 1440 宽的正文栏里会被撑出横向滚动。 */

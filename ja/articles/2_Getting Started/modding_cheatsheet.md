@@ -152,13 +152,13 @@ Elinは大部分のゲームデータを**ソースシート**で記録してい
 
 #### ModMaker
 
-[ModMaker](https://modmaker.elin-modding.net/) を使用してModを作成できます。現在ModMakerの機能は以下の通りです：
-+ 新しいキャラクターの作成
-+ ドラマの作成
-+ 新しい種族
-+ 新しい職業（job）
+[ModMaker](https://modmaker.elin-modding.net/) はブラウザで動く Elin の Mod エディタです。Mod の新規作成も、既存の Mod を開くこともできます。現在編集できるもの：
++ キャラクター、種族、職業、セリフ、ドラマ
++ アイテム、食べ物、レシピ、信仰、エレメント
++ マテリアル、タイル（Block、Floor、Obj）、ゾーン
++ スプライト、ポートレート、`.pref` ファイル、各言語のテキスト
 
-注意：ModMakerはElinがインストールされているPC端末で使用してください。
+注意：ModMaker にはデスクトップ版の Chrome か Edge が必要です。どちらのブラウザも Program Files 内のフォルダを開けず、Steam は既定で Elin をそこにインストールします。Elin を別ドライブの Steam ライブラリへ移すか、別の場所で Mod を編集してから `Package` にコピーしてください。
 
 #### 手動でのソースシート記入
 

@@ -1,3 +1,5 @@
+import { MODMAKER_URL } from "./modmaker";
+
 const isCI_GitHub = typeof process.env.GITHUB_REPOSITORY === "string";
 
 export function makeNavBar(
@@ -59,7 +61,7 @@ export function makeNavBar(
         },
         {
           text: "ModMaker",
-          link: "https://modmaker.elin-modding.net/",
+          link: MODMAKER_URL,
         },
         {
           text: "Elin MCP",

@@ -155,13 +155,13 @@ Once the progress bar completes, your game and mods will be updated to the lates
 
 #### ModMaker
 
-You can use [ModMaker](https://modmaker.elin-modding.net/) to create mods. Currently, ModMaker supports:
-+ Creating new characters
-+ Writing drama
-+ New races
-+ New jobs
+[ModMaker](https://modmaker.elin-modding.net/) is a browser-based editor for Elin mods. It can create a new mod or open one you already have, and edit:
++ Characters, races, jobs, talk lines and drama
++ Things, food, recipes, religions and elements
++ Materials, map tiles (Block, Floor, Obj) and zones
++ Sprites, portraits, `.pref` files and the text for each language
 
-Note: You should use ModMaker on a PC with Elin installed.
+Note: ModMaker needs desktop Chrome or Edge. Neither browser can open folders inside Program Files, where Steam installs Elin by default. Move Elin to a Steam library on another drive, or edit the mod somewhere else and copy it into `Package` when you finish.
 
 #### Manually filling out Source Sheets
 
