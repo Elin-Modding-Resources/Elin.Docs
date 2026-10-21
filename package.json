@@ -3,7 +3,8 @@
     "scripts": {
         "docs:dev": "vitepress dev",
         "docs:build": "vitepress build",
-        "docs:preview": "vitepress preview"
+        "docs:preview": "vitepress preview",
+        "bgm": "node scripts/build-bgm.mts"
     },
     "devDependencies": {
         "@cssnr/vitepress-plugin-copybutton": "^0.0.3",

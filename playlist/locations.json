@@ -1,0 +1,1185 @@
+[
+  {
+    "id": "ntyris",
+    "name": {
+      "en": "North Tyris",
+      "ja": "ノースティリス",
+      "zh": "北提里斯"
+    },
+    "entries": [
+      6,
+      7,
+      59
+    ],
+    "playlist": "EloMap"
+  },
+  {
+    "id": "cave_elona",
+    "name": {
+      "en": "Hill Cave",
+      "ja": "丘の洞窟",
+      "zh": "丘之洞穴"
+    },
+    "entries": [
+      58,
+      3
+    ]
+  },
+  {
+    "id": "kapul",
+    "name": {
+      "en": "Port Kapul",
+      "ja": "ポート・カプール",
+      "zh": "卡普尔港"
+    },
+    "entries": [
+      20
+    ]
+  },
+  {
+    "id": "kapul_festival",
+    "name": {
+      "en": "Port Kapul (Festival of the dead)",
+      "ja": "ポート・カプール (死者祭)",
+      "zh": "卡普尔港 (亡灵节)"
+    },
+    "entries": [
+      51
+    ],
+    "playlist": "Festival_Noyel"
+  },
+  {
+    "id": "kapul_F-1",
+    "name": {
+      "en": "Port Kapul B1F",
+      "ja": "ポート・カプール 地下1階",
+      "zh": "卡普尔港 地下1层"
+    },
+    "entries": [
+      46,
+      47
+    ]
+  },
+  {
+    "id": "beach",
+    "name": {
+      "en": "Quiet Beach",
+      "ja": "静かな砂浜",
+      "zh": "平静的沙滩"
+    },
+    "entries": []
+  },
+  {
+    "id": "field",
+    "name": {
+      "en": "Wilds",
+      "ja": "野外",
+      "zh": "野地"
+    },
+    "entries": [
+      4
+    ],
+    "playlist": "Day"
+  },
+  {
+    "id": "shelter",
+    "name": {
+      "en": "Shelter",
+      "ja": "シェルター",
+      "zh": "避难所"
+    },
+    "entries": [
+      33,
+      32
+    ]
+  },
+  {
+    "id": "startVillage2",
+    "name": {
+      "en": "Garden of Eternity",
+      "ja": "永遠の庭",
+      "zh": "永恒庭院"
+    },
+    "entries": [
+      121
+    ]
+  },
+  {
+    "id": "startSite",
+    "name": {
+      "en": "Meadow",
+      "ja": "野原",
+      "zh": "原野"
+    },
+    "entries": [
+      41,
+      90,
+      44,
+      43
+    ]
+  },
+  {
+    "id": "survival",
+    "name": {
+      "en": "Sky",
+      "ja": "空",
+      "zh": "天空"
+    },
+    "entries": [
+      92,
+      90,
+      42,
+      33
+    ]
+  },
+  {
+    "id": "nymelle",
+    "name": {
+      "en": "Nymelle B1–4F",
+      "ja": "ナイミール 地下1–4階",
+      "zh": "尼米尔 地下1–4层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "nymelle_F-5",
+    "name": {
+      "en": "Nymelle B5F",
+      "ja": "ナイミール 地下5階",
+      "zh": "尼米尔 地下5层"
+    },
+    "entries": [
+      101
+    ]
+  },
+  {
+    "id": "nymelle_F-6",
+    "name": {
+      "en": "Nymelle B6F",
+      "ja": "ナイミール 地下6階",
+      "zh": "尼米尔 地下6层"
+    },
+    "entries": [
+      28
+    ]
+  },
+  {
+    "id": "lysanas",
+    "name": {
+      "en": "Lysanas",
+      "ja": "リサナス",
+      "zh": "利萨纳斯"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "void",
+    "name": {
+      "en": "The Void",
+      "ja": "すくつ",
+      "zh": "巢穴"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "void_boss",
+    "name": {
+      "en": "The Void (B5F, B10F…)",
+      "ja": "すくつ (最深 地下5階、地下10階…)",
+      "zh": "巢穴 (最深 地下5层、地下10层…)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "lumiest_ruin",
+    "name": {
+      "en": "Lumiest Crater",
+      "ja": "ルミエスト・クレーター",
+      "zh": "鲁米艾斯特·环形山"
+    },
+    "entries": [
+      13
+    ]
+  },
+  {
+    "id": "oldGuild",
+    "name": {
+      "en": "Guild Ruins",
+      "ja": "ギルド廃墟",
+      "zh": "公会废墟"
+    },
+    "entries": [
+      4,
+      5
+    ]
+  },
+  {
+    "id": "tinkerCamp",
+    "name": {
+      "en": "Tinker's Camp",
+      "ja": "旅商人の停泊地",
+      "zh": "旅行商人营地"
+    },
+    "entries": [
+      9
+    ]
+  },
+  {
+    "id": "olvina",
+    "name": {
+      "en": "Olvina",
+      "ja": "オルヴィナ",
+      "zh": "奥尔维纳"
+    },
+    "entries": [
+      89
+    ]
+  },
+  {
+    "id": "olvina_festival",
+    "name": {
+      "en": "Olvina (Moonsong Festival)",
+      "ja": "オルヴィナ (月奏祭)",
+      "zh": "奥尔维纳 (月奏节)"
+    },
+    "entries": [
+      51
+    ],
+    "playlist": "Festival_Olvina"
+  },
+  {
+    "id": "embassy_palmia",
+    "name": {
+      "en": "The Embassy",
+      "ja": "パルミア大使館",
+      "zh": "帕罗米亚大使馆"
+    },
+    "entries": [
+      18
+    ]
+  },
+  {
+    "id": "aquli",
+    "name": {
+      "en": "Aquli Teola",
+      "ja": "アクリ・テオラ",
+      "zh": "阿库里·提欧拉"
+    },
+    "entries": [
+      21
+    ]
+  },
+  {
+    "id": "vernis",
+    "name": {
+      "en": "Vernis",
+      "ja": "ヴェルニース",
+      "zh": "韦尔尼斯"
+    },
+    "entries": [
+      91
+    ]
+  },
+  {
+    "id": "vernis_mine",
+    "name": {
+      "en": "Vernis Mine B1–7F",
+      "ja": "ヴェルニース炭鉱 地下1–7階",
+      "zh": "韦尔尼斯矿场 地下1–7层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "vernis_mine_F-8",
+    "name": {
+      "en": "Vernis Mine B8F",
+      "ja": "ヴェルニース炭鉱 地下8階",
+      "zh": "韦尔尼斯矿场 地下8层"
+    },
+    "entries": [
+      107
+    ]
+  },
+  {
+    "id": "yowyn",
+    "name": {
+      "en": "Yowyn",
+      "ja": "ヨウィン",
+      "zh": "约恩"
+    },
+    "entries": [
+      57
+    ]
+  },
+  {
+    "id": "yowyn_festival",
+    "name": {
+      "en": "Yowyn (Harvest Festival)",
+      "ja": "ヨウィン (収穫祭)",
+      "zh": "约恩 (收获节)"
+    },
+    "entries": [
+      93
+    ],
+    "playlist": "Festival_Yowyn"
+  },
+  {
+    "id": "yowyn_F-1",
+    "name": {
+      "en": "Yowyn B1F",
+      "ja": "ヨウィン 地下1階",
+      "zh": "约恩 地下1层"
+    },
+    "entries": [
+      46,
+      47
+    ]
+  },
+  {
+    "id": "specwing",
+    "name": {
+      "en": "Specwing 1–3F",
+      "ja": "スペクウィング 1–3階",
+      "zh": "斯普睿 1–3层"
+    },
+    "entries": [
+      10
+    ]
+  },
+  {
+    "id": "village_exile",
+    "name": {
+      "en": "Village of Atonement",
+      "ja": "贖罪の村",
+      "zh": "赎罪之村"
+    },
+    "entries": [
+      117
+    ]
+  },
+  {
+    "id": "foxtown",
+    "name": {
+      "en": "Mifu Village",
+      "ja": "ミフの里",
+      "zh": "米芙村"
+    },
+    "entries": [
+      118
+    ]
+  },
+  {
+    "id": "foxtown_nefu",
+    "name": {
+      "en": "Nefu Village",
+      "ja": "ネフの里",
+      "zh": "涅芙村"
+    },
+    "entries": [
+      119
+    ]
+  },
+  {
+    "id": "casino",
+    "name": {
+      "en": "Fortune Bell",
+      "ja": "フォーチュン・ベル",
+      "zh": "好运金铃号"
+    },
+    "entries": [
+      104
+    ]
+  },
+  {
+    "id": "casino_F1",
+    "name": {
+      "en": "Fortune Bell 2F",
+      "ja": "フォーチュン・ベル 2階",
+      "zh": "好运金铃号 2层"
+    },
+    "entries": [
+      94,
+      104
+    ]
+  },
+  {
+    "id": "palmia",
+    "name": {
+      "en": "Palmia",
+      "ja": "パルミア",
+      "zh": "帕罗米亚"
+    },
+    "entries": [
+      63
+    ]
+  },
+  {
+    "id": "lothria",
+    "name": {
+      "en": "Willow",
+      "ja": "ウィロウ",
+      "zh": "柳木堡"
+    },
+    "entries": [
+      39
+    ]
+  },
+  {
+    "id": "mysilia",
+    "name": {
+      "en": "Mysilia",
+      "ja": "ミシリア",
+      "zh": "米西利亚"
+    },
+    "entries": [
+      73
+    ]
+  },
+  {
+    "id": "derphy",
+    "name": {
+      "en": "Derphy",
+      "ja": "ダルフィ",
+      "zh": "特尔斐"
+    },
+    "entries": [
+      45
+    ]
+  },
+  {
+    "id": "derphy_F-1",
+    "name": {
+      "en": "Derphy B1F",
+      "ja": "ダルフィ 地下1階",
+      "zh": "特尔斐 地下1层"
+    },
+    "entries": [
+      46,
+      47
+    ]
+  },
+  {
+    "id": "derphy_whore",
+    "name": {
+      "en": "Derphy Whore Den",
+      "ja": "ダルフィ娼館",
+      "zh": "特尔斐妓院"
+    },
+    "entries": [
+      91
+    ]
+  },
+  {
+    "id": "lesimas",
+    "name": {
+      "en": "Lesimas",
+      "ja": "レシマス",
+      "zh": "莱希墨苏"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "cave_puppy",
+    "name": {
+      "en": "Puppy's Cave",
+      "ja": "仔犬の洞窟",
+      "zh": "小狗洞窟"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "oldkeep",
+    "name": {
+      "en": "Old Keep",
+      "ja": "古城",
+      "zh": "古城"
+    },
+    "entries": [
+      61
+    ]
+  },
+  {
+    "id": "oldkeep_dungeon",
+    "name": {
+      "en": "Old Keep B1–4F",
+      "ja": "古城 地下1–4階",
+      "zh": "古城 地下1–4层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "oldkeep_dungeon_F-5",
+    "name": {
+      "en": "Old Keep B5F",
+      "ja": "古城 地下5階",
+      "zh": "古城 地下5层"
+    },
+    "entries": [
+      99
+    ]
+  },
+  {
+    "id": "keep_seeker",
+    "name": {
+      "en": "Seeker's Keep 1–2F",
+      "ja": "探求者の孤城 1–2階",
+      "zh": "探求者的孤城 1–2层"
+    },
+    "entries": [
+      33
+    ]
+  },
+  {
+    "id": "cave_dead",
+    "name": {
+      "en": "Crypt of the Damned B1–5F",
+      "ja": "死者の洞窟 地下1–5階",
+      "zh": "死者的洞窟 地下1–5层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "cave_dead_F-6",
+    "name": {
+      "en": "Crypt of the Damned B6F",
+      "ja": "死者の洞窟 地下6階",
+      "zh": "死者的洞窟 地下6层"
+    },
+    "entries": [
+      1
+    ]
+  },
+  {
+    "id": "little_garden",
+    "name": {
+      "en": "Little Garden",
+      "ja": "リトルガーデン",
+      "zh": "小小花园"
+    },
+    "entries": [
+      85
+    ]
+  },
+  {
+    "id": "cave_mino",
+    "name": {
+      "en": "Minotaur's Nest",
+      "ja": "ミノタウロスの巣",
+      "zh": "牛头人巢穴"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "cave_yeek",
+    "name": {
+      "en": "Yeek Cave",
+      "ja": "イークの洞窟",
+      "zh": "小鬼洞穴"
+    },
+    "entries": [
+      46,
+      47
+    ],
+    "playlist": "Underground"
+  },
+  {
+    "id": "cave_fairy",
+    "name": {
+      "en": "Forest of the Lost Way",
+      "ja": "帰らずの森",
+      "zh": "不归之森"
+    },
+    "entries": [
+      46,
+      47
+    ],
+    "playlist": "Underground"
+  },
+  {
+    "id": "temple_undersea",
+    "name": {
+      "en": "Sunken Temple of Lurie B1–4F",
+      "ja": "ルーリエ海底神殿 地下1–4階",
+      "zh": "露里耶海底神殿 地下1–4层"
+    },
+    "entries": [
+      120
+    ],
+    "playlist": "Dungeon_Lurie"
+  },
+  {
+    "id": "temple_undersea_F-5",
+    "name": {
+      "en": "Sunken Temple of Lurie B5F",
+      "ja": "ルーリエ海底神殿 地下5階",
+      "zh": "露里耶海底神殿 地下5层"
+    },
+    "entries": [
+      1
+    ]
+  },
+  {
+    "id": "lumiest",
+    "name": {
+      "en": "Lumiest",
+      "ja": "ルミエスト",
+      "zh": "鲁米艾斯特"
+    },
+    "entries": [
+      71
+    ]
+  },
+  {
+    "id": "lumiest_F-1",
+    "name": {
+      "en": "Lumiest B1F",
+      "ja": "ルミエスト 地下1階",
+      "zh": "鲁米艾斯特 地下1层"
+    },
+    "entries": [
+      46,
+      47
+    ]
+  },
+  {
+    "id": "truce_ground",
+    "name": {
+      "en": "Truce Ground",
+      "ja": "神々の休戦地",
+      "zh": "众神休战之地"
+    },
+    "entries": [
+      13
+    ]
+  },
+  {
+    "id": "curryruin",
+    "name": {
+      "en": "Doga Ruins Camp",
+      "ja": "ドーガ遺跡キャンプ",
+      "zh": "多伽遗迹营地"
+    },
+    "entries": [
+      9
+    ]
+  },
+  {
+    "id": "curryruin_dungeon",
+    "name": {
+      "en": "Factory of Doga B1–4F",
+      "ja": "ドーガの工場 地下1–4階",
+      "zh": "多伽的工厂 地下1–4层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "curryruin_dungeon_F-5",
+    "name": {
+      "en": "Factory of Doga B5F",
+      "ja": "ドーガの工場 地下5階",
+      "zh": "多伽的工厂 地下5层"
+    },
+    "entries": [
+      99
+    ]
+  },
+  {
+    "id": "miral_garok",
+    "name": {
+      "en": "Miral and Garokk's Workshop",
+      "ja": "工房ミラル・ガロク",
+      "zh": "米拉尔·盖罗克工房"
+    },
+    "entries": [
+      11
+    ]
+  },
+  {
+    "id": "house_sister",
+    "name": {
+      "en": "The Mansion of Younger Sister",
+      "ja": "妹の館",
+      "zh": "妹之馆"
+    },
+    "entries": [
+      3
+    ]
+  },
+  {
+    "id": "guild_merchant",
+    "name": {
+      "en": "Merchants Guild",
+      "ja": "商人ギルド",
+      "zh": "商人公会"
+    },
+    "entries": [
+      61
+    ]
+  },
+  {
+    "id": "cursed_manor",
+    "name": {
+      "en": "The Cursed Manor",
+      "ja": "呪われた館",
+      "zh": "诅咒之馆"
+    },
+    "entries": [
+      100
+    ]
+  },
+  {
+    "id": "cursed_manor_F-1",
+    "name": {
+      "en": "The Cursed Manor B1F",
+      "ja": "呪われた館 地下1階",
+      "zh": "诅咒之馆 地下1层"
+    },
+    "entries": [
+      27
+    ]
+  },
+  {
+    "id": "cursed_manor_dungeon",
+    "name": {
+      "en": "The Cursed Manor B2–5F",
+      "ja": "呪われた館 地下2–5階",
+      "zh": "诅咒之馆 地下2–5层"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "cursed_manor_dungeon_F-6",
+    "name": {
+      "en": "The Cursed Manor B6F",
+      "ja": "呪われた館 地下6階",
+      "zh": "诅咒之馆 地下6层"
+    },
+    "entries": [
+      107
+    ]
+  },
+  {
+    "id": "noyel",
+    "name": {
+      "en": "Noyel",
+      "ja": "ノイエル",
+      "zh": "诺耶尔"
+    },
+    "entries": [
+      26
+    ]
+  },
+  {
+    "id": "noyel_festival",
+    "name": {
+      "en": "Noyel (Holy Night Festival)",
+      "ja": "ノイエル (聖夜祭)",
+      "zh": "诺耶尔 (圣夜节)"
+    },
+    "entries": [
+      51
+    ],
+    "playlist": "Festival_Noyel"
+  },
+  {
+    "id": "windrest",
+    "name": {
+      "en": "Where Winds Rest",
+      "ja": "風の眠る場所",
+      "zh": "风沉睡之所"
+    },
+    "entries": [
+      28
+    ]
+  },
+  {
+    "id": "snowgrave",
+    "name": {
+      "en": "Permafrost",
+      "ja": "永久凍土",
+      "zh": "永久冻土"
+    },
+    "entries": [
+      13
+    ]
+  },
+  {
+    "id": "lumiest_graveyard",
+    "name": {
+      "en": "The Graveyard",
+      "ja": "墓所",
+      "zh": "墓地"
+    },
+    "entries": [
+      13
+    ]
+  },
+  {
+    "id": "cave_dragon",
+    "name": {
+      "en": "Dragon's Nest",
+      "ja": "竜窟",
+      "zh": "龙窟"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "underground",
+    "name": {
+      "en": "Underground",
+      "ja": "地下",
+      "zh": "地下"
+    },
+    "entries": [
+      42,
+      41,
+      43
+    ]
+  },
+  {
+    "id": "tent1",
+    "name": {
+      "en": "Tent",
+      "ja": "テント",
+      "zh": "帐篷"
+    },
+    "entries": []
+  },
+  {
+    "id": "tent_snow",
+    "name": {
+      "en": "Igloo",
+      "ja": "かまくら",
+      "zh": "冰屋"
+    },
+    "entries": []
+  },
+  {
+    "id": "arena",
+    "name": {
+      "en": "Arena",
+      "ja": "闘技場",
+      "zh": "斗技场"
+    },
+    "entries": [
+      103
+    ]
+  },
+  {
+    "id": "instance_arena",
+    "name": {
+      "en": "Battlefield",
+      "ja": "戦場",
+      "zh": "战场"
+    },
+    "entries": [
+      107
+    ]
+  },
+  {
+    "id": "instance_music",
+    "name": {
+      "en": "Concert Hall",
+      "ja": "演奏会場",
+      "zh": "演奏会场"
+    },
+    "entries": [
+      47
+    ]
+  },
+  {
+    "id": "instance_wedding",
+    "name": {
+      "en": "Old Church",
+      "ja": "古い教会",
+      "zh": "老教堂"
+    },
+    "entries": [
+      122
+    ]
+  },
+  {
+    "id": "dungeon",
+    "name": {
+      "en": "Cave",
+      "ja": "洞窟",
+      "zh": "洞窟"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_boss",
+    "name": {
+      "en": "Cave (B2–5F)",
+      "ja": "洞窟 (最深 地下2–5階)",
+      "zh": "洞窟 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "gathering_plain",
+    "name": {
+      "en": "Gathering Spot",
+      "ja": "採取地",
+      "zh": "采集地"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "dungeon_plain",
+    "name": {
+      "en": "Grassland",
+      "ja": "草原",
+      "zh": "草原"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_plain_boss",
+    "name": {
+      "en": "Grassland (B2–5F)",
+      "ja": "草原 (最深 地下2–5階)",
+      "zh": "草原 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "dungeon_forest",
+    "name": {
+      "en": "Forest",
+      "ja": "森",
+      "zh": "森林"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_forest_boss",
+    "name": {
+      "en": "Forest (B2–5F)",
+      "ja": "森 (最深 地下2–5階)",
+      "zh": "森林 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "dungeon_ruin",
+    "name": {
+      "en": "Ruin",
+      "ja": "遺跡",
+      "zh": "遗迹"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_ruin_boss",
+    "name": {
+      "en": "Ruin (B2–5F)",
+      "ja": "遺跡 (最深 地下2–5階)",
+      "zh": "遗迹 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "dungeon_water",
+    "name": {
+      "en": "Underwater Ruin",
+      "ja": "海底遺跡",
+      "zh": "海底遗迹"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_water_boss",
+    "name": {
+      "en": "Underwater Ruin (B2–5F)",
+      "ja": "海底遺跡 (最深 地下2–5階)",
+      "zh": "海底遗迹 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "dungeon_factory",
+    "name": {
+      "en": "Machinarium",
+      "ja": "機械遺跡",
+      "zh": "机械遗迹"
+    },
+    "entries": [
+      24,
+      22,
+      23,
+      48
+    ],
+    "playlist": "Dungeon"
+  },
+  {
+    "id": "dungeon_factory_boss",
+    "name": {
+      "en": "Machinarium (B2–5F)",
+      "ja": "機械遺跡 (最深 地下2–5階)",
+      "zh": "机械遗迹 (最深 地下2–5层)"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "mine",
+    "name": {
+      "en": "Mine",
+      "ja": "鉱山",
+      "zh": "矿山"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "cave_monster",
+    "name": {
+      "en": "Monster Cave",
+      "ja": "魔物の巣窟",
+      "zh": "魔物的巢穴"
+    },
+    "entries": [
+      98
+    ],
+    "playlist": "Dungeon_Boss"
+  },
+  {
+    "id": "asylum",
+    "name": {
+      "en": "Orphanage",
+      "ja": "孤児院",
+      "zh": "孤儿院"
+    },
+    "entries": [
+      26
+    ]
+  }
+]

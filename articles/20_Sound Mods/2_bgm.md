@@ -22,6 +22,8 @@ We are still working on finding attributions for some materials. If you have any
 
 You can replace any background music in the game by placing audio files in the **Custom BGM folder**.
 
+To find which BGM IDs a town or dungeon plays, look it up under **Locations** in the player above.
+
 ### Custom Folder
 
 **Folder Location:**

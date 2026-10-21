@@ -3,7 +3,7 @@
   <div class="bgm-player bgm-window flex flex-col h-160 overflow-hidden">
     <!-- 主体区域 -->
     <div class="flex-1 min-h-0 overflow-hidden">
-      <div class="player-body-viewport h-full">
+      <div ref="viewportRef" class="player-body-viewport h-full">
         <!-- 左列 -->
         <div class="player-sidebar bgm-sidebar flex flex-col min-h-0">
           <div class="px-4 md:px-5 pt-4 md:pt-5 shrink-0">
@@ -13,7 +13,7 @@
 
             <button
               type="button"
-              @click="switchToAll"
+              @click="switchToAll(), showMain()"
               class="bgm-item nav-item flex items-center gap-3 px-3 py-2.5 mb-1"
               :class="{ active: currentView === 'all' }"
               :aria-pressed="currentView === 'all'"
@@ -33,41 +33,102 @@
           </div>
 
           <div class="flex-1 flex flex-col min-h-0 px-4 md:px-5 pt-4">
-            <div class="bgm-heading mb-2 shrink-0">
-              {{ t("playlists") }}
+            <!-- 播放列表 / 地点 两组共用下面的列表区，用页签切换 -->
+            <div class="bgm-tabs mb-2 mr-2 shrink-0" role="tablist">
+              <button
+                v-for="g in GROUPS"
+                :key="g"
+                type="button"
+                role="tab"
+                class="bgm-tab"
+                :class="{ active: group === g }"
+                :aria-selected="group === g"
+                @click="group = g"
+              >
+                {{ t(g) }}
+              </button>
+            </div>
+
+            <div v-if="group === 'locations'" class="relative mb-2 mr-2 shrink-0">
+              <input
+                v-model="locationQuery"
+                type="text"
+                :placeholder="t('filterLocations')"
+                :aria-label="t('filterLocations')"
+                class="bgm-search w-full pl-3 pr-8 py-1.5 text-sm"
+              />
+              <button
+                v-if="locationQuery"
+                type="button"
+                @click="locationQuery = ''"
+                :aria-label="t('clear')"
+                class="bgm-muted absolute right-3 top-1/2 -translate-y-1/2 text-xl leading-none"
+              >
+                ×
+              </button>
             </div>
 
             <div
+              ref="groupListRef"
               class="flex-1 overflow-y-auto overflow-x-hidden custom-scroll space-y-1 pr-2 min-h-0"
+              role="tabpanel"
             >
-              <button
-                v-for="playlist in playlists"
-                :key="playlist.name"
-                type="button"
-                @click="switchPlaylist(playlist)"
-                class="bgm-item nav-item flex items-center gap-3 px-3 py-2.5 text-sm"
-                :class="{ active: currentPlaylist?.name === playlist.name }"
-                :aria-pressed="currentPlaylist?.name === playlist.name"
-              >
-                <!-- 文件夹图标只在经典皮肤里显示（原版样式），Elin 皮肤下由 CSS 隐藏 -->
-                <span class="bgm-folder text-xl shrink-0" aria-hidden="true">📁</span>
-                <span
-                  class="font-medium min-w-0"
-                  :class="[
-                    isMobile
-                      ? 'whitespace-nowrap'
-                      : 'whitespace-normal break-words',
-                  ]"
+              <template v-if="group === 'playlists'">
+                <button
+                  v-for="playlist in playlists"
+                  :key="playlist.name"
+                  type="button"
+                  @click="switchPlaylist(playlist)"
+                  class="bgm-item nav-item flex items-center gap-3 px-3 py-2.5 text-sm"
+                  :class="{ active: currentPlaylist?.name === playlist.name }"
+                  :aria-pressed="currentPlaylist?.name === playlist.name"
                 >
-                  {{ playlist.name }}
-                </span>
-              </button>
+                  <!-- 文件夹图标只在经典皮肤里显示（原版样式），Elin 皮肤下由 CSS 隐藏 -->
+                  <span class="bgm-folder text-xl shrink-0" aria-hidden="true">📁</span>
+                  <span
+                    class="font-medium min-w-0"
+                    :class="[
+                      isMobile
+                        ? 'whitespace-nowrap'
+                        : 'whitespace-normal break-words',
+                    ]"
+                  >
+                    {{ playlist.name }}
+                  </span>
+                </button>
+              </template>
+
+              <template v-else>
+                <button
+                  v-for="location in filteredLocations"
+                  :key="location.id"
+                  type="button"
+                  @click="switchLocation(location)"
+                  class="bgm-item nav-item flex items-center gap-3 px-3 py-2 text-sm"
+                  :class="{ active: currentLocation?.id === location.id }"
+                  :aria-pressed="currentLocation?.id === location.id"
+                >
+                  <span class="bgm-folder text-base shrink-0" aria-hidden="true">📍</span>
+                  <!-- 窄屏也折行（截断会把层号截掉）；最后一个空格后的层号整段换行，不拆成「地下1–7 / 階」 -->
+                  <span class="font-medium min-w-0 whitespace-normal break-words">
+                    {{ nameParts(location)[0]
+                    }}<span class="whitespace-nowrap">{{ nameParts(location)[1] }}</span>
+                  </span>
+                </button>
+
+                <div
+                  v-if="filteredLocations.length === 0"
+                  class="bgm-note text-sm text-center py-6"
+                >
+                  {{ t("noLocations") }}
+                </div>
+              </template>
             </div>
           </div>
         </div>
 
         <!-- 右列 -->
-        <div class="player-main bgm-main flex flex-col min-h-0">
+        <div ref="mainRef" class="player-main bgm-main flex flex-col min-h-0">
           <!-- 顶部信息区：标题一行，搜索/数量下一行 -->
           <div class="bgm-toolbar px-4 py-3 shrink-0">
             <div
@@ -121,8 +182,18 @@
               </div>
 
               <div class="bgm-count text-xs px-2.5 py-1.5 whitespace-nowrap">
-                {{ filteredTracks.length }} {{ t("tracks") }}
+                {{ filteredTracks.length }}
+                {{ filteredTracks.length === 1 ? t("track") : t("tracks") }}
               </div>
+
+              <button
+                v-if="locationPlaylist"
+                type="button"
+                @click="switchPlaylist(locationPlaylist)"
+                class="bgm-count bgm-chip text-xs px-2.5 py-1.5 whitespace-nowrap"
+              >
+                {{ t("playlistOf") }}{{ locationPlaylist.name }}
+              </button>
             </div>
           </div>
 
@@ -181,7 +252,7 @@
               v-if="filteredTracks.length === 0"
               class="bgm-muted text-center py-12"
             >
-              {{ t("empty") }}
+              {{ currentTracks.length === 0 ? t("silent") : t("empty") }}
             </div>
           </div>
         </div>
@@ -205,6 +276,17 @@ import { useData } from "vitepress";
 import { useSkin, type Skin } from "../theme/skin";
 import "aplayer/dist/APlayer.min.css";
 import bgmItemsRaw from "/playlist/bgm_items.json";
+// 地点歌单由 scripts/build-bgm.mts 从游戏数据生成
+import locationsRaw from "/playlist/locations.json";
+
+type Lang = "en" | "ja" | "zh";
+type Playlist = { name: string; entries: number[] };
+type Location = {
+  id: string;
+  name: Record<Lang, string>;
+  entries: number[];
+  playlist?: string;
+};
 
 const bgmItems = bgmItemsRaw as any[];
 const playlistModules = import.meta.glob("/playlist/Playlist_*.json", {
@@ -212,42 +294,60 @@ const playlistModules = import.meta.glob("/playlist/Playlist_*.json", {
   import: "default",
 });
 
-const playlists = Object.values(playlistModules) as {
-  name: string;
-  entries: number[];
-}[];
+const playlists = Object.values(playlistModules) as Playlist[];
+const locations = locationsRaw as Location[];
 const trackMap = new Map(bgmItems.map((item: any) => [item.id, item]));
+
+const GROUPS = ["playlists", "locations"] as const;
 
 const i18n = {
   zh: {
     library: "音乐库",
     allTracks: "全部曲目",
     playlists: "播放列表",
+    locations: "地点",
+    filterLocations: "筛选地点",
+    noLocations: "没有匹配的地点",
+    playlistOf: "播放列表：",
+    track: "首",
     tracks: "首",
     searchPlaceholder: "搜索曲名、作者或编号",
     clear: "清除搜索",
     playing: "播放中",
     empty: "没有匹配的曲目",
+    silent: "这里不放 BGM",
   },
   en: {
     library: "Library",
     allTracks: "All tracks",
     playlists: "Playlists",
+    locations: "Locations",
+    filterLocations: "Filter locations",
+    noLocations: "No matching locations",
+    playlistOf: "Playlist: ",
+    track: "track",
     tracks: "tracks",
     searchPlaceholder: "Search by title, artist or ID",
     clear: "Clear search",
     playing: "Playing",
     empty: "No matching tracks",
+    silent: "No BGM plays here",
   },
   ja: {
     library: "音楽ライブラリ",
     allTracks: "全曲",
     playlists: "プレイリスト",
+    locations: "場所",
+    filterLocations: "場所を絞り込む",
+    noLocations: "該当する場所がありません",
+    playlistOf: "プレイリスト：",
+    track: "曲",
     tracks: "曲",
     searchPlaceholder: "曲名・作者・番号で検索",
     clear: "検索をクリア",
     playing: "再生中",
     empty: "該当する曲がありません",
+    silent: "ここではBGMが流れません",
   },
 } as const;
 
@@ -258,10 +358,13 @@ const t = (key: keyof typeof i18n.zh) =>
 const playerRef = ref<HTMLElement | null>(null);
 let aplayer: any = null;
 
-const currentView = ref<"all" | string>("all");
-const currentPlaylist = ref<any>(null);
+const currentView = ref<"all" | "playlist" | "location">("all");
+const currentPlaylist = ref<Playlist | null>(null);
+const currentLocation = ref<Location | null>(null);
 const currentAudioList = ref<any[]>([]);
 const searchQuery = ref("");
+const group = ref<(typeof GROUPS)[number]>("playlists");
+const locationQuery = ref("");
 const isMobile = ref(false);
 const currentlyPlayingId = ref<number | null>(null);
 
@@ -269,8 +372,58 @@ const updateIsMobile = () => {
   isMobile.value = window.innerWidth < 768;
 };
 
+const locationName = (location: Location) =>
+  location.name[lang.value as Lang] ?? location.name.en;
+
+const nameParts = (location: Location) => {
+  const name = locationName(location);
+  const i = name.lastIndexOf(" ");
+  return i < 0 ? [name, ""] : [name.slice(0, i + 1), name.slice(i + 1)];
+};
+
+// 按当前语言的名字排序，同一地点的楼层、节日自然排在一起
+const sortedLocations = computed(() => {
+  const collator = new Intl.Collator(lang.value, { numeric: true });
+  return [...locations].sort((a, b) =>
+    collator.compare(locationName(a), locationName(b)),
+  );
+});
+
+// 三种语言的名字都能搜
+const filteredLocations = computed(() => {
+  const q = locationQuery.value.toLowerCase().trim();
+  if (!q) return sortedLocations.value;
+  return sortedLocations.value.filter((location) =>
+    Object.values(location.name).some((n) => n.toLowerCase().includes(q)),
+  );
+});
+
+// 两组共用一个滚动区：切页签后把选中项滚到中间，没有选中项就回到顶部
+const groupListRef = ref<HTMLElement | null>(null);
+watch(group, async () => {
+  await nextTick();
+  const list = groupListRef.value;
+  if (!list) return;
+  const active = list.querySelector<HTMLElement>(".bgm-item.active");
+  if (!active) {
+    list.scrollTop = 0;
+    return;
+  }
+  const a = active.getBoundingClientRect();
+  const l = list.getBoundingClientRect();
+  list.scrollTop += a.top - l.top - (l.height - a.height) / 2;
+});
+
+const locationPlaylist = computed(() => {
+  if (currentView.value !== "location") return null;
+  const name = currentLocation.value?.playlist;
+  return playlists.find((p) => p.name === name) ?? null;
+});
+
 const currentTitle = computed(() => {
   if (currentView.value === "all") return t("allTracks");
+  if (currentView.value === "location")
+    return currentLocation.value ? locationName(currentLocation.value) : "";
   return currentPlaylist.value?.name || "";
 });
 
@@ -289,10 +442,12 @@ const filteredTracks = computed(() => {
 
 const currentTracks = computed(() => {
   if (currentView.value === "all") return bgmItems;
-  if (!currentPlaylist.value) return [];
-  return currentPlaylist.value.entries
-    .map((id: number) => trackMap.get(id))
-    .filter(Boolean);
+  const list =
+    currentView.value === "location"
+      ? currentLocation.value
+      : currentPlaylist.value;
+  if (!list) return [];
+  return list.entries.map((id) => trackMap.get(id)).filter(Boolean);
 });
 
 const getOriginalIndex = (track: any) =>
@@ -359,16 +514,42 @@ const isCurrentTrack = (track: any) => {
   return track.id === currentlyPlayingId.value;
 };
 
+// 窄屏两列横向滚动：点了左列之后把右列的曲目移进视口
+const viewportRef = ref<HTMLElement | null>(null);
+const mainRef = ref<HTMLElement | null>(null);
+const showMain = async () => {
+  if (!isMobile.value) return;
+  await nextTick();
+  const viewport = viewportRef.value;
+  const main = mainRef.value;
+  if (!viewport || !main) return;
+  const offset =
+    main.getBoundingClientRect().left - viewport.getBoundingClientRect().left;
+  viewport.scrollTo({ left: viewport.scrollLeft + offset, behavior: "smooth" });
+};
+
 const switchToAll = () => {
   currentView.value = "all";
   currentPlaylist.value = null;
+  currentLocation.value = null;
   searchQuery.value = "";
 };
 
-const switchPlaylist = (playlist: any) => {
-  currentView.value = playlist.name;
+const switchPlaylist = (playlist: Playlist) => {
+  currentView.value = "playlist";
   currentPlaylist.value = playlist;
+  currentLocation.value = null;
+  group.value = "playlists";
   searchQuery.value = "";
+  showMain();
+};
+
+const switchLocation = (location: Location) => {
+  currentView.value = "location";
+  currentLocation.value = location;
+  currentPlaylist.value = null;
+  searchQuery.value = "";
+  showMain();
 };
 
 onMounted(async () => {
@@ -556,6 +737,49 @@ onUnmounted(() => {
   color: var(--bgm-ink-3);
 }
 
+/* 侧栏上 ink-3 只有 3.8:1，侧栏里的提示文字用 ink-2 */
+.bgm-note {
+  color: var(--bgm-ink-2);
+}
+
+/* 播放列表 / 地点 页签：字体同小标题，选中项金色下划线 */
+.bgm-tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--bgm-rim-soft);
+}
+
+.bgm-tab {
+  margin-bottom: -1px;
+  padding: 0 2px 6px;
+  border-bottom: 2px solid transparent;
+  font-family: var(--elin-font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bgm-ink-2);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.bgm-tab:hover {
+  color: var(--bgm-ink);
+}
+
+.bgm-tab.active {
+  color: var(--bgm-gold);
+  border-bottom-color: var(--bgm-rim);
+}
+
+/* 地点所用的游戏歌单，点了跳过去 */
+.bgm-chip {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.bgm-chip:hover {
+  color: var(--bgm-gold);
+}
+
 /* 列表项：选中项照游戏里按钮的选中态 —— 金色描边，而不是整块填色 */
 .bgm-item,
 .bgm-track {
@@ -683,6 +907,18 @@ html[data-skin="classic"] .bgm-heading {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--bgm-ink-3);
+}
+
+html[data-skin="classic"] .bgm-tab {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+html[data-skin="classic"] .bgm-tab.active {
+  border-bottom-color: #8b5cf6;
 }
 
 html[data-skin="classic"] .bgm-title {
