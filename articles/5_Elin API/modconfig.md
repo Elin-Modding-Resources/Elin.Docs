@@ -8,7 +8,7 @@ tags: API/Config/C#
 
 # Mod Config
 
-Every mod can have its own config page, opened from its row in the mod viewer. A BepInEx plugin gets one generated from its `Config.Bind` entries; a plugin can also implement `IModConfig` and lay the page out itself.
+Every mod can have its own config page, opened from its row in the mod viewer. A BepInEx plugin gets one generated from its `Config.Bind` entries. To lay the page out yourself, implement `IModConfig`.
 
 ![](./assets/modconfig_from_viewer.png)
 
@@ -18,17 +18,23 @@ The generated page:
 
 ## Your own layout: `IModConfig`
 
-A plugin that implements `IModConfig` is **no longer** given the generated page. It builds its own in
-`OnBuildConfig`:
+A plugin that implements `IModConfig` gets no generated page and builds the whole page in `OnBuildConfig`:
 
 | Extension (`using EModding;`) | What you get |
 |-|-|
 | `note.AddAll(Config)` | the whole generated page, sections included |
-| `note.Add(entry)` | one entry, the widget picked by its type |
-| `note.AddSlider(entry, min, max, label = null)` | a slider over the range given here, whatever the entry declares; a value outside the range is shown clamped and left alone until dragged |
-| `note.AddDropdown(entry, values, label = null)` | a dropdown over these choices, for any entry type; a current value missing from the choices is listed first |
+| `note.Add(entry)` | one row: label, a widget chosen by the entry type, the description and a reset button |
+| `note.AddSlider(entry, min, max, label = null)` | a row with a slider over `min`..`max`, whatever range the entry declares; returns its `Slider` |
+| `note.AddDropdown(entry, values, label = null)` | a row with a dropdown over `values`, for any entry type; returns its `UIDropdown`, which is already bound to the entry, so do not call `SetList` on it (use `note.AddDropdown(label)` for a list of your own) |
 
-All of them read and write the entry directly and honour `SaveOnConfigSet`; labels go through `Lang.Get`. The page is rebuilt every time it is shown, so do not cache widget references; keep state that is not a `ConfigEntry` in your own fields and read and write it in the callbacks.
+All of them read and write the entry directly. Section names, labels (the entry `Key`), descriptions and dropdown choices are looked up with `Lang.Get`, using the string itself as the id. Without a matching row, keys, section names and choices are split into words (`ProtectionWeight` is shown as `Protection Weight`) and descriptions are shown as written. To translate them, add rows with those strings as ids to the `General` sheet in your mod's `LangMod` folder (see [Basic Elin Sheet Modding and You](../2_Getting%20Started/sourcesheet_setup.md)):
+
+| id | filter | text_JP | text |
+|-|-|-|-|
+| ProtectionWeight | | 防御の重み | Protection weight |
+| Score per point of PV. | | PV 1 点あたりのスコア | Score per point of PV. |
+
+Changes are written to the entry as soon as the player makes them. If your plugin reads an entry only in `Awake`, the change takes effect after a restart, so say so in the description; to apply it at once, subscribe to the entry's `SettingChanged`. The page is rebuilt each time it opens, so do not keep references to its widgets. Keep state that is not a `ConfigEntry` in your own fields and read or write it in the callbacks.
 
 ```cs
 using System.Collections.Generic;
@@ -76,11 +82,11 @@ public class ExamplePlugin : BaseUnityPlugin, IModConfig {
 }
 ```
 
-Only want a few things after the generated page? Write `note.AddAll(Config);` first, then append to it.
+To keep the generated page and add to it, call `note.AddAll(Config);` first.
 
 ![](./assets/modconfig_custom.png)
 
-To have your own state take part in the reset button, add a delegate to the package's `onResetConfig`. The BepInEx entries are already wired (every entry in `Config`, drawn on the page or not), so handle only your own here:
+To reset your own state with the reset button, add a delegate to the package's `onResetConfig`. Every entry in `Config` is already reset, so handle only your own state:
 
 ```cs
 void Start() {
@@ -96,11 +102,11 @@ void Start() {
 | Method | What you get |
 |-|-|
 | `AddHeader(string)` / `AddHeaderTopic(string)` | section header (the one the generated page uses) / small heading |
-| `AddToggle(string label, bool isOn, Action<bool>)` | toggle, returns `UIButton` (`interactable` disables it) |
-| `AddSlider(float value, Func<float,string> action, float min = 0, float max = 1, bool isInt = false)` | slider; `action` writes the value and returns the label, and is also called once while building with the initial value clamped to the range; returns `Slider` |
-| `AddDropdown(string label)` | label on the left, dropdown on the right, returns `UIDropdown`; fill it with `SetList(index, list, getName, onChange, notify: false)` |
-| `AddButton(string text, Action)` | full-width button, returns `UIButton` |
-| `AddText(string)` / `AddText(string, FontColor.Passive)` | body text, wraps and grows; `"NoteText_small"` is a fixed 20px single line and overflows on more |
+| `AddToggle(string label, bool isOn, Action<bool>)` | toggle; returns `UIButton` |
+| `AddSlider(float value, Func<float,string> action, float min = 0, float max = 1, bool isInt = false)` | slider; `action` receives the value and returns the label text; returns `Slider` |
+| `AddDropdown(string label)` | label and dropdown; returns `UIDropdown`, filled with `SetList(index, list, getName, onChange, notify: false)` |
+| `AddButton(string text, Action)` | full-width button; returns `UIButton` |
+| `AddText(string)` / `AddText(string, FontColor.Passive)` | body text that wraps |
 | `AddTopic(string label, string value)` | label on the left, value on the right |
 | `AddButtonLink(string text, string url)` | link |
 | `Space(int height)` | empty row |

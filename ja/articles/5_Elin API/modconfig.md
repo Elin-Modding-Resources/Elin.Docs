@@ -8,7 +8,7 @@ tags: API/Config/C#
 
 # Mod 設定ページ
 
-どの mod も自分の設定ページを持てます。Mod ビューアのその mod の行から開きます。BepInEx プラグインは `Config.Bind` した項目から自動生成されます。`IModConfig` を実装して自分でレイアウトすることもできます。
+どの mod も自分の設定ページを持てます。Mod ビューアのその mod の行から開きます。BepInEx プラグインには `Config.Bind` した項目からページが自動生成されます。自分でレイアウトするなら `IModConfig` を実装します。
 
 ![](./assets/modconfig_from_viewer.png)
 
@@ -18,16 +18,23 @@ tags: API/Config/C#
 
 ## 自分でレイアウト：`IModConfig`
 
-`IModConfig` を実装したプラグインには、ページは**自動生成されません**。`OnBuildConfig` で自分で組み立てます：
+`IModConfig` を実装したプラグインにはページが自動生成されず、`OnBuildConfig` でページ全体を組み立てます：
 
 | 拡張メソッド（`using EModding;`） | 得られるもの |
 |-|-|
-| `note.AddAll(Config)` | 自動生成ページ全体。セクション込み |
-| `note.Add(entry)` | 1 項目。ウィジェットは型で決まる |
-| `note.AddSlider(entry, min, max, label = null)` | ここで渡した範囲のスライダー。項目側の宣言は無視。値が範囲外なら丸めた値を表示し、ドラッグするまで書き換えない |
-| `note.AddDropdown(entry, values, label = null)` | この選択肢のドロップダウン。項目の型は問わない。現在値が選択肢になければ先頭に並ぶ |
+| `note.AddAll(Config)` | 自動生成ページ全体（セクション込み） |
+| `note.Add(entry)` | 1 行：ラベル、項目の型で決まるウィジェット、説明文、リセットボタン |
+| `note.AddSlider(entry, min, max, label = null)` | `min`〜`max` のスライダーの行。項目側で宣言した範囲は使わない。行の `Slider` を返す |
+| `note.AddDropdown(entry, values, label = null)` | `values` を選択肢にしたドロップダウンの行。項目の型は問わない。返る `UIDropdown` は項目に結び付いているので `SetList` し直さないこと（自前のリストには `note.AddDropdown(label)`） |
 
-どれも項目を直接読み書きし、`SaveOnConfigSet` に従います。ラベルは `Lang.Get` を通ります。ページは表示のたびに作り直されるので、ウィジェットの参照はキャッシュしないでください。`ConfigEntry` でない状態は自分のフィールドに持ち、コールバックで読み書きします。
+どれも項目を直接読み書きします。セクション名・ラベル（項目の `Key`）・説明文・ドロップダウンの選択肢は、その文字列自体を id として `Lang.Get` で引きます。行がなければ、`Key`・セクション名・選択肢は単語に分けて表示し（`ProtectionWeight` は `Protection Weight`）、説明文はそのまま表示します。翻訳するには、mod の `LangMod` フォルダの `General` シートに、それらの文字列を id にした行を足します（[Elin シートMOD制作の基本とあなた](../2_Getting%20Started/sourcesheet_setup.md) を参照）：
+
+| id | filter | text_JP | text |
+|-|-|-|-|
+| ProtectionWeight | | 防御の重み | Protection weight |
+| Score per point of PV. | | PV 1 点あたりのスコア | Score per point of PV. |
+
+値はプレイヤーが変えるとすぐ項目に書き込まれます。`Awake` でしか項目を読まないプラグインでは再起動後に反映されるので、説明文にそう書いてください。すぐ反映させるなら項目の `SettingChanged` を購読します。ページは開くたびに作り直されるので、ウィジェットの参照は保持しないでください。`ConfigEntry` でない状態は自分のフィールドに持ち、コールバックで読み書きします。
 
 ```cs
 using System.Collections.Generic;
@@ -75,11 +82,11 @@ public class ExamplePlugin : BaseUnityPlugin, IModConfig {
 }
 ```
 
-自動生成ページの後ろに少し足したいだけなら、先に `note.AddAll(Config);` と書いて、その後ろに追加します。
+自動生成ページに少し足すだけなら、先に `note.AddAll(Config);` を呼んでから追加します。
 
 ![](./assets/modconfig_custom.png)
 
-自分の状態もリセットボタンの対象にしたいなら、パッケージの `onResetConfig` にデリゲートを追加します。BepInEx の項目はすでに繋がっている（`Config` の全項目。ページに描いたかどうかは関係なし）ので、ここでは自分の分だけ扱います：
+自分の状態もリセットボタンでリセットするには、パッケージの `onResetConfig` にデリゲートを追加します。`Config` の項目はすでにリセットされるので、ここでは自分の状態だけを扱います：
 
 ```cs
 void Start() {
@@ -95,11 +102,11 @@ void Start() {
 | メソッド | 得られるもの |
 |-|-|
 | `AddHeader(string)` / `AddHeaderTopic(string)` | セクション見出し（自動生成ページもこれ）/ 小見出し |
-| `AddToggle(string label, bool isOn, Action<bool>)` | トグル。`UIButton` を返す（`interactable` で無効化できる） |
-| `AddSlider(float value, Func<float,string> action, float min = 0, float max = 1, bool isInt = false)` | スライダー。`action` は値を書いてラベルを返す。構築時にも、範囲に丸めた初期値で 1 回呼ばれる。`Slider` を返す |
-| `AddDropdown(string label)` | 左にラベル、右にドロップダウン。`UIDropdown` を返し、`SetList(index, list, getName, onChange, notify: false)` で中身を入れる |
-| `AddButton(string text, Action)` | 1 行ぶんのボタン。`UIButton` を返す |
-| `AddText(string)` / `AddText(string, FontColor.Passive)` | 本文。折り返して高さが伸びる。`"NoteText_small"` は固定 20px の 1 行用で、複数行はあふれる |
+| `AddToggle(string label, bool isOn, Action<bool>)` | トグル。`UIButton` を返す |
+| `AddSlider(float value, Func<float,string> action, float min = 0, float max = 1, bool isInt = false)` | スライダー。`action` は値を受け取ってラベルの文字列を返す。`Slider` を返す |
+| `AddDropdown(string label)` | ラベルとドロップダウン。`UIDropdown` を返し、`SetList(index, list, getName, onChange, notify: false)` で中身を入れる |
+| `AddButton(string text, Action)` | 横幅いっぱいのボタン。`UIButton` を返す |
+| `AddText(string)` / `AddText(string, FontColor.Passive)` | 本文（折り返す） |
 | `AddTopic(string label, string value)` | 左にラベル、右に値 |
 | `AddButtonLink(string text, string url)` | リンク |
 | `Space(int height)` | 空行 |
