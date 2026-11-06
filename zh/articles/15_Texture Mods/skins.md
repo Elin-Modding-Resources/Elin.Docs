@@ -21,6 +21,8 @@ tags: Texture/Skin
  
 你可以将 [贴图变体](./variation) 功能中的[雪地变体](./variation#雪地变体)、[方向性贴图](./variation#方向性贴图)，结合Skin文件夹使用。它们一起使用于Skin文件夹，也是可以的。
 
+皮肤也可以是动图：在 png 旁边放一个同名的 `.ini` 即可，详见[动画贴图](./animation)。
+
 ## 位置 {#skin-folder-location}
 
 可在本地储存

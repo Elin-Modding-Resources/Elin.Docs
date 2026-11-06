@@ -21,7 +21,6 @@ The filename of the .ini file, the filename of the horizontal sprite sheet, and 
 ```ini
 frame = 6
 time = 0.066
-scale = 100
 ```
 
 This defines an animation with 6 frames at a 66 ms interval.
@@ -35,3 +34,19 @@ This defines an animation with 6 frames at a 66 ms interval.
 ## Variation
 
 You can use [variations](./variation) with animated sprites for automatic switching.
+
+
+## Switching at Runtime
+
+To give one character a different sprite, animated or not, set a sprite override with the id of another texture in your **Texture** folder:
+
+```cs
+chara.SetSpriteOverride("my_chara_alt");   // my_chara_alt.png, optional .ini and .pref
+chara.SetSpriteOverride();                 // back to the normal sprite
+```
+
+In drama sheets, use `set_sprite`.
+
++ `my_chara_alt_snow.png` works as its snow variation. Without a `.pref`, the override uses the character's.
++ The override is saved with the character and takes priority over a [custom skin](./skins).
++ It only works on characters using standalone textures (`@chara` in `_idRenderData`). Tile-sheet and PCC characters, including vanilla NPCs, keep their map sprite.

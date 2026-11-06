@@ -21,6 +21,8 @@ This **Change Skin** feature only changes a single NPC's texture, not an entire 
 
 You can use the [Snow Variation](./variation#Snow-Variation) and [Directional Sprites](./variation#Directional-Sprites) from the [Sprite Variations](./variation) feature together with the Skin folder. Using them together inside the Skin folder works as well.
 
+Skins can be animated too: put an `.ini` with the same name next to the png. See [Sprite Animation](./animation).
+
 ## Location {#skin-folder-location}
 
 You can store them locally:

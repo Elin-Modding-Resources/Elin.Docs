@@ -351,7 +351,7 @@ Examples:
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
 |`set_portrait`|portrait id(optional)|Set `actor` portrait used during dialog to a specific one or reset with empty id, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|If actor found|
 |`set_portrait_override`|portrait id(optional)|Set `actor` portrait used outside of dialog to a specific one or reset with empty id, from **Portrait** folder. Must be full id. This does not affect the current dialog portrait (set by `set_portrait`)|always|
-|`set_sprite`|texture id(optional)|Set the custom sprite override for `actor` or reset with empty id, from **Texture** folder|always|
+|`set_sprite`|texture id(optional)|Set the custom sprite override for `actor` or reset with empty id, from **Texture** folder. Supports animated sprites. Only works on characters using standalone textures|always|
 |`show_book`|category/book id|Open a book, supports `LangMod/**/Text` folder, for example, use `Book/ok` for `Text/Book/ok.txt`|If success|
 
 ### Expanded Modifications

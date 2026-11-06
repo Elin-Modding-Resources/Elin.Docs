@@ -23,7 +23,6 @@ tags: Texture/Animation
 ```ini
 frame = 6
 time = 0.066
-scale = 100
 ```
 
 这定义了一个包含 6 帧、帧间隔为 66 毫秒（0.066 秒）的动画。
@@ -37,3 +36,19 @@ scale = 100
 ## 变体
 
 你可以将 [贴图变体功能](./variation) 与动图配合使用，以实现自动切换
+
+
+## 运行时切换
+
+要让某一个角色换一套贴图（动图或静态图都行），用 **Texture** 文件夹里另一张贴图的 id 设置贴图覆盖：
+
+```cs
+chara.SetSpriteOverride("my_chara_alt");   // my_chara_alt.png，可选同名 .ini 和 .pref
+chara.SetSpriteOverride();                 // 恢复原贴图
+```
+
+Drama 表里用 `set_sprite`。
+
++ `my_chara_alt_snow.png` 会作为它的雪地变体。没有 `.pref` 时沿用角色原来的设置。
++ 覆盖随角色存档，优先于[自定义皮肤](./skins)。
++ 只对使用独立贴图（`_idRenderData` 写 `@chara`）的角色生效。使用图集或 PCC 的角色（包括原版 NPC）在地图上的贴图不会变。

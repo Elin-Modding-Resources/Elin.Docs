@@ -352,7 +352,7 @@ tags: Chara/Drama
 |`pop_text`|文本|使 `actor` 发出喊叫文本（气泡框）|总是|
 |`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，例如 `UN_myChara_happy.png` 可以写作 `happy` 或 `UN_myChara_happy`|找到 actor 时|
 |`set_portrait_override`|头像 ID(可选)|设置 `actor` 对话外使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，必须使用全名。不会影响当前对话的头像|总是|
-|`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹读取|总是|
+|`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹读取，支持动画贴图。只对使用独立贴图的角色生效|总是|
 |`show_book`|分类/书籍 ID|打开一本书，支持 `LangMod/**/Text` 文件夹，例如使用 `Book/ok` 对应 `Text/Book/ok.txt`|成功时|
 
 ### 拓展修改

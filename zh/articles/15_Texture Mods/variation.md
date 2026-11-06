@@ -64,6 +64,7 @@ tags: Texture/Variation
 
 + 从 0 开始数
 + 非男性，包含女与 ???性别
++ `idSkin` 只有在 `tiles` 列多于一项时才生效。想在运行时切换单个角色的贴图，请用[贴图覆盖](./animation#运行时切换)
 
 ## 方向性贴图
 
@@ -77,9 +78,32 @@ tags: Texture/Variation
 
 ## 后缀顺序
 
-上述变体，皆可以组合使用，但要注意后缀顺序，顺序如下:
+上述变体皆可组合使用，顺序不限：`id_snow_skin1.png` 和 `id_skin1_snow.png` 对游戏来说是一样的。
+
+有多个文件同时匹配时，游戏使用下表中最靠前的一个：
 
 + `_skinN_dirN_snow`
++ `_skinN_dirN`
 + `_skinN_snow`
++ `_skinN`
 + `_dirN_snow`
++ `_dirN`
 + `_snow`
++ 基础贴图
+
+## 自定义状态
+
+mod 可以添加自己的状态，比如战斗贴图。在 mod 加载时注册一次后缀和规则：
+
+```cs
+SpriteReplacer.states.Add(("_combat", c => c.Chara?.IsInCombat == true));
+```
+
+规则成立时，`id_combat.png` 会替换普通贴图。加一个 `id_combat.ini` 就能做成动图。这个后缀可以和其他变体以任意顺序组合，比如 `id_combat_snow.png`、`id_skin1_combat.png`。
+
++ 一次只生效一个状态。多条规则同时成立时，`states` 里靠前的优先，想让某个状态压过其他状态，用 `states.Insert(0, ...)`。
++ 屏幕上有对应文件的对象每帧都会执行规则，绘制图标时也会执行，这时角色可能不在当前地图。规则要尽量轻、不要有副作用。规则抛出异常时视为不成立，日志只记录一次。
++ 状态只对独立贴图生效，对图集无效。
++ 状态贴图使用基础贴图的 `.pref`。
+
+规则表达不了的需求，可以补丁 `GetSpriteData(int dir = 0, bool snow = false)`，让它返回要绘制的 `SpriteData`。物品补丁 `Card.GetSpriteData`，角色补丁 `Chara.GetSpriteData`。静态和动画的独立贴图都使用这个返回值。
