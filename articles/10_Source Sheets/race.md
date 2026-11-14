@@ -41,12 +41,12 @@ You can change the defaults on row 3 to apply them to all other rows.
 |PDR|integer|Physical Damage Reduction. A percent reduction in damage taken from physical sources.|
 |EDR|integer|Elemental Damage Reduction. A percent reduction in damage taken from elemental sources.|
 |EP|integer|Evade Perfect. This race has an additional protection layer via perfect evasion, which is a separate evasion roll.|
-|STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|Base attribute parameters.|
+|STR/END/DEX/PER/LER/WIL/MAG/CHA/SPD|integer|Base attribute parameters: the starting value at level 1, added to the class's value of the same name. All but SPD scale with character level (`lvFactor` 50). Potential is not set here; attributes always start at 80 potential.|
 |ratio|—|Macro to approximate the race strength; unused in-game. Leave blank.|
 |INT|integer|The "intelligence" of this race. A character with INT less than `10` cannot open **locked** doors on its own; regular doors have no INT requirement.|
 |martial|integer|The starting level of the Martial Arts skill. Like the nine attributes, it is part of what the race grants and is applied when a character is generated.|
 |pen|integer|Unused by the game. Keep the column; the value does not matter.|
-|elements|elements|Inherent elements added to this race. Used to add racial feats and base skill bonuses (which also add base potential). Format: `element_alias/value`.|
+|elements|elements|Inherent elements added to this race, applied through the same element map as the attribute columns. What the value means depends on the element: a **skill** takes a starting level and, when above 1, also adds `value × 10` potential (`weaponSword/3` = +3 levels and +30% potential; `1` only unlocks the skill); an **attribute** takes a starting value; a **feat** takes its level. Every race also implicitly has 21 basic skills at level 1 (crafting, gathering, every weapon, shield, armors, evasion, meditation, faith); listing one of them here overrides that 1. Format: `element_alias/value` (a missing value counts as 1).|
 |skill|string|Unused by the game. Vanilla puts author notes here (`●`, or skill names separated by spaces), which are never read; `elements` is the column that actually applies skills.|
 |figure|string|Dictates what body parts this race starts with. See [Figure Reference](#figure-reference) below.|
 |geneCap|integer|How many gene slots this race has.|
