@@ -60,3 +60,13 @@ You should provide an image with a transparent background named `UN_id.png` as t
 + **Background:** Transparent
 + **File Naming:** `UN_id.png`  
 (where `id` is your character's ID, which is what you entered in the ID column of the [Character Source Sheet](../10_Source%20Sheets/character))
+
+## Full Portrait
+
+An optional larger image for dramas that turn on the [full portrait](../10_Source%20Sheets/drama#full-portrait) dialog.
+
++ **Size:** Any; the aspect ratio is kept. Use a tall image.
++ **Background:** Transparent
++ **File Naming:** The portrait id followed by `-full`, such as `UN_id-full.png`
+
+The regular portrait with the same id, such as `UN_id.png`, is still required.

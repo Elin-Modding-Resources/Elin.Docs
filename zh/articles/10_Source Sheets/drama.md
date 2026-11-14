@@ -195,6 +195,8 @@ tags: Chara/Drama
 |`setFlag`|flag 名称,值(可选)|设置 flag 值，未提供值时默认为 1|
 |`reload`||重新加载剧情，让当前剧情里改过的 flag 生效。`jump` 可选，通常设为 `main`；省略时在原地继续执行。**这与热重载无关，开发时热重载只需保存文件并重新打开对话**|
 |`enableTone`||为整个剧情启用对话语气转换|
+|`enableFullPortrait`||切换到可选的[全身立绘](#全身立绘)对话框|
+|`disableFullPortrait`||切回普通对话框|
 |`addActor`||添加剧情角色供后续使用，`text` 可以用来覆盖名称。在 `actor` 单元格填写新 ID 时会自动触发。`actor` 需填写[角色 ID][character-id-link]|
 |`invoke`|方法名|调用方法。可用方法均为 Elin 本体专用。|
 |`setBG`|图片名(可选)|设置背景图，留空则清除。支持在 **Texture** 文件夹提供自定义 png|
@@ -226,6 +228,66 @@ tags: Chara/Drama
 
 提供多个参数时，使用**半角逗号（`,`）分隔，中间不要有空格**。
 :::
+
+## 全身立绘
+
+全身立绘是一种可选的对话模式，画面接近 galgame：大幅立绘站在画面左侧，底部是带名牌的文本框，选项排在文本框上方。剧情不开启这个模式时仍使用普通对话框，即使 mod 里放了 `-full` 图片也一样。
+
+![](./assets/drama_full_portrait.png)
+
+### 开启方法
+
+1. 把立绘放进 mod 的 `Portrait` 文件夹，文件名为头像 ID 加 `-full`。例如头像是 `UN_myChara.png` 的角色，立绘就是 `UN_myChara-full.png`。同 ID 的普通头像也必须存在。
+2. 在第一句台词之前加一行动作 `enableFullPortrait`。放在 `*` 跳转行之前，每次打开对话都会执行。
+
+|step|jump|action|param|actor|id|text_EN|
+|-|-|-|-|-|-|-|
+|||`enableFullPortrait`|||||
+||`*`||||||
+|`main`|||||||
+||||||1|Welcome back.|
+
+`disableFullPortrait` 切回普通对话框。这两个动作在表中所在的位置生效，同一段剧情里可以来回切换多次。
+
+### 立绘图片
+
+图片尺寸不限，显示时保持原比例。立绘位于画面左侧，底边落在文本框的上沿，不会被文本框挡住。它按文本框左半边上方到画面顶端的空间缩放，比显示区域小的图会被放大。名牌会盖住立绘底边的一小条。
+
+全身图里的人物会显得比较小，脚下请留一点透明空白，否则会被名牌盖住。裁成半身或膝上，人物就会大一些。请使用竖图和透明背景，横向的宽图会按宽度缩小。
+
+### 说话人
+
+- 说话人有 `-full` 图时，显示这张立绘。
+- 说话人没有 `-full` 图时，立绘隐藏，文本框左侧显示该角色的普通头像。
+- actor 为 `pc` 的台词不改变立绘，文本框左侧显示玩家的头像。
+- actor 为 `*` 的旁白仍然是居中的旁白文字，到下一句台词时立绘重新出现。
+
+`wait` 和 `hideDialog` 会把立绘和文本框一起隐藏。
+
+![](./assets/drama_full_portrait_pc.png)
+
+### 更换立绘
+
+`set_portrait` 会同时切换全身立绘。执行 `set_portrait(happy)` 后，角色改用 `UN_myChara_happy.png` 和 `UN_myChara_happy-full.png`，两张都要提供。如果只有普通头像，这个角色的全身立绘会消失，直到用 `set_portrait()` 重置。
+
+|动作|参数|actor|
+|-|-|-|
+|`invoke*`|`set_portrait(happy)`|`tg`|
+
+![](./assets/drama_full_portrait_expression.png)
+
+### 选项
+
+选项排在文本框上方，靠右对齐。10 项以内全部显示，超过 10 项时用鼠标滚轮滚动。数字键 1 到 9 可以直接选择。
+
+![](./assets/drama_full_portrait_scroll.png)
+
+### 限制
+
+- 不显示普通对话框里的兴趣度和好感度面板。
+- 中文和日文换行时不避开行首标点，一行可能以 `，` 或 `。` 开头。
+- 正文超过五行时文本框会变高，盖住立绘的底部。
+- `enableFullPortrait` 或 `disableFullPortrait` 切换模式时，之前用 `setDialog` 设置的对话框会被替换。
 
 ## 条件
 
@@ -350,7 +412,7 @@ tags: Chara/Drama
 |`play_emote`|[表情 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), 时长(可选)|使 `actor` 显示表情，默认时长 `1` 秒|总是|
 |`play_screen_effect`|[屏幕特效 ID](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|播放屏幕特效|总是|
 |`pop_text`|文本|使 `actor` 发出喊叫文本（气泡框）|总是|
-|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，例如 `UN_myChara_happy.png` 可以写作 `happy` 或 `UN_myChara_happy`|找到 actor 时|
+|`set_portrait`|头像 ID(可选)|设置 `actor` 对话时使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，例如 `UN_myChara_happy.png` 可以写作 `happy` 或 `UN_myChara_happy`。有 `<头像 ID>-full.png` 时，[全身立绘](#全身立绘)也会跟着切换|找到 actor 时|
 |`set_portrait_override`|头像 ID(可选)|设置 `actor` 对话外使用的头像，留空则重置。支持 **Portrait** 文件夹中的自定义头像，必须使用全名。不会影响当前对话的头像|总是|
 |`set_sprite`|贴图 ID(可选)|设置 `actor` 的自定义贴图，留空则重置。从 **Texture** 文件夹读取，支持动画贴图。只对使用独立贴图的角色生效|总是|
 |`show_book`|分类/书籍 ID|打开一本书，支持 `LangMod/**/Text` 文件夹，例如使用 `Book/ok` 对应 `Text/Book/ok.txt`|成功时|

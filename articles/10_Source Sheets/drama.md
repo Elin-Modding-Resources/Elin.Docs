@@ -135,6 +135,8 @@ For example, an action line placed after a text line won't execute until the tex
 |`setFlag`|flag name,value(optional)|Set a flag with value or default 1 if not provided|
 |`reload`||Reload the drama so any flag changes made in the current drama can be applied. `jump` is optional and usually set to `main`; when omitted, execution continues in place. Don't confuse this with hot reload during development: for that you only need to save the changes, and the drama is reloaded the next time you start it|
 |`enableTone`||Enable dialog tone for the entire drama|
+|`enableFullPortrait`||Switch to the optional [full portrait](#full-portrait) dialog|
+|`disableFullPortrait`||Switch back to the regular dialog|
 |`addActor`||Add a drama actor to use later; `text` can set a name override. This happens automatically when you put a new id in the `actor` cell. Requires [character id][character-id-link] in `actor`|
 |`invoke`|method name|Call a method. All available methods are hardcoded for specific uses.|
 |`setBG`|image name(optional)|Set an image as the background, or leave empty to clear it. Images can come from the **Texture** folder|
@@ -166,6 +168,66 @@ For example, an action line placed after a text line won't execute until the tex
 
 Separate multiple parameters with commas (`,`) and **no spaces in between**.
 :::
+
+## Full Portrait
+
+Full portrait is an optional dialog mode styled like a visual novel. A large portrait stands on the left side of the screen, the text and the speaker's name sit in a box along the bottom, and choices are listed above the box. Dramas that don't turn it on keep the regular dialog, even if the mod includes `-full` images.
+
+![](./assets/drama_full_portrait.png)
+
+### Setup
+
+1. Put the image in the `Portrait` folder of your mod and name it after the portrait id with a `-full` suffix. A character whose portrait is `UN_myChara.png` uses `UN_myChara-full.png`. The regular portrait is still required.
+2. Add an `enableFullPortrait` action line before the first text line. Put it above the `*` jump line and it runs every time the drama opens.
+
+|step|jump|action|param|actor|id|text_EN|
+|-|-|-|-|-|-|-|
+|||`enableFullPortrait`|||||
+||`*`||||||
+|`main`|||||||
+||||||1|Welcome back.|
+
+`disableFullPortrait` switches back to the regular dialog. Both actions take effect where they appear in the sheet, so a drama can switch back and forth as often as it needs.
+
+### Image
+
+The image can be any size and keeps its aspect ratio. It stands on the left with its bottom edge on the top of the text box, so the box does not cover it. It is scaled to fit the space above the left half of the text box, up to the top of the screen, and smaller images are scaled up. The name label on the box overlaps a thin strip along the bottom edge of the image.
+
+A full-body image shows the whole figure fairly small. Leave a little transparent space under the feet, or the name label covers them. Cropping at the knees or waist makes the character larger. Use a tall image with a transparent background; a wide image is scaled down to fit the width.
+
+### Speakers
+
+- If the speaker has a `-full` image, that image is shown.
+- If not, the full portrait is hidden and the speaker's regular portrait appears at the left of the text box.
+- Lines from `pc` leave the full portrait as it is and show the player's portrait at the left of the text box.
+- Narration lines (actor `*`) still use the centered narration text. The full portrait returns with the next line.
+
+`wait` and `hideDialog` hide the full portrait along with the text box.
+
+![](./assets/drama_full_portrait_pc.png)
+
+### Changing the Portrait
+
+`set_portrait` switches the full portrait as well. After `set_portrait(happy)`, the actor uses `UN_myChara_happy.png` and `UN_myChara_happy-full.png`, so provide both. If only the regular portrait exists, the actor has no full portrait until `set_portrait()` resets it.
+
+|action|param|actor|
+|-|-|-|
+|`invoke*`|`set_portrait(happy)`|`tg`|
+
+![](./assets/drama_full_portrait_expression.png)
+
+### Choices
+
+Choices are listed above the text box, aligned right. Up to 10 are shown at once, and a longer list scrolls with the mouse wheel. Number keys 1 to 9 select a choice.
+
+![](./assets/drama_full_portrait_scroll.png)
+
+### Limits
+
+- The interest and affinity panel from the regular dialog is not shown.
+- Japanese and Chinese text can wrap so that a line starts with `，` or `。`.
+- Text longer than five lines makes the text box taller, and the box then covers the bottom of the full portrait.
+- When `enableFullPortrait` or `disableFullPortrait` changes the mode, it replaces any dialog set earlier with `setDialog`.
 
 ## Text
 
@@ -349,7 +411,7 @@ Examples:
 |`play_emote`|[emote id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-elin-emo-md), duration(optional)|Play emote on `actor`, default duration `1` second|always|
 |`play_screen_effect`|[screen effect id](https://gist.github.com/gottyduke/6e2847e37d205a5621bfd0615e5bd9e7#file-screeneffect-md)|Play screen effect|always|
 |`pop_text`|text|Pop a text bubble above `actor` head|always|
-|`set_portrait`|portrait id(optional)|Set `actor` portrait used during dialog to a specific one or reset with empty id, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`|If actor found|
+|`set_portrait`|portrait id(optional)|Set `actor` portrait used during dialog to a specific one or reset with empty id, from **Portrait** folder, e.g. `UN_myChara_happy.png` could be set with `happy` or `UN_myChara_happy`. Also switches the [full portrait](#full-portrait) when `<portrait id>-full.png` exists|If actor found|
 |`set_portrait_override`|portrait id(optional)|Set `actor` portrait used outside of dialog to a specific one or reset with empty id, from **Portrait** folder. Must be full id. This does not affect the current dialog portrait (set by `set_portrait`)|always|
 |`set_sprite`|texture id(optional)|Set the custom sprite override for `actor` or reset with empty id, from **Texture** folder. Supports animated sprites. Only works on characters using standalone textures|always|
 |`show_book`|category/book id|Open a book, supports `LangMod/**/Text` folder, for example, use `Book/ok` for `Text/Book/ok.txt`|If success|
